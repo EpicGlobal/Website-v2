@@ -23,10 +23,25 @@ export function CtaButton({
   const [isHovering, setIsHovering] = useState(false);
   const timerRef = useRef<number | null>(null);
   const hasTriggeredRef = useRef(false);
+  const ctaStateRef = useRef({
+    buttonText: getDefaultCtaVariant(),
+    location,
+    variant,
+    trackClick,
+  });
 
   useEffect(() => {
     setButtonText(readOrCreateCtaVariant());
   }, []);
+
+  useEffect(() => {
+    ctaStateRef.current = {
+      buttonText,
+      location,
+      variant,
+      trackClick,
+    };
+  }, [buttonText, location, trackClick, variant]);
 
   const sizeClasses = {
     sm: 'px-6 py-2.5 text-sm',
@@ -43,11 +58,18 @@ export function CtaButton({
   };
 
   const openModal = () => {
+    const {
+      buttonText: currentButtonText,
+      location: currentLocation,
+      variant: currentVariant,
+      trackClick: currentTrackClick,
+    } = ctaStateRef.current;
+
     setIsModalOpen(true);
-    trackClick(buttonText, 'CTA Button A/B Test', {
-      location,
-      variant: buttonText,
-      buttonStyle: variant,
+    currentTrackClick(currentButtonText, 'CTA Button A/B Test', {
+      location: currentLocation,
+      variant: currentButtonText,
+      buttonStyle: currentVariant,
     });
   };
 
@@ -55,11 +77,11 @@ export function CtaButton({
     if (isHovering) {
       hasTriggeredRef.current = false;
 
-      const startTime = Date.now();
+      const startTime = performance.now();
       const duration = 1000;
 
       const updateProgress = () => {
-        const elapsed = Date.now() - startTime;
+        const elapsed = performance.now() - startTime;
         const newProgress = Math.min((elapsed / duration) * 100, 100);
         setProgress(newProgress);
 
@@ -87,7 +109,7 @@ export function CtaButton({
         timerRef.current = null;
       }
     };
-  }, [buttonText, isHovering, location, trackClick, variant]);
+  }, [isHovering]);
 
   return (
     <>
@@ -99,9 +121,9 @@ export function CtaButton({
         onMouseLeave={() => setIsHovering(false)}
         className={`relative inline-flex items-center justify-center overflow-hidden rounded-lg font-medium transition-all duration-300 hover:scale-105 active:scale-95 ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
       >
-        <span className="relative z-20">{buttonText}</span>
+        <span className="relative z-0">{buttonText}</span>
         <div
-          className="absolute inset-y-0 left-0 z-10 rounded-lg bg-white/20 transition-[width] duration-0 ease-linear dark:bg-white/20 leaf:bg-sky-700/30 water:bg-emerald-700/30 light:bg-cyan-700/30 orange:bg-orange-800/30"
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 rounded-lg bg-white/30 transition-[width] duration-0 ease-linear dark:bg-white/30 leaf:bg-sky-700/40 water:bg-emerald-800/40 light:bg-cyan-700/40 orange:bg-orange-800/40"
           style={{
             width: `${progress}%`,
             transformOrigin: 'left',
