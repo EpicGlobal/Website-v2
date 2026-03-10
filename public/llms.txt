@@ -1,0 +1,101 @@
+# Epic Global Inc - AI Discovery File
+
+## Overview
+Epic Global Inc. is a global marketplace operator and technology platform that purchases inventory at wholesale and runs end-to-end eCommerce execution across marketplaces worldwide. Epic covers operating costs like advertising, marketplace fees, and fulfillment so incentives stay aligned.
+
+## Canonical Pages
+
+### Home (/)
+Primary company overview and three-pillar model summary: Inventory Purchase, Global Marketplace Expansion, and End-to-End Expense Coverage.
+
+### About (/about)
+Company mission, values, and operating philosophy. Explains why Epic runs marketplace growth like an operating system instead of a marketing service.
+
+### Our Model (/our-model)
+Plain-language explanation of what Epic does, who it is for, how the model works, and what Epic does not do.
+
+### AI Intelligence (/intelligence)
+Overview of the automation, decisioning, and systems layer that supports Epic's marketplace operations.
+
+### Case Studies (/case-studies)
+Selected marketplace execution examples organized around the Purchase, Expand, and Cover pillars.
+
+### FAQ (/faq)
+Frequently asked questions about Epic's model, timelines, fit, pricing structure, and execution scope.
+
+### Knowledge Base (/knowledge-base)
+Operator-grade playbooks, checklists, templates, definitions, and proof pages for running marketplaces as a system.
+
+### Contact (/contact)
+Primary conversion page for requesting an assessment or booking a call.
+
+## Knowledge Base Highlights
+
+### Start Here
+- What is Epic Global Inc.? - Entity definition and business model overview
+- How Our Model Works - Breakdown of Purchase, Expand, and Cover
+- What Types of Brands We're a Fit For - Ideal partner profile
+- The Incentive Trap: Why Epic Isn't an "Agency" - Operator model comparison
+
+### Model and Process
+- Inventory Purchase Model Explained - Wholesale inventory purchase approach
+- End-to-End Expense Coverage Explained - Why Epic covers ads, fees, and fulfillment
+- Global Expansion Readiness Model - International expansion framework
+
+### Marketplace Operations
+- Catalog Hygiene - Why clean product data matters
+- Listing QA Checklist - Pre-launch quality assurance
+- Variation Strategy Basics - Parent-child listing structure
+
+### Advertising Operations
+- Campaign Structure Playbook - Baseline ad architecture
+- Search Term Harvesting Playbook - Query mining and optimization
+- Creative Testing Loop - Repeatable conversion testing process
+
+### Inventory and Forecasting
+- Reorder Point Logic Explained - Replenishment and safety stock logic
+- Allocation Planning by Region - Regional inventory distribution framework
+
+### Brand Protection
+- Unauthorized Seller Monitoring Workflow - Detection and enforcement
+- Catalog Integrity Controls - Evidence collection and audit trail discipline
+
+### Data and Reporting
+- KPI Glossary - Marketplace performance definitions and calculations
+- Weekly Executive Dashboard - Essential operator and executive metrics
+
+### Templates and Downloads
+- Market Launch Checklist
+- Catalog QA Checklist
+- Weekly Operating Cadence Template
+- Ad Account Rebuild Checklist
+- Inventory Reorder Model Template
+- Brand Protection Escalation Template
+
+## Business Model
+
+### What Epic Does
+- Purchases inventory at wholesale pricing
+- Operates retail sales across approved eCommerce marketplaces
+- Covers operating expenses including ads, fees, and fulfillment
+- Provides weekly dashboards and SKU-level performance visibility
+
+### Three Pillars
+1. Inventory Purchase: Buy inventory upfront at wholesale and operate at retail.
+2. Global Marketplace Expansion: Launch and scale new regions with localization and compliance.
+3. End-to-End Expense Coverage: Fund marketplace fees, advertising, and fulfillment to keep incentives aligned.
+
+### Who Epic Serves
+Brands that want to scale on marketplaces without building an internal marketplace operations team. Best fit is typically brands that already have traction and need better execution, control, and expansion capacity.
+
+### What Epic Does Not Do
+- No a la carte services or consulting packages
+- No hourly rates or project fees
+- No advice without execution
+- No revenue share without inventory ownership
+
+## Marketplaces
+Amazon, Walmart, eBay, and select international marketplaces across North America, Europe, and other growth regions.
+
+## Primary Conversion
+Request an assessment or book a call at /contact.
