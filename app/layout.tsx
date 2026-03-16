@@ -3,6 +3,7 @@ import Script from 'next/script';
 import '@/styles/index.css';
 import { SiteShell } from '@/site/SiteShell';
 import { siteConfig } from '@/site/site-config';
+import tabLogo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -25,7 +26,24 @@ export const metadata: Metadata = {
     canonical: siteConfig.url,
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      {
+        url: tabLogo.src,
+        type: 'image/png',
+      },
+    ],
+    shortcut: [
+      {
+        url: tabLogo.src,
+        type: 'image/png',
+      },
+    ],
+    apple: [
+      {
+        url: tabLogo.src,
+        type: 'image/png',
+      },
+    ],
   },
   openGraph: {
     type: 'website',
@@ -83,6 +101,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 document.documentElement.classList.add(theme);
               } catch (error) {
                 document.documentElement.classList.add('orange');
+              }
+            })();
+          `}
+        </Script>
+        <Script id="epic-auth-recovery-init" strategy="beforeInteractive">
+          {`
+            (() => {
+              try {
+                const recoveryPath = '/reset-password';
+                const currentPath = window.location.pathname;
+                const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+                const searchParams = new URLSearchParams(window.location.search);
+                const isRecoveryLink =
+                  hashParams.get('type') === 'recovery' ||
+                  searchParams.get('type') === 'recovery' ||
+                  hashParams.has('access_token') ||
+                  searchParams.has('token_hash');
+
+                if (isRecoveryLink && currentPath !== recoveryPath) {
+                  window.location.replace(recoveryPath + window.location.search + window.location.hash);
+                }
+              } catch (error) {
+                // Ignore and allow the app to continue booting.
               }
             })();
           `}

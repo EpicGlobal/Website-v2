@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { type MouseEvent, useEffect, useRef, useState } from 'react';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { HubSpotModal } from '@/app/components/HubSpotModal';
 import { getDefaultCtaVariant, readOrCreateCtaVariant } from '@/site/cta-variant';
+import { siteConfig } from '@/site/site-config';
 
 interface CtaButtonProps {
   variant?: 'primary' | 'secondary' | 'outline';
@@ -73,6 +75,22 @@ export function CtaButton({
     });
   };
 
+  const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    openModal();
+  };
+
   useEffect(() => {
     if (isHovering) {
       hasTriggeredRef.current = false;
@@ -113,10 +131,11 @@ export function CtaButton({
 
   return (
     <>
-      <button
-        type="button"
+      <Link
+        href={siteConfig.primaryCtaHref}
         data-primary-cta="true"
-        onClick={openModal}
+        aria-haspopup="dialog"
+        onClick={handleAnchorClick}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
         className={`relative inline-flex items-center justify-center overflow-hidden rounded-lg font-medium transition-all duration-300 hover:scale-105 active:scale-95 ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
@@ -129,7 +148,7 @@ export function CtaButton({
             transformOrigin: 'left',
           }}
         />
-      </button>
+      </Link>
 
       <HubSpotModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>

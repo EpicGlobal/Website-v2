@@ -13,6 +13,7 @@ export interface KnowledgeArticle {
   tags: string[];
   featured?: boolean;
   downloadable?: boolean;
+  downloadUrl?: string;
   content?: any; // Will be used for actual article content
   hasContent?: boolean; // Whether the article content has been written
 }

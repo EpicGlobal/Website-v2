@@ -251,7 +251,7 @@ export function Home() {
     {
       label: 'Market coverage',
       value: '41 countries',
-      detail: 'Coverage claim should stay current and exact across the site',
+      detail: 'Operating across 41 countries and growing',
     },
     {
       label: 'Primary marketplaces',

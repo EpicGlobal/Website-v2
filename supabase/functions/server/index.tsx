@@ -52,133 +52,16 @@ app.get("/make-server-c2dab185/health", (c) => {
  *    - All scenarios provide clear user feedback
  */
 
-// Sign up endpoint - creates user with email automatically confirmed
+// Sign up endpoint is intentionally disabled.
+// Email/password signup now goes through Supabase's verified client signUp flow.
 app.post("/make-server-c2dab185/auth/signup", async (c) => {
-  try {
-    const { email, password, name } = await c.req.json();
-
-    // Validate input
-    if (!email || !password || !name) {
-      return c.json({ error: "Email, password, and name are required" }, 400);
-    }
-
-    if (password.length < 6) {
-      return c.json({ error: "Password must be at least 6 characters long" }, 400);
-    }
-
-    // Create Supabase admin client with service role key
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-    );
-
-    // First, check if user already exists
-    const { data: existingUsers } = await supabase.auth.admin.listUsers();
-    const existingUser = existingUsers?.users?.find(u => u.email === email);
-
-    if (existingUser) {
-      // Check what provider(s) this user has
-      const identities = existingUser.identities || [];
-      const hasEmailProvider = identities.some(id => id.provider === 'email');
-      const hasOAuthProvider = identities.some(id => id.provider !== 'email');
-
-      // User exists - check if email is confirmed
-      if (!existingUser.email_confirmed_at) {
-        // User exists but email not confirmed - confirm it and update password
-        const { data: updatedUser, error: updateError } = await supabase.auth.admin.updateUserById(
-          existingUser.id,
-          {
-            email_confirm: true,
-            password: password,
-            user_metadata: {
-              ...existingUser.user_metadata,
-              full_name: name,
-              name: name,
-              email_password_added: true,
-              email_password_added_at: new Date().toISOString(),
-            }
-          }
-        );
-
-        if (updateError) {
-          console.error("Error updating existing user:", updateError);
-          return c.json({ error: "Failed to activate account. Please try again." }, 400);
-        }
-
-        return c.json({
-          success: true,
-          message: "Your account has been activated! You can now sign in with email and password.",
-          user: {
-            id: updatedUser.user.id,
-            email: updatedUser.user.email,
-          }
-        });
-      } else if (hasOAuthProvider && !hasEmailProvider) {
-        // User signed up with OAuth (like Google) but now wants to add email/password
-        // This is the account linking scenario
-        const { data: updatedUser, error: updateError } = await supabase.auth.admin.updateUserById(
-          existingUser.id,
-          {
-            password: password,
-            user_metadata: {
-              ...existingUser.user_metadata,
-              full_name: name,
-              name: name,
-              email_password_added: true,
-              email_password_added_at: new Date().toISOString(),
-            }
-          }
-        );
-
-        if (updateError) {
-          console.error("Error adding password to OAuth account:", updateError);
-          return c.json({ error: "Failed to add password to your account. Please try again." }, 400);
-        }
-
-        return c.json({
-          success: true,
-          message: "Password added to your account! You can now sign in with either Google or email/password.",
-          user: {
-            id: updatedUser.user.id,
-            email: updatedUser.user.email,
-          }
-        });
-      } else {
-        // User exists and email is confirmed with email provider already
-        return c.json({ error: "This email is already registered. Please sign in instead." }, 409);
-      }
-    }
-
-    // Create new user with email automatically confirmed
-    const { data, error } = await supabase.auth.admin.createUser({
-      email,
-      password,
-      user_metadata: { 
-        full_name: name,
-        name: name 
-      },
-      // Automatically confirm the user's email since an email server hasn't been configured
-      email_confirm: true,
-    });
-
-    if (error) {
-      console.error("Error creating user during sign-up:", error);
-      return c.json({ error: error.message || "Failed to create account" }, 400);
-    }
-
-    return c.json({ 
-      success: true, 
-      message: "Account created successfully! You can now sign in.",
-      user: {
-        id: data.user.id,
-        email: data.user.email,
-      }
-    });
-
-  } catch (err) {
-    console.error("Unexpected error during sign-up:", err);
-    return c.json({ error: "An unexpected error occurred during sign-up" }, 500);
-  }
+  return c.json(
+    {
+      error:
+        "This signup endpoint is deprecated. Use the verified client signup flow instead.",
+    },
+    410,
+  );
 });
 
 // Confirm email endpoint - confirms unconfirmed user accounts

@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 
+const defaultSiteUrl = 'https://epicglobalinc.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, '') || defaultSiteUrl;
+
 export const siteConfig = {
   name: 'Epic Global Inc.',
   shortName: 'Epic Global',
-  url: 'https://epicglobalinc.com',
+  url: siteUrl,
   logo: '/logo.png',
   founderName: 'Glen Jensen',
   founderLinkedIn: 'https://www.linkedin.com/in/glen-jensen-54a27/',
@@ -16,6 +19,7 @@ export const siteConfig = {
   postalCode: '84042',
   countryCode: 'US',
   contactPath: '/contact',
+  primaryCtaHref: '/contact#request-assessment',
   contactEmail: 'info@epicglobalinc.com',
   legalEmail: 'info@epicglobalinc.com',
   privacyEmail: 'info@epicglobalinc.com',

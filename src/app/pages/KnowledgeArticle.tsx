@@ -6,6 +6,7 @@ import { knowledgeArticles } from '@/app/data/knowledgeArticles';
 import { StructuredData } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
+import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
 
 // Import article content components
 import { getArticleContent } from '@/app/data/articleContent';
@@ -133,11 +134,16 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
               <Calendar className="w-4 h-4" />
               <span>Updated {article.lastUpdated}</span>
             </div>
-            {article.downloadable && (
-              <button className="flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300">
+            {article.downloadable && article.downloadUrl && (
+              <GatedDownloadButton
+                href={article.downloadUrl}
+                fileName={article.title}
+                fileType="template"
+                className="flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300"
+              >
                 <Download className="w-4 h-4" />
                 <span>Download Template</span>
-              </button>
+              </GatedDownloadButton>
             )}
             <button className="flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-400">
               <Share2 className="w-4 h-4" />

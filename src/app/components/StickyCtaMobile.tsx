@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { type MouseEvent, useEffect, useState } from 'react';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { HubSpotModal } from '@/app/components/HubSpotModal';
 import { getDefaultCtaVariant, readOrCreateCtaVariant } from '@/site/cta-variant';
+import { siteConfig } from '@/site/site-config';
 
 export function StickyCtaMobile() {
   const [showModal, setShowModal] = useState(false);
@@ -75,6 +77,22 @@ export function StickyCtaMobile() {
     setShowModal(true);
   };
 
+  const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    handleClick();
+  };
+
   if (!isVisible) {
     return null;
   }
@@ -82,14 +100,15 @@ export function StickyCtaMobile() {
   return (
     <>
       <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-black via-black/95 to-transparent dark:from-black dark:via-black/95 dark:to-transparent orange:from-orange-900/50 orange:via-orange-900/40 orange:to-transparent water:from-emerald-900/50 water:via-emerald-900/40 water:to-transparent leaf:from-sky-900/50 leaf:via-sky-900/40 leaf:to-transparent soft-dark:from-lime-900/50 soft-dark:via-lime-900/40 soft-dark:to-transparent light:from-gray-200/50 light:via-gray-200/40 light:to-transparent md:hidden">
-        <button
-          type="button"
+        <Link
+          href={siteConfig.primaryCtaHref}
           data-primary-cta="true"
-          onClick={handleClick}
+          aria-haspopup="dialog"
+          onClick={handleAnchorClick}
           className="relative w-full overflow-hidden rounded-lg bg-gradient-to-r from-cyan-500 via-cyan-300 to-cyan-500 py-4 text-lg font-semibold text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 active:scale-95 animate-shimmer-ltr dark:from-cyan-500 dark:via-cyan-300 dark:to-cyan-500 dark:shadow-cyan-500/25 leaf:from-sky-500 leaf:via-sky-400 leaf:to-sky-500 leaf:text-white leaf:shadow-sky-500/25 water:from-emerald-600 water:via-emerald-400 water:to-emerald-600 water:text-white water:shadow-emerald-500/25 light:from-cyan-500 light:via-cyan-300 light:to-cyan-500 light:shadow-cyan-500/25 orange:from-orange-500 orange:via-orange-400 orange:to-orange-500 orange:shadow-orange-500/25"
         >
           {buttonText}
-        </button>
+        </Link>
       </div>
 
       <HubSpotModal isOpen={showModal} onClose={() => setShowModal(false)} />

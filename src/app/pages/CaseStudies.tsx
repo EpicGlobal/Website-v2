@@ -4,6 +4,7 @@ import { ShoppingCart, Globe2, Shield, TrendingUp, ArrowUp, Download } from 'luc
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
+import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, Cell } from 'recharts';
 
 export function CaseStudies() {
@@ -268,15 +269,15 @@ export function CaseStudies() {
               <h2 className="text-2xl md:text-3xl font-bold mb-3 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 flex items-center gap-3">
                 {study.title}
                 {study.googleDriveUrl && (
-                  <a
+                  <GatedDownloadButton
                     href={study.googleDriveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    fileName={study.title}
+                    fileType="case-study"
                     className="inline-flex p-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-orange-100 leaf:bg-cyan-600/20 water:bg-emerald-100 rounded-lg hover:opacity-80 transition-opacity"
                     title="Download Case Study"
                   >
                     <Download className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-700 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
-                  </a>
+                  </GatedDownloadButton>
                 )}
               </h2>
 

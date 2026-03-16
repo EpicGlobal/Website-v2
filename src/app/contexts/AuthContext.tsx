@@ -17,6 +17,8 @@ interface AuthContextType {
   signInWithGoogle: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signUpWithEmail: (email: string, password: string, name: string) => Promise<any>;
+  requestPasswordReset: (email: string) => Promise<void>;
+  updatePassword: (password: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -27,6 +29,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const redirectToRecoveryPage = () => {
+      const recoveryPath = '/reset-password';
+      const currentPath = window.location.pathname;
+
+      if (currentPath === recoveryPath) {
+        return;
+      }
+
+      const search = window.location.search || '';
+      const hash = window.location.hash || '';
+      window.location.replace(`${recoveryPath}${search}${hash}`);
+    };
+
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const searchParams = new URLSearchParams(window.location.search);
+    const isRecoveryLink =
+      hashParams.get('type') === 'recovery' ||
+      searchParams.get('type') === 'recovery' ||
+      hashParams.has('access_token') ||
+      searchParams.has('token_hash');
+
+    if (isRecoveryLink && window.location.pathname !== '/reset-password') {
+      redirectToRecoveryPage();
+      return;
+    }
+
     // Check active session
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
@@ -39,6 +67,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        redirectToRecoveryPage();
+      }
+
       if (session?.user) {
         // If this is an OAuth sign in, check if we need to link accounts
         if (event === 'SIGNED_IN' && session.user.app_metadata?.provider !== 'email') {
@@ -135,28 +167,53 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signUpWithEmail = async (email: string, password: string, name: string) => {
-    // Call server endpoint to create user with auto-confirmed email
-    const response = await fetch(
-      `https://${projectId}.supabase.co/functions/v1/make-server-c2dab185/auth/signup`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${publicAnonKey}`,
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: name,
+          name,
         },
-        body: JSON.stringify({ email, password, name }),
-      }
-    );
+        emailRedirectTo: `${window.location.origin}/sign-in`,
+      },
+    });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error('Error signing up with email:', data.error);
-      throw new Error(data.error || 'Failed to create account');
+    if (error) {
+      console.error('Error signing up with email:', error);
+      throw error;
     }
 
-    // Success! User can now sign in
-    return data;
+    // If a session is returned here, the project likely has email confirmation disabled.
+    if (data.session) {
+      await supabase.auth.signOut();
+    }
+
+    return {
+      success: true,
+      requiresEmailVerification: true,
+      email,
+    };
+  };
+
+  const requestPasswordReset = async (email: string) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+
+    if (error) {
+      console.error('Error requesting password reset:', error);
+      throw error;
+    }
+  };
+
+  const updatePassword = async (password: string) => {
+    const { error } = await supabase.auth.updateUser({ password });
+
+    if (error) {
+      console.error('Error updating password:', error);
+      throw error;
+    }
   };
 
   const logout = async () => {
@@ -175,6 +232,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signInWithGoogle, 
       signInWithEmail,
       signUpWithEmail,
+      requestPasswordReset,
+      updatePassword,
       logout 
     }}>
       {children}
@@ -195,6 +254,8 @@ export function useAuth() {
         signInWithGoogle: async () => {},
         signInWithEmail: async () => {},
         signUpWithEmail: async () => ({}),
+        requestPasswordReset: async () => {},
+        updatePassword: async () => {},
         logout: async () => {},
       } as AuthContextType;
     }

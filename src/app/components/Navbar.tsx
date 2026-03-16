@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, LogOut, User } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { type MouseEvent, useState, useEffect, useRef } from 'react';
 import { ThemeToggle } from '@/app/components/ThemeToggle';
 import { useTheme } from '@/app/context/ThemeContext';
 import { useAuth } from '@/app/contexts/AuthContext';
 import { HubSpotModal } from '@/app/components/HubSpotModal';
 import { getDefaultCtaVariant, readOrCreateCtaVariant } from '@/site/cta-variant';
+import { siteConfig } from '@/site/site-config';
 import logo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 import epicLogo from '@/assets/008bdb4c58b9b740867427493f73689a3f551b75.png';
 import epicLogoDark from '@/assets/68e949a3afd2d5c92b966261b04168a3d4cfacfb.png';
@@ -69,6 +70,26 @@ export function Navbar() {
         event_label: ctaButtonText,
       });
     }
+  };
+
+  const handleCtaAnchorClick = (event: MouseEvent<HTMLAnchorElement>, closeMenu = false) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    setIsModalOpen(true);
+    if (closeMenu) {
+      setIsOpen(false);
+    }
+    handleCtaClick();
   };
 
   // Progress bar effect
@@ -185,13 +206,11 @@ export function Navbar() {
               </div>
             )}
             
-            <button
-              type="button"
+            <Link
+              href={siteConfig.primaryCtaHref}
               data-primary-cta="true"
-              onClick={() => {
-                setIsModalOpen(true);
-                handleCtaClick();
-              }}
+              aria-haspopup="dialog"
+              onClick={(event) => handleCtaAnchorClick(event)}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               className={`relative px-5 py-2 bg-gradient-to-r from-cyan-500 via-cyan-300 to-cyan-500 orange:from-orange-500 orange:via-orange-300 orange:to-orange-500 leaf:from-sky-500 leaf:via-sky-400 leaf:to-sky-500 water:from-emerald-600 water:via-emerald-400 water:to-emerald-600 text-white text-sm font-medium rounded-lg hover:from-cyan-600 hover:to-cyan-700 orange:hover:from-orange-600 orange:hover:to-orange-700 leaf:hover:from-sky-600 leaf:hover:to-sky-700 water:hover:from-emerald-700 water:hover:to-emerald-700 transition-all shadow-lg shadow-cyan-500/20 orange:shadow-orange-500/20 leaf:shadow-sky-500/20 water:shadow-emerald-500/20 hover:shadow-cyan-500/30 orange:hover:shadow-orange-500/30 leaf:hover:shadow-sky-500/30 water:hover:shadow-emerald-500/30 overflow-hidden ${!isHovering ? 'animate-shimmer-ltr' : ''}`}
@@ -207,7 +226,7 @@ export function Navbar() {
                   transformOrigin: 'left'
                 }}
               />
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -242,18 +261,15 @@ export function Navbar() {
               <div className="flex justify-center">
                 <ThemeToggle />
               </div>
-              <button
-                type="button"
+              <Link
+                href={siteConfig.primaryCtaHref}
                 data-primary-cta="true"
-                onClick={() => {
-                  setIsModalOpen(true);
-                  setIsOpen(false);
-                  handleCtaClick();
-                }}
+                aria-haspopup="dialog"
+                onClick={(event) => handleCtaAnchorClick(event, true)}
                 className="block px-5 py-2.5 bg-gradient-to-r from-cyan-500 via-cyan-300 to-cyan-500 orange:from-orange-500 orange:via-orange-300 orange:to-orange-500 leaf:from-cyan-600 leaf:via-cyan-400 leaf:to-cyan-600 water:from-emerald-500 water:via-emerald-300 water:to-emerald-500 text-white text-sm font-semibold text-center rounded-lg shadow-lg shadow-cyan-500/20 orange:shadow-orange-500/20 leaf:shadow-cyan-500/20 water:shadow-emerald-500/20 active:scale-95 transition-transform animate-shimmer-ltr"
               >
                 {ctaButtonText}
-              </button>
+              </Link>
             </div>
           </div>
         </div>
