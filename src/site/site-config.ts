@@ -45,7 +45,8 @@ export const siteConfig = {
   ],
   description:
     'Epic Global Inc. is a global marketplace operator that buys inventory at wholesale, manages marketplace sales channels, funds advertising, and protects brand equity across international ecommerce platforms.',
-  ogImage: '/opengraph-image',
+  ogImage: '/opengraph-image.png',
+  twitterImage: '/twitter-image.png',
 };
 
 export function createPageMetadata({
@@ -94,7 +95,7 @@ export function createPageMetadata({
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [siteConfig.ogImage],
+      images: [siteConfig.twitterImage],
     },
   };
 }

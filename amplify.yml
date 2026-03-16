@@ -3,6 +3,9 @@ frontend:
   phases:
     preBuild:
       commands:
+        - nvm use 20 || nvm install 20
+        - rm -f .env.production
+        - env | grep -e NEXT_PUBLIC_ >> .env.production || true
         - npm ci
     build:
       commands:

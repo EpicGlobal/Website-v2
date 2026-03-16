@@ -7,6 +7,7 @@ This repo is ready to deploy to AWS Amplify Hosting as a Next.js SSR app.
 - `amplify.yml` in the repo root so Amplify uses the correct Next.js build settings.
 - `.env.example` with `NEXT_PUBLIC_SITE_URL`.
 - `src/site/site-config.ts` now reads `NEXT_PUBLIC_SITE_URL` so previews and production can use the correct canonical URL.
+- Static social preview images in `public/` so the app no longer depends on Edge-runtime image routes for metadata.
 
 ## Recommended AWS path
 
