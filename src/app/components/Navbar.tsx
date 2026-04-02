@@ -6,6 +6,7 @@ import { ThemeToggle } from '@/app/components/ThemeToggle';
 import { useTheme } from '@/app/context/ThemeContext';
 import { useAuth } from '@/app/contexts/AuthContext';
 import { HubSpotModal } from '@/app/components/HubSpotModal';
+import { useAnalytics } from '@/hooks/useAnalytics';
 import { getDefaultCtaVariant, readOrCreateCtaVariant } from '@/site/cta-variant';
 import { siteConfig } from '@/site/site-config';
 import logo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
@@ -23,6 +24,7 @@ export function Navbar() {
   const pathname = usePathname();
   const { theme } = useTheme();
   const { user, logout } = useAuth();
+  const { trackClick, trackCtaButtonClick, trackCtaButtonVariantShown } = useAnalytics();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,24 +55,24 @@ export function Navbar() {
 
   // Track the button variant with Google Analytics on mount
   useEffect(() => {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'cta_button_variant_shown', {
-        button_text: ctaButtonText,
-        event_category: 'A/B Test',
-        event_label: ctaButtonText,
-      });
-    }
-  }, [ctaButtonText]);
+    trackCtaButtonVariantShown(ctaButtonText, {
+      location: 'Navbar',
+      button_style: 'primary',
+    });
+  }, [ctaButtonText, trackCtaButtonVariantShown]);
 
   // Handle CTA button click tracking
   const handleCtaClick = () => {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'cta_button_click', {
-        button_text: ctaButtonText,
-        event_category: 'Conversion',
-        event_label: ctaButtonText,
-      });
-    }
+    trackClick(ctaButtonText, 'CTA Button A/B Test', {
+      location: 'Navbar',
+      variant: ctaButtonText,
+      button_style: 'primary',
+    });
+    trackCtaButtonClick(ctaButtonText, {
+      location: 'Navbar',
+      variant: ctaButtonText,
+      button_style: 'primary',
+    });
   };
 
   const handleCtaAnchorClick = (event: MouseEvent<HTMLAnchorElement>, closeMenu = false) => {

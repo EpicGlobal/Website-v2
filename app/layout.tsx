@@ -2,6 +2,12 @@ import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import '@/styles/index.css';
 import { SiteShell } from '@/site/SiteShell';
+import {
+  GOOGLE_ADS_ID,
+  GOOGLE_ADS_PRIMARY_CONVERSION_ID,
+  GOOGLE_ANALYTICS_ID,
+  META_PIXEL_ID,
+} from '@/site/analytics-config';
 import { siteConfig } from '@/site/site-config';
 import tabLogo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 
@@ -90,6 +96,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="orange" suppressHydrationWarning>
       <body>
+        <Script id="meta-pixel-base" strategy="beforeInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '${META_PIXEL_ID}');
+          `}
+        </Script>
         <Script id="epic-theme-init" strategy="beforeInteractive">
           {`
             (() => {
@@ -128,38 +147,45 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })();
           `}
         </Script>
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-BGM7PRFBR7" strategy="afterInteractive" />
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+          strategy="afterInteractive"
+        />
         <Script id="ga-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             window.gtag = gtag;
             gtag('js', new Date());
-            gtag('config', 'G-BGM7PRFBR7');
-          `}
-        </Script>
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-11008066442" strategy="afterInteractive" />
-        <Script id="google-ads" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', 'AW-11008066442');
+            gtag('config', '${GOOGLE_ANALYTICS_ID}', { send_page_view: false });
+            gtag('config', '${GOOGLE_ADS_ID}');
             window.gtag_report_conversion = function(url) {
               var callback = function () {
                 if (typeof(url) !== 'undefined') {
                   window.location = url;
                 }
               };
+              if (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
+                console.debug('[gtag:conversion]', '${GOOGLE_ADS_PRIMARY_CONVERSION_ID}');
+              }
               gtag('event', 'conversion', {
-                'send_to': 'AW-11008066442/uqbjCJTEovwbEIqHh4Ep',
+                'send_to': '${GOOGLE_ADS_PRIMARY_CONVERSION_ID}',
                 'event_callback': callback
               });
               return false;
             };
           `}
         </Script>
+        <noscript>
+          <img
+            alt=""
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+          />
+        </noscript>
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

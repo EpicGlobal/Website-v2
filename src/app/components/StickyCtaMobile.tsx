@@ -9,7 +9,7 @@ export function StickyCtaMobile() {
   const [showModal, setShowModal] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [buttonText, setButtonText] = useState(getDefaultCtaVariant());
-  const { trackClick } = useAnalytics();
+  const { trackClick, trackCtaButtonClick } = useAnalytics();
 
   useEffect(() => {
     setButtonText(readOrCreateCtaVariant());
@@ -72,7 +72,12 @@ export function StickyCtaMobile() {
     trackClick(buttonText, 'CTA Button A/B Test', {
       location: 'Mobile Sticky CTA',
       variant: buttonText,
-      buttonStyle: 'primary',
+      button_style: 'primary',
+    });
+    trackCtaButtonClick(buttonText, {
+      location: 'Mobile Sticky CTA',
+      variant: buttonText,
+      button_style: 'primary',
     });
     setShowModal(true);
   };

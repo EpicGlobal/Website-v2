@@ -18,7 +18,7 @@ export function CtaButton({
   location,
   className = '',
 }: CtaButtonProps) {
-  const { trackClick } = useAnalytics();
+  const { trackClick, trackCtaButtonClick } = useAnalytics();
   const [buttonText, setButtonText] = useState(getDefaultCtaVariant());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -30,6 +30,7 @@ export function CtaButton({
     location,
     variant,
     trackClick,
+    trackCtaButtonClick,
   });
 
   useEffect(() => {
@@ -42,8 +43,9 @@ export function CtaButton({
       location,
       variant,
       trackClick,
+      trackCtaButtonClick,
     };
-  }, [buttonText, location, trackClick, variant]);
+  }, [buttonText, location, trackClick, trackCtaButtonClick, variant]);
 
   const sizeClasses = {
     sm: 'px-6 py-2.5 text-sm',
@@ -65,13 +67,19 @@ export function CtaButton({
       location: currentLocation,
       variant: currentVariant,
       trackClick: currentTrackClick,
+      trackCtaButtonClick: currentTrackCtaButtonClick,
     } = ctaStateRef.current;
 
     setIsModalOpen(true);
     currentTrackClick(currentButtonText, 'CTA Button A/B Test', {
       location: currentLocation,
       variant: currentButtonText,
-      buttonStyle: currentVariant,
+      button_style: currentVariant,
+    });
+    currentTrackCtaButtonClick(currentButtonText, {
+      location: currentLocation,
+      variant: currentButtonText,
+      button_style: currentVariant,
     });
   };
 

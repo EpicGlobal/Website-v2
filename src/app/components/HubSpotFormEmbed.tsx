@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 interface HubSpotFormEmbedProps {
   className?: string;
@@ -96,8 +97,10 @@ function ensureMeetingsScript() {
 }
 
 export function HubSpotFormEmbed({ className = '' }: HubSpotFormEmbedProps) {
+  const { trackFormStart } = useAnalytics();
   const containerRef = useRef<HTMLDivElement>(null);
   const targetIdRef = useRef(`hubspot-meetings-target-${Math.random().toString(36).slice(2, 10)}`);
+  const hasTrackedFormStartRef = useRef(false);
   const [isEmbedLoading, setIsEmbedLoading] = useState(true);
   const [embedError, setEmbedError] = useState<string | null>(null);
 
@@ -234,6 +237,52 @@ export function HubSpotFormEmbed({ className = '' }: HubSpotFormEmbedProps) {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (isEmbedLoading || embedError || hasTrackedFormStartRef.current) {
+      return;
+    }
+
+    const container = containerRef.current;
+    const iframe = container?.querySelector('iframe');
+
+    if (!container || !iframe) {
+      return;
+    }
+
+    const trackSchedulerInteraction = () => {
+      if (hasTrackedFormStartRef.current) {
+        return;
+      }
+
+      hasTrackedFormStartRef.current = true;
+
+      trackFormStart('HubSpot Meetings Scheduler', {
+        form_destination: HUBSPOT_MEETINGS_EMBED_URL,
+        form_type: 'hubspot_meetings',
+      });
+
+      if (typeof window.gtag_report_conversion === 'function') {
+        window.gtag_report_conversion();
+      }
+    };
+
+    const handleWindowBlur = () => {
+      window.setTimeout(() => {
+        if (document.activeElement === iframe) {
+          trackSchedulerInteraction();
+        }
+      }, 0);
+    };
+
+    iframe.addEventListener('focus', trackSchedulerInteraction);
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      iframe.removeEventListener('focus', trackSchedulerInteraction);
+      window.removeEventListener('blur', handleWindowBlur);
+    };
+  }, [embedError, isEmbedLoading, trackFormStart]);
 
   return (
     <div className={className}>
