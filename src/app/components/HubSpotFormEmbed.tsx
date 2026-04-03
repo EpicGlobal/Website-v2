@@ -19,7 +19,7 @@ declare global {
 }
 
 const HUBSPOT_MEETINGS_EMBED_URL =
-  'https://meetings-na2.hubspot.com/unified-interface?embed=true';
+  'https://meetings-na2.hubspot.com/bjensen/brent-discovery-call?embed=true';
 const HUBSPOT_MEETINGS_SCRIPT_URL =
   'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
 
