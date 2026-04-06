@@ -303,7 +303,7 @@ export function Home() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-white dark:text-white leaf:text-gray-900 water:text-gray-900 light:text-gray-900 orange:text-[#101828] leading-tight"
             >
-              We don't help. We replace.
+              We Buy It. You Profit.&trade;
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
