@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
 
@@ -8,107 +8,93 @@ interface HubSpotFormEmbedProps {
   className?: string;
 }
 
-declare global {
-  interface Window {
-    hbspt?: {
-      meetings?: {
-        create: (selector: string) => void;
-      };
-    };
-  }
-}
+const HUBSPOT_FORM_SCRIPT_URL = 'https://js-na2.hsforms.net/forms/embed/244950859.js';
+const HUBSPOT_FORM_ID = '113833da-c5e2-4a8e-8147-a7c6bb394c60';
+const HUBSPOT_PORTAL_ID = '244950859';
+const HUBSPOT_REGION = 'na2';
 
-const HUBSPOT_MEETINGS_EMBED_URL =
-  'https://meetings-na2.hubspot.com/bjensen/brent-discovery-call?embed=true';
-const HUBSPOT_MEETINGS_SCRIPT_URL =
-  'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+let formScriptPromise: Promise<void> | null = null;
 
-let meetingsScriptPromise: Promise<void> | null = null;
-
-function waitForMeetingsApi() {
-  return new Promise<void>((resolve, reject) => {
-    let attempts = 0;
-    const maxAttempts = 100;
-
-    const pollingTimer = window.setInterval(() => {
-      attempts += 1;
-
-      if (window.hbspt?.meetings?.create) {
-        window.clearInterval(pollingTimer);
-        resolve();
-        return;
-      }
-
-      if (attempts >= maxAttempts) {
-        window.clearInterval(pollingTimer);
-        reject(new Error('HubSpot meetings embed timed out.'));
-      }
-    }, 100);
-  });
-}
-
-function ensureMeetingsScript() {
+function ensureHubSpotFormScript() {
   if (typeof window === 'undefined') {
     return Promise.resolve();
   }
 
-  if (window.hbspt?.meetings?.create) {
-    return Promise.resolve();
+  if (formScriptPromise) {
+    return formScriptPromise;
   }
 
-  if (meetingsScriptPromise) {
-    return meetingsScriptPromise;
-  }
-
-  meetingsScriptPromise = new Promise<void>((resolve, reject) => {
-    const handleReady = () => {
-      waitForMeetingsApi()
-        .then(resolve)
-        .catch((error) => {
-          meetingsScriptPromise = null;
-          reject(error);
-        });
-    };
-
+  formScriptPromise = new Promise<void>((resolve, reject) => {
     const existingScript = document.querySelector<HTMLScriptElement>(
-      `script[src="${HUBSPOT_MEETINGS_SCRIPT_URL}"]`
+      `script[src="${HUBSPOT_FORM_SCRIPT_URL}"]`
     );
 
-    if (existingScript) {
-      handleReady();
+    if (existingScript?.dataset.loaded === 'true') {
+      resolve();
       return;
     }
 
-    const script = document.createElement('script');
-    script.src = HUBSPOT_MEETINGS_SCRIPT_URL;
-    script.charset = 'utf-8';
-    script.type = 'text/javascript';
-    script.async = true;
-    script.onload = handleReady;
-    script.onerror = () => {
-      meetingsScriptPromise = null;
-      reject(new Error('Failed to load the HubSpot meetings embed script.'));
+    const script = existingScript ?? document.createElement('script');
+    let timeoutId: number | null = null;
+
+    const cleanup = () => {
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId);
+      }
+
+      script.removeEventListener('load', handleLoad);
+      script.removeEventListener('error', handleError);
     };
 
-    document.body.appendChild(script);
+    const handleLoad = () => {
+      script.dataset.loaded = 'true';
+      cleanup();
+      resolve();
+    };
+
+    const handleError = () => {
+      formScriptPromise = null;
+      cleanup();
+      reject(new Error('Failed to load the HubSpot form embed script.'));
+    };
+
+    script.addEventListener('load', handleLoad, { once: true });
+    script.addEventListener('error', handleError, { once: true });
+
+    timeoutId = window.setTimeout(() => {
+      if (existingScript) {
+        script.dataset.loaded = 'true';
+        cleanup();
+        resolve();
+        return;
+      }
+
+      handleError();
+    }, 10000);
+
+    if (!existingScript) {
+      script.src = HUBSPOT_FORM_SCRIPT_URL;
+      script.defer = true;
+      script.async = true;
+      document.body.appendChild(script);
+    }
   });
 
-  return meetingsScriptPromise;
+  return formScriptPromise;
 }
 
 export function HubSpotFormEmbed({ className = '' }: HubSpotFormEmbedProps) {
   const { trackFormStart } = useAnalytics();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const targetIdRef = useRef(`hubspot-meetings-target-${Math.random().toString(36).slice(2, 10)}`);
+  const reactId = useId().replace(/:/g, '');
+  const frameRef = useRef<HTMLDivElement>(null);
   const hasTrackedFormStartRef = useRef(false);
   const [isEmbedLoading, setIsEmbedLoading] = useState(true);
   const [embedError, setEmbedError] = useState<string | null>(null);
 
   useEffect(() => {
     let isCancelled = false;
-    let iframeObserver: MutationObserver | null = null;
-    let loadingFallbackTimer: number | null = null;
-    let removeLoadHandler: (() => void) | null = null;
+    let frameObserver: MutationObserver | null = null;
+    let loadingTimeout: number | null = null;
 
     const safeSetLoading = (value: boolean) => {
       if (!isCancelled) {
@@ -122,144 +108,102 @@ export function HubSpotFormEmbed({ className = '' }: HubSpotFormEmbedProps) {
       }
     };
 
-    const clearLoadingFallback = () => {
-      if (loadingFallbackTimer !== null) {
-        window.clearTimeout(loadingFallbackTimer);
-        loadingFallbackTimer = null;
+    const markLoaded = () => {
+      if (loadingTimeout !== null) {
+        window.clearTimeout(loadingTimeout);
+        loadingTimeout = null;
       }
+
+      safeSetLoading(false);
     };
 
-    const detachIframeListener = () => {
-      removeLoadHandler?.();
-      removeLoadHandler = null;
-    };
+    const watchForRenderedFrame = () => {
+      const frame = frameRef.current;
 
-    const watchForIframe = () => {
-      const container = containerRef.current;
-
-      if (!container) {
-        safeSetError('Meeting scheduler container not ready.');
+      if (!frame) {
+        safeSetError('HubSpot form container not ready.');
         safeSetLoading(false);
         return;
       }
 
-      const attachIframeLoadHandler = (iframe: HTMLIFrameElement) => {
-        detachIframeListener();
-        clearLoadingFallback();
+      const renderedFrame = frame.querySelector('iframe');
 
-        const handleLoad = () => {
-          safeSetLoading(false);
-          clearLoadingFallback();
-        };
-
-        iframe.addEventListener('load', handleLoad, { once: true });
-        removeLoadHandler = () => {
-          iframe.removeEventListener('load', handleLoad);
-        };
-
-        loadingFallbackTimer = window.setTimeout(() => {
-          safeSetLoading(false);
-        }, 2500);
-      };
-
-      const existingIframe = container.querySelector('iframe');
-
-      if (existingIframe) {
-        attachIframeLoadHandler(existingIframe);
+      if (renderedFrame instanceof HTMLIFrameElement) {
+        renderedFrame.addEventListener('load', markLoaded, { once: true });
+        markLoaded();
         return;
       }
 
-      iframeObserver = new MutationObserver(() => {
-        const iframe = container.querySelector('iframe');
+      if (frame.childElementCount > 0) {
+        markLoaded();
+        return;
+      }
 
-        if (!iframe) {
+      frameObserver = new MutationObserver(() => {
+        if (!frame.childElementCount) {
           return;
         }
 
-        iframeObserver?.disconnect();
-        iframeObserver = null;
-        attachIframeLoadHandler(iframe);
+        frameObserver?.disconnect();
+        frameObserver = null;
+        markLoaded();
       });
 
-      iframeObserver.observe(container, {
+      frameObserver.observe(frame, {
         childList: true,
+        subtree: true,
       });
     };
 
-    const renderMeetingsEmbed = async () => {
-      const container = containerRef.current;
-
-      if (!container) {
-        safeSetError('Meeting scheduler container not ready.');
-        safeSetLoading(false);
-        return;
-      }
-
-      container.innerHTML = '';
-      container.dataset.src = HUBSPOT_MEETINGS_EMBED_URL;
-      container.dataset.title = 'Epic Global Inc. meeting scheduler';
-
-      watchForIframe();
+    const renderForm = async () => {
+      safeSetLoading(true);
+      safeSetError(null);
+      watchForRenderedFrame();
 
       try {
-        await ensureMeetingsScript();
-
-        if (isCancelled) {
-          return;
-        }
-
-        if (!window.hbspt?.meetings?.create) {
-          safeSetError('HubSpot meetings embed is unavailable.');
-          safeSetLoading(false);
-          return;
-        }
-
-        window.hbspt.meetings.create(`#${targetIdRef.current}`);
+        await ensureHubSpotFormScript();
       } catch (error) {
-        console.error('Error creating HubSpot meetings embed:', error);
-        safeSetError('Failed to load the meeting scheduler. Please refresh and try again.');
+        console.error('Error loading HubSpot form embed:', error);
+        safeSetError('Failed to load the form. Please refresh and try again.');
         safeSetLoading(false);
       }
     };
 
-    safeSetLoading(true);
-    safeSetError(null);
-    void renderMeetingsEmbed();
+    loadingTimeout = window.setTimeout(() => {
+      safeSetError('The form is taking longer than expected to load. Please refresh and try again.');
+      safeSetLoading(false);
+    }, 15000);
+
+    void renderForm();
 
     return () => {
       isCancelled = true;
-      iframeObserver?.disconnect();
-      clearLoadingFallback();
-      detachIframeListener();
+      frameObserver?.disconnect();
 
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
+      if (loadingTimeout !== null) {
+        window.clearTimeout(loadingTimeout);
       }
     };
   }, []);
 
   useEffect(() => {
-    if (isEmbedLoading || embedError || hasTrackedFormStartRef.current) {
+    const frame = frameRef.current;
+
+    if (!frame || embedError || isEmbedLoading) {
       return;
     }
 
-    const container = containerRef.current;
-    const iframe = container?.querySelector('iframe');
-
-    if (!container || !iframe) {
-      return;
-    }
-
-    const trackSchedulerInteraction = () => {
+    const trackFormInteraction = () => {
       if (hasTrackedFormStartRef.current) {
         return;
       }
 
       hasTrackedFormStartRef.current = true;
 
-      trackFormStart('HubSpot Meetings Scheduler', {
-        form_destination: HUBSPOT_MEETINGS_EMBED_URL,
-        form_type: 'hubspot_meetings',
+      trackFormStart('HubSpot Book a Call Form', {
+        form_destination: HUBSPOT_FORM_SCRIPT_URL,
+        form_id: HUBSPOT_FORM_ID,
+        form_type: 'hubspot_form',
       });
 
       if (typeof window.gtag_report_conversion === 'function') {
@@ -267,25 +211,31 @@ export function HubSpotFormEmbed({ className = '' }: HubSpotFormEmbedProps) {
       }
     };
 
+    const handleFocusIn = () => {
+      trackFormInteraction();
+    };
+
     const handleWindowBlur = () => {
       window.setTimeout(() => {
-        if (document.activeElement === iframe) {
-          trackSchedulerInteraction();
+        const activeElement = document.activeElement;
+
+        if (activeElement instanceof HTMLIFrameElement && frame.contains(activeElement)) {
+          trackFormInteraction();
         }
       }, 0);
     };
 
-    iframe.addEventListener('focus', trackSchedulerInteraction);
+    frame.addEventListener('focusin', handleFocusIn);
     window.addEventListener('blur', handleWindowBlur);
 
     return () => {
-      iframe.removeEventListener('focus', trackSchedulerInteraction);
+      frame.removeEventListener('focusin', handleFocusIn);
       window.removeEventListener('blur', handleWindowBlur);
     };
   }, [embedError, isEmbedLoading, trackFormStart]);
 
   return (
-    <div className={className}>
+    <div className={`hubspot-form-container ${className}`}>
       {embedError ? (
         <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800">
           {embedError}
@@ -295,16 +245,17 @@ export function HubSpotFormEmbed({ className = '' }: HubSpotFormEmbedProps) {
       {isEmbedLoading ? (
         <div className="mb-4 flex min-h-[56px] items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-gray-300">
           <Loader2 className="h-4 w-4 animate-spin text-cyan-400" />
-          <span>Loading scheduler...</span>
+          <span>Loading form...</span>
         </div>
       ) : null}
 
       <div
-        id={targetIdRef.current}
-        ref={containerRef}
-        className="meetings-iframe-container min-h-[615px] overflow-hidden rounded-2xl bg-white/5 lg:flex-1 lg:min-h-0 lg:overflow-y-auto"
-        data-src={HUBSPOT_MEETINGS_EMBED_URL}
-        data-title="Epic Global Inc. meeting scheduler"
+        ref={frameRef}
+        className="hs-form-frame min-h-[420px] w-full overflow-hidden rounded-xl bg-white"
+        data-region={HUBSPOT_REGION}
+        data-form-id={HUBSPOT_FORM_ID}
+        data-portal-id={HUBSPOT_PORTAL_ID}
+        data-instance-id={`epic-book-call-${reactId}`}
       />
     </div>
   );
