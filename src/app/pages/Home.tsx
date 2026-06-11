@@ -19,11 +19,9 @@ import bonaBotanicaLogo from '@/assets/0c3cf0d40d92c09708e347151b005f3e5596072d.
 import buckedUpLogo from '@/assets/43335a8bbd39ae86c6992eb00ce2751179d44ceb.png';
 import beautyFocusLogo from '@/assets/16be2a2697022ec318fc5dffab604ec08c6ea110.png';
 import botalabLogo from '@/assets/22e8e47e93878bd055f3f0784ad51324a14e2e86.png';
-import best365labsLogo from '@/assets/8b0023dfd087e303de5c3c4b7e64172be3500fac.png';
 import bodeProLogo from '@/assets/dd52d621b52abc573986f37f46a1c4defdf9e2e1.png';
 import epochLogo from '@/assets/1a51400c847b43ceb652f7b37844917910e49662.png';
 import doctorsBestLogo from '@/assets/986dd0a0a85aa440a5b4d8924b7bdef2acd069ce.png';
-import essenceLogo from '@/assets/a92d4950f8b8bdbc951d148f881551d55c5c0a24.png';
 import cronkNutrientsLogo from '@/assets/ba0e3491f303ef8e07257a25c46835bd5dba4666.png';
 import gentlemenRepublicLogo from '@/assets/41f6e55df1fa2c29fdc640f9ef5481334f819ad5.png';
 import h2oCardioLogo from '@/assets/6e83860a8e1e07bf9143171faaa89952db9fd600.png';
@@ -82,11 +80,9 @@ export function Home() {
     { name: 'BUCKED UP', logo: buckedUpLogo },
     { name: 'BEAUTY FOCUS', logo: beautyFocusLogo },
     { name: 'botalab', logo: botalabLogo },
-    { name: 'best365labs', logo: best365labsLogo },
     { name: 'bode PRO', logo: bodeProLogo },
     { name: 'epoch', logo: epochLogo },
     { name: "Doctor's BEST", logo: doctorsBestLogo },
-    { name: 'ESSENCE', logo: essenceLogo },
     { name: 'CRONK NUTRIENTS', logo: cronkNutrientsLogo },
     { name: 'Gentlemen Republic', logo: gentlemenRepublicLogo },
     { name: 'H2O CARDIO', logo: h2oCardioLogo },
