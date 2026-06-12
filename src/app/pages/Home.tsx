@@ -64,6 +64,7 @@ import truvyLogo from '@/assets/3197f3ef0c1a8b4d9a4dc10ca2db8bc2093cc26f.png';
 import reuzelLogo from '@/assets/883f18fa753a7106216503ca3c6ef72d1178fcf1.png';
 import relacoreLogo from '@/assets/960c114fb5ef207b865b392e3414a92fa2a538e7.png';
 import rfLogo from '@/assets/7df4db1a84b40fbea8116e0deab0bac19dd891bf.png';
+import youngLivingLogo from '@/assets/Young-Living-logo.png';
 import youniqueLogo from '@/assets/7762de3ef51cb8cc05069238ad5ebc05c432ec99.png';
 import zantrexLogo from '@/assets/a02203de0f65132ee8277243eb83905610259bc6.png';
 import ziveLogo from '@/assets/bac9c727078929bc5f7386af4f562d2fe9fefe30.png';
@@ -125,6 +126,7 @@ export function Home() {
     { name: 'REUZEL', logo: reuzelLogo },
     { name: 'RELACORE', logo: relacoreLogo },
     { name: 'R+F', logo: rfLogo },
+    { name: 'Young Living', logo: youngLivingLogo },
     { name: 'Younique', logo: youniqueLogo },
     { name: 'Zantrex', logo: zantrexLogo },
     { name: 'Zive', logo: ziveLogo },
