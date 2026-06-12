@@ -275,11 +275,11 @@ export function Home() {
       ))}
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-40 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Animated particles background */}
         <ParticlesBackground />
         
-        <div className="absolute inset-0 z-0 flex items-center justify-center" style={{ opacity: 0.6 }}>
+        <div className="absolute inset-x-0 top-24 bottom-0 z-0 flex items-center justify-center" style={{ opacity: 0.6 }}>
           <div className="w-full h-full max-w-4xl max-h-[700px] relative">
             <Globe darkerParticles={true} />
           </div>
