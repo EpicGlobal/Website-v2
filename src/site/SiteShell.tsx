@@ -163,17 +163,20 @@ function AdsLifecycleTracker() {
 }
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isCampaignLandingPage = pathname.startsWith('/campaigns/');
+
   return (
     <ThemeProvider>
       <AuthProvider>
         <div className="min-h-screen">
-          <Navbar />
+          {isCampaignLandingPage ? null : <Navbar />}
           <PageViewTracker />
           <AdsLifecycleTracker />
           {children}
-          <Footer />
-          <StickyCtaMobile />
-          <ExitIntentPopup />
+          {isCampaignLandingPage ? null : <Footer />}
+          {isCampaignLandingPage ? null : <StickyCtaMobile />}
+          {isCampaignLandingPage ? null : <ExitIntentPopup />}
         </div>
       </AuthProvider>
     </ThemeProvider>
