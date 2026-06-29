@@ -6,6 +6,8 @@ import { useAnalytics } from '@/hooks/useAnalytics';
 
 interface HubSpotFormEmbedProps {
   className?: string;
+  successTitle?: string;
+  successMessage?: string;
 }
 
 const HUBSPOT_FORM_SCRIPT_URL = 'https://js-na2.hsforms.net/forms/embed/244950859.js';
@@ -83,13 +85,19 @@ function ensureHubSpotFormScript() {
   return formScriptPromise;
 }
 
-export function HubSpotFormEmbed({ className = '' }: HubSpotFormEmbedProps) {
+export function HubSpotFormEmbed({
+  className = '',
+  successTitle = 'Thanks. Your request was submitted.',
+  successMessage = 'Our team will review your information and follow up with the right next step.',
+}: HubSpotFormEmbedProps) {
   const { trackFormStart } = useAnalytics();
   const reactId = useId().replace(/:/g, '');
+  const instanceId = `epic-book-call-${reactId}`;
   const frameRef = useRef<HTMLDivElement>(null);
   const hasTrackedFormStartRef = useRef(false);
   const [isEmbedLoading, setIsEmbedLoading] = useState(true);
   const [embedError, setEmbedError] = useState<string | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     let isCancelled = false;
@@ -187,6 +195,31 @@ export function HubSpotFormEmbed({ className = '' }: HubSpotFormEmbedProps) {
   }, []);
 
   useEffect(() => {
+    const handleSubmissionSuccess = (event: Event) => {
+      const detail = (event as CustomEvent<{ formId?: string; instanceId?: string }>).detail;
+
+      if (detail?.formId !== HUBSPOT_FORM_ID || detail?.instanceId !== instanceId) {
+        return;
+      }
+
+      hasTrackedFormStartRef.current = true;
+      setIsEmbedLoading(false);
+      setEmbedError(null);
+      setIsSubmitted(true);
+
+      if (typeof window.gtag_report_conversion === 'function') {
+        window.gtag_report_conversion();
+      }
+    };
+
+    window.addEventListener('hs-form-event:on-submission:success', handleSubmissionSuccess);
+
+    return () => {
+      window.removeEventListener('hs-form-event:on-submission:success', handleSubmissionSuccess);
+    };
+  }, [instanceId]);
+
+  useEffect(() => {
     const frame = frameRef.current;
 
     if (!frame || embedError || isEmbedLoading) {
@@ -242,6 +275,13 @@ export function HubSpotFormEmbed({ className = '' }: HubSpotFormEmbedProps) {
         </div>
       ) : null}
 
+      {isSubmitted ? (
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-950">
+          <h3 className="text-xl font-semibold">{successTitle}</h3>
+          <p className="mt-2 text-sm leading-6">{successMessage}</p>
+        </div>
+      ) : null}
+
       {isEmbedLoading ? (
         <div className="mb-4 flex min-h-[56px] items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-gray-300">
           <Loader2 className="h-4 w-4 animate-spin text-cyan-400" />
@@ -249,14 +289,16 @@ export function HubSpotFormEmbed({ className = '' }: HubSpotFormEmbedProps) {
         </div>
       ) : null}
 
-      <div
-        ref={frameRef}
-        className="hs-form-frame min-h-[420px] w-full overflow-hidden rounded-xl bg-white"
-        data-region={HUBSPOT_REGION}
-        data-form-id={HUBSPOT_FORM_ID}
-        data-portal-id={HUBSPOT_PORTAL_ID}
-        data-instance-id={`epic-book-call-${reactId}`}
-      />
+      {isSubmitted ? null : (
+        <div
+          ref={frameRef}
+          className="hs-form-frame min-h-[420px] w-full overflow-hidden rounded-xl bg-white"
+          data-region={HUBSPOT_REGION}
+          data-form-id={HUBSPOT_FORM_ID}
+          data-portal-id={HUBSPOT_PORTAL_ID}
+          data-instance-id={instanceId}
+        />
+      )}
     </div>
   );
 }

@@ -132,7 +132,10 @@ export function CampaignMarketplaceAssessment() {
                 Share a few details and our team will follow up with the right next step.
               </p>
             </div>
-            <HubSpotFormEmbed />
+            <HubSpotFormEmbed
+              successTitle="Thanks. Your assessment request was submitted."
+              successMessage="We will review your marketplace details and follow up with the right next step."
+            />
           </div>
         </div>
       </section>
