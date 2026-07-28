@@ -70,7 +70,7 @@ export function About() {
     <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
       <SEO 
         title="About Epic Global Inc. - Zero-Risk Commerce Operating System"
-        description="Epic Global Inc. is a global commerce operator and technology platform. We run end-to-end marketplace operations across 41 countries with repeatable systems, speed, and safeguards."
+        description="Epic Global Inc. is a global commerce operator and technology platform. We run end-to-end marketplace operations across 40 countries with repeatable systems, speed, and safeguards."
         canonicalUrl="https://epicglobalinc.com/about"
         keywords="commerce operator, marketplace management, global ecommerce, operator-first approach, marketplace technology"
       />

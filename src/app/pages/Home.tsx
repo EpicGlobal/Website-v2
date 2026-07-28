@@ -248,8 +248,8 @@ export function Home() {
     },
     {
       label: 'Market coverage',
-      value: '41 countries',
-      detail: 'Operating across 41 countries and growing',
+      value: '40 countries',
+      detail: 'Operating across 40 countries and growing',
     },
     {
       label: 'Primary marketplaces',
@@ -262,7 +262,7 @@ export function Home() {
     <div className="min-h-screen text-white bg-gradient-to-br from-transparent via-transparent to-transparent dark:text-white dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:text-gray-900 soft-dark:from-lime-500 soft-dark:via-lime-100 soft-dark:to-white leaf:text-gray-900 leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:text-gray-900 water:from-lime-500 water:via-lime-100 water:to-white light:text-gray-900 light:from-lime-400 light:via-lime-100 light:to-white orange:text-gray-900 orange:from-[#F68932] orange:via-orange-100 orange:to-white">
       <SEO 
         title="Epic Global Inc. - Zero-Risk Global Commerce Operator"
-        description="The world's first Zero-Risk Global Commerce Operator. We purchase inventory upfront, operate marketplace storefronts, fund advertising, and protect your brand. Expand to 41 countries risk-free."
+        description="The world's first Zero-Risk Global Commerce Operator. We purchase inventory upfront, operate marketplace storefronts, fund advertising, and protect your brand. Expand to 40 countries risk-free."
         canonicalUrl="https://epicglobalinc.com/"
         keywords="global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, zero risk ecommerce"
       />

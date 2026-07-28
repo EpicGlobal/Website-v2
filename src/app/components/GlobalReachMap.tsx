@@ -253,13 +253,6 @@ const countryData = [
     color: '#22d3ee',
   },
   {
-    country: 'China',
-    code: 'CHN',
-    region: 'APAC',
-    marketplaces: ['JINGDONG (JD)', 'Pin Duo Duo', 'Taobao', 'TikTok Shop', 'Little Red Book', 'We Chat', 'Tmall'],
-    color: '#22d3ee',
-  },
-  {
     country: 'India',
     code: 'IND',
     region: 'APAC',
@@ -456,7 +449,6 @@ export function GlobalReachMap() {
     
     // APAC
     '036': 'AUS', // Australia
-    '156': 'CHN', // China
     '356': 'IND', // India
     '392': 'JPN', // Japan
     '458': 'MYS', // Malaysia
@@ -823,7 +815,6 @@ export function GlobalReachMap() {
                 
                 // APAC
                 AUS: { lat: -25.2744, lng: 133.7751 },
-                CHN: { lat: 35.8617, lng: 104.1954 },
                 IND: { lat: 20.5937, lng: 78.9629 },
                 JPN: { lat: 36.2048, lng: 138.2529 },
                 MYS: { lat: 4.2105, lng: 101.9758 },
@@ -962,7 +953,7 @@ export function GlobalReachMap() {
       {/* Stats */}
       <div className="mt-8 grid grid-cols-3 gap-4">
         <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center">
-          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700">41</div>
+          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700">40</div>
           <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1">Countries</div>
         </div>
         <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center">
