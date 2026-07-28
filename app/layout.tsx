@@ -6,6 +6,7 @@ import {
   GOOGLE_ADS_ID,
   GOOGLE_ADS_PRIMARY_CONVERSION_ID,
   GOOGLE_ANALYTICS_ID,
+  LINKEDIN_PARTNER_ID,
   META_PIXEL_ID,
 } from '@/site/analytics-config';
 import { siteConfig } from '@/site/site-config';
@@ -93,6 +94,10 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const hasLinkedInPartnerId = LINKEDIN_PARTNER_ID.length > 0;
+  const wafIntegrationUrl = String(process.env.NEXT_PUBLIC_AWS_WAF_INTEGRATION_URL ?? '').replace(/\/$/, '');
+  const turnstileSiteKey = String(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '').trim();
+
   return (
     <html lang="en" className="orange" suppressHydrationWarning>
       <body>
@@ -109,6 +114,40 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             fbq('init', '${META_PIXEL_ID}');
           `}
         </Script>
+        {hasLinkedInPartnerId ? (
+          <Script id="linkedin-insight-base" strategy="beforeInteractive">
+            {`
+              window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+              window._linkedin_data_partner_ids.push('${LINKEDIN_PARTNER_ID}');
+              (function(l) {
+                if (!l) {
+                  window.lintrk = function(a,b){window.lintrk.q.push([a,b]);};
+                  window.lintrk.q = [];
+                }
+                var s = document.getElementsByTagName("script")[0];
+                var b = document.createElement("script");
+                b.type = "text/javascript";
+                b.async = true;
+                b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+                s.parentNode.insertBefore(b, s);
+              })(window.lintrk);
+            `}
+          </Script>
+        ) : null}
+        {wafIntegrationUrl ? (
+          <Script
+            id="aws-waf-browser-challenge"
+            src={`${wafIntegrationUrl}/challenge.js`}
+            strategy="afterInteractive"
+          />
+        ) : null}
+        {turnstileSiteKey ? (
+          <Script
+            id="cloudflare-turnstile"
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+            strategy="afterInteractive"
+          />
+        ) : null}
         <Script id="epic-theme-init" strategy="beforeInteractive">
           {`
             (() => {
@@ -186,6 +225,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
           />
         </noscript>
+        {hasLinkedInPartnerId ? (
+          <noscript>
+            <img
+              alt=""
+              height="1"
+              width="1"
+              style={{ display: 'none' }}
+              src={`https://px.ads.linkedin.com/collect/?pid=${LINKEDIN_PARTNER_ID}&fmt=gif`}
+            />
+          </noscript>
+        ) : null}
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

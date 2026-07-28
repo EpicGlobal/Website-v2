@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
-import { HubSpotFormEmbed } from '@/app/components/HubSpotFormEmbed';
+import { LeadCaptureForm } from '@/app/components/LeadCaptureForm';
 
 interface HubSpotModalProps {
   isOpen: boolean;
@@ -56,7 +56,7 @@ export function HubSpotModal({ isOpen, onClose }: HubSpotModalProps) {
         </button>
 
         <div className="p-8 pt-12 sm:p-10 sm:pt-14">
-          <HubSpotFormEmbed />
+          <LeadCaptureForm formId="book-a-call" placementId="global-book-a-call-modal" />
         </div>
       </div>
     </div>,

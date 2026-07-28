@@ -1,0 +1,8 @@
+{
+  "name": "epic-website-lead-gateway",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "3.1096.0"
+  }
+}

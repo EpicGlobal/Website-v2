@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight, BarChart3, CheckCircle2, Globe2, Package, ShieldCheck } from 'lucide-react';
-import { HubSpotFormEmbed } from '@/app/components/HubSpotFormEmbed';
+import { LeadCaptureForm } from '@/app/components/LeadCaptureForm';
 
 const proofPoints = [
   'Inventory purchasing model built to reduce brand-side channel risk',
@@ -132,7 +132,9 @@ export function CampaignMarketplaceAssessment() {
                 Share a few details and our team will follow up with the right next step.
               </p>
             </div>
-            <HubSpotFormEmbed
+            <LeadCaptureForm
+              formId="marketplace-assessment"
+              placementId="marketplace-assessment-campaign"
               successTitle="Thanks. Your assessment request was submitted."
               successMessage="We will review your marketplace details and follow up with the right next step."
             />

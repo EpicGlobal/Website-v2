@@ -1,0 +1,343 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Isolated Epic website lead gateway with API Gateway, Lambda, Secrets Manager access, Regional AWS WAF, and PII-safe metrics.
+
+Parameters:
+  AppName:
+    Type: String
+    Default: epic-website-lead-gateway
+  EnvironmentName:
+    Type: String
+    Default: staging
+    AllowedPattern: "^[a-z0-9-]+$"
+  CodeBucket:
+    Type: String
+  CodeKey:
+    Type: String
+  CodeObjectVersion:
+    Type: String
+    Default: ""
+  GatewaySecretArn:
+    Type: String
+  TurnstileSecretArn:
+    Type: String
+  SecretKmsKeyArn:
+    Type: String
+    Default: ""
+  CopperlineLeadIntakeUrl:
+    Type: String
+    AllowedPattern: "^https://.+/api/v1/lead-intake$"
+  AllowedOrigins:
+    Type: String
+  AllowedForms:
+    Type: String
+    Default: contact,book-a-call,marketplace-assessment
+  PrivacyNoticeVersion:
+    Type: String
+    Default: website-privacy-2026-07
+  LeadLawfulBasis:
+    Type: String
+    AllowedPattern: "^[a-z][a-z0-9_-]{2,79}$"
+  TurnstileAllowedHostnames:
+    Type: String
+  TurnstileExpectedAction:
+    Type: String
+    Default: lead_capture
+  TurnstileAllowTestKeys:
+    Type: String
+    Default: "false"
+    AllowedValues: ["true", "false"]
+  ManagedRulesMode:
+    Type: String
+    Default: Count
+    AllowedValues: [Count, Enforce]
+  WafRateLimit:
+    Type: Number
+    Default: 300
+    MinValue: 10
+  AlarmTopicArn:
+    Type: String
+    Default: ""
+  DeploymentNonce:
+    Type: String
+    Default: initial
+
+Conditions:
+  HasCodeVersion: !Not [!Equals [!Ref CodeObjectVersion, ""]]
+  HasSecretKmsKey: !Not [!Equals [!Ref SecretKmsKeyArn, ""]]
+  ManagedRulesCount: !Equals [!Ref ManagedRulesMode, Count]
+  HasAlarmTopic: !Not [!Equals [!Ref AlarmTopicArn, ""]]
+
+Resources:
+  FunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LeadGatewayRuntime
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Sub ${FunctionLogGroup.Arn}:*
+              - Effect: Allow
+                Action: secretsmanager:GetSecretValue
+                Resource:
+                  - !Ref GatewaySecretArn
+                  - !Ref TurnstileSecretArn
+              - !If
+                - HasSecretKmsKey
+                - Effect: Allow
+                  Action: kms:Decrypt
+                  Resource: !Ref SecretKmsKeyArn
+                  Condition:
+                    StringEquals:
+                      kms:ViaService: !Sub secretsmanager.${AWS::Region}.amazonaws.com
+                - !Ref AWS::NoValue
+
+  FunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${AppName}-${EnvironmentName}
+      RetentionInDays: 30
+
+  GatewayFunction:
+    Type: AWS::Lambda::Function
+    DependsOn: FunctionLogGroup
+    Properties:
+      FunctionName: !Sub ${AppName}-${EnvironmentName}
+      Description: Verifies browser proof and signs tenant-bound Copperline lead intake requests.
+      Runtime: nodejs22.x
+      Handler: handler.handler
+      Role: !GetAtt FunctionRole.Arn
+      MemorySize: 256
+      Timeout: 15
+      ReservedConcurrentExecutions: 10
+      Architectures: [arm64]
+      Code:
+        S3Bucket: !Ref CodeBucket
+        S3Key: !Ref CodeKey
+        S3ObjectVersion: !If [HasCodeVersion, !Ref CodeObjectVersion, !Ref AWS::NoValue]
+      Environment:
+        Variables:
+          GATEWAY_SECRET_ARN: !Ref GatewaySecretArn
+          TURNSTILE_SECRET_ARN: !Ref TurnstileSecretArn
+          COPPERLINE_LEAD_INTAKE_URL: !Ref CopperlineLeadIntakeUrl
+          COPPERLINE_LEAD_ALLOWED_ORIGINS: !Ref AllowedOrigins
+          COPPERLINE_LEAD_ALLOWED_FORMS: !Ref AllowedForms
+          COPPERLINE_LEAD_PRIVACY_NOTICE_VERSION: !Ref PrivacyNoticeVersion
+          COPPERLINE_LEAD_LAWFUL_BASIS: !Ref LeadLawfulBasis
+          TURNSTILE_ALLOWED_HOSTNAMES: !Ref TurnstileAllowedHostnames
+          TURNSTILE_EXPECTED_ACTION: !Ref TurnstileExpectedAction
+          TURNSTILE_ALLOW_TEST_KEYS: !Ref TurnstileAllowTestKeys
+      Tags:
+        - Key: Environment
+          Value: !Ref EnvironmentName
+        - Key: DataClassification
+          Value: confidential
+
+  RestApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: !Sub ${AppName}-${EnvironmentName}
+      Description: Public browser gateway for Epic website lead submissions.
+      EndpointConfiguration:
+        Types: [REGIONAL]
+      DisableExecuteApiEndpoint: false
+
+  LeadCaptureResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref RestApi
+      ParentId: !GetAtt RestApi.RootResourceId
+      PathPart: lead-capture
+
+  PostMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref LeadCaptureResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GatewayFunction.Arn}/invocations
+
+  OptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref LeadCaptureResource
+      HttpMethod: OPTIONS
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GatewayFunction.Arn}/invocations
+
+  ApiDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn: [PostMethod, OptionsMethod]
+    Properties:
+      RestApiId: !Ref RestApi
+      Description: !Sub Lead gateway deployment ${DeploymentNonce}
+
+  ApiStage:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      RestApiId: !Ref RestApi
+      DeploymentId: !Ref ApiDeployment
+      StageName: !Ref EnvironmentName
+      Description: PII-safe stage; request and response body logging is disabled.
+      MethodSettings:
+        - ResourcePath: "/*"
+          HttpMethod: "*"
+          DataTraceEnabled: false
+          LoggingLevel: "OFF"
+          MetricsEnabled: true
+          ThrottlingBurstLimit: 50
+          ThrottlingRateLimit: 25
+      Tags:
+        - Key: Environment
+          Value: !Ref EnvironmentName
+
+  InvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref GatewayFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:${RestApi}/*/*/lead-capture
+
+  WebAcl:
+    Type: AWS::WAFv2::WebACL
+    Properties:
+      Name: !Sub ${AppName}-${EnvironmentName}
+      Scope: REGIONAL
+      Description: PII-safe protections for the isolated website lead gateway.
+      DefaultAction:
+        Allow: {}
+      VisibilityConfig:
+        CloudWatchMetricsEnabled: true
+        MetricName: !Sub ${AppName}-${EnvironmentName}
+        SampledRequestsEnabled: false
+      Rules:
+        - Name: AmazonIpReputation
+          Priority: 10
+          OverrideAction: !If [ManagedRulesCount, { Count: {} }, { None: {} }]
+          Statement:
+            ManagedRuleGroupStatement:
+              VendorName: AWS
+              Name: AWSManagedRulesAmazonIpReputationList
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: AmazonIpReputation
+            SampledRequestsEnabled: false
+        - Name: KnownBadInputs
+          Priority: 20
+          OverrideAction: !If [ManagedRulesCount, { Count: {} }, { None: {} }]
+          Statement:
+            ManagedRuleGroupStatement:
+              VendorName: AWS
+              Name: AWSManagedRulesKnownBadInputsRuleSet
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: KnownBadInputs
+            SampledRequestsEnabled: false
+        - Name: CommonThreats
+          Priority: 30
+          OverrideAction: !If [ManagedRulesCount, { Count: {} }, { None: {} }]
+          Statement:
+            ManagedRuleGroupStatement:
+              VendorName: AWS
+              Name: AWSManagedRulesCommonRuleSet
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: CommonThreats
+            SampledRequestsEnabled: false
+        - Name: PerIpRateLimit
+          Priority: 40
+          Action:
+            Block: {}
+          Statement:
+            RateBasedStatement:
+              AggregateKeyType: IP
+              EvaluationWindowSec: 300
+              Limit: !Ref WafRateLimit
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: PerIpRateLimit
+            SampledRequestsEnabled: false
+      Tags:
+        - Key: Environment
+          Value: !Ref EnvironmentName
+        - Key: PiiLogging
+          Value: disabled
+
+  WebAclAssociation:
+    Type: AWS::WAFv2::WebACLAssociation
+    DependsOn: ApiStage
+    Properties:
+      WebACLArn: !GetAtt WebAcl.Arn
+      ResourceArn: !Sub arn:${AWS::Partition}:apigateway:${AWS::Region}::/restapis/${RestApi}/stages/${EnvironmentName}
+
+  LambdaErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Lead gateway Lambda returned an error.
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref GatewayFunction
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions: !If [HasAlarmTopic, [!Ref AlarmTopicArn], !Ref AWS::NoValue]
+
+  ApiServerErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Lead gateway API returned a server error.
+      Namespace: AWS/ApiGateway
+      MetricName: 5XXError
+      Dimensions:
+        - Name: ApiName
+          Value: !Sub ${AppName}-${EnvironmentName}
+        - Name: Stage
+          Value: !Ref EnvironmentName
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions: !If [HasAlarmTopic, [!Ref AlarmTopicArn], !Ref AWS::NoValue]
+
+Outputs:
+  LeadGatewayUrl:
+    Value: !Sub https://${RestApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/${EnvironmentName}/lead-capture
+  RestApiId:
+    Value: !Ref RestApi
+  FunctionName:
+    Value: !Ref GatewayFunction
+  WebAclArn:
+    Value: !GetAtt WebAcl.Arn
+  ManagedRulesMode:
+    Value: !Ref ManagedRulesMode

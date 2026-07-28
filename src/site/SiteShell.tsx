@@ -9,6 +9,17 @@ import { Footer } from '@/app/components/Footer';
 import { StickyCtaMobile } from '@/app/components/StickyCtaMobile';
 import { ExitIntentPopup } from '@/app/components/ExitIntentPopup';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { captureLeadAttribution } from '@/site/lead-attribution';
+
+function LeadAttributionTracker() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    captureLeadAttribution();
+  }, [pathname]);
+
+  return null;
+}
 
 function PageViewTracker() {
   const pathname = usePathname();
@@ -171,6 +182,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <AuthProvider>
         <div className="min-h-screen">
           {isCampaignLandingPage ? null : <Navbar />}
+          <LeadAttributionTracker />
           <PageViewTracker />
           <AdsLifecycleTracker />
           {children}

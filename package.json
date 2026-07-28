@@ -7,7 +7,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "check": "next build"
+    "check": "next build",
+    "test:lead-capture": "node scripts/lead-attribution-test.mjs && node scripts/lead-production-deploy-guard-test.mjs && node scripts/lead-capture-gateway-test.mjs && deno test supabase/functions/lead-capture/gateway_test.ts",
+    "test:lead-capture:edge": "deno test supabase/functions/lead-capture/gateway_test.ts",
+    "test:lead-capture:staging": "node scripts/lead-capture-staging-test.mjs"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

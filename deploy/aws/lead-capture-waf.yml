@@ -1,0 +1,193 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: AWS WAF protection for the Epic Global Amplify-hosted website lead intake route. Deploy this stack in us-east-1.
+
+Parameters:
+  AppName:
+    Type: String
+    Default: epic-global-website
+  EnvironmentName:
+    Type: String
+    Default: staging
+  AmplifyAppArn:
+    Type: String
+    Description: ARN in the form arn:aws:amplify:region:account-id:apps/app-id.
+  LeadRequestsPerFiveMinutes:
+    Type: Number
+    Default: 100
+    MinValue: 10
+    MaxValue: 10000
+  BotControlMode:
+    Type: String
+    Default: Count
+    AllowedValues: [Count, Enforce]
+    Description: Keep targeted Bot Control in Count during staging and production tuning; choose Enforce only after false-positive review.
+
+Conditions:
+  BotControlCountMode: !Equals [!Ref BotControlMode, Count]
+
+Resources:
+  LeadCaptureWebAcl:
+    Type: AWS::WAFv2::WebACL
+    Properties:
+      Name: !Sub ${AppName}-${EnvironmentName}-lead-capture
+      Description: Managed protection, shared rate limiting, and silent browser challenge for website lead intake.
+      Scope: CLOUDFRONT
+      DefaultAction:
+        Allow: {}
+      ChallengeConfig:
+        ImmunityTimeProperty:
+          ImmunityTime: 300
+      TokenDomains:
+        - epicglobalinc.com
+        - www.epicglobalinc.com
+      VisibilityConfig:
+        CloudWatchMetricsEnabled: true
+        MetricName: !Sub ${AppName}-${EnvironmentName}-lead-capture
+        SampledRequestsEnabled: false
+      Rules:
+        - Name: LeadCaptureRateLimit
+          Priority: 0
+          Action:
+            Block: {}
+          Statement:
+            RateBasedStatement:
+              AggregateKeyType: IP
+              EvaluationWindowSec: 300
+              Limit: !Ref LeadRequestsPerFiveMinutes
+              ScopeDownStatement:
+                AndStatement:
+                  Statements:
+                    - ByteMatchStatement:
+                        FieldToMatch:
+                          UriPath: {}
+                        PositionalConstraint: STARTS_WITH
+                        SearchString: /api/lead-capture
+                        TextTransformations:
+                          - Priority: 0
+                            Type: NONE
+                    - ByteMatchStatement:
+                        FieldToMatch:
+                          Method: {}
+                        PositionalConstraint: EXACTLY
+                        SearchString: POST
+                        TextTransformations:
+                          - Priority: 0
+                            Type: NONE
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: LeadCaptureRateLimit
+            SampledRequestsEnabled: false
+        - Name: AwsIpReputation
+          Priority: 10
+          OverrideAction:
+            None: {}
+          Statement:
+            ManagedRuleGroupStatement:
+              VendorName: AWS
+              Name: AWSManagedRulesAmazonIpReputationList
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: AwsIpReputation
+            SampledRequestsEnabled: false
+        - Name: AwsCommonThreats
+          Priority: 20
+          OverrideAction:
+            None: {}
+          Statement:
+            ManagedRuleGroupStatement:
+              VendorName: AWS
+              Name: AWSManagedRulesCommonRuleSet
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: AwsCommonThreats
+            SampledRequestsEnabled: false
+        - Name: AwsKnownBadInputs
+          Priority: 30
+          OverrideAction:
+            None: {}
+          Statement:
+            ManagedRuleGroupStatement:
+              VendorName: AWS
+              Name: AWSManagedRulesKnownBadInputsRuleSet
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: AwsKnownBadInputs
+            SampledRequestsEnabled: false
+        - Name: AwsBotControlTargeted
+          Priority: 40
+          OverrideAction: !If
+            - BotControlCountMode
+            - Count: {}
+            - None: {}
+          Statement:
+            ManagedRuleGroupStatement:
+              VendorName: AWS
+              Name: AWSManagedRulesBotControlRuleSet
+              ManagedRuleGroupConfigs:
+                - AWSManagedRulesBotControlRuleSet:
+                    InspectionLevel: TARGETED
+                    EnableMachineLearning: true
+              ScopeDownStatement:
+                AndStatement:
+                  Statements:
+                    - ByteMatchStatement:
+                        FieldToMatch:
+                          UriPath: {}
+                        PositionalConstraint: STARTS_WITH
+                        SearchString: /api/lead-capture
+                        TextTransformations:
+                          - Priority: 0
+                            Type: NONE
+                    - ByteMatchStatement:
+                        FieldToMatch:
+                          Method: {}
+                        PositionalConstraint: EXACTLY
+                        SearchString: POST
+                        TextTransformations:
+                          - Priority: 0
+                            Type: NONE
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: AwsBotControlTargeted
+            SampledRequestsEnabled: false
+        - Name: LeadCaptureBrowserChallenge
+          Priority: 100
+          Action:
+            Challenge: {}
+          Statement:
+            AndStatement:
+              Statements:
+                - ByteMatchStatement:
+                    FieldToMatch:
+                      UriPath: {}
+                    PositionalConstraint: STARTS_WITH
+                    SearchString: /api/lead-capture
+                    TextTransformations:
+                      - Priority: 0
+                        Type: NONE
+                - ByteMatchStatement:
+                    FieldToMatch:
+                      Method: {}
+                    PositionalConstraint: EXACTLY
+                    SearchString: POST
+                    TextTransformations:
+                      - Priority: 0
+                        Type: NONE
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: LeadCaptureBrowserChallenge
+            SampledRequestsEnabled: false
+
+  AmplifyWebAclAssociation:
+    Type: AWS::WAFv2::WebACLAssociation
+    Properties:
+      ResourceArn: !Ref AmplifyAppArn
+      WebACLArn: !GetAtt LeadCaptureWebAcl.Arn
+
+Outputs:
+  WebAclArn:
+    Value: !GetAtt LeadCaptureWebAcl.Arn
+  WebAclId:
+    Value: !GetAtt LeadCaptureWebAcl.Id
+  WebAclName:
+    Value: !Sub ${AppName}-${EnvironmentName}-lead-capture

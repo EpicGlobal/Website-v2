@@ -19,3 +19,4 @@ Thumbs.db
 
 .next-start.out.log
 .next-start.err.log
+artifacts/

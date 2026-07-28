@@ -2,7 +2,7 @@
 
 import { CheckCircle2, Clock3, Globe2 } from 'lucide-react';
 import { StructuredData, contactPageSchema, getBreadcrumbSchema } from '@/app/components/StructuredData';
-import { HubSpotFormEmbed } from '@/app/components/HubSpotFormEmbed';
+import { LeadCaptureForm } from '@/app/components/LeadCaptureForm';
 
 export function Contact() {
   return (
@@ -37,7 +37,11 @@ export function Contact() {
                 Use the form below to request a call if you want Epic Global Inc. to evaluate marketplace fit, inventory readiness, channel performance, or international expansion requirements.
               </p>
 
-              <HubSpotFormEmbed className="lg:flex lg:flex-col" />
+              <LeadCaptureForm
+                className="lg:flex lg:flex-col"
+                formId="contact"
+                placementId="contact-page"
+              />
             </div>
           </div>
 

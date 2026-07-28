@@ -19,6 +19,30 @@ interface Window {
     version?: string;
   };
   _fbq?: Window['fbq'];
+  _linkedin_data_partner_ids?: string[];
   dataLayer?: unknown[];
   gtag_report_conversion?: (url?: string) => boolean;
+  lintrk?: ((command: 'track', params?: Record<string, unknown>) => void) & {
+    q?: Array<[string, Record<string, unknown>?]>;
+  };
+  AwsWafIntegration?: {
+    fetch: typeof fetch;
+    getToken: () => Promise<string>;
+    hasToken: () => boolean;
+  };
+  turnstile?: {
+    render: (container: string | HTMLElement, options: {
+      sitekey: string;
+      action?: string;
+      appearance?: 'always' | 'execute' | 'interaction-only';
+      size?: 'normal' | 'flexible' | 'compact';
+      callback?: (token: string) => void;
+      'error-callback'?: (errorCode: string) => void;
+      'expired-callback'?: () => void;
+      'timeout-callback'?: () => void;
+      'response-field'?: boolean;
+    }) => string;
+    reset: (widgetId?: string) => void;
+    remove: (widgetId: string) => void;
+  };
 }

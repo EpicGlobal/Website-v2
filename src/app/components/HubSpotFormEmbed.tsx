@@ -90,11 +90,12 @@ export function HubSpotFormEmbed({
   successTitle = 'Thanks. Your request was submitted.',
   successMessage = 'Our team will review your information and follow up with the right next step.',
 }: HubSpotFormEmbedProps) {
-  const { trackFormStart } = useAnalytics();
+  const { trackFormStart, trackFormSubmit } = useAnalytics();
   const reactId = useId().replace(/:/g, '');
   const instanceId = `epic-book-call-${reactId}`;
   const frameRef = useRef<HTMLDivElement>(null);
   const hasTrackedFormStartRef = useRef(false);
+  const hasTrackedSubmissionRef = useRef(false);
   const [isEmbedLoading, setIsEmbedLoading] = useState(true);
   const [embedError, setEmbedError] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -207,8 +208,18 @@ export function HubSpotFormEmbed({
       setEmbedError(null);
       setIsSubmitted(true);
 
-      if (typeof window.gtag_report_conversion === 'function') {
-        window.gtag_report_conversion();
+      if (!hasTrackedSubmissionRef.current) {
+        hasTrackedSubmissionRef.current = true;
+        trackFormSubmit('HubSpot Book a Call Form', {
+          form_destination: HUBSPOT_FORM_SCRIPT_URL,
+          form_id: HUBSPOT_FORM_ID,
+          form_type: 'hubspot_form',
+        });
+        window.gtag_report_conversion?.();
+        window.fbq?.('track', 'Lead', {
+          content_name: HUBSPOT_FORM_ID,
+          content_category: 'hubspot_form',
+        });
       }
     };
 
@@ -217,7 +228,7 @@ export function HubSpotFormEmbed({
     return () => {
       window.removeEventListener('hs-form-event:on-submission:success', handleSubmissionSuccess);
     };
-  }, [instanceId]);
+  }, [instanceId, trackFormSubmit]);
 
   useEffect(() => {
     const frame = frameRef.current;
@@ -239,9 +250,6 @@ export function HubSpotFormEmbed({
         form_type: 'hubspot_form',
       });
 
-      if (typeof window.gtag_report_conversion === 'function') {
-        window.gtag_report_conversion();
-      }
     };
 
     const handleFocusIn = () => {
