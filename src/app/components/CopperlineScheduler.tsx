@@ -45,6 +45,7 @@ const schedulerTimeZones: Record<string, string> = {
   'Pacific Time': 'America/Los_Angeles',
 };
 const schedulerDaysPerPage = 5;
+const schedulerTimesPerPage = 6;
 
 function schedulerFieldClass() {
   return 'mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-950 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-200';
@@ -82,6 +83,7 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
   const [selectedSlot, setSelectedSlot] = useState('');
   const [selectedDay, setSelectedDay] = useState('');
   const [dayPage, setDayPage] = useState(0);
+  const [timePage, setTimePage] = useState(0);
   const [timezone, setTimezone] = useState('Mountain Time');
   const [loading, setLoading] = useState(true);
   const [booking, setBooking] = useState(false);
@@ -132,6 +134,7 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
       ));
       setSelectedDay('');
       setDayPage(0);
+      setTimePage(0);
       setTimezone((current) => (
         nextConfig.timezones.includes(current) ? current : nextConfig.timezones[0] || 'Mountain Time'
       ));
@@ -174,6 +177,12 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
     safeDayPage * schedulerDaysPerPage,
     (safeDayPage + 1) * schedulerDaysPerPage,
   );
+  const timePageCount = Math.max(1, Math.ceil((selectedDayGroup?.slots.length || 0) / schedulerTimesPerPage));
+  const safeTimePage = Math.min(timePage, timePageCount - 1);
+  const visibleTimeSlots = (selectedDayGroup?.slots || []).slice(
+    safeTimePage * schedulerTimesPerPage,
+    (safeTimePage + 1) * schedulerTimesPerPage,
+  );
   const selectedSlotParts = selectedSlot
     ? slotDateParts(config?.slots.find((slot) => slot.value === selectedSlot) || { value: selectedSlot, label: selectedSlot }, timezone)
     : null;
@@ -181,6 +190,7 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
   const chooseDay = (dayKey: string) => {
     setSelectedDay(dayKey);
     setSelectedSlot('');
+    setTimePage(0);
   };
 
   const changeDayPage = (nextPage: number) => {
@@ -188,6 +198,12 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
     const firstDay = dayGroups[boundedPage * schedulerDaysPerPage];
     setDayPage(boundedPage);
     setSelectedDay(firstDay?.key || '');
+    setSelectedSlot('');
+    setTimePage(0);
+  };
+
+  const changeTimePage = (nextPage: number) => {
+    setTimePage(Math.max(0, Math.min(timePageCount - 1, nextPage)));
     setSelectedSlot('');
   };
 
@@ -368,9 +384,34 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
           ) : null}
           <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_14rem]">
             <div>
-              <p className="text-sm font-bold">2. Choose a time</p>
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm font-bold">2. Choose a time</p>
+                {timePageCount > 1 ? (
+                  <div className="flex items-center gap-1" aria-label="More available times">
+                    <button
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
+                      type="button"
+                      aria-label="Earlier available times"
+                      disabled={safeTimePage === 0}
+                      onClick={() => changeTimePage(safeTimePage - 1)}
+                    >
+                      <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+                    </button>
+                    <span className="min-w-12 text-center text-xs text-slate-500">{safeTimePage + 1} / {timePageCount}</span>
+                    <button
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
+                      type="button"
+                      aria-label="Later available times"
+                      disabled={safeTimePage >= timePageCount - 1}
+                      onClick={() => changeTimePage(safeTimePage + 1)}
+                    >
+                      <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                    </button>
+                  </div>
+                ) : null}
+              </div>
               <div className="mt-1 grid grid-cols-2 gap-2 sm:grid-cols-3" role="group" aria-label={`Available times for ${selectedDayGroup?.fullDate || 'selected day'}`}>
-                {(selectedDayGroup?.slots || []).map((slot) => {
+                {visibleTimeSlots.map((slot) => {
                   const active = slot.value === selectedSlot;
                   return (
                     <button
@@ -399,6 +440,7 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
                   setSelectedDay('');
                   setSelectedSlot('');
                   setDayPage(0);
+                  setTimePage(0);
                 }}
               >
                 {config.timezones.map((zone) => <option key={zone} value={zone}>{zone}</option>)}
