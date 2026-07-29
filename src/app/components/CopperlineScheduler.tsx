@@ -1,7 +1,7 @@
 'use client';
 
-import { FormEvent, useCallback, useEffect, useState } from 'react';
-import { CalendarDays, CheckCircle2, Loader2, RefreshCw } from 'lucide-react';
+import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { CalendarDays, CheckCircle2, ChevronLeft, ChevronRight, Loader2, RefreshCw } from 'lucide-react';
 import { leadSubmissionAttribution } from '@/site/lead-attribution';
 
 interface CopperlineSchedulerProps {
@@ -44,6 +44,7 @@ const schedulerTimeZones: Record<string, string> = {
   'Central Time': 'America/Chicago',
   'Pacific Time': 'America/Los_Angeles',
 };
+const schedulerDaysPerPage = 5;
 
 function schedulerFieldClass() {
   return 'mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-950 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-200';
@@ -54,27 +55,33 @@ function safeSchedulerPath(path: string) {
   return `${copperlinePublicUrl}${path}`;
 }
 
-function slotLabel(slot: SchedulerSlot, timezone: string) {
+function slotDateParts(slot: SchedulerSlot, timezone: string) {
   const date = new Date(slot.value);
-  if (Number.isNaN(date.getTime())) return slot.label;
-  try {
-    return new Intl.DateTimeFormat('en-US', {
-      timeZone: schedulerTimeZones[timezone] || 'America/Denver',
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      timeZoneName: 'short',
-    }).format(date);
-  } catch {
-    return slot.label;
+  if (Number.isNaN(date.getTime())) {
+    return { key: slot.value, weekday: 'Day', date: slot.label, fullDate: slot.label, time: slot.label };
   }
+  const timeZone = schedulerTimeZones[timezone] || 'America/Denver';
+  const keyParts = new Intl.DateTimeFormat('en-CA', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date);
+  const keyValue = (type: string) => keyParts.find((part) => part.type === type)?.value || '';
+  return {
+    key: `${keyValue('year')}-${keyValue('month')}-${keyValue('day')}`,
+    weekday: new Intl.DateTimeFormat('en-US', { timeZone, weekday: 'short' }).format(date),
+    date: new Intl.DateTimeFormat('en-US', { timeZone, month: 'short', day: 'numeric' }).format(date),
+    fullDate: new Intl.DateTimeFormat('en-US', { timeZone, weekday: 'short', month: 'short', day: 'numeric' }).format(date),
+    time: new Intl.DateTimeFormat('en-US', { timeZone, hour: 'numeric', minute: '2-digit' }).format(date),
+  };
 }
 
 export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
   const [config, setConfig] = useState<SchedulerConfig | null>(null);
   const [selectedSlot, setSelectedSlot] = useState('');
+  const [selectedDay, setSelectedDay] = useState('');
+  const [dayPage, setDayPage] = useState(0);
   const [timezone, setTimezone] = useState('Mountain Time');
   const [loading, setLoading] = useState(true);
   const [booking, setBooking] = useState(false);
@@ -121,8 +128,10 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
       setSelectedSlot((current) => (
         nextConfig.slots.some((slot) => slot.value === current)
           ? current
-          : nextConfig.slots[0]?.value || ''
+          : ''
       ));
+      setSelectedDay('');
+      setDayPage(0);
       setTimezone((current) => (
         nextConfig.timezones.includes(current) ? current : nextConfig.timezones[0] || 'Mountain Time'
       ));
@@ -138,6 +147,49 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
   useEffect(() => {
     void loadAvailability();
   }, [loadAvailability]);
+
+  const dayGroups = useMemo(() => {
+    const groups = new Map<string, { key: string; weekday: string; date: string; fullDate: string; slots: SchedulerSlot[] }>();
+    (config?.slots || []).forEach((slot) => {
+      const parts = slotDateParts(slot, timezone);
+      const group = groups.get(parts.key) || {
+        key: parts.key,
+        weekday: parts.weekday,
+        date: parts.date,
+        fullDate: parts.fullDate,
+        slots: [],
+      };
+      group.slots.push(slot);
+      groups.set(parts.key, group);
+    });
+    return Array.from(groups.values());
+  }, [config?.slots, timezone]);
+  const activeDay = dayGroups.some((group) => group.key === selectedDay)
+    ? selectedDay
+    : dayGroups[0]?.key || '';
+  const selectedDayGroup = dayGroups.find((group) => group.key === activeDay);
+  const dayPageCount = Math.max(1, Math.ceil(dayGroups.length / schedulerDaysPerPage));
+  const safeDayPage = Math.min(dayPage, dayPageCount - 1);
+  const visibleDayGroups = dayGroups.slice(
+    safeDayPage * schedulerDaysPerPage,
+    (safeDayPage + 1) * schedulerDaysPerPage,
+  );
+  const selectedSlotParts = selectedSlot
+    ? slotDateParts(config?.slots.find((slot) => slot.value === selectedSlot) || { value: selectedSlot, label: selectedSlot }, timezone)
+    : null;
+
+  const chooseDay = (dayKey: string) => {
+    setSelectedDay(dayKey);
+    setSelectedSlot('');
+  };
+
+  const changeDayPage = (nextPage: number) => {
+    const boundedPage = Math.max(0, Math.min(dayPageCount - 1, nextPage));
+    const firstDay = dayGroups[boundedPage * schedulerDaysPerPage];
+    setDayPage(boundedPage);
+    setSelectedDay(firstDay?.key || '');
+    setSelectedSlot('');
+  };
 
   const handleBooking = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -265,22 +317,95 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
               <input className={schedulerFieldClass()} name="company" defaultValue={prefill.company} autoComplete="organization" maxLength={240} />
             </label>
           </div>
-          <div className="grid gap-3 sm:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-            <label className="block text-sm font-medium">
-              Available time
-              <select className={schedulerFieldClass()} name="startsAt" value={selectedSlot} onChange={(event) => setSelectedSlot(event.target.value)} required disabled={!config.slots.length}>
-                {config.slots.length ? config.slots.map((slot) => (
-                  <option key={slot.value} value={slot.value}>{slotLabel(slot, timezone)}</option>
-                )) : <option value="">No appointments are currently available</option>}
-              </select>
-            </label>
+          {dayGroups.length ? (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm font-bold">1. Choose a day</p>
+                {dayPageCount > 1 ? (
+                  <div className="flex items-center gap-1" aria-label="More available days">
+                    <button
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
+                      type="button"
+                      aria-label="Earlier available days"
+                      disabled={safeDayPage === 0}
+                      onClick={() => changeDayPage(safeDayPage - 1)}
+                    >
+                      <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+                    </button>
+                    <span className="min-w-12 text-center text-xs text-slate-500">{safeDayPage + 1} / {dayPageCount}</span>
+                    <button
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
+                      type="button"
+                      aria-label="Later available days"
+                      disabled={safeDayPage >= dayPageCount - 1}
+                      onClick={() => changeDayPage(safeDayPage + 1)}
+                    >
+                      <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                    </button>
+                  </div>
+                ) : null}
+              </div>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-5" role="group" aria-label="Available meeting days">
+                {visibleDayGroups.map((group) => {
+                  const active = group.key === activeDay;
+                  return (
+                    <button
+                      className={`min-h-11 rounded-lg border px-2 py-2 text-center transition ${active
+                        ? 'border-teal-700 bg-teal-700 text-white shadow-sm'
+                        : 'border-slate-300 bg-white text-slate-800 hover:border-teal-500 hover:bg-teal-50'}`}
+                      type="button"
+                      key={group.key}
+                      aria-pressed={active}
+                      onClick={() => chooseDay(group.key)}
+                    >
+                      <span className={`block text-[11px] font-semibold uppercase tracking-wide ${active ? 'text-teal-100' : 'text-slate-500'}`}>{group.weekday}</span>
+                      <span className="block text-sm font-bold">{group.date}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_14rem]">
+            <div>
+              <p className="text-sm font-bold">2. Choose a time</p>
+              <div className="mt-1 grid grid-cols-2 gap-2 sm:grid-cols-3" role="group" aria-label={`Available times for ${selectedDayGroup?.fullDate || 'selected day'}`}>
+                {(selectedDayGroup?.slots || []).map((slot) => {
+                  const active = slot.value === selectedSlot;
+                  return (
+                    <button
+                      className={`min-h-11 rounded-lg border px-3 py-2 text-sm font-bold transition ${active
+                        ? 'border-teal-700 bg-teal-700 text-white shadow-sm'
+                        : 'border-slate-300 bg-white text-slate-800 hover:border-teal-500 hover:bg-teal-50'}`}
+                      type="button"
+                      key={slot.value}
+                      aria-pressed={active}
+                      onClick={() => setSelectedSlot(slot.value)}
+                    >
+                      {slotDateParts(slot, timezone).time}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
             <label className="block text-sm font-medium">
               Timezone
-              <select className={schedulerFieldClass()} name="timezone" value={timezone} onChange={(event) => setTimezone(event.target.value)}>
+              <select
+                className={schedulerFieldClass()}
+                name="timezone"
+                value={timezone}
+                onChange={(event) => {
+                  setTimezone(event.target.value);
+                  setSelectedDay('');
+                  setSelectedSlot('');
+                  setDayPage(0);
+                }}
+              >
                 {config.timezones.map((zone) => <option key={zone} value={zone}>{zone}</option>)}
               </select>
             </label>
           </div>
+          <input name="startsAt" type="hidden" value={selectedSlot} readOnly />
           <input name="title" type="hidden" value="Discovery meeting" readOnly />
           {!config.slots.length ? (
             <p className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950" role="status">
@@ -295,7 +420,11 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
               disabled={booking || !selectedSlot}
             >
               {booking ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : null}
-              {booking ? 'Booking meeting…' : 'Book this meeting'}
+              {booking
+                ? 'Booking meeting…'
+                : selectedSlotParts
+                  ? `Book ${selectedSlotParts.fullDate} at ${selectedSlotParts.time}`
+                  : 'Choose a time to continue'}
             </button>
             <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50" type="button" onClick={() => void loadAvailability()} disabled={booking}>
               <RefreshCw className="h-4 w-4" aria-hidden="true" />
