@@ -48,7 +48,8 @@ export function LeadCaptureForm({
   const [error, setError] = useState('');
   const [receiptId, setReceiptId] = useState('');
   const [turnstileToken, setTurnstileToken] = useState('');
-  const [securityStatus, setSecurityStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [securityStatus, setSecurityStatus] = useState<'loading' | 'challenge' | 'ready' | 'error'>('loading');
+  const [securityAttempt, setSecurityAttempt] = useState(0);
 
   useEffect(() => {
     if (provider !== 'copperline') return undefined;
@@ -65,29 +66,42 @@ export function LeadCaptureForm({
         if (attempts >= 200) setSecurityStatus('error');
         return;
       }
-      turnstileWidgetRef.current = window.turnstile.render(turnstileContainerRef.current, {
-        sitekey: turnstileSiteKey,
-        action: 'lead_capture',
-        appearance: 'interaction-only',
-        size: 'flexible',
-        'response-field': false,
-        callback: (token) => {
-          setTurnstileToken(token);
-          setSecurityStatus('ready');
-        },
-        'expired-callback': () => {
-          setTurnstileToken('');
-          setSecurityStatus('loading');
-        },
-        'error-callback': () => {
-          setTurnstileToken('');
-          setSecurityStatus('error');
-        },
-        'timeout-callback': () => {
-          setTurnstileToken('');
-          setSecurityStatus('loading');
-        },
-      });
+      setSecurityStatus('challenge');
+      try {
+        turnstileWidgetRef.current = window.turnstile.render(turnstileContainerRef.current, {
+          sitekey: turnstileSiteKey,
+          action: 'lead_capture',
+          appearance: 'always',
+          size: 'flexible',
+          'response-field': false,
+          callback: (token) => {
+            if (cancelled) return;
+            setTurnstileToken(token);
+            setSecurityStatus('ready');
+          },
+          'expired-callback': () => {
+            if (cancelled) return;
+            setTurnstileToken('');
+            setSecurityStatus('challenge');
+            if (turnstileWidgetRef.current && window.turnstile) {
+              window.turnstile.reset(turnstileWidgetRef.current);
+            }
+          },
+          'error-callback': () => {
+            if (cancelled) return;
+            setTurnstileToken('');
+            setSecurityStatus('error');
+          },
+          'timeout-callback': () => {
+            if (cancelled) return;
+            setTurnstileToken('');
+            setSecurityStatus('error');
+          },
+        });
+      } catch {
+        setTurnstileToken('');
+        setSecurityStatus('error');
+      }
     };
     install();
     const interval = window.setInterval(install, 50);
@@ -99,7 +113,21 @@ export function LeadCaptureForm({
       }
       turnstileWidgetRef.current = null;
     };
-  }, []);
+  }, [securityAttempt]);
+
+  const retrySecurityCheck = () => {
+    setTurnstileToken('');
+    setSecurityStatus('loading');
+    if (turnstileWidgetRef.current && window.turnstile) {
+      try {
+        window.turnstile.remove(turnstileWidgetRef.current);
+      } catch {
+        // The retry cycle below will render a fresh widget even if the old one already disappeared.
+      }
+    }
+    turnstileWidgetRef.current = null;
+    setSecurityAttempt((current) => current + 1);
+  };
 
   if (provider !== 'copperline') {
     return (
@@ -289,7 +317,10 @@ export function LeadCaptureForm({
       <div ref={turnstileContainerRef} className="w-full" aria-label="Security verification" />
       {securityStatus === 'error' ? (
         <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900" role="alert">
-          The security check could not load. Please refresh the page or try again in a moment.
+          <p>The security check could not finish. Please try it again.</p>
+          <button className="mt-2 font-semibold text-cyan-800 underline" type="button" onClick={retrySecurityCheck}>
+            Retry security check
+          </button>
         </div>
       ) : null}
       {error ? (
@@ -303,7 +334,13 @@ export function LeadCaptureForm({
         disabled={isSubmitting || !turnstileToken}
       >
         {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : null}
-        {isSubmitting ? 'Saving your request…' : securityStatus === 'loading' ? 'Preparing secure form…' : 'Submit request'}
+        {isSubmitting
+          ? 'Saving your request…'
+          : securityStatus === 'loading'
+            ? 'Preparing secure form…'
+            : securityStatus === 'challenge'
+              ? 'Complete security check above'
+              : 'Submit request'}
       </button>
     </form>
   );
