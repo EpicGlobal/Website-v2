@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useRef, useState } from 'react';
 import { CheckCircle2, Loader2 } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { HubSpotFormEmbed } from '@/app/components/HubSpotFormEmbed';
+import { CopperlineScheduler } from '@/app/components/CopperlineScheduler';
 import { leadSubmissionAttribution } from '@/site/lead-attribution';
 
 type LeadCaptureProvider = 'hubspot' | 'copperline' | 'shadow';
@@ -47,6 +48,7 @@ export function LeadCaptureForm({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [receiptId, setReceiptId] = useState('');
+  const [submittedLead, setSubmittedLead] = useState({ name: '', email: '', company: '' });
   const [turnstileToken, setTurnstileToken] = useState('');
   const [securityStatus, setSecurityStatus] = useState<'loading' | 'challenge' | 'ready' | 'error'>('loading');
   const [securityAttempt, setSecurityAttempt] = useState(0);
@@ -213,6 +215,11 @@ export function LeadCaptureForm({
         throw new Error('Your request could not be saved yet. Please try again.');
       }
       setReceiptId(result.receiptId);
+      setSubmittedLead({
+        name: [String(values.get('firstName') || ''), String(values.get('lastName') || '')].filter(Boolean).join(' '),
+        email: String(values.get('email') || ''),
+        company: String(values.get('company') || ''),
+      });
       if (turnstileWidgetRef.current && window.turnstile) {
         window.turnstile.remove(turnstileWidgetRef.current);
         turnstileWidgetRef.current = null;
@@ -249,11 +256,14 @@ export function LeadCaptureForm({
 
   if (isSubmitted) {
     return (
-      <div className={`rounded-xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-950 ${className}`} role="status">
-        <CheckCircle2 className="h-6 w-6 text-emerald-700" aria-hidden="true" />
-        <h3 className="mt-3 text-xl font-semibold">{successTitle}</h3>
-        <p className="mt-2 text-sm leading-6">{successMessage}</p>
-        <p className="mt-3 text-xs text-emerald-800">Confirmation: {receiptId}</p>
+      <div className={`space-y-4 ${className}`}>
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-950" role="status">
+          <CheckCircle2 className="h-6 w-6 text-emerald-700" aria-hidden="true" />
+          <h3 className="mt-3 text-xl font-semibold">{successTitle}</h3>
+          <p className="mt-2 text-sm leading-6">{successMessage}</p>
+          <p className="mt-3 text-xs text-emerald-800">Confirmation: {receiptId}</p>
+        </div>
+        <CopperlineScheduler prefill={submittedLead} />
       </div>
     );
   }

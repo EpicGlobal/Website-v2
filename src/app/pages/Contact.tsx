@@ -34,7 +34,7 @@ export function Contact() {
                 Book a Call
               </h2>
               <p className="mb-4 text-sm leading-relaxed text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828] sm:text-base">
-                Use the form below to request a call if you want Epic Global Inc. to evaluate marketplace fit, inventory readiness, channel performance, or international expansion requirements.
+                Share your details, then choose an available meeting time right on this page.
               </p>
 
               <LeadCaptureForm
@@ -62,7 +62,7 @@ export function Contact() {
                 <div className="flex items-start gap-3">
                   <Clock3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
                   <p className="text-sm leading-relaxed text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
-                    Submit the form and our team will follow up to coordinate the right next step.
+                    After submitting, select a live Google Calendar time without leaving the page.
                   </p>
                 </div>
 
