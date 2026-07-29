@@ -45,7 +45,7 @@ export function HubSpotModal({ isOpen, onClose }: HubSpotModalProps) {
       onClick={handleBackdropClick}
       className="fixed inset-0 z-[9999] flex items-center justify-center overflow-y-auto bg-black/70 p-4 backdrop-blur-sm"
     >
-      <div className="relative mx-auto my-4 max-h-[95vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900">
+      <div className="relative mx-auto my-2 max-h-[calc(100vh-1rem)] w-full max-w-4xl overflow-y-auto rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900">
         <button
           onClick={onClose}
           className="absolute right-4 top-4 z-10 rounded-lg bg-gray-100 p-1.5 transition-colors hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700"
@@ -55,7 +55,7 @@ export function HubSpotModal({ isOpen, onClose }: HubSpotModalProps) {
           <X className="h-4 w-4 text-gray-600 dark:text-gray-300" />
         </button>
 
-        <div className="p-8 pt-12 sm:p-10 sm:pt-14">
+        <div className="p-5 pt-11 sm:p-6 sm:pt-11">
           <LeadCaptureForm formId="book-a-call" placementId="global-book-a-call-modal" />
         </div>
       </div>

@@ -256,12 +256,21 @@ export function LeadCaptureForm({
 
   if (isSubmitted) {
     return (
-      <div className={`space-y-4 ${className}`}>
-        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-950" role="status">
-          <CheckCircle2 className="h-6 w-6 text-emerald-700" aria-hidden="true" />
-          <h3 className="mt-3 text-xl font-semibold">{successTitle}</h3>
-          <p className="mt-2 text-sm leading-6">{successMessage}</p>
-          <p className="mt-3 text-xs text-emerald-800">Confirmation: {receiptId}</p>
+      <div className={`space-y-3 ${className}`}>
+        <div
+          className="flex items-start gap-3 rounded-xl border border-teal-700 bg-gradient-to-r from-slate-950 via-slate-900 to-teal-950 px-4 py-3.5 text-white shadow-lg"
+          role="status"
+        >
+          <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-emerald-300/15">
+            <CheckCircle2 className="h-5 w-5 text-emerald-300" aria-hidden="true" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <h3 className="text-base font-bold sm:text-lg">{successTitle}</h3>
+            <p className="mt-0.5 text-xs leading-5 text-slate-200 sm:text-sm">{successMessage}</p>
+            <p className="mt-1 truncate text-[11px] text-teal-200" title={`Confirmation: ${receiptId}`}>
+              Confirmation: {receiptId}
+            </p>
+          </div>
         </div>
         <CopperlineScheduler prefill={submittedLead} />
       </div>

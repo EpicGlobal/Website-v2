@@ -46,7 +46,7 @@ const schedulerTimeZones: Record<string, string> = {
 };
 
 function schedulerFieldClass() {
-  return 'mt-1.5 w-full rounded-lg border border-emerald-200 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none transition focus:border-cyan-600 focus:ring-2 focus:ring-cyan-200';
+  return 'mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-950 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-200';
 }
 
 function safeSchedulerPath(path: string) {
@@ -198,39 +198,45 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
   if (booked) {
     const calendarConfirmed = ['created', 'updated'].includes(confirmation.calendarStatus);
     return (
-      <div className="rounded-xl border border-emerald-300 bg-emerald-50 p-6 text-emerald-950" role="status">
-        <CheckCircle2 className="h-6 w-6 text-emerald-700" aria-hidden="true" />
-        <h3 className="mt-3 text-xl font-semibold">Your meeting is booked.</h3>
-        <p className="mt-2 text-sm leading-6">
-          {calendarConfirmed
-            ? 'The appointment is in Copperline and Google Calendar. A calendar invitation will contain the meeting details.'
-            : 'The appointment is saved in Copperline. Our team will follow up with the meeting details.'}
-        </p>
+      <div className="flex items-start gap-3 rounded-xl border border-teal-700 bg-gradient-to-r from-teal-950 to-slate-950 p-5 text-white shadow-lg" role="status">
+        <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-emerald-300/15">
+          <CheckCircle2 className="h-6 w-6 text-emerald-300" aria-hidden="true" />
+        </span>
+        <div>
+          <h3 className="text-lg font-bold">Your meeting is booked.</h3>
+          <p className="mt-1 text-sm leading-6 text-slate-200">
+            {calendarConfirmed
+              ? 'The appointment is in Copperline and Google Calendar. A calendar invitation will contain the meeting details.'
+              : 'The appointment is saved in Copperline. Our team will follow up with the meeting details.'}
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <section className="rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-slate-950" aria-labelledby="schedule-heading">
-      <div className="flex items-start gap-3">
-        <CalendarDays className="mt-0.5 h-6 w-6 flex-shrink-0 text-emerald-700" aria-hidden="true" />
+    <section className="overflow-hidden rounded-xl border border-slate-200 bg-white text-slate-950 shadow-lg" aria-labelledby="schedule-heading">
+      <div className="flex items-start gap-3 bg-gradient-to-r from-teal-800 to-cyan-700 px-4 py-3 text-white">
+        <span className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-white/15">
+          <CalendarDays className="h-5 w-5" aria-hidden="true" />
+        </span>
         <div>
-          <h3 id="schedule-heading" className="text-xl font-semibold">Choose a meeting time</h3>
-          <p className="mt-1 text-sm leading-6 text-slate-700">
-            Your request is already saved. You can now schedule the conversation right here.
+          <h3 id="schedule-heading" className="text-lg font-bold">Choose a meeting time</h3>
+          <p className="mt-0.5 text-xs leading-5 text-cyan-50 sm:text-sm">
+            Your request is saved. Pick a time below to reserve the conversation now.
           </p>
         </div>
       </div>
 
       {loading ? (
-        <div className="mt-5 flex items-center gap-2 rounded-lg bg-white p-4 text-sm text-slate-700" role="status">
+        <div className="m-4 flex items-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 p-4 text-sm text-slate-700" role="status">
           <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
           Loading live calendar availability…
         </div>
       ) : null}
 
       {!loading && error && !config ? (
-        <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950" role="alert">
+        <div className="m-4 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950" role="alert">
           <p>{error}</p>
           <button className="mt-2 inline-flex items-center gap-2 font-semibold text-cyan-800 underline" type="button" onClick={() => void loadAvailability()}>
             <RefreshCw className="h-4 w-4" aria-hidden="true" />
@@ -240,37 +246,41 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
       ) : null}
 
       {!loading && config ? (
-        <form className="mt-5 space-y-4" onSubmit={handleBooking}>
-          <div className="rounded-lg border border-emerald-200 bg-white px-3 py-2 text-sm text-emerald-900">
+        <form className="space-y-3 p-4" onSubmit={handleBooking}>
+          <div className="rounded-lg border border-cyan-200 bg-cyan-50 px-3 py-2 text-sm text-cyan-950">
             Live availability for <strong>{config.owner}</strong>
             {config.minimumNoticeLabel ? ` · ${config.minimumNoticeLabel} minimum notice` : ''}
           </div>
-          <label className="block text-sm font-medium">
-            Name
-            <input className={schedulerFieldClass()} name="name" defaultValue={prefill.name} autoComplete="name" maxLength={180} required />
-          </label>
-          <label className="block text-sm font-medium">
-            Email
-            <input className={schedulerFieldClass()} name="email" type="email" defaultValue={prefill.email} autoComplete="email" maxLength={320} required />
-          </label>
-          <label className="block text-sm font-medium">
-            Company
-            <input className={schedulerFieldClass()} name="company" defaultValue={prefill.company} autoComplete="organization" maxLength={240} />
-          </label>
-          <label className="block text-sm font-medium">
-            Available time
-            <select className={schedulerFieldClass()} name="startsAt" value={selectedSlot} onChange={(event) => setSelectedSlot(event.target.value)} required disabled={!config.slots.length}>
-              {config.slots.length ? config.slots.map((slot) => (
-                <option key={slot.value} value={slot.value}>{slotLabel(slot, timezone)}</option>
-              )) : <option value="">No appointments are currently available</option>}
-            </select>
-          </label>
-          <label className="block text-sm font-medium">
-            Timezone
-            <select className={schedulerFieldClass()} name="timezone" value={timezone} onChange={(event) => setTimezone(event.target.value)}>
-              {config.timezones.map((zone) => <option key={zone} value={zone}>{zone}</option>)}
-            </select>
-          </label>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <label className="block text-sm font-medium">
+              Name
+              <input className={schedulerFieldClass()} name="name" defaultValue={prefill.name} autoComplete="name" maxLength={180} required />
+            </label>
+            <label className="block text-sm font-medium">
+              Email
+              <input className={schedulerFieldClass()} name="email" type="email" defaultValue={prefill.email} autoComplete="email" maxLength={320} required />
+            </label>
+            <label className="block text-sm font-medium">
+              Company
+              <input className={schedulerFieldClass()} name="company" defaultValue={prefill.company} autoComplete="organization" maxLength={240} />
+            </label>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+            <label className="block text-sm font-medium">
+              Available time
+              <select className={schedulerFieldClass()} name="startsAt" value={selectedSlot} onChange={(event) => setSelectedSlot(event.target.value)} required disabled={!config.slots.length}>
+                {config.slots.length ? config.slots.map((slot) => (
+                  <option key={slot.value} value={slot.value}>{slotLabel(slot, timezone)}</option>
+                )) : <option value="">No appointments are currently available</option>}
+              </select>
+            </label>
+            <label className="block text-sm font-medium">
+              Timezone
+              <select className={schedulerFieldClass()} name="timezone" value={timezone} onChange={(event) => setTimezone(event.target.value)}>
+                {config.timezones.map((zone) => <option key={zone} value={zone}>{zone}</option>)}
+              </select>
+            </label>
+          </div>
           <input name="title" type="hidden" value="Discovery meeting" readOnly />
           {!config.slots.length ? (
             <p className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950" role="status">
@@ -278,16 +288,16 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
             </p>
           ) : null}
           {error ? <p className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800" role="alert">{error}</p> : null}
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto]">
             <button
-              className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-cyan-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-cyan-800 disabled:cursor-not-allowed disabled:opacity-70"
+              className="flex items-center justify-center gap-2 rounded-lg bg-teal-700 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
               type="submit"
               disabled={booking || !selectedSlot}
             >
               {booking ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : null}
-              {booking ? 'Booking meeting…' : 'Book meeting'}
+              {booking ? 'Booking meeting…' : 'Book this meeting'}
             </button>
-            <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" type="button" onClick={() => void loadAvailability()} disabled={booking}>
+            <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50" type="button" onClick={() => void loadAvailability()} disabled={booking}>
               <RefreshCw className="h-4 w-4" aria-hidden="true" />
               Refresh times
             </button>
