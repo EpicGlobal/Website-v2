@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { CampaignMarketplaceAssessment } from '@/app/pages/CampaignMarketplaceAssessment';
 
 export const metadata: Metadata = {
@@ -17,16 +16,5 @@ export const metadata: Metadata = {
 };
 
 export default function MarketplaceAssessmentCampaignPage() {
-  return (
-    <>
-      <Script
-        id="copperline-pixel"
-        src="https://crm.epicglobalinc.com/public/copperline.js"
-        data-workspace="epicglobalinc"
-        data-site="epicglobalinc.com"
-        strategy="afterInteractive"
-      />
-      <CampaignMarketplaceAssessment />
-    </>
-  );
+  return <CampaignMarketplaceAssessment />;
 }

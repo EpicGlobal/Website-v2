@@ -44,7 +44,7 @@ const schedulerTimeZones: Record<string, string> = {
   'Central Time': 'America/Chicago',
   'Pacific Time': 'America/Los_Angeles',
 };
-const schedulerDaysPerPage = 5;
+const schedulerDaysPerPage = 7;
 const schedulerTimesPerPage = 6;
 
 function schedulerFieldClass() {
@@ -56,12 +56,62 @@ function safeSchedulerPath(path: string) {
   return `${copperlinePublicUrl}${path}`;
 }
 
+function schedulerIanaTimezone(timezone: string) {
+  return schedulerTimeZones[timezone] || timezone || 'America/Denver';
+}
+
+function schedulerTimezonesWithVisitor(timezones: string[]) {
+  const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const friendlyMatch = Object.entries(schedulerTimeZones).find(([, ianaTimezone]) => (
+    ianaTimezone === detected
+  ))?.[0];
+  if (friendlyMatch && timezones.includes(friendlyMatch)) return timezones;
+  return detected && !timezones.includes(detected) ? [detected, ...timezones] : timezones;
+}
+
+function detectedSchedulerTimezone(timezones: string[]) {
+  const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const exactMatch = timezones.find((timezone) => timezone === detected);
+  if (exactMatch) return exactMatch;
+  const friendlyMatch = Object.entries(schedulerTimeZones).find(([, ianaTimezone]) => (
+    ianaTimezone === detected
+  ))?.[0];
+  return friendlyMatch && timezones.includes(friendlyMatch)
+    ? friendlyMatch
+    : timezones[0] || 'Mountain Time';
+}
+
+function timezoneLabelWithOffset(timezone: string, referenceDate: Date) {
+  const timeZone = schedulerIanaTimezone(timezone);
+  try {
+    const displayName = schedulerTimeZones[timezone]
+      ? timezone
+      : new Intl.DateTimeFormat('en-US', {
+          timeZone,
+          timeZoneName: 'longGeneric',
+        }).formatToParts(referenceDate).find((part) => part.type === 'timeZoneName')?.value || timezone;
+    const offsetName = new Intl.DateTimeFormat('en-US', {
+      timeZone,
+      timeZoneName: 'longOffset',
+    }).formatToParts(referenceDate).find((part) => part.type === 'timeZoneName')?.value || 'GMT';
+    if (offsetName === 'GMT') return `${displayName} (UTC)`;
+    const match = offsetName.match(/^GMT([+-])(\d{1,2})(?::(\d{2}))?$/);
+    if (!match) return displayName;
+    const sign = match[1] === '-' ? '\u2212' : '+';
+    const hours = String(Number(match[2]));
+    const minutes = match[3] && match[3] !== '00' ? `:${match[3]}` : '';
+    return `${displayName} (UTC${sign}${hours}${minutes})`;
+  } catch {
+    return timezone;
+  }
+}
+
 function slotDateParts(slot: SchedulerSlot, timezone: string) {
   const date = new Date(slot.value);
   if (Number.isNaN(date.getTime())) {
     return { key: slot.value, weekday: 'Day', date: slot.label, fullDate: slot.label, time: slot.label };
   }
-  const timeZone = schedulerTimeZones[timezone] || 'America/Denver';
+  const timeZone = schedulerIanaTimezone(timezone);
   const keyParts = new Intl.DateTimeFormat('en-CA', {
     timeZone,
     year: 'numeric',
@@ -84,7 +134,9 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
   const [selectedDay, setSelectedDay] = useState('');
   const [dayPage, setDayPage] = useState(0);
   const [timePage, setTimePage] = useState(0);
-  const [timezone, setTimezone] = useState('Mountain Time');
+  const [timezone, setTimezone] = useState('');
+  const [bookingDetails, setBookingDetails] = useState(prefill);
+  const [editingDetails, setEditingDetails] = useState(false);
   const [loading, setLoading] = useState(true);
   const [booking, setBooking] = useState(false);
   const [booked, setBooked] = useState(false);
@@ -116,6 +168,7 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
       const timezones = Array.isArray(result.timezones)
         ? result.timezones.filter((zone): zone is string => typeof zone === 'string')
         : [];
+      const supportedTimezones = timezones.length ? timezones : ['Mountain Time'];
       const nextConfig: SchedulerConfig = {
         publicToken: result.publicToken,
         submissionPath: result.submissionPath,
@@ -124,7 +177,7 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
         meetingTypeLabel: String(result.meetingTypeLabel || 'Appointment'),
         minimumNoticeLabel: String(result.minimumNoticeLabel || ''),
         slots,
-        timezones: timezones.length ? timezones : ['Mountain Time'],
+        timezones: schedulerTimezonesWithVisitor(supportedTimezones),
       };
       setConfig(nextConfig);
       setSelectedSlot((current) => (
@@ -136,7 +189,7 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
       setDayPage(0);
       setTimePage(0);
       setTimezone((current) => (
-        nextConfig.timezones.includes(current) ? current : nextConfig.timezones[0] || 'Mountain Time'
+        nextConfig.timezones.includes(current) ? current : detectedSchedulerTimezone(nextConfig.timezones)
       ));
     } catch {
       setConfig(null);
@@ -186,6 +239,7 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
   const selectedSlotParts = selectedSlot
     ? slotDateParts(config?.slots.find((slot) => slot.value === selectedSlot) || { value: selectedSlot, label: selectedSlot }, timezone)
     : null;
+  const timezoneReferenceDate = new Date(selectedSlot || config?.slots[0]?.value || Date.now());
 
   const chooseDay = (dayKey: string) => {
     setSelectedDay(dayKey);
@@ -210,7 +264,14 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
   const handleBooking = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!config || !selectedSlot || booking || booked) return;
-    const values = new FormData(event.currentTarget);
+    const cleanName = bookingDetails.name.trim();
+    const cleanEmail = bookingDetails.email.trim();
+    const cleanCompany = bookingDetails.company.trim();
+    if (!cleanName || !/^\S+@\S+\.\S+$/.test(cleanEmail)) {
+      setEditingDetails(true);
+      setError('Enter a valid name and email before booking.');
+      return;
+    }
     setBooking(true);
     setError('');
     try {
@@ -226,10 +287,10 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
           meetingType: config.meetingType,
           startsAt: selectedSlot,
           timezone,
-          title: String(values.get('title') || 'Discovery meeting'),
-          name: String(values.get('name') || ''),
-          email: String(values.get('email') || ''),
-          company: String(values.get('company') || ''),
+          title: 'Discovery meeting',
+          name: cleanName,
+          email: cleanEmail,
+          company: cleanCompany,
           workspace: copperlineWorkspace,
           site: window.location.hostname || 'www.epicglobalinc.com',
           visitorId: attribution.visitorId,
@@ -289,9 +350,9 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
           <CalendarDays className="h-5 w-5" aria-hidden="true" />
         </span>
         <div>
-          <h3 id="schedule-heading" className="text-lg font-bold">Choose a meeting time</h3>
+          <h3 id="schedule-heading" className="text-lg font-bold">Choose a time</h3>
           <p className="mt-0.5 text-xs leading-5 text-cyan-50 sm:text-sm">
-            Your request is saved. Pick a time below to reserve the conversation now.
+            Your request is saved. Book a {config?.meetingTypeLabel?.toLowerCase() || 'meeting'} with {config?.owner || 'our team'}.
           </p>
         </div>
       </div>
@@ -315,81 +376,143 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
 
       {!loading && config ? (
         <form className="space-y-3 p-4" onSubmit={handleBooking}>
-          <div className="rounded-lg border border-cyan-200 bg-cyan-50 px-3 py-2 text-sm text-cyan-950">
-            Live availability for <strong>{config.owner}</strong>
-            {config.minimumNoticeLabel ? ` · ${config.minimumNoticeLabel} minimum notice` : ''}
+          <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-slate-50 px-3 py-2 text-sm text-slate-700">
+            <span>
+              Booking for <strong className="text-slate-950">{bookingDetails.name || 'Guest'}</strong>
+              {bookingDetails.company ? ` · ${bookingDetails.company}` : ''}
+            </span>
+            <button
+              className="font-semibold text-teal-800 underline decoration-teal-300 underline-offset-2 hover:text-teal-950"
+              type="button"
+              aria-expanded={editingDetails}
+              onClick={() => setEditingDetails((current) => !current)}
+            >
+              {editingDetails ? 'Done editing' : 'Edit details'}
+            </button>
           </div>
-          <div className="grid gap-3 sm:grid-cols-3">
-            <label className="block text-sm font-medium">
-              Name
-              <input className={schedulerFieldClass()} name="name" defaultValue={prefill.name} autoComplete="name" maxLength={180} required />
-            </label>
-            <label className="block text-sm font-medium">
-              Email
-              <input className={schedulerFieldClass()} name="email" type="email" defaultValue={prefill.email} autoComplete="email" maxLength={320} required />
-            </label>
-            <label className="block text-sm font-medium">
-              Company
-              <input className={schedulerFieldClass()} name="company" defaultValue={prefill.company} autoComplete="organization" maxLength={240} />
-            </label>
-          </div>
-          {dayGroups.length ? (
-            <div className="space-y-2">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-sm font-bold">1. Choose a day</p>
-                {dayPageCount > 1 ? (
-                  <div className="flex items-center gap-1" aria-label="More available days">
-                    <button
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
-                      type="button"
-                      aria-label="Earlier available days"
-                      disabled={safeDayPage === 0}
-                      onClick={() => changeDayPage(safeDayPage - 1)}
-                    >
-                      <ChevronLeft className="h-4 w-4" aria-hidden="true" />
-                    </button>
-                    <span className="min-w-12 text-center text-xs text-slate-500">{safeDayPage + 1} / {dayPageCount}</span>
-                    <button
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
-                      type="button"
-                      aria-label="Later available days"
-                      disabled={safeDayPage >= dayPageCount - 1}
-                      onClick={() => changeDayPage(safeDayPage + 1)}
-                    >
-                      <ChevronRight className="h-4 w-4" aria-hidden="true" />
-                    </button>
-                  </div>
-                ) : null}
-              </div>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-5" role="group" aria-label="Available meeting days">
-                {visibleDayGroups.map((group) => {
-                  const active = group.key === activeDay;
-                  return (
-                    <button
-                      className={`min-h-11 rounded-lg border px-2 py-2 text-center transition ${active
-                        ? 'border-teal-700 bg-teal-700 text-white shadow-sm'
-                        : 'border-slate-300 bg-white text-slate-800 hover:border-teal-500 hover:bg-teal-50'}`}
-                      type="button"
-                      key={group.key}
-                      aria-pressed={active}
-                      onClick={() => chooseDay(group.key)}
-                    >
-                      <span className={`block text-[11px] font-semibold uppercase tracking-wide ${active ? 'text-teal-100' : 'text-slate-500'}`}>{group.weekday}</span>
-                      <span className="block text-sm font-bold">{group.date}</span>
-                    </button>
-                  );
-                })}
-              </div>
+          {editingDetails ? (
+            <div className="grid gap-2 rounded-lg border border-slate-200 bg-white p-3 sm:grid-cols-3">
+              <label className="block text-sm font-medium">
+                Name
+                <input
+                  className={schedulerFieldClass()}
+                  name="name"
+                  value={bookingDetails.name}
+                  onChange={(event) => setBookingDetails((current) => ({ ...current, name: event.target.value }))}
+                  autoComplete="name"
+                  maxLength={180}
+                  required
+                />
+              </label>
+              <label className="block text-sm font-medium">
+                Email
+                <input
+                  className={schedulerFieldClass()}
+                  name="email"
+                  type="email"
+                  value={bookingDetails.email}
+                  onChange={(event) => setBookingDetails((current) => ({ ...current, email: event.target.value }))}
+                  autoComplete="email"
+                  maxLength={320}
+                  required
+                />
+              </label>
+              <label className="block text-sm font-medium">
+                Company
+                <input
+                  className={schedulerFieldClass()}
+                  name="company"
+                  value={bookingDetails.company}
+                  onChange={(event) => setBookingDetails((current) => ({ ...current, company: event.target.value }))}
+                  autoComplete="organization"
+                  maxLength={240}
+                />
+              </label>
             </div>
           ) : null}
-          <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_14rem]">
-            <div>
+          <div className="space-y-3 rounded-xl border border-slate-200 p-3">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <p className="text-xs text-slate-600">
+                Times shown in your time zone. Minimum notice: {config.minimumNoticeLabel || '4 hours'}.
+              </p>
+              <label className="block min-w-52 text-xs font-semibold text-slate-700">
+                Time zone
+                <select
+                  className={`${schedulerFieldClass()} py-1.5`}
+                  name="timezone"
+                  value={timezone}
+                  onChange={(event) => {
+                    setTimezone(event.target.value);
+                    setSelectedDay('');
+                    setSelectedSlot('');
+                    setDayPage(0);
+                    setTimePage(0);
+                  }}
+                >
+                  {config.timezones.map((zone) => (
+                    <option key={zone} value={zone}>{timezoneLabelWithOffset(zone, timezoneReferenceDate)}</option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            {dayGroups.length ? (
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-600">Available dates</p>
+                  {dayPageCount > 1 ? (
+                    <div className="flex items-center gap-1" aria-label="More available dates">
+                      <button
+                        className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
+                        type="button"
+                        aria-label="Earlier available dates"
+                        disabled={safeDayPage === 0}
+                        onClick={() => changeDayPage(safeDayPage - 1)}
+                      >
+                        <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+                      </button>
+                      <span className="px-1 text-xs font-semibold text-slate-600">More dates</span>
+                      <button
+                        className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
+                        type="button"
+                        aria-label="Later available dates"
+                        disabled={safeDayPage >= dayPageCount - 1}
+                        onClick={() => changeDayPage(safeDayPage + 1)}
+                      >
+                        <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                      </button>
+                    </div>
+                  ) : null}
+                </div>
+                <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-7" role="group" aria-label="Available meeting days">
+                  {visibleDayGroups.map((group) => {
+                    const active = group.key === activeDay;
+                    return (
+                      <button
+                        className={`min-h-10 rounded-lg border px-2 py-1.5 text-center transition ${active
+                          ? 'border-teal-700 bg-teal-700 text-white shadow-sm'
+                          : 'border-slate-300 bg-white text-slate-800 hover:border-teal-500 hover:bg-teal-50'}`}
+                        type="button"
+                        key={group.key}
+                        aria-pressed={active}
+                        onClick={() => chooseDay(group.key)}
+                      >
+                        <span className={`block text-[10px] font-semibold uppercase tracking-wide ${active ? 'text-teal-100' : 'text-slate-500'}`}>{group.weekday}</span>
+                        <span className="block text-xs font-bold sm:text-sm">{group.date}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : null}
+            <div className="space-y-1.5 border-t border-slate-200 pt-3">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-sm font-bold">2. Choose a time</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-slate-600">
+                  {selectedDayGroup ? `Times for ${selectedDayGroup.fullDate}` : 'Available times'}
+                </p>
                 {timePageCount > 1 ? (
                   <div className="flex items-center gap-1" aria-label="More available times">
                     <button
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
+                      className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
                       type="button"
                       aria-label="Earlier available times"
                       disabled={safeTimePage === 0}
@@ -397,9 +520,9 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
                     >
                       <ChevronLeft className="h-4 w-4" aria-hidden="true" />
                     </button>
-                    <span className="min-w-12 text-center text-xs text-slate-500">{safeTimePage + 1} / {timePageCount}</span>
+                    <span className="px-1 text-xs font-semibold text-slate-600">More times</span>
                     <button
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
+                      className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-700 disabled:opacity-40"
                       type="button"
                       aria-label="Later available times"
                       disabled={safeTimePage >= timePageCount - 1}
@@ -410,12 +533,12 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
                   </div>
                 ) : null}
               </div>
-              <div className="mt-1 grid grid-cols-2 gap-2 sm:grid-cols-3" role="group" aria-label={`Available times for ${selectedDayGroup?.fullDate || 'selected day'}`}>
+              <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-6" role="group" aria-label={`Available times for ${selectedDayGroup?.fullDate || 'selected day'}`}>
                 {visibleTimeSlots.map((slot) => {
                   const active = slot.value === selectedSlot;
                   return (
                     <button
-                      className={`min-h-11 rounded-lg border px-3 py-2 text-sm font-bold transition ${active
+                      className={`min-h-10 rounded-lg border px-2 py-1.5 text-sm font-bold transition ${active
                         ? 'border-teal-700 bg-teal-700 text-white shadow-sm'
                         : 'border-slate-300 bg-white text-slate-800 hover:border-teal-500 hover:bg-teal-50'}`}
                       type="button"
@@ -429,26 +552,7 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
                 })}
               </div>
             </div>
-            <label className="block text-sm font-medium">
-              Timezone
-              <select
-                className={schedulerFieldClass()}
-                name="timezone"
-                value={timezone}
-                onChange={(event) => {
-                  setTimezone(event.target.value);
-                  setSelectedDay('');
-                  setSelectedSlot('');
-                  setDayPage(0);
-                  setTimePage(0);
-                }}
-              >
-                {config.timezones.map((zone) => <option key={zone} value={zone}>{zone}</option>)}
-              </select>
-            </label>
           </div>
-          <input name="startsAt" type="hidden" value={selectedSlot} readOnly />
-          <input name="title" type="hidden" value="Discovery meeting" readOnly />
           {!config.slots.length ? (
             <p className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950" role="status">
               No appointments are available right now. Your request is saved, and the team can still follow up with you directly.
@@ -466,7 +570,7 @@ export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
                 ? 'Booking meeting…'
                 : selectedSlotParts
                   ? `Book ${selectedSlotParts.fullDate} at ${selectedSlotParts.time}`
-                  : 'Choose a time to continue'}
+                  : 'Select a time to continue'}
             </button>
             <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50" type="button" onClick={() => void loadAvailability()} disabled={booking}>
               <RefreshCw className="h-4 w-4" aria-hidden="true" />

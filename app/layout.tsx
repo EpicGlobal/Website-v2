@@ -2,13 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import '@/styles/index.css';
 import { SiteShell } from '@/site/SiteShell';
-import {
-  GOOGLE_ADS_ID,
-  GOOGLE_ADS_PRIMARY_CONVERSION_ID,
-  GOOGLE_ANALYTICS_ID,
-  LINKEDIN_PARTNER_ID,
-  META_PIXEL_ID,
-} from '@/site/analytics-config';
+import { ConsentManagedTracking } from '@/app/components/ConsentManagedTracking';
 import { siteConfig } from '@/site/site-config';
 import tabLogo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 
@@ -94,46 +88,12 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const hasLinkedInPartnerId = LINKEDIN_PARTNER_ID.length > 0;
   const wafIntegrationUrl = String(process.env.NEXT_PUBLIC_AWS_WAF_INTEGRATION_URL ?? '').replace(/\/$/, '');
   const turnstileSiteKey = String(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '').trim();
 
   return (
     <html lang="en" className="orange" suppressHydrationWarning>
       <body>
-        <Script id="meta-pixel-base" strategy="beforeInteractive">
-          {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${META_PIXEL_ID}');
-          `}
-        </Script>
-        {hasLinkedInPartnerId ? (
-          <Script id="linkedin-insight-base" strategy="beforeInteractive">
-            {`
-              window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-              window._linkedin_data_partner_ids.push('${LINKEDIN_PARTNER_ID}');
-              (function(l) {
-                if (!l) {
-                  window.lintrk = function(a,b){window.lintrk.q.push([a,b]);};
-                  window.lintrk.q = [];
-                }
-                var s = document.getElementsByTagName("script")[0];
-                var b = document.createElement("script");
-                b.type = "text/javascript";
-                b.async = true;
-                b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-                s.parentNode.insertBefore(b, s);
-              })(window.lintrk);
-            `}
-          </Script>
-        ) : null}
         {wafIntegrationUrl ? (
           <Script
             id="aws-waf-browser-challenge"
@@ -186,56 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })();
           `}
         </Script>
-        <Script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', '${GOOGLE_ANALYTICS_ID}', { send_page_view: false });
-            gtag('config', '${GOOGLE_ADS_ID}');
-            window.gtag_report_conversion = function(url) {
-              var callback = function () {
-                if (typeof(url) !== 'undefined') {
-                  window.location = url;
-                }
-              };
-              if (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
-                console.debug('[gtag:conversion]', '${GOOGLE_ADS_PRIMARY_CONVERSION_ID}');
-              }
-              gtag('event', 'conversion', {
-                'send_to': '${GOOGLE_ADS_PRIMARY_CONVERSION_ID}',
-                'event_callback': callback
-              });
-              return false;
-            };
-          `}
-        </Script>
-        <noscript>
-          <img
-            alt=""
-            height="1"
-            width="1"
-            style={{ display: 'none' }}
-            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
-          />
-        </noscript>
-        {hasLinkedInPartnerId ? (
-          <noscript>
-            <img
-              alt=""
-              height="1"
-              width="1"
-              style={{ display: 'none' }}
-              src={`https://px.ads.linkedin.com/collect/?pid=${LINKEDIN_PARTNER_ID}&fmt=gif`}
-            />
-          </noscript>
-        ) : null}
+        <ConsentManagedTracking />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

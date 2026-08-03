@@ -93,10 +93,10 @@ export function FAQ() {
                   value={`item-${index}`}
                   className="border border-white/10 dark:border-white/10 soft-dark:border-lime-800/30 light:border-gray-200 orange:border-white/10 rounded-lg px-6 bg-white/[0.02] dark:bg-white/[0.02] soft-dark:bg-white/[0.05] light:bg-white orange:bg-white/[0.02] hover:border-cyan-500/30 dark:hover:border-cyan-500/30 soft-dark:hover:border-lime-600/50 light:hover:border-cyan-500/30 orange:hover:border-cyan-500/30 transition-colors"
                 >
-                  <AccordionTrigger className="text-left text-base font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-white hover:text-cyan-400 soft-dark:hover:text-lime-700 light:hover:text-cyan-600 py-5">
+                  <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] hover:text-cyan-400 soft-dark:hover:text-lime-700 light:hover:text-cyan-600 orange:hover:text-orange-800 orange:[&>svg]:text-slate-700 py-5">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-400 leading-relaxed pb-5">
+                  <AccordionContent className="text-sm sm:text-base text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-slate-700 leading-relaxed pb-5">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

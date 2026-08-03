@@ -91,6 +91,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/privacy-choices" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                  Your Privacy Choices
+                </Link>
+              </li>
+              <li>
                 <Link href="/terms" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
                   Terms of Service
                 </Link>

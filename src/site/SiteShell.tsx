@@ -10,11 +10,14 @@ import { StickyCtaMobile } from '@/app/components/StickyCtaMobile';
 import { ExitIntentPopup } from '@/app/components/ExitIntentPopup';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { captureLeadAttribution } from '@/site/lead-attribution';
+import { PrivacyConsentBanner } from '@/app/components/PrivacyConsentBanner';
+import { allowsNonEssentialTracking } from '@/site/privacy-preferences';
 
 function LeadAttributionTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (!allowsNonEssentialTracking()) return;
     captureLeadAttribution();
   }, [pathname]);
 
@@ -26,6 +29,7 @@ function PageViewTracker() {
   const { trackPageView } = useAnalytics();
 
   useEffect(() => {
+    if (!allowsNonEssentialTracking()) return;
     trackPageView(pathname, document.title);
 
     if (typeof window.fbq === 'function') {
@@ -53,7 +57,7 @@ function AdsLifecycleTracker() {
   } = useAnalytics();
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === 'undefined' || !allowsNonEssentialTracking()) {
       return;
     }
 
@@ -75,7 +79,7 @@ function AdsLifecycleTracker() {
   }, [pathname, trackFirstVisit, trackSessionStart]);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === 'undefined' || !allowsNonEssentialTracking()) {
       return;
     }
 
@@ -134,7 +138,7 @@ function AdsLifecycleTracker() {
   }, [pathname, trackUserEngagement]);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === 'undefined' || !allowsNonEssentialTracking()) {
       return;
     }
 
@@ -189,6 +193,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           {isCampaignLandingPage ? null : <Footer />}
           {isCampaignLandingPage ? null : <StickyCtaMobile />}
           {isCampaignLandingPage ? null : <ExitIntentPopup />}
+          <PrivacyConsentBanner />
         </div>
       </AuthProvider>
     </ThemeProvider>

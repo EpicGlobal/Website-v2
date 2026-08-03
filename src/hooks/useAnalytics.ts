@@ -2,6 +2,7 @@
 
 import { useCallback } from 'react';
 import { GOOGLE_ADS_ID } from '@/site/analytics-config';
+import { allowsNonEssentialTracking } from '@/site/privacy-preferences';
 
 type AnalyticsParams = Record<string, unknown>;
 
@@ -21,6 +22,7 @@ function fireAnalyticsEvent(
   if (typeof window === 'undefined') {
     return;
   }
+  if (!allowsNonEssentialTracking()) return;
 
   const payload =
     options?.adsOnly

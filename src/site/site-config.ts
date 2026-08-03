@@ -22,7 +22,7 @@ export const siteConfig = {
   primaryCtaHref: '/contact#request-assessment',
   contactEmail: 'info@epicglobalinc.com',
   legalEmail: 'info@epicglobalinc.com',
-  privacyEmail: 'info@epicglobalinc.com',
+  privacyEmail: 'privacy@epicglobalinc.com',
   areaServed: [
     'United States',
     'Canada',
