@@ -32,7 +32,6 @@ import healthyHomeLogo from '@/assets/c0c4994bde7fe0a435eabb1839c2db5ae0216b51.p
 import heroineMakeLogo from '@/assets/ba0e3491f303ef8e07257a25c46835bd5dba4666.png';
 import kLogo from '@/assets/89a47228c49eea9be03629d307026d29fb10245d.png';
 import kingsLogo from '@/assets/ddb35a678bf18d6c48db81488df2c1a687976f18.png';
-import honeLogo from '@/assets/dc197f19a00425da10530730027f754cd7d825da.png';
 import lifeCiderLogo from '@/assets/55a30c6511b44c8a17c8aff06f5280397091adc5.png';
 import makeWellnessLogo from '@/assets/0fd1df88bd92404824795387f70ccee691cd1b04.png';
 import novexBiotechLogo from '@/assets/4fd949eb8c616f3359384cec575169ba872f082a.png';
@@ -94,7 +93,6 @@ export function Home() {
     { name: 'heroine make', logo: heroineMakeLogo },
     { name: 'K', logo: kLogo },
     { name: 'KINGS', logo: kingsLogo },
-    { name: 'hone', logo: honeLogo },
     { name: 'life cider', logo: lifeCiderLogo },
     { name: 'MAKE WELLNESS', logo: makeWellnessLogo },
     { name: 'Novex Biotech', logo: novexBiotechLogo },
