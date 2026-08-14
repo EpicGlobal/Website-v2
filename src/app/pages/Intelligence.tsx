@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Brain, TrendingUp, Shield, Zap, BarChart3, Globe2, AlertTriangle, Target } from 'lucide-react';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
+import { siteConfig } from '@/site/site-config';
 
 export function Intelligence() {
   const intelligencePillars = [
@@ -316,19 +317,21 @@ export function Intelligence() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white dark:text-white soft-dark:text-gray-900 water:text-gray-900 leaf:text-gray-900 orange:text-[#101828]">
-            Stop managing complexity. Start operating with intelligence.
-          </h2>
-          <p className="text-lg text-gray-300 dark:text-gray-300 soft-dark:text-gray-600 water:text-gray-700 leaf:text-gray-700 orange:text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Epic replaces marketplace complexity with infrastructure. Let's map what that looks like for your brand.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <CtaButton variant="primary" size="lg" location="Intelligence Page CTA" />
+      {siteConfig.bookACallEnabled ? (
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white dark:text-white soft-dark:text-gray-900 water:text-gray-900 leaf:text-gray-900 orange:text-[#101828]">
+              Stop managing complexity. Start operating with intelligence.
+            </h2>
+            <p className="text-lg text-gray-300 dark:text-gray-300 soft-dark:text-gray-600 water:text-gray-700 leaf:text-gray-700 orange:text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Epic replaces marketplace complexity with infrastructure. Let's map what that looks like for your brand.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <CtaButton variant="primary" size="lg" location="Intelligence Page CTA" />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </div>
   );
 }

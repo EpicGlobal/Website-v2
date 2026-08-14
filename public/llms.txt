@@ -27,7 +27,7 @@ Frequently asked questions about Epic's model, timelines, fit, pricing structure
 Operator-grade playbooks, checklists, templates, definitions, and proof pages for running marketplaces as a system.
 
 ### Contact (/contact)
-Primary conversion page for requesting an assessment or booking a call.
+Contact page for general inquiries and marketplace partnership questions.
 
 ## Knowledge Base Highlights
 
@@ -98,4 +98,4 @@ Brands that want to scale on marketplaces without building an internal marketpla
 Amazon, Walmart, eBay, and select international marketplaces across North America, Europe, and other growth regions.
 
 ## Primary Conversion
-Request an assessment or book a call at /contact.
+Contact Epic Global at /contact.

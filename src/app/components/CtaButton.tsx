@@ -34,6 +34,7 @@ export function CtaButton({
   });
 
   useEffect(() => {
+    if (!siteConfig.bookACallEnabled) return;
     setButtonText(readOrCreateCtaVariant());
   }, []);
 
@@ -136,6 +137,10 @@ export function CtaButton({
       }
     };
   }, [isHovering]);
+
+  if (!siteConfig.bookACallEnabled) {
+    return null;
+  }
 
   return (
     <>

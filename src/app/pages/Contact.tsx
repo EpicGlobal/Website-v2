@@ -3,8 +3,11 @@
 import { CheckCircle2, Clock3, Globe2 } from 'lucide-react';
 import { StructuredData, contactPageSchema, getBreadcrumbSchema } from '@/app/components/StructuredData';
 import { LeadCaptureForm } from '@/app/components/LeadCaptureForm';
+import { siteConfig } from '@/site/site-config';
 
 export function Contact() {
+  const showBookACall = siteConfig.bookACallEnabled;
+
   return (
     <div className="min-h-screen bg-gradient-to-br text-white dark:from-cyan-950 dark:via-slate-900 dark:to-black dark:text-white soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white soft-dark:text-gray-900 light:text-gray-900 leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white leaf:text-gray-900 water:from-lime-500 water:via-lime-100 water:to-white water:text-gray-900 orange:from-[#F68932] orange:via-orange-100 orange:to-white orange:text-gray-900">
       <StructuredData data={contactPageSchema} />
@@ -31,16 +34,19 @@ export function Contact() {
           <div className="lg:col-span-3">
             <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur-xl dark:border-white/10 dark:from-white/5 dark:to-white/[0.02] soft-dark:border-white/20 soft-dark:from-white/70 soft-dark:to-white/60 light:border-gray-200 light:bg-white orange:border-white/20 orange:from-white/70 orange:to-white/60 leaf:border-white/20 leaf:from-white/70 leaf:to-white/60 water:border-white/20 water:from-white/70 water:to-white/60 lg:flex lg:flex-col">
               <h2 className="mb-3 text-2xl font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">
-                Book a Call
+                {showBookACall ? 'Book a Call' : 'Get in touch'}
               </h2>
               <p className="mb-4 text-sm leading-relaxed text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828] sm:text-base">
-                Share your details, then choose an available meeting time right on this page.
+                {showBookACall
+                  ? 'Share your details, then choose an available meeting time right on this page.'
+                  : 'Share your details and our team will follow up with the right next step.'}
               </p>
 
               <LeadCaptureForm
                 className="lg:flex lg:flex-col"
                 formId="contact"
                 placementId="contact-page"
+                showScheduler={showBookACall}
               />
             </div>
           </div>
@@ -62,7 +68,9 @@ export function Contact() {
                 <div className="flex items-start gap-3">
                   <Clock3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
                   <p className="text-sm leading-relaxed text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
-                    After submitting, select a live Google Calendar time without leaving the page.
+                    {showBookACall
+                      ? 'After submitting, select a live Google Calendar time without leaving the page.'
+                      : 'Our team will review your request and follow up with the right next step.'}
                   </p>
                 </div>
 

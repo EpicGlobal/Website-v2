@@ -50,11 +50,13 @@ export function Navbar() {
   const [ctaButtonText, setCtaButtonText] = useState(getDefaultCtaVariant());
 
   useEffect(() => {
+    if (!siteConfig.bookACallEnabled) return;
     setCtaButtonText(readOrCreateCtaVariant());
   }, []);
 
   // Track the button variant with Google Analytics on mount
   useEffect(() => {
+    if (!siteConfig.bookACallEnabled) return;
     trackCtaButtonVariantShown(ctaButtonText, {
       location: 'Navbar',
       button_style: 'primary',
@@ -209,27 +211,29 @@ export function Navbar() {
               </div>
             )}
             
-            <Link
-              href={siteConfig.primaryCtaHref}
-              data-primary-cta="true"
-              aria-haspopup="dialog"
-              onClick={(event) => handleCtaAnchorClick(event)}
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
-              className={`relative px-5 py-2 bg-gradient-to-r from-cyan-500 via-cyan-300 to-cyan-500 orange:from-orange-500 orange:via-orange-300 orange:to-orange-500 leaf:from-sky-500 leaf:via-sky-400 leaf:to-sky-500 water:from-emerald-600 water:via-emerald-400 water:to-emerald-600 text-white text-sm font-medium rounded-lg hover:from-cyan-600 hover:to-cyan-700 orange:hover:from-orange-600 orange:hover:to-orange-700 leaf:hover:from-sky-600 leaf:hover:to-sky-700 water:hover:from-emerald-700 water:hover:to-emerald-700 transition-all shadow-lg shadow-cyan-500/20 orange:shadow-orange-500/20 leaf:shadow-sky-500/20 water:shadow-emerald-500/20 hover:shadow-cyan-500/30 orange:hover:shadow-orange-500/30 leaf:hover:shadow-sky-500/30 water:hover:shadow-emerald-500/30 overflow-hidden ${!isHovering ? 'animate-shimmer-ltr' : ''}`}
-            >
-              {/* Button text - behind progress bar */}
-              <span className="relative z-0">{ctaButtonText}</span>
-              
-              {/* Progress bar - on top of text */}
-              <div 
-                className="absolute inset-y-0 left-0 bg-white/30 dark:bg-white/30 leaf:bg-sky-700/40 water:bg-emerald-800/40 light:bg-cyan-700/40 orange:bg-orange-800/40 z-10 rounded-lg transition-[width] duration-0 ease-linear"
-                style={{ 
-                  width: `${progress}%`,
-                  transformOrigin: 'left'
-                }}
-              />
-            </Link>
+            {siteConfig.bookACallEnabled ? (
+              <Link
+                href={siteConfig.primaryCtaHref}
+                data-primary-cta="true"
+                aria-haspopup="dialog"
+                onClick={(event) => handleCtaAnchorClick(event)}
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+                className={`relative px-5 py-2 bg-gradient-to-r from-cyan-500 via-cyan-300 to-cyan-500 orange:from-orange-500 orange:via-orange-300 orange:to-orange-500 leaf:from-sky-500 leaf:via-sky-400 leaf:to-sky-500 water:from-emerald-600 water:via-emerald-400 water:to-emerald-600 text-white text-sm font-medium rounded-lg hover:from-cyan-600 hover:to-cyan-700 orange:hover:from-orange-600 orange:hover:to-orange-700 leaf:hover:from-sky-600 leaf:hover:to-sky-700 water:hover:from-emerald-700 water:hover:to-emerald-700 transition-all shadow-lg shadow-cyan-500/20 orange:shadow-orange-500/20 leaf:shadow-sky-500/20 water:shadow-emerald-500/20 hover:shadow-cyan-500/30 orange:hover:shadow-orange-500/30 leaf:hover:shadow-sky-500/30 water:hover:shadow-emerald-500/30 overflow-hidden ${!isHovering ? 'animate-shimmer-ltr' : ''}`}
+              >
+                {/* Button text - behind progress bar */}
+                <span className="relative z-0">{ctaButtonText}</span>
+
+                {/* Progress bar - on top of text */}
+                <div
+                  className="absolute inset-y-0 left-0 bg-white/30 dark:bg-white/30 leaf:bg-sky-700/40 water:bg-emerald-800/40 light:bg-cyan-700/40 orange:bg-orange-800/40 z-10 rounded-lg transition-[width] duration-0 ease-linear"
+                  style={{
+                    width: `${progress}%`,
+                    transformOrigin: 'left'
+                  }}
+                />
+              </Link>
+            ) : null}
           </div>
 
           {/* Mobile menu button */}
@@ -264,21 +268,25 @@ export function Navbar() {
               <div className="flex justify-center">
                 <ThemeToggle />
               </div>
-              <Link
-                href={siteConfig.primaryCtaHref}
-                data-primary-cta="true"
-                aria-haspopup="dialog"
-                onClick={(event) => handleCtaAnchorClick(event, true)}
-                className="block px-5 py-2.5 bg-gradient-to-r from-cyan-500 via-cyan-300 to-cyan-500 orange:from-orange-500 orange:via-orange-300 orange:to-orange-500 leaf:from-cyan-600 leaf:via-cyan-400 leaf:to-cyan-600 water:from-emerald-500 water:via-emerald-300 water:to-emerald-500 text-white text-sm font-semibold text-center rounded-lg shadow-lg shadow-cyan-500/20 orange:shadow-orange-500/20 leaf:shadow-cyan-500/20 water:shadow-emerald-500/20 active:scale-95 transition-transform animate-shimmer-ltr"
-              >
-                {ctaButtonText}
-              </Link>
+              {siteConfig.bookACallEnabled ? (
+                <Link
+                  href={siteConfig.primaryCtaHref}
+                  data-primary-cta="true"
+                  aria-haspopup="dialog"
+                  onClick={(event) => handleCtaAnchorClick(event, true)}
+                  className="block px-5 py-2.5 bg-gradient-to-r from-cyan-500 via-cyan-300 to-cyan-500 orange:from-orange-500 orange:via-orange-300 orange:to-orange-500 leaf:from-cyan-600 leaf:via-cyan-400 leaf:to-cyan-600 water:from-emerald-500 water:via-emerald-300 water:to-emerald-500 text-white text-sm font-semibold text-center rounded-lg shadow-lg shadow-cyan-500/20 orange:shadow-orange-500/20 leaf:shadow-cyan-500/20 water:shadow-emerald-500/20 active:scale-95 transition-transform animate-shimmer-ltr"
+                >
+                  {ctaButtonText}
+                </Link>
+              ) : null}
             </div>
           </div>
         </div>
       )}
 
-      <HubSpotModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {siteConfig.bookACallEnabled ? (
+        <HubSpotModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      ) : null}
     </nav>
   );
 }

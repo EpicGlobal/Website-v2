@@ -6,6 +6,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, '') || default
 export const siteConfig = {
   name: 'Epic Global Inc.',
   shortName: 'Epic Global',
+  bookACallEnabled: process.env.NEXT_PUBLIC_BOOK_A_CALL_ENABLED === 'true',
   url: siteUrl,
   logo: '/logo.png',
   founderName: 'Glen Jensen',

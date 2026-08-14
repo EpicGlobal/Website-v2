@@ -12,6 +12,7 @@ import { useAnalytics } from '@/hooks/useAnalytics';
 import { captureLeadAttribution } from '@/site/lead-attribution';
 import { PrivacyConsentBanner } from '@/app/components/PrivacyConsentBanner';
 import { allowsNonEssentialTracking } from '@/site/privacy-preferences';
+import { siteConfig } from '@/site/site-config';
 
 function LeadAttributionTracker() {
   const pathname = usePathname();
@@ -180,6 +181,7 @@ function AdsLifecycleTracker() {
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isCampaignLandingPage = pathname.startsWith('/campaigns/');
+  const showBookingPrompts = !isCampaignLandingPage && siteConfig.bookACallEnabled;
 
   return (
     <ThemeProvider>
@@ -191,8 +193,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           <AdsLifecycleTracker />
           {children}
           {isCampaignLandingPage ? null : <Footer />}
-          {isCampaignLandingPage ? null : <StickyCtaMobile />}
-          {isCampaignLandingPage ? null : <ExitIntentPopup />}
+          {showBookingPrompts ? <StickyCtaMobile /> : null}
+          {showBookingPrompts ? <ExitIntentPopup /> : null}
           <PrivacyConsentBanner />
         </div>
       </AuthProvider>

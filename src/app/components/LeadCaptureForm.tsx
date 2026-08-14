@@ -13,6 +13,7 @@ interface LeadCaptureFormProps {
   className?: string;
   formId?: string;
   placementId?: string;
+  showScheduler?: boolean;
   successTitle?: string;
   successMessage?: string;
 }
@@ -35,6 +36,7 @@ export function LeadCaptureForm({
   className = '',
   formId = 'book-a-call',
   placementId = 'book-a-call',
+  showScheduler = true,
   successTitle = 'Thanks. Your request was submitted.',
   successMessage = 'Our team will review your information and follow up with the right next step.',
 }: LeadCaptureFormProps) {
@@ -272,7 +274,7 @@ export function LeadCaptureForm({
             </p>
           </div>
         </div>
-        <CopperlineScheduler prefill={submittedLead} />
+        {showScheduler ? <CopperlineScheduler prefill={submittedLead} /> : null}
       </div>
     );
   }

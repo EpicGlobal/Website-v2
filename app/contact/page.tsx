@@ -4,9 +4,9 @@ import { createPageMetadata } from '@/site/site-config';
 export const metadata = createPageMetadata({
   title: 'Contact',
   description:
-    'Request an assessment and tell Epic Global Inc. about your catalog, marketplaces, and international expansion goals.',
+    'Contact Epic Global Inc. about your catalog, marketplaces, international expansion goals, or general questions.',
   path: '/contact',
-  keywords: ['contact epic global', 'marketplace assessment', 'book a call'],
+  keywords: ['contact epic global', 'marketplace operations', 'brand partnerships'],
 });
 
 export default function ContactPage() {

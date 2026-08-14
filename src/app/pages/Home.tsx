@@ -11,6 +11,7 @@ import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { motion } from 'framer-motion';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { siteConfig } from '@/site/site-config';
 import activationLogo from '@/assets/11ff501713732b442477ea6dc6d2ee5695107009.png';
 import ageLOCLogo from '@/assets/5cef0eca7ed4e33201516cb198f51116d8fc8260.png';
 import ap24Logo from '@/assets/e0b5aa7b1a7ae0ea4d602bfa40a1f28c69508679.png';
@@ -447,9 +448,11 @@ export function Home() {
             })}
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <CtaButton variant="primary" size="md" location="Model Section" />
-          </div>
+          {siteConfig.bookACallEnabled ? (
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <CtaButton variant="primary" size="md" location="Model Section" />
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -551,19 +554,21 @@ export function Home() {
       </section>
 
       {/* Final CTA Strip */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900">
-            Ready for an operator model,<br />not another agency?
-          </h2>
-          <p className="text-lg text-gray-800 mb-10 max-w-2xl mx-auto leading-relaxed dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-gray-800 leaf:text-gray-700">
-            If you want execution that looks like a system, let's map your next 90 days.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <CtaButton variant="primary" size="lg" location="Final CTA Section" />
+      {siteConfig.bookACallEnabled ? (
+        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900">
+              Ready for an operator model,<br />not another agency?
+            </h2>
+            <p className="text-lg text-gray-800 mb-10 max-w-2xl mx-auto leading-relaxed dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-gray-800 leaf:text-gray-700">
+              If you want execution that looks like a system, let's map your next 90 days.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <CtaButton variant="primary" size="lg" location="Final CTA Section" />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </div>
   );
 }

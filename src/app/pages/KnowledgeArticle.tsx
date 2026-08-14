@@ -7,6 +7,7 @@ import { StructuredData } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
+import { siteConfig } from '@/site/site-config';
 
 // Import article content components
 import { getArticleContent } from '@/app/data/articleContent';
@@ -223,17 +224,19 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
       )}
 
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">
-            Ready to see how this works for your brand?
-          </h2>
-          <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Let's walk through your catalog, marketplace presence, and growth goals.
-          </p>
-          <CtaButton variant="primary" size="lg" location="Knowledge Article Page - Bottom CTA" />
-        </div>
-      </section>
+      {siteConfig.bookACallEnabled ? (
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">
+              Ready to see how this works for your brand?
+            </h2>
+            <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Let's walk through your catalog, marketplace presence, and growth goals.
+            </p>
+            <CtaButton variant="primary" size="lg" location="Knowledge Article Page - Bottom CTA" />
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }

@@ -221,7 +221,7 @@ export const contactPageSchema = {
   name: `Contact ${siteConfig.name}`,
   url: `${siteConfig.url}/contact`,
   description:
-    'Request an assessment or book a call with Epic Global Inc. to discuss marketplace operations, expansion goals, and operating fit.',
+    'Contact Epic Global Inc. to discuss marketplace operations, expansion goals, partnerships, and general questions.',
   mainEntity: organizationReference,
   isPartOf: {
     '@id': websiteId,
