@@ -10,7 +10,6 @@ const staticRoutes = [
   { path: '/case-studies', priority: 0.8 },
   { path: '/knowledge-base', priority: 0.8 },
   { path: '/faq', priority: 0.7 },
-  { path: '/contact', priority: 0.7 },
   { path: '/privacy', priority: 0.4 },
   { path: '/privacy-choices', priority: 0.4 },
   { path: '/terms', priority: 0.4 },

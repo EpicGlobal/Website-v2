@@ -45,7 +45,6 @@ export function Navbar() {
     { to: '/intelligence', label: 'AI Intelligence' },
     { to: '/case-studies', label: 'Case Studies' },
     { to: '/knowledge-base', label: 'Knowledge Base' },
-    { to: '/contact', label: 'Contact' },
   ];
   const [ctaButtonText, setCtaButtonText] = useState(getDefaultCtaVariant());
 

@@ -100,11 +100,6 @@ export function Footer() {
                   Terms of Service
                 </Link>
               </li>
-              <li>
-                <Link href="/contact" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
-                  Contact
-                </Link>
-              </li>
             </ul>
           </div>
         </div>

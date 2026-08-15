@@ -1389,9 +1389,9 @@ export const articleContent: Record<string, () => JSX.Element> = {
             <h4 className="font-semibold text-cyan-400 mb-1">How Our Model Works</h4>
             <p className="text-sm text-gray-400">Deep dive into Buy–Sell–Advertise–Protect</p>
           </a>
-          <a href="/contact" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
-            <h4 className="font-semibold text-cyan-400 mb-1">Request an Assessment</h4>
-            <p className="text-sm text-gray-400">Let's evaluate if we're a fit</p>
+          <a href="/case-studies" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
+            <h4 className="font-semibold text-cyan-400 mb-1">View Case Studies</h4>
+            <p className="text-sm text-gray-400">See real marketplace execution examples</p>
           </a>
         </div>
       </section>
@@ -1976,9 +1976,9 @@ const ComingSoonArticle = () => (
           We're currently developing this content. Check back soon for detailed insights, frameworks, and actionable guidance.
         </p>
         <p className="text-sm text-gray-400">
-          Have questions in the meantime?{' '}
-          <a href="/contact" className="text-cyan-400 hover:text-cyan-300 underline">
-            Reach out to our team
+          Looking for an answer in the meantime?{' '}
+          <a href="/faq" className="text-cyan-400 hover:text-cyan-300 underline">
+            Browse the FAQ
           </a>
         </p>
       </div>

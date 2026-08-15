@@ -77,7 +77,7 @@ async function waitForSite() {
   while (Date.now() < deadline) {
     if (site.exitCode !== null) throw new Error(`Next.js exited before startup:\n${serverOutput}`);
     try {
-      const response = await fetch(`${siteOrigin}/contact`);
+      const response = await fetch(`${siteOrigin}/campaigns/marketplace-assessment`);
       if (response.ok) return;
     } catch {
       // The development server is still compiling.

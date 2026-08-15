@@ -216,7 +216,7 @@ export function Privacy() {
                   <li>appeal a denial of a privacy request where applicable; and</li>
                   <li>lodge a complaint with a data-protection authority.</li>
                 </BulletList>
-                <p>To submit a request, email <a href={`mailto:${siteConfig.privacyEmail}?subject=Privacy%20Request`} className={policyLinkClassName}>{siteConfig.privacyEmail}</a> with the subject line &quot;Privacy Request&quot; or use our <a href={siteConfig.contactPath} className={policyLinkClassName}>contact form</a>. We may need to verify your identity and authority before completing a request.</p>
+                <p>To submit a request, email <a href={`mailto:${siteConfig.privacyEmail}?subject=Privacy%20Request`} className={policyLinkClassName}>{siteConfig.privacyEmail}</a> with the subject line &quot;Privacy Request.&quot; We may need to verify your identity and authority before completing a request.</p>
                 <p>We respond within the time required by applicable law, generally within 45 days under applicable U.S. state privacy laws and within one month under European Economic Area or United Kingdom data-protection law. If law permits an extension, we will notify you and explain the reason.</p>
                 <p>If we deny a request, our response will explain the basis and any appeal right. Where an appeal is available, reply to the denial or email <a href={`mailto:${siteConfig.privacyEmail}?subject=Privacy%20Appeal`} className={policyLinkClassName}>{siteConfig.privacyEmail}</a> with the subject line &quot;Privacy Appeal.&quot; A person who was not responsible for the original denial will review the appeal.</p>
                 <p>If Epic Global processes information solely on behalf of your employer or another business customer, please direct your request to that organization first. We will assist the customer as required by our agreement and applicable law. We will not discriminate against you for exercising applicable privacy rights.</p>
@@ -250,7 +250,7 @@ export function Privacy() {
                   {siteConfig.locality}, {siteConfig.region} {siteConfig.postalCode}<br />
                   United States<br />
                   Email: <a href={`mailto:${siteConfig.privacyEmail}?subject=Privacy%20Request`} className={policyLinkClassName}>{siteConfig.privacyEmail}</a><br />
-                  Website: <a href={siteConfig.contactPath} className={policyLinkClassName}>epicglobalinc.com/contact</a>
+                  Website: <a href={siteConfig.url} className={policyLinkClassName}>epicglobalinc.com</a>
                 </address>
                 <p>When contacting us about a privacy right, use the subject line &quot;Privacy Request.&quot;</p>
               </PolicySection>

@@ -139,7 +139,6 @@ export const organizationSchema = {
     {
       '@type': 'ContactPoint',
       contactType: 'Sales',
-      url: `${siteConfig.url}${siteConfig.contactPath}`,
       email: siteConfig.contactEmail,
       areaServed: siteConfig.areaServed,
       availableLanguage: ['English'],
