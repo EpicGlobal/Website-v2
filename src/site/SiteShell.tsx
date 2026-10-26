@@ -13,6 +13,7 @@ import { captureLeadAttribution } from '@/site/lead-attribution';
 import { PrivacyConsentBanner } from '@/app/components/PrivacyConsentBanner';
 import { allowsNonEssentialTracking } from '@/site/privacy-preferences';
 import { siteConfig } from '@/site/site-config';
+import { isWebsitePreview } from '@/site/preview-mode';
 
 function LeadAttributionTracker() {
   const pathname = usePathname();
@@ -187,6 +188,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     <ThemeProvider>
       <AuthProvider>
         <div className="min-h-screen">
+          {isWebsitePreview ? <aside className="fixed bottom-3 right-3 z-[100] rounded-lg bg-slate-950 px-3 py-2 text-xs text-white shadow-lg" role="status">Development preview · submissions disabled</aside> : null}
           {isCampaignLandingPage ? null : <Navbar />}
           <LeadAttributionTracker />
           <PageViewTracker />

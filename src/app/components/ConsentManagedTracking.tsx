@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Script from 'next/script';
+import { isWebsitePreview } from '@/site/preview-mode';
 import { usePathname } from 'next/navigation';
 import {
   GOOGLE_ADS_ID,
@@ -35,7 +36,7 @@ export function ConsentManagedTracking() {
     return () => window.removeEventListener(PRIVACY_PREFERENCE_EVENT, syncPreference);
   }, []);
 
-  if (preference !== 'granted') return null;
+  if (isWebsitePreview || preference !== 'granted') return null;
 
   const hasLinkedInPartnerId = LINKEDIN_PARTNER_ID.length > 0;
 

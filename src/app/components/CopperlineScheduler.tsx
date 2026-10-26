@@ -3,6 +3,7 @@
 import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { CalendarDays, CheckCircle2, ChevronLeft, ChevronRight, Loader2, RefreshCw } from 'lucide-react';
 import { leadSubmissionAttribution } from '@/site/lead-attribution';
+import { isWebsitePreview } from '@/site/preview-mode';
 
 interface CopperlineSchedulerProps {
   prefill: {
@@ -128,7 +129,13 @@ function slotDateParts(slot: SchedulerSlot, timezone: string) {
   };
 }
 
-export function CopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
+export function CopperlineScheduler(props: CopperlineSchedulerProps) {
+  return isWebsitePreview
+    ? <p role="status">Development preview: appointment booking is disabled.</p>
+    : <LiveCopperlineScheduler {...props} />;
+}
+
+function LiveCopperlineScheduler({ prefill }: CopperlineSchedulerProps) {
   const [config, setConfig] = useState<SchedulerConfig | null>(null);
   const [selectedSlot, setSelectedSlot] = useState('');
   const [selectedDay, setSelectedDay] = useState('');

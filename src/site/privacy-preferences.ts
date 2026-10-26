@@ -1,3 +1,5 @@
+import { isWebsitePreview } from './preview-mode';
+
 export const PRIVACY_PREFERENCE_KEY = 'epic.privacy.nonessential';
 export const PRIVACY_PREFERENCE_EVENT = 'epic:privacy-preference';
 
@@ -50,7 +52,7 @@ function clearFirstPartyTrackingCookies() {
 }
 
 function applyRuntimeConsent(preference: Exclude<PrivacyPreference, 'unset'>) {
-  if (typeof window === 'undefined') return;
+  if (isWebsitePreview || typeof window === 'undefined') return;
   const granted = preference === 'granted';
 
   window[`ga-disable-G-BGM7PRFBR7`] = !granted;
@@ -84,5 +86,5 @@ export function writePrivacyPreference(preference: Exclude<PrivacyPreference, 'u
 }
 
 export function allowsNonEssentialTracking() {
-  return readPrivacyPreference() === 'granted';
+  return !isWebsitePreview && readPrivacyPreference() === 'granted';
 }
