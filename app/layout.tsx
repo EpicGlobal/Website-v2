@@ -4,6 +4,7 @@ import '@/styles/index.css';
 import { SiteShell } from '@/site/SiteShell';
 import { ConsentManagedTracking } from '@/app/components/ConsentManagedTracking';
 import { siteConfig } from '@/site/site-config';
+import { isWebsitePreview } from '@/site/preview-mode';
 import tabLogo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 
 export const metadata: Metadata = {
@@ -69,11 +70,11 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   robots: {
-    index: true,
-    follow: true,
+    index: !isWebsitePreview,
+    follow: !isWebsitePreview,
     googleBot: {
-      index: true,
-      follow: true,
+      index: !isWebsitePreview,
+      follow: !isWebsitePreview,
       'max-image-preview': 'large',
       'max-snippet': -1,
       'max-video-preview': -1,
@@ -94,14 +95,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="orange" suppressHydrationWarning>
       <body>
-        {wafIntegrationUrl ? (
+        {!isWebsitePreview && wafIntegrationUrl ? (
           <Script
             id="aws-waf-browser-challenge"
             src={`${wafIntegrationUrl}/challenge.js`}
             strategy="afterInteractive"
           />
         ) : null}
-        {turnstileSiteKey ? (
+        {!isWebsitePreview && turnstileSiteKey ? (
           <Script
             id="cloudflare-turnstile"
             src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"

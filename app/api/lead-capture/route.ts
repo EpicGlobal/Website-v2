@@ -1,3 +1,4 @@
+import { isWebsitePreview } from '@/site/preview-mode';
 import crypto from 'node:crypto';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -100,6 +101,7 @@ function edgeProof(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  if (isWebsitePreview) return safeResponse(503, 'Submissions are disabled in the development preview.', 'preview_disabled');
   const contentLength = Number(request.headers.get('content-length') ?? 0);
   if (contentLength > MAX_BODY_BYTES) return safeResponse(413, 'Submission is too large.', 'payload_too_large');
   if (!request.headers.get('content-type')?.toLowerCase().startsWith('application/json')) {
