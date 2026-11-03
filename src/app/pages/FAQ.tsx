@@ -10,6 +10,7 @@ import {
 import { StructuredData, getBreadcrumbSchema, getFAQPageSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
+import { siteConfig } from '@/site/site-config';
 
 export function FAQ() {
   const faqs = [
@@ -60,14 +61,14 @@ export function FAQ() {
       <SEO 
         title="FAQ - Frequently Asked Questions | Epic Global Inc."
         description="Get answers to common questions about Epic Global Inc.'s zero-risk commerce model, marketplace operations, timelines, pricing, and how we differ from traditional agencies."
-        canonicalUrl="https://epicglobalinc.com/faq"
+        canonicalUrl={`${siteConfig.url}/faq`}
         keywords="ecommerce faq, marketplace operator questions, zero risk commerce faq, global expansion questions"
       />
-      <StructuredData data={getFAQPageSchema(faqs, 'https://epicglobalinc.com/faq')} />
+      <StructuredData data={getFAQPageSchema(faqs, `${siteConfig.url}/faq`)} />
       <StructuredData
         data={getBreadcrumbSchema([
-          { name: 'Home', url: 'https://epicglobalinc.com/' },
-          { name: 'FAQ', url: 'https://epicglobalinc.com/faq' },
+          { name: 'Home', url: `${siteConfig.url}/` },
+          { name: 'FAQ', url: `${siteConfig.url}/faq` },
         ])}
       />
       {/* Hero Section */}

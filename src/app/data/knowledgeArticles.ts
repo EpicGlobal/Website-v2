@@ -1,6 +1,8 @@
 export interface KnowledgeArticle {
   slug: string;
   title: string;
+  /** Shorter title for search results when the page title runs over 70 characters with " | Epic Global Inc." added. */
+  seoTitle?: string;
   summary: string;
   category: string;
   pillar?: string;
@@ -28,6 +30,16 @@ export const articlesWithContent = [
   'marketplace-operating-cadence',
   'epic-operational-process',
 ];
+
+const months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+
+/** "January 22, 2026" -> "2026-01-22", for the sitemap and article schema (search engines expect ISO dates). */
+export function isoDate(text: string): string {
+  const match = /^([A-Za-z]+) (\d{1,2}), (\d{4})$/.exec(text.trim());
+  const month = match ? months.indexOf(match[1].toLowerCase()) + 1 : 0;
+  if (!match || !month) throw new Error(`Article date must look like "January 22, 2026": ${text}`);
+  return `${match[3]}-${String(month).padStart(2, '0')}-${match[2].padStart(2, '0')}`;
+}
 
 export const knowledgeArticles: KnowledgeArticle[] = [
   // START HERE
@@ -123,6 +135,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
   {
     slug: 'catalog-hygiene-what-it-is-why-it-matters',
     title: 'The Silent Growth Killer: Mastering Catalog Hygiene in 2026',
+    seoTitle: 'Catalog Hygiene: What It Is and Why It Matters',
     summary: 'Catalog hygiene is the disciplined habit of keeping product data clean, consistent, and current across every SKU and marketplace.',
     category: 'Marketplace Operations',
     marketplace: ['Amazon', 'Walmart', 'eBay'],
@@ -255,6 +268,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
   {
     slug: 'kpi-glossary',
     title: 'The Marketplace KPI Glossary: Definitions, Calculations, and Tactical Interpretation',
+    seoTitle: 'Marketplace KPI Glossary: Definitions and Formulas',
     summary: 'Definitions and calculation methods for key marketplace performance metrics.',
     category: 'Data and Reporting',
     type: 'Glossary',

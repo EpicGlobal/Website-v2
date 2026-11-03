@@ -26,11 +26,13 @@ export async function generateMetadata({ params }: KnowledgeArticlePageProps) {
   }
 
   return createPageMetadata({
-    title: article.title,
+    title: article.seoTitle ?? article.title,
     description: article.summary,
     path: `/knowledge-base/${article.slug}`,
     keywords: article.tags,
     type: 'article',
+    // "Coming Soon" placeholders stay out of search until the article is written.
+    noindex: !article.hasContent,
   });
 }
 

@@ -11,7 +11,14 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
       {
-        userAgent: ['GPTBot', 'ChatGPT-User', 'CCBot', 'anthropic-ai', 'Claude-Web', 'PerplexityBot', 'Applebot'],
+        // AI search and assistant crawlers, named so it's clear they're welcome.
+        // anthropic-ai and Claude-Web are retired names; ClaudeBot, Claude-SearchBot and Claude-User replace them.
+        userAgent: [
+          'OAI-SearchBot', 'ChatGPT-User', 'GPTBot',
+          'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
+          'PerplexityBot', 'Perplexity-User',
+          'Google-Extended', 'Applebot', 'Applebot-Extended', 'CCBot',
+        ],
         allow: '/',
       },
     ],

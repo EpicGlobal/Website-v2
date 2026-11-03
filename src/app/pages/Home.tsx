@@ -262,13 +262,13 @@ export function Home() {
       <SEO 
         title="Epic Global Inc. - Zero-Risk Global Commerce Operator"
         description="The world's first Zero-Risk Global Commerce Operator. We purchase inventory upfront, operate marketplace storefronts, fund advertising, and protect your brand. Expand to 40 countries risk-free."
-        canonicalUrl="https://epicglobalinc.com/"
+        canonicalUrl={`${siteConfig.url}/`}
         keywords="global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, zero risk ecommerce"
       />
       <StructuredData data={organizationSchema} />
       <StructuredData data={founderSchema} />
       <StructuredData data={websiteSchema} />
-      <StructuredData data={getWebPageSchema('Home', 'https://epicglobalinc.com', 'Global marketplace operator and technology platform for end-to-end eCommerce execution')} />
+      <StructuredData data={getWebPageSchema('Home', `${siteConfig.url}`, 'Global marketplace operator and technology platform for end-to-end eCommerce execution')} />
       {serviceSchemas.map((schema) => (
         <StructuredData key={schema['@id']} data={schema} />
       ))}

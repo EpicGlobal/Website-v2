@@ -5,6 +5,7 @@ import { CheckCircle2, X } from 'lucide-react';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
+import { siteConfig } from '@/site/site-config';
 
 export function WhatWeAre() {
   return (
@@ -12,20 +13,20 @@ export function WhatWeAre() {
       <SEO 
         title="Our Model - Zero-Risk Global Commerce Operator"
         description="We buy inventory upfront at wholesale, operate marketplace storefronts end-to-end, fund all advertising and logistics, and protect brand equity. Brands receive guaranteed payments with zero operational burden."
-        canonicalUrl="https://epicglobalinc.com/our-model"
+        canonicalUrl={`${siteConfig.url}/our-model`}
         keywords="zero risk commerce, marketplace operator business model, inventory purchase model, guaranteed payment ecommerce"
       />
       <StructuredData
         data={getWebPageSchema({
           name: 'Our Model',
-          url: 'https://epicglobalinc.com/our-model',
+          url: `${siteConfig.url}/our-model`,
           description: 'Learn what Epic Global Inc. does: a marketplace operator that buys inventory, operates channels, funds advertising, and protects brand equity.',
         })}
       />
       <StructuredData
         data={getBreadcrumbSchema([
-          { name: 'Home', url: 'https://epicglobalinc.com/' },
-          { name: 'Our Model', url: 'https://epicglobalinc.com/our-model' },
+          { name: 'Home', url: `${siteConfig.url}/` },
+          { name: 'Our Model', url: `${siteConfig.url}/our-model` },
         ])}
       />
       

@@ -7,6 +7,7 @@ import { StructuredData, founderSchema, getBreadcrumbSchema, getWebPageSchema, o
 import { SEO } from '@/app/components/SEO';
 import { motion } from 'framer-motion';
 import { GlobalReachMap } from '@/app/components/GlobalReachMap';
+import { siteConfig } from '@/site/site-config';
 
 // Import Glen Jensen's headshot
 export function About() {
@@ -59,10 +60,10 @@ export function About() {
   const aboutPageSchema = getWebPageSchema({
     '@type': 'AboutPage',
     name: 'About Epic Global Inc.',
-    url: 'https://epicglobalinc.com/about',
+    url: `${siteConfig.url}/about`,
     description: 'Epic Global Inc. is a global marketplace operator and technology platform led by Glen Jensen, combining software, AI, and operational execution to launch, scale, and protect brands across marketplaces worldwide.',
     mainEntity: {
-      '@id': 'https://epicglobalinc.com/#organization',
+      '@id': `${siteConfig.url}/#organization`,
     },
   });
 
@@ -71,7 +72,7 @@ export function About() {
       <SEO 
         title="About Epic Global Inc. - Zero-Risk Commerce Operating System"
         description="Epic Global Inc. is a global commerce operator and technology platform. We run end-to-end marketplace operations across 40 countries with repeatable systems, speed, and safeguards."
-        canonicalUrl="https://epicglobalinc.com/about"
+        canonicalUrl={`${siteConfig.url}/about`}
         keywords="commerce operator, marketplace management, global ecommerce, operator-first approach, marketplace technology"
       />
       <StructuredData data={organizationSchema} />
@@ -79,8 +80,8 @@ export function About() {
       <StructuredData data={aboutPageSchema} />
       <StructuredData
         data={getBreadcrumbSchema([
-          { name: 'Home', url: 'https://epicglobalinc.com/' },
-          { name: 'About', url: 'https://epicglobalinc.com/about' },
+          { name: 'Home', url: `${siteConfig.url}/` },
+          { name: 'About', url: `${siteConfig.url}/about` },
         ])}
       />
 

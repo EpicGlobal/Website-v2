@@ -9,6 +9,7 @@ import { CtaButton } from '@/app/components/CtaButton';
 
 // This will be replaced with actual articles from a data file
 import { knowledgeArticles } from '@/app/data/knowledgeArticles';
+import { siteConfig } from '@/site/site-config';
 
 const categories = [
   'All',
@@ -157,7 +158,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
       <SEO 
         title="Knowledge Base - Marketplace Operations & Global Expansion Resources"
         description="Comprehensive guides on marketplace expansion, brand protection, advertising operations, inventory management, and global ecommerce strategies from Epic Global Inc."
-        canonicalUrl="https://epicglobalinc.com/knowledge-base"
+        canonicalUrl={`${siteConfig.url}/knowledge-base`}
         keywords="marketplace guides, ecommerce knowledge base, amazon expansion guide, marketplace operations, brand protection strategies"
       />
       {/* Hero Section */}

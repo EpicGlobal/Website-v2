@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, Download, Share2 } from 'lucide-react';
-import { knowledgeArticles } from '@/app/data/knowledgeArticles';
+import { isoDate, knowledgeArticles } from '@/app/data/knowledgeArticles';
 import { StructuredData } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
@@ -39,8 +39,10 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
 
   const ArticleContent = getArticleContent(article.slug);
   const relatedArticles = knowledgeArticles
-    .filter((a) => a.slug !== article.slug && a.category === article.category)
+    .filter((a) => a.slug !== article.slug && a.category === article.category && a.hasContent)
     .slice(0, 3);
+  const updated = isoDate(article.lastUpdated);
+  const articleUrl = `${siteConfig.url}/knowledge-base/${article.slug}`;
 
   // Generate FAQ schema if article has FAQ section
   const faqSchema = {
@@ -48,7 +50,9 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
     '@type': 'Article',
     headline: article.title,
     description: article.summary,
-    datePublished: article.lastUpdated,
+    datePublished: updated,
+    dateModified: updated,
+    mainEntityOfPage: articleUrl,
     author: {
       '@type': 'Organization',
       name: 'Epic Global Inc.',
@@ -62,14 +66,14 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
   return (
     <div className="min-h-screen text-white">
       <SEO 
-        title={`${article.title} | Epic Global Inc.`}
+        title={`${article.seoTitle ?? article.title} | Epic Global Inc.`}
         description={article.summary}
-        canonicalUrl={`https://epicglobalinc.com/knowledge-base/${article.slug}`}
+        canonicalUrl={articleUrl}
         keywords={`${article.category}, ${article.pillar}, marketplace guide, ecommerce strategy`}
         ogType="article"
         article={{
-          publishedTime: article.lastUpdated,
-          modifiedTime: article.lastUpdated,
+          publishedTime: updated,
+          modifiedTime: updated,
           author: 'Epic Global Inc.',
           section: article.category,
           tags: [article.pillar, article.category].filter((tag): tag is string => Boolean(tag))

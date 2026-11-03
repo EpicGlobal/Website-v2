@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
-const defaultSiteUrl = 'https://epicglobalinc.com';
+// The site serves every page from www (the bare domain redirects there), so canonical tags and the sitemap use www too.
+const defaultSiteUrl = 'https://www.epicglobalinc.com';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, '') || defaultSiteUrl;
 
 export const siteConfig = {
@@ -11,7 +12,12 @@ export const siteConfig = {
   logo: '/logo.png',
   founderName: 'Glen Jensen',
   founderLinkedIn: 'https://www.linkedin.com/in/glen-jensen-54a27/',
-  organizationSameAs: ['https://www.linkedin.com/company/epic-global-inc'],
+  alternateName: ['Epic Global'],
+  // Official profiles only. Add the Amazon storefront and new directory/review profiles as they're confirmed.
+  organizationSameAs: [
+    'https://www.linkedin.com/company/epic-global-inc',
+    'https://www.walmart.com/global/seller/13412',
+  ],
   foundingDate: '2014',
   headquarters: 'Lindon, Utah, United States',
   streetAddress: '333 S 520 W Ste 250',
@@ -55,12 +61,15 @@ export function createPageMetadata({
   path,
   keywords,
   type = 'website',
+  noindex = false,
 }: {
   title: string;
   description: string;
   path: string;
   keywords?: string[];
   type?: 'website' | 'article';
+  /** Keep the page out of search results (placeholders, account pages). */
+  noindex?: boolean;
 }): Metadata {
   const url = new URL(path, siteConfig.url).toString();
   const hasSiteName = title.includes(siteConfig.name);
@@ -72,6 +81,7 @@ export function createPageMetadata({
     title: isRootPath ? { absolute: fullTitle } : metadataTitle,
     description,
     keywords,
+    ...(noindex ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: url,
     },

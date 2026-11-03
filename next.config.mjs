@@ -26,6 +26,18 @@ const nextConfig = {
         destination: '/our-model',
         permanent: true,
       },
+      // Removed contact page that Google still crawls (404 in Search Console, Oct 26 2026).
+      {
+        source: '/contact',
+        destination: '/campaigns/marketplace-assessment',
+        permanent: true,
+      },
+      // About page address from the previous site.
+      {
+        source: '/about-1',
+        destination: '/about',
+        permanent: true,
+      },
     ];
   },
 };

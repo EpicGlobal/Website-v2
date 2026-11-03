@@ -77,7 +77,7 @@ export function Intelligence() {
     <div className="min-h-screen text-white bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:text-gray-900 soft-dark:from-lime-500 soft-dark:via-lime-100 soft-dark:to-white leaf:text-gray-900 leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:text-gray-900 water:from-lime-500 water:via-lime-100 water:to-white orange:text-gray-900 orange:from-[#F68932] orange:via-orange-100 orange:to-white">
       <StructuredData data={getWebPageSchema({
         name: 'The Epic Intelligence Layer',
-        url: 'https://epicglobalinc.com/intelligence',
+        url: `${siteConfig.url}/intelligence`,
         description: 'Marketplace commerce is becoming machine-run. Epic Global Inc. operates the intelligence layer that orchestrates global marketplace execution.',
         mainEntity: {
           '@type': 'Thing',
@@ -87,8 +87,8 @@ export function Intelligence() {
       })} />
       <StructuredData
         data={getBreadcrumbSchema([
-          { name: 'Home', url: 'https://epicglobalinc.com/' },
-          { name: 'AI Intelligence', url: 'https://epicglobalinc.com/intelligence' },
+          { name: 'Home', url: `${siteConfig.url}/` },
+          { name: 'AI Intelligence', url: `${siteConfig.url}/intelligence` },
         ])}
       />
 

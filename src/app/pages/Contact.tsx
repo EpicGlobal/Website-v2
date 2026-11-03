@@ -13,8 +13,8 @@ export function Contact() {
       <StructuredData data={contactPageSchema} />
       <StructuredData
         data={getBreadcrumbSchema([
-          { name: 'Home', url: 'https://epicglobalinc.com/' },
-          { name: 'Contact', url: 'https://epicglobalinc.com/contact' },
+          { name: 'Home', url: `${siteConfig.url}/` },
+          { name: 'Contact', url: `${siteConfig.url}/contact` },
         ])}
       />
 

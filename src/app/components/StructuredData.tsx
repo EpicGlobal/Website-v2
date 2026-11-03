@@ -123,6 +123,7 @@ export const organizationSchema = {
     '@type': 'Place',
     name: siteConfig.headquarters,
   },
+  alternateName: siteConfig.alternateName,
   sameAs: siteConfig.organizationSameAs,
   founder: {
     '@id': founderId,

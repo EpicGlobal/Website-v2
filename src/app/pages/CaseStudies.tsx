@@ -214,21 +214,21 @@ export function CaseStudies() {
       <SEO 
         title="Case Studies - Proven Results from Epic Global Inc."
         description="Real marketplace expansion results: Amazon profitability improvements, multi-marketplace launches, global expansion case studies, and brand protection success stories from Epic Global Inc."
-        canonicalUrl="https://epicglobalinc.com/case-studies"
+        canonicalUrl={`${siteConfig.url}/case-studies`}
         keywords="marketplace case studies, amazon success stories, ecommerce case studies, marketplace expansion results, brand protection case studies"
       />
       <StructuredData
         data={getWebPageSchema({
           '@type': 'CollectionPage',
           name: 'Case Studies',
-          url: 'https://epicglobalinc.com/case-studies',
+          url: `${siteConfig.url}/case-studies`,
           description: 'Real results from Epic Global Inc. client partnerships across marketplace execution, profitability, and operating improvement.',
         })}
       />
       <StructuredData
         data={getBreadcrumbSchema([
-          { name: 'Home', url: 'https://epicglobalinc.com/' },
-          { name: 'Case Studies', url: 'https://epicglobalinc.com/case-studies' },
+          { name: 'Home', url: `${siteConfig.url}/` },
+          { name: 'Case Studies', url: `${siteConfig.url}/case-studies` },
         ])}
       />
       
