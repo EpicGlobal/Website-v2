@@ -54,6 +54,61 @@ export function FAQ() {
       answer:
         'We work best with brands doing $100K+ monthly revenue that need control at scale. If you\'re earlier stage but planning aggressive marketplace expansion, we can assess fit. Our model is built for brands that want a system-driven operator, not a collection of one-off tactics.',
     },
+    {
+      question: 'Will Epic buy my inventory?',
+      answer:
+        'Yes. Epic buys your inventory upfront at an agreed wholesale price and owns it from then on. The opening order is usually sized to about 60-90 days of stock, followed by monthly replenishment orders. You\'re paid on the payment terms set in your contract.',
+    },
+    {
+      question: 'Do you charge retainers, hourly rates or project fees?',
+      answer:
+        'No. Epic doesn\'t charge retainers, hourly rates, project fees or consulting packages. We earn our margin by buying your inventory at wholesale and selling it at retail, and we pay for the advertising, marketplace fees and fulfillment ourselves.',
+    },
+    {
+      question: 'Who sets the retail price?',
+      answer:
+        'Epic sets the retail price on the marketplaces we operate, and we sell at or above your minimum advertised price (MAP). We also enforce MAP against other sellers, so your pricing stays consistent across marketplaces.',
+    },
+    {
+      question: 'Do we keep our Brand Registry, listings, reviews and rank?',
+      answer:
+        'Yes. Your brand keeps its Brand Registry and authorizes Epic to sell. Epic sells from its own seller account on your existing product detail pages, so the listings, reviews and sales rank built on those pages carry over. Epic then builds or improves your listings, A+ content and Storefront at no charge.',
+    },
+    {
+      question: 'What happens to our Subscribe & Save customers?',
+      answer:
+        'Subscribe & Save subscriptions are transferred to Epic as part of onboarding. The transfer usually takes about 4 months, and you can follow Subscribe & Save numbers in your monthly reports.',
+    },
+    {
+      question: 'Who runs and pays for advertising?',
+      answer:
+        'Epic plans, runs and pays for the advertising on the marketplaces we operate. You don\'t fund ad spend. You see advertising spend and results in your shared dashboard, monthly reports and quarterly business reviews.',
+    },
+    {
+      question: 'Is the agreement exclusive, and what about our current distributors?',
+      answer:
+        'Epic becomes the exclusive authorized seller on the marketplaces and countries named in your contract; exclusivity is set contract by contract. During assessment we map your current distributors and resellers. Unauthorized sellers on the named marketplaces are then removed, which usually takes 8-20 weeks.',
+    },
+    {
+      question: 'How long is a typical contract?',
+      answer:
+        'Contracts are typically 3 years. A longer term gives Epic room to invest in your listings, advertising and inventory, and to expand your brand to new marketplaces over time.',
+    },
+    {
+      question: 'Who handles fulfillment?',
+      answer:
+        'Epic does, and pays for it. Most orders ship through Fulfillment by Amazon (FBA), and Epic also fulfills some orders from its own US warehouse.',
+    },
+    {
+      question: 'What types of brands and categories do you work with?',
+      answer:
+        'Epic works with 50+ brands. Supplements and wellness is our largest category, alongside essential oils, skincare, cosmetics, haircare, baby, snacks, home, bedding and bath, cleaning, garden, sporting goods and outdoor, auto accessories and lighting. Typical partners are direct-selling wellness and beauty brands, founder-led consumer brands, and international brands entering the US.',
+    },
+    {
+      question: 'How can we check Epic\'s track record?',
+      answer:
+        'Epic sells on Amazon US as "Epic Global," rated 4.9 out of 5 from 9,600+ customer ratings (October 2026), and on Walmart as Epic Global Inc. You can see both seller pages, and our case studies show results for partner brands.',
+    },
   ];
 
   return (
