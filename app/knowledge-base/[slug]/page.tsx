@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: KnowledgeArticlePageProps) {
 
   return createPageMetadata({
     title: article.seoTitle ?? article.title,
-    description: article.summary,
+    description: article.seoDescription ?? article.summary,
     path: `/knowledge-base/${article.slug}`,
     keywords: article.tags,
     type: 'article',

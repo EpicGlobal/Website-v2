@@ -4,6 +4,8 @@ export interface KnowledgeArticle {
   /** Shorter title for search results when the page title runs over 70 characters with " | Epic Global Inc." added. */
   seoTitle?: string;
   summary: string;
+  /** Longer description for search results (150-160 characters) when the card summary is too short. */
+  seoDescription?: string;
   category: string;
   pillar?: string;
   marketplace?: string[];
@@ -270,6 +272,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
     title: 'The Marketplace KPI Glossary: Definitions, Calculations, and Tactical Interpretation',
     seoTitle: 'Marketplace KPI Glossary: Definitions and Formulas',
     summary: 'Definitions and calculation methods for key marketplace performance metrics.',
+    seoDescription: 'Plain definitions, formulas and how to read the marketplace KPIs that matter: CTR, CPC, ACoS, ROAS, TACoS, conversion rate, organic sales share and more.',
     category: 'Data and Reporting',
     type: 'Glossary',
     difficulty: 'Intro',
@@ -394,6 +397,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
     slug: 'epic-operational-process',
     title: 'Epic\'s Operational Process: A Deep Dive',
     summary: 'An in-depth look at the processes and systems that power Epic\'s global marketplace operations.',
+    seoDescription: 'How Epic runs marketplace growth end to end in four phases (Assess, Build, Execute, Scale), and the product data, assets and priorities it needs from brands.',
     category: 'Library',
     type: 'Deep Dive',
     difficulty: 'Advanced',

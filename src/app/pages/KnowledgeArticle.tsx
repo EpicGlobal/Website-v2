@@ -49,7 +49,7 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
-    description: article.summary,
+    description: article.seoDescription ?? article.summary,
     datePublished: updated,
     dateModified: updated,
     mainEntityOfPage: articleUrl,
@@ -67,7 +67,7 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
     <div className="min-h-screen text-white">
       <SEO 
         title={`${article.seoTitle ?? article.title} | Epic Global Inc.`}
-        description={article.summary}
+        description={article.seoDescription ?? article.summary}
         canonicalUrl={articleUrl}
         keywords={`${article.category}, ${article.pillar}, marketplace guide, ecommerce strategy`}
         ogType="article"
