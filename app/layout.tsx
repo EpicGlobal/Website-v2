@@ -10,7 +10,7 @@ import tabLogo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Zero-Risk Global Commerce Operator`,
+    default: `${siteConfig.name} | Wholesale Trade Partner for Amazon Brands`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     'ecommerce operator',
     'marketplace expansion',
     'international ecommerce',
-    'zero risk ecommerce',
+    'wholesale trade partner',
     'brand protection',
   ],
   alternates: {
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: siteConfig.url,
-    title: `${siteConfig.name} | Zero-Risk Global Commerce Operator`,
+    title: `${siteConfig.name} | Wholesale Trade Partner for Amazon Brands`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     locale: 'en_US',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${siteConfig.name} | Zero-Risk Global Commerce Operator`,
+    title: `${siteConfig.name} | Wholesale Trade Partner for Amazon Brands`,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },

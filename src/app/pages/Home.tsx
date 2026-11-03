@@ -199,28 +199,20 @@ export function Home() {
 
   const featuredCases = [
     {
-      pillar: 'Purchase',
-      title: 'Catalog Rebuild + Conversion Clarity',
+      pillar: 'Sell · Advertise · Protect',
+      title: 'Sutera: Lower Fees, Higher Conversion, Branded Search Won Back',
       marketplace: 'Amazon US',
       region: 'North America',
-      objective: 'Fix fragmented catalog structure and improve listing quality',
-      link: '/case-studies#catalog-rebuild',
+      objective: 'Cut FBA fees on 18 of 21 products, lift conversion 21% in A/B tests and win back branded search from competitors',
+      link: '/case-studies#sutera',
     },
     {
-      pillar: 'Expand',
-      title: 'Multi-Market Launch Pipeline',
-      marketplace: 'Amazon EU',
-      region: 'Europe',
-      objective: 'Launch into 5 European markets with streamlined marketplace setup',
-      link: '/case-studies#eu-expansion',
-    },
-    {
-      pillar: 'Cover',
-      title: 'Advertising Operational Restructure',
-      marketplace: 'Amazon + Walmart',
+      pillar: 'Buy · Sell',
+      title: 'Auto Parts Brand: Amazon 1P vs Epic 3P',
+      marketplace: 'Amazon US',
       region: 'North America',
-      objective: 'Reorganize ad structure and improve ROAS accountability',
-      link: '/case-studies#ad-restructure',
+      objective: 'Move from Amazon 1P to Epic 3P: the brand pays no Amazon fees and nets more per unit',
+      link: '/case-studies#auto-parts-1p-vs-3p',
     },
   ];
 
@@ -228,7 +220,7 @@ export function Home() {
     {
       label: 'Company',
       value: 'Epic Global Inc.',
-      detail: 'Global marketplace operator and operating platform',
+      detail: 'Wholesale trade partner and global marketplace operator for 50+ brands',
     },
     {
       label: 'Founder',
@@ -253,22 +245,22 @@ export function Home() {
     {
       label: 'Primary marketplaces',
       value: 'Amazon, Walmart, eBay',
-      detail: 'Plus select approved international ecommerce platforms',
+      detail: 'Plus select international platforms. 4.9/5 seller rating on Amazon US from 9,600+ ratings (Oct 2026)',
     },
   ];
 
   return (
     <div className="min-h-screen text-white bg-gradient-to-br from-transparent via-transparent to-transparent dark:text-white dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:text-gray-900 soft-dark:from-lime-500 soft-dark:via-lime-100 soft-dark:to-white leaf:text-gray-900 leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:text-gray-900 water:from-lime-500 water:via-lime-100 water:to-white light:text-gray-900 light:from-lime-400 light:via-lime-100 light:to-white orange:text-gray-900 orange:from-[#F68932] orange:via-orange-100 orange:to-white">
       <SEO 
-        title="Epic Global Inc. - Zero-Risk Global Commerce Operator"
-        description="The world's first Zero-Risk Global Commerce Operator. We purchase inventory upfront, operate marketplace storefronts, fund advertising, and protect your brand. Expand to 40 countries risk-free."
+        title="Epic Global Inc. - Wholesale Trade Partner for Amazon Brands"
+        description="Epic Global buys your inventory upfront at wholesale, sells it on Amazon, Walmart and more across 40 countries, funds the ads and protects your brand."
         canonicalUrl={`${siteConfig.url}/`}
-        keywords="global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, zero risk ecommerce"
+        keywords="global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, wholesale trade partner"
       />
       <StructuredData data={organizationSchema} />
       <StructuredData data={founderSchema} />
       <StructuredData data={websiteSchema} />
-      <StructuredData data={getWebPageSchema('Home', `${siteConfig.url}`, 'Global marketplace operator and technology platform for end-to-end eCommerce execution')} />
+      <StructuredData data={getWebPageSchema('Home', `${siteConfig.url}`, 'Wholesale trade partner and global marketplace operator that buys inventory and sells it on Amazon, Walmart and other marketplaces')} />
       {serviceSchemas.map((schema) => (
         <StructuredData key={schema['@id']} data={schema} />
       ))}
@@ -292,7 +284,7 @@ export function Home() {
               transition={{ duration: 0.6 }}
               className="inline-block px-4 py-2 bg-cyan-500/20 soft-dark:bg-cyan-600/30 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:text-white water:shadow-lg water:shadow-emerald-500/20 leaf:bg-gradient-to-r leaf:from-sky-600 leaf:to-sky-700 text-cyan-300 dark:text-cyan-300 soft-dark:text-cyan-900 leaf:text-white light:text-cyan-900 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:text-white orange:shadow-lg orange:shadow-orange-500/20 leaf:shadow-lg leaf:shadow-sky-500/20 rounded-full text-sm font-semibold tracking-wide mb-6"
             >
-              THE OPERATING SYSTEM FOR MARKETPLACE COMMERCE
+              THE WHOLESALE TRADE PARTNER FOR MARKETPLACE BRANDS
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -308,7 +300,7 @@ export function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-[rgb(0,0,0)] dark:text-gray-300 soft-dark:text-gray-800 leaf:text-gray-900 water:text-[#101828] light:text-gray-700 orange:text-[#101828] mb-8 max-w-3xl mx-auto leading-relaxed"
             >
-              Epic Global Inc. is the world's first <strong className="text-white dark:text-white soft-dark:text-gray-900 water:text-[#101828] orange:text-[#101828]">Zero-Risk Global Commerce Operator</strong>. We replace marketplace complexity with infrastructure. Purchase inventory. Operate storefronts. Fund advertising. Protect brand equity. You carry zero risk. Zero operational burden.
+              Epic Global Inc. is a wholesale trade partner and <strong className="text-white dark:text-white soft-dark:text-gray-900 water:text-[#101828] orange:text-[#101828]">Zero-Risk Global Commerce Operator</strong>. We buy your inventory upfront at wholesale, run your marketplace storefronts, and pay for the advertising, marketplace fees and fulfillment ourselves. Buy. Sell. Advertise. Protect.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -403,7 +395,7 @@ export function Home() {
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-center bg-gradient-to-b from-gray-900 to-gray-700 bg-clip-text text-transparent leading-tight pb-2 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-700 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828]">
-            Zero risk. Full control.<br />One operating system.
+            We own the inventory.<br />You keep the brand.
           </h2>
           <p className="text-lg text-gray-800 text-center max-w-3xl mx-auto mb-16 leading-relaxed dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
             Epic operates through the Buy-Sell-Advertise-Protect model, which governs both U.S. and global execution. We assume inventory ownership, operate storefronts directly, fund advertising, and protect brand equity, all under one unified structure.
@@ -411,7 +403,7 @@ export function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
-              { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'Epic performs an upfront inventory purchase, immediately converting inventory into cash for the brand and removing inventory risk.', tagline: 'Cash now. Risk removed.' },
+              { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'Epic buys your inventory upfront at an agreed wholesale price, turning it into cash for the brand. We own the inventory and take on the retail execution risk.', tagline: 'Cash now. We own the stock.' },
               { icon: Globe2, num: '02', title: 'Sell', desc: 'Epic operates listings and storefronts across U.S. and international marketplaces using a unified operational framework.', tagline: 'One system. Every market.' },
               { icon: BarChart3, num: '03', title: 'Advertise', desc: 'Epic funds and manages all advertising in the U.S. and abroad. Campaigns are optimized for efficiency and profitability, not budget utilization.', tagline: 'We fund. We optimize.' },
               { icon: Shield, num: '04', title: 'Protect', desc: 'Through the Brand Protection Command Center, Epic enforces pricing integrity, removes unauthorized sellers, and defends branded search demand globally.', tagline: 'Your brand. Our defense.' }
@@ -468,7 +460,7 @@ export function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
             {featuredCases.map((caseStudy, index) => (
               <motion.div
                 key={index}

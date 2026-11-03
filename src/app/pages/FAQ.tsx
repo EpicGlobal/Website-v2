@@ -22,7 +22,7 @@ export function FAQ() {
     {
       question: 'Which marketplaces do you operate on?',
       answer:
-        'We operate across major marketplaces including Amazon (US, CA, EU, and other regions), Walmart, eBay, and select international platforms. We prioritize marketplaces based on your brand\'s category fit and regional opportunity. During assessment, we\'ll map which platforms make sense for your catalog.',
+        'We operate across major marketplaces including Amazon (US, CA, EU, and other regions), Walmart, eBay, TikTok Shop, and select international platforms. We prioritize marketplaces based on your brand\'s category fit and regional opportunity. During assessment, we\'ll map which platforms make sense for your catalog.',
     },
     {
       question: 'What do you need from us to get started?',
@@ -32,22 +32,22 @@ export function FAQ() {
     {
       question: 'What are typical timelines from assessment to launch?',
       answer:
-        'Assessment takes 1-2 weeks. Building the operating system (rules, workflows, reporting) takes 2-4 weeks. Initial execution cycles begin immediately after, with full marketplace rollout typically within 8-12 weeks depending on catalog complexity. International expansion adds 4-8 weeks per marketplace for setup and coordination.',
+        'Most brands go from signed agreement to purchase order and Brand Registry authorization within days. We build and optimize your listings, A+ content and Storefront within about 4 weeks, and products typically go live 3-4 weeks after inventory arrives. Additional marketplaces and countries usually follow 1-6 months after Amazon US, depending on registration in each market.',
     },
     {
       question: 'How does the inventory purchase model work?',
       answer:
-        'We purchase your inventory at agreed wholesale pricing and take ownership. We then manage retail pricing, marketplace operations, and sales across approved platforms. We cover the operating expenses required to scale (advertising, marketplace fees, fulfillment). This aligns incentives: we succeed when your brand grows sustainably on marketplaces.',
+        'We purchase your inventory at agreed wholesale pricing and take ownership. We then manage retail pricing, marketplace operations, and sales across approved platforms. We cover the operating expenses required to scale (advertising, marketplace fees, fulfillment). This aligns incentives: we succeed when your brand grows sustainably on marketplaces. The opening order is usually sized to about 60-90 days of inventory, with monthly replenishment after that, and you\'re paid on agreed payment terms.',
     },
     {
       question: 'How do you handle compliance and brand protection?',
       answer:
-        'Compliance and brand protection are built into our workflows, not bolted on afterward. We design every process around marketplace policies, documentation requirements, and auditability. For brand protection, we run automated monitoring for unauthorized sellers, counterfeit detection, MAP violations, and catalog integrity. Every enforcement action is documented and tracked.',
+        'Compliance and brand protection are built into our workflows, not bolted on afterward. We design every process around marketplace policies, documentation requirements, and auditability. For brand protection, we get authorized under your Brand Registry, remove unauthorized sellers, enforce MAP pricing, use Amazon Transparency where it fits, monitor the Buy Box and your catalog, and send you brand protection reports by marketplace. Every enforcement action is documented and tracked.',
     },
     {
       question: 'What kind of reporting and visibility do we get?',
       answer:
-        'You get unified dashboards with SKU-level P&L, regional performance comparisons, advertising attribution, inventory health metrics, and compliance tracking. Reporting is designed for decision-making, not just data dumps. Weekly operating reviews keep you informed on execution cycles, optimization actions, and next steps.',
+        'You get a shared Epic Insights dashboard from day one with SKU-level sales, advertising and inventory, plus monthly reports (sales, rank, advertising, Subscribe & Save and inventory) and quarterly business reviews. Reporting is designed for decision-making, not just data dumps.',
     },
     {
       question: 'Do you work with brands of all sizes?',
@@ -60,9 +60,9 @@ export function FAQ() {
     <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
       <SEO 
         title="FAQ - Frequently Asked Questions | Epic Global Inc."
-        description="Get answers to common questions about Epic Global Inc.'s zero-risk commerce model, marketplace operations, timelines, pricing, and how we differ from traditional agencies."
+        description="Get answers to common questions about Epic Global Inc.'s wholesale trade partner model, marketplace operations, timelines, pricing, and how we differ from traditional agencies."
         canonicalUrl={`${siteConfig.url}/faq`}
-        keywords="ecommerce faq, marketplace operator questions, zero risk commerce faq, global expansion questions"
+        keywords="ecommerce faq, marketplace operator questions, wholesale trade partner faq, global expansion questions"
       />
       <StructuredData data={getFAQPageSchema(faqs, `${siteConfig.url}/faq`)} />
       <StructuredData

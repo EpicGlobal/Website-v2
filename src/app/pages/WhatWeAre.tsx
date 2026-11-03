@@ -11,10 +11,10 @@ export function WhatWeAre() {
   return (
     <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
       <SEO 
-        title="Our Model - Zero-Risk Global Commerce Operator"
-        description="We buy inventory upfront at wholesale, operate marketplace storefronts end-to-end, fund all advertising and logistics, and protect brand equity. Brands receive guaranteed payments with zero operational burden."
+        title="Our Model - How Epic's Wholesale Model Works"
+        description="We buy inventory upfront at wholesale, operate marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect brand equity. Brands are paid on agreed terms and skip the day-to-day marketplace work."
         canonicalUrl={`${siteConfig.url}/our-model`}
-        keywords="zero risk commerce, marketplace operator business model, inventory purchase model, guaranteed payment ecommerce"
+        keywords="wholesale trade partner, marketplace operator business model, inventory purchase model, wholesale inventory purchase"
       />
       <StructuredData
         data={getWebPageSchema({
@@ -136,7 +136,7 @@ export function WhatWeAre() {
                   <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">You get visibility and control</h3>
                 </div>
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed ml-8">
-                  We provide weekly dashboards, SKU-level performance data, regional reporting, and clear accountability. You stay informed and maintain approval rights over major decisions.
+                  You get a shared dashboard from day one, monthly reports with SKU-level sales, advertising and inventory, and quarterly business reviews. You stay informed and keep approval rights over major decisions.
                 </p>
               </div>
             </div>
@@ -198,16 +198,16 @@ export function WhatWeAre() {
                       Epic
                     </th>
                     <th className="text-center py-4 px-3 text-xs font-semibold text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 uppercase tracking-wide">
-                      Competitor A
+                      Marketplace accelerator
                     </th>
                     <th className="text-center py-4 px-3 text-xs font-semibold text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 uppercase tracking-wide">
-                      Competitor B
+                      Marketplace agency
                     </th>
                     <th className="text-center py-4 px-3 text-xs font-semibold text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 uppercase tracking-wide">
-                      Competitor C
+                      Agency + fulfillment
                     </th>
                     <th className="text-center py-4 px-3 text-xs font-semibold text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 uppercase tracking-wide">
-                      Competitor D
+                      Wholesale distributor
                     </th>
                   </tr>
                 </thead>

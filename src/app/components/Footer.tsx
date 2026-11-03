@@ -39,10 +39,8 @@ export function Footer() {
               </Link>
             </div>
             <p className="text-gray-200 leaf:text-gray-100 text-sm max-w-md leading-relaxed mb-4">
-              Epic Global Inc. is the world's first Zero-Risk Global Commerce Operator. We
-              purchase inventory upfront, operate marketplace storefronts end to end, fund
-              all advertising and logistics, and protect brand equity while you carry zero
-              risk and zero operational burden.
+              Epic Global Inc. is a wholesale trade partner and Zero-Risk Global Commerce Operator.
+              We buy your inventory upfront at wholesale, operate marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect your brand. We own the inventory and take on the retail execution risk.
             </p>
             <p className="text-cyan-300 leaf:text-sky-200 text-sm font-medium">
               We buy it. You profit.

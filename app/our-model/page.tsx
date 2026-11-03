@@ -4,10 +4,10 @@ import { createPageMetadata } from '@/site/site-config';
 export const metadata = createPageMetadata({
   title: 'Our Model',
   description:
-    'Learn how Epic Global buys inventory upfront, operates marketplace storefronts end to end, covers advertising and logistics, and protects brand equity.',
+    'Learn how Epic Global buys inventory upfront, operates marketplace storefronts end to end, pays for the advertising, marketplace fees and fulfillment, and protects brand equity.',
   path: '/our-model',
   keywords: [
-    'zero risk commerce model',
+    'wholesale trade partner model',
     'inventory purchase model',
     'marketplace operator model',
   ],

@@ -72,11 +72,11 @@ export function ExitIntentPopup() {
             </div>
             
             <h2 className="text-2xl sm:text-3xl font-bold mb-4 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-white light:to-gray-400 orange:from-white orange:to-gray-400 bg-clip-text text-transparent">
-              Zero Risk. Zero Inventory Cost.
+              We Buy It. You Profit.
             </h2>
             
             <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-300 orange:text-gray-300 mb-6 leading-relaxed">
-              We purchase your inventory upfront, operate marketplaces end-to-end, and fund all advertising. You get profit share with zero operational lift.
+              We purchase your inventory upfront, operate marketplaces end-to-end, and fund all advertising. You're paid for your inventory on agreed terms, without running the day-to-day marketplace work.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">

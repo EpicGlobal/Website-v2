@@ -16,9 +16,9 @@ interface SEOProps {
 }
 
 export function SEO({
-  title = 'Epic Global Inc. - Zero-Risk Global Commerce Operator',
-  description = 'Epic Global Inc. is the world\'s first Zero-Risk Global Commerce Operator. We purchase inventory upfront, operate marketplace storefronts end to end, fund all advertising and logistics, and protect brand equity. Expand to 40 countries risk-free.',
-  keywords = 'global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, zero risk ecommerce, global retail, cross-border ecommerce, marketplace management, brand protection',
+  title = 'Epic Global Inc. - Wholesale Trade Partner for Amazon Brands',
+  description = 'Epic Global Inc. is a wholesale trade partner and global marketplace operator. We buy your inventory upfront at wholesale, sell it on Amazon, Walmart and other marketplaces, and pay for the advertising, marketplace fees and fulfillment.',
+  keywords = 'global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, wholesale trade partner, global retail, cross-border ecommerce, marketplace management, brand protection',
   canonicalUrl = `${siteConfig.url}/`,
   ogImage = `${siteConfig.url}/opengraph-image.png`,
   ogType = 'website',

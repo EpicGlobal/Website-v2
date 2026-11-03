@@ -52,7 +52,7 @@ export const siteConfig = {
     'Marketplace automation',
   ],
   description:
-    'Epic Global Inc. is a global marketplace operator that buys inventory at wholesale, manages marketplace sales channels, funds advertising, and protects brand equity across international ecommerce platforms.',
+    'Epic Global Inc. is a wholesale trade partner and global marketplace operator that buys inventory at wholesale, manages marketplace sales channels, funds advertising, and protects brand equity across international ecommerce platforms.',
   ogImage: '/opengraph-image.png',
   twitterImage: '/twitter-image.png',
 };

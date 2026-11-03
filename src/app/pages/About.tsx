@@ -71,8 +71,8 @@ export function About() {
   return (
     <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
       <SEO 
-        title="About Epic Global Inc. - Zero-Risk Commerce Operating System"
-        description="Epic Global Inc. is a global commerce operator and technology platform. We run end-to-end marketplace operations across 40 countries with repeatable systems, speed, and safeguards."
+        title="About Epic Global Inc. - Wholesale Trade Partner"
+        description="Epic Global Inc. is a wholesale trade partner and global marketplace operator. We buy brands' inventory and run end-to-end marketplace operations across 40 countries with repeatable systems."
         canonicalUrl={`${siteConfig.url}/about`}
         keywords="commerce operator, marketplace management, global ecommerce, operator-first approach, marketplace technology"
       />
@@ -96,7 +96,7 @@ export function About() {
             We run marketplace growth like operations, not marketing.
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-[#101828] leading-relaxed max-w-3xl mb-6">
-            Epic Global Inc. is the world's first Zero-Risk Global Commerce Operator. We purchase inventory upfront, operate marketplace storefronts end to end, fund all advertising and logistics, and protect brand equity while you carry zero risk and zero operational burden.
+            Epic Global Inc. is a wholesale trade partner and Zero-Risk Global Commerce Operator. We buy your inventory upfront at wholesale, operate marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect your brand. We own the inventory and take on the retail execution risk.
           </p>
           <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828] leading-relaxed max-w-3xl mb-6">
             This model applies equally to U.S. growth and international expansion. Whether a brand is underperforming in the United States, losing margin to fees, or preparing to expand globally, Epic functions as a global marketplace operating system designed to deliver predictable outcomes.
@@ -133,7 +133,7 @@ export function About() {
               What makes us different
             </h2>
             <p className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 max-w-2xl mx-auto">
-              We're not a marketing agency. We're an operating partner that runs execution the way software companies ship product.
+              We're not a marketing agency. We're a wholesale trade partner: we buy the inventory and run the execution ourselves, with repeatable systems instead of one-off projects.
             </p>
           </div>
 

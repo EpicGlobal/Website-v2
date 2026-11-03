@@ -1,36 +1,51 @@
 # Epic Global Inc.
 
-> Epic Global Inc. is a wholesale trade partner and marketplace operator based in Utah. It buys brands' inventory upfront at wholesale and sells it on Amazon, Walmart, eBay, TikTok Shop and other marketplaces, paying for the advertising, marketplace fees and fulfillment itself. It is not an agency: no retainers, hourly rates or consulting packages.
+> Epic Global Inc. is a wholesale trade partner and global marketplace operator. It buys brands' inventory upfront at wholesale and sells it on Amazon, Walmart, eBay, TikTok Shop and other marketplaces, paying for the advertising, marketplace fees and fulfillment itself so incentives stay aligned. It is not an agency: no retainers, hourly rates or consulting packages.
 
 ## Key facts
-- Model: Buy, Sell, Advertise, Protect. Epic buys inventory upfront at wholesale, sells it at retail, funds the advertising, and protects price and catalog (MAP enforcement, removing unauthorized sellers).
+- Model: Buy, Sell, Advertise, Protect. Epic buys inventory upfront at wholesale, sells it at retail, funds the advertising, and protects price and catalog (Brand Registry authorization, MAP enforcement, removing unauthorized sellers).
+- What Epic does: purchases inventory at wholesale pricing; operates retail sales across approved marketplaces; covers operating expenses including advertising, marketplace fees and fulfillment; gives brands a shared dashboard from day one, monthly SKU-level reports and quarterly business reviews.
+- Global expansion: launches and scales brands on new marketplaces and in new regions, with localization and compliance.
 - Marketplaces: Amazon, Walmart, eBay, TikTok Shop and select international marketplaces across North America, Europe and other growth regions.
+- Who Epic serves: brands that want to scale on marketplaces without building an internal marketplace operations team. Best fit is typically brands that already have traction and need better execution, control and expansion capacity.
 - Founder: Glen Jensen
-- Headquarters: Utah, United States
 - Get started: [Free marketplace assessment](https://www.epicglobalinc.com/campaigns/marketplace-assessment)
 
 ## Main pages
-- [Home](https://www.epicglobalinc.com/): what Epic does and how the model works
-- [About](https://www.epicglobalinc.com/about): mission, values and founder
-- [Our Model](https://www.epicglobalinc.com/our-model): what Epic does, who it is for, how it works and what it does not do
-- [AI Intelligence](https://www.epicglobalinc.com/intelligence): the automation and decision tools behind Epic's operations
-- [Case Studies](https://www.epicglobalinc.com/case-studies): marketplace results for partner brands
-- [FAQ](https://www.epicglobalinc.com/faq): model, timelines, fit, pricing structure and scope
-- [Knowledge Base](https://www.epicglobalinc.com/knowledge-base): guides, checklists and definitions
+- [Home](https://www.epicglobalinc.com/): company overview and the Buy, Sell, Advertise, Protect model
+- [About](https://www.epicglobalinc.com/about): mission, values, operating philosophy and founder; why Epic runs marketplace growth as operations, not a marketing service
+- [Our Model](https://www.epicglobalinc.com/our-model): plain-language explanation of what Epic does, who it is for, how the model works and what Epic does not do
+- [AI Intelligence](https://www.epicglobalinc.com/intelligence): the automation, decisioning and systems layer behind Epic's marketplace operations
+- [Case Studies](https://www.epicglobalinc.com/case-studies): marketplace results for partner brands (Sutera on Amazon US; an auto parts brand's Amazon 1P vs Epic 3P comparison)
+- [FAQ](https://www.epicglobalinc.com/faq): Epic's model, timelines, fit, pricing structure and execution scope
+- [Knowledge Base](https://www.epicglobalinc.com/knowledge-base): operator-grade playbooks, checklists, templates and definitions for running marketplaces as a system
 
-## Knowledge Base
-- [What is Epic Global Inc.?](https://www.epicglobalinc.com/knowledge-base/what-is-epic-global-inc)
-- [How Our Model Works](https://www.epicglobalinc.com/knowledge-base/how-our-model-works)
-- [What Types of Brands We're a Fit For](https://www.epicglobalinc.com/knowledge-base/who-we-are-fit-for)
-- [Why Epic Isn't an Agency](https://www.epicglobalinc.com/knowledge-base/marketplace-operating-cadence)
-- [Epic's Operational Process](https://www.epicglobalinc.com/knowledge-base/epic-operational-process)
-- [Marketplace KPI Glossary](https://www.epicglobalinc.com/knowledge-base/kpi-glossary)
-- [Catalog Hygiene](https://www.epicglobalinc.com/knowledge-base/catalog-hygiene-what-it-is-why-it-matters)
+## Knowledge Base articles
+- [What is Epic Global Inc.?](https://www.epicglobalinc.com/knowledge-base/what-is-epic-global-inc): entity definition and business model overview
+- [How Our Model Works](https://www.epicglobalinc.com/knowledge-base/how-our-model-works): how the model works, step by step
+- [What Types of Brands We're a Fit For](https://www.epicglobalinc.com/knowledge-base/who-we-are-fit-for): ideal partner profile
+- [Why Epic Isn't an Agency](https://www.epicglobalinc.com/knowledge-base/marketplace-operating-cadence): operator model compared with agencies
+- [Epic's Operational Process](https://www.epicglobalinc.com/knowledge-base/epic-operational-process): the four phases (Assess, Build, Execute, Scale) and what Epic needs from brands
+- [Marketplace KPI Glossary](https://www.epicglobalinc.com/knowledge-base/kpi-glossary): marketplace performance definitions and calculations
+- [Catalog Hygiene](https://www.epicglobalinc.com/knowledge-base/catalog-hygiene-what-it-is-why-it-matters): why clean product data matters
+
+Coming soon (not yet published; each is added here with a link when it's live):
+- Model and process: Inventory Purchase Model Explained; End-to-End Expense Coverage Explained; Global Expansion Readiness Model
+- Marketplace operations: Listing QA Checklist; Variation Strategy Basics
+- Advertising operations: Campaign Structure Playbook; Search Term Harvesting Playbook; Creative Testing Loop
+- Inventory and forecasting: Reorder Point Logic Explained; Allocation Planning by Region
+- Brand protection: Unauthorized Seller Monitoring Workflow; Catalog Integrity Controls
+- Data and reporting: Weekly Executive Dashboard
+- Templates: Market Launch Checklist; Catalog QA Checklist; Weekly Operating Cadence Template; Ad Account Rebuild Checklist; Inventory Reorder Model Template; Brand Protection Escalation Template
 
 ## What Epic does not do
 - No retainers, hourly rates or project fees
 - No a la carte services or consulting packages
+- No advice without execution
 - No revenue share without inventory ownership
 
 ## Profiles
-- [Walmart seller page](https://www.walmart.com/global/seller/13412)
+- [Amazon storefront](https://www.amazon.com/sp?seller=A36Z6L3RI4IXSS)
+- [Walmart seller page](https://www.walmart.com/seller/13412)
+- [LinkedIn](https://www.linkedin.com/company/epic-global-inc)
+- [Wikidata](https://www.wikidata.org/wiki/Q141937180)

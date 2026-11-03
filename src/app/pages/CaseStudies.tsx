@@ -12,6 +12,7 @@ export function CaseStudies() {
   const caseStudies = [
     {
       id: 1,
+      anchor: 'sutera',
       pillar: ['Sell', 'Advertise', 'Protect'],
       title: 'Amazon Success Case Study',
       industry: 'Home & Bath',
@@ -107,6 +108,7 @@ export function CaseStudies() {
     },
     {
       id: 2,
+      anchor: 'auto-parts-1p-vs-3p',
       pillar: ['Buy', 'Sell'],
       title: '1P vs 3P Financial Breakdown: Auto Parts Brand Case Study',
       industry: 'Automotive Parts',
@@ -132,7 +134,7 @@ export function CaseStudies() {
           title: 'Model Transition Analysis',
           items: [
             { label: 'Financial Comparison Framework', text: 'Conducted comprehensive analysis comparing 1P vs 3P structures. Under 1P, Amazon purchases inventory and the brand absorbs nearly all fees. Under Epic\'s 3P model, Epic Global purchases inventory at ~40% of MSRP and assumes all Amazon costs.' },
-            { label: 'Net PPM Evaluation', text: 'Determined that the brand\'s Net PPM (Profit Per Margin) in 1P arrangement ranged from 15-30% of retail, which could be directly compared to Epic\'s 40% purchase price offer under 3P.' }
+            { label: 'Net PPM Evaluation', text: 'Determined that the brand\'s Net PPM (Net Pure Product Margin) in 1P arrangement ranged from 15-30% of retail, which could be directly compared to Epic\'s 40% purchase price offer under 3P.' }
           ],
           results: 'The fundamental difference lies in fee responsibility. Under 1P, the brand absorbs nearly all Amazon-imposed fees. Under Epic\'s 3P model, Epic Global assumes those costs. Our model typically offers ~40% of MSRP - effectively the same outcome as a 40% Net PPM from Amazon, but with operational simplicity and predictability.',
         },
@@ -242,7 +244,7 @@ export function CaseStudies() {
             Case Studies
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-800 water:text-[#101828] leading-relaxed">
-            See how Epic Global transforms eCommerce performance through our proven Four Pillar System
+            See how Epic Global transforms eCommerce performance through our Buy-Sell-Advertise-Protect model
           </p>
         </div>
       </section>
@@ -253,7 +255,8 @@ export function CaseStudies() {
           {caseStudies.map((study) => (
             <div
               key={study.id}
-              className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20"
+              id={study.anchor}
+              className="scroll-mt-32 bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20"
             >
               {/* Pillar Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
