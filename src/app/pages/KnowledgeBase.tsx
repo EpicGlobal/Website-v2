@@ -226,8 +226,9 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700 mb-2 block">Category</label>
+              <label htmlFor="kb-filter-category" className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700 mb-2 block">Category</label>
               <select
+                id="kb-filter-category"
                 value={selectedCategory}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -249,8 +250,9 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
             </div>
 
             <div>
-              <label className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700 mb-2 block">Pillar</label>
+              <label htmlFor="kb-filter-pillar" className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700 mb-2 block">Pillar</label>
               <select
+                id="kb-filter-pillar"
                 value={selectedPillar}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -272,8 +274,9 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
             </div>
 
             <div>
-              <label className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700 mb-2 block">Marketplace</label>
+              <label htmlFor="kb-filter-marketplace" className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700 mb-2 block">Marketplace</label>
               <select
+                id="kb-filter-marketplace"
                 value={selectedMarketplace}
                 onChange={(e) => {
                   const value = e.target.value;

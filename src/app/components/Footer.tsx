@@ -50,7 +50,7 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h4 className="text-white text-sm font-semibold mb-4">Navigation</h4>
+            <h2 className="text-white text-sm font-semibold mb-4">Navigation</h2>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
@@ -81,7 +81,7 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-4">
-            <h4 className="text-white text-sm font-semibold mb-4">Resources</h4>
+            <h2 className="text-white text-sm font-semibold mb-4">Resources</h2>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/faq" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">

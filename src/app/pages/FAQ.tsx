@@ -87,6 +87,7 @@ export function FAQ() {
       <section className="pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/10 soft-dark:to-white/[0.05] light:from-gray-50 light:to-white orange:from-white/5 orange:to-white/[0.02] backdrop-blur-xl rounded-2xl p-8 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/10">
+            <h2 className="sr-only">Frequently asked questions</h2>
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, index) => (
                 <AccordionItem

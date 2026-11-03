@@ -35,7 +35,7 @@ const assessmentAreas = [
 
 export function CampaignMarketplaceAssessment() {
   return (
-    <main className="min-h-screen bg-[#f6f7f9] text-[#101828]">
+    <div className="min-h-screen bg-[#f6f7f9] text-[#101828]">
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
           <Link href="/" className="text-sm font-semibold tracking-[0.18em] text-slate-950">
@@ -141,6 +141,6 @@ export function CampaignMarketplaceAssessment() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

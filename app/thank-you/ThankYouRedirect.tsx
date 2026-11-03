@@ -17,7 +17,7 @@ export function ThankYouRedirect() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br px-4 pb-16 pt-28 text-white dark:from-cyan-950 dark:via-slate-900 dark:to-black dark:text-white soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white soft-dark:text-gray-900 light:text-gray-900 leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white leaf:text-gray-900 water:from-lime-500 water:via-lime-100 water:to-white water:text-gray-900 orange:from-[#F68932] orange:via-orange-100 orange:to-white orange:text-gray-900 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br px-4 pb-16 pt-28 text-white dark:from-cyan-950 dark:via-slate-900 dark:to-black dark:text-white soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white soft-dark:text-gray-900 light:text-gray-900 leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white leaf:text-gray-900 water:from-lime-500 water:via-lime-100 water:to-white water:text-gray-900 orange:from-[#F68932] orange:via-orange-100 orange:to-white orange:text-gray-900 sm:px-6 lg:px-8">
       <section className="mx-auto flex min-h-[calc(100vh-11rem)] max-w-4xl items-center justify-center">
         <div className="w-full rounded-2xl border border-white/20 bg-white/75 p-6 text-center shadow-2xl shadow-black/10 backdrop-blur-xl dark:border-white/10 dark:bg-white/10 soft-dark:bg-white/80 light:border-gray-200 light:bg-white orange:border-white/30 orange:bg-white/80 leaf:bg-white/80 water:bg-white/80 sm:p-10">
           <div className="mx-auto mb-8 flex items-center justify-center gap-3">
@@ -49,6 +49,6 @@ export function ThankYouRedirect() {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

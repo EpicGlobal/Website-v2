@@ -193,7 +193,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           <LeadAttributionTracker />
           <PageViewTracker />
           <AdsLifecycleTracker />
-          {children}
+          <main id="main-content">{children}</main>
           {isCampaignLandingPage ? null : <Footer />}
           {showBookingPrompts ? <StickyCtaMobile /> : null}
           {showBookingPrompts ? <ExitIntentPopup /> : null}
