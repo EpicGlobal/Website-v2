@@ -29,14 +29,36 @@
 - [Marketplace KPI Glossary](https://www.epicglobalinc.com/knowledge-base/kpi-glossary): marketplace performance definitions and calculations
 - [Catalog Hygiene](https://www.epicglobalinc.com/knowledge-base/catalog-hygiene-what-it-is-why-it-matters): why clean product data matters
 
-Coming soon (not yet published; each is added here with a link when it's live):
-- Model and process: Inventory Purchase Model Explained; End-to-End Expense Coverage Explained; Global Expansion Readiness Model
-- Marketplace operations: Listing QA Checklist; Variation Strategy Basics
-- Advertising operations: Campaign Structure Playbook; Search Term Harvesting Playbook; Creative Testing Loop
-- Inventory and forecasting: Reorder Point Logic Explained; Allocation Planning by Region
-- Brand protection: Unauthorized Seller Monitoring Workflow; Catalog Integrity Controls
-- Data and reporting: Weekly Executive Dashboard
-- Templates: Market Launch Checklist; Catalog QA Checklist; Weekly Operating Cadence Template; Ad Account Rebuild Checklist; Inventory Reorder Model Template; Brand Protection Escalation Template
+### Marketplace operations
+- [Listing QA Checklist: What to Check Before a Listing Goes Live](https://www.epicglobalinc.com/knowledge-base/listing-qa-checklist): a pre-launch checklist for Amazon and Walmart listings covering titles, images, attributes, variations, compliance and day 1 and day 7 checks
+- [Catalog QA Checklist](https://www.epicglobalinc.com/knowledge-base/catalog-qa-checklist): a catalog-level audit checklist for finding suppressed listings, broken variations, bad data and price conflicts that cost sales
+- [Variation Strategy Basics: How Should You Set Up Product Variations on Amazon?](https://www.epicglobalinc.com/knowledge-base/variation-strategy-basics): how Amazon parent-child variations work, when to group products, when to keep them separate, and how to avoid broken families
+
+### Advertising operations
+- [Campaign Structure Playbook: How Should You Structure Amazon Ad Campaigns?](https://www.epicglobalinc.com/knowledge-base/campaign-structure-playbook): how to build a baseline Amazon ads structure with campaigns by objective, match type and SKU priority, plus naming rules and weekly checks
+- [Search Term Harvesting Playbook: How Do You Turn Search Term Reports Into Better Campaigns?](https://www.epicglobalinc.com/knowledge-base/search-term-harvesting-playbook): how to mine the Amazon search term report: promote converting terms to exact match, negate waste, and keep campaigns from competing
+- [Creative Testing Loop: How Do You Test Images and Content to Improve Amazon Conversion?](https://www.epicglobalinc.com/knowledge-base/creative-testing-loop): a repeatable cycle for testing one listing element at a time on Amazon, keeping the winner and starting the next test
+
+### Inventory and forecasting
+- [Reorder Point Logic Explained](https://www.epicglobalinc.com/knowledge-base/reorder-point-logic-explained): how to calculate a marketplace reorder point from daily demand, full lead time and safety stock, with a worked example
+
+### Brand protection
+- [Unauthorized Seller Monitoring Workflow: How Do You Find and Remove Unauthorized Sellers?](https://www.epicglobalinc.com/knowledge-base/unauthorized-seller-monitoring-workflow): monitor, identify, collect evidence, classify and act on unauthorized Amazon sellers, and learn what Amazon can and can't remove
+- [Catalog Integrity Controls and Evidence Collection: How Do You Keep Listings Accurate and Prove It?](https://www.epicglobalinc.com/knowledge-base/catalog-integrity-controls): the records and routines that keep Amazon listings correct, plus the evidence to collect and the steps to correct an unwanted change
+
+### Data and reporting
+- [Weekly Executive Dashboard: What It Should Show](https://www.epicglobalinc.com/knowledge-base/weekly-executive-dashboard): what belongs on a one-page weekly marketplace dashboard, with a sample layout, display rules and a build process
+
+### Templates
+- [Weekly Operating Cadence Template](https://www.epicglobalinc.com/knowledge-base/weekly-operating-cadence-doc): a day-by-day weekly schedule, meeting agenda and action log for running Amazon and other marketplaces
+- [Ad Account Rebuild Checklist](https://www.epicglobalinc.com/knowledge-base/ad-account-rebuild-checklist): a four-phase checklist for replacing a messy marketplace ad account with a clean structure without losing sales or keyword history
+- [Inventory Reorder Model Template](https://www.epicglobalinc.com/knowledge-base/inventory-reorder-model-template): a one-row-per-SKU spreadsheet layout with columns and formulas for safety stock, reorder point and order quantity
+- [Brand Protection Escalation Template](https://www.epicglobalinc.com/knowledge-base/brand-protection-escalation-template): a fixed escalation ladder and evidence log for unauthorized sellers, counterfeits, hijacked listings and pricing violations
+
+### Glossary
+- [Amazon and Marketplace Glossary](https://www.epicglobalinc.com/knowledge-base/amazon-marketplace-glossary): plain-English definitions of the Amazon, Walmart, TikTok Shop and wholesale terms brand owners run into, and how a wholesale trade partner differs from other models
+
+Coming soon (not yet published; each is added here with a link when it's live): Inventory Purchase Model Explained; End-to-End Expense Coverage Explained; Global Expansion Readiness Model; Allocation Planning by Region; Market Launch Checklist
 
 ## What Epic does not do
 - No retainers, hourly rates or project fees

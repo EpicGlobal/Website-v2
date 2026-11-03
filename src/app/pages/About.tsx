@@ -204,7 +204,16 @@ export function About() {
                 <p className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mb-6">Founder</p>
                 
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-                  Epic Global Inc. is led by Glen Jensen, who oversees the company's operating model and technology strategy. Epic is built around a systems-first approach to global marketplace execution: purchasing inventory, scaling internationally, and running end-to-end operations across marketplaces.
+                  {"Glen Jensen is the founder of Epic Global Inc., a wholesale trade partner for brands that sell on online marketplaces."}
+                </p>
+                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
+                  {"Epic is built around a simple idea: brands should not have to pay an agency and carry all the risk to sell on marketplaces. Instead, Epic buys a brand's inventory upfront at an agreed wholesale price and sells it on Amazon, Walmart, eBay, TikTok Shop and other marketplaces. Epic pays for the advertising, marketplace fees and fulfillment itself, and pays the brand on agreed payment terms."}
+                </p>
+                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
+                  {"Epic's model has four parts: Buy, Sell, Advertise and Protect. The brand keeps its Brand Registry and authorizes Epic to sell on its existing listings. Epic sells at or above the brand's minimum advertised price, enforces that price, and works to remove unauthorized sellers."}
+                </p>
+                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
+                  {"The result is a simple arrangement for the brand owner. The brand keeps its company, its name and control of how its products are presented, and Epic carries the work of running the marketplaces."}
                 </p>
 
                 <ul className="space-y-3 text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-6">

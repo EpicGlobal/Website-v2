@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, Download, Share2 } from 'lucide-react';
-import { isoDate, knowledgeArticles } from '@/app/data/knowledgeArticles';
+import { isoDate, knowledgeArticles, type KnowledgeArticle as KnowledgeArticleType } from '@/app/data/knowledgeArticles';
 import { StructuredData } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
@@ -38,9 +38,13 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
   }
 
   const ArticleContent = getArticleContent(article.slug);
-  const relatedArticles = knowledgeArticles
-    .filter((a) => a.slug !== article.slug && a.category === article.category && a.hasContent)
-    .slice(0, 3);
+  const listed = (article.related ?? [])
+    .map((slug) => knowledgeArticles.find((a) => a.slug === slug))
+    .filter((a): a is KnowledgeArticleType => Boolean(a?.hasContent) && a!.slug !== article.slug);
+  const relatedArticles = [
+    ...listed,
+    ...knowledgeArticles.filter((a) => a.slug !== article.slug && a.category === article.category && a.hasContent && !listed.includes(a)),
+  ].slice(0, 3);
   const updated = isoDate(article.lastUpdated);
   const articleUrl = `${siteConfig.url}/knowledge-base/${article.slug}`;
 
