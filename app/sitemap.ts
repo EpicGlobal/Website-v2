@@ -12,7 +12,7 @@ const staticRoutes = [
   { path: '/intelligence', priority: 0.8, updated: '2026-10-29' },
   { path: '/case-studies', priority: 0.8, updated: '2026-10-29' },
   { path: '/knowledge-base', priority: 0.8, updated: '2026-10-29' },
-  { path: '/faq', priority: 0.7, updated: '2026-10-29' },
+  { path: '/faq', priority: 0.7, updated: '2026-10-29' }, // SET ON MERGE: PR 2 changes this page
   { path: '/privacy', priority: 0.4, updated: '2026-10-29' },
   { path: '/privacy-choices', priority: 0.4, updated: '2026-10-29' },
   { path: '/terms', priority: 0.4, updated: '2026-10-29' },

@@ -1,6 +1,9 @@
 import React from "react";
+import Image, { type StaticImageData } from "next/image";
 
-type BrandLogo = string | { src: string };
+// Static imports, so next/image knows each logo's size and serves a small WebP/AVIF copy
+// (the PNGs are 1,000+ px wide but shown at most 192 x 80 px).
+type BrandLogo = StaticImageData;
 
 const PX_PER_SECOND = 80;
 const MOMENTUM_DECAY_SECONDS = 0.22;
@@ -197,7 +200,7 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
         <div ref={groupRef} className="marquee__group">
           {brands.map((brand, index) => (
             <div key={`g1-${index}`} className="logo">
-              <img src={typeof brand.logo === "string" ? brand.logo : brand.logo.src} alt={brand.name} className="max-h-20 max-w-full object-contain mix-blend-multiply" />
+              <Image src={brand.logo} alt={brand.name} sizes="192px" className="h-auto w-auto max-h-20 max-w-full object-contain mix-blend-multiply" />
             </div>
           ))}
         </div>
@@ -205,7 +208,7 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
         <div className="marquee__group" aria-hidden="true">
           {brands.map((brand, index) => (
             <div key={`g2-${index}`} className="logo">
-              <img src={typeof brand.logo === "string" ? brand.logo : brand.logo.src} alt={brand.name} className="max-h-20 max-w-full object-contain mix-blend-multiply" />
+              <Image src={brand.logo} alt={brand.name} sizes="192px" className="h-auto w-auto max-h-20 max-w-full object-contain mix-blend-multiply" />
             </div>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTheme } from '@/app/context/ThemeContext';
 import logo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 import epicLogo from '@/assets/008bdb4c58b9b740867427493f73689a3f551b75.png';
@@ -10,10 +11,10 @@ export function Footer() {
 
   const getLogoForTheme = () => {
     if (theme === 'water') {
-      return epicLogoDark.src;
+      return epicLogoDark;
     }
 
-    return epicLogo.src;
+    return epicLogo;
   };
 
   return (
@@ -23,15 +24,17 @@ export function Footer() {
           <div className="md:col-span-5">
             <div className="flex items-center space-x-2.5 mb-4">
               <Link href="/" className="flex items-center space-x-2.5 group">
-                <img
-                  src={logo.src}
+                <Image
+                  src={logo}
                   alt="Epic Global Inc."
+                  sizes="44px"
                   className="w-11 h-11 transition-transform group-hover:scale-105"
                 />
-                <img
+                <Image
                   src={getLogoForTheme()}
                   alt="Epic"
-                  className="h-24 transition-transform group-hover:scale-105"
+                  sizes="96px"
+                  className="h-24 w-auto transition-transform group-hover:scale-105"
                 />
               </Link>
             </div>

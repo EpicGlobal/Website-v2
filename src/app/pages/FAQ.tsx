@@ -97,7 +97,7 @@ export function FAQ() {
                   <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] hover:text-cyan-400 soft-dark:hover:text-lime-700 light:hover:text-cyan-600 orange:hover:text-orange-800 orange:[&>svg]:text-slate-700 py-5">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm sm:text-base text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-slate-700 leading-relaxed pb-5">
+                  <AccordionContent forceMount className="text-sm sm:text-base text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-slate-700 leading-relaxed pb-5">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

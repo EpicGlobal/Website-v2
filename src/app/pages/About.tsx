@@ -2,6 +2,7 @@
 
 import image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f from '@/assets/7827c6003ae306e0f9f630e11162a9aa55ffdd3f.png';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Target, Shield, Globe2, BarChart3, Award, Users, Clock, CheckCircle2, Linkedin } from 'lucide-react';
 import { StructuredData, founderSchema, getBreadcrumbSchema, getWebPageSchema, organizationSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
@@ -176,9 +177,10 @@ export function About() {
               {/* Headshot */}
               <div className="flex-shrink-0">
                 <div className="w-48 h-48 rounded-2xl overflow-hidden border-2 border-cyan-500/20 dark:border-cyan-500/20 soft-dark:border-gray-200 light:border-cyan-500/20 orange:border-orange-500/30 leaf:border-cyan-600/30 water:border-emerald-600/30 shadow-xl shadow-cyan-500/10 soft-dark:shadow-md orange:shadow-orange-500/20">
-                  <img
-                    src={image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f.src}
+                  <Image
+                    src={image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f}
                     alt="Glen Jensen - Founder of Epic Global Inc."
+                    sizes="192px"
                     className="w-full h-full object-cover"
                   />
                 </div>
