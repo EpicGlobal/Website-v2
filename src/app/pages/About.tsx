@@ -72,7 +72,7 @@ export function About() {
     <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
       <SEO 
         title="About Epic Global Inc. - Wholesale Trade Partner"
-        description="Epic Global Inc. is a wholesale trade partner and global marketplace operator. We buy brands' inventory and run end-to-end marketplace operations across 40 countries with repeatable systems."
+        description="Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy brands' inventory and run marketplace operations across 40 countries."
         canonicalUrl={`${siteConfig.url}/about`}
         keywords="commerce operator, marketplace management, global ecommerce, operator-first approach, marketplace technology"
       />
@@ -143,7 +143,7 @@ export function About() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}

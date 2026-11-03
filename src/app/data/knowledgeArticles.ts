@@ -320,7 +320,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
   {
     slug: 'kpi-glossary',
     title: 'The Marketplace KPI Glossary: Definitions, Calculations, and Tactical Interpretation',
-    seoTitle: 'Marketplace KPI Glossary: Definitions and Formulas',
+    seoTitle: 'Marketplace KPI Glossary and Formulas',
     summary: 'Definitions and calculation methods for key marketplace performance metrics.',
     seoDescription: 'Plain definitions, formulas and how to read the marketplace KPIs that matter: CTR, CPC, ACoS, ROAS, TACoS, conversion rate, organic sales share and more.',
     category: 'Data and Reporting',
@@ -465,6 +465,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
   {
     slug: 'epic-operational-process',
     title: 'Epic\'s Operational Process: A Deep Dive',
+    seoTitle: 'How Epic Runs Marketplace Operations',
     summary: 'An in-depth look at the processes and systems that power Epic\'s global marketplace operations.',
     seoDescription: 'How Epic runs marketplace growth end to end in four phases (Assess, Build, Execute, Scale), and the product data, assets and priorities it needs from brands.',
     category: 'Library',

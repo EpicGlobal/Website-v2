@@ -753,7 +753,7 @@ export function GlobalReachMap() {
                       className={country ? 'cursor-pointer transition-all duration-300' : ''}
                       onMouseEnter={() => country && setHoveredCountry(countryCodeMap[feature.id])}
                       onMouseLeave={() => country && setHoveredCountry(null)}
-                      initial={{ opacity: 0 }}
+                      initial={false}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.05 + index * 0.002 }}
                       style={{
@@ -879,7 +879,7 @@ export function GlobalReachMap() {
         {/* Tooltip */}
         {hoveredCountry && (
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="absolute top-4 left-4 z-50 bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-slate-900/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-cyan-500/30 water:border-emerald-600/30 rounded-lg p-4 shadow-xl shadow-cyan-500/20 soft-dark:shadow-lime-500/20 water:shadow-emerald-500/20"
           >

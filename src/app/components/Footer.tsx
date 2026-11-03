@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { siteConfig } from '@/site/site-config';
 import Image from 'next/image';
 import { useTheme } from '@/app/context/ThemeContext';
 import logo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
@@ -45,6 +46,9 @@ export function Footer() {
             <p className="text-cyan-300 leaf:text-sky-200 text-sm font-medium">
               We buy it. You profit.
             </p>
+            <address className="not-italic mt-3 text-sm text-gray-400 leaf:text-sky-100">
+              {siteConfig.streetAddress}, {siteConfig.locality}, {siteConfig.region} {siteConfig.postalCode}
+            </address>
           </div>
 
           <div className="md:col-span-3">

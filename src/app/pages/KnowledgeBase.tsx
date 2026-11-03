@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Search, Book, Lightbulb, CheckSquare, BookOpen, FileText, Download, Sparkles } from 'lucide-react';
 import { SEO } from '@/app/components/SEO';
+import { StructuredData, getBreadcrumbSchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
 
 // This will be replaced with actual articles from a data file
@@ -85,7 +86,9 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
   };
 
   // Filter articles
-  const filteredArticles = knowledgeArticles.filter((article) => {
+  // Only published articles are listed; unwritten ones stay hidden until they have content.
+  const publishedArticles = knowledgeArticles.filter((article) => article.hasContent);
+  const filteredArticles = publishedArticles.filter((article) => {
     const matchesSearch =
       searchQuery === '' ||
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -105,7 +108,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
   });
 
   // Popular articles
-  const popularArticles = knowledgeArticles.filter((a) => a.featured).slice(0, 6);
+  const popularArticles = publishedArticles.filter((a) => a.featured).slice(0, 6);
 
   // Quick access tiles
   const quickTiles = [
@@ -160,6 +163,33 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
         description="Comprehensive guides on marketplace expansion, brand protection, advertising operations, inventory management, and global ecommerce strategies from Epic Global Inc."
         canonicalUrl={`${siteConfig.url}/knowledge-base`}
         keywords="marketplace guides, ecommerce knowledge base, amazon expansion guide, marketplace operations, brand protection strategies"
+      />
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          '@id': `${siteConfig.url}/knowledge-base#webpage`,
+          name: 'Knowledge Base',
+          url: `${siteConfig.url}/knowledge-base`,
+          description: 'Operator-grade playbooks, checklists, and definitions for running marketplaces as a system.',
+          isPartOf: { '@id': `${siteConfig.url}/#website` },
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: publishedArticles.length,
+            itemListElement: publishedArticles.map((a, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              url: `${siteConfig.url}/knowledge-base/${a.slug}`,
+              name: a.seoTitle ?? a.title,
+            })),
+          },
+        }}
+      />
+      <StructuredData
+        data={getBreadcrumbSchema([
+          { name: 'Home', url: `${siteConfig.url}/` },
+          { name: 'Knowledge Base', url: `${siteConfig.url}/knowledge-base` },
+        ])}
       />
       {/* Hero Section */}
       <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:from-gray-50 light:to-white orange:bg-transparent leaf:bg-transparent">

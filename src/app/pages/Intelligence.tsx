@@ -96,7 +96,7 @@ export function Intelligence() {
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="inline-block px-4 py-2 bg-cyan-500/20 dark:bg-cyan-500/20 soft-dark:bg-lime-600/20 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:shadow-lg water:shadow-emerald-500/20 leaf:bg-gradient-to-r leaf:from-sky-600 leaf:to-sky-700 leaf:shadow-lg leaf:shadow-sky-500/20 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:shadow-lg orange:shadow-orange-500/20 dark:text-cyan-300 soft-dark:text-lime-800 water:text-white leaf:text-white orange:text-white rounded-full text-sm font-semibold tracking-wide mb-6"
@@ -133,7 +133,7 @@ export function Intelligence() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -180,7 +180,7 @@ export function Intelligence() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.15 }}
@@ -290,7 +290,7 @@ export function Intelligence() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                  initial={{ x: index % 2 === 0 ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}

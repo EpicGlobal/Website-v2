@@ -279,7 +279,7 @@ export function Home() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="inline-block px-4 py-2 bg-cyan-500/20 soft-dark:bg-cyan-600/30 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:text-white water:shadow-lg water:shadow-emerald-500/20 leaf:bg-gradient-to-r leaf:from-sky-600 leaf:to-sky-700 text-cyan-300 dark:text-cyan-300 soft-dark:text-cyan-900 leaf:text-white light:text-cyan-900 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:text-white orange:shadow-lg orange:shadow-orange-500/20 leaf:shadow-lg leaf:shadow-sky-500/20 rounded-full text-sm font-semibold tracking-wide mb-6"
@@ -287,7 +287,7 @@ export function Home() {
               THE WHOLESALE TRADE PARTNER FOR MARKETPLACE BRANDS
             </motion.div>
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-white dark:text-white leaf:text-gray-900 water:text-gray-900 light:text-gray-900 orange:text-[#101828] leading-tight"
@@ -295,7 +295,7 @@ export function Home() {
               We Buy It. You Profit.&trade;
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-[rgb(0,0,0)] dark:text-gray-300 soft-dark:text-gray-800 leaf:text-gray-900 water:text-[#101828] light:text-gray-700 orange:text-[#101828] mb-8 max-w-3xl mx-auto leading-relaxed"
@@ -303,7 +303,7 @@ export function Home() {
               Epic Global Inc. is a wholesale trade partner and <strong className="text-white dark:text-white soft-dark:text-gray-900 water:text-[#101828] orange:text-[#101828]">Zero-Risk Global Commerce Operator</strong>. We buy your inventory upfront at wholesale, run your marketplace storefronts, and pay for the advertising, marketplace fees and fulfillment ourselves. Buy. Sell. Advertise. Protect.
             </motion.p>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
@@ -318,7 +318,7 @@ export function Home() {
               </Link>
             </motion.div>
             <motion.p
-              initial={{ opacity: 0 }}
+              initial={false}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-sm text-cyan-400/70 dark:text-cyan-400/70 soft-dark:text-cyan-600 water:text-lime-800 leaf:text-sky-700 light:text-cyan-600 orange:text-orange-700 font-medium"
@@ -331,7 +331,7 @@ export function Home() {
 
       {/* Trust Logos Section */}
       <motion.section
-        initial={{ opacity: 0 }}
+        initial={false}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
@@ -360,7 +360,7 @@ export function Home() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -412,7 +412,7 @@ export function Home() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -464,7 +464,7 @@ export function Home() {
             {featuredCases.map((caseStudy, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}

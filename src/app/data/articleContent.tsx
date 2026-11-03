@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
 
 // This file contains the actual content for each knowledge base article
@@ -1962,7 +1963,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'ad-account-rebuild-checklist': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"The Ad Account Rebuild Checklist is a step-by-step plan for replacing a disorganized marketplace advertising account with a clean campaign structure, without losing the sales and keyword data the old account built up. Use it when the account has too many overlapping campaigns to manage, spend is rising faster than sales, nobody can explain why a campaign exists, or a new team is taking over."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"The Ad Account Rebuild Checklist is a step-by-step plan for replacing a disorganized marketplace advertising account with a clean "}<Link href="/knowledge-base/campaign-structure-playbook" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"campaign structure"}</Link>{", without losing the sales and keyword data the old account built up. Use it when the account has too many overlapping campaigns to manage, spend is rising faster than sales, nobody can explain why a campaign exists, or a new team is taking over."}</p>
         <p className="text-gray-300 leading-relaxed mb-4">{"The examples use Amazon Ads terms (Sponsored Products, Sponsored Brands, Sponsored Display). The same steps apply to Walmart Connect and other marketplace ad platforms."}</p>
       </section>
       <section>
@@ -2002,7 +2003,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h3 className="text-xl font-semibold mb-3 text-white">{"Should I delete old campaigns?"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"No. Archive them. Archived campaigns keep their reporting history, which helps when you compare results later."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"What is the difference between ACoS and TACoS?"}</h3>
-        <p className="text-gray-300 leading-relaxed mb-4">{"ACoS is ad spend divided by ad-attributed sales. TACoS is ad spend divided by total sales, including organic. TACoS shows whether advertising is lifting the whole business."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4"><Link href="/knowledge-base/kpi-glossary" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"ACoS"}</Link>{" is ad spend divided by ad-attributed sales. TACoS is ad spend divided by total sales, including organic. TACoS shows whether advertising is lifting the whole business."}</p>
       </section>
     </div>
   ),
@@ -2027,7 +2028,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h3 className="text-xl font-semibold mb-3 text-white">{"ASIN (Amazon Standard Identification Number)"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"An ASIN is the 10-character ID Amazon assigns to each product in its catalog. Every seller offering the same product shares the same ASIN and competes for the Buy Box on it."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Authorized Seller"}</h3>
-        <p className="text-gray-300 leading-relaxed mb-4">{"An authorized seller is a reseller the brand has formally approved, usually in writing, to sell its products on a given channel or marketplace. Authorization is what lets a brand tell unauthorized sellers apart and act against them. Epic operates as an authorized seller for the brands it buys from and works to keep the marketplace limited to authorized sellers, usually as the exclusive authorized seller on the marketplaces and countries named in its agreement with the brand."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"An authorized seller is a reseller the brand has formally approved, usually in writing, to sell its products on a given channel or marketplace. Authorization is what lets a brand tell "}<Link href="/knowledge-base/unauthorized-seller-monitoring-workflow" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"unauthorized sellers"}</Link>{" apart and act against them. Epic operates as an authorized seller for the brands it buys from and works to keep the marketplace limited to authorized sellers, usually as the exclusive authorized seller on the marketplaces and countries named in its agreement with the brand."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Brand Registry"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"Amazon Brand Registry is a free program for brand owners with a registered or pending trademark. It gives the brand more control over its listings plus access to tools such as A+ Content, Brand Stores, Sponsored Brands and the brand protection reporting tools. Check Amazon's current eligibility rules before enrolling. The brand keeps ownership of its Brand Registry and authorizes Epic in it, so Epic can manage the listings and act against unauthorized sellers."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Brand Store"}</h3>
@@ -2083,7 +2084,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h3 className="text-xl font-semibold mb-3 text-white">{"Retail Arbitrage"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"Retail arbitrage is buying products at a discount from retail stores or clearance sales and reselling them on a marketplace for a profit. These sellers usually aren't authorized by the brand and can disrupt pricing."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"ROAS (Return on Ad Spend)"}</h3>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Ad-attributed sales divided by ad spend; the inverse of ACoS. See Epic's KPI Glossary."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Ad-attributed sales divided by ad spend; the inverse of "}<Link href="/knowledge-base/kpi-glossary" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"ACoS"}</Link>{". See Epic's KPI Glossary."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Seller Central"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"Seller Central is Amazon's portal for third-party (3P) sellers to manage listings, pricing, inventory, orders, advertising and account health. Sellers pay Amazon fees and set their own prices."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Sell-Through Rate"}</h3>
@@ -2160,7 +2161,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic is a wholesale trade partner: it buys the brand's inventory upfront and sells it at retail, so unauthorized sellers and price undercutting hit Epic's own sales directly. Epic's brand protection work covers the monitoring, MAP enforcement and unauthorized seller removal described in this template as part of its model. Epic works through the brand's Brand Registry, which the brand authorizes Epic to use."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Epic is a wholesale trade partner: it buys the brand's inventory upfront and sells it at retail, so "}<Link href="/knowledge-base/unauthorized-seller-monitoring-workflow" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"unauthorized sellers"}</Link>{" and price undercutting hit Epic's own sales directly. Epic's brand protection work covers the monitoring, MAP enforcement and unauthorized seller removal described in this template as part of its model. Epic works through the brand's Brand Registry, which the brand authorizes Epic to use."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2183,7 +2184,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"Why does campaign structure matter?"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Amazon sets budgets and bidding strategies at the campaign level and reports at the campaign, ad group, target and search term levels. If one campaign mixes auto targeting, broad keywords, exact keywords and ten unrelated products, you cannot tell which part is working, and your best keywords compete with your worst ones for the same budget. Structure is what makes the account readable."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Amazon sets budgets and bidding strategies at the campaign level and reports at the campaign, ad group, target and "}<Link href="/knowledge-base/search-term-harvesting-playbook" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"search term"}</Link>{" levels. If one campaign mixes auto targeting, broad keywords, exact keywords and ten unrelated products, you cannot tell which part is working, and your best keywords compete with your worst ones for the same budget. Structure is what makes the account readable."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"What does a baseline structure look like?"}</h2>
@@ -2217,7 +2218,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h3 className="text-xl font-semibold mb-3 text-white">{"Should auto campaigns stay on forever?"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"Usually yes, at modest bids. They keep finding new search terms and ASINs as shopper behavior changes."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"What is the difference between ACoS and TACoS?"}</h3>
-        <p className="text-gray-300 leading-relaxed mb-4">{"ACoS compares ad spend to ad-attributed sales. TACoS compares ad spend to all sales, so it shows whether ads are lifting total business."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4"><Link href="/knowledge-base/kpi-glossary" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"ACoS"}</Link>{" compares ad spend to ad-attributed sales. TACoS compares ad spend to all sales, so it shows whether ads are lifting total business."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Do I need to bid on my own brand name?"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"Often yes. Competitors can bid on your brand terms, and branded clicks are usually cheap and convert well."}</p>
       </section>
@@ -2254,7 +2255,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner. We buy the brand's inventory upfront and pay for the ads, fees and fulfillment, so a listing that changes without notice wastes our ad spend and slows sales of stock we own. Catalog integrity sits between the \"Sell\" and \"Protect\" pillars of our Buy-Sell-Advertise-Protect model and supports our brand protection work, which enforces MAP and removes unauthorized sellers. Brand partners receive brand protection reports by marketplace, covering blocked listing edits and trademark takedowns."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner. We buy the brand's inventory upfront and pay for the ads, fees and fulfillment, so a listing that changes without notice wastes our ad spend and slows sales of stock we own. Catalog integrity sits between the \"Sell\" and \"Protect\" pillars of our Buy-Sell-Advertise-Protect model and supports our brand protection work, which enforces MAP and removes "}<Link href="/knowledge-base/unauthorized-seller-monitoring-workflow" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"unauthorized sellers"}</Link>{". Brand partners receive brand protection reports by marketplace, covering blocked listing edits and trademark takedowns."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2272,11 +2273,11 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'catalog-qa-checklist': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"The Catalog QA Checklist is an audit of a brand's whole marketplace catalog at once, looking for problems that only show up across many listings: suppressed or duplicate listings, broken variation families, inconsistent attributes, missing content and price conflicts. Use it when you take over a catalog, before a major sales event, after a large catalog upload, and on a regular schedule, because catalogs drift as marketplaces, sellers and automated systems change listing data."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"The Catalog QA Checklist is an audit of a brand's whole marketplace catalog at once, looking for problems that only show up across many listings: suppressed or duplicate listings, broken "}<Link href="/knowledge-base/variation-strategy-basics" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"variation families"}</Link>{", inconsistent attributes, missing content and price conflicts. Use it when you take over a catalog, before a major sales event, after a large catalog upload, and on a regular schedule, because catalogs drift as marketplaces, sellers and automated systems change listing data."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How is this different from the Listing QA Checklist?"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"The Listing QA Checklist checks one listing in depth before it goes live: title, bullets, images, keywords. This checklist works at catalog level. It asks whether the full set of listings is complete, consistent and under the brand's control. Run the Listing QA Checklist on any individual listing this audit flags."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"The "}<Link href="/knowledge-base/listing-qa-checklist" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"Listing QA"}</Link>{" Checklist checks one listing in depth before it goes live: title, bullets, images, keywords. This checklist works at catalog level. It asks whether the full set of listings is complete, consistent and under the brand's control. Run the Listing QA Checklist on any individual listing this audit flags."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How do I run a catalog audit?"}</h2>
@@ -2306,7 +2307,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
         <p className="text-gray-300 leading-relaxed mb-4">{"As a wholesale trade partner, Epic buys a brand's inventory upfront and sells it at retail, so a broken listing costs Epic sales on stock it already owns. That is why catalog QA is part of Epic's regular operating work rather than an optional add-on: Epic pays for the advertising, marketplace fees and fulfillment."}</p>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Pricing and seller checks from section 5 feed Epic's brand protection work, which enforces MAP and works to remove unauthorized sellers."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Pricing and seller checks from section 5 feed Epic's brand protection work, which enforces MAP and works to remove "}<Link href="/knowledge-base/unauthorized-seller-monitoring-workflow" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"unauthorized sellers"}</Link>{"."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2368,7 +2369,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'inventory-reorder-model-template': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"This template is a one-row-per-SKU spreadsheet that tells you, each week, which SKUs to reorder and how many units to order. It calculates safety stock, the reorder point and the order quantity from four inputs: daily demand, demand variability, full lead time and current inventory."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"This template is a one-row-per-SKU spreadsheet that tells you, each week, which SKUs to reorder and how many units to order. It calculates safety stock, the "}<Link href="/knowledge-base/reorder-point-logic-explained" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"reorder point"}</Link>{" and the order quantity from four inputs: daily demand, demand variability, full lead time and current inventory."}</p>
         <p className="text-gray-300 leading-relaxed mb-4">{"The logic behind each formula is explained in Reorder Point Logic Explained. This page gives the columns, the formulas and a filled-in example row."}</p>
       </section>
       <section>
@@ -2452,11 +2453,11 @@ export const articleContent: Record<string, () => JSX.Element> = {
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
         <h3 className="text-xl font-semibold mb-3 text-white">{"How long does listing QA take?"}</h3>
-        <p className="text-gray-300 leading-relaxed mb-4">{"For a single listing with ready content, usually under an hour. Variation families and regulated categories take longer."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"For a single listing with ready content, usually under an hour. "}<Link href="/knowledge-base/variation-strategy-basics" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"Variation families"}</Link>{" and regulated categories take longer."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Do I need Brand Registry to pass QA?"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"Not to list, but you need it for A+ Content and for more control over your detail page data on Amazon."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Should I run QA again after launch?"}</h3>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Yes. Check on day 1 and day 7, then fold the listing into your weekly catalog hygiene review."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Yes. Check on day 1 and day 7, then fold the listing into your weekly "}<Link href="/knowledge-base/catalog-hygiene-what-it-is-why-it-matters" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"catalog hygiene"}</Link>{" review."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Does the same checklist work for Walmart?"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"Mostly. Walmart has its own required attributes, content scoring and image rules, so check its style guide for the category."}</p>
       </section>
@@ -2466,7 +2467,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
     <div className="space-y-8">
       <section>
         <p className="text-gray-300 leading-relaxed mb-4">{"A reorder point is the inventory level at which you place the next purchase order, so new stock arrives before the old stock runs out. It equals average daily demand multiplied by the full lead time in days, plus a safety stock buffer for demand and supply surprises."}</p>
-        <p className="text-gray-300 leading-relaxed mb-4">{"On marketplaces, getting this right matters more than in most channels. A stockout on Amazon does not just pause sales; it can cost organic rank, ad momentum and the Buy Box, which take weeks to rebuild. Ordering too early ties up cash and adds storage fees."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"On marketplaces, getting this right matters more than in most channels. A stockout on Amazon does not just pause sales; it can cost organic rank, ad momentum and the "}<Link href="/knowledge-base/amazon-marketplace-glossary" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"Buy Box"}</Link>{", which take weeks to rebuild. Ordering too early ties up cash and adds storage fees."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"What is the reorder point formula?"}</h2>
@@ -2608,7 +2609,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner: we buy the brand's inventory upfront and sell it at retail, so unauthorized sellers and below-MAP pricing cut into sales of stock we own. Brand protection is the \"Protect\" pillar of our Buy-Sell-Advertise-Protect model. In practice this covers Brand Registry authorization, unauthorized-seller removal, MAP enforcement, Transparency enrollment, Buy Box monitoring and brand protection reports by marketplace. We follow the evidence-based approach above, so actions are ones the marketplace will uphold. The brand keeps its Brand Registry and authorizes Epic to act on it."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner: we buy the brand's inventory upfront and sell it at retail, so unauthorized sellers and below-MAP pricing cut into sales of stock we own. Brand protection is the \"Protect\" pillar of our Buy-Sell-Advertise-Protect model. In practice this covers Brand Registry authorization, unauthorized-seller removal, MAP enforcement, Transparency enrollment, "}<Link href="/knowledge-base/amazon-marketplace-glossary" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"Buy Box"}</Link>{" monitoring and brand protection reports by marketplace. We follow the evidence-based approach above, so actions are ones the marketplace will uphold. The brand keeps its Brand Registry and authorizes Epic to act on it."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2687,7 +2688,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h2 className="text-3xl font-bold mb-4 text-white">{"Sample layout (illustrative numbers, not Epic results)"}</h2>
         <p className="text-gray-300 leading-relaxed mb-4">{"The table below shows the shape of a one-page dashboard. All numbers are made up for illustration."}</p>
         <div className="bg-gradient-to-br from-cyan-500/5 to-cyan-600/5 backdrop-blur-xl rounded-xl p-6 border border-cyan-500/20 overflow-x-auto mb-4"><table className="w-full text-left"><thead><tr className="border-b border-cyan-500/20"><th className="pb-3 pr-4 text-white font-semibold">{"Section"}</th><th className="pb-3 pr-4 text-white font-semibold">{"Metric"}</th><th className="pb-3 pr-4 text-white font-semibold">{"This week"}</th><th className="pb-3 pr-4 text-white font-semibold">{"Last week"}</th><th className="pb-3 pr-4 text-white font-semibold">{"Same week last year"}</th><th className="pb-3 pr-4 text-white font-semibold">{"Target"}</th><th className="pb-3 pr-4 text-white font-semibold">{"Status"}</th></tr></thead><tbody className="text-gray-300"><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Sales"}</td><td className="py-3 pr-4 align-top">{"Total sales"}</td><td className="py-3 pr-4 align-top">{"$84,000"}</td><td className="py-3 pr-4 align-top">{"$80,500"}</td><td className="py-3 pr-4 align-top">{"$66,000"}</td><td className="py-3 pr-4 align-top">{"$82,000"}</td><td className="py-3 pr-4 align-top">{"On track"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Sales"}</td><td className="py-3 pr-4 align-top">{"Units"}</td><td className="py-3 pr-4 align-top">{"2,950"}</td><td className="py-3 pr-4 align-top">{"2,860"}</td><td className="py-3 pr-4 align-top">{"2,400"}</td><td className="py-3 pr-4 align-top">{"2,900"}</td><td className="py-3 pr-4 align-top">{"On track"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Sales"}</td><td className="py-3 pr-4 align-top">{"Average selling price"}</td><td className="py-3 pr-4 align-top">{"$28.47"}</td><td className="py-3 pr-4 align-top">{"$28.15"}</td><td className="py-3 pr-4 align-top">{"$27.50"}</td><td className="py-3 pr-4 align-top">{"$28.28"}</td><td className="py-3 pr-4 align-top">{"On track"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Profit"}</td><td className="py-3 pr-4 align-top">{"Contribution margin $"}</td><td className="py-3 pr-4 align-top">{"$15,100"}</td><td className="py-3 pr-4 align-top">{"$15,800"}</td><td className="py-3 pr-4 align-top">{"$11,200"}</td><td className="py-3 pr-4 align-top">{"$16,000"}</td><td className="py-3 pr-4 align-top">{"Watch"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Profit"}</td><td className="py-3 pr-4 align-top">{"Contribution margin %"}</td><td className="py-3 pr-4 align-top">{"18.0%"}</td><td className="py-3 pr-4 align-top">{"19.6%"}</td><td className="py-3 pr-4 align-top">{"17.0%"}</td><td className="py-3 pr-4 align-top">{"19.5%"}</td><td className="py-3 pr-4 align-top">{"Watch"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Advertising"}</td><td className="py-3 pr-4 align-top">{"Ad spend"}</td><td className="py-3 pr-4 align-top">{"$10,900"}</td><td className="py-3 pr-4 align-top">{"$9,700"}</td><td className="py-3 pr-4 align-top">{"$8,600"}</td><td className="py-3 pr-4 align-top">{"$10,000"}</td><td className="py-3 pr-4 align-top">{"Watch"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Advertising"}</td><td className="py-3 pr-4 align-top">{"TACoS"}</td><td className="py-3 pr-4 align-top">{"13.0%"}</td><td className="py-3 pr-4 align-top">{"12.0%"}</td><td className="py-3 pr-4 align-top">{"13.0%"}</td><td className="py-3 pr-4 align-top">{"12.0%"}</td><td className="py-3 pr-4 align-top">{"Watch"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Advertising"}</td><td className="py-3 pr-4 align-top">{"Organic sales %"}</td><td className="py-3 pr-4 align-top">{"58%"}</td><td className="py-3 pr-4 align-top">{"61%"}</td><td className="py-3 pr-4 align-top">{"55%"}</td><td className="py-3 pr-4 align-top">{"60%"}</td><td className="py-3 pr-4 align-top">{"Watch"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Conversion"}</td><td className="py-3 pr-4 align-top">{"Conversion rate"}</td><td className="py-3 pr-4 align-top">{"11.2%"}</td><td className="py-3 pr-4 align-top">{"11.0%"}</td><td className="py-3 pr-4 align-top">{"10.1%"}</td><td className="py-3 pr-4 align-top">{"11.0%"}</td><td className="py-3 pr-4 align-top">{"On track"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Conversion"}</td><td className="py-3 pr-4 align-top">{"Buy Box %"}</td><td className="py-3 pr-4 align-top">{"97%"}</td><td className="py-3 pr-4 align-top">{"98%"}</td><td className="py-3 pr-4 align-top">{"91%"}</td><td className="py-3 pr-4 align-top">{"98%"}</td><td className="py-3 pr-4 align-top">{"On track"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Inventory"}</td><td className="py-3 pr-4 align-top">{"Weeks of cover"}</td><td className="py-3 pr-4 align-top">{"7.5"}</td><td className="py-3 pr-4 align-top">{"8.1"}</td><td className="py-3 pr-4 align-top">{"5.0"}</td><td className="py-3 pr-4 align-top">{"8 to 10"}</td><td className="py-3 pr-4 align-top">{"Watch"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Inventory"}</td><td className="py-3 pr-4 align-top">{"In-stock rate (SKUs)"}</td><td className="py-3 pr-4 align-top">{"96%"}</td><td className="py-3 pr-4 align-top">{"97%"}</td><td className="py-3 pr-4 align-top">{"88%"}</td><td className="py-3 pr-4 align-top">{"98%"}</td><td className="py-3 pr-4 align-top">{"Watch"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Inventory"}</td><td className="py-3 pr-4 align-top">{"SKUs below reorder point"}</td><td className="py-3 pr-4 align-top">{"3"}</td><td className="py-3 pr-4 align-top">{"1"}</td><td className="py-3 pr-4 align-top">{"n/a"}</td><td className="py-3 pr-4 align-top">{"0"}</td><td className="py-3 pr-4 align-top">{"Act"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Protection"}</td><td className="py-3 pr-4 align-top">{"Unauthorized sellers found / removed"}</td><td className="py-3 pr-4 align-top">{"4 / 3"}</td><td className="py-3 pr-4 align-top">{"2 / 2"}</td><td className="py-3 pr-4 align-top">{"n/a"}</td><td className="py-3 pr-4 align-top">{"All removed"}</td><td className="py-3 pr-4 align-top">{"Watch"}</td></tr><tr className="border-b border-white/5"><td className="py-3 pr-4 align-top">{"Protection"}</td><td className="py-3 pr-4 align-top">{"Open MAP violations"}</td><td className="py-3 pr-4 align-top">{"1"}</td><td className="py-3 pr-4 align-top">{"0"}</td><td className="py-3 pr-4 align-top">{"n/a"}</td><td className="py-3 pr-4 align-top">{"0"}</td><td className="py-3 pr-4 align-top">{"Act"}</td></tr></tbody></table></div>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Below the table, a short notes block explains the story in plain words. For this illustrative week: sales grew, but ad spend grew faster, so TACoS rose a point and contribution margin fell. Organic share dipped at the same time, which suggests a rank or Buy Box issue on a top SKU. Three SKUs are below their reorder points and need purchase orders."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Below the table, a short notes block explains the story in plain words. For this illustrative week: sales grew, but ad spend grew faster, so TACoS rose a point and contribution margin fell. Organic share dipped at the same time, which suggests a rank or Buy Box issue on a top SKU. Three SKUs are below their "}<Link href="/knowledge-base/reorder-point-logic-explained" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"reorder points"}</Link>{" and need purchase orders."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How should each metric be shown?"}</h2>
@@ -2708,7 +2709,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Why weekly and not daily?"}</h3>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Daily numbers are noisy and invite overreaction. Weekly is fast enough to catch problems and slow enough to show real trends. Daily alerts can still cover stockouts and Buy Box loss."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Daily numbers are noisy and invite overreaction. Weekly is fast enough to catch problems and slow enough to show real trends. Daily alerts can still cover stockouts and "}<Link href="/knowledge-base/amazon-marketplace-glossary" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"Buy Box"}</Link>{" loss."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"What is the single most important metric?"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"Contribution margin, because it shows whether sales growth is profitable after ads, fees, fulfillment and returns."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"Should the dashboard cover every marketplace?"}</h3>
@@ -2721,7 +2722,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'weekly-operating-cadence-doc': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"A weekly operating cadence is a fixed schedule that tells a marketplace team what to review, decide and fix on each day of the week. It turns the work of running Amazon, Walmart and other marketplaces (listings, ads, inventory, pricing and brand protection) into a repeatable loop, so problems are caught within days instead of at month end."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"A weekly "}<Link href="/knowledge-base/marketplace-operating-cadence" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"operating cadence"}</Link>{" is a fixed schedule that tells a marketplace team what to review, decide and fix on each day of the week. It turns the work of running Amazon, Walmart and other marketplaces (listings, ads, inventory, pricing and brand protection) into a repeatable loop, so problems are caught within days instead of at month end."}</p>
         <p className="text-gray-300 leading-relaxed mb-4">{"The template below is built for a small team or a single operator. Adjust the days to match when your marketplace reports refresh."}</p>
       </section>
       <section>
@@ -2761,7 +2762,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h3 className="text-xl font-semibold mb-3 text-white">{"Does this work for Walmart, eBay and TikTok Shop?"}</h3>
         <p className="text-gray-300 leading-relaxed mb-4">{"Yes. Keep the same days and add a row per marketplace to the dashboard and action log."}</p>
         <h3 className="text-xl font-semibold mb-3 text-white">{"What should trigger action between weekly reviews?"}</h3>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Stockouts, Buy Box loss on top SKUs, suppressed listings and account health warnings. Those go through the daily alert check."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Stockouts, "}<Link href="/knowledge-base/amazon-marketplace-glossary" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"Buy Box"}</Link>{" loss on top SKUs, suppressed listings and account health warnings. Those go through the daily alert check."}</p>
       </section>
     </div>
   ),

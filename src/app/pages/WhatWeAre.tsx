@@ -2,17 +2,29 @@
 
 import Link from 'next/link';
 import { CheckCircle2, X } from 'lucide-react';
-import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
+import { StructuredData, getBreadcrumbSchema, getWebPageSchema, serviceSchemas } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { siteConfig } from '@/site/site-config';
+
+const COMPARE_MODELS = ['Epic', 'Marketplace accelerator', 'Marketplace agency', 'Agency + fulfillment', 'Wholesale distributor'];
+// Same rows as the comparison table, for the phone layout.
+const COMPARE_ROWS: Array<[string, boolean[]]> = [
+  ['Buys inventory upfront', [true, true, false, false, true]],
+  ['Sells on their own account', [true, true, false, false, true]],
+  ['"No fees / no commissions"', [true, false, false, false, false]],
+  ['Advertising management', [true, true, true, true, false]],
+  ['Fulfillment / warehousing', [true, true, false, true, true]],
+  ['Brand protection', [true, false, true, false, false]],
+  ['Global operations', [true, true, false, false, true]],
+];
 
 export function WhatWeAre() {
   return (
     <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
       <SEO 
         title="Our Model - How Epic's Wholesale Model Works"
-        description="We buy inventory upfront at wholesale, operate marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect brand equity. Brands are paid on agreed terms and skip the day-to-day marketplace work."
+        description="How Epic Global buys inventory upfront, runs marketplace storefronts end to end, pays for ads, fees and fulfillment, and protects brand equity."
         canonicalUrl={`${siteConfig.url}/our-model`}
         keywords="wholesale trade partner, marketplace operator business model, inventory purchase model, wholesale inventory purchase"
       />
@@ -20,9 +32,12 @@ export function WhatWeAre() {
         data={getWebPageSchema({
           name: 'Our Model',
           url: `${siteConfig.url}/our-model`,
-          description: 'Learn what Epic Global Inc. does: a marketplace operator that buys inventory, operates channels, funds advertising, and protects brand equity.',
+          description: 'How Epic Global buys inventory upfront, runs marketplace storefronts end to end, pays for ads, fees and fulfillment, and protects brand equity.',
         })}
       />
+      {serviceSchemas.map((s) => (
+        <StructuredData key={s.name} data={s} />
+      ))}
       <StructuredData
         data={getBreadcrumbSchema([
           { name: 'Home', url: `${siteConfig.url}/` },
@@ -187,8 +202,23 @@ export function WhatWeAre() {
               How Epic Global compares to other marketplace operators and accelerators
             </p>
             
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse min-w-[800px]">
+            <div className="md:hidden space-y-3">
+              {COMPARE_ROWS.map(([label, values]) => (
+                <div key={label} className="rounded-xl border border-white/10 dark:border-white/10 soft-dark:border-gray-200 light:border-gray-200 orange:border-gray-300 leaf:border-gray-200 water:border-gray-200 p-4">
+                  <p className="font-semibold mb-2 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">{label}</p>
+                  <ul className="grid grid-cols-1 gap-1 text-sm">
+                    {COMPARE_MODELS.map((model, i) => (
+                      <li key={model} className="flex justify-between gap-3">
+                        <span className={`${i === 0 ? 'font-semibold ' : ''}text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800`}>{model}</span>
+                        <span className={`font-semibold ${values[i] ? 'text-green-400 dark:text-green-400 soft-dark:text-green-700 light:text-green-700 orange:text-green-700 leaf:text-green-700 water:text-green-700' : 'text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-500 orange:text-red-500 leaf:text-red-500 water:text-red-500'}`}>{values[i] ? 'Yes' : 'No'}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full border-collapse min-w-[720px]">
                 <thead>
                   <tr className="border-b border-white/10 dark:border-white/10 soft-dark:border-gray-200 light:border-gray-200 orange:border-gray-300 leaf:border-gray-200 water:border-gray-200">
                     <th className="text-left py-4 px-3 text-xs font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-800 water:text-gray-900 uppercase tracking-wide">
