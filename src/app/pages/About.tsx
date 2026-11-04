@@ -171,7 +171,7 @@ export function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:from-gray-50 light:to-white orange:bg-transparent leaf:bg-transparent water:bg-transparent">
+      <section className="pt-16 pb-24 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:from-gray-50 light:to-white orange:bg-transparent leaf:bg-transparent water:bg-transparent">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
             See how we execute
@@ -182,7 +182,7 @@ export function About() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/case-studies"
-              className="px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-cyan-600 dark:from-cyan-500 dark:to-cyan-600 soft-dark:from-lime-600 soft-dark:to-lime-700 light:from-cyan-500 light:to-cyan-600 orange:from-orange-700 orange:to-orange-800 text-white soft-dark:text-black rounded-lg hover:from-cyan-600 hover:to-cyan-700 dark:hover:from-cyan-600 dark:hover:to-cyan-700 soft-dark:hover:from-lime-700 soft-dark:hover:to-lime-800 light:hover:from-cyan-600 light:hover:to-cyan-700 orange:hover:from-orange-700 orange:hover:to-orange-800 transition-all shadow-lg shadow-cyan-500/25 soft-dark:shadow-lime-500/25 orange:shadow-orange-500/25 text-base font-medium"
+              className="px-8 py-3.5 rounded-lg bg-[var(--pop)] text-[var(--on-pop)] font-semibold hover:bg-[var(--pop-hover)] transition-colors shadow-lg shadow-black/20 text-base"
             >
               View Case Studies
             </Link>
