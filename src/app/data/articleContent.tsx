@@ -25,24 +25,30 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
 
       <section>
-        <h2 className="text-3xl font-bold mb-4 text-white">How Epic Approaches It</h2>
+        <h2 className="text-3xl font-bold mb-4 text-white">How Epic Approaches It: Buy, Sell, Advertise, Protect</h2>
         <div className="space-y-4">
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10">
-            <h3 className="text-xl font-semibold mb-3 text-white">1. We Purchase Inventory</h3>
+            <h3 className="text-xl font-semibold mb-3 text-white">1. Buy</h3>
             <p className="text-gray-300">
-              We buy your inventory at wholesale pricing and take ownership. This means we have real skin in the game—our success is tied to retail performance, not billable hours.
+              We buy your inventory upfront at an agreed wholesale price and take ownership. This means we have real skin in the game: our success is tied to retail performance, not billable hours.
             </p>
           </div>
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10">
-            <h3 className="text-xl font-semibold mb-3 text-white">2. We Operate Retail Sales</h3>
+            <h3 className="text-xl font-semibold mb-3 text-white">2. Sell</h3>
             <p className="text-gray-300">
-              We manage day-to-day execution: listings, advertising, pricing, inventory allocation, compliance, and brand protection across approved marketplaces.
+              We run the storefronts day to day across approved marketplaces: listings, pricing, inventory allocation and compliance.
             </p>
           </div>
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10">
-            <h3 className="text-xl font-semibold mb-3 text-white">3. We Cover Operating Expenses</h3>
+            <h3 className="text-xl font-semibold mb-3 text-white">3. Advertise</h3>
             <p className="text-gray-300">
-              Advertising spend, marketplace fees, and fulfillment costs are covered by us. You get predictable wholesale revenue; we take on retail execution risk.
+              We fund and manage the advertising, and pay the marketplace fees and fulfillment. You get predictable wholesale revenue; we take on the retail execution risk.
+            </p>
+          </div>
+          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10">
+            <h3 className="text-xl font-semibold mb-3 text-white">4. Protect</h3>
+            <p className="text-gray-300">
+              We protect the brand on every marketplace we operate: Brand Registry authorization, unauthorized-seller removal, MAP enforcement, and Buy Box and catalog monitoring.
             </p>
           </div>
         </div>
