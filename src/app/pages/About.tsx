@@ -16,7 +16,7 @@ import { siteConfig } from '@/site/site-config';
  * About page as one scroll story in five chapters. Each chapter opens with a numbered marker whose rule draws in
  * as it arrives, and a chapter rail on the right (wide screens) shows where you are. On desktop the hero and the
  * "not an agency" chapter pin while their beats play; the founder chapter keeps the portrait in place while the
- * bio scrolls past it. Phones and reduced-motion visitors get the same text as a calm static page.
+ * bio scrolls past it. Phones get the same text as a calm static page.
  */
 
 const HEAD = 'text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900';

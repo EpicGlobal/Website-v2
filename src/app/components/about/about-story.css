@@ -1,6 +1,6 @@
 /*
  * About page scroll story: the native CSS half (scroll-driven animations, no JavaScript).
- * Desktop only (900px+), only for visitors who haven't asked for reduced motion, and only in browsers that
+ * Desktop only (900px+, any OS animation setting, per the house motion rule), and only in browsers that
  * support scroll timelines. Everywhere else every rule here is skipped and the page is the static layout.
  * The GSAP half lives in useAboutScrollStory.ts and adds [data-story="on"] to the page root while it runs.
  */
@@ -27,7 +27,7 @@
   display: none;
 }
 
-@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 900px) {
   @supports (animation-timeline: view()) {
     /* Chapter rail: the line fills with your progress through the whole page. */
     [data-story='rail-fill'] {

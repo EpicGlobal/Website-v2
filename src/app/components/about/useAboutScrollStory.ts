@@ -9,13 +9,13 @@
  * - GSAP ScrollTrigger (this file): the two pinned chapters (hero, "not an agency"), the scrubbed quote,
  *   the bio step highlight and the chapter rail's active state.
  *
- * GSAP is loaded with a dynamic import only on screens 900px+ wide whose visitors haven't asked for reduced
- * motion, so phones never download it. All text stays in the server HTML; without this hook the page is the
+ * GSAP is loaded with a dynamic import only on screens 900px+ wide (any OS animation setting, per the house
+ * motion rule), so phones never download it. All text stays in the server HTML; without this hook the page is the
  * plain static layout.
  */
 import { useEffect, type RefObject } from 'react';
 
-const STORY_QUERY = '(min-width: 900px) and (prefers-reduced-motion: no-preference)';
+const STORY_QUERY = '(min-width: 900px)';
 
 type Gsap = typeof import('gsap').gsap;
 type ScrollTriggerType = typeof import('gsap/ScrollTrigger').ScrollTrigger;
@@ -36,7 +36,7 @@ export function useAboutScrollStory(rootRef: RefObject<HTMLElement | null>) {
       if (cancelled) return;
       gsap.registerPlugin(ScrollTrigger);
       // matchMedia + scope: builds the story while the query matches, reverts every tween, pin and inline
-      // style when it stops matching (window narrowed, reduced motion switched on) or on unmount.
+      // style when it stops matching (window narrowed, window resized) or on unmount.
       const mm = gsap.matchMedia(root);
       mm.add(STORY_QUERY, () => {
         root.dataset.story = 'on';
