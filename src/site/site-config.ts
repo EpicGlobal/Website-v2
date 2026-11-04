@@ -92,6 +92,8 @@ export function createPageMetadata({
     ...(noindex ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: url,
+      // Knowledge Base feed, so feed readers and AI tools can find new articles from any page.
+      types: { 'application/rss+xml': [{ url: '/knowledge-base/rss.xml', title: `${siteConfig.name} Knowledge Base` }] },
     },
     openGraph: {
       type,
