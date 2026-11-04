@@ -315,7 +315,7 @@ export function Globe({ colorOverride, darkerParticles }: { colorOverride?: { r:
   return (
     <canvas
       ref={canvasRef}
-      aria-label="Interactive globe"
+      aria-hidden="true"
       data-globe-canvas="true"
       className="w-full h-full cursor-grab active:cursor-grabbing"
       style={{ width: '100%', height: '100%', cursor: 'grab' }}

@@ -168,7 +168,7 @@ export function Navbar() {
             />
             <Image
               src={getLogoForTheme()}
-              alt="Epic"
+              alt=""
               sizes="128px"
               priority
               className="h-32 w-auto transition-transform group-hover:scale-105"

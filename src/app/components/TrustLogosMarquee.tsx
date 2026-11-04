@@ -208,7 +208,7 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
         <div className="marquee__group" aria-hidden="true">
           {brands.map((brand, index) => (
             <div key={`g2-${index}`} className="logo">
-              <Image src={brand.logo} alt={brand.name} sizes="192px" className="h-auto w-auto max-h-20 max-w-full object-contain mix-blend-multiply" />
+              <Image src={brand.logo} alt="" sizes="192px" className="h-auto w-auto max-h-20 max-w-full object-contain mix-blend-multiply" />
             </div>
           ))}
         </div>

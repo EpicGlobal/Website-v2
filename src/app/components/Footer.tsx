@@ -33,7 +33,7 @@ export function Footer() {
                 />
                 <Image
                   src={getLogoForTheme()}
-                  alt="Epic"
+                  alt=""
                   sizes="96px"
                   className="h-24 w-auto transition-transform group-hover:scale-105"
                 />
