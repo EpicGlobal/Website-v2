@@ -65,6 +65,7 @@ export function createPageMetadata({
   type = 'website',
   noindex = false,
   image,
+  articleDate,
 }: {
   title: string;
   description: string;
@@ -75,6 +76,8 @@ export function createPageMetadata({
   noindex?: boolean;
   /** Page-specific link-preview image (for example a Knowledge Base article card). */
   image?: { url: string; alt: string };
+  /** ISO date (YYYY-MM-DD) for article:published_time and article:modified_time. */
+  articleDate?: string;
 }): Metadata {
   const url = new URL(path, siteConfig.url).toString();
   const hasSiteName = title.includes(siteConfig.name);
@@ -97,6 +100,7 @@ export function createPageMetadata({
       description,
       siteName: siteConfig.name,
       locale: 'en_US',
+      ...(type === 'article' && articleDate ? { publishedTime: articleDate, modifiedTime: articleDate } : {}),
       images: [
         {
           url: image?.url ?? siteConfig.ogImage,
