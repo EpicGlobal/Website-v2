@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, Download, Share2 } from 'lucide-react';
 import { isoDate, knowledgeArticles, type KnowledgeArticle as KnowledgeArticleType } from '@/app/data/knowledgeArticles';
 import { StructuredData, getBreadcrumbSchema, organizationRef } from '@/app/components/StructuredData';
+import { ReadingProgressRing } from '@/app/components/scroll/ScrollEffects';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
@@ -78,6 +79,7 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
         }}
       />
       <StructuredData data={articleSchema} />
+      <ReadingProgressRing />
       <StructuredData
         data={getBreadcrumbSchema([
           { name: 'Home', url: `${siteConfig.url}/` },

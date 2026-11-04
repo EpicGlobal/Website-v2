@@ -574,3 +574,11 @@
     margin-bottom: 1rem !important;
   }
 }
+/* Themed scrollbar: the page scrollbar takes the theme's pop color (part of the scroll effects; undo with them). */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--pop) transparent;
+}
+html::-webkit-scrollbar { width: 10px; }
+html::-webkit-scrollbar-track { background: transparent; }
+html::-webkit-scrollbar-thumb { background: var(--pop); border-radius: 9999px; border: 2px solid transparent; background-clip: padding-box; }

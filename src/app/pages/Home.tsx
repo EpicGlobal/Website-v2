@@ -9,6 +9,7 @@ import { ParticlesBackground } from '@/app/components/ParticlesBackground';
 import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, serviceSchemas, websiteSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
+import { HorizontalGallery, ScrollHighlightSteps, WordReveal } from '@/app/components/scroll/ScrollEffects';
 import { motion } from 'framer-motion';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { siteConfig } from '@/site/site-config';
@@ -345,7 +346,10 @@ export function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-transparent pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
+          <HorizontalGallery
+            staticClassName="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+            header={
+          <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 water:text-[#101828]">
               Full-stack Amazon and Walmart marketplace operations
             </h2>
@@ -354,7 +358,8 @@ export function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            }
+          >
             {capabilities.map((capability, index) => {
               const Icon = capability.icon;
               return (
@@ -382,27 +387,32 @@ export function Home() {
                 </motion.div>
               );
             })}
-          </div>
+          </HorizontalGallery>
         </div>
       </section>
 
       {/* How Our Model Works - REQUIRED HIGH ON PAGE */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
+          <ScrollHighlightSteps
+            header={
+              <>
           <div className="text-center mb-4">
             <span className="inline-block px-4 py-1.5 bg-lime-600/20 text-lime-800 rounded-full text-xs font-semibold tracking-wide mb-6 dark:bg-cyan-500/20 dark:text-cyan-400 soft-dark:bg-cyan-500/20 soft-dark:text-cyan-600 light:bg-cyan-100 light:text-cyan-700 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:text-white orange:shadow-lg orange:shadow-orange-500/20 water:bg-lime-600/20 water:text-lime-900 leaf:bg-gradient-to-r leaf:from-sky-700 leaf:to-sky-800 leaf:text-white leaf:shadow-lg leaf:shadow-sky-500/20">
               THE BUY-SELL-ADVERTISE-PROTECT MODEL
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-center bg-gradient-to-b from-gray-900 to-gray-700 bg-clip-text text-transparent leading-tight pb-2 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-700 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828]">
-            We own the inventory.<br />You keep the brand.
-          </h2>
-          <p className="text-lg text-gray-800 text-center max-w-3xl mx-auto mb-16 leading-relaxed dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
+              <WordReveal
+                lines={['We own the inventory.', 'You keep the brand.']}
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight pb-2 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]"
+              />
+          <p className="text-lg text-gray-800 text-center max-w-3xl mx-auto mb-10 leading-relaxed dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
             Epic operates through the Buy-Sell-Advertise-Protect model, which governs both U.S. and global execution. We assume inventory ownership, operate storefronts directly, fund advertising, and protect brand equity, all under one unified structure.
           </p>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {[
+              </>
+            }
+            cards={
+              [
               { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'Epic buys your inventory upfront at an agreed wholesale price, turning it into cash for the brand. We own the inventory and take on the retail execution risk.', tagline: 'Cash now. We own the stock.' },
               { icon: Globe2, num: '02', title: 'Sell', desc: 'Epic operates listings and storefronts across U.S. and international marketplaces using a unified operational framework.', tagline: 'One system. Every market.' },
               { icon: BarChart3, num: '03', title: 'Advertise', desc: 'Epic funds and manages all advertising in the U.S. and abroad. Campaigns are optimized for efficiency and profitability, not budget utilization.', tagline: 'We fund. We optimize.' },
@@ -437,14 +447,16 @@ export function Home() {
                   </div>
                 </motion.div>
               );
-            })}
-          </div>
-
-          {siteConfig.bookACallEnabled ? (
+            })
+            }
+            footer={
+              siteConfig.bookACallEnabled ? (
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <CtaButton variant="primary" size="md" location="Model Section" />
             </div>
-          ) : null}
+          ) : null
+            }
+          />
         </div>
       </section>
 
