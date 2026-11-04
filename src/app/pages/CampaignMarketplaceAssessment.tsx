@@ -68,7 +68,7 @@ export function CampaignMarketplaceAssessment() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#assessment-form"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-orange-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-orange-600/20 transition-colors hover:bg-orange-700"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-orange-700 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-orange-700/20 transition-colors hover:bg-orange-800"
               >
                 Request an Assessment
                 <ArrowRight className="h-5 w-5" />

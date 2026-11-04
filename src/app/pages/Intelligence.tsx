@@ -99,7 +99,7 @@ export function Intelligence() {
             initial={{ y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-block px-4 py-2 bg-cyan-500/20 dark:bg-cyan-500/20 soft-dark:bg-lime-600/20 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:shadow-lg water:shadow-emerald-500/20 leaf:bg-gradient-to-r leaf:from-sky-600 leaf:to-sky-700 leaf:shadow-lg leaf:shadow-sky-500/20 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:shadow-lg orange:shadow-orange-500/20 dark:text-cyan-300 soft-dark:text-lime-800 water:text-white leaf:text-white orange:text-white rounded-full text-sm font-semibold tracking-wide mb-6"
+            className="inline-block px-4 py-2 bg-cyan-500/20 dark:bg-cyan-500/20 soft-dark:bg-lime-600/20 water:bg-gradient-to-r water:from-emerald-700 water:to-emerald-800 water:shadow-lg water:shadow-emerald-500/20 leaf:bg-gradient-to-r leaf:from-sky-700 leaf:to-sky-800 leaf:shadow-lg leaf:shadow-sky-500/20 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:shadow-lg orange:shadow-orange-500/20 dark:text-cyan-300 soft-dark:text-lime-800 water:text-white leaf:text-white orange:text-white rounded-full text-sm font-semibold tracking-wide mb-6"
           >
             THE EPIC INTELLIGENCE LAYER
           </motion.div>
@@ -140,18 +140,18 @@ export function Intelligence() {
                   className="bg-gradient-to-br from-white/[0.08] to-white/[0.02] dark:from-white/[0.08] dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 water:from-white/70 water:to-white/60 leaf:from-white/70 leaf:to-white/60 orange:from-white/70 orange:to-white/60 backdrop-blur-xl rounded-2xl p-6 border border-white/10 dark:border-white/10 soft-dark:border-white/20 water:border-white/30 leaf:border-white/30 orange:border-white/30"
                 >
                   <div className="w-10 h-10 bg-gradient-to-br from-sky-600/20 to-sky-700/5 soft-dark:from-lime-600/20 soft-dark:to-lime-700/5 water:from-emerald-600/20 water:to-emerald-700/5 leaf:from-sky-600/20 leaf:to-sky-700/5 orange:from-orange-600/30 orange:to-orange-700/10 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5 text-sky-700 dark:text-sky-700 soft-dark:text-lime-700 water:text-emerald-700 leaf:text-sky-700 orange:text-orange-700" />
+                    <Icon className="w-5 h-5 text-sky-700 dark:text-sky-700 soft-dark:text-lime-700 water:text-emerald-800 leaf:text-sky-700 orange:text-orange-700" />
                   </div>
                   <h3 className="text-sm font-semibold mb-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-600 water:text-gray-600 leaf:text-gray-600 orange:text-gray-600 uppercase tracking-wide">
                     {item.aspect}
                   </h3>
                   <div className="space-y-3">
                     <div>
-                      <p className="text-xs text-gray-500 dark:text-gray-500 soft-dark:text-gray-500 water:text-gray-500 leaf:text-gray-500 orange:text-gray-500 mb-1">Traditional:</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 soft-dark:text-gray-600 water:text-gray-700 leaf:text-gray-700 orange:text-gray-700 mb-1">Traditional:</p>
                       <p className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 water:text-[#101828] leaf:text-gray-700 orange:text-gray-700">{item.traditional}</p>
                     </div>
                     <div className="border-t border-white/10 soft-dark:border-gray-300 water:border-gray-300 leaf:border-gray-300 orange:border-gray-300 pt-3">
-                      <p className="text-xs text-cyan-400/70 dark:text-cyan-400/70 soft-dark:text-lime-700 water:text-[#007595] leaf:text-emerald-700 orange:text-orange-700 mb-1">Epic:</p>
+                      <p className="text-xs text-cyan-400/70 dark:text-cyan-400/70 soft-dark:text-lime-700 water:text-[#00546b] leaf:text-sky-800 orange:text-orange-800 mb-1">Epic:</p>
                       <p className="text-sm text-white dark:text-white soft-dark:text-gray-900 water:text-[#101828] leaf:text-gray-900 orange:text-[#101828] font-medium">{item.epic}</p>
                     </div>
                   </div>
@@ -187,7 +187,7 @@ export function Intelligence() {
                   className="group bg-gradient-to-br from-white/[0.08] to-white/[0.02] dark:from-white/[0.08] dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 water:from-white/70 water:to-white/60 leaf:from-white/70 leaf:to-white/60 orange:from-white/70 orange:to-white/60 backdrop-blur-xl rounded-2xl p-8 border border-white/10 dark:border-white/10 soft-dark:border-white/20 water:border-white/30 leaf:border-white/30 orange:border-white/30 hover:border-cyan-500/50 soft-dark:hover:border-lime-600/40 water:hover:border-emerald-600/40 leaf:hover:border-sky-600/40 orange:hover:border-orange-600/50 transition-all duration-500"
                 >
                   <div className="w-14 h-14 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 soft-dark:from-lime-600/20 soft-dark:to-lime-700/5 water:from-emerald-600/20 water:to-emerald-700/5 leaf:from-sky-600/20 leaf:to-sky-700/5 orange:from-orange-600/30 orange:to-orange-700/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-cyan-500/20 soft-dark:shadow-lime-500/10 water:shadow-emerald-500/20 leaf:shadow-sky-500/20 orange:shadow-orange-500/20">
-                    <Icon className="w-7 h-7 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 water:text-emerald-700 leaf:text-emerald-700 orange:text-orange-700" />
+                    <Icon className="w-7 h-7 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 water:text-emerald-800 leaf:text-emerald-700 orange:text-orange-700" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3 text-white dark:text-white soft-dark:text-gray-900 water:text-gray-900 leaf:text-gray-900 orange:text-[#101828]">
                     {pillar.title}
@@ -198,7 +198,7 @@ export function Intelligence() {
                   <ul className="space-y-2 mb-6">
                     {pillar.details.map((detail, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 water:text-[#101828] leaf:text-gray-700 orange:text-gray-700">
-                        <ArrowRight className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 water:text-emerald-700 leaf:text-emerald-700 orange:text-orange-700 mt-0.5 flex-shrink-0" />
+                        <ArrowRight className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 water:text-emerald-800 leaf:text-emerald-700 orange:text-orange-700 mt-0.5 flex-shrink-0" />
                         {detail}
                       </li>
                     ))}
@@ -221,13 +221,13 @@ export function Intelligence() {
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 water:from-white/70 water:to-white/60 leaf:from-white/70 leaf:to-white/60 orange:from-white/70 orange:to-white/60 backdrop-blur-xl rounded-2xl p-8 sm:p-12 border border-white/10 dark:border-white/10 soft-dark:border-white/20 water:border-white/30 leaf:border-white/30 orange:border-white/30">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 soft-dark:from-lime-600/20 soft-dark:to-lime-700/5 water:from-emerald-600/20 water:to-emerald-700/5 leaf:from-sky-600/20 leaf:to-sky-700/5 orange:from-orange-600/30 orange:to-orange-700/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Brain className="w-6 h-6 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 water:text-emerald-700 leaf:text-sky-700 orange:text-orange-700" />
+                <Brain className="w-6 h-6 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 water:text-emerald-800 leaf:text-sky-700 orange:text-orange-700" />
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-white dark:text-white soft-dark:text-gray-900 water:text-gray-900 leaf:text-gray-900 orange:text-[#101828] mb-2">
                   The Epic AI Point of View
                 </h3>
-                <p className="text-sm text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 water:text-emerald-700 leaf:text-sky-700 orange:text-orange-700">
+                <p className="text-sm text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 water:text-emerald-800 leaf:text-sky-700 orange:text-orange-700">
                   Our thesis on the future of marketplace commerce
                 </p>
               </div>
@@ -298,7 +298,7 @@ export function Intelligence() {
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 soft-dark:from-lime-600/20 soft-dark:to-lime-700/5 water:from-emerald-600/20 water:to-emerald-700/5 leaf:from-sky-600/20 leaf:to-sky-700/5 orange:from-orange-600/30 orange:to-orange-700/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 water:text-emerald-700 leaf:text-sky-700 orange:text-orange-700" />
+                      <Icon className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 water:text-emerald-800 leaf:text-sky-700 orange:text-orange-700" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold mb-2 text-white dark:text-white soft-dark:text-gray-900 water:text-gray-900 leaf:text-gray-900 orange:text-[#101828]">

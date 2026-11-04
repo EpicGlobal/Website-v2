@@ -594,8 +594,8 @@ export function GlobalReachMap() {
   return (
     <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/20 leaf:border-white/20 water:border-white/30">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-[rgb(0,0,0)] dark:text-white water:text-[#101828]">Global Marketplace Reach</h2>
-        <p className="text-[rgb(54,65,83)] dark:text-gray-400 soft-dark:text-[#101828] light:text-[#101828] orange:text-[#101828] water:text-gray-700">Hover over countries to see available marketplaces</p>
+        <h2 className="text-3xl font-bold text-[rgb(0,0,0)] dark:text-white water:text-[#101828] leaf:text-[#101828]">Global Marketplace Reach</h2>
+        <p className="text-[rgb(54,65,83)] dark:text-gray-400 soft-dark:text-[#101828] light:text-[#101828] orange:text-[#101828] water:text-gray-700 leaf:text-gray-700">Hover over countries to see available marketplaces</p>
       </div>
 
       {/* Map Container */}
@@ -881,22 +881,22 @@ export function GlobalReachMap() {
           <motion.div
             initial={{ y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute top-4 left-4 z-50 bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-slate-900/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-cyan-500/30 water:border-emerald-600/30 rounded-lg p-4 shadow-xl shadow-cyan-500/20 soft-dark:shadow-lime-500/20 water:shadow-emerald-500/20"
+            className="absolute top-4 left-4 z-50 bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-slate-900/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-cyan-500/30 water:border-emerald-600/30 rounded-lg p-4 shadow-xl shadow-cyan-500/20 soft-dark:shadow-lime-500/20 water:shadow-emerald-500/20 leaf:bg-white/95 leaf:border-sky-600/30"
           >
             {countryData
               .filter((c) => c.code === hoveredCountry)
               .map((country) => (
                 <div key={country.code}>
-                  <h3 className="text-lg font-bold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-white water:text-[#101828] mb-1">{country.country}</h3>
-                  <p className="text-xs text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-cyan-400 water:text-emerald-700 mb-3">{country.region}</p>
+                  <h3 className="text-lg font-bold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-white water:text-[#101828] mb-1 leaf:text-[#101828]">{country.country}</h3>
+                  <p className="text-xs text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-cyan-400 water:text-emerald-800 mb-3 leaf:text-sky-700">{country.region}</p>
                   <div className="space-y-1">
-                    <p className="text-xs text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-400 water:text-[#101828] font-semibold mb-2">Available Marketplaces:</p>
+                    <p className="text-xs text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-400 water:text-[#101828] font-semibold mb-2 leaf:text-[#101828]">Available Marketplaces:</p>
                     {country.marketplaces.map((marketplace) => (
                       <div
                         key={marketplace}
-                        className="flex items-center gap-2 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-gray-300 water:text-[#101828]"
+                        className="flex items-center gap-2 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-gray-300 water:text-[#101828] leaf:text-[#101828]"
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 dark:bg-cyan-400 soft-dark:bg-lime-600 light:bg-cyan-600 orange:bg-cyan-400 water:bg-emerald-600" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 dark:bg-cyan-400 soft-dark:bg-lime-600 light:bg-cyan-600 orange:bg-cyan-400 water:bg-emerald-600 leaf:bg-sky-600" />
                         {marketplace}
                       </div>
                     ))}
@@ -912,28 +912,28 @@ export function GlobalReachMap() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={handleZoomIn}
-            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors"
+            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors leaf:bg-white/95 leaf:border-sky-600/30 leaf:hover:bg-sky-600/10"
             title="Zoom In"
           >
-            <ZoomIn className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700" />
+            <ZoomIn className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700" />
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={handleZoomOut}
-            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors"
+            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors leaf:bg-white/95 leaf:border-sky-600/30 leaf:hover:bg-sky-600/10"
             title="Zoom Out"
           >
-            <ZoomOut className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700" />
+            <ZoomOut className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700" />
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={handleMaximize}
-            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors"
+            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors leaf:bg-white/95 leaf:border-sky-600/30 leaf:hover:bg-sky-600/10"
             title="Reset View"
           >
-            <Maximize2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700" />
+            <Maximize2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700" />
           </motion.button>
         </div>
       </div>
@@ -941,30 +941,30 @@ export function GlobalReachMap() {
       {/* Legend */}
       <div className="mt-6 flex items-center justify-center gap-8 text-sm">
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded-full bg-cyan-500/40 dark:bg-cyan-500/40 soft-dark:bg-lime-700/60 light:bg-cyan-500/40 orange:bg-orange-600/40 water:bg-emerald-500/60 border border-cyan-500 dark:border-cyan-500 soft-dark:border-lime-800 light:border-cyan-500 orange:border-orange-600 water:border-emerald-600" />
-          <span className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-900 light:text-gray-700 orange:text-[#101828] water:text-[#101828]">Active Markets</span>
+          <div className="w-4 h-4 rounded-full bg-cyan-500/40 dark:bg-cyan-500/40 soft-dark:bg-lime-700/60 light:bg-cyan-500/40 orange:bg-orange-600/40 water:bg-emerald-500/60 border border-cyan-500 dark:border-cyan-500 soft-dark:border-lime-800 light:border-cyan-500 orange:border-orange-600 water:border-emerald-600 leaf:bg-sky-500/60 leaf:border-sky-600" />
+          <span className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-900 light:text-gray-700 orange:text-[#101828] water:text-[#101828] leaf:text-[#101828]">Active Markets</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-cyan-400 dark:bg-cyan-400 soft-dark:bg-lime-900 light:bg-cyan-600 orange:bg-orange-600 water:bg-emerald-600" />
-          <span className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-900 light:text-gray-700 orange:text-[#101828] water:text-[#101828]">Market Locations</span>
+          <div className="w-2 h-2 rounded-full bg-cyan-400 dark:bg-cyan-400 soft-dark:bg-lime-900 light:bg-cyan-600 orange:bg-orange-600 water:bg-emerald-600 leaf:bg-sky-600" />
+          <span className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-900 light:text-gray-700 orange:text-[#101828] water:text-[#101828] leaf:text-[#101828]">Market Locations</span>
         </div>
       </div>
 
       {/* Stats */}
       <div className="mt-8 grid grid-cols-3 gap-4">
-        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center">
-          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700">40</div>
-          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1">Countries</div>
+        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center leaf:bg-white/40">
+          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">40</div>
+          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Countries</div>
         </div>
-        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center">
-          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700">
+        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center leaf:bg-white/40">
+          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">
             {new Set(countryData.flatMap((c) => c.marketplaces)).size}
           </div>
-          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1">Marketplaces</div>
+          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Marketplaces</div>
         </div>
-        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center">
-          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700">5</div>
-          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1">Regions</div>
+        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center leaf:bg-white/40">
+          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">5</div>
+          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Regions</div>
         </div>
       </div>
 
@@ -975,7 +975,7 @@ export function GlobalReachMap() {
           {Array.from(new Set(countryData.map((c) => c.region))).map((region) => (
             <div key={region}>
               <p className="text-sm font-semibold mb-1 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">{region}</p>
-              <ul className="text-sm space-y-0.5 text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828]">
+              <ul className="text-sm space-y-0.5 text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] leaf:text-[#101828]">
                 {countryData
                   .filter((c) => c.region === region)
                   .map((c) => (

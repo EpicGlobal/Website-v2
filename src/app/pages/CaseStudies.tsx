@@ -237,7 +237,7 @@ export function CaseStudies() {
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-block px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:shadow-lg leaf:bg-cyan-600/20 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:shadow-lg water:shadow-emerald-500/20 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-white leaf:text-cyan-900 water:text-white rounded-full text-sm font-semibold tracking-wide mb-6">
+          <div className="inline-block px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:shadow-lg leaf:bg-cyan-600/20 water:bg-gradient-to-r water:from-emerald-700 water:to-emerald-800 water:shadow-lg water:shadow-emerald-500/20 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-white leaf:text-cyan-900 water:text-white rounded-full text-sm font-semibold tracking-wide mb-6">
             REAL RESULTS
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-600 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828] bg-clip-text text-transparent leading-tight">
@@ -263,7 +263,7 @@ export function CaseStudies() {
                 {study.pillar.map((p) => (
                   <span
                     key={p}
-                    className="px-3 py-1 text-xs font-semibold rounded-full bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-orange-100 leaf:bg-cyan-600/20 water:bg-emerald-100 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-orange-700 leaf:text-cyan-900 water:text-emerald-700"
+                    className="px-3 py-1 text-xs font-semibold rounded-full bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-orange-100 leaf:bg-cyan-600/20 water:bg-emerald-100 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-orange-700 leaf:text-cyan-900 water:text-emerald-800"
                   >
                     {p}
                   </span>
@@ -280,7 +280,7 @@ export function CaseStudies() {
                     className="inline-flex p-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-orange-100 leaf:bg-cyan-600/20 water:bg-emerald-100 rounded-lg hover:opacity-80 transition-opacity"
                     title="Download Case Study"
                   >
-                    <Download className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-700 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
+                    <Download className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-700 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800" />
                   </GatedDownloadButton>
                 )}
               </h2>
@@ -304,7 +304,7 @@ export function CaseStudies() {
                       <div className="text-xs font-medium mb-1 text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-gray-700 leaf:text-gray-600 water:text-gray-600">
                         {metric.label}
                       </div>
-                      <div className="text-2xl font-bold mb-1 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700">
+                      <div className="text-2xl font-bold mb-1 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
                         {metric.value}
                       </div>
                       <div className="text-xs text-gray-500 dark:text-gray-500 soft-dark:text-gray-600 light:text-gray-500 orange:text-gray-600 leaf:text-gray-600 water:text-gray-600">
@@ -318,7 +318,7 @@ export function CaseStudies() {
               <div className="space-y-6">
                 {/* Goals */}
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700">
+                  <h3 className="text-lg font-semibold mb-2 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
                     Goals
                   </h3>
                   <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed">
@@ -328,7 +328,7 @@ export function CaseStudies() {
 
                 {/* Initial Challenges */}
                 <div>
-                  <h3 className="text-lg font-semibold mb-3 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700">
+                  <h3 className="text-lg font-semibold mb-3 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
                     Initial Challenges / Pain Points
                   </h3>
                   <div className="space-y-4">
@@ -347,7 +347,7 @@ export function CaseStudies() {
 
                 {/* Strategy & Execution */}
                 <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-cyan-50 light:bg-cyan-50 orange:bg-orange-50 leaf:bg-cyan-50 water:bg-emerald-50 rounded-lg p-6 border border-white/10 dark:border-white/10 soft-dark:border-cyan-200 light:border-cyan-200 orange:border-orange-200 leaf:border-cyan-200 water:border-emerald-200">
-                  <h3 className="text-lg font-semibold mb-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-cyan-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700">
+                  <h3 className="text-lg font-semibold mb-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-cyan-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
                     Epic Global's Strategy & Execution
                   </h3>
                   <div className="space-y-6">
@@ -391,9 +391,9 @@ export function CaseStudies() {
                                   <XAxis dataKey="product" />
                                   <YAxis label={{ value: 'FBA Fees ($)', angle: -90, position: 'insideLeft' }} />
                                   <Tooltip />
-                                  <Legend />
-                                  <Bar dataKey="before" fill="#94a3b8" name="Before" />
-                                  <Bar dataKey="after" fill="#22c55e" name="After" />
+                                  <Legend formatter={(value) => <span className="text-gray-200 dark:text-gray-200 soft-dark:text-gray-800 light:text-slate-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700">{value}</span>} />
+                                  <Bar dataKey="before" fill="#64748b" name="Before" />
+                                  <Bar dataKey="after" fill="#16a34a" name="After" />
                                 </BarChart>
                               </ResponsiveContainer>
                             ) : section.title === 'A/B Testing & Image Optimization' ? (
@@ -403,8 +403,8 @@ export function CaseStudies() {
                                   <XAxis dataKey="product" />
                                   <YAxis label={{ value: 'Conversion Rate (%)', angle: -90, position: 'insideLeft' }} />
                                   <Tooltip />
-                                  <Legend />
-                                  <Bar dataKey="control" fill="#94a3b8" name="Control" />
+                                  <Legend formatter={(value) => <span className="text-gray-200 dark:text-gray-200 soft-dark:text-gray-800 light:text-slate-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700">{value}</span>} />
+                                  <Bar dataKey="control" fill="#64748b" name="Control" />
                                   <Bar dataKey="variant" name="Variant">
                                     {section.chartData.map((entry: any, index: number) => (
                                       <Cell key={`cell-${index}`} fill={entry.success ? '#22c55e' : '#ef4444'} />
@@ -419,9 +419,9 @@ export function CaseStudies() {
                                   <XAxis type="number" label={{ value: 'Amount ($)', position: 'bottom' }} />
                                   <YAxis type="category" dataKey="product" width={150} />
                                   <Tooltip />
-                                  <Legend />
+                                  <Legend formatter={(value) => <span className="text-gray-200 dark:text-gray-200 soft-dark:text-gray-800 light:text-slate-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700">{value}</span>} />
                                   <Bar dataKey="model1P_net" fill="#ef4444" name="1P Net Revenue" />
-                                  <Bar dataKey="model3P_net" fill="#22c55e" name="3P Net Revenue" />
+                                  <Bar dataKey="model3P_net" fill="#16a34a" name="3P Net Revenue" />
                                 </BarChart>
                               </ResponsiveContainer>
                             ) : null}
@@ -435,7 +435,7 @@ export function CaseStudies() {
                 {/* Comparison Tables (for Auto Parts case study) */}
                 {study.comparisonTables && study.comparisonTables.length > 0 && (
                   <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700">
+                    <h3 className="text-lg font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
                       Detailed Financial Comparison
                     </h3>
                     {study.comparisonTables.map((table, tableIdx) => (
@@ -456,7 +456,7 @@ export function CaseStudies() {
                               <tr key={rowIdx} className="border-b border-gray-800 dark:border-gray-800 soft-dark:border-gray-200 light:border-gray-200 orange:border-gray-200 leaf:border-gray-200 water:border-gray-200">
                                 <td className="py-3 px-4 font-medium text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">{row.metric}</td>
                                 <td className="py-3 px-4 text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700">{row.model1P}</td>
-                                <td className="py-3 px-4 font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700">{row.model3P}</td>
+                                <td className="py-3 px-4 font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">{row.model3P}</td>
                               </tr>
                             ))}
                           </tbody>
@@ -468,13 +468,13 @@ export function CaseStudies() {
 
                 {/* Results */}
                 <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-lime-50 light:bg-cyan-50 orange:bg-orange-50 leaf:bg-cyan-50 water:bg-emerald-50 rounded-lg p-6 border border-white/10 dark:border-white/10 soft-dark:border-lime-200 light:border-cyan-200 orange:border-orange-200 leaf:border-cyan-200 water:border-emerald-200">
-                  <h3 className="text-lg font-semibold mb-3 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700">
+                  <h3 className="text-lg font-semibold mb-3 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
                     Results
                   </h3>
                   <ul className="space-y-2">
                     {study.results.map((result, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <ArrowUp className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 flex-shrink-0 mt-0.5" />
+                        <ArrowUp className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800 font-medium">
                           {result}
                         </span>

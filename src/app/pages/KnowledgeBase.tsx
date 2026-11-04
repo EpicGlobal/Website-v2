@@ -237,7 +237,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
                   
                   <div className="relative z-10">
                     <div className={`w-12 h-12 bg-gradient-to-br ${tile.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                      <Icon className="w-6 h-6 text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
+                      <Icon className="w-6 h-6 text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800" />
                     </div>
                     <h3 className="text-lg font-semibold mb-2 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 group-hover:text-cyan-400 soft-dark:group-hover:text-lime-700 light:group-hover:text-cyan-600 orange:group-hover:text-orange-700 leaf:group-hover:text-cyan-700 water:group-hover:text-emerald-700 transition-colors">
                       {tile.title}
@@ -349,7 +349,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
                   
                   <div className="relative z-10">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="px-3 py-1 bg-cyan-500/10 soft-dark:bg-lime-600/20 text-cyan-400 soft-dark:text-lime-800 light:bg-cyan-100 light:text-cyan-700 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:shadow-lg orange:shadow-orange-500/20 orange:text-white leaf:bg-cyan-600/20 leaf:text-cyan-900 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:shadow-lg water:shadow-emerald-500/20 water:text-white rounded-full text-xs font-semibold">
+                      <span className="px-3 py-1 bg-cyan-500/10 soft-dark:bg-lime-600/20 text-cyan-400 soft-dark:text-lime-800 light:bg-cyan-100 light:text-cyan-700 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:shadow-lg orange:shadow-orange-500/20 orange:text-white leaf:bg-cyan-600/20 leaf:text-cyan-900 water:bg-gradient-to-r water:from-emerald-700 water:to-emerald-800 water:shadow-lg water:shadow-emerald-500/20 water:text-white rounded-full text-xs font-semibold">
                         {article.category}
                       </span>
                       {article.pillar && (
@@ -405,7 +405,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
                     marketplace: 'All',
                   });
                 }}
-                className="text-cyan-400 hover:text-cyan-300 soft-dark:text-lime-700 soft-dark:hover:text-lime-800 light:text-cyan-600 light:hover:text-cyan-700 orange:text-orange-700 orange:hover:text-orange-600 leaf:text-cyan-700 leaf:hover:text-cyan-600 water:text-emerald-700 water:hover:text-emerald-600 text-sm"
+                className="text-cyan-400 hover:text-cyan-300 soft-dark:text-lime-700 soft-dark:hover:text-lime-800 light:text-cyan-600 light:hover:text-cyan-700 orange:text-orange-700 orange:hover:text-orange-600 leaf:text-cyan-700 leaf:hover:text-cyan-600 water:text-emerald-800 water:hover:text-emerald-600 text-sm"
               >
                 Clear filters
               </button>
@@ -425,7 +425,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
                   
                   <div className="relative z-10">
                     <div className="flex items-center gap-2 mb-3 flex-wrap">
-                      <span className="px-3 py-1 bg-cyan-500/10 soft-dark:bg-lime-600/20 text-cyan-400 soft-dark:text-lime-800 light:bg-cyan-100 light:text-cyan-700 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:shadow-lg orange:shadow-orange-500/20 orange:text-white leaf:bg-cyan-600/20 leaf:text-cyan-900 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:shadow-lg water:shadow-emerald-500/20 water:text-white rounded-full text-xs font-semibold">
+                      <span className="px-3 py-1 bg-cyan-500/10 soft-dark:bg-lime-600/20 text-cyan-400 soft-dark:text-lime-800 light:bg-cyan-100 light:text-cyan-700 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:shadow-lg orange:shadow-orange-500/20 orange:text-white leaf:bg-cyan-600/20 leaf:text-cyan-900 water:bg-gradient-to-r water:from-emerald-700 water:to-emerald-800 water:shadow-lg water:shadow-emerald-500/20 water:text-white rounded-full text-xs font-semibold">
                         {article.category}
                       </span>
                       {article.pillar && (
@@ -434,7 +434,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
                         </span>
                       )}
                       {article.type && (
-                        <span className="px-3 py-1 bg-purple-500/10 soft-dark:bg-purple-600/20 text-purple-400 soft-dark:text-purple-800 light:bg-purple-100 light:text-purple-700 orange:bg-purple-500/10 orange:text-purple-400 leaf:bg-purple-600/20 leaf:text-purple-800 water:bg-purple-600/20 water:text-purple-800 rounded-full text-xs">
+                        <span className="px-3 py-1 bg-purple-500/10 soft-dark:bg-purple-600/20 text-purple-400 soft-dark:text-purple-800 light:bg-purple-100 light:text-purple-700 orange:bg-purple-100 orange:text-purple-800 leaf:bg-purple-600/20 leaf:text-purple-800 water:bg-purple-600/20 water:text-purple-800 rounded-full text-xs">
                           {article.type}
                         </span>
                       )}
@@ -453,7 +453,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
                     <div className="flex items-center justify-between">
                       <p className="text-xs text-gray-500 dark:text-gray-500 soft-dark:text-gray-600 light:text-gray-500 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700">Updated {article.lastUpdated}</p>
                       {article.downloadable && (
-                        <Download className="w-4 h-4 text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
+                        <Download className="w-4 h-4 text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800" />
                       )}
                     </div>
                   </div>

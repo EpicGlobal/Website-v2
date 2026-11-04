@@ -148,12 +148,12 @@ export function FAQ() {
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="border border-white/10 dark:border-white/10 soft-dark:border-lime-800/30 light:border-gray-200 orange:border-white/10 rounded-lg px-6 bg-white/[0.02] dark:bg-white/[0.02] soft-dark:bg-white/[0.05] light:bg-white orange:bg-white/[0.02] hover:border-cyan-500/30 dark:hover:border-cyan-500/30 soft-dark:hover:border-lime-600/50 light:hover:border-cyan-500/30 orange:hover:border-cyan-500/30 transition-colors"
+                  className="border border-white/10 dark:border-white/10 soft-dark:border-lime-800/30 light:border-gray-200 orange:border-white/10 rounded-lg px-6 bg-white/[0.02] dark:bg-white/[0.02] soft-dark:bg-white/[0.05] light:bg-white orange:bg-white/70 leaf:bg-white/70 water:bg-white/70 leaf:border-sky-300/70 water:border-lime-500/40 orange:border-orange-300/70 hover:border-cyan-500/30 leaf:hover:border-sky-500 water:hover:border-lime-600 dark:hover:border-cyan-500/30 soft-dark:hover:border-lime-600/50 light:hover:border-cyan-500/30 orange:hover:border-orange-500 transition-colors"
                 >
-                  <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] hover:text-cyan-400 soft-dark:hover:text-lime-700 light:hover:text-cyan-600 orange:hover:text-orange-800 orange:[&>svg]:text-slate-700 py-5">
+                  <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-[#101828] water:text-[#101828] hover:text-cyan-400 soft-dark:hover:text-lime-700 light:hover:text-cyan-600 orange:hover:text-orange-800 leaf:hover:text-sky-700 water:hover:text-lime-800 leaf:data-[state=open]:text-sky-700 water:data-[state=open]:text-lime-800 orange:data-[state=open]:text-orange-800 orange:[&>svg]:text-orange-700 leaf:[&>svg]:text-sky-700 water:[&>svg]:text-lime-800 focus-visible:underline leaf:decoration-sky-700 water:decoration-lime-800 orange:decoration-orange-700 py-5">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent forceMount className="text-sm sm:text-base text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-slate-700 leading-relaxed pb-5">
+                  <AccordionContent forceMount className="text-sm sm:text-base text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700 leading-relaxed pb-5">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -166,18 +166,18 @@ export function FAQ() {
       {/* Still Have Questions CTA */}
       <section className="pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-cyan-950/20 to-cyan-900/10 dark:from-cyan-950/20 dark:to-cyan-900/10 soft-dark:from-lime-700/20 soft-dark:to-lime-800/10 light:from-cyan-50 light:to-cyan-100 orange:from-cyan-950/20 orange:to-cyan-900/10 rounded-2xl p-8 md:p-12 border border-cyan-500/20 dark:border-cyan-500/20 soft-dark:border-lime-600/30 light:border-cyan-300 orange:border-cyan-500/20 text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-white">
+          <div className="bg-gradient-to-r from-cyan-950/20 to-cyan-900/10 dark:from-cyan-950/20 dark:to-cyan-900/10 soft-dark:from-lime-700/20 soft-dark:to-lime-800/10 light:from-cyan-50 light:to-cyan-100 orange:from-white/80 orange:to-orange-50/80 leaf:from-white/80 leaf:to-sky-50/80 water:from-white/80 water:to-lime-50/80 rounded-2xl p-8 md:p-12 border border-cyan-500/20 dark:border-cyan-500/20 soft-dark:border-lime-600/30 light:border-cyan-300 orange:border-orange-300 leaf:border-sky-300 water:border-lime-400 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-[#101828] water:text-[#101828]">
               Still have questions?
             </h2>
-            <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700 mb-8 max-w-2xl mx-auto">
               Let's talk through your specific situation and see if our operating model is a fit.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <CtaButton variant="primary" size="lg" location="FAQ Page - Still Have Questions CTA" />
               <Link
                 href="/our-model"
-                className="px-8 py-3.5 bg-white/5 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-white rounded-lg hover:bg-white/10 soft-dark:hover:bg-white/20 light:hover:bg-gray-100 orange:hover:bg-white/10 transition-all border border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/10 text-base font-medium"
+                className="px-8 py-3.5 bg-white/5 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-white leaf:text-white water:text-white orange:bg-orange-700 leaf:bg-sky-700 water:bg-lime-800 rounded-lg hover:bg-white/10 soft-dark:hover:bg-white/20 light:hover:bg-gray-100 orange:hover:bg-orange-800 leaf:hover:bg-sky-800 water:hover:bg-lime-900 transition-all border border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-orange-700 leaf:border-sky-700 water:border-lime-800 text-base font-semibold"
               >
                 See How It Works
               </Link>

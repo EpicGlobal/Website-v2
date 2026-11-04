@@ -59,7 +59,7 @@ export function CtaButton({
     secondary:
       'bg-white/5 dark:bg-white/5 leaf:bg-white/10 water:bg-white/10 light:bg-gray-100 orange:bg-white/5 text-white dark:text-white leaf:text-gray-800 water:text-gray-800 light:text-gray-900 orange:text-white hover:bg-white/10 leaf:hover:bg-white/20 water:hover:bg-white/20 light:hover:bg-gray-200 orange:hover:bg-white/10 border border-white/10 dark:border-white/10 leaf:border-sky-600/30 water:border-emerald-600/30 light:border-gray-300 orange:border-white/10',
     outline:
-      'bg-transparent border-2 border-cyan-500 dark:border-cyan-500 leaf:border-sky-600 water:border-emerald-600 light:border-cyan-500 orange:border-orange-600 text-cyan-500 dark:text-cyan-500 leaf:text-sky-700 water:text-emerald-700 light:text-cyan-500 orange:text-orange-700 hover:bg-cyan-500 dark:hover:bg-cyan-500 leaf:hover:bg-sky-600 water:hover:bg-emerald-600 light:hover:bg-cyan-500 orange:hover:bg-orange-600 hover:text-white',
+      'bg-transparent border-2 border-cyan-500 dark:border-cyan-500 leaf:border-sky-600 water:border-emerald-600 light:border-cyan-500 orange:border-orange-600 text-cyan-500 dark:text-cyan-500 leaf:text-sky-700 water:text-emerald-800 light:text-cyan-500 orange:text-orange-700 hover:bg-cyan-500 dark:hover:bg-cyan-500 leaf:hover:bg-sky-600 water:hover:bg-emerald-600 light:hover:bg-cyan-500 orange:hover:bg-orange-600 hover:text-white',
   };
 
   const openModal = () => {

@@ -111,7 +111,7 @@ export function SignIn({
       <div className="max-w-md mx-auto">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-emerald-700 hover:opacity-80 transition-opacity mb-8"
+          className="inline-flex items-center gap-2 text-sm text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-emerald-800 hover:opacity-80 transition-opacity mb-8"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Home
@@ -198,7 +198,7 @@ export function SignIn({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700 soft-dark:from-lime-600 soft-dark:to-lime-700 soft-dark:hover:from-lime-700 soft-dark:hover:to-lime-800 orange:from-orange-600 orange:to-orange-700 orange:hover:from-orange-700 orange:hover:to-orange-800 leaf:from-sky-600 leaf:to-sky-700 leaf:hover:from-sky-700 leaf:hover:to-sky-800 water:from-emerald-600 water:to-emerald-700 water:hover:from-emerald-700 water:hover:to-emerald-800 text-white font-semibold rounded-lg shadow-lg transition-all hover:shadow-xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full py-3 bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700 soft-dark:from-lime-600 soft-dark:to-lime-700 soft-dark:hover:from-lime-700 soft-dark:hover:to-lime-800 orange:from-orange-700 orange:to-orange-800 orange:hover:from-orange-700 orange:hover:to-orange-800 leaf:from-sky-700 leaf:to-sky-800 leaf:hover:from-sky-700 leaf:hover:to-sky-800 water:from-emerald-700 water:to-emerald-800 water:hover:from-emerald-700 water:hover:to-emerald-800 text-white font-semibold rounded-lg shadow-lg transition-all hover:shadow-xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>

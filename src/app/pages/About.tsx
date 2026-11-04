@@ -89,7 +89,7 @@ export function About() {
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <div className="inline-block px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:shadow-lg leaf:bg-cyan-600/20 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:shadow-lg water:shadow-emerald-500/20 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-white leaf:text-cyan-900 water:text-white rounded-full text-sm font-semibold tracking-wide mb-6">
+          <div className="inline-block px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:shadow-lg leaf:bg-cyan-600/20 water:bg-gradient-to-r water:from-emerald-700 water:to-emerald-800 water:shadow-lg water:shadow-emerald-500/20 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-white leaf:text-cyan-900 water:text-white rounded-full text-sm font-semibold tracking-wide mb-6">
             ZERO-RISK GLOBAL COMMERCE OPERATOR
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-600 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828] bg-clip-text text-transparent leading-tight">
@@ -101,7 +101,7 @@ export function About() {
           <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828] leading-relaxed max-w-3xl mb-6">
             This model applies equally to U.S. growth and international expansion. Whether a brand is underperforming in the United States, losing margin to fees, or preparing to expand globally, Epic functions as a global marketplace operating system designed to deliver predictable outcomes.
           </p>
-          <p className="text-cyan-400/80 dark:text-cyan-400/80 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 font-medium">
+          <p className="text-cyan-400/80 dark:text-cyan-400/80 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-medium">
             We buy it. You profit.
           </p>
         </div>
@@ -157,7 +157,7 @@ export function About() {
                   
                   <div className="relative z-10">
                     <div className="w-14 h-14 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 soft-dark:from-lime-600/20 soft-dark:to-lime-700/5 orange:from-orange-600/30 orange:to-orange-700/10 leaf:from-cyan-600/30 leaf:to-cyan-700/10 water:from-emerald-600/20 water:to-emerald-700/5 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-cyan-500/20 soft-dark:shadow-lime-500/10 orange:shadow-orange-500/20">
-                      <Icon className="w-7 h-7 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 group-hover:text-cyan-300 soft-dark:group-hover:text-lime-600 light:group-hover:text-cyan-700 orange:group-hover:text-orange-600 leaf:group-hover:text-cyan-600 water:group-hover:text-emerald-600 transition-colors" />
+                      <Icon className="w-7 h-7 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 group-hover:text-cyan-300 soft-dark:group-hover:text-lime-600 light:group-hover:text-cyan-700 orange:group-hover:text-orange-600 leaf:group-hover:text-cyan-600 water:group-hover:text-emerald-600 transition-colors" />
                     </div>
                     <h3 className="text-xl font-semibold mb-3 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 group-hover:text-cyan-400 soft-dark:group-hover:text-lime-700 light:group-hover:text-cyan-600 orange:group-hover:text-orange-700 leaf:group-hover:text-cyan-700 water:group-hover:text-emerald-700 transition-colors duration-300">{item.title}</h3>
                     <p className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed">{item.description}</p>
@@ -189,7 +189,7 @@ export function About() {
                   href="https://www.linkedin.com/in/glen-jensen-54a27/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 flex items-center justify-center gap-2 px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/15 light:bg-cyan-100 orange:bg-gradient-to-br orange:from-orange-600/30 orange:to-orange-700/10 leaf:bg-cyan-600/15 water:bg-emerald-600/15 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-700 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 rounded-lg hover:bg-cyan-500/20 soft-dark:hover:bg-lime-600/25 light:hover:bg-cyan-200 orange:hover:from-orange-600/40 orange:hover:to-orange-700/20 water:hover:bg-emerald-600/25 transition-all border border-cyan-500/20 dark:border-cyan-500/20 soft-dark:border-lime-600/30 light:border-cyan-300 orange:border-orange-500/30 leaf:border-cyan-600/30 water:border-emerald-600/30 orange:shadow-lg orange:shadow-orange-500/20 text-sm font-medium"
+                  className="mt-3 flex items-center justify-center gap-2 px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/15 light:bg-cyan-100 orange:bg-gradient-to-br orange:from-orange-600/30 orange:to-orange-700/10 leaf:bg-cyan-600/15 water:bg-emerald-600/15 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-700 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 rounded-lg hover:bg-cyan-500/20 soft-dark:hover:bg-lime-600/25 light:hover:bg-cyan-200 orange:hover:from-orange-600/40 orange:hover:to-orange-700/20 water:hover:bg-emerald-600/25 transition-all border border-cyan-500/20 dark:border-cyan-500/20 soft-dark:border-lime-600/30 light:border-cyan-300 orange:border-orange-500/30 leaf:border-cyan-600/30 water:border-emerald-600/30 orange:shadow-lg orange:shadow-orange-500/20 text-sm font-medium"
                 >
                   <Linkedin className="w-4 h-4" />
                   <span>LinkedIn</span>
@@ -201,7 +201,7 @@ export function About() {
                 <h3 className="text-2xl sm:text-3xl font-bold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 mb-2">
                   Glen Jensen
                 </h3>
-                <p className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mb-6">Founder</p>
+                <p className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mb-6">Founder</p>
                 
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
                   {"Glen Jensen is the founder of Epic Global Inc., a wholesale trade partner for brands that sell on online marketplaces."}
@@ -218,15 +218,15 @@ export function About() {
 
                 <ul className="space-y-3 text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-6">
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
                     <span><strong className="text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Focus:</strong> Global marketplace operations, systems, automation, and execution cadence</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
                     <span><strong className="text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Scope:</strong> Multi-marketplace, multi-region operations</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
                     <span><strong className="text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Model:</strong> Inventory purchase + full execution coverage</span>
                   </li>
                 </ul>
@@ -248,7 +248,7 @@ export function About() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/case-studies"
-              className="px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-cyan-600 dark:from-cyan-500 dark:to-cyan-600 soft-dark:from-lime-600 soft-dark:to-lime-700 light:from-cyan-500 light:to-cyan-600 orange:from-orange-600 orange:to-orange-700 text-white soft-dark:text-black rounded-lg hover:from-cyan-600 hover:to-cyan-700 dark:hover:from-cyan-600 dark:hover:to-cyan-700 soft-dark:hover:from-lime-700 soft-dark:hover:to-lime-800 light:hover:from-cyan-600 light:hover:to-cyan-700 orange:hover:from-orange-700 orange:hover:to-orange-800 transition-all shadow-lg shadow-cyan-500/25 soft-dark:shadow-lime-500/25 orange:shadow-orange-500/25 text-base font-medium"
+              className="px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-cyan-600 dark:from-cyan-500 dark:to-cyan-600 soft-dark:from-lime-600 soft-dark:to-lime-700 light:from-cyan-500 light:to-cyan-600 orange:from-orange-700 orange:to-orange-800 text-white soft-dark:text-black rounded-lg hover:from-cyan-600 hover:to-cyan-700 dark:hover:from-cyan-600 dark:hover:to-cyan-700 soft-dark:hover:from-lime-700 soft-dark:hover:to-lime-800 light:hover:from-cyan-600 light:hover:to-cyan-700 orange:hover:from-orange-700 orange:hover:to-orange-800 transition-all shadow-lg shadow-cyan-500/25 soft-dark:shadow-lime-500/25 orange:shadow-orange-500/25 text-base font-medium"
             >
               View Case Studies
             </Link>

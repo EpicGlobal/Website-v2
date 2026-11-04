@@ -282,7 +282,7 @@ export function Home() {
               initial={{ y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-block px-4 py-2 bg-cyan-500/20 soft-dark:bg-cyan-600/30 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:text-white water:shadow-lg water:shadow-emerald-500/20 leaf:bg-gradient-to-r leaf:from-sky-600 leaf:to-sky-700 text-cyan-300 dark:text-cyan-300 soft-dark:text-cyan-900 leaf:text-white light:text-cyan-900 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:text-white orange:shadow-lg orange:shadow-orange-500/20 leaf:shadow-lg leaf:shadow-sky-500/20 rounded-full text-sm font-semibold tracking-wide mb-6"
+              className="inline-block px-4 py-2 bg-cyan-500/20 soft-dark:bg-cyan-600/30 water:bg-gradient-to-r water:from-emerald-700 water:to-emerald-800 water:text-white water:shadow-lg water:shadow-emerald-500/20 leaf:bg-gradient-to-r leaf:from-sky-700 leaf:to-sky-800 text-cyan-300 dark:text-cyan-300 soft-dark:text-cyan-900 leaf:text-white light:text-cyan-900 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:text-white orange:shadow-lg orange:shadow-orange-500/20 leaf:shadow-lg leaf:shadow-sky-500/20 rounded-full text-sm font-semibold tracking-wide mb-6"
             >
               THE WHOLESALE TRADE PARTNER FOR MARKETPLACE BRANDS
             </motion.div>
@@ -300,7 +300,7 @@ export function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-[rgb(0,0,0)] dark:text-gray-300 soft-dark:text-gray-800 leaf:text-gray-900 water:text-[#101828] light:text-gray-700 orange:text-[#101828] mb-8 max-w-3xl mx-auto leading-relaxed"
             >
-              Epic Global Inc. is a wholesale trade partner and <strong className="text-white dark:text-white soft-dark:text-gray-900 water:text-[#101828] orange:text-[#101828]">Zero-Risk Global Commerce Operator</strong>. We buy your inventory upfront at wholesale, run your marketplace storefronts, and pay for the advertising, marketplace fees and fulfillment ourselves. Buy. Sell. Advertise. Protect.
+              Epic Global Inc. is a wholesale trade partner and <strong className="text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 leaf:text-gray-900 water:text-[#101828] orange:text-[#101828]">Zero-Risk Global Commerce Operator</strong>. We buy your inventory upfront at wholesale, run your marketplace storefronts, and pay for the advertising, marketplace fees and fulfillment ourselves. Buy. Sell. Advertise. Protect.
             </motion.p>
             <motion.div
               initial={{ y: 20 }}
@@ -374,7 +374,7 @@ export function Home() {
                   
                   <div className="relative z-10 flex flex-col h-full">
                     <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-cyan-500/20 dark:from-cyan-500/30 dark:to-cyan-600/10 dark:shadow-cyan-500/20 soft-dark:from-lime-600/30 soft-dark:to-lime-700/10 soft-dark:shadow-lime-500/20 light:from-cyan-600/30 light:to-cyan-700/10 light:shadow-cyan-500/20 orange:from-orange-600/30 orange:to-orange-700/10 orange:shadow-orange-500/20 water:from-lime-600/30 water:to-lime-700/10 water:shadow-lg water:shadow-lime-500/20 leaf:from-sky-600/30 leaf:to-sky-700/10 leaf:shadow-lg leaf:shadow-sky-500/20">
-                      <Icon className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors dark:text-cyan-400 dark:group-hover:text-cyan-300 soft-dark:text-lime-700 soft-dark:group-hover:text-lime-600 light:text-cyan-600 light:group-hover:text-cyan-500 orange:text-orange-700 water:text-lime-700 leaf:text-sky-700" />
+                      <Icon className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors dark:text-cyan-400 dark:group-hover:text-cyan-300 soft-dark:text-lime-700 soft-dark:group-hover:text-lime-600 light:text-cyan-600 light:group-hover:text-cyan-500 orange:text-orange-700 water:text-lime-800 leaf:text-sky-700" />
                     </div>
                     <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-white transition-colors duration-300 dark:text-white dark:group-hover:text-cyan-300 soft-dark:text-gray-900 soft-dark:group-hover:text-lime-700 light:text-gray-900 light:group-hover:text-cyan-600 orange:text-gray-900 orange:group-hover:text-orange-700 water:text-[#101828] water:group-hover:text-lime-700">{capability.title}</h3>
                     <p className="text-sm text-gray-700 leading-relaxed flex-grow dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-700 water:text-[#101828]">{capability.description}</p>
@@ -390,7 +390,7 @@ export function Home() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-4">
-            <span className="inline-block px-4 py-1.5 bg-lime-600/20 text-lime-800 rounded-full text-xs font-semibold tracking-wide mb-6 dark:bg-cyan-500/20 dark:text-cyan-400 soft-dark:bg-cyan-500/20 soft-dark:text-cyan-600 light:bg-cyan-100 light:text-cyan-700 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:text-white orange:shadow-lg orange:shadow-orange-500/20 water:bg-lime-600/20 water:text-lime-900 leaf:bg-gradient-to-r leaf:from-sky-600 leaf:to-sky-700 leaf:text-white leaf:shadow-lg leaf:shadow-sky-500/20">
+            <span className="inline-block px-4 py-1.5 bg-lime-600/20 text-lime-800 rounded-full text-xs font-semibold tracking-wide mb-6 dark:bg-cyan-500/20 dark:text-cyan-400 soft-dark:bg-cyan-500/20 soft-dark:text-cyan-600 light:bg-cyan-100 light:text-cyan-700 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:text-white orange:shadow-lg orange:shadow-orange-500/20 water:bg-lime-600/20 water:text-lime-900 leaf:bg-gradient-to-r leaf:from-sky-700 leaf:to-sky-800 leaf:text-white leaf:shadow-lg leaf:shadow-sky-500/20">
               THE BUY-SELL-ADVERTISE-PROTECT MODEL
             </span>
           </div>
@@ -425,13 +425,13 @@ export function Home() {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-all dark:bg-cyan-500/5 dark:group-hover:bg-cyan-500/10 soft-dark:bg-lime-500/5 soft-dark:group-hover:bg-lime-500/10 light:bg-cyan-500/5 light:group-hover:bg-cyan-500/10 orange:bg-orange-500/5 orange:group-hover:bg-orange-500/10 water:bg-sky-500/5 water:group-hover:bg-sky-500/10 leaf:bg-lime-500/5 leaf:group-hover:bg-lime-500/10"></div>
                   <div className="relative">
                     <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all dark:from-cyan-500/20 dark:to-cyan-600/10 soft-dark:from-lime-600/20 soft-dark:to-lime-700/10 light:from-cyan-600/20 light:to-cyan-700/10 orange:from-orange-600/30 orange:to-orange-700/10 orange:shadow-lg orange:shadow-orange-500/20 water:from-lime-600/30 water:to-lime-700/10 water:shadow-lg water:shadow-lime-500/20 leaf:from-sky-600/30 leaf:to-sky-700/10 leaf:shadow-lg leaf:shadow-sky-500/20">
-                      <Icon className="w-6 h-6 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-lime-700" />
+                      <Icon className="w-6 h-6 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-lime-800" />
                     </div>
                     <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">{card.title}</h3>
                     <p className="text-gray-700 mb-4 leading-relaxed dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
                       {card.desc}
                     </p>
-                    <p className="text-sm text-cyan-400 font-medium dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-lime-700">
+                    <p className="text-sm text-cyan-400 font-medium dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-lime-800">
                       {card.tagline}
                     </p>
                   </div>
@@ -490,7 +490,7 @@ export function Home() {
                     </p>
                   </div>
                   <p className="text-sm text-gray-800 mb-4 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-gray-800 leaf:text-gray-800 water:text-[#101828]">{caseStudy.objective}</p>
-                  <div className="flex items-center gap-2 text-cyan-400 text-sm font-medium dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-lime-700 leaf:text-sky-700">
+                  <div className="flex items-center gap-2 text-cyan-400 text-sm font-medium dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-lime-800 leaf:text-sky-700">
                     View case study
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -529,7 +529,7 @@ export function Home() {
                   key={fact.label}
                   className="rounded-2xl border border-white/15 dark:border-white/15 soft-dark:border-white/20 light:border-gray-200 orange:border-white/20 leaf:border-white/20 water:border-white/20 bg-white/5 dark:bg-white/5 soft-dark:bg-white/60 light:bg-white orange:bg-white/40 leaf:bg-white/50 water:bg-white/50 p-5"
                 >
-                  <p className="text-xs uppercase tracking-[0.18em] text-cyan-500 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mb-2">
+                  <p className="text-xs uppercase tracking-[0.18em] text-cyan-500 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mb-2">
                     {fact.label}
                   </p>
                   <p className="text-lg font-semibold text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828] mb-2">

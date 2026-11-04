@@ -48,7 +48,7 @@ export function WhatWeAre() {
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-block px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:shadow-lg leaf:bg-cyan-600/20 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:shadow-lg water:shadow-emerald-500/20 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-white leaf:text-cyan-900 water:text-white rounded-full text-sm font-semibold tracking-wide mb-6">
+          <div className="inline-block px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:shadow-lg leaf:bg-cyan-600/20 water:bg-gradient-to-r water:from-emerald-700 water:to-emerald-800 water:shadow-lg water:shadow-emerald-500/20 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-white leaf:text-cyan-900 water:text-white rounded-full text-sm font-semibold tracking-wide mb-6">
             ZERO-RISK GLOBAL COMMERCE OPERATOR
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-600 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828] bg-clip-text text-transparent leading-tight">
@@ -57,7 +57,7 @@ export function WhatWeAre() {
           <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-800 water:text-[#101828] leading-relaxed mb-4">
             Plain language. No buzzwords. Here's what Epic Global Inc. actually does.
           </p>
-          <p className="text-cyan-400/80 dark:text-cyan-400/80 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 font-medium">
+          <p className="text-cyan-400/80 dark:text-cyan-400/80 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-medium">
             We buy it. You profit.
           </p>
         </div>
@@ -88,19 +88,19 @@ export function WhatWeAre() {
             </p>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mt-0.5 flex-shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
                 <span>You're already selling on one or more marketplaces but need more control and better execution</span>
               </li>
               <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mt-0.5 flex-shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
                 <span>You want to expand into new regions but don't have the bandwidth or expertise internally</span>
               </li>
               <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mt-0.5 flex-shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
                 <span>You're tired of agencies that advise but don't execute or own outcomes</span>
               </li>
               <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mt-0.5 flex-shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
                 <span>You need a partner who takes responsibility for day-to-day operations, not just strategy</span>
               </li>
             </ul>
@@ -117,7 +117,7 @@ export function WhatWeAre() {
             <div className="space-y-8">
               <div>
                 <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 font-bold text-lg">1</span>
+                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-bold text-lg">1</span>
                   <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">We purchase inventory at wholesale</h3>
                 </div>
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed ml-8">
@@ -127,7 +127,7 @@ export function WhatWeAre() {
 
               <div>
                 <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 font-bold text-lg">2</span>
+                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-bold text-lg">2</span>
                   <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">We operate retail sales across approved marketplaces</h3>
                 </div>
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed ml-8">
@@ -137,7 +137,7 @@ export function WhatWeAre() {
 
               <div>
                 <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 font-bold text-lg">3</span>
+                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-bold text-lg">3</span>
                   <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">We cover operating expenses</h3>
                 </div>
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed ml-8">
@@ -147,7 +147,7 @@ export function WhatWeAre() {
 
               <div>
                 <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 font-bold text-lg">4</span>
+                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-bold text-lg">4</span>
                   <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">You get visibility and control</h3>
                 </div>
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed ml-8">
@@ -224,7 +224,7 @@ export function WhatWeAre() {
                     <th className="text-left py-4 px-3 text-xs font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-800 water:text-gray-900 uppercase tracking-wide">
                       Capability / Model
                     </th>
-                    <th className="text-center py-4 px-3 text-xs font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-800 water:text-emerald-700 uppercase tracking-wide">
+                    <th className="text-center py-4 px-3 text-xs font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-800 water:text-emerald-800 uppercase tracking-wide">
                       Epic
                     </th>
                     <th className="text-center py-4 px-3 text-xs font-semibold text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 uppercase tracking-wide">
@@ -246,7 +246,7 @@ export function WhatWeAre() {
                     <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
                       <strong>Buys inventory upfront</strong>
                     </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 text-[#05df72]">Yes</td>
+                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
@@ -256,7 +256,7 @@ export function WhatWeAre() {
                     <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
                       <strong>Sells on their own account</strong>
                     </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 text-[#05df72]">Yes</td>
+                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
@@ -266,7 +266,7 @@ export function WhatWeAre() {
                     <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
                       <strong>"No fees / no commissions"</strong>
                     </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 text-[#05df72]">Yes</td>
+                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
@@ -276,7 +276,7 @@ export function WhatWeAre() {
                     <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
                       <strong>Advertising management</strong>
                     </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 text-[#05df72]">Yes</td>
+                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
@@ -286,7 +286,7 @@ export function WhatWeAre() {
                     <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
                       <strong>Fulfillment / warehousing</strong>
                     </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 text-[#05df72]">Yes</td>
+                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
@@ -296,7 +296,7 @@ export function WhatWeAre() {
                     <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
                       <strong>Brand protection</strong>
                     </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 text-[#05df72]">Yes</td>
+                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
@@ -306,7 +306,7 @@ export function WhatWeAre() {
                     <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
                       <strong>Global operations</strong>
                     </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 text-[#05df72]">Yes</td>
+                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
                     <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
