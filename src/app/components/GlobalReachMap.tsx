@@ -952,18 +952,18 @@ export function GlobalReachMap() {
 
       {/* Stats */}
       <div className="mt-8 grid grid-cols-3 gap-4">
-        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center leaf:bg-white/40">
+        <div className="rounded-xl p-4 text-center border shadow-sm bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10 soft-dark:bg-white/80 soft-dark:border-gray-200 light:bg-white light:border-gray-200 orange:bg-white/80 orange:border-orange-200 water:bg-white/75 water:border-emerald-200 leaf:bg-white/75 leaf:border-sky-200">
           <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">~40</div>
           <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Countries</div>
         </div>
-        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center leaf:bg-white/40">
+        <div className="rounded-xl p-4 text-center border shadow-sm bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10 soft-dark:bg-white/80 soft-dark:border-gray-200 light:bg-white light:border-gray-200 orange:bg-white/80 orange:border-orange-200 water:bg-white/75 water:border-emerald-200 leaf:bg-white/75 leaf:border-sky-200">
           <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">
             {new Set(countryData.flatMap((c) => c.marketplaces)).size}
           </div>
           <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Marketplaces</div>
         </div>
-        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center leaf:bg-white/40">
-          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">5</div>
+        <div className="rounded-xl p-4 text-center border shadow-sm bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10 soft-dark:bg-white/80 soft-dark:border-gray-200 light:bg-white light:border-gray-200 orange:bg-white/80 orange:border-orange-200 water:bg-white/75 water:border-emerald-200 leaf:bg-white/75 leaf:border-sky-200">
+          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">{new Set(countryData.map((c) => c.region)).size}</div>
           <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Regions</div>
         </div>
       </div>
