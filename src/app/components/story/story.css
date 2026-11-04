@@ -1,20 +1,20 @@
 /*
- * About page scroll story: the native CSS half (scroll-driven animations, no JavaScript).
- * Desktop only (900px+, any OS animation setting, per the house motion rule), and only in browsers that
- * support scroll timelines. Everywhere else every rule here is skipped and the page is the static layout.
- * The GSAP half lives in useAboutScrollStory.ts and adds [data-story="on"] to the page root while it runs.
+ * Story kit: the native CSS half (scroll-driven animations, no JavaScript). Shared by every story page.
+ * Desktop only (900px+, any OS animation setting, per the house motion rule), and only in browsers that support
+ * scroll timelines. Everywhere else these rules are skipped and the page is the static layout.
+ * useScrollStory.ts adds [data-story="on"] to the page root while the GSAP half runs.
  */
 
-/* Bio steps: while the story runs, the paragraph you're reading is lit and the others rest dimmed. */
-[data-story='on'] [data-story='bio-step'] {
+/* Lit steps: while the story runs, the paragraph you're reading is lit and the others rest dimmed. */
+[data-story='on'] [data-story='lit-step'] {
   opacity: 0.32;
   transition: opacity 0.45s ease;
 }
-[data-story='on'] [data-story='bio-step'].is-lit {
+[data-story='on'] [data-story='lit-step'].is-lit {
   opacity: 1;
 }
 
-/* Meters (bio and differences) only show while the story runs. */
+/* Meters only show while the story runs. */
 [data-story-meter] {
   display: none;
 }
@@ -33,47 +33,47 @@
     [data-story='rail-fill'] {
       display: block;
       transform-origin: top center;
-      animation: about-story-grow-y linear both;
+      animation: story-grow-y linear both;
       animation-timeline: scroll(root block);
     }
 
     /* Each chapter's rule draws in as the chapter arrives: the thread that carries you to the next one. */
     [data-story='rule'] {
       transform-origin: left center;
-      animation: about-story-grow-x linear both;
+      animation: story-grow-x linear both;
       animation-timeline: view();
       animation-range: entry 40% cover 40%;
     }
 
-    /* The map rises into place as it enters (ends at transform: none so the map's tooltips position normally). */
-    [data-story='map-rise'] {
-      animation: about-story-rise linear both;
+    /* A large visual (map, image, chart) rises into place as it enters. Ends at transform: none. */
+    [data-story='rise'] {
+      animation: story-rise linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 75%;
     }
 
-    /* The closing call to action settles in. */
-    [data-story='cta-rise'] {
-      animation: about-story-fade-up linear both;
+    /* A block settles in (closing call to action, cards). */
+    [data-story='fade-up'] {
+      animation: story-fade-up linear both;
       animation-timeline: view();
       animation-range: entry 10% cover 35%;
     }
   }
 }
 
-@keyframes about-story-grow-y {
+@keyframes story-grow-y {
   from { transform: scaleY(0); }
   to { transform: scaleY(1); }
 }
-@keyframes about-story-grow-x {
+@keyframes story-grow-x {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
-@keyframes about-story-rise {
+@keyframes story-rise {
   from { opacity: 0.35; transform: translateY(96px) scale(0.95); }
   to { opacity: 1; transform: none; }
 }
-@keyframes about-story-fade-up {
+@keyframes story-fade-up {
   from { opacity: 0; transform: translateY(32px); }
   to { opacity: 1; transform: none; }
 }
