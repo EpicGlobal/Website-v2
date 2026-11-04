@@ -115,8 +115,8 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
     {
       icon: Sparkles,
       title: 'Start Here',
-      description: 'New to Epic Global? Start with these fundamentals.',
-      link: '/knowledge-base?category=Start+Here',
+      description: 'New to Epic Global? Start with what we do and how we work with brands.',
+      link: '/knowledge-base/what-is-epic-global-inc',
       color: 'from-cyan-500/20 to-cyan-600/10',
     },
     {
