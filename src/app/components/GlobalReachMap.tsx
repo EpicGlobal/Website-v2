@@ -967,6 +967,27 @@ export function GlobalReachMap() {
           <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1">Regions</div>
         </div>
       </div>
+
+      {/* The same markets as plain text, so people and search/AI crawlers can read them without hovering the map */}
+      <div className="mt-8">
+        <h3 className="text-base font-semibold mb-3 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">Countries and marketplaces</h3>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from(new Set(countryData.map((c) => c.region))).map((region) => (
+            <div key={region}>
+              <p className="text-sm font-semibold mb-1 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">{region}</p>
+              <ul className="text-sm space-y-0.5 text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828]">
+                {countryData
+                  .filter((c) => c.region === region)
+                  .map((c) => (
+                    <li key={c.code}>
+                      {c.country}: {c.marketplaces.join(', ')}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
