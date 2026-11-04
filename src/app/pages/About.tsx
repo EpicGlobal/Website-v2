@@ -177,7 +177,7 @@ export function About() {
                 <div className="w-48 h-48 rounded-2xl overflow-hidden border-2 border-cyan-500/20 dark:border-cyan-500/20 soft-dark:border-gray-200 light:border-cyan-500/20 orange:border-orange-500/30 leaf:border-cyan-600/30 water:border-emerald-600/30 shadow-xl shadow-cyan-500/10 soft-dark:shadow-md orange:shadow-orange-500/20">
                   <Image
                     src={image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f}
-                    alt="Glen Jensen - Founder of Epic Global Inc."
+                    alt="Glen Jensen, founder and CEO of Epic Global Inc."
                     sizes="192px"
                     className="w-full h-full object-cover"
                   />
@@ -199,19 +199,19 @@ export function About() {
                 <h3 className="text-2xl sm:text-3xl font-bold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 mb-2">
                   Glen Jensen
                 </h3>
-                <p className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mb-6">Founder</p>
+                <p className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mb-6">Founder &amp; CEO</p>
                 
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-                  {"Glen Jensen is the founder of Epic Global Inc., a wholesale trade partner for brands that sell on online marketplaces."}
+                  {"Glen Jensen is the founder and CEO of Epic Global Inc., a wholesale trade partner and global marketplace operator. Epic buys brands' inventory and sells it on Amazon, Walmart, TikTok Shop and other leading marketplaces, so brands can grow without running those marketplaces themselves."}
                 </p>
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-                  {"Epic is built around a simple idea: brands should not have to pay an agency and carry all the risk to sell on marketplaces. Instead, Epic buys a brand's inventory upfront at an agreed wholesale price and sells it on Amazon, Walmart, eBay, TikTok Shop and other marketplaces. Epic pays for the advertising, marketplace fees and fulfillment itself, and pays the brand on agreed payment terms."}
+                  {"Instead of following the agency model, Glen built Epic on a wholesale partnership that ties Epic's success to the brand's. Epic buys the inventory upfront, invests its own capital, and takes responsibility for marketplace advertising, logistics and day-to-day execution. Brands reach more marketplaces without carrying that financial and operational load."}
                 </p>
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-                  {"Epic's model has four parts: Buy, Sell, Advertise and Protect. The brand keeps its Brand Registry and authorizes Epic to sell on its existing listings. Epic sells at or above the brand's minimum advertised price, enforces that price, and works to remove unauthorized sellers."}
+                  {"Under Glen's leadership, Epic has grown into an international company operating in about 40 countries across North America, Latin America, Europe and Asia-Pacific. Every partner's brand equity is protected: the brand keeps its Brand Registry, and Epic enforces its minimum advertised price and works to remove unauthorized sellers."}
                 </p>
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-                  {"The result is a simple arrangement for the brand owner. The brand keeps its company, its name and control of how its products are presented, and Epic carries the work of running the marketplaces."}
+                  {"Glen's approach centers on innovation, accountability and execution, with a forward-looking focus on technology and automation. His vision is simple: a company that doesn't just advise brands on how to grow, but invests alongside them and takes responsibility for making that growth happen."}
                 </p>
 
                 <ul className="space-y-3 text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-6">
@@ -225,7 +225,7 @@ export function About() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
-                    <span><strong className="text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Model:</strong> Inventory purchase + full execution coverage</span>
+                    <span><strong className="text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Model:</strong> Buy, Sell, Advertise, Protect</span>
                   </li>
                 </ul>
               </div>
