@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Search, Book, Lightbulb, CheckSquare, BookOpen, FileText, Download, Sparkles } from 'lucide-react';
 import { SEO } from '@/app/components/SEO';
-import { StructuredData, getBreadcrumbSchema } from '@/app/components/StructuredData';
+import { StructuredData, getBreadcrumbSchema, websiteReference } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
 
 // This will be replaced with actual articles from a data file
@@ -29,7 +29,7 @@ const categories = [
   'Library',
 ];
 
-const pillars = ['All', 'Purchase', 'Expand', 'Cover'];
+const pillars = ['All', 'Buy', 'Sell', 'Advertise', 'Protect'];
 const marketplaces = ['All', 'Amazon', 'Walmart', 'eBay', 'International'];
 
 function normalizeFilter(value: string, options: string[]) {
@@ -122,7 +122,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
     {
       icon: Book,
       title: 'How Our Model Works',
-      description: 'Purchase, Expand, Cover explained in detail.',
+      description: 'Buy, Sell, Advertise, Protect explained in detail.',
       link: '/knowledge-base/how-our-model-works',
       color: 'from-blue-500/20 to-blue-600/10',
     },
@@ -172,7 +172,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
           name: 'Knowledge Base',
           url: `${siteConfig.url}/knowledge-base`,
           description: 'Operator-grade playbooks, checklists, and definitions for running marketplaces as a system.',
-          isPartOf: { '@id': `${siteConfig.url}/#website` },
+          isPartOf: websiteReference,
           mainEntity: {
             '@type': 'ItemList',
             numberOfItems: publishedArticles.length,
@@ -471,7 +471,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
             Can't find what you're looking for?
           </h2>
           <p className="text-lg text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Let's talk through your specific situation and map the right approach.
+            Let's talk through your specific situation and map the right approach. Or email <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 font-medium">{siteConfig.contactEmail}</a>.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <CtaButton variant="primary" size="lg" location="Knowledge Base Page - Final CTA" />

@@ -78,8 +78,22 @@ const serviceDefinitions = [
 ] as const;
 
 const organizationReference = {
+  '@type': 'Organization',
   '@id': organizationId,
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: { '@type': 'ImageObject', url: `${siteConfig.url}${siteConfig.logo}` },
 };
+
+export const websiteReference = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  name: siteConfig.name,
+  url: siteConfig.url,
+};
+
+/** Organization reference for author/publisher on articles. */
+export const organizationRef = organizationReference;
 
 export const founderSchema = {
   '@context': 'https://schema.org',
@@ -167,7 +181,10 @@ export const organizationSchema = {
       '@type': 'ListItem',
       position: index + 1,
       item: {
+        '@type': 'Service',
         '@id': service['@id'],
+        name: service.name,
+        url: service.url,
       },
     })),
   },
@@ -179,7 +196,7 @@ export const websiteSchema = {
   '@id': websiteId,
   name: siteConfig.name,
   url: siteConfig.url,
-  description: 'Global marketplace operator and technology platform for end-to-end ecommerce execution',
+  description: 'Wholesale trade partner and global marketplace operator: buys brand inventory at wholesale and sells it on Amazon, Walmart and other marketplaces',
   publisher: organizationReference,
 };
 
@@ -207,9 +224,7 @@ export function getWebPageSchema(
     '@type': 'WebPage',
     ...pageData,
     about: organizationReference,
-    isPartOf: {
-      '@id': websiteId,
-    },
+    isPartOf: websiteReference,
     publisher: organizationReference,
   };
 }

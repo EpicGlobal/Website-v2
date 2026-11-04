@@ -24,9 +24,6 @@ export const metadata: Metadata = {
     'wholesale trade partner',
     'brand protection',
   ],
-  alternates: {
-    canonical: siteConfig.url,
-  },
   icons: {
     icon: [
       {

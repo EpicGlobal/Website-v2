@@ -4,7 +4,7 @@ import image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f from '@/assets/7827c6003ae
 import Link from 'next/link';
 import Image from 'next/image';
 import { Target, Shield, Globe2, BarChart3, Award, Users, Clock, CheckCircle2, Linkedin } from 'lucide-react';
-import { StructuredData, founderSchema, getBreadcrumbSchema, getWebPageSchema, organizationSchema } from '@/app/components/StructuredData';
+import { StructuredData, founderSchema, getBreadcrumbSchema, getWebPageSchema, organizationSchema, organizationRef } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { motion } from 'framer-motion';
 import { GlobalReachMap } from '@/app/components/GlobalReachMap';
@@ -62,17 +62,15 @@ export function About() {
     '@type': 'AboutPage',
     name: 'About Epic Global Inc.',
     url: `${siteConfig.url}/about`,
-    description: 'Epic Global Inc. is a global marketplace operator and technology platform led by Glen Jensen, combining software, AI, and operational execution to launch, scale, and protect brands across marketplaces worldwide.',
-    mainEntity: {
-      '@id': `${siteConfig.url}/#organization`,
-    },
+    description: "Epic Global Inc. is a wholesale trade partner and global marketplace operator led by Glen Jensen: we buy brands' inventory at wholesale and sell it on Amazon, Walmart and other marketplaces, paying for the advertising, fees and fulfillment.",
+    mainEntity: organizationRef,
   });
 
   return (
     <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
       <SEO 
         title="About Epic Global Inc. - Wholesale Trade Partner"
-        description="Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy brands' inventory and run marketplace operations across 40 countries."
+        description="Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy brands' inventory and run marketplace operations in about 40 countries."
         canonicalUrl={`${siteConfig.url}/about`}
         keywords="commerce operator, marketplace management, global ecommerce, operator-first approach, marketplace technology"
       />

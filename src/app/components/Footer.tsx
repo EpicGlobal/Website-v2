@@ -48,6 +48,8 @@ export function Footer() {
             </p>
             <address className="not-italic mt-3 text-sm text-gray-400 leaf:text-sky-100">
               {siteConfig.streetAddress}, {siteConfig.locality}, {siteConfig.region} {siteConfig.postalCode}
+              <br />
+              <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 hover:text-white">{siteConfig.contactEmail}</a>
             </address>
           </div>
 

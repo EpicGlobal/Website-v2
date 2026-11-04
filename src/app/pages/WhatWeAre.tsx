@@ -69,7 +69,7 @@ export function WhatWeAre() {
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20">
             <h2 className="text-2xl font-bold mb-6 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">What we do</h2>
             <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-4">
-              Epic Global Inc. is a global marketplace operator and technology platform that purchases inventory at wholesale and runs end-to-end eCommerce execution across marketplaces worldwide.
+              Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy a brand's inventory upfront at wholesale and sell it on Amazon, Walmart and other marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.
             </p>
             <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed">
               We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned. We don't sell consulting packages or charge hourly rates. We buy inventory, then operate retail sales across approved marketplaces.
@@ -326,7 +326,7 @@ export function WhatWeAre() {
             Questions about how this works?
           </h2>
           <p className="text-lg text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Let's walk through your catalog, marketplace presence, and growth goals.
+            Let's walk through your catalog, marketplace presence, and growth goals. Or email <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 font-medium">{siteConfig.contactEmail}</a>.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <CtaButton variant="primary" size="lg" location="What We Are Page - Final CTA" />

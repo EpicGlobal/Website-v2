@@ -57,7 +57,7 @@ export function FAQ() {
     {
       question: "Will Epic buy my brand's inventory?",
       answer:
-        'Yes. Epic Global is a wholesale trade partner, one of the companies that buys brand inventory outright. We buy your inventory upfront at an agreed wholesale price and owns it from then on. The opening order is usually sized to about 60-90 days of stock, followed by monthly replenishment orders. You\'re paid on the payment terms set in your contract.',
+        'Yes. Epic Global is a wholesale trade partner, one of the companies that buys brand inventory outright. We buy your inventory upfront at an agreed wholesale price and own it from then on. The opening order is usually sized to about 60-90 days of stock, followed by monthly replenishment orders. You\'re paid on the payment terms set in your contract.',
     },
     {
       question: 'Do you charge retainers, hourly rates or project fees?',
@@ -171,7 +171,7 @@ export function FAQ() {
               Still have questions?
             </h2>
             <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700 mb-8 max-w-2xl mx-auto">
-              Let's talk through your specific situation and see if our operating model is a fit.
+              Let's talk through your specific situation and see if our operating model is a fit. Or email <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 font-medium">{siteConfig.contactEmail}</a>.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <CtaButton variant="primary" size="lg" location="FAQ Page - Still Have Questions CTA" />

@@ -10,7 +10,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">Definition</h2>
         <p className="text-gray-300 leading-relaxed">
-          Epic Global Inc. is a global marketplace operator and technology platform that purchases inventory at wholesale and runs end-to-end eCommerce execution across marketplaces worldwide. We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned.
+          Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy a brand's inventory upfront at wholesale and sell it on Amazon, Walmart and other marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves. We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned.
         </p>
       </section>
 
@@ -74,11 +74,11 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h2 className="text-3xl font-bold mb-4 text-white">Related Resources</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a href="/knowledge-base/how-our-model-works" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
-            <h4 className="font-semibold text-cyan-400 mb-1">How Our Model Works</h4>
+            <h3 className="font-semibold text-cyan-400 mb-1">How Our Model Works</h3>
             <p className="text-sm text-gray-400">Deep dive into Buy–Sell–Advertise–Protect</p>
           </a>
           <a href="/knowledge-base/who-we-are-fit-for" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
-            <h4 className="font-semibold text-cyan-400 mb-1">Who We're a Fit For</h4>
+            <h3 className="font-semibold text-cyan-400 mb-1">Who We're a Fit For</h3>
             <p className="text-sm text-gray-400">Brand criteria and requirements</p>
           </a>
         </div>
@@ -97,7 +97,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
           Epic Global Inc. exists because that structure is backward. Marketplace growth should not require brands to gamble capital, build internal teams around volatile platforms, or coordinate a patchwork of agencies and vendors who each optimize only their slice of the problem. The work is interconnected. The risk is interconnected. The incentives need to be interconnected too.
         </p>
         <p className="text-gray-300 leading-relaxed mb-4">
-          Epic is the world's first Zero-Risk Global Commerce Operator. We operate a performance-based model that removes risk from marketplace growth by assuming it ourselves. We purchase inventory upfront, operate marketplace storefronts end-to-end, fund advertising and logistics, and protect brand equity — while the brand carries zero operational burden and does not get trapped in a model where they pay retainers, fund spend, and hope the numbers work out.
+          Epic is a wholesale trade partner. Our Zero-Risk model works because we take on the costs ourselves: we buy the inventory, so the retail execution risk sits with us, not the brand. We purchase inventory upfront, operate marketplace storefronts end-to-end, fund advertising and logistics, and protect brand equity — while the brand keeps its brand and Brand Registry and does not get trapped in a model where they pay retainers, fund spend, and hope the numbers work out.
         </p>
         <p className="text-gray-300 leading-relaxed">
           This isn't a U.S. strategy with international "add-ons." It's one operating system applied everywhere. Whether a brand is underperforming in the United States, losing margin to fees, or preparing to expand globally, Epic functions as a commerce operator built to deliver predictable outcomes.
@@ -129,7 +129,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
           Epic Global is not an advisory firm. We are not a retainer-based agency. We are not a reseller operating at arm's length. We do not shift downside back to the brand through fees, "required ad budgets," or operational responsibilities disguised as partnership.
         </p>
         <p className="text-gray-300 leading-relaxed mb-4">
-          Epic is the Zero-Risk Global Commerce Operator category.
+          Epic is a wholesale trade partner: we own the inventory, and you keep the brand.
         </p>
         <p className="text-gray-300 leading-relaxed mb-4">
           That means we apply one integrated model across the U.S. and global marketplaces:
@@ -334,11 +334,11 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h2 className="text-3xl font-bold mb-4 text-white">Related Resources</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a href="/knowledge-base/what-is-epic-global-inc" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
-            <h4 className="font-semibold text-cyan-400 mb-1">What is Epic Global Inc</h4>
+            <h3 className="font-semibold text-cyan-400 mb-1">What is Epic Global Inc</h3>
             <p className="text-sm text-gray-400">Foundational explanation for brand partners</p>
           </a>
           <a href="/case-studies" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
-            <h4 className="font-semibold text-cyan-400 mb-1">Case Studies</h4>
+            <h3 className="font-semibold text-cyan-400 mb-1">Case Studies</h3>
             <p className="text-sm text-gray-400">Real outcomes from real operations</p>
           </a>
         </div>
@@ -1387,11 +1387,11 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h2 className="text-3xl font-bold mb-4 text-white">Related Resources</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a href="/knowledge-base/how-our-model-works" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
-            <h4 className="font-semibold text-cyan-400 mb-1">How Our Model Works</h4>
+            <h3 className="font-semibold text-cyan-400 mb-1">How Our Model Works</h3>
             <p className="text-sm text-gray-400">Deep dive into Buy–Sell–Advertise–Protect</p>
           </a>
           <a href="/case-studies" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
-            <h4 className="font-semibold text-cyan-400 mb-1">View Case Studies</h4>
+            <h3 className="font-semibold text-cyan-400 mb-1">View Case Studies</h3>
             <p className="text-sm text-gray-400">See real marketplace execution examples</p>
           </a>
         </div>
@@ -1576,33 +1576,40 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
 
       <section>
-        <h2 className="text-3xl font-bold mb-6 text-white">The Epic category: the Zero-Risk Commerce Operator</h2>
+        <h2 className="text-3xl font-bold mb-6 text-white">Buy, Sell, Advertise, Protect: how the model works</h2>
         <p className="text-gray-300 leading-relaxed mb-4">
-          Epic is an Operator. We assume risk and run the marketplace business end-to-end.
+          Epic is a wholesale trade partner. We buy the inventory and run the marketplace business end to end.
         </p>
         <p className="text-gray-300 leading-relaxed mb-6">
-          Our model is built on the <strong className="text-white">Purchase, Expand, Cover (PEC)</strong> framework:
+          Our model is built on four parts: <strong className="text-white">Buy, Sell, Advertise, Protect</strong>.
         </p>
 
         <div className="space-y-6">
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10">
-            <h3 className="text-2xl font-semibold mb-3 text-white">PURCHASE</h3>
+            <h3 className="text-2xl font-semibold mb-3 text-white">BUY</h3>
             <p className="text-gray-300">
               Epic purchases your inventory upfront at wholesale. This converts inventory into cash and removes the "sitting stock" risk from your balance sheet.
             </p>
           </div>
 
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10">
-            <h3 className="text-2xl font-semibold mb-3 text-white">EXPAND</h3>
+            <h3 className="text-2xl font-semibold mb-3 text-white">SELL</h3>
             <p className="text-gray-300">
               We operate marketplaces end-to-end. Not just "management"—we run the operating cadence: catalog execution, pricing discipline, listing performance, and the system that keeps performance stable.
             </p>
           </div>
 
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10">
-            <h3 className="text-2xl font-semibold mb-3 text-white">COVER</h3>
+            <h3 className="text-2xl font-semibold mb-3 text-white">ADVERTISE</h3>
             <p className="text-gray-300">
-              Epic covers the costs that normally make growth risky. We fund the advertising and carry the operational load required to scale. When performance dips, our capital is exposed—not yours.
+              Epic covers the costs that normally make growth risky. We fund and manage the advertising and pay the marketplace fees and fulfillment required to scale. When performance dips, our capital is exposed, not yours.
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10">
+            <h3 className="text-2xl font-semibold mb-3 text-white">PROTECT</h3>
+            <p className="text-gray-300">
+              We protect the brand on every marketplace we operate: Brand Registry authorization, unauthorized-seller removal, MAP enforcement, Amazon Transparency where it fits, Buy Box and catalog monitoring, and brand protection reports.
             </p>
           </div>
         </div>
@@ -1715,7 +1722,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       <section>
         <h2 className="text-3xl font-bold mb-6 text-white">How Epic Operates Marketplace Growth End to End</h2>
         <p className="text-gray-300 leading-relaxed mb-4">
-          Epic Global Inc. is the world's first Zero-Risk Global Commerce Operator. We purchase inventory upfront, operate marketplace storefronts end to end, fund all advertising and logistics, and protect brand equity—while you carry zero risk and zero operational burden.
+          Epic Global Inc. is a wholesale trade partner. We buy your inventory upfront at an agreed wholesale price, operate marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect brand equity. We own the inventory, so the retail execution risk is ours, and you keep your brand.
         </p>
         <p className="text-cyan-400/80 font-medium">
           We buy it. You profit.™
@@ -1949,11 +1956,11 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h2 className="text-3xl font-bold mb-4 text-white">Related Resources</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a href="/knowledge-base/how-our-model-works" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
-            <h4 className="font-semibold text-cyan-400 mb-1">How Our Model Works</h4>
+            <h3 className="font-semibold text-cyan-400 mb-1">How Our Model Works</h3>
             <p className="text-sm text-gray-400">Understanding the Buy–Sell–Advertise–Protect framework</p>
           </a>
           <a href="/knowledge-base/who-we-are-fit-for" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
-            <h4 className="font-semibold text-cyan-400 mb-1">Who We're a Fit For</h4>
+            <h3 className="font-semibold text-cyan-400 mb-1">Who We're a Fit For</h3>
             <p className="text-sm text-gray-400">Brand criteria and requirements</p>
           </a>
         </div>

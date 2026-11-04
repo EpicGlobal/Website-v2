@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, Download, Share2 } from 'lucide-react';
 import { isoDate, knowledgeArticles, type KnowledgeArticle as KnowledgeArticleType } from '@/app/data/knowledgeArticles';
-import { StructuredData } from '@/app/components/StructuredData';
+import { StructuredData, getBreadcrumbSchema, organizationRef } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
@@ -48,8 +48,7 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
   const updated = isoDate(article.lastUpdated);
   const articleUrl = `${siteConfig.url}/knowledge-base/${article.slug}`;
 
-  // Generate FAQ schema if article has FAQ section
-  const faqSchema = {
+  const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
@@ -57,14 +56,9 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
     datePublished: updated,
     dateModified: updated,
     mainEntityOfPage: articleUrl,
-    author: {
-      '@type': 'Organization',
-      name: 'Epic Global Inc.',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Epic Global Inc.',
-    },
+    image: [`${siteConfig.url}${siteConfig.ogImage}`],
+    author: organizationRef,
+    publisher: organizationRef,
   };
 
   return (
@@ -83,7 +77,14 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
           tags: [article.pillar, article.category].filter((tag): tag is string => Boolean(tag))
         }}
       />
-      <StructuredData data={faqSchema} />
+      <StructuredData data={articleSchema} />
+      <StructuredData
+        data={getBreadcrumbSchema([
+          { name: 'Home', url: `${siteConfig.url}/` },
+          { name: 'Knowledge Base', url: `${siteConfig.url}/knowledge-base` },
+          { name: article.title, url: articleUrl },
+        ])}
+      />
 
       {/* Header */}
       <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-950 to-black">
@@ -189,7 +190,7 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
           {/* Feedback */}
           <div className="mt-12 pt-8 border-t border-white/10">
             <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl p-6 border border-white/10">
-              <h3 className="text-lg font-semibold mb-4 text-white">Was this article helpful?</h3>
+              <p className="text-lg font-semibold mb-4 text-white">Was this article helpful?</p>
               <div className="flex gap-4">
                 <button className="px-6 py-2 bg-cyan-500/10 text-cyan-400 rounded-lg hover:bg-cyan-500/20 transition-colors text-sm font-medium">
                   Yes, helpful
@@ -239,7 +240,7 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
               Ready to see how this works for your brand?
             </h2>
             <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Let's walk through your catalog, marketplace presence, and growth goals.
+              Let's walk through your catalog, marketplace presence, and growth goals. Or email <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 font-medium">{siteConfig.contactEmail}</a>.
             </p>
             <CtaButton variant="primary" size="lg" location="Knowledge Article Page - Bottom CTA" />
           </div>

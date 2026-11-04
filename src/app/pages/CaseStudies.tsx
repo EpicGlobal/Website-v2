@@ -173,14 +173,14 @@ export function CaseStudies() {
         }
       ],
       results: [
-        'Product 1 (Escalade Brake Kit): Brand net revenue increased 156% from $135.72 to $351.15 per unit (+$215.43)',
+        'Product 1 (Escalade Brake Kit): Brand net revenue increased 159% from $135.72 to $351.15 per unit (+$215.43)',
         'Product 2 (Civic Brake Kit): Brand net revenue increased 53% from $111.46 to $170.04 per unit (+$58.58)',
         'Brand eliminates 100% of Amazon fees, chargebacks, and co-op costs',
         '40% of MSRP purchase price provides meaningful profitability vs 15-30% net under 1P',
         'Operational simplicity and financial predictability with zero fee burden'
       ],
       keyMetrics: [
-        { label: 'Escalade Kit Gain', value: '+156%', subtext: '+$215.43/unit' },
+        { label: 'Escalade Kit Gain', value: '+159%', subtext: '+$215.43/unit' },
         { label: 'Civic Kit Gain', value: '+53%', subtext: '+$58.58/unit' },
         { label: 'Fee Elimination', value: '100%', subtext: 'Zero brand fees' },
         { label: 'Purchase Price', value: '40%', subtext: 'of MSRP' }
@@ -193,7 +193,7 @@ export function CaseStudies() {
             { metric: 'Purchase Price Paid to Brand', model1P: '$489.85 (56% of MSRP)', model3P: '$351.15 (40% of MSRP)' },
             { metric: 'Fees Paid by Brand', model1P: '$354.13 (Amazon fees, chargebacks, etc.)', model3P: '$0 (Epic Global covers all fees)' },
             { metric: 'Brand Net Revenue (Actual)', model1P: '$135.72 (15.46% Net PPM)', model3P: '$351.15' },
-            { metric: 'Brand Net Gain in 3P', model1P: 'N/A', model3P: '+156% (+$215.43 per unit)' }
+            { metric: 'Brand Net Gain in 3P', model1P: 'N/A', model3P: '+159% (+$215.43 per unit)' }
           ]
         },
         {
