@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: KnowledgeArticlePageProps) {
     type: 'article',
     // "Coming Soon" placeholders stay out of search until the article is written.
     noindex: !article.hasContent,
+    image: { url: `/knowledge-base/${article.slug}/opengraph-image`, alt: `${article.title} | Epic Global Inc. Knowledge Base` },
   });
 }
 

@@ -64,6 +64,7 @@ export function createPageMetadata({
   keywords,
   type = 'website',
   noindex = false,
+  image,
 }: {
   title: string;
   description: string;
@@ -72,6 +73,8 @@ export function createPageMetadata({
   type?: 'website' | 'article';
   /** Keep the page out of search results (placeholders, account pages). */
   noindex?: boolean;
+  /** Page-specific link-preview image (for example a Knowledge Base article card). */
+  image?: { url: string; alt: string };
 }): Metadata {
   const url = new URL(path, siteConfig.url).toString();
   const hasSiteName = title.includes(siteConfig.name);
@@ -96,10 +99,10 @@ export function createPageMetadata({
       locale: 'en_US',
       images: [
         {
-          url: siteConfig.ogImage,
+          url: image?.url ?? siteConfig.ogImage,
           width: 1200,
           height: 630,
-          alt: siteConfig.name,
+          alt: image?.alt ?? siteConfig.name,
         },
       ],
     },
@@ -107,7 +110,7 @@ export function createPageMetadata({
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [siteConfig.twitterImage],
+      images: [image?.url ?? siteConfig.twitterImage],
     },
   };
 }
