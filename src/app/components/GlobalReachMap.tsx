@@ -968,9 +968,14 @@ export function GlobalReachMap() {
         </div>
       </div>
 
-      {/* The same markets as plain text, so people and search/AI crawlers can read them without hovering the map */}
-      <div className="mt-8">
-        <h3 className="text-base font-semibold mb-3 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">Countries and marketplaces</h3>
+      {/* The same markets as plain text in the page HTML for search/AI crawlers; folded shut so the page stays clean */}
+      <details className="mt-8 group">
+        <summary className="inline-flex cursor-pointer list-none items-center gap-2 rounded-full border border-current/20 px-4 py-1.5 text-sm font-medium opacity-80 hover:opacity-100 [&::-webkit-details-marker]:hidden text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">
+          <span className="group-open:hidden">See all countries and marketplaces</span>
+          <span className="hidden group-open:inline">Hide the list</span>
+          <span aria-hidden="true" className="transition-transform group-open:rotate-180">▾</span>
+        </summary>
+        <h3 className="mt-6 text-base font-semibold mb-3 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">Countries and marketplaces</h3>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from(new Set(countryData.map((c) => c.region))).map((region) => (
             <div key={region}>
@@ -987,7 +992,7 @@ export function GlobalReachMap() {
             </div>
           ))}
         </div>
-      </div>
+      </details>
     </div>
   );
 }

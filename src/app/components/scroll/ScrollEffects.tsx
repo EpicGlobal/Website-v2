@@ -63,11 +63,47 @@ function useElementProgress(ref: React.RefObject<HTMLElement | null>, mode: 'pin
   return progress;
 }
 
+
+/** Pins `content` inside `wrapper`, centered on screen (below the nav), and sized to the content, so no empty
+ * screen-height space is left above or below it. Returns the progress (0-1) through the pinned scroll, the sticky
+ * top offset and the content height. */
+const NAV_SPACE = 96;
+function usePinnedProgress(wrapper: React.RefObject<HTMLElement | null>, content: React.RefObject<HTMLElement | null>, enabled: boolean) {
+  const progress = useMotionValue(0);
+  const [box, setBox] = useState({ top: NAV_SPACE, height: 0 });
+  const { scrollY } = useScroll();
+  const update = () => {
+    const w = wrapper.current;
+    const c = content.current;
+    if (!w || !c) return;
+    const h = c.offsetHeight;
+    const top = Math.max(NAV_SPACE, (window.innerHeight - h) / 2);
+    if (h !== box.height || top !== box.top) setBox({ top, height: h });
+    const r = w.getBoundingClientRect();
+    const total = r.height - h;
+    progress.set(total > 0 ? Math.min(1, Math.max(0, (top - r.top) / total)) : 0);
+  };
+  useMotionValueEvent(scrollY, 'change', update);
+  useEffect(() => {
+    if (!enabled) return;
+    update();
+    const ro = new ResizeObserver(update);
+    if (content.current) ro.observe(content.current);
+    window.addEventListener('resize', update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', update);
+    };
+  });
+  return { progress, top: box.top, height: box.height };
+}
+
 /* 1. Scroll highlight: the section pins and each scroll step lights up the next card. */
 export function ScrollHighlightSteps({ header, cards, footer }: { header: ReactNode; cards: ReactNode[]; footer?: ReactNode }) {
   const enabled = useScrollEffectsEnabled(760);
   const ref = useRef<HTMLDivElement>(null);
-  const scrollYProgress = useElementProgress(ref, 'pinned');
+  const inner = useRef<HTMLDivElement>(null);
+  const { progress: scrollYProgress, top, height } = usePinnedProgress(ref, inner, enabled);
   const [active, setActive] = useState(0);
   const bar = useSpring(scrollYProgress, { stiffness: 200, damping: 30 });
   useMotionValueEvent(scrollYProgress, 'change', (v) => setActive(Math.min(cards.length - 1, Math.floor(v * cards.length * 0.999))));
@@ -82,8 +118,8 @@ export function ScrollHighlightSteps({ header, cards, footer }: { header: ReactN
     );
   }
   return (
-    <div ref={ref} style={{ height: `${100 + cards.length * 45}vh` }} className="relative">
-      <div className="sticky top-0 min-h-screen flex flex-col justify-center py-16">
+    <div ref={ref} style={{ height: `calc(${height}px + ${cards.length * 45}vh)` }} className="relative">
+      <div ref={inner} style={{ top }} className="sticky flex flex-col">
         {header}
         <div className="grid grid-cols-4 gap-6 mb-6">
           {Children.map(cards, (card, i) => (
@@ -95,10 +131,10 @@ export function ScrollHighlightSteps({ header, cards, footer }: { header: ReactN
             </div>
           ))}
         </div>
-        <div className="mx-auto mb-8 h-1 w-64 overflow-hidden rounded-full bg-black/10 dark:bg-white/10" aria-hidden="true">
+        <div className="mx-auto h-1 w-64 overflow-hidden rounded-full bg-black/10 dark:bg-white/10" aria-hidden="true">
           <motion.div className="h-full origin-left rounded-full bg-[var(--pop)]" style={{ scaleX: bar }} />
         </div>
-        {footer}
+        {footer ? <div className="mt-8">{footer}</div> : null}
       </div>
     </div>
   );
@@ -140,9 +176,10 @@ export function WordReveal({ lines, className }: { lines: string[]; className?: 
 export function HorizontalGallery({ header, children, staticClassName }: { header?: ReactNode; children: ReactNode[]; staticClassName: string }) {
   const enabled = useScrollEffectsEnabled(700);
   const ref = useRef<HTMLDivElement>(null);
+  const inner = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const [distance, setDistance] = useState(0);
-  const scrollYProgress = useElementProgress(ref, 'pinned');
+  const { progress: scrollYProgress, top, height } = usePinnedProgress(ref, inner, enabled);
   const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
   useEffect(() => {
     if (!enabled || !track.current) return;
@@ -154,8 +191,9 @@ export function HorizontalGallery({ header, children, staticClassName }: { heade
 
   if (!enabled) return <div>{header}<div className={staticClassName}>{children}</div></div>;
   return (
-    <div ref={ref} style={{ height: '220vh' }} className="relative">
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+    // Scroll distance equals the sideways distance, so the cards move at the same speed as the page.
+    <div ref={ref} style={{ height: height + distance }} className="relative">
+      <div ref={inner} style={{ top }} className="sticky flex flex-col overflow-hidden">
         {header}
         <motion.div ref={track} style={{ x }} className="flex gap-6 will-change-transform">
           {Children.map(children, (c) => <div className="w-[340px] shrink-0">{c}</div>)}
