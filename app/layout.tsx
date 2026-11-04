@@ -39,7 +39,8 @@ export const metadata: Metadata = {
     ],
     apple: [
       {
-        url: tabLogo.src,
+        url: '/apple-touch-icon.png',
+        sizes: '180x180',
         type: 'image/png',
       },
     ],
