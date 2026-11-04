@@ -835,7 +835,10 @@ export function GlobalReachMap() {
               const projected = projection([coords.lng, coords.lat]);
               if (!projected) return null;
 
-              const [x, y] = projected;
+              // Round to 2 decimals: the server and the browser round the last digits of this math differently,
+              // which React reports as a hydration mismatch.
+              const x = Math.round(projected[0] * 100) / 100;
+              const y = Math.round(projected[1] * 100) / 100;
 
               return (
                 <g key={`marker-${country.code}`}>
