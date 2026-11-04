@@ -84,24 +84,36 @@ export function About() {
         ])}
       />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      {/* Hero: answer first, then the facts people check */}
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <div className="inline-block px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:shadow-lg leaf:bg-cyan-600/20 water:bg-gradient-to-r water:from-emerald-700 water:to-emerald-800 water:shadow-lg water:shadow-emerald-500/20 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-white leaf:text-cyan-900 water:text-white rounded-full text-sm font-semibold tracking-wide mb-6">
-            ZERO-RISK GLOBAL COMMERCE OPERATOR
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-600 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828] bg-clip-text text-transparent leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-8 leading-[1.08] max-w-4xl text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
             We run marketplace growth like operations, not marketing.
           </h1>
-          <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-[#101828] leading-relaxed max-w-3xl mb-6">
-            Epic Global Inc. is a wholesale trade partner and Zero-Risk Global Commerce Operator. We buy your inventory upfront at wholesale, operate marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect your brand. We own the inventory and take on the retail execution risk.
+          <p className="text-lg sm:text-xl leading-relaxed max-w-3xl mb-5 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
+            Epic Global Inc. is a wholesale trade partner and global marketplace operator. We buy your inventory upfront at wholesale, run your marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect your brand. We own the inventory, so the retail execution risk is ours.
           </p>
-          <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828] leading-relaxed max-w-3xl mb-6">
-            This model applies equally to U.S. growth and international expansion. Whether a brand is underperforming in the United States, losing margin to fees, or preparing to expand globally, Epic functions as a global marketplace operating system designed to deliver predictable outcomes.
+          <p className="text-lg leading-relaxed max-w-3xl mb-12 text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
+            The same model works for U.S. growth and international expansion: whether a brand is underperforming in the United States, losing margin to fees, or getting ready to sell abroad.
           </p>
-          <p className="text-cyan-400/80 dark:text-cyan-400/80 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-medium">
-            We buy it. You profit.
-          </p>
+          <dl className="grid grid-cols-2 sm:grid-cols-4 border-t border-white/15 dark:border-white/15 soft-dark:border-gray-300 light:border-gray-200 orange:border-[#101828]/20 leaf:border-gray-400/40 water:border-gray-400/40 pt-6 sm:divide-x divide-white/15 soft-dark:divide-gray-300 light:divide-gray-200 orange:divide-[#101828]/20 leaf:divide-gray-400/40 water:divide-gray-400/40">
+            <div className="py-4 sm:py-0 sm:px-6 first:sm:pl-0">
+              <dt className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">On Amazon since</dt>
+              <dd className="text-2xl font-semibold mt-1 tabular-nums text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">2015</dd>
+            </div>
+            <div className="py-4 sm:py-0 sm:px-6 first:sm:pl-0">
+              <dt className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">Headquarters</dt>
+              <dd className="text-2xl font-semibold mt-1 tabular-nums text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Lindon, Utah</dd>
+            </div>
+            <div className="py-4 sm:py-0 sm:px-6 first:sm:pl-0">
+              <dt className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">Countries</dt>
+              <dd className="text-2xl font-semibold mt-1 tabular-nums text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">~40</dd>
+            </div>
+            <div className="py-4 sm:py-0 sm:px-6 first:sm:pl-0">
+              <dt className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">Brands</dt>
+              <dd className="text-2xl font-semibold mt-1 tabular-nums text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">50+</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
