@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
 import { CheckCircle2, X } from 'lucide-react';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema, serviceSchemas } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
@@ -114,47 +115,18 @@ export function WhatWeAre() {
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20">
             <h2 className="text-2xl font-bold mb-8 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">How our wholesale model works</h2>
             
-            <div className="space-y-8">
-              <div>
-                <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-bold text-lg">1</span>
-                  <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">We purchase inventory at wholesale</h3>
-                </div>
-                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed ml-8">
-                  You sell us inventory at an agreed wholesale price. We own the inventory and take on the retail execution risk.
-                </p>
-              </div>
-
-              <div>
-                <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-bold text-lg">2</span>
-                  <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">We sell on Amazon, Walmart and other approved marketplaces</h3>
-                </div>
-                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed ml-8">
-                  We manage listings, advertising, pricing, inventory allocation, fulfillment coordination, catalog integrity, and brand protection on platforms like Amazon, Walmart, eBay, and international marketplaces.
-                </p>
-              </div>
-
-              <div>
-                <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-bold text-lg">3</span>
-                  <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">We cover operating expenses</h3>
-                </div>
-                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed ml-8">
-                  Marketplace fees, advertising spend, and fulfillment costs are covered by us. This keeps incentives aligned. We only succeed when your brand grows profitably.
-                </p>
-              </div>
-
-              <div>
-                <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-bold text-lg">4</span>
-                  <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">You get visibility and control</h3>
-                </div>
-                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed ml-8">
-                  You get a shared dashboard from day one, monthly reports with SKU-level sales, advertising and inventory, and quarterly business reviews. You stay informed and keep approval rights over major decisions.
-                </p>
-              </div>
-            </div>
+            <ScrollTimeline
+              numClass="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800"
+              titleClass="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 mb-2"
+              bodyClass="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed"
+              steps={[
+                { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own the inventory and take on the retail execution risk.' },
+                { title: 'Sell: we run Amazon, Walmart and other approved marketplaces', body: 'We manage listings, pricing, inventory allocation, fulfillment coordination and catalog integrity on Amazon, Walmart, eBay and international marketplaces.' },
+                { title: 'Advertise: we fund the ads, fees and fulfillment', body: 'Marketplace fees, advertising spend and fulfillment costs are paid by us. This keeps incentives aligned: we only succeed when your brand grows profitably.' },
+                { title: 'Protect: we guard your price and catalog', body: 'We protect your brand on every marketplace we operate: Brand Registry authorization, MAP enforcement, unauthorized-seller removal, and Buy Box and catalog monitoring.' },
+                { title: 'You get visibility and control', body: 'You get a shared dashboard from day one, monthly reports with SKU-level sales, advertising and inventory, and quarterly business reviews. You stay informed and keep approval rights over major decisions.' },
+              ]}
+            />
           </div>
         </div>
       </section>

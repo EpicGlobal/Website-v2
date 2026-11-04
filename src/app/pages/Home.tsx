@@ -9,7 +9,8 @@ import { ParticlesBackground } from '@/app/components/ParticlesBackground';
 import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, serviceSchemas, websiteSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
-import { HorizontalGallery, ScrollHighlightSteps, WordReveal } from '@/app/components/scroll/ScrollEffects';
+import { CountUp, HorizontalGallery, ScrollHighlightSteps, WordReveal } from '@/app/components/scroll/ScrollEffects';
+import { DeferredMount } from '@/app/components/DeferredMount';
 import { motion } from 'framer-motion';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { siteConfig } from '@/site/site-config';
@@ -269,13 +270,15 @@ export function Home() {
       {/* Hero Section */}
       <section className="relative pt-40 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Animated particles background */}
-        <ParticlesBackground />
-        
-        <div className="absolute inset-x-0 top-24 bottom-0 z-0 flex items-center justify-center" style={{ opacity: 0.6 }}>
-          <div className="w-full h-full max-w-4xl max-h-[700px] relative">
-            <Globe darkerParticles={true} />
+        {/* Decorative: loads after the text and buttons, when the browser is idle */}
+        <DeferredMount>
+          <ParticlesBackground />
+          <div className="absolute inset-x-0 top-24 bottom-0 z-0 flex items-center justify-center animate-[fadeIn_1s_ease-out]" style={{ opacity: 0.6 }}>
+            <div className="w-full h-full max-w-4xl max-h-[700px] relative">
+              <Globe darkerParticles={true} />
+            </div>
           </div>
-        </div>
+        </DeferredMount>
         
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="max-w-4xl mx-auto text-center">
@@ -341,6 +344,25 @@ export function Home() {
         <TrustLogosMarquee brands={brands} />
       </motion.section>
 
+      {/* Proof strip: real numbers, in the HTML for crawlers; they count up once on screen */}
+      <section aria-label="Epic Global Inc. at a glance" className="px-4 sm:px-6 lg:px-8 pb-8">
+        <dl className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { label: 'Brands we work with', value: 50, suffix: '+' },
+            { label: 'Countries', value: 40, prefix: '~' },
+            { label: 'Marketplaces', value: 12 },
+            { label: 'Amazon US seller rating (9,600+ ratings)', value: 4.9, decimals: 1, suffix: '/5' },
+          ].map((s) => (
+            <div key={s.label} className="rounded-xl p-5 text-center border shadow-sm bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10 soft-dark:bg-white/80 soft-dark:border-gray-200 light:bg-white light:border-gray-200 orange:bg-white/80 orange:border-orange-200 water:bg-white/75 water:border-emerald-200 leaf:bg-white/75 leaf:border-sky-200">
+              <dd className="text-3xl sm:text-4xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">
+                <CountUp value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
+              </dd>
+              <dt className="text-sm mt-1 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] leaf:text-[#101828]">{s.label}</dt>
+            </div>
+          ))}
+        </dl>
+      </section>
+
       {/* Capabilities - Bento Grid */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-transparent pointer-events-none" />
@@ -369,7 +391,7 @@ export function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileHover={{ y: -4 }}
                   className="group bg-gradient-to-br from-white/[0.12] to-white/[0.05] dark:from-white/[0.12] dark:to-white/[0.05] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-6 border border-white/20 dark:border-white/20 soft-dark:border-white/20 light:border-gray-200 orange:border-white/30 leaf:border-white/20 water:border-white/30 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 relative overflow-hidden flex flex-col min-h-[200px] dark:hover:border-cyan-500/50 dark:hover:shadow-cyan-500/20 soft-dark:hover:border-lime-600/50 soft-dark:hover:shadow-lime-500/20 light:hover:border-cyan-600/50 light:hover:shadow-cyan-500/20 orange:hover:border-orange-600/50 orange:hover:shadow-orange-500/20 leaf:hover:border-cyan-600/50 leaf:hover:shadow-cyan-500/20 water:hover:border-emerald-600/50 water:hover:shadow-emerald-500/20"
                 >
                   {/* Glow effect on hover */}
@@ -378,7 +400,7 @@ export function Home() {
                   </div>
                   
                   <div className="relative z-10 flex flex-col h-full">
-                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-cyan-500/20 dark:from-cyan-500/30 dark:to-cyan-600/10 dark:shadow-cyan-500/20 soft-dark:from-lime-600/30 soft-dark:to-lime-700/10 soft-dark:shadow-lime-500/20 light:from-cyan-600/30 light:to-cyan-700/10 light:shadow-cyan-500/20 orange:from-orange-600/30 orange:to-orange-700/10 orange:shadow-orange-500/20 water:from-lime-600/30 water:to-lime-700/10 water:shadow-lg water:shadow-lime-500/20 leaf:from-sky-600/30 leaf:to-sky-700/10 leaf:shadow-lg leaf:shadow-sky-500/20">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 rounded-xl flex items-center justify-center mb-4 transition-all duration-500 shadow-lg shadow-cyan-500/20 dark:from-cyan-500/30 dark:to-cyan-600/10 dark:shadow-cyan-500/20 soft-dark:from-lime-600/30 soft-dark:to-lime-700/10 soft-dark:shadow-lime-500/20 light:from-cyan-600/30 light:to-cyan-700/10 light:shadow-cyan-500/20 orange:from-orange-600/30 orange:to-orange-700/10 orange:shadow-orange-500/20 water:from-lime-600/30 water:to-lime-700/10 water:shadow-lg water:shadow-lime-500/20 leaf:from-sky-600/30 leaf:to-sky-700/10 leaf:shadow-lg leaf:shadow-sky-500/20">
                       <Icon className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors dark:text-cyan-400 dark:group-hover:text-cyan-300 soft-dark:text-lime-700 soft-dark:group-hover:text-lime-600 light:text-cyan-600 light:group-hover:text-cyan-500 orange:text-orange-700 water:text-lime-800 leaf:text-sky-700" />
                     </div>
                     <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-white transition-colors duration-300 dark:text-white dark:group-hover:text-cyan-300 soft-dark:text-gray-900 soft-dark:group-hover:text-lime-700 light:text-gray-900 light:group-hover:text-cyan-600 orange:text-gray-900 orange:group-hover:text-orange-700 water:text-[#101828] water:group-hover:text-lime-700">{capability.title}</h3>
@@ -452,7 +474,7 @@ export function Home() {
             footer={
               siteConfig.bookACallEnabled ? (
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <CtaButton variant="primary" size="md" location="Model Section" />
+              <CtaButton variant="secondary" size="md" location="Model Section" />
             </div>
           ) : null
             }

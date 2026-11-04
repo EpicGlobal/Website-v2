@@ -60,7 +60,17 @@ export function ParticlesBackground() {
     // Animation loop
     let animationFrameId: number;
     
+    let onScreen = true;
+    const visibility = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+    });
+    visibility.observe(canvas);
+
     const animate = () => {
+      if (!onScreen) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
       // Get current theme color (not cached, so it updates on theme switch)
       const currentColor = getParticleColor();
       
@@ -106,6 +116,7 @@ export function ParticlesBackground() {
     animate();
 
     return () => {
+      visibility.disconnect();
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };

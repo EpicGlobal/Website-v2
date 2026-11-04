@@ -582,3 +582,10 @@ html {
 html::-webkit-scrollbar { width: 10px; }
 html::-webkit-scrollbar-track { background: transparent; }
 html::-webkit-scrollbar-thumb { background: var(--pop); border-radius: 9999px; border: 2px solid transparent; background-clip: padding-box; }
+
+/* Soft fade-in for decorative visuals that load after the page (hero globe). Fades to whatever opacity the element has. */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}

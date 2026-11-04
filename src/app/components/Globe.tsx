@@ -51,7 +51,9 @@ export function Globe({ colorOverride, darkerParticles }: { colorOverride?: { r:
     const points: Array<{ x: number; y: number; z: number }> = [];
     const rotatedPoints: Array<{ x: number; y: number; z: number }> = [];
 
-    for (let i = 0; i < GLOBE_PARTICLE_COUNT; i++) {
+    // Fewer points on small screens: the connecting lines cost (points x points) work every frame.
+    const pointCount = window.innerWidth < 768 ? 240 : GLOBE_PARTICLE_COUNT;
+    for (let i = 0; i < pointCount; i++) {
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
 
@@ -196,7 +198,19 @@ export function Globe({ colorOverride, darkerParticles }: { colorOverride?: { r:
       }
     };
 
+    // Skip drawing while the hero is off screen (keeps scrolling smooth further down the page).
+    let onScreen = true;
+    const visibility = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      lastFrameTime = performance.now();
+    });
+    visibility.observe(canvas);
+
     const animate = () => {
+      if (!onScreen) {
+        animationId = requestAnimationFrame(animate);
+        return;
+      }
       if (!syncCanvasSize()) {
         lastFrameTime = performance.now();
         animationId = requestAnimationFrame(animate);
@@ -290,6 +304,7 @@ export function Globe({ colorOverride, darkerParticles }: { colorOverride?: { r:
     animationId = requestAnimationFrame(animate);
 
     return () => {
+      visibility.disconnect();
       resizeObserver.disconnect();
       window.removeEventListener('resize', syncCanvasSize);
       document.removeEventListener('pointerdown', startDrag, true);

@@ -6,25 +6,20 @@
  * Colors come from the theme's pop color (--pop in src/styles/theme.css).
  */
 import React, { Children, useEffect, useRef, useState, type ReactNode } from 'react';
-import { motion, useMotionValue, useMotionValueEvent, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion';
+import { motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion';
 
-/** True on a desktop-sized screen (and tall enough to pin a section), with motion allowed. Starts false so the
- * server HTML and first paint are the static layout. */
-function useScrollEffectsEnabled(minHeight = 0) {
-  const reduce = useReducedMotion();
-  const [ok, setOk] = useState(false);
+/** True on a laptop or desktop screen (900px wide or more). Phones and small tablets get the static layout.
+ * These effects only move when the visitor scrolls, so they stay on for every laptop, any screen height and any
+ * Windows/macOS animation setting. Starts false so the server HTML and first paint are the static layout. */
+function useScrollEffectsEnabled() {
+  const [on, setOn] = useState(false);
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 1024px)');
-    const check = () => setOk(mq.matches && window.innerHeight >= minHeight);
+    const mq = window.matchMedia('(min-width: 900px)');
+    const check = () => setOn(mq.matches);
     check();
     mq.addEventListener('change', check);
-    window.addEventListener('resize', check);
-    return () => {
-      mq.removeEventListener('change', check);
-      window.removeEventListener('resize', check);
-    };
-  }, [minHeight]);
-  const on = ok && !reduce;
+    return () => mq.removeEventListener('change', check);
+  }, []);
   useEffect(() => {
     // Pinned sections change the page height; ask every scroll tracker to measure again.
     if (!on) return;
@@ -77,7 +72,9 @@ function usePinnedProgress(wrapper: React.RefObject<HTMLElement | null>, content
     const c = content.current;
     if (!w || !c) return;
     const h = c.offsetHeight;
-    const top = Math.max(NAV_SPACE, (window.innerHeight - h) / 2);
+    const vh = window.innerHeight;
+    // Fits: center it below the nav. Too tall (short laptop screens): pin it so its bottom (the cards) stays in view.
+    const top = h <= vh - NAV_SPACE ? Math.max(NAV_SPACE, (vh - h) / 2) : vh - h - 16;
     if (h !== box.height || top !== box.top) setBox({ top, height: h });
     const r = w.getBoundingClientRect();
     const total = r.height - h;
@@ -100,7 +97,7 @@ function usePinnedProgress(wrapper: React.RefObject<HTMLElement | null>, content
 
 /* 1. Scroll highlight: the section pins and each scroll step lights up the next card. */
 export function ScrollHighlightSteps({ header, cards, footer }: { header: ReactNode; cards: ReactNode[]; footer?: ReactNode }) {
-  const enabled = useScrollEffectsEnabled(760);
+  const enabled = useScrollEffectsEnabled();
   const ref = useRef<HTMLDivElement>(null);
   const inner = useRef<HTMLDivElement>(null);
   const { progress: scrollYProgress, top, height } = usePinnedProgress(ref, inner, enabled);
@@ -132,7 +129,7 @@ export function ScrollHighlightSteps({ header, cards, footer }: { header: ReactN
           ))}
         </div>
         <div className="mx-auto h-1 w-64 overflow-hidden rounded-full bg-black/10 dark:bg-white/10" aria-hidden="true">
-          <motion.div className="h-full origin-left rounded-full bg-[var(--pop)]" style={{ scaleX: bar }} />
+          <motion.div className="h-full origin-left rounded-full bg-gray-500/70" style={{ scaleX: bar }} />
         </div>
         {footer ? <div className="mt-8">{footer}</div> : null}
       </div>
@@ -174,7 +171,7 @@ export function WordReveal({ lines, className }: { lines: string[]; className?: 
 
 /* 3. Horizontal gallery: the section pins and scrolling down slides the cards sideways. */
 export function HorizontalGallery({ header, children, staticClassName }: { header?: ReactNode; children: ReactNode[]; staticClassName: string }) {
-  const enabled = useScrollEffectsEnabled(700);
+  const enabled = useScrollEffectsEnabled();
   const ref = useRef<HTMLDivElement>(null);
   const inner = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
@@ -217,5 +214,89 @@ export function ReadingProgressRing() {
       </svg>
       {done ? <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-[var(--pop)]">✓</span> : null}
     </div>
+  );
+}
+
+/* 5. Count-up number: the real value is in the server HTML; on screen it counts up once when scrolled into view.
+ * If it's already on screen when the page loads, it just shows the number (no flash). */
+export function CountUp({ value, decimals = 0, prefix = '', suffix = '' }: { value: number; decimals?: number; prefix?: string; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const format = (v: number) => `${prefix}${v.toFixed(decimals)}${suffix}`;
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || el.getBoundingClientRect().top < window.innerHeight) return;
+    el.textContent = format(0);
+    let raf = 0;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        const start = performance.now();
+        const tick = (now: number) => {
+          const p = Math.min(1, (now - start) / 1200);
+          el.textContent = format(value * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+      el.textContent = format(value);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, decimals, prefix, suffix]);
+  return <span ref={ref} className="tabular-nums">{format(value)}</span>;
+}
+
+/* 6. Scroll timeline: a line fills down the steps as you read, and each step lights up when the line reaches it. */
+export function ScrollTimeline({ steps, numClass, titleClass, bodyClass }: { steps: { title: string; body: string }[]; numClass: string; titleClass: string; bodyClass: string }) {
+  const enabled = useScrollEffectsEnabled();
+  const ref = useRef<HTMLOListElement>(null);
+  const fill = useMotionValue(0);
+  const [reached, setReached] = useState(steps.length);
+  const { scrollY } = useScroll();
+  const update = () => {
+    const ol = ref.current;
+    if (!ol) return;
+    const r = ol.getBoundingClientRect();
+    const line = window.innerHeight * 0.6 - r.top;
+    fill.set(Math.min(1, Math.max(0, line / r.height)));
+    const items = Array.from(ol.querySelectorAll<HTMLElement>(':scope > li'));
+    setReached(items.filter((li) => li.offsetTop + 12 <= line).length);
+  };
+  useMotionValueEvent(scrollY, 'change', update);
+  useEffect(() => {
+    if (enabled) update();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enabled]);
+  return (
+    <ol ref={ref} className="relative space-y-8">
+      {enabled ? (
+        <>
+          <div aria-hidden="true" className="absolute left-[13px] top-3 bottom-3 w-0.5 rounded-full bg-gray-400/30" />
+          <motion.div aria-hidden="true" className="absolute left-[13px] top-3 bottom-3 w-0.5 origin-top rounded-full bg-[var(--pop)]" style={{ scaleY: fill }} />
+        </>
+      ) : null}
+      {steps.map((s, i) => {
+        const lit = !enabled || i < reached;
+        return (
+          <li key={s.title} className={`relative pl-12 transition-opacity duration-500 ${lit ? '' : 'opacity-50'}`}>
+            <span
+              className={`absolute left-0 top-0 flex h-7 w-7 items-center justify-center rounded-full border text-sm font-bold transition-colors duration-500 ${
+                enabled && lit ? 'border-transparent bg-[var(--pop)] text-[var(--on-pop)]' : `border-current bg-transparent ${numClass}`
+              }`}
+            >
+              {i + 1}
+            </span>
+            <h3 className={titleClass}>{s.title}</h3>
+            <p className={bodyClass}>{s.body}</p>
+          </li>
+        );
+      })}
+    </ol>
   );
 }
