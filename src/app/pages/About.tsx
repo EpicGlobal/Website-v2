@@ -117,6 +117,54 @@ export function About() {
         </div>
       </section>
 
+      {/* Founder: who runs Epic, answered second on the page */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-[minmax(0,15rem)_1fr] gap-10 md:gap-14 items-start">
+          <div className="max-w-[15rem] mx-auto md:mx-0 w-full">
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)]">
+              <Image
+                src={image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f}
+                alt="Glen Jensen, founder and CEO of Epic Global Inc."
+                sizes="240px"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <a
+              href={siteConfig.founderLinkedIn}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-medium underline underline-offset-4 decoration-1 hover:decoration-2 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700"
+            >
+              <Linkedin className="w-4 h-4" aria-hidden="true" />
+              Glen on LinkedIn
+            </a>
+          </div>
+
+          <div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Glen Jensen</h2>
+            <p className="mt-1 mb-8 text-lg text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">Founder &amp; CEO</p>
+              <p className="leading-relaxed mb-5 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
+                {"Glen Jensen is the founder and CEO of Epic Global Inc., a wholesale trade partner and global marketplace operator. Epic buys brands' inventory and sells it on Amazon, Walmart, TikTok Shop and other leading marketplaces, so brands can grow without running those marketplaces themselves."}
+              </p>
+              <p className="leading-relaxed mb-5 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
+                {"Instead of following the agency model, Glen built Epic on a wholesale partnership that ties Epic's success to the brand's. Epic buys the inventory upfront, invests its own capital, and takes responsibility for marketplace advertising, logistics and day-to-day execution. Brands reach more marketplaces without carrying that financial and operational load."}
+              </p>
+              <p className="leading-relaxed mb-5 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
+                {"Under Glen's leadership, Epic has grown into an international company operating in about 40 countries across North and South America, Europe and Asia-Pacific. Every partner's brand equity is protected: the brand keeps its Brand Registry, and Epic enforces its minimum advertised price and works to remove unauthorized sellers."}
+              </p>
+              <p className="leading-relaxed text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
+                {"Glen's approach centers on innovation, accountability and execution, with a forward-looking focus on technology and automation. His vision is simple:"}
+              </p>
+            <blockquote className="mt-8">
+              <p className="text-2xl sm:text-3xl font-semibold leading-snug tracking-tight text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
+                <span aria-hidden="true" className="block text-6xl leading-none h-8 text-[var(--pop)]">&ldquo;</span>
+                {"A company that doesn't just advise brands on how to grow, but invests alongside them and takes responsibility for making that growth happen."}
+              </p>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
       {/* Global Reach Section - Moved to position #2 */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:bg-white orange:bg-transparent leaf:bg-transparent water:bg-transparent">
         <div className="max-w-7xl mx-auto mb-12">
@@ -175,73 +223,6 @@ export function About() {
                 </motion.div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Team / Operating Model Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:bg-white orange:bg-transparent leaf:bg-transparent water:bg-transparent">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 sm:p-12 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20">
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-              {/* Headshot */}
-              <div className="flex-shrink-0">
-                <div className="w-48 h-48 rounded-2xl overflow-hidden border-2 border-cyan-500/20 dark:border-cyan-500/20 soft-dark:border-gray-200 light:border-cyan-500/20 orange:border-orange-500/30 leaf:border-cyan-600/30 water:border-emerald-600/30 shadow-xl shadow-cyan-500/10 soft-dark:shadow-md orange:shadow-orange-500/20">
-                  <Image
-                    src={image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f}
-                    alt="Glen Jensen, founder and CEO of Epic Global Inc."
-                    sizes="192px"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* LinkedIn Badge */}
-                <a
-                  href="https://www.linkedin.com/in/glen-jensen-54a27/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 flex items-center justify-center gap-2 px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/15 light:bg-cyan-100 orange:bg-gradient-to-br orange:from-orange-600/30 orange:to-orange-700/10 leaf:bg-cyan-600/15 water:bg-emerald-600/15 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-700 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 rounded-lg hover:bg-cyan-500/20 soft-dark:hover:bg-lime-600/25 light:hover:bg-cyan-200 orange:hover:from-orange-600/40 orange:hover:to-orange-700/20 water:hover:bg-emerald-600/25 transition-all border border-cyan-500/20 dark:border-cyan-500/20 soft-dark:border-lime-600/30 light:border-cyan-300 orange:border-orange-500/30 leaf:border-cyan-600/30 water:border-emerald-600/30 orange:shadow-lg orange:shadow-orange-500/20 text-sm font-medium"
-                >
-                  <Linkedin className="w-4 h-4" />
-                  <span>LinkedIn</span>
-                </a>
-              </div>
-
-              {/* Content */}
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 mb-2">
-                  Glen Jensen
-                </h3>
-                <p className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mb-6">Founder &amp; CEO</p>
-                
-                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-                  {"Glen Jensen is the founder and CEO of Epic Global Inc., a wholesale trade partner and global marketplace operator. Epic buys brands' inventory and sells it on Amazon, Walmart, TikTok Shop and other leading marketplaces, so brands can grow without running those marketplaces themselves."}
-                </p>
-                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-                  {"Instead of following the agency model, Glen built Epic on a wholesale partnership that ties Epic's success to the brand's. Epic buys the inventory upfront, invests its own capital, and takes responsibility for marketplace advertising, logistics and day-to-day execution. Brands reach more marketplaces without carrying that financial and operational load."}
-                </p>
-                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-                  {"Under Glen's leadership, Epic has grown into an international company operating in about 40 countries across North and South America, Europe and Asia-Pacific. Every partner's brand equity is protected: the brand keeps its Brand Registry, and Epic enforces its minimum advertised price and works to remove unauthorized sellers."}
-                </p>
-                <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-                  {"Glen's approach centers on innovation, accountability and execution, with a forward-looking focus on technology and automation. His vision is simple: a company that doesn't just advise brands on how to grow, but invests alongside them and takes responsibility for making that growth happen."}
-                </p>
-
-                <ul className="space-y-3 text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-6">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
-                    <span><strong className="text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Focus:</strong> Global marketplace operations, systems, automation, and execution cadence</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
-                    <span><strong className="text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Scope:</strong> Multi-marketplace, multi-region operations</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
-                    <span><strong className="text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Model:</strong> Buy, Sell, Advertise, Protect</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
         </div>
       </section>
