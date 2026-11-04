@@ -52,7 +52,7 @@ export function WhatWeAre() {
             ZERO-RISK GLOBAL COMMERCE OPERATOR
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-600 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828] bg-clip-text text-transparent leading-tight">
-            Our Model
+            Our Wholesale Trade Partner Model
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-800 water:text-[#101828] leading-relaxed mb-4">
             Plain language. No buzzwords. Here's what Epic Global Inc. actually does.
@@ -112,7 +112,7 @@ export function WhatWeAre() {
       <section className="pb-12 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:bg-white orange:bg-transparent leaf:bg-transparent">
         <div className="max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20">
-            <h2 className="text-2xl font-bold mb-8 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">How our model works</h2>
+            <h2 className="text-2xl font-bold mb-8 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">How our wholesale model works</h2>
             
             <div className="space-y-8">
               <div>
@@ -128,7 +128,7 @@ export function WhatWeAre() {
               <div>
                 <div className="flex items-baseline gap-3 mb-2">
                   <span className="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-bold text-lg">2</span>
-                  <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">We operate retail sales across approved marketplaces</h3>
+                  <h3 className="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">We sell on Amazon, Walmart and other approved marketplaces</h3>
                 </div>
                 <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed ml-8">
                   We manage listings, advertising, pricing, inventory allocation, fulfillment coordination, catalog integrity, and brand protection on platforms like Amazon, Walmart, eBay, and international marketplaces.

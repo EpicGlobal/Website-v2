@@ -3,6 +3,9 @@ import path from 'path';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   outputFileTracingRoot: path.resolve('.'),
+  // Render <title>, description and canonical in <head> for every visitor, so crawlers that
+  // only read the head (many AI bots) see them on dynamic pages like /knowledge-base.
+  htmlLimitedBots: /.*/,
   async headers() {
     if (process.env.NEXT_PUBLIC_WEBSITE_PREVIEW !== 'true') return [];
     return [{ source: '/:path*', headers: [

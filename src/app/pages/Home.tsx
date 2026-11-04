@@ -159,8 +159,8 @@ export function Home() {
     },
     {
       icon: Shield,
-      title: 'Brand Protection',
-      description: 'Unauthorized seller detection, IP enforcement, catalog integrity, and marketplace policy monitoring.',
+      title: 'Brand Protection & MAP Enforcement',
+      description: 'Unauthorized seller removal, MAP enforcement, IP enforcement, catalog integrity, and marketplace policy monitoring.',
     },
     {
       icon: Database,
@@ -347,7 +347,7 @@ export function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 water:text-[#101828]">
-              Full-stack marketplace operations
+              Full-stack Amazon and Walmart marketplace operations
             </h2>
             <p className="text-gray-700 max-w-2xl mx-auto dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-700 water:text-[#101828]">
               Every capability required to run marketplaces as a system, not a collection of one-off tasks.

@@ -112,7 +112,7 @@ export function About() {
         <div className="max-w-7xl mx-auto mb-12">
           <div className="text-center mb-8">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">
-              Global Marketplace Coverage
+              Global marketplace expansion for brands
             </h2>
             <p className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828] max-w-2xl mx-auto">
               Operating across multiple countries and marketplaces with integrated systems.
@@ -130,7 +130,7 @@ export function About() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
-              What makes us different
+              A wholesale trade partner, not an agency
             </h2>
             <p className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 max-w-2xl mx-auto">
               We're not a marketing agency. We're a wholesale trade partner: we buy the inventory and run the execution ourselves, with repeatable systems instead of one-off projects.

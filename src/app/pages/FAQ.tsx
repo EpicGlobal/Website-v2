@@ -15,9 +15,9 @@ import { siteConfig } from '@/site/site-config';
 export function FAQ() {
   const faqs = [
     {
-      question: 'How is Epic Global different from a marketplace agency?',
+      question: 'How is Epic Global different from an Amazon agency or aggregator?',
       answer:
-        'We\'re an operator, not an agency. We purchase inventory upfront at wholesale pricing and run end-to-end marketplace execution ourselves. Agencies advise and charge retainers; we take ownership of inventory, cover operating expenses (ads, fees, fulfillment), and succeed only when your brand grows. Our incentives are aligned from day one.',
+        'We\'re an alternative to both: a wholesale trade partner that operates, not an agency. We purchase inventory upfront at wholesale pricing and run end-to-end marketplace execution ourselves. Agencies advise and charge retainers; we take ownership of inventory, cover operating expenses (ads, fees, fulfillment), and succeed only when your brand grows. Aggregators buy the brand itself; we buy inventory at wholesale, and you keep your brand, Brand Registry and listings. Our incentives are aligned from day one.',
     },
     {
       question: 'Which marketplaces do you operate on?',
@@ -40,7 +40,7 @@ export function FAQ() {
         'We purchase your inventory at agreed wholesale pricing and take ownership. We then manage retail pricing, marketplace operations, and sales across approved platforms. We cover the operating expenses required to scale (advertising, marketplace fees, fulfillment). This aligns incentives: we succeed when your brand grows sustainably on marketplaces. The opening order is usually sized to about 60-90 days of inventory, with monthly replenishment after that, and you\'re paid on agreed payment terms.',
     },
     {
-      question: 'How do you handle compliance and brand protection?',
+      question: 'How do you handle brand protection, MAP and unauthorized sellers?',
       answer:
         'Compliance and brand protection are built into our workflows, not bolted on afterward. We design every process around marketplace policies, documentation requirements, and auditability. For brand protection, we get authorized under your Brand Registry, remove unauthorized sellers, enforce MAP pricing, use Amazon Transparency where it fits, monitor the Buy Box and your catalog, and send you brand protection reports by marketplace. Every enforcement action is documented and tracked.',
     },
@@ -55,9 +55,9 @@ export function FAQ() {
         'We work best with brands doing $100K+ monthly revenue that need control at scale. If you\'re earlier stage but planning aggressive marketplace expansion, we can assess fit. Our model is built for brands that want a system-driven operator, not a collection of one-off tactics.',
     },
     {
-      question: 'Will Epic buy my inventory?',
+      question: "Will Epic buy my brand's inventory?",
       answer:
-        'Yes. Epic buys your inventory upfront at an agreed wholesale price and owns it from then on. The opening order is usually sized to about 60-90 days of stock, followed by monthly replenishment orders. You\'re paid on the payment terms set in your contract.',
+        'Yes. Epic Global is a wholesale trade partner, one of the companies that buys brand inventory outright. We buy your inventory upfront at an agreed wholesale price and owns it from then on. The opening order is usually sized to about 60-90 days of stock, followed by monthly replenishment orders. You\'re paid on the payment terms set in your contract.',
     },
     {
       question: 'Do you charge retainers, hourly rates or project fees?',
@@ -142,7 +142,7 @@ export function FAQ() {
       <section className="pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/10 soft-dark:to-white/[0.05] light:from-gray-50 light:to-white orange:from-white/5 orange:to-white/[0.02] backdrop-blur-xl rounded-2xl p-8 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/10">
-            <h2 className="sr-only">Frequently asked questions</h2>
+            <h2 className="sr-only">Wholesale trade partner FAQ</h2>
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, index) => (
                 <AccordionItem

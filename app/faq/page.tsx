@@ -2,7 +2,7 @@ import { FAQ } from '@/app/pages/FAQ';
 import { createPageMetadata } from '@/site/site-config';
 
 export const metadata = createPageMetadata({
-  title: 'FAQ',
+  title: 'Wholesale Trade Partner FAQ',
   description:
     "Answers to common questions about Epic Global Inc.'s wholesale trade partner model, operating process, timelines, and marketplace coverage.",
   path: '/faq',

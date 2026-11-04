@@ -65,6 +65,8 @@ export const knowledgeArticles: KnowledgeArticle[] = [
   {
     slug: 'what-is-epic-global-inc',
     title: 'What is Epic Global Inc.?',
+    seoTitle: 'What Is Epic Global Inc.? A Wholesale Trade Partner',
+    seoDescription: 'Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy brand inventory at wholesale and sell it on Amazon, Walmart and more.',
     summary: 'Epic Global Inc. is a global marketplace operator and technology platform that purchases inventory at wholesale and runs end-to-end eCommerce execution across marketplaces worldwide.',
     category: 'Start Here',
     type: 'Answer Page',
@@ -156,7 +158,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
   {
     slug: 'catalog-hygiene-what-it-is-why-it-matters',
     title: 'The Silent Growth Killer: Mastering Catalog Hygiene in 2026',
-    seoTitle: 'Catalog Hygiene: What It Is and Why It Matters',
+    seoTitle: 'Catalog Hygiene: Why It Matters',
     summary: 'Catalog hygiene is the disciplined habit of keeping product data clean, consistent, and current across every SKU and marketplace.',
     category: 'Marketplace Operations',
     marketplace: ['Amazon', 'Walmart', 'eBay'],
