@@ -1,0 +1,79 @@
+/*
+ * About page scroll story: the native CSS half (scroll-driven animations, no JavaScript).
+ * Desktop only (900px+), only for visitors who haven't asked for reduced motion, and only in browsers that
+ * support scroll timelines. Everywhere else every rule here is skipped and the page is the static layout.
+ * The GSAP half lives in useAboutScrollStory.ts and adds [data-story="on"] to the page root while it runs.
+ */
+
+/* Bio steps: while the story runs, the paragraph you're reading is lit and the others rest dimmed. */
+[data-story='on'] [data-story='bio-step'] {
+  opacity: 0.32;
+  transition: opacity 0.45s ease;
+}
+[data-story='on'] [data-story='bio-step'].is-lit {
+  opacity: 1;
+}
+
+/* Meters (bio and differences) only show while the story runs. */
+[data-story-meter] {
+  display: none;
+}
+[data-story='on'] [data-story-meter] {
+  display: block;
+}
+
+/* The rail's progress fill needs a scroll timeline; without one only the chapter links show. */
+[data-story='rail-fill'] {
+  display: none;
+}
+
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* Chapter rail: the line fills with your progress through the whole page. */
+    [data-story='rail-fill'] {
+      display: block;
+      transform-origin: top center;
+      animation: about-story-grow-y linear both;
+      animation-timeline: scroll(root block);
+    }
+
+    /* Each chapter's rule draws in as the chapter arrives: the thread that carries you to the next one. */
+    [data-story='rule'] {
+      transform-origin: left center;
+      animation: about-story-grow-x linear both;
+      animation-timeline: view();
+      animation-range: entry 40% cover 40%;
+    }
+
+    /* The map rises into place as it enters (ends at transform: none so the map's tooltips position normally). */
+    [data-story='map-rise'] {
+      animation: about-story-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 75%;
+    }
+
+    /* The closing call to action settles in. */
+    [data-story='cta-rise'] {
+      animation: about-story-fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+  }
+}
+
+@keyframes about-story-grow-y {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@keyframes about-story-grow-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes about-story-rise {
+  from { opacity: 0.35; transform: translateY(96px) scale(0.95); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes about-story-fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: none; }
+}
