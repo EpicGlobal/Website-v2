@@ -88,7 +88,7 @@ function build(gsap: Gsap, ScrollTrigger: ScrollTriggerType, root: HTMLElement) 
     gsap
       .timeline({
         defaults: { ease: 'none' },
-        scrollTrigger: { trigger: hero, start: 'top top', end: '+=45%', pin: true, scrub: 0.6 },
+        scrollTrigger: { trigger: hero, start: 'top top', end: '+=25%', pin: true, scrub: 0.6 },
       })
       .from(q('[data-story="fact-bar"]'), { scaleX: 0, transformOrigin: 'left center', duration: 1, stagger: 0.6 })
       .to({}, { duration: 0.4 }); // hold the finished facts for a moment
@@ -139,14 +139,14 @@ function build(gsap: Gsap, ScrollTrigger: ScrollTriggerType, root: HTMLElement) 
     gsap
       .timeline({
         defaults: { ease: 'power1.out' },
-        scrollTrigger: { trigger: diff, start: 'top top', end: '+=140%', pin: true, scrub: 0.6 },
+        scrollTrigger: { trigger: diff, start: 'center center', end: '+=60%', pin: true, scrub: 0.6 },
       })
       .addLabel('strike')
       .from(q('[data-story="strike"]'), { scaleX: 0, transformOrigin: 'left center', duration: 1, ease: 'none' }, 'strike')
       .addLabel('steps', '+=0.2')
       .from(items, { opacity: 0.15, x: 32, duration: 1, stagger: 1 }, 'steps')
       .from(q('[data-story="diff-meter"]'), { scaleY: 0, transformOrigin: 'top center', ease: 'none', duration: items.length }, 'steps')
-      .to({}, { duration: 0.6 }); // a short hold on the finished state before the pin releases
+      .to({}, { duration: 0.3 }); // a short hold on the finished state before the pin releases
   }
   railFor(diff);
 

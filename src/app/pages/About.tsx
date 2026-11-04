@@ -151,7 +151,7 @@ export function About() {
       </section>
 
       {/* 02 Who runs Epic: the portrait holds its place while the bio scrolls past it. */}
-      <section id="founder" data-chapter="founder" className="scroll-mt-20 py-24 px-4 sm:px-6 lg:px-8">
+      <section id="founder" data-chapter="founder" className="scroll-mt-20 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <ChapterMarker n={2} />
           <div className="grid md:grid-cols-[minmax(0,15rem)_1fr] gap-10 md:gap-14 items-start">
@@ -210,7 +210,7 @@ export function About() {
 
       {/* 03 Where we operate: the map rises into place (native CSS scroll timeline). It stays unpinned so its
           own wheel zoom and drag never fight the page scroll. */}
-      <section id="global-reach" data-chapter="reach" className="scroll-mt-20 py-24 px-4 sm:px-6 lg:px-8">
+      <section id="global-reach" data-chapter="reach" className="scroll-mt-20 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <ChapterMarker n={3} />
           <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight mb-4 ${HEAD}`}>
@@ -226,7 +226,7 @@ export function About() {
       </section>
 
       {/* 04 How we are different: pins on desktop while "agency" is struck out and the three differences step in. */}
-      <section id="how-we-work" data-chapter="different" className="scroll-mt-20 min-h-[100svh] flex items-center py-24 px-4 sm:px-6 lg:px-8">
+      <section id="how-we-work" data-chapter="different" className="scroll-mt-20 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto w-full">
           <ChapterMarker n={4} />
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -261,7 +261,7 @@ export function About() {
       </section>
 
       {/* 05 See the work: the story hands off to the case studies. */}
-      <section id="next" data-chapter="next" className="scroll-mt-20 pt-16 pb-28 px-4 sm:px-6 lg:px-8">
+      <section id="next" data-chapter="next" className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
         <div data-story="cta-rise" className="max-w-5xl mx-auto">
           <ChapterMarker n={5} />
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
