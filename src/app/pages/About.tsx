@@ -52,7 +52,7 @@ export function About() {
       />
 
       {/* Hero: answer first, then the facts people check */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-8 leading-[1.08] max-w-4xl text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
             We run marketplace growth like operations, not marketing.
@@ -85,8 +85,8 @@ export function About() {
       </section>
 
       {/* Founder: who runs Epic, answered second on the page */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-[minmax(0,15rem)_1fr] gap-10 md:gap-14 items-start">
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto border-t border-white/15 dark:border-white/15 soft-dark:border-gray-300 light:border-gray-200 orange:border-[#101828]/20 leaf:border-gray-400/40 water:border-gray-400/40 pt-12 grid md:grid-cols-[minmax(0,15rem)_1fr] gap-10 md:gap-14 items-start">
           <div className="max-w-[15rem] mx-auto md:mx-0 w-full">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)]">
               <Image
@@ -132,27 +132,22 @@ export function About() {
         </div>
       </section>
 
-      {/* Global Reach Section - Moved to position #2 */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:bg-white orange:bg-transparent leaf:bg-transparent water:bg-transparent">
-        <div className="max-w-7xl mx-auto mb-12">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">
-              Global marketplace expansion for brands
-            </h2>
-            <p className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828] max-w-2xl mx-auto">
-              Operating across multiple countries and marketplaces with integrated systems.
-            </p>
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto">
+      {/* Global reach: same width and alignment as the rest of the page */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto border-t border-white/15 dark:border-white/15 soft-dark:border-gray-300 light:border-gray-200 orange:border-[#101828]/20 leaf:border-gray-400/40 water:border-gray-400/40 pt-12">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
+            Global marketplace expansion for brands
+          </h2>
+          <p className="text-lg leading-relaxed max-w-3xl mb-10 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
+            Operating across multiple countries and marketplaces with integrated systems.
+          </p>
           <GlobalReachMap />
         </div>
       </section>
 
       {/* What makes us different: plain text columns */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto border-t border-white/15 dark:border-white/15 soft-dark:border-gray-300 light:border-gray-200 orange:border-[#101828]/20 leaf:border-gray-400/40 water:border-gray-400/40 pt-12">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
             A wholesale trade partner, not an agency
           </h2>
@@ -170,23 +165,23 @@ export function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="pt-16 pb-24 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:from-gray-50 light:to-white orange:bg-transparent leaf:bg-transparent water:bg-transparent">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
-            See how we execute
-          </h2>
-          <p className="text-lg text-gray-300 dark:text-gray-300 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed">
-            From catalog rebuilds to multi-country expansion, explore real operations and real outcomes.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/case-studies"
-              className="px-8 py-3.5 rounded-lg bg-[var(--pop)] text-[var(--on-pop)] font-semibold hover:bg-[var(--pop-hover)] transition-colors shadow-lg shadow-black/20 text-base"
-            >
-              View Case Studies
-            </Link>
+      {/* CTA: one row, text left, button right */}
+      <section className="pt-20 pb-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto border-t border-white/15 dark:border-white/15 soft-dark:border-gray-300 light:border-gray-200 orange:border-[#101828]/20 leaf:border-gray-400/40 water:border-gray-400/40 pt-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
+              See how we execute
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
+              From catalog rebuilds to multi-country expansion, explore real operations and real outcomes.
+            </p>
           </div>
+          <Link
+            href="/case-studies"
+            className="shrink-0 self-start sm:self-auto px-8 py-3.5 rounded-lg bg-[var(--pop)] text-[var(--on-pop)] font-semibold hover:bg-[var(--pop-hover)] transition-colors shadow-lg shadow-black/20 text-base"
+          >
+            View Case Studies
+          </Link>
         </div>
       </section>
     </div>

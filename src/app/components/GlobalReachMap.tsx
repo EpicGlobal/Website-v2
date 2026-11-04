@@ -593,10 +593,7 @@ export function GlobalReachMap() {
 
   return (
     <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/20 leaf:border-white/20 water:border-white/30">
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-[rgb(0,0,0)] dark:text-white water:text-[#101828] leaf:text-[#101828]">Global Marketplace Reach</h2>
-        <p className="text-[rgb(54,65,83)] dark:text-gray-400 soft-dark:text-[#101828] light:text-[#101828] orange:text-[#101828] water:text-gray-700 leaf:text-gray-700">Hover over countries to see available marketplaces</p>
-      </div>
+      <p className="mb-6 text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">Hover over a country to see its marketplaces</p>
 
       {/* Map Container */}
       <div 
