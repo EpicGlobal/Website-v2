@@ -46,7 +46,7 @@ export function Footer() {
             <p className="text-cyan-300 leaf:text-sky-200 text-sm font-medium">
               We buy it. You profit.
             </p>
-            <address className="not-italic mt-3 text-sm text-gray-400 leaf:text-sky-100">
+            <address className="not-italic mt-3 text-sm text-gray-300 leaf:text-sky-100">
               {siteConfig.streetAddress}, {siteConfig.locality}, {siteConfig.region} {siteConfig.postalCode}
               <br />
               <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 hover:text-white">{siteConfig.contactEmail}</a>
