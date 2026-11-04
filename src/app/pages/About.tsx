@@ -3,58 +3,25 @@
 import image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f from '@/assets/7827c6003ae306e0f9f630e11162a9aa55ffdd3f.png';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Target, Shield, Globe2, BarChart3, Award, Users, Clock, CheckCircle2, Linkedin } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 import { StructuredData, founderSchema, getBreadcrumbSchema, getWebPageSchema, organizationSchema, organizationRef } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
-import { motion } from 'framer-motion';
 import { GlobalReachMap } from '@/app/components/GlobalReachMap';
 import { siteConfig } from '@/site/site-config';
 
-// Import Glen Jensen's headshot
 export function About() {
   const differentiators = [
     {
-      icon: Target,
       title: 'Operator-first',
       description: 'We run the work, track it, and keep it clean.',
     },
     {
-      icon: Award,
       title: 'System-driven',
       description: 'Repeatable cycles replace ad hoc heroics.',
     },
     {
-      icon: Globe2,
       title: 'Global by design',
       description: 'Expansion is built into our data and execution model.',
-    },
-  ];
-
-  const values = [
-    {
-      icon: CheckCircle2,
-      title: 'Clarity over chaos',
-      description: 'Clean documentation, clear ownership, traceable decisions.',
-    },
-    {
-      icon: Award,
-      title: 'Speed with safeguards',
-      description: 'Move fast, but with controls that prevent expensive mistakes.',
-    },
-    {
-      icon: Target,
-      title: 'Decision quality first',
-      description: 'Every action is tied to a metric, a reason, and an expected outcome.',
-    },
-    {
-      icon: Shield,
-      title: 'Own the outcome',
-      description: 'We don\'t advise from the sidelines. We execute and take responsibility.',
-    },
-    {
-      icon: BarChart3,
-      title: 'Build once, scale everywhere',
-      description: 'Systems designed for replication across regions and marketplaces.',
     },
   ];
 
@@ -183,46 +150,22 @@ export function About() {
         </div>
       </section>
 
-      {/* What Makes Us Different */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:from-gray-50 light:to-white orange:bg-transparent leaf:bg-transparent water:bg-transparent">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
-              A wholesale trade partner, not an agency
-            </h2>
-            <p className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 max-w-2xl mx-auto">
-              We're not a marketing agency. We're a wholesale trade partner: we buy the inventory and run the execution ourselves, with repeatable systems instead of one-off projects.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {differentiators.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  className="group bg-gradient-to-br from-white/[0.08] to-white/[0.02] dark:from-white/[0.08] dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20 hover:border-cyan-500/50 soft-dark:hover:border-lime-600/40 orange:hover:border-orange-600/50 leaf:hover:border-cyan-600/50 water:hover:border-emerald-600/40 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 soft-dark:hover:shadow-lime-500/10 orange:hover:shadow-orange-500/20 light:hover:shadow-cyan-500/30 relative overflow-hidden"
-                >
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 soft-dark:from-lime-500/5 orange:from-orange-500/10 to-transparent rounded-2xl" />
-                  </div>
-                  
-                  <div className="relative z-10">
-                    <div className="w-14 h-14 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 soft-dark:from-lime-600/20 soft-dark:to-lime-700/5 orange:from-orange-600/30 orange:to-orange-700/10 leaf:from-cyan-600/30 leaf:to-cyan-700/10 water:from-emerald-600/20 water:to-emerald-700/5 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-cyan-500/20 soft-dark:shadow-lime-500/10 orange:shadow-orange-500/20">
-                      <Icon className="w-7 h-7 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 group-hover:text-cyan-300 soft-dark:group-hover:text-lime-600 light:group-hover:text-cyan-700 orange:group-hover:text-orange-600 leaf:group-hover:text-cyan-600 water:group-hover:text-emerald-600 transition-colors" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 group-hover:text-cyan-400 soft-dark:group-hover:text-lime-700 light:group-hover:text-cyan-600 orange:group-hover:text-orange-700 leaf:group-hover:text-cyan-700 water:group-hover:text-emerald-700 transition-colors duration-300">{item.title}</h3>
-                    <p className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed">{item.description}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+      {/* What makes us different: plain text columns */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
+            A wholesale trade partner, not an agency
+          </h2>
+          <p className="text-lg leading-relaxed max-w-3xl mb-12 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
+            We&apos;re not a marketing agency. We&apos;re a wholesale trade partner: we buy the inventory and run the execution ourselves, with repeatable systems instead of one-off projects.
+          </p>
+          <div className="grid md:grid-cols-3 gap-x-10 gap-y-8">
+            {differentiators.map((item) => (
+              <div key={item.title} className="border-t border-white/15 dark:border-white/15 soft-dark:border-gray-300 light:border-gray-200 orange:border-[#101828]/20 leaf:border-gray-400/40 water:border-gray-400/40 pt-5">
+                <h3 className="text-xl font-semibold mb-2 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">{item.title}</h3>
+                <p className="leading-relaxed text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
