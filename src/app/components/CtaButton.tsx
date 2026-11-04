@@ -55,7 +55,7 @@ export function CtaButton({
   };
 
   const variantClasses = {
-    primary: `bg-gradient-to-r from-cyan-500 via-cyan-300 to-cyan-500 dark:from-cyan-500 dark:via-cyan-300 dark:to-cyan-500 leaf:from-sky-500 leaf:via-sky-400 leaf:to-sky-500 water:from-emerald-600 water:via-emerald-400 water:to-emerald-600 light:from-cyan-500 light:via-cyan-300 light:to-cyan-500 orange:from-orange-500 orange:via-orange-400 orange:to-orange-500 text-white leaf:text-white water:text-white hover:from-cyan-600 hover:to-cyan-700 dark:hover:from-cyan-600 dark:hover:to-cyan-700 leaf:hover:from-sky-600 leaf:hover:to-sky-700 water:hover:from-emerald-700 water:hover:to-emerald-700 light:hover:from-cyan-600 light:hover:to-cyan-700 orange:hover:from-orange-700 orange:hover:to-orange-800 shadow-lg shadow-cyan-500/25 dark:shadow-cyan-500/25 leaf:shadow-sky-500/25 water:shadow-emerald-500/25 light:shadow-cyan-500/25 orange:shadow-orange-500/25 hover:shadow-cyan-500/40 dark:hover:shadow-cyan-500/40 leaf:hover:shadow-sky-500/40 water:hover:shadow-emerald-500/40 light:hover:shadow-cyan-500/40 orange:hover:shadow-orange-500/40 ${!isHovering ? 'animate-shimmer-ltr' : ''}`,
+    primary: `bg-[linear-gradient(90deg,var(--pop),var(--pop-hi),var(--pop))] text-[var(--on-pop)] font-semibold hover:bg-[linear-gradient(90deg,var(--pop-hover),var(--pop-hover),var(--pop-hover))] shadow-lg shadow-black/20 ${!isHovering ? 'animate-shimmer-ltr' : ''}`,
     secondary:
       'bg-white/5 dark:bg-white/5 leaf:bg-white/10 water:bg-white/10 light:bg-gray-100 orange:bg-white/5 text-white dark:text-white leaf:text-gray-800 water:text-gray-800 light:text-gray-900 orange:text-white hover:bg-white/10 leaf:hover:bg-white/20 water:hover:bg-white/20 light:hover:bg-gray-200 orange:hover:bg-white/10 border border-white/10 dark:border-white/10 leaf:border-sky-600/30 water:border-emerald-600/30 light:border-gray-300 orange:border-white/10',
     outline:
@@ -155,7 +155,7 @@ export function CtaButton({
       >
         <span className="relative z-0">{buttonText}</span>
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 rounded-lg bg-white/30 transition-[width] duration-0 ease-linear dark:bg-white/30 leaf:bg-sky-700/40 water:bg-emerald-800/40 light:bg-cyan-700/40 orange:bg-orange-800/40"
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 rounded-lg bg-black/15 transition-[width] duration-0 ease-linear"
           style={{
             width: `${progress}%`,
             transformOrigin: 'left',
