@@ -33,7 +33,7 @@ export function PrivacyConsentBanner() {
   return (
     <aside
       aria-label="Privacy choices"
-      className="[html[data-privacy-set]_&]:hidden fixed inset-x-3 bottom-3 z-[100] mx-auto max-w-3xl rounded-2xl border border-white/15 bg-slate-950/95 px-5 py-4 text-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.6)] backdrop-blur sm:inset-x-6 sm:bottom-5"
+      className="[html[data-privacy-set]_&]:hidden fixed inset-x-3 bottom-3 z-[100] mx-auto max-w-3xl rounded-2xl border border-white/15 bg-slate-950/95 dark:border-white/25 dark:bg-slate-800/95 px-5 py-4 text-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.6)] backdrop-blur sm:inset-x-6 sm:bottom-5"
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
         <div className="flex items-start gap-3">
