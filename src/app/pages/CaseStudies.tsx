@@ -38,6 +38,11 @@ export function CaseStudies() {
       client: 'Sutera',
       region: 'United States',
       goals: 'Increase profitability, optimize listings, and improve brand visibility and defense on Amazon',
+      glance: {
+        problem: 'High FBA fees, untested listings, and competitors like Purple and Casper taking its branded search.',
+        did: 'Cut fulfillment fees, rebuilt and A/B tested the listings, and ran branded-search ads.',
+        result: 'Lower FBA fees on 18 of 21 products, +21% conversion in successful A/B tests, and branded search won back.',
+      },
       challengeDetails: [
         {
           title: 'High FBA Fees Are Eliminating Potential Profitability',
@@ -134,6 +139,11 @@ export function CaseStudies() {
       client: 'Auto Parts Brand',
       region: 'United States',
       goals: 'Maximize brand profitability and eliminate Amazon fee burden through strategic model transition',
+      glance: {
+        problem: 'Thin margins and unpredictable fees under Amazon 1P.',
+        did: "Moved the brand to Epic's 3P model: Epic buys the inventory and pays the Amazon fees.",
+        result: 'Net revenue per unit up 159% on one brake kit and 53% on another.',
+      },
       challengeDetails: [
         {
           title: 'Low Net Profit Margin Under 1P Structure',
@@ -316,6 +326,16 @@ export function CaseStudies() {
               <span aria-hidden="true">|</span>
               <span>{study.region}</span>
             </p>
+
+            {/* At a glance: the whole case in three lines, for skimmers and AI answers. */}
+            <dl className={`${CARD} grid gap-5 sm:grid-cols-3 p-6 mb-10`}>
+              {([['The problem', study.glance.problem], ['What we did', study.glance.did], ['The result', study.glance.result]] as const).map(([k, v]) => (
+                <div key={k}>
+                  <dt className={`text-xs font-semibold uppercase tracking-[0.14em] mb-2 ${MUTED}`}>{k}</dt>
+                  <dd className={`leading-relaxed ${k === 'The result' ? `font-semibold ${HEAD}` : BODY}`}>{v}</dd>
+                </div>
+              ))}
+            </dl>
 
             {study.keyMetrics && (
               <div className="mb-10">
