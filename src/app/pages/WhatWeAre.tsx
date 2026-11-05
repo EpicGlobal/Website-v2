@@ -112,7 +112,7 @@ export function WhatWeAre() {
             <h2 className={`${H2} md:pt-1`}>What we do</h2>
             <div className="max-w-2xl">
               <p className={`text-lg leading-relaxed mb-5 ${BODY}`}>
-                Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy a brand&apos;s inventory upfront at wholesale and sell it on Amazon, Walmart and other marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.
+                Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand&apos;s inventory upfront at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.
               </p>
               <p className={`text-lg leading-relaxed ${BODY}`}>
                 We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned. We don&apos;t sell consulting packages or charge hourly rates. We buy inventory, then operate retail sales across approved marketplaces.

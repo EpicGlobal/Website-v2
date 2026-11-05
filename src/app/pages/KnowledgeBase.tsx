@@ -172,7 +172,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
           '@id': `${siteConfig.url}/knowledge-base#webpage`,
           name: 'Knowledge Base',
           url: `${siteConfig.url}/knowledge-base`,
-          description: 'Operator-grade playbooks, checklists, and definitions for running marketplaces as a system.',
+          description: 'Operator-grade playbooks, checklists, and definitions for running Amazon, Walmart and international marketplaces as a system.',
           isPartOf: websiteReference,
           mainEntity: {
             '@type': 'ItemList',
@@ -198,7 +198,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
         <div className={INNER}>
           <h1 className={`${H1} mb-5`}>Knowledge Base</h1>
           <p className={`${LEAD} max-w-3xl mb-10`}>
-            Operator-grade playbooks, checklists, and definitions for running marketplaces as a system.
+            Operator-grade playbooks, checklists, and definitions for running Amazon, Walmart and international marketplaces as a system.
           </p>
 
           <div className="relative mb-4">

@@ -4,7 +4,7 @@ import { createPageMetadata } from '@/site/site-config';
 export const metadata = createPageMetadata({
   title: 'About Epic Global Inc. | Wholesale Trade Partner',
   description:
-    "Epic Global Inc. is a wholesale trade partner: we buy brands' inventory and run marketplace growth as operations, not marketing, on global marketplaces.",
+    "Epic Global is a wholesale trade partner: we buy brands' inventory and run growth as operations, not marketing, on Amazon first, then Walmart and more.",
   path: '/about',
   keywords: [
     'about epic global',

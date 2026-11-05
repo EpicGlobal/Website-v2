@@ -10,7 +10,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">Definition</h2>
         <p className="text-gray-300 leading-relaxed">
-          Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy a brand's inventory upfront at wholesale and sell it on Amazon, Walmart and other marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves. We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned.
+          Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory upfront at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves. We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned.
         </p>
       </section>
 
@@ -97,7 +97,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       <section>
         <h2 className="text-3xl font-bold mb-6 text-white">How Epic's Wholesale Trade Partner Model Works</h2>
         <p className="text-gray-300 leading-relaxed mb-4">
-          Epic Global Inc. is a wholesale trade partner. We buy a brand's inventory upfront at wholesale, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon, Walmart and other marketplaces, pay for the advertising, marketplace fees and fulfillment ourselves, and protect the brand's pricing and listings.
+          Epic Global Inc. is a wholesale trade partner. We buy a brand's inventory upfront at wholesale, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon first, plus Walmart and international marketplaces, pay for the advertising, marketplace fees and fulfillment ourselves, and protect the brand's pricing and listings.
         </p>
         <p className="text-gray-300 leading-relaxed mb-4">
           Our Zero-Risk model works because we own the inventory: we buy it upfront, so the retail execution risk sits with us, not the brand. The brand keeps its brand and Brand Registry, and does not pay retainers, fund ad spend, and hope the numbers work out.
@@ -1707,7 +1707,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
             <ul className="space-y-2">
               <li className="flex items-start gap-3 text-gray-300">
                 <CheckCircle2 className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
-                <span>a wholesale trade partner and global marketplace operator</span>
+                <span>an Amazon-first wholesale trade partner that also runs Walmart and international marketplaces</span>
               </li>
               <li className="flex items-start gap-3 text-gray-300">
                 <CheckCircle2 className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
@@ -2026,7 +2026,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'amazon-marketplace-glossary': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"This glossary defines the Amazon, Walmart, TikTok Shop and wholesale terms brand owners run into when they sell through online marketplaces, in one or two plain sentences each. Where it matters, we also say how Epic Global Inc., a wholesale trade partner that buys a brand's inventory and sells it on marketplaces, handles that term in practice."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"This glossary defines the Amazon, Walmart, TikTok Shop and wholesale terms brand owners run into when they sell through online marketplaces, in one or two plain sentences each. Where it matters, we also say how Epic Global Inc., a wholesale trade partner that buys a brand's inventory and sells it on Amazon first, plus Walmart and other marketplaces, handles that term in practice."}</p>
         <h2 className="text-xl font-semibold mb-3 text-white">{"1P (First Party)"}</h2>
         <p className="text-gray-300 leading-relaxed mb-4">{"1P means the brand sells its products to Amazon as a supplier, and Amazon resells them to shoppers and controls the retail price. Brands manage a 1P relationship through Vendor Central. Epic itself buys inventory and sells it on the marketplace rather than selling to Amazon as a vendor."}</p>
         <h2 className="text-xl font-semibold mb-3 text-white">{"3P (Third Party)"}</h2>
@@ -2084,7 +2084,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h2 className="text-xl font-semibold mb-3 text-white">{"MAP (Minimum Advertised Price)"}</h2>
         <p className="text-gray-300 leading-relaxed mb-4">{"MAP is the lowest price a brand allows resellers to advertise for its products, set out in a written MAP policy. It protects brand value and keeps resellers from racing each other to the bottom on price. Epic sells at or above MAP and enforces it as part of its brand protection work, one of the four pillars of its Buy-Sell-Advertise-Protect model."}</p>
         <h2 className="text-xl font-semibold mb-3 text-white">{"Marketplace Operator"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"A marketplace operator is a company that runs the day-to-day selling on online marketplaces: listings, pricing, advertising, inventory and customer service. The term describes what a company does, not how it is paid, so an operator can be a seller that owns the inventory or a service provider. Epic is a marketplace operator that owns the inventory it sells, on Amazon, Walmart, eBay, TikTok Shop and other marketplaces."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"A marketplace operator is a company that runs the day-to-day selling on online marketplaces: listings, pricing, advertising, inventory and customer service. The term describes what a company does, not how it is paid, so an operator can be a seller that owns the inventory or a service provider. Epic is a marketplace operator that owns the inventory it sells, on Amazon first, plus Walmart, eBay, TikTok Shop and other marketplaces."}</p>
         <h2 className="text-xl font-semibold mb-3 text-white">{"Multichannel Fulfillment (MCF)"}</h2>
         <p className="text-gray-300 leading-relaxed mb-4">{"Multichannel fulfillment is using one inventory pool to ship orders from several sales channels. Amazon MCF, for example, lets sellers ship orders from Shopify, Walmart or their own site using inventory stored in FBA. Some marketplaces restrict Amazon-branded packaging or delivery, so check each channel's rules."}</p>
         <h2 className="text-xl font-semibold mb-3 text-white">{"Net Terms"}</h2>

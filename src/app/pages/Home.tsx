@@ -242,7 +242,7 @@ export function Home() {
     {
       label: 'Company',
       value: 'Epic Global Inc.',
-      detail: 'Wholesale trade partner and global marketplace operator for 50+ brands',
+      detail: 'Amazon-first wholesale trade partner for 50+ brands',
     },
     {
       label: 'Founder',
@@ -273,7 +273,7 @@ export function Home() {
 
   const model = [
     { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'Epic buys your inventory upfront at an agreed wholesale price, turning it into cash for the brand. We own the inventory and take on the retail execution risk.', tagline: 'Cash now. We own the stock.' },
-    { icon: Globe2, num: '02', title: 'Sell', desc: 'Epic operates listings and storefronts across U.S. and international marketplaces using a unified operational framework.', tagline: 'One system. Every market.' },
+    { icon: Globe2, num: '02', title: 'Sell', desc: 'Epic operates listings and storefronts on Amazon first, plus Walmart and international marketplaces, using a unified operational framework.', tagline: 'One system. Every market.' },
     { icon: BarChart3, num: '03', title: 'Advertise', desc: 'Epic funds and manages all advertising in the U.S. and abroad. Campaigns are optimized for efficiency and profitability, not budget utilization.', tagline: 'We fund. We optimize.' },
     { icon: Shield, num: '04', title: 'Protect', desc: 'Through the Brand Protection Command Center, Epic enforces pricing integrity, removes unauthorized sellers, and defends branded search demand globally.', tagline: 'Your brand. Our defense.' },
   ];
@@ -289,7 +289,7 @@ export function Home() {
       <StructuredData data={organizationSchema} />
       <StructuredData data={founderSchema} />
       <StructuredData data={websiteSchema} />
-      <StructuredData data={getWebPageSchema('Home', `${siteConfig.url}`, 'Wholesale trade partner and global marketplace operator that buys inventory and sells it on Amazon, Walmart and other marketplaces')} />
+      <StructuredData data={getWebPageSchema('Home', `${siteConfig.url}`, 'Amazon-first wholesale trade partner that buys inventory and sells it on Amazon, plus Walmart and international marketplaces')} />
       {serviceSchemas.map((schema) => (
         <StructuredData key={schema['@id']} data={schema} />
       ))}
@@ -313,7 +313,7 @@ export function Home() {
                 We Buy It. You Profit.&trade;
               </h1>
               <p className={`${LEAD} max-w-3xl mb-10`}>
-                Epic Global Inc. is a wholesale trade partner and <strong className={`font-semibold ${HEAD}`}>Zero-Risk Global Commerce Operator</strong>. We buy your inventory upfront at wholesale, run your marketplace storefronts, and pay for the advertising, marketplace fees and fulfillment ourselves. Buy. Sell. Advertise. Protect.
+                Epic Global Inc. is a wholesale trade partner and <strong className={`font-semibold ${HEAD}`}>Zero-Risk Global Commerce Operator</strong>. We buy your inventory upfront at wholesale, run your storefronts on Amazon first, plus Walmart and international marketplaces, and pay for the advertising, marketplace fees and fulfillment ourselves. Buy. Sell. Advertise. Protect.
               </p>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 <CtaButton variant="primary" size="lg" location="Hero Section" />
@@ -461,7 +461,7 @@ export function Home() {
           <ChapterMarker id="company-facts" />
           <h2 className={`${H2} mb-4`}>Company Facts</h2>
           <p className={`text-base sm:text-lg leading-relaxed max-w-3xl mb-10 ${BODY}`}>
-            Epic Global Inc. is a global marketplace operator that buys inventory at wholesale, manages marketplace sales channels, funds advertising, and handles brand protection across international ecommerce platforms. The company is led by Glen Jensen and operates across Amazon, Walmart, eBay, and select international marketplaces with a system built around the Buy, Sell, Advertise, Protect model.
+            Epic Global Inc. is an Amazon-first wholesale trade partner and marketplace operator that buys inventory at wholesale, manages marketplace sales channels, funds advertising, and handles brand protection. The company is led by Glen Jensen, has sold on Amazon since 2015, and also operates on Walmart, eBay, and select international marketplaces with a system built around the Buy, Sell, Advertise, Protect model.
           </p>
           <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {entityFacts.map((fact) => (

@@ -101,7 +101,7 @@ export const founderSchema = {
   '@id': founderId,
   name: siteConfig.founderName,
   jobTitle: 'Founder & CEO',
-  description: "Glen Jensen is the founder and CEO of Epic Global Inc., a wholesale trade partner and global marketplace operator. Epic buys brands' inventory and sells it on Amazon, Walmart, TikTok Shop and other leading marketplaces, so brands can grow without running those marketplaces themselves.",
+  description: "Glen Jensen is the founder and CEO of Epic Global Inc., an Amazon-first wholesale trade partner. Epic buys brands' inventory and sells it on Amazon, plus Walmart, TikTok Shop and other leading marketplaces, so brands can grow without running those marketplaces themselves.",
   url: siteConfig.founderLinkedIn,
   sameAs: [siteConfig.founderLinkedIn],
   worksFor: organizationReference,
@@ -197,7 +197,7 @@ export const websiteSchema = {
   '@id': websiteId,
   name: siteConfig.name,
   url: siteConfig.url,
-  description: 'Wholesale trade partner and global marketplace operator: buys brand inventory at wholesale and sells it on Amazon, Walmart and other marketplaces',
+  description: 'Amazon-first wholesale trade partner: buys brand inventory at wholesale and sells it on Amazon, plus Walmart and international marketplaces',
   publisher: organizationReference,
 };
 

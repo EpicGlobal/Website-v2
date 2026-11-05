@@ -26,7 +26,7 @@ export function FAQ() {
     {
       question: 'Which marketplaces do you operate on?',
       answer:
-        'We operate across major marketplaces including Amazon (US, CA, EU, and other regions), Walmart, eBay, TikTok Shop, and select international platforms. We prioritize marketplaces based on your brand\'s category fit and regional opportunity. During assessment, we\'ll map which platforms make sense for your catalog.',
+        'Amazon is our main marketplace: we have sold on Amazon since 2015, including Amazon US, CA, EU and other regions. We also run Walmart, eBay, TikTok Shop, and select international platforms. We prioritize marketplaces based on your brand\'s category fit and regional opportunity. During assessment, we\'ll map which platforms make sense for your catalog.',
     },
     {
       question: 'What do you need from us to get started?',
