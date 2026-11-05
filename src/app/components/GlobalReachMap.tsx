@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { ACCENT, BODY, HEAD, MUTED, RULE } from '@/app/components/story/tokens';
+import { HEAD, RULE } from '@/app/components/story/tokens';
+import { MarketList } from '@/app/components/about/MarketList';
 import { motion } from 'framer-motion';
 import { geoPath, geoMercator } from 'd3-geo';
 import { feature } from 'topojson-client';
 import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 
 // Country data with marketplaces
-const countryData = [
+export const countryData = [
   // North America
   {
     country: 'United States',
@@ -26,7 +27,7 @@ const countryData = [
   {
     country: 'Mexico',
     code: 'MEX',
-    region: 'Central America',
+    region: 'North America',
     marketplaces: ['Amazon', 'Mercado Libre', 'TikTok Shop', 'Shopify'],
     color: '#22d3ee',
   },
@@ -42,6 +43,21 @@ const countryData = [
   {
     country: 'Colombia',
     code: 'COL',
+    region: 'South America',
+    marketplaces: ['Mercado Libre'],
+    color: '#22d3ee',
+  },
+  // Chile and Peru added Nov 5, 2026 (Brex). Marketplace assumed Mercado Libre like Argentina and Colombia: confirm with Kevin.
+  {
+    country: 'Chile',
+    code: 'CHL',
+    region: 'South America',
+    marketplaces: ['Mercado Libre'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Peru',
+    code: 'PER',
     region: 'South America',
     marketplaces: ['Mercado Libre'],
     color: '#22d3ee',
@@ -297,20 +313,6 @@ const countryData = [
   },
 ];
 
-/** The crawler-readable list: regions in map order, the wide one last; inside each, countries with the same marketplaces share a row. */
-function regionGroups() {
-  return Array.from(new Set(countryData.map((c) => c.region))).map((region) => {
-    const inRegion = countryData.filter((c) => c.region === region);
-    const rows = new Map<string, { names: string[]; marketplaces: string[] }>();
-    for (const c of inRegion) {
-      const key = c.marketplaces.join('|');
-      if (!rows.has(key)) rows.set(key, { names: [], marketplaces: c.marketplaces });
-      rows.get(key)!.names.push(c.country);
-    }
-    return { region, countries: inRegion.length, rows: Array.from(rows.values()) };
-  }).sort((a, b) => Number(a.countries > 10) - Number(b.countries > 10)); // the wide card (Europe) goes last
-}
-
 export function GlobalReachMap() {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const [worldMapData, setWorldMapData] = useState<any>(null);
@@ -431,6 +433,8 @@ export function GlobalReachMap() {
     // South America
     '032': 'ARG', // Argentina
     '170': 'COL', // Colombia
+    '152': 'CHL', // Chile
+    '604': 'PER', // Peru
     
     // Europe
     '040': 'AUT', // Austria
@@ -792,6 +796,8 @@ export function GlobalReachMap() {
                 // South America
                 ARG: { lat: -38.4161, lng: -63.6167 },
                 COL: { lat: 4.5709, lng: -74.2973 },
+                CHL: { lat: -33.4489, lng: -70.6693 },
+                PER: { lat: -12.0464, lng: -77.0428 },
                 
                 // Europe
                 AUT: { lat: 47.5162, lng: 14.5501 },
@@ -984,40 +990,14 @@ export function GlobalReachMap() {
       </div>
 
       {/* The same markets as plain text in the page HTML for search/AI crawlers; folded shut so the page stays clean.
-          Open, it shows one card per region; countries that share the same marketplaces sit on one row. */}
+          The list layout lives in about/MarketList.tsx. */}
       <details className="mt-8 group">
         <summary className={`inline-flex cursor-pointer list-none items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium hover:border-[var(--pop)] [&::-webkit-details-marker]:hidden ${RULE} ${HEAD}`}>
           <span className="group-open:hidden">See all {countryData.length} countries and marketplaces</span>
           <span className="hidden group-open:inline">Hide the list</span>
           <span aria-hidden="true" className="transition-transform group-open:rotate-180">▾</span>
         </summary>
-        <h3 className={`mt-8 mb-4 text-lg font-semibold ${HEAD}`}>Countries and marketplaces by region</h3>
-        <div className="grid gap-4 md:grid-cols-2 items-start">
-          {regionGroups().map(({ region, countries, rows }) => (
-            <div
-              key={region}
-              className={`rounded-xl border p-5 ${RULE} bg-white/5 orange:bg-white/70 light:bg-white leaf:bg-white/70 water:bg-white/70 soft-dark:bg-white/80 ${countries > 10 ? 'md:col-span-2' : ''}`}
-            >
-              <div className="flex items-baseline justify-between gap-4 mb-3">
-                <h4 className={`font-semibold ${HEAD}`}>{region}</h4>
-                <span className={`text-xs ${MUTED}`}>{countries} {countries === 1 ? 'country' : 'countries'}</span>
-              </div>
-              <ul className="space-y-3">
-                {rows.map((row) => (
-                  <li key={row.names.join()} className="text-sm leading-relaxed">
-                    <span className={BODY}>{row.names.join(', ')}</span>
-                    <span className="sr-only">: </span>
-                    <span className="mt-1.5 flex flex-wrap gap-1.5">
-                      {row.marketplaces.map((m) => (
-                        <span key={m} className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${RULE} ${ACCENT}`}>{m}</span>
-                      ))}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        <MarketList data={countryData} />
       </details>
     </div>
   );
