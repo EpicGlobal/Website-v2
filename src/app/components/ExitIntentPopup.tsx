@@ -72,7 +72,7 @@ export function ExitIntentPopup() {
             </div>
             
             <h2 className="text-2xl sm:text-3xl font-bold mb-4 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-white light:to-gray-400 orange:from-white orange:to-gray-400 bg-clip-text text-transparent">
-              We Buy It. You Profit.
+              We Buy It. You Profit.&trade;
             </h2>
             
             <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-300 orange:text-gray-300 mb-6 leading-relaxed">

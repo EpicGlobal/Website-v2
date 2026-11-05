@@ -44,7 +44,7 @@ export function Footer() {
               We buy your inventory upfront at wholesale, operate marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect your brand. We own the inventory and take on the retail execution risk.
             </p>
             <p className="text-cyan-300 leaf:text-sky-200 text-sm font-medium">
-              We buy it. You profit.
+              We buy it. You profit.&trade;
             </p>
             <address className="not-italic mt-3 text-sm text-gray-300 leaf:text-sky-100">
               {siteConfig.streetAddress}, {siteConfig.locality}, {siteConfig.region} {siteConfig.postalCode}

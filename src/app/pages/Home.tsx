@@ -1,10 +1,11 @@
 'use client';
 
+import type { StaticImageData } from 'next/image';
 import { useRef } from 'react';
 import Link from 'next/link';
 import { ShoppingCart, Globe2, Search, BarChart3, Package, Shield, Database, Cpu, ArrowRight } from 'lucide-react';
 import { Globe } from '@/app/components/Globe';
-import { TrustLogosMarquee } from '@/app/components/TrustLogosMarquee';
+import { TrustLogosMarquee, type LogoTone } from '@/app/components/TrustLogosMarquee';
 import { ParticlesBackground } from '@/app/components/ParticlesBackground';
 import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, serviceSchemas, websiteSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
@@ -29,7 +30,6 @@ import botalabLogo from '@/assets/22e8e47e93878bd055f3f0784ad51324a14e2e86.png';
 import bodeProLogo from '@/assets/dd52d621b52abc573986f37f46a1c4defdf9e2e1.png';
 import epochLogo from '@/assets/1a51400c847b43ceb652f7b37844917910e49662.png';
 import doctorsBestLogo from '@/assets/986dd0a0a85aa440a5b4d8924b7bdef2acd069ce.png';
-import cronkNutrientsLogo from '@/assets/ba0e3491f303ef8e07257a25c46835bd5dba4666.png';
 import gentlemenRepublicLogo from '@/assets/41f6e55df1fa2c29fdc640f9ef5481334f819ad5.png';
 import h2oCardioLogo from '@/assets/6e83860a8e1e07bf9143171faaa89952db9fd600.png';
 import iceElementsLogo from '@/assets/398340e50590d80a267db4420b16873a69c96d3c.png';
@@ -56,7 +56,6 @@ import perfectPressLogo from '@/assets/012ff1bc223010a71f1ed759ebf1618f606042a4.
 import plexusLogo from '@/assets/56a41e768ec1c8cf98a6c6962f504e0a3e5dba67.png';
 import pureFuelLogo from '@/assets/d67ca1954efd70528ba0a525762f054428302858.png';
 import pharmanexLogo from '@/assets/21fb64a9aee9200a3ba0b9e6615bba9e7b4d4c5a.png';
-import rimanLogo from '@/assets/bf61859afc82053a96f8ade2ed15258358dd8cf8.png';
 import nutricientialsLogo from '@/assets/6210ed77610d27a5f3abdd2bbc3872b72b4a11df.png';
 import organoLogo from '@/assets/e1a2b5126b39c8bafb6e331307cdb83cf21fe64e.png';
 import nuSkinLogo from '@/assets/5f1a49c0a0b32f372b4ee6beb26a48631d147029.png';
@@ -119,63 +118,61 @@ export function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
   useScrollStory(rootRef, homeBeats);
 
-  const brands = [
-    { name: 'ACTIVATION', logo: activationLogo },
+  const brands: { name: string; logo: StaticImageData; tone?: LogoTone }[] = [
+    { name: 'ACTIVATION', logo: activationLogo, tone: 'dark' },
     { name: 'ageLOC', logo: ageLOCLogo },
-    { name: 'AP 24', logo: ap24Logo },
-    { name: 'Ambr Group', logo: ambrGroupLogo },
-    { name: 'BONA BOTANICA', logo: bonaBotanicaLogo },
+    { name: 'AP 24', logo: ap24Logo, tone: 'pale' },
+    { name: 'Ambr Group', logo: ambrGroupLogo, tone: 'dark' },
+    { name: 'BONA BOTANICA', logo: bonaBotanicaLogo, tone: 'dark' },
     { name: 'BUCKED UP', logo: buckedUpLogo },
     { name: 'BEAUTY FOCUS', logo: beautyFocusLogo },
-    { name: 'botalab', logo: botalabLogo },
-    { name: 'bode PRO', logo: bodeProLogo },
-    { name: 'epoch', logo: epochLogo },
-    { name: "Doctor's BEST", logo: doctorsBestLogo },
-    { name: 'CRONK NUTRIENTS', logo: cronkNutrientsLogo },
-    { name: 'Gentlemen Republic', logo: gentlemenRepublicLogo },
-    { name: 'H2O CARDIO', logo: h2oCardioLogo },
-    { name: 'ICE ELEMENTS', logo: iceElementsLogo },
-    { name: 'INCELLDERM', logo: incelldermLogo },
-    { name: 'Lifening', logo: lifeningLogo },
+    { name: 'botalab', logo: botalabLogo, tone: 'dark' },
+    { name: 'bode PRO', logo: bodeProLogo, tone: 'deep' },
+    { name: 'epoch', logo: epochLogo, tone: 'deep' },
+    { name: "Doctor's BEST", logo: doctorsBestLogo, tone: 'pale' },
+    { name: 'Gentlemen Republic', logo: gentlemenRepublicLogo, tone: 'dark' },
+    { name: 'H2O CARDIO', logo: h2oCardioLogo, tone: 'dark' },
+    { name: 'ICE ELEMENTS', logo: iceElementsLogo, tone: 'dark' },
+    { name: 'INCELLDERM', logo: incelldermLogo, tone: 'dark' },
+    { name: 'Lifening', logo: lifeningLogo, tone: 'dark' },
     { name: 'HEALTHY home', logo: healthyHomeLogo },
-    { name: 'heroine make', logo: heroineMakeLogo },
-    { name: 'K', logo: kLogo },
-    { name: 'KINGS', logo: kingsLogo },
+    { name: 'heroine make', logo: heroineMakeLogo, tone: 'light' },
+    { name: 'K', logo: kLogo, tone: 'light' },
+    { name: 'KINGS', logo: kingsLogo, tone: 'light' },
     { name: 'life cider', logo: lifeCiderLogo },
-    { name: 'MAKE WELLNESS', logo: makeWellnessLogo },
-    { name: 'Novex Biotech', logo: novexBiotechLogo },
-    { name: 'MUSCLE MOOSE', logo: muscleMooseLogo },
+    { name: 'MAKE WELLNESS', logo: makeWellnessLogo, tone: 'light' },
+    { name: 'Novex Biotech', logo: novexBiotechLogo, tone: 'dark' },
+    { name: 'MUSCLE MOOSE', logo: muscleMooseLogo, tone: 'deep' },
     { name: 'MIDISEM', logo: midisemLogo },
-    { name: 'lionstrike', logo: lionStrikeLogo },
-    { name: 'neumi', logo: neumiLogo },
+    { name: 'lionstrike', logo: lionStrikeLogo, tone: 'dark' },
+    { name: 'neumi', logo: neumiLogo, tone: 'dark' },
     { name: 'mixhers', logo: mixhersLogo },
-    { name: 'made', logo: madeLogo },
-    { name: 'Live PURE', logo: livePureLogo },
-    { name: 'NOW Foods', logo: nowLogo },
+    { name: 'made', logo: madeLogo, tone: 'dark' },
+    { name: 'Live PURE', logo: livePureLogo, tone: 'dark' },
+    { name: 'NOW Foods', logo: nowLogo, tone: 'deep' },
     { name: 'PHONESOAP', logo: phoneSoapLogo },
-    { name: 'RADIANSOME', logo: radiansomeLogo },
-    { name: 'PERFECT PRESS', logo: perfectPressLogo },
+    { name: 'RADIANSOME', logo: radiansomeLogo, tone: 'dark' },
+    { name: 'PERFECT PRESS', logo: perfectPressLogo, tone: 'dark' },
     { name: 'plexus', logo: plexusLogo },
-    { name: 'PURE FUEL', logo: pureFuelLogo },
-    { name: 'PHARMANEX', logo: pharmanexLogo },
-    { name: 'Riman', logo: rimanLogo },
-    { name: 'NUTRICENTIALS', logo: nutricientialsLogo },
-    { name: 'ORGANO', logo: organoLogo },
-    { name: 'NU SKIN', logo: nuSkinLogo },
-    { name: 'SeroVital', logo: seroVitalLogo },
-    { name: 'sutera', logo: suteraLogo },
-    { name: 'thrive', logo: thriveLogo },
-    { name: 'TRANONT', logo: tranontLogo },
-    { name: 'Simmtronics', logo: simmtronicsLogo },
-    { name: 'Think Smarter Products', logo: thinkSmarterProductsLogo },
-    { name: 'Truvy', logo: truvyLogo },
-    { name: 'REUZEL', logo: reuzelLogo },
-    { name: 'RELACORE', logo: relacoreLogo },
-    { name: 'Rodan + Fields', logo: rfLogo },
-    { name: 'Young Living', logo: youngLivingLogo },
-    { name: 'Younique', logo: youniqueLogo },
-    { name: 'Zantrex', logo: zantrexLogo },
-    { name: 'Zive', logo: ziveLogo },
+    { name: 'PURE FUEL', logo: pureFuelLogo, tone: 'dark' },
+    { name: 'PHARMANEX', logo: pharmanexLogo, tone: 'pale' },
+    { name: 'NUTRICENTIALS', logo: nutricientialsLogo, tone: 'light' },
+    { name: 'ORGANO', logo: organoLogo, tone: 'deep' },
+    { name: 'NU SKIN', logo: nuSkinLogo, tone: 'deep' },
+    { name: 'SeroVital', logo: seroVitalLogo, tone: 'dark' },
+    { name: 'sutera', logo: suteraLogo, tone: 'dark' },
+    { name: 'thrive', logo: thriveLogo, tone: 'deep' },
+    { name: 'TRANONT', logo: tranontLogo, tone: 'dark' },
+    { name: 'Simmtronics', logo: simmtronicsLogo, tone: 'dark' },
+    { name: 'Think Smarter Products', logo: thinkSmarterProductsLogo, tone: 'deep' },
+    { name: 'Truvy', logo: truvyLogo, tone: 'dark' },
+    { name: 'REUZEL', logo: reuzelLogo, tone: 'dark' },
+    { name: 'RELACORE', logo: relacoreLogo, tone: 'dark' },
+    { name: 'Rodan + Fields', logo: rfLogo, tone: 'pale' },
+    { name: 'Young Living', logo: youngLivingLogo, tone: 'pale' },
+    { name: 'Younique', logo: youniqueLogo, tone: 'dark' },
+    { name: 'Zantrex', logo: zantrexLogo, tone: 'dark' },
+    { name: 'Zive', logo: ziveLogo, tone: 'dark' },
   ];
 
   const capabilities = [
@@ -311,30 +308,38 @@ export function Home() {
         {/* Decorative: loads after the text and buttons, when the browser is idle */}
         <DeferredMount>
           <ParticlesBackground />
-          <div className="absolute inset-x-0 top-24 bottom-0 z-0 flex items-center justify-center lg:justify-end lg:pr-[4vw] animate-[fadeIn_1s_ease-out]" style={{ opacity: 0.6 }}>
-            <div className="w-full h-full max-w-3xl max-h-[640px] relative">
-              <Globe darkerParticles={true} />
-            </div>
-          </div>
         </DeferredMount>
 
         <div data-story="hero-inner" className={`relative z-10 ${INNER}`}>
           <ChapterMarker id="wholesale-trade-partner" accent="text-[var(--pop)] orange:text-[#101828]" />
-          <h1 className={`text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6 ${HEAD}`}>
-            We Buy It. You Profit.&trade;
-          </h1>
-          <p className={`${LEAD} max-w-3xl mb-10`}>
-            Epic Global Inc. is a wholesale trade partner and <strong className={`font-semibold ${HEAD}`}>Zero-Risk Global Commerce Operator</strong>. We buy your inventory upfront at wholesale, run your marketplace storefronts, and pay for the advertising, marketplace fees and fulfillment ourselves. Buy. Sell. Advertise. Protect.
-          </p>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <CtaButton variant="primary" size="lg" location="Hero Section" />
-            <Link
-              href="/case-studies"
-              onClick={() => trackClick('View Case Studies', 'CTA Button', { location: 'Hero Section' })}
-              className={siteConfig.bookACallEnabled ? QUIET_BUTTON : POP_BUTTON}
-            >
-              View Case Studies
-            </Link>
+          {/* Text and globe share one row, centered on each other (desktop). On phones the globe sits faintly behind the text. */}
+          <div className="relative lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:items-center lg:gap-10">
+            <div className="relative z-10">
+              <h1 className={`text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6 ${HEAD}`}>
+                We Buy It. You Profit.&trade;
+              </h1>
+              <p className={`${LEAD} max-w-3xl mb-10`}>
+                Epic Global Inc. is a wholesale trade partner and <strong className={`font-semibold ${HEAD}`}>Zero-Risk Global Commerce Operator</strong>. We buy your inventory upfront at wholesale, run your marketplace storefronts, and pay for the advertising, marketplace fees and fulfillment ourselves. Buy. Sell. Advertise. Protect.
+              </p>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <CtaButton variant="primary" size="lg" location="Hero Section" />
+                <Link
+                  href="/case-studies"
+                  onClick={() => trackClick('View Case Studies', 'CTA Button', { location: 'Hero Section' })}
+                  className={siteConfig.bookACallEnabled ? QUIET_BUTTON : POP_BUTTON}
+                >
+                  View Case Studies
+                </Link>
+              </div>
+            </div>
+            {/* Decorative: loads after the text and buttons, when the browser is idle */}
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-30 lg:static lg:opacity-60 lg:aspect-square">
+              <DeferredMount>
+                <div className="relative h-full w-full animate-[fadeIn_1s_ease-out]">
+                  <Globe darkerParticles={true} />
+                </div>
+              </DeferredMount>
+            </div>
           </div>
         </div>
       </section>

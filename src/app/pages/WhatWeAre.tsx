@@ -160,7 +160,7 @@ export function WhatWeAre() {
             />
           </div>
           <p className={`mt-16 text-4xl sm:text-5xl font-bold tracking-tight ${HEAD}`}>
-            <WordFill text="We buy it. You profit." />
+            <WordFill text="We buy it. You profit.™" />
           </p>
         </div>
       </section>

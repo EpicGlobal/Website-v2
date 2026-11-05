@@ -4,6 +4,15 @@ import Image, { type StaticImageData } from "next/image";
 // Static imports, so next/image knows each logo's size and serves a small WebP/AVIF copy
 // (the PNGs are 1,000+ px wide but shown at most 176 x 56 px).
 type BrandLogo = StaticImageData;
+/**
+ * How a logo is recolored so it reads on every theme without a backdrop behind it:
+ * - light: a white or very pale logo, shown dark on the light themes (natural on dark).
+ * - pale:  a light-colored logo, deepened on the light themes and brightened in the dark theme (keeps its colors).
+ * - dark:  a black or grey logo, shown white in the dark theme (natural on light).
+ * - deep:  a dark-colored logo, brightened in the dark theme (keeps its colors; natural on light).
+ * Logos without a tone keep their own colors everywhere.
+ */
+export type LogoTone = "light" | "pale" | "dark" | "deep";
 
 const PX_PER_SECOND = 80;
 const MOMENTUM_DECAY_SECONDS = 0.22;
@@ -18,7 +27,7 @@ function normalizeOffset(value: number, width: number) {
   return normalized;
 }
 
-export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: BrandLogo }[] }) {
+export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: BrandLogo; tone?: LogoTone }[] }) {
   const wrapRef = React.useRef<HTMLDivElement | null>(null);
   const groupRef = React.useRef<HTMLDivElement | null>(null);
   const groupWidthRef = React.useRef(0);
@@ -200,7 +209,7 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
       <div ref={wrapRef} className={`marquee${isDragging ? " is-dragging" : ""}`}>
         <div ref={groupRef} className="marquee__group">
           {brands.map((brand, index) => (
-            <div key={`g1-${index}`} className="logo">
+            <div key={`g1-${index}`} className="logo" data-tone={brand.tone}>
               <Image src={brand.logo} alt={brand.name} sizes="192px" className="h-auto w-auto max-h-14 max-w-full object-contain mix-blend-multiply" />
             </div>
           ))}
@@ -208,7 +217,7 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
 
         <div className="marquee__group" aria-hidden="true">
           {brands.map((brand, index) => (
-            <div key={`g2-${index}`} className="logo">
+            <div key={`g2-${index}`} className="logo" data-tone={brand.tone}>
               <Image src={brand.logo} alt="" sizes="192px" className="h-auto w-auto max-h-14 max-w-full object-contain mix-blend-multiply" />
             </div>
           ))}
@@ -240,15 +249,16 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
           justify-content:center;
           height:5rem;
           width:11rem;
-          opacity:0.70;
+          opacity:0.85;
           transition: opacity 300ms, filter 300ms;
         }
-        /* Dark/moon theme: multiply would turn the logos black on a dark page, so flip them to light grey instead
-           (invert turns each logo's white background black, and screen drops that black into the page). */
-        .dark .logo img {
-          mix-blend-mode: screen;
-          filter: grayscale(100%) invert(1) brightness(1.1);
-        }
+        /* Recolor by tone (see LogoTone), so every logo reads on every theme with no box behind it. */
+        html:not(.dark) .logo[data-tone="light"] img{ filter: brightness(0); }
+        html:not(.dark) .logo[data-tone="pale"] img{ filter: brightness(0.6) saturate(1.4); }
+        .dark .logo img{ mix-blend-mode: normal; }
+        .dark .logo[data-tone="dark"] img{ filter: brightness(0) invert(1); }
+        .dark .logo[data-tone="pale"] img,
+        .dark .logo[data-tone="deep"] img{ filter: brightness(1.7) saturate(1.1); }
         .logo:hover{
           opacity:1;
         }
