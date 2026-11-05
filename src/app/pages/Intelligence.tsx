@@ -4,11 +4,12 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { Shield, TrendingUp, Zap } from 'lucide-react';
 import { MarkTable } from '@/app/components/home/SkimSections';
+import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
 import { useScrollStory } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink, StepList, WordFill } from '@/app/components/story/StoryKit';
-import { ACCENT_BG, BODY, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
+import { BODY, CARD_HOVER, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
 import { siteConfig } from '@/site/site-config';
 
@@ -124,14 +125,15 @@ export function Intelligence() {
         <div className={INNER}>
           <ChapterMarker n={4} />
           <h2 className={`${H2} mb-10`}>Three systems Epic runs for you</h2>
-          <div data-story="rise" className="grid md:grid-cols-3 gap-10 md:gap-8">
+          <div data-story="rise" className="grid md:grid-cols-3 gap-4">
             {intelligencePillars.map((pillar) => {
               const Icon = pillar.icon;
               return (
-                <div key={pillar.title} className="flex flex-col">
-                  <span aria-hidden="true" className={`block h-[3px] w-12 mb-6 rounded-full ${ACCENT_BG}`} />
-                  <Icon aria-hidden="true" className={`w-6 h-6 mb-4 ${HEAD}`} />
-                  <h3 className={`${H3} mb-3`}>{pillar.title}</h3>
+                <div key={pillar.title} className={`${CARD} ${CARD_HOVER} p-6`}>
+                  <span className={`${ICON_TILE} mb-5`}>
+                    <Icon aria-hidden="true" className="w-5 h-5" />
+                  </span>
+                  <h3 className={`${H3} mb-2`}>{pillar.title}</h3>
                   <p className={`leading-relaxed ${BODY}`}>{pillar.description}</p>
                 </div>
               );
