@@ -10,7 +10,11 @@ import {
 import { StructuredData, getBreadcrumbSchema, getFAQPageSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
+import { BODY, H1, H2, HEAD, INNER, LEAD, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
+import { MEASURE } from '@/app/components/reading/reading';
 import { siteConfig } from '@/site/site-config';
+
+const SECTION = 'px-4 sm:px-6 lg:px-8';
 
 export function FAQ() {
   const faqs = [
@@ -111,9 +115,10 @@ export function FAQ() {
     },
   ];
 
+
   return (
-    <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
-      <SEO 
+    <div className={PAGE_BG}>
+      <SEO
         title="FAQ - Frequently Asked Questions | Epic Global Inc."
         description="Get answers to common questions about Epic Global Inc.'s wholesale trade partner model, marketplace operations, timelines, pricing, and how we differ from traditional agencies."
         canonicalUrl={`${siteConfig.url}/faq`}
@@ -127,61 +132,48 @@ export function FAQ() {
         ])}
       />
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-600 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828] bg-clip-text text-transparent leading-tight">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-800 water:text-[#101828] leading-relaxed">
-            Common questions about how we operate and what makes us different.
-          </p>
+      <section className={`pt-32 pb-10 ${SECTION}`}>
+        <div className={INNER}>
+          <h1 className={`${H1} mb-5`}>Frequently Asked Questions</h1>
+          <p className={`${LEAD} max-w-3xl`}>Common questions about how we operate and what makes us different.</p>
         </div>
       </section>
 
-      {/* FAQ Accordion */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/10 soft-dark:to-white/[0.05] light:from-gray-50 light:to-white orange:from-white/5 orange:to-white/[0.02] backdrop-blur-xl rounded-2xl p-8 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/10">
-            <h2 className="sr-only">Wholesale trade partner FAQ</h2>
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="border border-white/10 dark:border-white/10 soft-dark:border-lime-800/30 light:border-gray-200 orange:border-white/10 rounded-lg px-6 bg-white/[0.02] dark:bg-white/[0.02] soft-dark:bg-white/[0.05] light:bg-white orange:bg-white/70 leaf:bg-white/70 water:bg-white/70 leaf:border-sky-300/70 water:border-lime-500/40 orange:border-orange-300/70 hover:border-cyan-500/30 leaf:hover:border-sky-500 water:hover:border-lime-600 dark:hover:border-cyan-500/30 soft-dark:hover:border-lime-600/50 light:hover:border-cyan-500/30 orange:hover:border-orange-500 transition-colors"
+      {/* FAQ list: a calm document of questions. Every answer is in the HTML (force-mounted);
+          any number can be open at once. */}
+      <section className={`pb-16 ${SECTION}`}>
+        <div className={INNER}>
+          <h2 className="sr-only">Wholesale trade partner FAQ</h2>
+          <Accordion type="multiple" className={`border-t ${RULE}`}>
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className={`border-b last:border-b ${RULE}`}>
+                <AccordionTrigger
+                  className={`py-6 text-lg sm:text-xl font-semibold leading-snug hover:no-underline underline-offset-4 decoration-1 focus-visible:ring-0 focus-visible:underline [&:hover>span]:underline ${HEAD} [&>svg]:size-5 [&>svg]:translate-y-1 [&>svg]:text-[var(--pop)] orange:[&>svg]:text-orange-800`}
                 >
-                  <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-[#101828] water:text-[#101828] hover:text-cyan-400 soft-dark:hover:text-lime-700 light:hover:text-cyan-600 orange:hover:text-orange-800 leaf:hover:text-sky-700 water:hover:text-lime-800 leaf:data-[state=open]:text-sky-700 water:data-[state=open]:text-lime-800 orange:data-[state=open]:text-orange-800 orange:[&>svg]:text-orange-700 leaf:[&>svg]:text-sky-700 water:[&>svg]:text-lime-800 focus-visible:underline leaf:decoration-sky-700 water:decoration-lime-800 orange:decoration-orange-700 py-5">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent forceMount className="text-sm sm:text-base text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700 leading-relaxed pb-5">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+                  <span>{faq.question}</span>
+                </AccordionTrigger>
+                <AccordionContent forceMount className={`${MEASURE} text-base sm:text-[1.0625rem] leading-relaxed pb-6 ${BODY}`}>
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
 
       {/* Still Have Questions CTA */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-cyan-950/20 to-cyan-900/10 dark:from-cyan-950/20 dark:to-cyan-900/10 soft-dark:from-lime-700/20 soft-dark:to-lime-800/10 light:from-cyan-50 light:to-cyan-100 orange:from-white/80 orange:to-orange-50/80 leaf:from-white/80 leaf:to-sky-50/80 water:from-white/80 water:to-lime-50/80 rounded-2xl p-8 md:p-12 border border-cyan-500/20 dark:border-cyan-500/20 soft-dark:border-lime-600/30 light:border-cyan-300 orange:border-orange-300 leaf:border-sky-300 water:border-lime-400 text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-[#101828] water:text-[#101828]">
-              Still have questions?
-            </h2>
-            <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700 mb-8 max-w-2xl mx-auto">
-              Let's talk through your specific situation and see if our operating model is a fit. Or email <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 font-medium">{siteConfig.contactEmail}</a>.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <CtaButton variant="primary" size="lg" location="FAQ Page - Still Have Questions CTA" />
-              <Link
-                href="/our-model"
-                className="px-8 py-3.5 bg-white/5 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-white leaf:text-white water:text-white orange:bg-orange-700 leaf:bg-sky-700 water:bg-lime-800 rounded-lg hover:bg-white/10 soft-dark:hover:bg-white/20 light:hover:bg-gray-100 orange:hover:bg-orange-800 leaf:hover:bg-sky-800 water:hover:bg-lime-900 transition-all border border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-orange-700 leaf:border-sky-700 water:border-lime-800 text-base font-semibold"
-              >
-                See How It Works
-              </Link>
-            </div>
+      <section className={`pt-4 pb-24 ${SECTION}`}>
+        <div className={INNER}>
+          <h2 className={`${H2} mb-4`}>Still have questions?</h2>
+          <p className={`text-lg leading-relaxed max-w-2xl mb-8 ${BODY}`}>
+            Let&apos;s talk through your specific situation and see if our operating model is a fit. Or email <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 font-medium">{siteConfig.contactEmail}</a>.
+          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <CtaButton variant="primary" size="lg" location="FAQ Page - Still Have Questions CTA" />
+            {/* With booking switched off, "See How It Works" is the page's one main action. */}
+            <Link href="/our-model" className={`${siteConfig.bookACallEnabled ? QUIET_BUTTON : POP_BUTTON} self-start sm:self-auto`}>
+              See How It Works
+            </Link>
           </div>
         </div>
       </section>
