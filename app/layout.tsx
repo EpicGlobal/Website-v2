@@ -91,7 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const turnstileSiteKey = String(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '').trim();
 
   return (
-    <html lang="en" className="orange" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body>
         {!isWebsitePreview && wafIntegrationUrl ? (
           <Script
@@ -112,12 +112,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             (() => {
               try {
                 const allowed = ['dark', 'leaf', 'water', 'light', 'orange'];
-                const saved = window.localStorage.getItem('epic-theme-v2');
-                const theme = allowed.includes(saved) ? saved : 'orange';
+                const saved = window.localStorage.getItem('epic-theme-v3');
+                const theme = allowed.includes(saved) ? saved : 'dark';
                 document.documentElement.classList.remove(...allowed);
                 document.documentElement.classList.add(theme);
               } catch (error) {
-                document.documentElement.classList.add('orange');
+                document.documentElement.classList.add('dark');
               }
             })();
           `}
