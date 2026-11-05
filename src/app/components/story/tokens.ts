@@ -41,8 +41,9 @@ export const POP_BUTTON =
 export const QUIET_BUTTON = `inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg border font-semibold transition-colors text-base ${RULE} ${HEAD} hover:bg-white/10 orange:hover:bg-[#101828]/5 light:hover:bg-gray-100 leaf:hover:bg-white/50 water:hover:bg-white/50 soft-dark:hover:bg-white/50`;
 
 /**
- * Hover for every card that is a link (and only those, so a lift always means "you can click this"): it lifts
- * slightly, gains a soft shadow and the pop-colored border. Keyboard focus shows the same. CSS only, no JavaScript.
+ * Hover for every card that is a link (and only those, so a lift always means "you can click this"): it lifts and
+ * lights up with the same pop-colored outline and soft glow as the lit card in Home's Buy-Sell-Advertise-Protect
+ * chapter (ScrollTimeline). Keyboard focus shows the same. CSS only, no JavaScript.
  */
 export const CARD_HOVER =
-  'transition-[transform,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-black/10 hover:border-[var(--pop)] focus-visible:-translate-y-1 focus-visible:border-[var(--pop)] orange:hover:border-[#101828]/60 orange:focus-visible:border-[#101828]/60';
+  'transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_0_0_2px_var(--pop),0_20px_40px_-20px_var(--pop)] focus-visible:-translate-y-1.5 focus-visible:shadow-[0_0_0_2px_var(--pop),0_20px_40px_-20px_var(--pop)] focus-visible:outline-none';

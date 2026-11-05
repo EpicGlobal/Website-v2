@@ -50,15 +50,16 @@
   background-color: var(--kb-card);
 }
 
-/* Related Resources cards inside articles are links: same hover as every clickable card (CARD_HOVER in story/tokens). */
+/* Related Resources cards inside articles are links: same lift, pop outline and glow as every clickable card
+   (CARD_HOVER in story/tokens). */
 .kb-prose a.block.border {
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 .kb-prose a.block.border:hover,
 .kb-prose a.block.border:focus-visible {
-  transform: translateY(-4px);
-  border-color: var(--kb-accent);
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transform: translateY(-6px);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--pop), 0 20px 40px -20px var(--pop);
 }
 
 /* Light-background themes: dark text, darker accent for small text (AA contrast), white cards. */
