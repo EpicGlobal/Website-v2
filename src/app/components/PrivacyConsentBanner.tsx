@@ -24,12 +24,15 @@ export function PrivacyConsentBanner() {
     return () => window.removeEventListener(PRIVACY_PREFERENCE_EVENT, syncPreference);
   }, []);
 
-  if (!ready || preference !== 'unset' || hasGlobalPrivacyControl()) return null;
+  // The banner is in the server HTML so it paints with the page (not late, after hydration). For visitors who already
+  // chose (or send GPC), the epic-privacy-init script in app/layout.tsx marks <html data-privacy-set> before first
+  // paint and the class below keeps it hidden until this effect removes it.
+  if (ready && (preference !== 'unset' || hasGlobalPrivacyControl())) return null;
 
   return (
     <aside
       aria-label="Privacy choices"
-      className="fixed inset-x-3 bottom-3 z-[100] mx-auto max-w-4xl border border-white/20 bg-slate-950 px-5 py-4 text-white shadow-2xl sm:inset-x-6"
+      className="[html[data-privacy-set]_&]:hidden fixed inset-x-3 bottom-3 z-[100] mx-auto max-w-4xl border border-white/20 bg-slate-950 px-5 py-4 text-white shadow-2xl sm:inset-x-6"
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-2xl text-sm leading-6 text-slate-200">

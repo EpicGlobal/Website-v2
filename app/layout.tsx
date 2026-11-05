@@ -122,6 +122,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })();
           `}
         </Script>
+        <Script id="epic-privacy-init" strategy="beforeInteractive">
+          {`
+            (() => {
+              try {
+                const key = 'epic.privacy.nonessential';
+                const ok = (v) => v === 'granted' || v === 'denied';
+                let set = navigator.globalPrivacyControl === true;
+                try { set = set || ok(window.localStorage.getItem(key)); } catch (e) {}
+                set = set || document.cookie.split(';').some((c) => ok(c.trim().split(key + '=')[1]));
+                if (set) document.documentElement.setAttribute('data-privacy-set', '');
+              } catch (error) {}
+            })();
+          `}
+        </Script>
         <Script id="epic-auth-recovery-init" strategy="beforeInteractive">
           {`
             (() => {
