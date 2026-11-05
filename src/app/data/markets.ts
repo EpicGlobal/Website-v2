@@ -43,7 +43,7 @@ export const countryData = [
     marketplaces: ['Mercado Libre'],
     color: '#22d3ee',
   },
-  // Chile and Peru added Nov 5, 2026 (Brex). Marketplace assumed Mercado Libre like Argentina and Colombia: confirm with Kevin.
+  // Chile and Peru added Nov 5, 2026 (Brex). Mercado Libre confirmed by Brex Nov 5; TikTok Shop, Coupang and Coupang US Global confirmed too.
   {
     country: 'Chile',
     code: 'CHL',
