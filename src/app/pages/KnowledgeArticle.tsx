@@ -8,10 +8,22 @@ import { ReadingProgressRing } from '@/app/components/scroll/ScrollEffects';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
+import { ACCENT, BODY, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, RULE } from '@/app/components/story/tokens';
+import { ArticleCard } from '@/app/components/reading/ArticleCard';
+import { MEASURE, SURFACE } from '@/app/components/reading/reading';
+import '@/app/components/reading/reading.css';
 import { siteConfig } from '@/site/site-config';
 
 // Import article content components
 import { getArticleContent } from '@/app/data/articleContent';
+
+/*
+ * Knowledge Base article template (tier 3, reading page): calm, on the site's theme background, one reading column
+ * of about 70 characters. The articles themselves (articleContent.tsx) are unchanged; reading.css re-themes them.
+ */
+
+const SECTION = 'px-4 sm:px-6 lg:px-8';
+const SMALL_BUTTON = `px-5 py-2 rounded-lg border text-sm font-medium transition-colors ${RULE} ${HEAD} hover:bg-white/10 orange:hover:bg-[#101828]/5 light:hover:bg-gray-100 leaf:hover:bg-white/50 water:hover:bg-white/50 soft-dark:hover:bg-white/50`;
 
 type KnowledgeArticleProps = {
   slug: string;
@@ -22,15 +34,12 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
 
   if (!article) {
     return (
-      <div className="min-h-screen text-white pt-32 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">Article Not Found</h1>
-          <p className="text-gray-400 mb-8">The article you're looking for doesn't exist.</p>
-          <Link
-            href="/knowledge-base"
-            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
-          >
-            <ArrowLeft className="w-4 h-4" />
+      <div className={`${PAGE_BG} pt-32 pb-20 ${SECTION}`}>
+        <div className={INNER}>
+          <h1 className={`${H1} mb-4`}>Article Not Found</h1>
+          <p className={`text-lg mb-8 ${BODY}`}>The article you&apos;re looking for doesn&apos;t exist.</p>
+          <Link href="/knowledge-base" className={POP_BUTTON}>
+            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
             Back to Knowledge Base
           </Link>
         </div>
@@ -48,6 +57,7 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
   ].slice(0, 3);
   const updated = isoDate(article.lastUpdated);
   const articleUrl = `${siteConfig.url}/knowledge-base/${article.slug}`;
+  const meta = [article.pillar, article.type, article.difficulty].filter((m): m is NonNullable<typeof m> => Boolean(m));
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -63,8 +73,8 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
   };
 
   return (
-    <div className="min-h-screen text-white">
-      <SEO 
+    <div className={PAGE_BG}>
+      <SEO
         title={`${article.seoTitle ?? article.title} | Epic Global Inc.`}
         description={article.seoDescription ?? article.summary}
         canonicalUrl={articleUrl}
@@ -88,62 +98,51 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
         ])}
       />
 
-      {/* Header */}
-      <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-950 to-black">
-        <div className="max-w-4xl mx-auto">
+      {/* Header: where you are, what kind of article, the title and the one-line answer. */}
+      <header className={`pt-32 pb-10 ${SECTION}`}>
+        <div className={INNER}>
           <Link
             href="/knowledge-base"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors mb-8"
+            className={`inline-flex items-center gap-2 text-sm font-medium mb-8 underline-offset-4 decoration-1 hover:underline ${BODY}`}
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
             Back to Knowledge Base
           </Link>
 
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-            <Link href="/knowledge-base" className="hover:text-cyan-400">
-              Knowledge Base
-            </Link>
-            <span>/</span>
-            <span className="text-gray-400">{article.category}</span>
-          </div>
+          <nav aria-label="Breadcrumb" className={`text-sm mb-6 ${MUTED}`}>
+            <ol className="flex flex-wrap items-center gap-2">
+              <li>
+                <Link href="/knowledge-base" className="underline-offset-4 decoration-1 hover:underline">
+                  Knowledge Base
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page">{article.category}</li>
+            </ol>
+          </nav>
 
           {/* Article Meta */}
-          <div className="flex flex-wrap items-center gap-2 mb-6">
-            <span className="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-semibold">
-              {article.category}
-            </span>
-            {article.pillar && (
-              <span className="px-3 py-1 bg-white/5 text-gray-400 rounded-full text-xs">
-                {article.pillar}
+          <p className="mb-5 text-sm font-semibold">
+            <span className={ACCENT}>{article.category}</span>
+            {meta.map((m) => (
+              <span key={m} className={`font-normal ${MUTED}`}>
+                <span aria-hidden="true"> · </span>
+                {m}
               </span>
-            )}
-            {article.type && (
-              <span className="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-xs font-semibold">
-                {article.type}
-              </span>
-            )}
-            {article.difficulty && (
-              <span className="px-3 py-1 bg-orange-500/10 text-orange-400 rounded-full text-xs">
-                {article.difficulty}
-              </span>
-            )}
-          </div>
-
-          {/* Title */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent leading-tight">
-            {article.title}
-          </h1>
-
-          {/* Summary */}
-          <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed">
-            {article.summary}
+            ))}
           </p>
 
+          {/* Title */}
+          <h1 className={`${H1} max-w-4xl mb-6`}>{article.title}</h1>
+
+          {/* Summary */}
+          <p className={`${LEAD} ${MEASURE} mb-8`}>{article.summary}</p>
+
           {/* Article Info Bar */}
-          <div className="flex flex-wrap items-center gap-6 pb-8 border-b border-white/10">
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <Calendar className="w-4 h-4" />
+          <div className={`flex flex-wrap items-center gap-x-6 gap-y-3 pb-8 border-b text-sm ${RULE} ${MUTED}`}>
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4" aria-hidden="true" />
               <span>Updated {article.lastUpdated}</span>
             </div>
             {article.downloadable && article.downloadUrl && (
@@ -151,55 +150,48 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
                 href={article.downloadUrl}
                 fileName={article.title}
                 fileType="template"
-                className="flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300"
+                className={`flex items-center gap-2 font-semibold underline-offset-4 decoration-1 hover:underline ${ACCENT}`}
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-4 h-4" aria-hidden="true" />
                 <span>Download Template</span>
               </GatedDownloadButton>
             )}
-            <button className="flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-400">
-              <Share2 className="w-4 h-4" />
+            <button className="flex items-center gap-2 underline-offset-4 decoration-1 hover:underline">
+              <Share2 className="w-4 h-4" aria-hidden="true" />
               <span>Share</span>
             </button>
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* Article Content */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-black">
-        <div className="max-w-4xl mx-auto">
-          <article className="prose prose-invert prose-lg max-w-none">
+      {/* Article Content: one comfortable reading column (about 70 characters a line). */}
+      <section className={`pt-4 pb-16 ${SECTION}`}>
+        <div className={INNER}>
+          <article className={`kb-prose ${MEASURE}`}>
             <ArticleContent />
           </article>
 
-          {/* Tags */}
-          {article.tags.length > 0 && (
-            <div className="mt-12 pt-8 border-t border-white/10">
-              <div className="flex items-center gap-3 flex-wrap">
-                <Tag className="w-4 h-4 text-gray-500" />
-                {article.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-white/5 text-gray-400 rounded-full text-xs hover:bg-white/10 transition-colors cursor-pointer"
-                  >
-                    {tag}
-                  </span>
-                ))}
+          <div className={MEASURE}>
+            {/* Tags */}
+            {article.tags.length > 0 && (
+              <div className={`mt-14 pt-8 border-t ${RULE}`}>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <Tag className={`w-4 h-4 mr-1 ${MUTED}`} aria-hidden="true" />
+                  {article.tags.map((tag) => (
+                    <span key={tag} className={`px-3 py-1 rounded-full border text-xs ${RULE} ${MUTED}`}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Feedback */}
-          <div className="mt-12 pt-8 border-t border-white/10">
-            <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl p-6 border border-white/10">
-              <p className="text-lg font-semibold mb-4 text-white">Was this article helpful?</p>
-              <div className="flex gap-4">
-                <button className="px-6 py-2 bg-cyan-500/10 text-cyan-400 rounded-lg hover:bg-cyan-500/20 transition-colors text-sm font-medium">
-                  Yes, helpful
-                </button>
-                <button className="px-6 py-2 bg-white/5 text-gray-400 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium">
-                  No, needs improvement
-                </button>
+            {/* Feedback */}
+            <div className={`mt-10 p-6 ${SURFACE}`}>
+              <p className={`text-lg font-semibold mb-4 ${HEAD}`}>Was this article helpful?</p>
+              <div className="flex flex-wrap gap-3">
+                <button className={SMALL_BUTTON}>Yes, helpful</button>
+                <button className={SMALL_BUTTON}>No, needs improvement</button>
               </div>
             </div>
           </div>
@@ -208,26 +200,12 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-950 border-t border-white/10">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8 text-white">Related Articles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <section className={`py-16 ${SECTION}`}>
+          <div className={`${INNER} border-t ${RULE} pt-14`}>
+            <h2 className={`${H2} mb-8`}>Related Articles</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {relatedArticles.map((relatedArticle) => (
-                <Link
-                  key={relatedArticle.slug}
-                  href={`/knowledge-base/${relatedArticle.slug}`}
-                  className="group bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10"
-                >
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-xs font-semibold">
-                      {relatedArticle.category}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-cyan-400 transition-colors">
-                    {relatedArticle.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 line-clamp-2">{relatedArticle.summary}</p>
-                </Link>
+                <ArticleCard key={relatedArticle.slug} article={relatedArticle} showType={false} showDate={false} />
               ))}
             </div>
           </div>
@@ -236,13 +214,11 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
 
       {/* CTA */}
       {siteConfig.bookACallEnabled ? (
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">
-              Ready to see how this works for your brand?
-            </h2>
-            <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Let's walk through your catalog, marketplace presence, and growth goals. Or email <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 font-medium">{siteConfig.contactEmail}</a>.
+        <section className={CHAPTER}>
+          <div className={INNER}>
+            <h2 className={`${H2} mb-4`}>Ready to see how this works for your brand?</h2>
+            <p className={`text-lg leading-relaxed max-w-2xl mb-8 ${BODY}`}>
+              Let&apos;s walk through your catalog, marketplace presence, and growth goals. Or email <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 font-medium">{siteConfig.contactEmail}</a>.
             </p>
             <CtaButton variant="primary" size="lg" location="Knowledge Article Page - Bottom CTA" />
           </div>

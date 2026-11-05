@@ -1,0 +1,82 @@
+/*
+ * Knowledge Base article body (.kb-prose). The 22 articles in src/app/data/articleContent.tsx were written for a
+ * dark page (text-white, text-gray-300, cyan links, translucent white cards). This sheet re-themes them in place so
+ * the article template can sit on the same theme background as every other page, without touching the articles.
+ * Unlayered CSS, so it wins over the Tailwind utility layer. The dark theme keeps the articles' own colors, with the
+ * legacy cyan accent swapped for the pop color.
+ */
+
+.kb-prose {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  /* Theme colors for the article body; the light themes set their own below. */
+  --kb-head: #ffffff;
+  --kb-body: #d1d5db;
+  --kb-accent: var(--pop);
+  --kb-rule: rgb(255 255 255 / 0.12);
+  --kb-card: rgb(255 255 255 / 0.04);
+}
+
+.kb-prose h2 {
+  scroll-margin-top: 6rem;
+  line-height: 1.25;
+}
+.kb-prose h3 {
+  line-height: 1.35;
+}
+.kb-prose table {
+  font-size: 0.9375rem;
+}
+
+/* Legacy cyan becomes the pop color on the dark theme. */
+.kb-prose .text-cyan-400,
+.kb-prose .hover\:text-cyan-300:hover {
+  color: var(--kb-accent);
+}
+.kb-prose .text-cyan-400\/70 {
+  color: color-mix(in srgb, var(--kb-accent) 75%, transparent);
+}
+.kb-prose .text-cyan-500\/30 {
+  color: color-mix(in srgb, var(--kb-accent) 35%, transparent);
+}
+.kb-prose .border-cyan-500\/20,
+.kb-prose .border-white\/5,
+.kb-prose .border-white\/10 {
+  border-color: var(--kb-rule);
+}
+.kb-prose .bg-gradient-to-br,
+.kb-prose .bg-cyan-500\/5 {
+  background-image: none;
+  background-color: var(--kb-card);
+}
+
+/* Light-background themes: dark text, darker accent for small text (AA contrast), white cards. */
+:is(.orange, .leaf, .water, .light, .soft-dark) .kb-prose {
+  --kb-head: #111827;
+  --kb-body: #374151;
+  --kb-accent: #9a3412;
+  --kb-rule: rgb(16 24 40 / 0.14);
+  --kb-card: rgb(255 255 255 / 0.65);
+}
+.orange .kb-prose {
+  --kb-head: #101828;
+  --kb-body: #101828;
+}
+:is(.orange, .leaf, .water, .light, .soft-dark) .kb-prose .text-white {
+  color: var(--kb-head);
+}
+:is(.orange, .leaf, .water, .light, .soft-dark) .kb-prose :is(.text-gray-300, .text-gray-400) {
+  color: var(--kb-body);
+}
+:is(.orange, .leaf, .water, .light, .soft-dark) .kb-prose .text-orange-400 {
+  color: #c2410c;
+}
+:is(.orange, .leaf, .water, .light, .soft-dark) .kb-prose .text-red-400 {
+  color: #b91c1c;
+}
+:is(.orange, .leaf, .water, .light, .soft-dark) .kb-prose :is(.border-orange-500\/20, .border-red-500\/20) {
+  border-color: var(--kb-rule);
+}
+:is(.orange, .leaf, .water, .light, .soft-dark) .kb-prose .backdrop-blur-xl {
+  backdrop-filter: none;
+}
