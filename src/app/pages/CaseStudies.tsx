@@ -260,12 +260,9 @@ export function CaseStudies() {
         <div className={INNER}>
           {chapterLabel(1, 'Real results')}
           <h1 className={`${H1} mb-6`}>Case Studies</h1>
-          <p className={`${LEAD} max-w-3xl mb-4`}>
+          <p className={`${LEAD} max-w-3xl mb-10`}>
             Two results: Sutera cut FBA fees on 18 of 21 products and lifted conversion 21% on successful A/B tests.
             An auto parts brand moving from Amazon 1P to Epic&apos;s 3P model raised its net revenue per unit 159% on one brake kit and 53% on another.
-          </p>
-          <p className={`text-xl leading-relaxed ${BODY} max-w-3xl mb-10`}>
-            See how Epic Global transforms eCommerce performance through our Buy-Sell-Advertise-Protect model
           </p>
           <ul className="grid gap-4 sm:grid-cols-2">
             {caseStudies.map((study) => (

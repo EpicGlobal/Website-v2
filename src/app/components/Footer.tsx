@@ -40,8 +40,8 @@ export function Footer() {
               </Link>
             </div>
             <p className="text-gray-200 leaf:text-gray-100 text-sm max-w-md leading-relaxed mb-4">
-              Epic Global Inc. is a wholesale trade partner and Zero-Risk Global Commerce Operator.
-              We buy your inventory upfront at wholesale, operate your Amazon, Walmart and international storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect your brand. We own the inventory and take on the retail execution risk.
+              Epic Global Inc. is an Amazon-first wholesale trade partner. We buy your inventory upfront, sell it on Amazon,
+              plus Walmart and international marketplaces, and pay for the ads, fees and fulfillment.
             </p>
             <p className="text-cyan-300 leaf:text-sky-200 text-sm font-medium">
               We buy it. You profit.&trade;

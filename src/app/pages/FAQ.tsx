@@ -39,11 +39,6 @@ export function FAQ() {
         'Most brands go from signed agreement to purchase order and Brand Registry authorization within days. We build and optimize your listings, A+ content and Storefront within about 4 weeks, and products typically go live 3-4 weeks after inventory arrives. Additional marketplaces and countries usually follow 1-6 months after Amazon US, depending on registration in each market.',
     },
     {
-      question: 'How does the inventory purchase model work?',
-      answer:
-        'We purchase your inventory at agreed wholesale pricing and take ownership. We then manage retail pricing, marketplace operations, and sales across approved platforms. We cover the operating expenses required to scale (advertising, marketplace fees, fulfillment). This aligns incentives: we succeed when your brand grows sustainably on marketplaces. The opening order is usually sized to about 60-90 days of inventory, with monthly replenishment after that, and you\'re paid on agreed payment terms.',
-    },
-    {
       question: 'How do you handle brand protection, MAP and unauthorized sellers?',
       answer:
         'Compliance and brand protection are built into our workflows, not bolted on afterward. We design every process around marketplace policies, documentation requirements, and auditability. For brand protection, we get authorized under your Brand Registry, remove unauthorized sellers, enforce MAP pricing, use Amazon Transparency where it fits, monitor the Buy Box and your catalog, and send you brand protection reports by marketplace. Every enforcement action is documented and tracked.',

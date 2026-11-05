@@ -1462,7 +1462,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
                 <td className="p-4">EBITDA consolidation for their exit</td>
               </tr>
               <tr className="bg-cyan-500/5 border-b border-cyan-500/20">
-                <td className="p-4 font-bold text-white">Operator (Epic)</td>
+                <td className="p-4 font-bold text-white">Wholesale trade partner (Epic)</td>
                 <td className="p-4">Buys inventory and runs the marketplace system</td>
                 <td className="p-4 font-semibold">Epic</td>
                 <td className="p-4">Total channel outcomes: profitable sell-through, stability, and control</td>
