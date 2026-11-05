@@ -11,12 +11,13 @@ import { TrustLogosMarquee, type LogoTone } from '@/app/components/TrustLogosMar
 import type { StaticImageData } from 'next/image';
 import { ACCENT, BODY, HEAD, INNER } from '@/app/components/story/tokens';
 import { CARD, ICON_TILE } from './homeStyles';
+import { MARKETPLACE_COUNT } from '@/app/data/markets';
 
 type Brand = { name: string; logo: StaticImageData; tone?: LogoTone };
 
 const brandsStat = { value: 50, suffix: '+' };
 const countriesStat = { value: 40, prefix: '~' };
-const marketsStat = { value: 12 };
+const marketsStat = { value: MARKETPLACE_COUNT };
 const ratingStat = { value: 4.9, decimals: 1, suffix: '/5' };
 
 const Num = ({ s }: { s: { value: number; decimals?: number; prefix?: string; suffix?: string } }) => (
