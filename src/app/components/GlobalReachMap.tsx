@@ -691,7 +691,7 @@ export function GlobalReachMap() {
         <summary className={`inline-flex cursor-pointer list-none items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium hover:border-[var(--pop)] [&::-webkit-details-marker]:hidden ${RULE} ${HEAD}`}>
           <span className="group-open:hidden">See all {countryData.length} countries and marketplaces</span>
           <span className="hidden group-open:inline">Hide the list</span>
-          <span aria-hidden="true" className="transition-transform group-open:rotate-180">▾</span>
+          <span aria-hidden="true" className="text-base leading-none transition-transform group-open:rotate-45">+</span>
         </summary>
         <MarketList data={countryData} />
       </details>
