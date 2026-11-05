@@ -78,8 +78,8 @@ import zantrexLogo from '@/assets/a02203de0f65132ee8277243eb83905610259bc6.png';
 import ziveLogo from '@/assets/bac9c727078929bc5f7386af4f562d2fe9fefe30.png';
 
 /*
- * Homepage, skim first (Brex, Nov 5): hero ("We Buy It. You Profit.") -> brand logos -> 4 numbers -> Epic vs agency
- * vs aggregator -> Buy-Sell-Advertise-Protect -> results -> who we're a fit for -> 5 questions. Company facts moved to
+ * Homepage, skim first (Brex, Nov 5): hero ("We Buy It. You Profit.") -> brand logos -> 4 numbers -> Buy-Sell-Advertise-Protect
+ * -> results -> Epic vs agency vs aggregator -> who we're a fit for -> 5 questions. Company facts moved to
  * About and the 8 capabilities to Our Model.
  * Each chapter opens with a numbered marker and the chapter rail (wide screens) shows where you are. The page's one
  * pin is Brex's approved ScrollHighlightSteps for the model. Phones get the same text as a calm static page.
@@ -88,9 +88,9 @@ import ziveLogo from '@/assets/bac9c727078929bc5f7386af4f562d2fe9fefe30.png';
 const CHAPTERS = [
   { id: 'wholesale-trade-partner', label: 'Wholesale trade partner' },
   { id: 'brands', label: 'At a glance' },
-  { id: 'compare', label: 'Epic vs agency vs aggregator' },
   { id: 'model', label: 'How it works' },
   { id: 'case-studies', label: 'Results' },
+  { id: 'compare', label: 'Epic vs agency vs aggregator' },
   { id: 'fit', label: "Who we're a fit for" },
   { id: 'faq', label: 'Questions' },
   { id: 'next-step', label: 'Next step' },
@@ -285,15 +285,6 @@ export function Home() {
         <BrandsProof brands={brands} logos={false} marker={<ChapterMarker id="brands" />} />
       </section>
 
-      {/* Epic vs agency vs aggregator: the comparison a brand owner makes first, as a table. */}
-      <section id="compare" data-chapter className={CHAPTER}>
-        <div className={INNER}>
-          <ChapterMarker id="compare" />
-          <h2 className={`${H2} mb-8`}>A wholesale trade partner, not an agency or aggregator</h2>
-          <CompareTable />
-        </div>
-      </section>
-
       {/* 04 Buy, Sell, Advertise, Protect: the chapter pins and each card lights up in turn (ScrollHighlightSteps). */}
       <section id="model" data-chapter className={CHAPTER}>
         <div className="max-w-7xl mx-auto">
@@ -359,6 +350,15 @@ export function Home() {
             View all case studies
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
+        </div>
+      </section>
+
+      {/* Epic vs agency vs aggregator: the comparison a brand owner makes first, as a table. */}
+      <section id="compare" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker id="compare" />
+          <h2 className={`${H2} mb-8`}>A wholesale trade partner, not an agency or aggregator</h2>
+          <CompareTable />
         </div>
       </section>
 
