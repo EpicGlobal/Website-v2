@@ -2,7 +2,7 @@ import React from "react";
 import Image, { type StaticImageData } from "next/image";
 
 // Static imports, so next/image knows each logo's size and serves a small WebP/AVIF copy
-// (the PNGs are 1,000+ px wide but shown at most 192 x 80 px).
+// (the PNGs are 1,000+ px wide but shown at most 176 x 56 px).
 type BrandLogo = StaticImageData;
 
 const PX_PER_SECOND = 80;
@@ -185,22 +185,23 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
 
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden py-2"
       aria-label="Brand logo carousel"
+      style={{
+        // Soft fade at both ends so logos glide in and out instead of being cut at the edge.
+        maskImage: "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)",
+        WebkitMaskImage: "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)",
+      }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
     >
-      {/* Gradient Masks - now transparent to blend with background */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-transparent via-transparent/50 to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-transparent via-transparent/50 to-transparent z-10 pointer-events-none" />
-
       <div ref={wrapRef} className={`marquee${isDragging ? " is-dragging" : ""}`}>
         <div ref={groupRef} className="marquee__group">
           {brands.map((brand, index) => (
             <div key={`g1-${index}`} className="logo">
-              <Image src={brand.logo} alt={brand.name} sizes="192px" className="h-auto w-auto max-h-20 max-w-full object-contain mix-blend-multiply" />
+              <Image src={brand.logo} alt={brand.name} sizes="192px" className="h-auto w-auto max-h-14 max-w-full object-contain mix-blend-multiply" />
             </div>
           ))}
         </div>
@@ -208,7 +209,7 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
         <div className="marquee__group" aria-hidden="true">
           {brands.map((brand, index) => (
             <div key={`g2-${index}`} className="logo">
-              <Image src={brand.logo} alt="" sizes="192px" className="h-auto w-auto max-h-20 max-w-full object-contain mix-blend-multiply" />
+              <Image src={brand.logo} alt="" sizes="192px" className="h-auto w-auto max-h-14 max-w-full object-contain mix-blend-multiply" />
             </div>
           ))}
         </div>
@@ -229,25 +230,24 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
         .marquee__group{
           display:flex;
           align-items:center;
-          gap:3rem; /* 48px - even tighter spacing */
-          padding-right:3rem; /* Add padding to match gap, ensuring consistent spacing at the loop point */
+          gap:4rem;
+          padding-right:4rem; /* matches the gap so spacing stays even at the loop point */
         }
         .logo{
           flex:0 0 auto;
           display:flex;
           align-items:center;
           justify-content:center;
-          height:6rem;  /* 96px - smaller container */
-          width:12rem;   /* 192px - smaller container */
+          height:5rem;
+          width:11rem;
           opacity:0.70;
           transition: opacity 300ms, filter 300ms;
         }
-        /* Grayscale effect only on dark/moon theme */
-        .dark .logo {
-          filter: grayscale(100%) brightness(1.2);
-        }
-        .dark .logo:hover {
-          filter: grayscale(0%) brightness(1);
+        /* Dark/moon theme: multiply would turn the logos black on a dark page, so flip them to light grey instead
+           (invert turns each logo's white background black, and screen drops that black into the page). */
+        .dark .logo img {
+          mix-blend-mode: screen;
+          filter: grayscale(100%) invert(1) brightness(1.1);
         }
         .logo:hover{
           opacity:1;

@@ -13,7 +13,7 @@ import { CountUp, HorizontalGallery, ScrollHighlightSteps, WordReveal } from '@/
 import { DeferredMount } from '@/app/components/DeferredMount';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail } from '@/app/components/story/StoryKit';
-import { ACCENT, BODY, CHAPTER, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, QUIET_BUTTON } from '@/app/components/story/tokens';
+import { ACCENT, BODY, CHAPTER, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
 import { CARD, CARD_LINK, ICON_TILE } from '@/app/components/home/homeStyles';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -340,27 +340,28 @@ export function Home() {
       </section>
 
       {/* 02 Brands we work with: the trust logos, then the proof strip (real numbers in the HTML; they count up once on screen). */}
-      <section id="brands" data-chapter aria-label="Epic Global Inc. at a glance" className="scroll-mt-20 pt-12 pb-12">
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className={INNER}>
-            <ChapterMarker id="brands" />
-          </div>
+      <section id="brands" data-chapter aria-label="Epic Global Inc. at a glance" className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker id="brands" />
         </div>
-        <div className="overflow-hidden">
+        {/* Logos sit inside the page width with faded edges, so they never run under the chapter rail. */}
+        <div className="max-w-6xl mx-auto">
           <TrustLogosMarquee brands={brands} />
         </div>
-        <div className="px-4 sm:px-6 lg:px-8 mt-10">
-          <dl className={`${INNER} grid grid-cols-2 md:grid-cols-4 gap-4`}>
-            {proof.map((s) => (
-              <div key={s.label} className={`${CARD} p-5 flex flex-col-reverse justify-end`}>
-                <dt className={`text-sm mt-1 ${BODY}`}>{s.label}</dt>
-                <dd className={`text-3xl sm:text-4xl font-bold ${ACCENT}`}>
-                  <CountUp value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+        {/* The proof strip: an open row of numbers (not cards), so it reads as one statement and not like the cards below. */}
+        <dl className={`${INNER} mt-12 pt-12 border-t ${RULE} grid grid-cols-2 md:grid-cols-4 gap-y-10`}>
+          {proof.map((s, i) => (
+            <div
+              key={s.label}
+              className={`flex flex-col-reverse justify-end px-4 sm:px-6 ${RULE} ${i % 2 ? 'border-l' : ''} ${i === 2 ? 'pl-0 sm:pl-0 md:pl-6 md:border-l' : ''} ${i === 0 ? 'pl-0 sm:pl-0' : ''}`}
+            >
+              <dt className={`text-sm mt-2 max-w-[14rem] ${BODY}`}>{s.label}</dt>
+              <dd className={`text-4xl sm:text-5xl font-bold tracking-tight tabular-nums ${ACCENT}`}>
+                <CountUp value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       {/* 03 What we run: the 8 capability cards slide sideways while the chapter is pinned (HorizontalGallery). */}
