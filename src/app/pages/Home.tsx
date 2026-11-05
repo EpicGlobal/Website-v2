@@ -5,7 +5,8 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { ShoppingCart, Globe2, Search, BarChart3, Package, Shield, Database, Cpu, ArrowRight } from 'lucide-react';
 import { Globe } from '@/app/components/Globe';
-import { TrustLogosMarquee, type LogoTone } from '@/app/components/TrustLogosMarquee';
+import { type LogoTone } from '@/app/components/TrustLogosMarquee';
+import { BrandsProof } from '@/app/components/home/BrandsProof';
 import { ParticlesBackground } from '@/app/components/ParticlesBackground';
 import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, serviceSchemas, websiteSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
@@ -277,13 +278,6 @@ export function Home() {
     { icon: Shield, num: '04', title: 'Protect', desc: 'Through the Brand Protection Command Center, Epic enforces pricing integrity, removes unauthorized sellers, and defends branded search demand globally.', tagline: 'Your brand. Our defense.' },
   ];
 
-  const proof = [
-    { label: 'Brands we work with', value: 50, suffix: '+' },
-    { label: 'Countries', value: 40, prefix: '~' },
-    { label: 'Marketplaces', value: 12 },
-    { label: 'Amazon US seller rating (9,600+ ratings)', value: 4.9, decimals: 1, suffix: '/5' },
-  ];
-
   return (
     <div ref={rootRef} className={PAGE_BG}>
       <SEO
@@ -346,27 +340,7 @@ export function Home() {
 
       {/* 02 Brands we work with: the trust logos, then the proof strip (real numbers in the HTML; they count up once on screen). */}
       <section id="brands" data-chapter aria-label="Epic Global Inc. at a glance" className={CHAPTER}>
-        <div className={INNER}>
-          <ChapterMarker id="brands" />
-        </div>
-        {/* Logos sit inside the page width with faded edges, so they never run under the chapter rail. */}
-        <div className="max-w-6xl mx-auto">
-          <TrustLogosMarquee brands={brands} />
-        </div>
-        {/* The proof strip: an open row of numbers (not cards), so it reads as one statement and not like the cards below. */}
-        <dl className={`${INNER} mt-12 pt-12 border-t ${RULE} grid grid-cols-2 md:grid-cols-4 gap-y-10`}>
-          {proof.map((s, i) => (
-            <div
-              key={s.label}
-              className={`flex flex-col-reverse justify-end px-4 sm:px-6 ${RULE} ${i % 2 ? 'border-l' : ''} ${i === 2 ? 'pl-0 sm:pl-0 md:pl-6 md:border-l' : ''} ${i === 0 ? 'pl-0 sm:pl-0' : ''}`}
-            >
-              <dt className={`text-sm mt-2 max-w-[14rem] ${BODY}`}>{s.label}</dt>
-              <dd className={`text-4xl sm:text-5xl font-bold tracking-tight tabular-nums ${ACCENT}`}>
-                <CountUp value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <BrandsProof brands={brands} marker={<ChapterMarker id="brands" />} />
       </section>
 
       {/* 03 What we run: the 8 capability cards slide sideways while the chapter is pinned (HorizontalGallery). */}
