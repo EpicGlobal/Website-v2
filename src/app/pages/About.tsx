@@ -117,7 +117,7 @@ export function About() {
       <ChapterRail chapters={CHAPTERS} label="About page chapters" />
 
       {/* 01 Who we are: answer first, then the facts people check. Pins briefly on desktop. */}
-      <section id="who-we-are" data-chapter="hero" className="scroll-mt-20 min-h-[100svh] flex items-center pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+      <section id="who-we-are" data-chapter="hero" className="scroll-mt-20 pt-28 lg:pt-36 pb-6 px-4 sm:px-6 lg:px-8">
         <div data-story="hero-inner" className="max-w-5xl mx-auto w-full">
           <ChapterMarker n={1} accent="text-[var(--pop)] orange:text-[#101828]" />
           <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-8 leading-[1.08] max-w-4xl ${HEAD}`}>
