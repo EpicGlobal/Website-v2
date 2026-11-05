@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { useRef } from 'react';
-import { BarChart3, Cpu, Database, Globe2, Package, Search, Shield, ShoppingCart, X } from 'lucide-react';
-import { CARD } from '@/app/components/home/homeStyles';
+import { BadgeCheck, BarChart3, Cpu, Database, Globe2, Package, Search, Shield, ShoppingCart, Wallet, X } from 'lucide-react';
+import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema, serviceSchemas } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
@@ -12,7 +12,7 @@ import { CompareTable } from '@/app/components/ourmodel/CompareTable';
 import { FitColumns } from '@/app/components/home/SkimSections';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink, WordFill } from '@/app/components/story/StoryKit';
-import { ACCENT, ACCENT_BG, BODY, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
+import { ACCENT, ACCENT_BG, BODY, CARD_HOVER, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
 import { siteConfig } from '@/site/site-config';
 
@@ -47,6 +47,13 @@ const CHAPTERS = [
 function ChapterMarker({ n, accent }: { n: number; accent?: string }) {
   return <KitChapterMarker n={n} label={CHAPTERS[n - 1].label} accent={accent} />;
 }
+
+/** The model in three promises, shown under the hero answer. */
+const PROMISES = [
+  { icon: Package, title: 'We buy your inventory upfront', body: 'At an agreed wholesale price. You get paid; we own the stock.' },
+  { icon: Wallet, title: 'We pay to sell it', body: 'Ads, marketplace fees and fulfillment are on us.' },
+  { icon: BadgeCheck, title: 'You keep your brand', body: 'Your Brand Registry, listings and reviews stay yours.' },
+];
 
 const STEPS = [
   { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own it, and the retail risk.' },
@@ -113,17 +120,25 @@ export function WhatWeAre() {
       <section id="what-we-do" data-chapter="hero" className="scroll-mt-20 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div data-story="hero-inner" className={INNER}>
           <ChapterMarker n={1} accent="text-[var(--pop)] orange:text-[#101828]" />
-          <h1 className={`${H1} mb-6 max-w-4xl`}>Our Wholesale Trade Partner Model</h1>
-          <p className={`${LEAD} max-w-3xl mb-14`}>Plain language. No buzzwords. Here&apos;s what Epic Global Inc. actually does.</p>
-
-          <div className="grid md:grid-cols-[minmax(0,14rem)_1fr] gap-6 md:gap-14 items-start">
-            <h2 className={`${H2} md:pt-1`}>What we do</h2>
-            <div className="max-w-2xl">
-              <p className={`text-lg leading-relaxed ${BODY}`}>
-                Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand&apos;s inventory upfront at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.
-              </p>
-            </div>
-          </div>
+          <h1 className={`${H1} mb-6 max-w-4xl`}>Our wholesale trade partner model</h1>
+          <p className={`${LEAD} max-w-3xl mb-10`}>
+            Epic Global Inc. is an Amazon-first wholesale trade partner: we buy your inventory upfront and sell it on Amazon, plus Walmart and international marketplaces.
+          </p>
+          <h2 className="sr-only">What we do</h2>
+          <ul className="grid gap-4 md:grid-cols-3">
+            {PROMISES.map(({ icon: Icon, title, body }) => (
+              <li key={title} className={`${CARD} ${CARD_HOVER} p-6`}>
+                <span className={`${ICON_TILE} mb-5`}>
+                  <Icon aria-hidden="true" className="w-5 h-5" />
+                </span>
+                <h3 className={`${H3} mb-2`}>{title}</h3>
+                <p className={`leading-relaxed ${BODY}`}>{body}</p>
+              </li>
+            ))}
+          </ul>
+          <a href="#how-it-works" className={`inline-block mt-8 text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
+            How it works &darr;
+          </a>
         </div>
       </section>
 
