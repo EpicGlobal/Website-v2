@@ -95,15 +95,15 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'how-our-model-works': () => (
     <div className="space-y-8">
       <section>
-        <h2 className="text-3xl font-bold mb-6 text-white">How the Zero-Risk Global Commerce Operator Model Actually Works</h2>
+        <h2 className="text-3xl font-bold mb-6 text-white">How Epic's Wholesale Trade Partner Model Works</h2>
         <p className="text-gray-300 leading-relaxed mb-4">
-          Profitable marketplace growth has become a high-stakes game for brands. The channels look familiar — Amazon, Walmart, eBay, international marketplaces — but the underlying economics and operational demands have changed. Fees rise quietly. Advertising costs climb. Competition intensifies. Inventory decisions turn into expensive bets. And when something breaks — a listing issue, a sudden fee spike, a competitor hijacking branded search — brands often discover the uncomfortable truth: they carry the downside whether performance improves or not.
+          Epic Global Inc. is a wholesale trade partner. We buy a brand's inventory upfront at wholesale, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon, Walmart and other marketplaces, pay for the advertising, marketplace fees and fulfillment ourselves, and protect the brand's pricing and listings.
         </p>
         <p className="text-gray-300 leading-relaxed mb-4">
-          Epic Global Inc. exists because that structure is backward. Marketplace growth should not require brands to gamble capital, build internal teams around volatile platforms, or coordinate a patchwork of agencies and vendors who each optimize only their slice of the problem. The work is interconnected. The risk is interconnected. The incentives need to be interconnected too.
+          Our Zero-Risk model works because we own the inventory: we buy it upfront, so the retail execution risk sits with us, not the brand. The brand keeps its brand and Brand Registry, and does not pay retainers, fund ad spend, and hope the numbers work out.
         </p>
         <p className="text-gray-300 leading-relaxed mb-4">
-          Epic is a wholesale trade partner. Our Zero-Risk model works because we take on the costs ourselves: we buy the inventory, so the retail execution risk sits with us, not the brand. We purchase inventory upfront, operate marketplace storefronts end-to-end, fund advertising and logistics, and protect brand equity — while the brand keeps its brand and Brand Registry and does not get trapped in a model where they pay retainers, fund spend, and hope the numbers work out.
+          Most marketplace models work the other way: the brand funds the inventory, fees and ads, and carries the downside whether performance improves or not. Growth should not require brands to gamble capital or coordinate a patchwork of agencies and vendors who each optimize only their slice of the problem. The work, the risk and the incentives are interconnected.
         </p>
         <p className="text-gray-300 leading-relaxed">
           This isn't a U.S. strategy with international "add-ons." It's one operating system applied everywhere. Whether a brand is underperforming in the United States, losing margin to fees, or preparing to expand globally, Epic functions as a commerce operator built to deliver predictable outcomes.
@@ -116,7 +116,10 @@ export const articleContent: Record<string, () => JSX.Element> = {
           Many brands assume their hardest problems begin internationally. In reality, the same structural issues are already punishing them at home.
         </p>
         <p className="text-gray-300 leading-relaxed mb-4">
-          In the U.S., brands face rising fulfillment fees, advertising inefficiencies, pricing erosion, and intense competition for branded search demand. It's common to see revenue grow while profitability shrinks, because costs scale faster than performance. Even brands with strong products and loyal customers can find themselves trapped: they can't stop spending, but they also can't confidently predict what growth will cost next quarter.
+          In the U.S., brands face rising fulfillment fees, advertising inefficiencies, pricing erosion, and intense competition for branded search demand. It's common to see revenue grow while profitability shrinks, because costs scale faster than performance.
+        </p>
+        <p className="text-gray-300 leading-relaxed mb-4">
+          Even brands with strong products and loyal customers can find themselves trapped: they can't stop spending, but they also can't confidently predict what growth will cost next quarter.
         </p>
         <p className="text-gray-300 leading-relaxed mb-4">
           International expansion compounds the same problems. Inventory risk increases. Operational complexity multiplies. Marketplaces operate differently. Timelines stretch. The brand is asked to front even more capital, manage even more moving parts, and accept even more uncertainty.
@@ -1704,7 +1707,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
             <ul className="space-y-2">
               <li className="flex items-start gap-3 text-gray-300">
                 <CheckCircle2 className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
-                <span>a Zero-Risk Global Commerce Operator</span>
+                <span>a wholesale trade partner and global marketplace operator</span>
               </li>
               <li className="flex items-start gap-3 text-gray-300">
                 <CheckCircle2 className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
@@ -1976,7 +1979,8 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'ad-account-rebuild-checklist': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"The Ad Account Rebuild Checklist is a step-by-step plan for replacing a disorganized marketplace advertising account with a clean "}<Link href="/knowledge-base/campaign-structure-playbook" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"campaign structure"}</Link>{", without losing the sales and keyword data the old account built up. Use it when the account has too many overlapping campaigns to manage, spend is rising faster than sales, nobody can explain why a campaign exists, or a new team is taking over."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"The Ad Account Rebuild Checklist is a step-by-step plan for replacing a disorganized marketplace advertising account with a clean "}<Link href="/knowledge-base/campaign-structure-playbook" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"campaign structure"}</Link>{", without losing the sales and keyword data the old account built up."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Use it when the account has too many overlapping campaigns to manage, spend is rising faster than sales, nobody can explain why a campaign exists, or a new team is taking over."}</p>
         <p className="text-gray-300 leading-relaxed mb-4">{"The examples use Amazon Ads terms (Sponsored Products, Sponsored Brands, Sponsored Display). The same steps apply to Walmart Connect and other marketplace ad platforms."}</p>
       </section>
       <section>
@@ -2004,8 +2008,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic is a wholesale trade partner, so it is not paid to manage ads. It buys a brand's inventory upfront, sells it at retail, and pays for the advertising itself, along with marketplace fees and fulfillment. Every wasted ad dollar comes out of Epic's own margin, which is why Epic builds clean, measurable campaign structures and judges them on total profitable sales rather than ad spend."}</p>
-        <p className="text-gray-300 leading-relaxed mb-4">{"That is the difference from a fee-based model: there are no retainers, hourly fees or percentage-of-spend charges, so there is no incentive to spend more than the sales justify."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Epic is a wholesale trade partner, not a paid ad manager. It buys the brand's inventory upfront and pays for the advertising itself, so every wasted ad dollar comes out of Epic's own margin. There are no retainers, hourly fees or percentage-of-spend charges."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2146,7 +2149,8 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'brand-protection-escalation-template': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"The Brand Protection Escalation Template is a standard way to record evidence of a marketplace violation and move it up a fixed ladder: monitor, test buy, marketplace report, seller contact, and legal action. Use it whenever an unknown seller, a suspected counterfeit, a hijacked listing or a pricing violation appears, so every case is documented the same way and marketplaces and lawyers get the evidence they need."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"The Brand Protection Escalation Template is a standard way to record evidence of a marketplace violation and move it up a fixed ladder: monitor, test buy, marketplace report, seller contact, and legal action."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Use it whenever an unknown seller, a suspected counterfeit, a hijacked listing or a pricing violation appears, so every case is documented the same way and marketplaces and lawyers get the evidence they need."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"What can a marketplace actually remove?"}</h2>
@@ -2174,7 +2178,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic is a wholesale trade partner: it buys the brand's inventory upfront and sells it at retail, so "}<Link href="/knowledge-base/unauthorized-seller-monitoring-workflow" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"unauthorized sellers"}</Link>{" and price undercutting hit Epic's own sales directly. Epic's brand protection work covers the monitoring, MAP enforcement and unauthorized seller removal described in this template as part of its model. Epic works through the brand's Brand Registry, which the brand authorizes Epic to use."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Epic is a wholesale trade partner: it buys the brand's inventory upfront, so "}<Link href="/knowledge-base/unauthorized-seller-monitoring-workflow" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"unauthorized sellers"}</Link>{" and price undercutting hit Epic's own sales. Epic runs the monitoring, MAP enforcement and seller removal in this template through the brand's Brand Registry, with the brand's authorization."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2222,7 +2226,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner, and under our model we pay for the advertising ourselves. We buy the brand's inventory upfront, then fund the ads, marketplace fees and fulfillment to sell it. Because the ad spend is our money and the stock is ours, campaign structure is built to protect margin and sell through inventory, not to grow billable spend. Structure is set within about 4 weeks of kickoff and managed weekly, as the \"Advertise\" pillar of Buy-Sell-Advertise-Protect. Brands get a shared dashboard from day one, monthly reports and quarterly business reviews."}</p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-300 mb-4"><li>{"Epic Global Inc. is a wholesale trade partner: we buy the brand's inventory upfront and pay for the ads ourselves."}</li><li>{"So campaign structure is built to protect margin and sell through stock we own, not to grow billable spend."}</li><li>{"Structure is set within about 4 weeks of kickoff and managed weekly, with a shared dashboard from day one."}</li></ul>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2240,7 +2244,8 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'catalog-integrity-controls': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Catalog integrity controls are the records and routines that keep your product listings correct: an approved source of truth, a log of every change, regular checks of the live pages, and saved evidence you can show a marketplace when something is wrong. They matter because on Amazon several parties can contribute data to the same detail page, so listings can change without your team touching them, and you need proof to get them corrected quickly."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Catalog integrity controls are the records and routines that keep your product listings correct: an approved source of truth, a log of every change, regular checks of the live pages, and saved evidence you can show a marketplace when something is wrong."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"They matter because on Amazon several parties can contribute data to the same detail page, so listings can change without your team touching them, and you need proof to get them corrected quickly."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"Why do listings change without your input?"}</h2>
@@ -2268,7 +2273,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner. We buy the brand's inventory upfront and pay for the ads, fees and fulfillment, so a listing that changes without notice wastes our ad spend and slows sales of stock we own. Catalog integrity sits between the \"Sell\" and \"Protect\" pillars of our Buy-Sell-Advertise-Protect model and supports our brand protection work, which enforces MAP and removes "}<Link href="/knowledge-base/unauthorized-seller-monitoring-workflow" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"unauthorized sellers"}</Link>{". Brand partners receive brand protection reports by marketplace, covering blocked listing edits and trademark takedowns."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner: we buy the inventory upfront and pay for the ads, so an unnoticed listing change wastes our own spend. Catalog checks feed our brand protection work against "}<Link href="/knowledge-base/unauthorized-seller-monitoring-workflow" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"unauthorized sellers"}</Link>{", with reports by marketplace."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2286,7 +2291,8 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'catalog-qa-checklist': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"The Catalog QA Checklist is an audit of a brand's whole marketplace catalog at once, looking for problems that only show up across many listings: suppressed or duplicate listings, broken "}<Link href="/knowledge-base/variation-strategy-basics" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"variation families"}</Link>{", inconsistent attributes, missing content and price conflicts. Use it when you take over a catalog, before a major sales event, after a large catalog upload, and on a regular schedule, because catalogs drift as marketplaces, sellers and automated systems change listing data."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"The Catalog QA Checklist is an audit of a brand's whole marketplace catalog at once, looking for problems that only show up across many listings: suppressed or duplicate listings, broken "}<Link href="/knowledge-base/variation-strategy-basics" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"variation families"}</Link>{", inconsistent attributes, missing content and price conflicts."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Use it when you take over a catalog, before a major sales event, after a large catalog upload, and on a regular schedule, because catalogs drift as marketplaces, sellers and automated systems change listing data."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How is this different from the Listing QA Checklist?"}</h2>
@@ -2319,8 +2325,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"As a wholesale trade partner, Epic buys a brand's inventory upfront and sells it at retail, so a broken listing costs Epic sales on stock it already owns. That is why catalog QA is part of Epic's regular operating work rather than an optional add-on: Epic pays for the advertising, marketplace fees and fulfillment."}</p>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Pricing and seller checks from section 5 feed Epic's brand protection work, which enforces MAP and works to remove "}<Link href="/knowledge-base/unauthorized-seller-monitoring-workflow" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"unauthorized sellers"}</Link>{"."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"As a wholesale trade partner, Epic buys the brand's inventory upfront, so a broken listing costs Epic sales on stock it owns. Pricing and seller checks from section 5 feed Epic's MAP enforcement and its work against "}<Link href="/knowledge-base/unauthorized-seller-monitoring-workflow" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"unauthorized sellers"}</Link>{"."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2364,7 +2369,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner. We buy the inventory upfront and pay for the ads that drive traffic to each listing, so a better-converting page directly improves how fast we sell through stock we own and how far our ad spend goes. Creative testing runs as part of weekly execution under the \"Sell\" and \"Advertise\" pillars of our Buy–Sell–Advertise–Protect model, with the brand's approval on any new brand assets."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner. We buy the inventory upfront and pay for the ads, so a better-converting listing sells our own stock faster and stretches our ad spend. Testing runs weekly, with the brand's approval on new brand assets."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2525,8 +2530,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Because Epic is a wholesale trade partner, reorder points are Epic's problem, not the brand's. Epic buys the brand's inventory upfront at wholesale, so Epic carries the cash tied up in stock and absorbs the cost of overstock or a stockout. That gives Epic a direct reason to forecast carefully."}</p>
-        <p className="text-gray-300 leading-relaxed mb-4">{"In practice, Epic tracks demand, inventory position and lead time per SKU and per marketplace, and turns reorder points into purchase orders to the brand. After the opening order, which usually covers about 60 to 90 days of stock, Epic replenishes monthly. The most useful thing a brand can give Epic is an accurate production lead time and early notice of changes."}</p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-300 mb-4"><li>{"Epic is a wholesale trade partner, so reorder points are Epic's problem: it buys the inventory upfront and carries the cost of overstock or a stockout."}</li><li>{"Epic turns reorder points into purchase orders to the brand, replenishing monthly after an opening order of about 60 to 90 days of stock."}</li><li>{"The brand's most useful input is an accurate production lead time and early notice of changes."}</li></ul>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2571,7 +2575,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. works as a wholesale trade partner. We buy the brand's inventory upfront and pay for the advertising ourselves, so every wasted click is our own cost. Search term harvesting is a standing weekly task and part of the \"Advertise\" pillar of Buy-Sell-Advertise-Protect. The goal is to sell the stock we own at a healthy margin while keeping the brand's pricing and listings clean."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner. We buy the brand's inventory upfront and pay for the advertising ourselves, so every wasted click is our own cost. That is why search term harvesting is a standing weekly task."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2589,7 +2593,8 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'unauthorized-seller-monitoring-workflow': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"To deal with unauthorized sellers, monitor your listings for new offers, identify who each seller is, collect evidence of a real violation, and then use the right tool for that violation: a marketplace infringement report, a test buy, or a direct notice to the seller. It is important to know the limit up front: in the US, reselling genuine, unaltered goods is generally lawful, so a seller being \"unauthorized\" is not by itself grounds for Amazon to remove them."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"To deal with unauthorized sellers, monitor your listings for new offers, identify who each seller is, collect evidence of a real violation, and then use the right tool for that violation: a marketplace infringement report, a test buy, or a direct notice to the seller."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"It is important to know the limit up front: in the US, reselling genuine, unaltered goods is generally lawful, so a seller being \"unauthorized\" is not by itself grounds for Amazon to remove them."}</p>
         <p className="text-gray-300 leading-relaxed mb-4">{"Effective enforcement is evidence-based. It targets sellers who are breaking a law or a marketplace policy, and it reduces leaks in the supply chain so fewer unauthorized sellers appear in the first place."}</p>
       </section>
       <section>
@@ -2622,7 +2627,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner: we buy the brand's inventory upfront and sell it at retail, so unauthorized sellers and below-MAP pricing cut into sales of stock we own. Brand protection is the \"Protect\" pillar of our Buy-Sell-Advertise-Protect model. In practice this covers Brand Registry authorization, unauthorized-seller removal, MAP enforcement, Transparency enrollment, "}<Link href="/knowledge-base/amazon-marketplace-glossary" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"Buy Box"}</Link>{" monitoring and brand protection reports by marketplace. We follow the evidence-based approach above, so actions are ones the marketplace will uphold. The brand keeps its Brand Registry and authorizes Epic to act on it."}</p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-300 mb-4"><li>{"Epic Global Inc. is a wholesale trade partner: we buy the inventory upfront, so unauthorized sellers and below-MAP pricing cut into sales of stock we own."}</li><li>{"Our brand protection covers seller removal, MAP enforcement, Transparency enrollment and "}<Link href="/knowledge-base/amazon-marketplace-glossary" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300">{"Buy Box"}</Link>{" monitoring, using the evidence-based approach above."}</li><li>{"The brand keeps its Brand Registry and authorizes Epic to act on it."}</li></ul>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2640,7 +2645,8 @@ export const articleContent: Record<string, () => JSX.Element> = {
   'variation-strategy-basics': () => (
     <div className="space-y-8">
       <section>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Variations group versions of the same product, such as sizes, colors or pack counts, under one non-buyable parent listing so shoppers can switch between them on one page. Set them up when the products are truly the same item in different versions, and keep them separate when they are different products, because Amazon prohibits grouping unrelated items and a bad family can hurt conversion and reviews for every child."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Variations group versions of the same product, such as sizes, colors or pack counts, under one non-buyable parent listing so shoppers can switch between them on one page."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Set them up when the products are truly the same item in different versions, and keep them separate when they are different products, because Amazon prohibits grouping unrelated items and a bad family can hurt conversion and reviews for every child."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How do Amazon variations work?"}</h2>
@@ -2671,7 +2677,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner: we buy the brand's inventory upfront and sell it at retail, paying for the ads, fees and fulfillment ourselves. Because we own every SKU in a family, we plan variations around how shoppers buy and around stock, so the children we advertise are the ones we have in stock. Variation structure is set within about 4 weeks of kickoff and checked weekly as part of the \"Sell\" pillar of our Buy-Sell-Advertise-Protect model."}</p>
+        <p className="text-gray-300 leading-relaxed mb-4">{"Epic Global Inc. is a wholesale trade partner: we buy the inventory upfront and pay for the ads. Because we own every SKU in a family, we plan variations around how shoppers buy and what is in stock, and check them weekly."}</p>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2717,7 +2723,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic is a wholesale trade partner: it buys the brand's inventory upfront at wholesale and pays the ads, marketplace fees and fulfillment itself. So the dashboard is Epic's own operating view of its business, not a report produced to justify a retainer. The same metrics drive Epic's weekly Execute cycle, where pricing, bids, reorders and enforcement actions are decided. Brand partners get a shared dashboard from day one, monthly reports covering sales, rank, advertising, Subscribe & Save and inventory, and quarterly business reviews."}</p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-300 mb-4"><li>{"Epic is a wholesale trade partner: it buys the inventory upfront and pays for the ads, fees and fulfillment itself."}</li><li>{"So this dashboard is Epic's own operating view, not a report produced to justify a retainer."}</li><li>{"Brand partners get a shared dashboard from day one, monthly reports and quarterly business reviews."}</li></ul>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>
@@ -2764,7 +2770,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"How Epic handles this"}</h2>
-        <p className="text-gray-300 leading-relaxed mb-4">{"Epic runs this kind of weekly loop as the Execute stage of its operating process (Assess, Build, Execute, Scale). Because Epic is a wholesale trade partner, it buys the brand's inventory upfront at wholesale and pays the ads, marketplace fees and fulfillment, so the weekly work on listings, bids, reorders and enforcement is Epic's own job, done by Epic's team. The brand does not need to staff this cadence; its role is to supply product, data and approvals when needed. Brand partners get a shared dashboard from day one, monthly reports and quarterly business reviews."}</p>
+        <ul className="list-disc pl-6 space-y-2 text-gray-300 mb-4"><li>{"Epic runs this weekly loop as the Execute stage of its process (Assess, Build, Execute, Scale)."}</li><li>{"As a wholesale trade partner, Epic buys the inventory upfront and pays for the ads, fees and fulfillment, so Epic's own team does the weekly work."}</li><li>{"The brand supplies product, data and approvals, and gets a shared dashboard, monthly reports and quarterly reviews."}</li></ul>
       </section>
       <section>
         <h2 className="text-3xl font-bold mb-4 text-white">{"FAQ"}</h2>

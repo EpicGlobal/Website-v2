@@ -56,7 +56,7 @@ export function FAQ() {
     {
       question: 'Do you work with brands of all sizes?',
       answer:
-        'We work best with brands doing $100K+ monthly revenue that need control at scale. If you\'re earlier stage but planning aggressive marketplace expansion, we can assess fit. Our model is built for brands that want a system-driven operator, not a collection of one-off tactics.',
+        'We work best with brands doing $50K+ monthly revenue that need control at scale. If you\'re earlier stage but planning aggressive marketplace expansion, we can assess fit. Our model is built for brands that want a system-driven operator, not a collection of one-off tactics.',
     },
     {
       question: "Will Epic buy my brand's inventory?",
