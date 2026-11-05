@@ -66,12 +66,13 @@ const WE_DONT = [
 
 /** The hero dims and lifts away as the next chapter rises over it (no pin: the page stays short). */
 const ourModelBeats: StoryExtra = (gsap, _ScrollTrigger, root) => {
-  const next = root.querySelector<HTMLElement>('#who-its-for');
+  const hero = root.querySelector<HTMLElement>('#what-we-do');
   const heroInner = root.querySelector<HTMLElement>('[data-story="hero-inner"]');
-  if (next && heroInner) {
+  if (hero && heroInner) {
+    // Starts at the top of the page (fully bright) and only fades once the hero scrolls up out of view.
     gsap.to(heroInner, {
       opacity: 0.2, y: -40, scale: 0.97, transformOrigin: 'left top', ease: 'none',
-      scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 25%', scrub: 0.6 },
+      scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.6 },
     });
   }
 };
