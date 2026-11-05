@@ -2,12 +2,14 @@
 
 import Link from 'next/link';
 import { useRef } from 'react';
-import { CheckCircle2, X } from 'lucide-react';
+import { BarChart3, Cpu, Database, Globe2, Package, Search, Shield, ShoppingCart, X } from 'lucide-react';
+import { CARD } from '@/app/components/home/homeStyles';
 import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema, serviceSchemas } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { CompareTable } from '@/app/components/ourmodel/CompareTable';
+import { FitColumns } from '@/app/components/home/SkimSections';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink, WordFill } from '@/app/components/story/StoryKit';
 import { ACCENT, ACCENT_BG, BODY, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
@@ -21,6 +23,18 @@ import { siteConfig } from '@/site/site-config';
  * in. The rail (wide screens) shows where you are. Phones get the same text as a calm static page.
  */
 
+/** What Epic runs day to day (moved here from the homepage, Nov 5): one line each. */
+const CAPABILITIES = [
+  { icon: ShoppingCart, title: 'Marketplace Management', description: 'Amazon first, plus Walmart, eBay and international.' },
+  { icon: Globe2, title: 'Global Expansion', description: 'Launch new marketplaces and countries.' },
+  { icon: Search, title: 'Listing Optimization', description: 'Titles, keywords and creative that convert.' },
+  { icon: BarChart3, title: 'Advertising Operations', description: 'Campaigns, bids and creative, paid by Epic.' },
+  { icon: Package, title: 'Inventory + Forecasting', description: 'Demand planning and reorders.' },
+  { icon: Shield, title: 'Brand Protection & MAP Enforcement', description: 'Remove unauthorized sellers, enforce MAP.' },
+  { icon: Database, title: 'Data + Reporting Layer', description: 'Shared dashboard and monthly reports.' },
+  { icon: Cpu, title: 'Execution Engine', description: 'Automation that keeps catalogs clean and fast.' },
+];
+
 const CHAPTERS = [
   { id: 'what-we-do', label: 'What we do' },
   { id: 'who-its-for', label: "Who it's for" },
@@ -33,13 +47,6 @@ const CHAPTERS = [
 function ChapterMarker({ n, accent }: { n: number; accent?: string }) {
   return <KitChapterMarker n={n} label={CHAPTERS[n - 1].label} accent={accent} />;
 }
-
-const FOR_WHO = [
-  "You're already selling on one or more marketplaces but need more control and better execution",
-  "You want to expand into new regions but don't have the bandwidth or expertise internally",
-  "You're tired of agencies that advise but don't execute or own outcomes",
-  'You need a partner who takes responsibility for day-to-day operations, not just strategy',
-];
 
 const STEPS = [
   { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own the inventory and take on the retail execution risk.' },
@@ -77,7 +84,7 @@ export function WhatWeAre() {
     <div ref={rootRef} className={PAGE_BG}>
       <SEO
         title="Our Model - How Epic's Wholesale Model Works"
-        description="How Epic Global buys inventory upfront, runs marketplace storefronts end to end, pays for ads, fees and fulfillment, and protects brand equity."
+        description="How Epic Global, an Amazon-first wholesale trade partner, buys inventory upfront, runs Amazon, Walmart and international storefronts, and pays the ads, fees and fulfillment."
         canonicalUrl={`${siteConfig.url}/our-model`}
         keywords="wholesale trade partner, marketplace operator business model, inventory purchase model, wholesale inventory purchase"
       />
@@ -85,7 +92,7 @@ export function WhatWeAre() {
         data={getWebPageSchema({
           name: 'Our Model',
           url: `${siteConfig.url}/our-model`,
-          description: 'How Epic Global buys inventory upfront, runs marketplace storefronts end to end, pays for ads, fees and fulfillment, and protects brand equity.',
+          description: 'How Epic Global, an Amazon-first wholesale trade partner, buys inventory upfront, runs Amazon, Walmart and international storefronts, and pays the ads, fees and fulfillment.',
         })}
       />
       {serviceSchemas.map((s) => (
@@ -111,11 +118,8 @@ export function WhatWeAre() {
           <div className="grid md:grid-cols-[minmax(0,14rem)_1fr] gap-6 md:gap-14 items-start">
             <h2 className={`${H2} md:pt-1`}>What we do</h2>
             <div className="max-w-2xl">
-              <p className={`text-lg leading-relaxed mb-5 ${BODY}`}>
-                Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand&apos;s inventory upfront at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.
-              </p>
               <p className={`text-lg leading-relaxed ${BODY}`}>
-                We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned. We don&apos;t sell consulting packages or charge hourly rates. We buy inventory, then operate retail sales across approved marketplaces.
+                Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand&apos;s inventory upfront at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.
               </p>
             </div>
           </div>
@@ -126,22 +130,11 @@ export function WhatWeAre() {
       <section id="who-its-for" data-chapter className={CHAPTER}>
         <div className={INNER}>
           <ChapterMarker n={2} />
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-            <div>
-              <h2 className={`${H2} mb-4`}>Who it&apos;s for</h2>
-              <p className={`text-lg leading-relaxed max-w-xl ${BODY}`}>
-                Brands that want to scale on marketplaces without building an internal eCommerce operations team.
-              </p>
-            </div>
-            <ul className="space-y-5">
-              {FOR_WHO.map((item) => (
-                <li key={item} data-story="lit-step" className={`flex items-start gap-3 text-lg leading-relaxed ${BODY}`}>
-                  <CheckCircle2 aria-hidden="true" className={`w-5 h-5 mt-1.5 flex-shrink-0 ${ACCENT}`} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <h2 className={`${H2} mb-4`}>Who it&apos;s for</h2>
+          <p className={`text-lg leading-relaxed max-w-2xl mb-8 ${BODY}`}>
+            Brands that want to scale on marketplaces without building an internal eCommerce operations team.
+          </p>
+          <FitColumns />
         </div>
       </section>
 
@@ -162,6 +155,16 @@ export function WhatWeAre() {
           <p className={`mt-16 text-4xl sm:text-5xl font-bold tracking-tight ${HEAD}`}>
             <WordFill text="We buy it. You profit.™" />
           </p>
+          <h3 className={`${H3} mt-16 mb-6`}>What we run day to day</h3>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            {CAPABILITIES.map(({ icon: Icon, title, description }) => (
+              <div key={title} className={`${CARD} p-5`}>
+                <Icon className={`w-5 h-5 mb-3 ${ACCENT}`} aria-hidden="true" />
+                <h4 className={`font-semibold mb-1 leading-snug ${HEAD}`}>{title}</h4>
+                <p className={`text-sm leading-snug ${MUTED}`}>{description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

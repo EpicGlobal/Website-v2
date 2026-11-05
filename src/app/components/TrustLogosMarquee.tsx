@@ -42,6 +42,10 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
   const releaseVelocityRef = React.useRef(0);
   const reducedMotionRef = React.useRef(false);
   const [isDragging, setIsDragging] = React.useState(false);
+  // The first logos (Bucked Up, Young Living...) hold still and fully visible for a moment before the strip moves.
+  const HOLD_MS = 3000;
+  const [moving, setMoving] = React.useState(false);
+  React.useEffect(() => { const t = setTimeout(() => setMoving(true), HOLD_MS); return () => clearTimeout(t); }, []);
 
   const applyOffset = React.useCallback(() => {
     const wrap = wrapRef.current;
@@ -89,13 +93,14 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
 
     let frameId = 0;
     let lastTime = performance.now();
+    const startAt = performance.now() + HOLD_MS;
 
     const tick = (now: number) => {
       const width = groupWidthRef.current;
       const elapsedSeconds = Math.min((now - lastTime) / 1000, 0.08);
       lastTime = now;
 
-      if (width && !isDraggingRef.current && !reducedMotionRef.current) {
+      if (width && now > startAt && !isDraggingRef.current && !reducedMotionRef.current) {
         const releaseVelocity = releaseVelocityRef.current;
         const speed = -PX_PER_SECOND + releaseVelocity;
 
@@ -198,8 +203,8 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
       aria-label="Brand logo carousel"
       style={{
         // Soft fade at both ends so logos glide in and out instead of being cut at the edge.
-        maskImage: "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)",
-        WebkitMaskImage: "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)",
+        maskImage: moving ? "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)" : "linear-gradient(to right, #000 88%, transparent)",
+        WebkitMaskImage: moving ? "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)" : "linear-gradient(to right, #000 88%, transparent)",
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
@@ -251,6 +256,12 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
           width:11rem;
           opacity:0.85;
           transition: opacity 300ms, filter 300ms;
+        }
+        /* Phones: smaller logos and gaps so the first two (Bucked Up, Young Living) fit side by side. */
+        @media (max-width: 639px){
+          .marquee__group{ gap:1.5rem; padding-right:1.5rem; }
+          .logo{ width:8.5rem; height:4rem; }
+          .logo img{ max-height:2.75rem; }
         }
         /* Recolor by tone (see LogoTone), so every logo reads on every theme with no box behind it. */
         html:not(.dark) .logo[data-tone="light"] img{ filter: brightness(0); }

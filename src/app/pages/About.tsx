@@ -12,6 +12,7 @@ import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink, StepList, Word
 import { ACCENT_BG, BODY, CHAPTER, H2, HEAD, INNER, MUTED, PAGE_BG } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
 import { siteConfig } from '@/site/site-config';
+import { MARKETPLACE_COUNT } from '@/app/data/markets';
 
 /*
  * About page as one scroll story in five chapters. Each chapter opens with a numbered marker whose rule draws in
@@ -85,6 +86,8 @@ export function About() {
     { label: 'Headquarters', value: 'Lindon, Utah' },
     { label: 'Countries', value: '~40' },
     { label: 'Brands', value: '50+' },
+    { label: 'Marketplaces', value: String(MARKETPLACE_COUNT) },
+    { label: 'Amazon US seller rating (9,600+ ratings)', value: '4.9/5' },
   ];
 
   const aboutPageSchema = getWebPageSchema({
@@ -99,7 +102,7 @@ export function About() {
     <div ref={rootRef} className={PAGE_BG}>
       <SEO
         title="About Epic Global Inc. - Wholesale Trade Partner"
-        description="Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy brands' inventory and run marketplace operations in about 40 countries."
+        description="Epic Global Inc. is an Amazon-first wholesale trade partner: we buy brands' inventory and sell it on Amazon, plus Walmart and international marketplaces in about 40 countries."
         canonicalUrl={`${siteConfig.url}/about`}
         keywords="commerce operator, marketplace management, global ecommerce, operator-first approach, marketplace technology"
       />
@@ -129,7 +132,7 @@ export function About() {
           <p className={`text-lg leading-relaxed max-w-3xl mb-12 ${MUTED}`}>
             The same model works for U.S. growth and international expansion: whether a brand is underperforming in the United States, losing margin to fees, or getting ready to sell abroad.
           </p>
-          <dl className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-8">
+          <dl className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
             {facts.map((f) => (
               <div key={f.label}>
                 <dt className={`text-sm ${MUTED}`}>
@@ -175,7 +178,7 @@ export function About() {
               <h2 className={H2}>Glen Jensen</h2>
               <p className={`mt-1 mb-8 text-lg ${MUTED}`}>Founder &amp; CEO</p>
               <p data-story="lit-step" className={`leading-relaxed mb-5 ${BODY}`}>
-                {"Glen Jensen is the founder and CEO of Epic Global Inc., an Amazon-first wholesale trade partner. Epic buys brands' inventory and sells it on Amazon, plus Walmart, TikTok Shop and other leading marketplaces, so brands can grow without running those marketplaces themselves."}
+                {"Glen Jensen is the founder and CEO of Epic Global Inc., an Amazon-first wholesale trade partner. Epic buys brands' inventory and sells it on Amazon, plus Walmart and international marketplaces, so brands can grow without running those marketplaces themselves."}
               </p>
               <p data-story="lit-step" className={`leading-relaxed mb-5 ${BODY}`}>
                 {"Instead of following the agency model, Glen built Epic on a wholesale partnership that ties Epic's success to the brand's. Epic buys the inventory upfront, invests its own capital, and takes responsibility for marketplace advertising, logistics and day-to-day execution. Brands reach more marketplaces without carrying that financial and operational load."}

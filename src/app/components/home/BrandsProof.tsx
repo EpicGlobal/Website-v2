@@ -24,12 +24,12 @@ const Num = ({ s }: { s: { value: number; decimals?: number; prefix?: string; su
   <CountUp value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
 );
 
-export function BrandsProof({ brands, marker }: { brands: Brand[]; marker: ReactNode }) {
-  return <CompactCards brands={brands} marker={marker} />;
+export function BrandsProof({ brands, marker, logos = true }: { brands: Brand[]; marker: ReactNode; logos?: boolean }) {
+  return <CompactCards brands={brands} marker={marker} logos={logos} />;
 }
 
 /* Compact cards */
-function CompactCards({ brands, marker }: { brands: Brand[]; marker: ReactNode }) {
+function CompactCards({ brands, marker, logos }: { brands: Brand[]; marker: ReactNode; logos: boolean }) {
   const stats: { label: string; s: { value: number; decimals?: number; prefix?: string; suffix?: string }; icon: LucideIcon; lit?: boolean }[] = [
     { label: 'Brands we work with', s: brandsStat, icon: Users },
     { label: 'Countries', s: countriesStat, icon: Globe2 },
@@ -39,10 +39,12 @@ function CompactCards({ brands, marker }: { brands: Brand[]; marker: ReactNode }
   return (
     <>
       <div className={INNER}>{marker}</div>
-      <div className="max-w-6xl mx-auto">
-        <TrustLogosMarquee brands={brands} />
-      </div>
-      <dl className={`${INNER} mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4`}>
+      {logos ? (
+        <div className="max-w-6xl mx-auto">
+          <TrustLogosMarquee brands={brands} />
+        </div>
+      ) : null}
+      <dl className={`${INNER} ${logos ? 'mt-10' : ''} grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4`}>
         {stats.map(({ label, s, icon: Icon, lit }) => (
           <div
             key={label}

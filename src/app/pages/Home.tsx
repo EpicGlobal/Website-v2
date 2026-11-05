@@ -3,15 +3,17 @@
 import type { StaticImageData } from 'next/image';
 import { useRef } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Globe2, Search, BarChart3, Package, Shield, Database, Cpu, ArrowRight } from 'lucide-react';
+import { ShoppingCart, Globe2, BarChart3, Shield, ArrowRight } from 'lucide-react';
 import { Globe } from '@/app/components/Globe';
 import { type LogoTone } from '@/app/components/TrustLogosMarquee';
 import { BrandsProof } from '@/app/components/home/BrandsProof';
+import { TrustLogosMarquee } from '@/app/components/TrustLogosMarquee';
+import { ScrollHighlightSteps, WordReveal } from '@/app/components/scroll/ScrollEffects';
+import { CompareTable, FitColumns, HomeFaq, HOME_FAQ } from '@/app/components/home/SkimSections';
 import { ParticlesBackground } from '@/app/components/ParticlesBackground';
-import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, serviceSchemas, websiteSchema } from '@/app/components/StructuredData';
+import { StructuredData, founderSchema, getFAQPageSchema, getWebPageSchema, organizationSchema, serviceSchemas, websiteSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
-import { CountUp, HorizontalGallery, ScrollHighlightSteps, WordReveal } from '@/app/components/scroll/ScrollEffects';
 import { DeferredMount } from '@/app/components/DeferredMount';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail } from '@/app/components/story/StoryKit';
@@ -76,20 +78,21 @@ import zantrexLogo from '@/assets/a02203de0f65132ee8277243eb83905610259bc6.png';
 import ziveLogo from '@/assets/bac9c727078929bc5f7386af4f562d2fe9fefe30.png';
 
 /*
- * Homepage as one scroll story, in the order from the brand rules: hero ("We Buy It. You Profit.") -> trust logos
- * and proof strip -> capabilities -> Buy-Sell-Advertise-Protect -> case studies -> company facts -> final CTA.
- * Each chapter opens with a numbered marker and the chapter rail (wide screens) shows where you are. The page's
- * two pins are Brex's approved effects (HorizontalGallery for the capabilities, ScrollHighlightSteps for the
- * model); the story kit adds no pins of its own here. Phones get the same text as a calm static page.
+ * Homepage, skim first (Brex, Nov 5): hero ("We Buy It. You Profit.") -> brand logos -> 4 numbers -> Epic vs agency
+ * vs aggregator -> Buy-Sell-Advertise-Protect -> results -> who we're a fit for -> 5 questions. Company facts moved to
+ * About and the 8 capabilities to Our Model.
+ * Each chapter opens with a numbered marker and the chapter rail (wide screens) shows where you are. The page's one
+ * pin is Brex's approved ScrollHighlightSteps for the model. Phones get the same text as a calm static page.
  */
 
 const CHAPTERS = [
   { id: 'wholesale-trade-partner', label: 'Wholesale trade partner' },
-  { id: 'brands', label: 'Brands we work with' },
-  { id: 'capabilities', label: 'What we run' },
-  { id: 'model', label: 'Buy, Sell, Advertise, Protect' },
-  { id: 'case-studies', label: 'How we execute' },
-  { id: 'company-facts', label: 'Company facts' },
+  { id: 'brands', label: 'At a glance' },
+  { id: 'compare', label: 'Epic vs agency vs aggregator' },
+  { id: 'model', label: 'How it works' },
+  { id: 'case-studies', label: 'Results' },
+  { id: 'fit', label: "Who we're a fit for" },
+  { id: 'faq', label: 'Questions' },
   { id: 'next-step', label: 'Next step' },
 ] as const;
 
@@ -120,12 +123,15 @@ export function Home() {
   useScrollStory(rootRef, homeBeats);
 
   const brands: { name: string; logo: StaticImageData; tone?: LogoTone }[] = [
+    { name: 'BUCKED UP', logo: buckedUpLogo },
+    { name: 'Young Living', logo: youngLivingLogo, tone: 'pale' },
+    { name: 'Think Smarter Products', logo: thinkSmarterProductsLogo, tone: 'deep' },
+    { name: 'Younique', logo: youniqueLogo, tone: 'dark' },
     { name: 'ACTIVATION', logo: activationLogo, tone: 'dark' },
     { name: 'ageLOC', logo: ageLOCLogo },
     { name: 'AP 24', logo: ap24Logo, tone: 'pale' },
     { name: 'Ambr Group', logo: ambrGroupLogo, tone: 'dark' },
     { name: 'BONA BOTANICA', logo: bonaBotanicaLogo, tone: 'dark' },
-    { name: 'BUCKED UP', logo: buckedUpLogo },
     { name: 'BEAUTY FOCUS', logo: beautyFocusLogo },
     { name: 'botalab', logo: botalabLogo, tone: 'dark' },
     { name: 'bode PRO', logo: bodeProLogo, tone: 'deep' },
@@ -165,58 +171,12 @@ export function Home() {
     { name: 'thrive', logo: thriveLogo, tone: 'deep' },
     { name: 'TRANONT', logo: tranontLogo, tone: 'dark' },
     { name: 'Simmtronics', logo: simmtronicsLogo, tone: 'dark' },
-    { name: 'Think Smarter Products', logo: thinkSmarterProductsLogo, tone: 'deep' },
     { name: 'Truvy', logo: truvyLogo, tone: 'dark' },
     { name: 'REUZEL', logo: reuzelLogo, tone: 'dark' },
     { name: 'RELACORE', logo: relacoreLogo, tone: 'dark' },
     { name: 'Rodan + Fields', logo: rfLogo, tone: 'pale' },
-    { name: 'Young Living', logo: youngLivingLogo, tone: 'pale' },
-    { name: 'Younique', logo: youniqueLogo, tone: 'dark' },
     { name: 'Zantrex', logo: zantrexLogo, tone: 'dark' },
     { name: 'Zive', logo: ziveLogo, tone: 'dark' },
-  ];
-
-  const capabilities = [
-    {
-      icon: ShoppingCart,
-      title: 'Marketplace Management',
-      description: 'End-to-end operations across Amazon, Walmart, eBay, and international platforms.',
-    },
-    {
-      icon: Globe2,
-      title: 'Global Expansion',
-      description: 'Repeatable launch system for new marketplaces: account setup, listing deployment, and go-live coordination.',
-    },
-    {
-      icon: Search,
-      title: 'Listing Optimization',
-      description: 'Title structure, attribute mapping, keyword placement, and conversion-focused creative.',
-    },
-    {
-      icon: BarChart3,
-      title: 'Advertising Operations',
-      description: 'Campaign architecture, bid management, creative rotation, and performance analysis.',
-    },
-    {
-      icon: Package,
-      title: 'Inventory + Forecasting',
-      description: 'Demand planning, marketplace allocation, reorder triggers, and inventory health monitoring.',
-    },
-    {
-      icon: Shield,
-      title: 'Brand Protection & MAP Enforcement',
-      description: 'Unauthorized seller removal, MAP enforcement, IP enforcement, catalog integrity, and marketplace policy monitoring.',
-    },
-    {
-      icon: Database,
-      title: 'Data + Reporting Layer',
-      description: 'Unified dashboards, SKU-level attribution, regional performance, and actionable insights.',
-    },
-    {
-      icon: Cpu,
-      title: 'Execution Engine',
-      description: 'We use internal systems, automation, and bulk operations to keep catalogs clean, changes consistent, and execution fast across marketplaces.',
-    },
   ];
 
   const featuredCases = [
@@ -226,6 +186,8 @@ export function Home() {
       marketplace: 'Amazon US',
       region: 'North America',
       objective: 'Cut FBA fees on 18 of 21 products, lift conversion 21% in A/B tests and win back branded search from competitors',
+      metric: '+21%',
+      metricLabel: 'conversion in A/B tests',
       link: '/case-studies#sutera',
     },
     {
@@ -234,48 +196,17 @@ export function Home() {
       marketplace: 'Amazon US',
       region: 'North America',
       objective: 'Move from Amazon 1P to Epic 3P: the brand pays no Amazon fees and nets more per unit',
+      metric: '+159%',
+      metricLabel: 'net revenue per unit on one brake kit',
       link: '/case-studies#auto-parts-1p-vs-3p',
     },
   ];
 
-  const entityFacts = [
-    {
-      label: 'Company',
-      value: 'Epic Global Inc.',
-      detail: 'Amazon-first wholesale trade partner for 50+ brands',
-    },
-    {
-      label: 'Founder',
-      value: 'Glen Jensen',
-      detail: 'Founder and operator of the Epic model',
-    },
-    {
-      label: 'Headquarters',
-      value: 'Lindon, Utah, USA',
-      detail: 'Built for North America and international expansion',
-    },
-    {
-      label: 'Business model',
-      value: 'Buy, Sell, Advertise, Protect',
-      detail: 'Epic buys inventory, operates channels, funds ads, and protects brand equity',
-    },
-    {
-      label: 'Market coverage',
-      value: '~40 countries',
-      detail: 'Operating in about 40 countries and growing',
-    },
-    {
-      label: 'Primary marketplaces',
-      value: 'Amazon, Walmart, eBay',
-      detail: 'Plus select international platforms. 4.9/5 seller rating on Amazon US from 9,600+ ratings (Oct 2026)',
-    },
-  ];
-
   const model = [
-    { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'Epic buys your inventory upfront at an agreed wholesale price, turning it into cash for the brand. We own the inventory and take on the retail execution risk.', tagline: 'Cash now. We own the stock.' },
-    { icon: Globe2, num: '02', title: 'Sell', desc: 'Epic operates listings and storefronts on Amazon first, plus Walmart and international marketplaces, using a unified operational framework.', tagline: 'One system. Every market.' },
-    { icon: BarChart3, num: '03', title: 'Advertise', desc: 'Epic funds and manages all advertising in the U.S. and abroad. Campaigns are optimized for efficiency and profitability, not budget utilization.', tagline: 'We fund. We optimize.' },
-    { icon: Shield, num: '04', title: 'Protect', desc: 'Through the Brand Protection Command Center, Epic enforces pricing integrity, removes unauthorized sellers, and defends branded search demand globally.', tagline: 'Your brand. Our defense.' },
+    { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We buy your inventory upfront at wholesale. You get cash; we own the stock.', tagline: 'Cash now. We own the stock.' },
+    { icon: Globe2, num: '02', title: 'Sell', desc: 'We run your listings on Amazon first, plus Walmart and international.', tagline: 'One system. Every market.' },
+    { icon: BarChart3, num: '03', title: 'Advertise', desc: 'We pay for and run the ads, built for profit, not spend.', tagline: 'We fund. We optimize.' },
+    { icon: Shield, num: '04', title: 'Protect', desc: 'We enforce MAP, remove unauthorized sellers and defend your branded search.', tagline: 'Your brand. Our defense.' },
   ];
 
   return (
@@ -290,6 +221,7 @@ export function Home() {
       <StructuredData data={founderSchema} />
       <StructuredData data={websiteSchema} />
       <StructuredData data={getWebPageSchema('Home', `${siteConfig.url}`, 'Amazon-first wholesale trade partner that buys inventory and sells it on Amazon, plus Walmart and international marketplaces')} />
+      <StructuredData data={getFAQPageSchema(HOME_FAQ.map((f) => ({ question: f.q, answer: f.a })), `${siteConfig.url}/`)} />
       {serviceSchemas.map((schema) => (
         <StructuredData key={schema['@id']} data={schema} />
       ))}
@@ -313,7 +245,7 @@ export function Home() {
                 We Buy It. You Profit.&trade;
               </h1>
               <p className={`${LEAD} max-w-3xl mb-10`}>
-                Epic Global Inc. is a wholesale trade partner and <strong className={`font-semibold ${HEAD}`}>Zero-Risk Global Commerce Operator</strong>. We buy your inventory upfront at wholesale, run your storefronts on Amazon first, plus Walmart and international marketplaces, and pay for the advertising, marketplace fees and fulfillment ourselves. Buy. Sell. Advertise. Protect.
+                Epic Global Inc. buys your inventory upfront and runs your Amazon business, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment; <strong className={`font-semibold ${HEAD}`}>you keep the brand</strong>.
               </p>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 <CtaButton variant="primary" size="lg" location="Hero Section" />
@@ -324,6 +256,9 @@ export function Home() {
                 >
                   View Case Studies
                 </Link>
+                <a href="#model" className={`text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
+                  How it works &darr;
+                </a>
               </div>
             </div>
             {/* Decorative: loads after the text and buttons, when the browser is idle */}
@@ -338,39 +273,24 @@ export function Home() {
         </div>
       </section>
 
+      {/* Brands we work with: the logo strip sits right under the hero, still on the first screen. Bucked Up, Young Living,
+          Think Smarter and Younique lead. */}
+        <div className="relative z-10 -mt-4 mb-2 px-4 sm:px-6 lg:px-8">
+          <p className={`${INNER} text-xs font-semibold uppercase tracking-[0.18em] mb-2 ${MUTED}`}>Brands we work with</p>
+          <div className="max-w-6xl mx-auto"><TrustLogosMarquee brands={brands} /></div>
+        </div>
+
       {/* 02 Brands we work with: the trust logos, then the proof strip (real numbers in the HTML; they count up once on screen). */}
       <section id="brands" data-chapter aria-label="Epic Global Inc. at a glance" className={CHAPTER}>
-        <BrandsProof brands={brands} marker={<ChapterMarker id="brands" />} />
+        <BrandsProof brands={brands} logos={false} marker={<ChapterMarker id="brands" />} />
       </section>
 
-      {/* 03 What we run: the 8 capability cards slide sideways while the chapter is pinned (HorizontalGallery). */}
-      <section id="capabilities" data-chapter className={CHAPTER}>
-        <div className="max-w-7xl mx-auto">
-          <HorizontalGallery
-            staticClassName="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-            header={
-              <div className="mb-8">
-                <ChapterMarker id="capabilities" />
-                <h2 className={`${H2} mb-4`}>Full-stack Amazon and Walmart marketplace operations</h2>
-                <p className={`${LEAD} max-w-2xl`}>
-                  Every capability required to run marketplaces as a system, not a collection of one-off tasks.
-                </p>
-              </div>
-            }
-          >
-            {capabilities.map((capability) => {
-              const Icon = capability.icon;
-              return (
-                <div key={capability.title} className={`${CARD} p-6 flex flex-col h-full min-h-[200px]`}>
-                  <div className={`${ICON_TILE} mb-4`}>
-                    <Icon className="w-5 h-5" aria-hidden="true" />
-                  </div>
-                  <h3 className={`text-lg font-semibold mb-2 ${HEAD}`}>{capability.title}</h3>
-                  <p className={`text-sm leading-relaxed ${BODY}`}>{capability.description}</p>
-                </div>
-              );
-            })}
-          </HorizontalGallery>
+      {/* Epic vs agency vs aggregator: the comparison a brand owner makes first, as a table. */}
+      <section id="compare" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker id="compare" />
+          <h2 className={`${H2} mb-8`}>A wholesale trade partner, not an agency or aggregator</h2>
+          <CompareTable />
         </div>
       </section>
 
@@ -385,9 +305,7 @@ export function Home() {
                   lines={['We own the inventory.', 'You keep the brand.']}
                   className={`text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-5 pb-1 ${HEAD}`}
                 />
-                <p className={`${LEAD} max-w-3xl mb-8`}>
-                  Epic operates through the Buy-Sell-Advertise-Protect model, which governs both U.S. and global execution. We assume inventory ownership, operate storefronts directly, fund advertising, and protect brand equity, all under one unified structure.
-                </p>
+                <p className={`${LEAD} max-w-3xl mb-8`}>Four steps, one partner.</p>
               </>
             }
             cards={model.map((card) => {
@@ -401,8 +319,7 @@ export function Home() {
                     <Icon className="w-5 h-5" aria-hidden="true" />
                   </div>
                   <h3 className={`${H3} mb-3`}>{card.title}</h3>
-                  <p className={`mb-4 leading-relaxed ${BODY}`}>{card.desc}</p>
-                  <p className={`text-sm font-semibold ${ACCENT}`}>{card.tagline}</p>
+                  <p className={`leading-relaxed ${BODY}`}>{card.desc}</p>
                 </div>
               );
             })}
@@ -421,25 +338,15 @@ export function Home() {
       <section id="case-studies" data-chapter className="scroll-mt-20 pt-20 pb-16 px-4 sm:px-6 lg:px-8">
         <div className={INNER}>
           <ChapterMarker id="case-studies" />
-          <h2 className={`${H2} mb-4`}>How we execute</h2>
-          <p className={`${LEAD} max-w-2xl mb-10`}>
-            Real outcomes from real operations, organized around the operating model behind our marketplace execution.
-          </p>
+          <h2 className={`${H2} mb-10`}>Results from real brands</h2>
 
           <div data-story="fade-up" className="grid md:grid-cols-2 gap-6 mb-10">
             {featuredCases.map((caseStudy) => (
               <Link key={caseStudy.link} href={caseStudy.link} className={`${CARD_LINK} group p-6 h-full`}>
-                <p className={`text-sm font-semibold mb-3 ${ACCENT}`}>{caseStudy.pillar}</p>
-                <h3 className={`text-lg font-semibold mb-3 ${HEAD}`}>{caseStudy.title}</h3>
-                <div className={`space-y-1 mb-4 text-sm ${MUTED}`}>
-                  <p>
-                    <span className={`font-medium ${HEAD}`}>Marketplace:</span> {caseStudy.marketplace}
-                  </p>
-                  <p>
-                    <span className={`font-medium ${HEAD}`}>Region:</span> {caseStudy.region}
-                  </p>
-                </div>
-                <p className={`text-sm leading-relaxed mb-5 ${BODY}`}>{caseStudy.objective}</p>
+                <p className={`text-4xl font-bold tracking-tight tabular-nums ${ACCENT}`}>{caseStudy.metric}</p>
+                <p className={`text-sm mb-4 ${MUTED}`}>{caseStudy.metricLabel}</p>
+                <h3 className={`text-lg font-semibold mb-4 ${HEAD}`}>{caseStudy.title}</h3>
+
                 <span className={`inline-flex items-center gap-2 text-sm font-semibold ${ACCENT}`}>
                   View case study
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -455,25 +362,20 @@ export function Home() {
         </div>
       </section>
 
-      {/* 06 Company facts: the answer an AI assistant or analyst checks, in plain text. */}
-      <section id="company-facts" data-chapter className="scroll-mt-20 pt-4 pb-20 px-4 sm:px-6 lg:px-8">
+      {/* Who we're a fit for, then the five questions asked first. */}
+      <section id="fit" data-chapter className={CHAPTER}>
         <div className={INNER}>
-          <ChapterMarker id="company-facts" />
-          <h2 className={`${H2} mb-4`}>Company Facts</h2>
-          <p className={`text-base sm:text-lg leading-relaxed max-w-3xl mb-10 ${BODY}`}>
-            Epic Global Inc. is an Amazon-first wholesale trade partner and marketplace operator that buys inventory at wholesale, manages marketplace sales channels, funds advertising, and handles brand protection. The company is led by Glen Jensen, has sold on Amazon since 2015, and also operates on Walmart, eBay, and select international marketplaces with a system built around the Buy, Sell, Advertise, Protect model.
-          </p>
-          <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {entityFacts.map((fact) => (
-              <div key={fact.label} className={`${CARD} p-5`}>
-                <dt className={`text-sm mb-2 ${MUTED}`}>{fact.label}</dt>
-                <dd>
-                  <p className={`text-lg font-semibold mb-2 ${HEAD}`}>{fact.value}</p>
-                  <p className={`text-sm leading-relaxed ${BODY}`}>{fact.detail}</p>
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <ChapterMarker id="fit" />
+          <h2 className={`${H2} mb-8`}>Who we&apos;re a fit for</h2>
+          <FitColumns />
+        </div>
+      </section>
+
+      <section id="faq" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker id="faq" />
+          <h2 className={`${H2} mb-8`}>Common questions</h2>
+          <HomeFaq />
         </div>
       </section>
 
@@ -485,7 +387,7 @@ export function Home() {
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
               <div className="max-w-2xl">
                 <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-5 ${HEAD}`}>
-                  Ready for an operator model,<br />not another agency?
+                  Ready for a wholesale trade partner,<br />not another agency?
                 </h2>
                 <p className={`${LEAD}`}>
                   If you want execution that looks like a system, let&apos;s map your next 90 days.
