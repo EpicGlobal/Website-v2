@@ -53,7 +53,26 @@ export function useScrollStory(rootRef: RefObject<HTMLElement | null>, extra?: S
         };
       });
       document.fonts?.ready.then(() => !cancelled && ScrollTrigger.refresh());
-      revert = () => mm.revert();
+      // Re-measure when the page's height changes after load (an opened <details> list, late images), so pins
+      // further down never sit on top of the content that pushed them.
+      let lastHeight = root.offsetHeight;
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const ro = new ResizeObserver(() => {
+        const h = root.offsetHeight;
+        if (Math.abs(h - lastHeight) < 2) return;
+        lastHeight = h;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          ScrollTrigger.refresh();
+          lastHeight = root.offsetHeight;
+        }, 120);
+      });
+      ro.observe(root);
+      revert = () => {
+        ro.disconnect();
+        clearTimeout(timer);
+        mm.revert();
+      };
     };
 
     const onChange = () => mq.matches && start();
