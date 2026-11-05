@@ -1,29 +1,81 @@
 'use client';
 
 import Link from 'next/link';
-import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
+import { useRef } from 'react';
 import { CheckCircle2, X } from 'lucide-react';
+import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema, serviceSchemas } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
+import { CompareTable } from '@/app/components/ourmodel/CompareTable';
+import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
+import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink, WordFill } from '@/app/components/story/StoryKit';
+import { ACCENT, ACCENT_BG, BODY, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
+import '@/app/components/story/story.css';
 import { siteConfig } from '@/site/site-config';
 
-const COMPARE_MODELS = ['Epic', 'Marketplace accelerator', 'Marketplace agency', 'Agency + fulfillment', 'Wholesale distributor'];
-// Same rows as the comparison table, for the phone layout.
-const COMPARE_ROWS: Array<[string, boolean[]]> = [
-  ['Buys inventory upfront', [true, true, false, false, true]],
-  ['Sells on their own account', [true, true, false, false, true]],
-  ['"No fees / no commissions"', [true, false, false, false, false]],
-  ['Advertising management', [true, true, true, true, false]],
-  ['Fulfillment / warehousing', [true, true, false, true, true]],
-  ['Brand protection', [true, false, true, false, false]],
-  ['Global operations', [true, true, false, false, true]],
+/*
+ * Our Model as one scroll story in six chapters: the detailed version of the homepage's Buy-Sell-Advertise-Protect.
+ * The hero dims and lifts away as "Who it's for" arrives; the five steps light up one by one (ScrollTimeline) and
+ * close on "We buy it. You profit." filling in word by word; "What we don't do" pins briefly while its points step
+ * in. The rail (wide screens) shows where you are. Phones get the same text as a calm static page.
+ */
+
+const CHAPTERS = [
+  { id: 'what-we-do', label: 'What we do' },
+  { id: 'who-its-for', label: "Who it's for" },
+  { id: 'how-it-works', label: 'How it works' },
+  { id: 'what-we-dont-do', label: "What we don't do" },
+  { id: 'compare', label: 'How we compare' },
+  { id: 'questions', label: 'Questions' },
+] as const;
+
+function ChapterMarker({ n, accent }: { n: number; accent?: string }) {
+  return <KitChapterMarker n={n} label={CHAPTERS[n - 1].label} accent={accent} />;
+}
+
+const FOR_WHO = [
+  "You're already selling on one or more marketplaces but need more control and better execution",
+  "You want to expand into new regions but don't have the bandwidth or expertise internally",
+  "You're tired of agencies that advise but don't execute or own outcomes",
+  'You need a partner who takes responsibility for day-to-day operations, not just strategy',
 ];
 
+const STEPS = [
+  { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own the inventory and take on the retail execution risk.' },
+  { title: 'Sell: we run Amazon, Walmart and other approved marketplaces', body: 'We manage listings, pricing, inventory allocation, fulfillment coordination and catalog integrity on Amazon, Walmart, eBay and international marketplaces.' },
+  { title: 'Advertise: we fund the ads, fees and fulfillment', body: 'Marketplace fees, advertising spend and fulfillment costs are paid by us. This keeps incentives aligned: we only succeed when your brand grows profitably.' },
+  { title: 'Protect: we guard your price and catalog', body: 'We protect your brand on every marketplace we operate: Brand Registry authorization, MAP enforcement, unauthorized-seller removal, and Buy Box and catalog monitoring.' },
+  { title: 'You get visibility and control', body: 'You get a shared dashboard from day one, monthly reports with SKU-level sales, advertising and inventory, and quarterly business reviews. You stay informed and keep approval rights over major decisions.' },
+];
+
+const WE_DONT = [
+  "We don't sell a la carte services or consulting packages",
+  "We don't charge hourly rates or project fees",
+  "We don't provide advice without executing the work",
+  "We don't operate on a revenue share model without inventory ownership",
+  "We don't work with brands that want to maintain day-to-day operational control internally",
+];
+
+/** The hero dims and lifts away as the next chapter rises over it (no pin: the page stays short). */
+const ourModelBeats: StoryExtra = (gsap, _ScrollTrigger, root) => {
+  const next = root.querySelector<HTMLElement>('#who-its-for');
+  const heroInner = root.querySelector<HTMLElement>('[data-story="hero-inner"]');
+  if (next && heroInner) {
+    gsap.to(heroInner, {
+      opacity: 0.2, y: -40, scale: 0.97, transformOrigin: 'left top', ease: 'none',
+      scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 25%', scrub: 0.6 },
+    });
+  }
+};
+
 export function WhatWeAre() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  useScrollStory(rootRef, ourModelBeats);
+
   return (
-    <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
-      <SEO 
+    <div ref={rootRef} className={PAGE_BG}>
+      <SEO
         title="Our Model - How Epic's Wholesale Model Works"
         description="How Epic Global buys inventory upfront, runs marketplace storefronts end to end, pays for ads, fees and fulfillment, and protects brand equity."
         canonicalUrl={`${siteConfig.url}/our-model`}
@@ -45,269 +97,140 @@ export function WhatWeAre() {
           { name: 'Our Model', url: `${siteConfig.url}/our-model` },
         ])}
       />
-      
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="inline-block px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:shadow-lg leaf:bg-cyan-600/20 water:bg-gradient-to-r water:from-emerald-700 water:to-emerald-800 water:shadow-lg water:shadow-emerald-500/20 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-white leaf:text-cyan-900 water:text-white rounded-full text-sm font-semibold tracking-wide mb-6">
-            ZERO-RISK GLOBAL COMMERCE OPERATOR
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-600 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828] bg-clip-text text-transparent leading-tight">
-            Our Wholesale Trade Partner Model
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-800 water:text-[#101828] leading-relaxed mb-4">
-            Plain language. No buzzwords. Here's what Epic Global Inc. actually does.
-          </p>
-          <p className="text-cyan-400/80 dark:text-cyan-400/80 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 font-medium">
-            We buy it. You profit.
-          </p>
-        </div>
-      </section>
 
-      {/* What We Do */}
-      <section className="pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20">
-            <h2 className="text-2xl font-bold mb-6 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">What we do</h2>
-            <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-4">
-              Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy a brand's inventory upfront at wholesale and sell it on Amazon, Walmart and other marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.
-            </p>
-            <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed">
-              We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned. We don't sell consulting packages or charge hourly rates. We buy inventory, then operate retail sales across approved marketplaces.
-            </p>
+      {/* Chapter rail (wide screens): real links to each chapter; the line fills as you read. */}
+      <ChapterRail chapters={CHAPTERS} label="Our Model page chapters" />
+
+      {/* 01 What we do: the answer first, in plain language. */}
+      <section id="what-we-do" data-chapter="hero" className="scroll-mt-20 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div data-story="hero-inner" className={INNER}>
+          <ChapterMarker n={1} accent="text-[var(--pop)] orange:text-[#101828]" />
+          <h1 className={`${H1} mb-6 max-w-4xl`}>Our Wholesale Trade Partner Model</h1>
+          <p className={`${LEAD} max-w-3xl mb-14`}>Plain language. No buzzwords. Here&apos;s what Epic Global Inc. actually does.</p>
+
+          <div className="grid md:grid-cols-[minmax(0,14rem)_1fr] gap-6 md:gap-14 items-start">
+            <h2 className={`${H2} md:pt-1`}>What we do</h2>
+            <div className="max-w-2xl">
+              <p className={`text-lg leading-relaxed mb-5 ${BODY}`}>
+                Epic Global Inc. is a wholesale trade partner and global marketplace operator: we buy a brand&apos;s inventory upfront at wholesale and sell it on Amazon, Walmart and other marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.
+              </p>
+              <p className={`text-lg leading-relaxed ${BODY}`}>
+                We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned. We don&apos;t sell consulting packages or charge hourly rates. We buy inventory, then operate retail sales across approved marketplaces.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Who It's For */}
-      <section className="pb-12 pt-12 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:from-transparent light:to-white orange:bg-transparent leaf:bg-transparent">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20">
-            <h2 className="text-2xl font-bold mb-6 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Who it's for</h2>
-            <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-              Brands that want to scale on marketplaces without building an internal eCommerce operations team.
-            </p>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
-                <span>You're already selling on one or more marketplaces but need more control and better execution</span>
-              </li>
-              <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
-                <span>You want to expand into new regions but don't have the bandwidth or expertise internally</span>
-              </li>
-              <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
-                <span>You're tired of agencies that advise but don't execute or own outcomes</span>
-              </li>
-              <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 mt-0.5 flex-shrink-0" />
-                <span>You need a partner who takes responsibility for day-to-day operations, not just strategy</span>
-              </li>
+      {/* 02 Who it's for: the brand recognizes itself before the mechanics. */}
+      <section id="who-its-for" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker n={2} />
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            <div>
+              <h2 className={`${H2} mb-4`}>Who it&apos;s for</h2>
+              <p className={`text-lg leading-relaxed max-w-xl ${BODY}`}>
+                Brands that want to scale on marketplaces without building an internal eCommerce operations team.
+              </p>
+            </div>
+            <ul className="space-y-5">
+              {FOR_WHO.map((item) => (
+                <li key={item} data-story="lit-step" className={`flex items-start gap-3 text-lg leading-relaxed ${BODY}`}>
+                  <CheckCircle2 aria-hidden="true" className={`w-5 h-5 mt-1.5 flex-shrink-0 ${ACCENT}`} />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </section>
 
-      {/* How Our Model Works */}
-      <section className="pb-12 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:bg-white orange:bg-transparent leaf:bg-transparent">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20">
-            <h2 className="text-2xl font-bold mb-8 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">How our wholesale model works</h2>
-            
+      {/* 03 How it works: the heart of the page. Buy, Sell, Advertise, Protect light up one by one as you scroll,
+          then the homepage promise fills in word by word. */}
+      <section id="how-it-works" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker n={3} />
+          <h2 className={`${H2} mb-10`}>How our wholesale model works</h2>
+          <div className="max-w-3xl">
             <ScrollTimeline
-              numClass="text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800"
-              titleClass="text-lg font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 mb-2"
-              bodyClass="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed"
-              steps={[
-                { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own the inventory and take on the retail execution risk.' },
-                { title: 'Sell: we run Amazon, Walmart and other approved marketplaces', body: 'We manage listings, pricing, inventory allocation, fulfillment coordination and catalog integrity on Amazon, Walmart, eBay and international marketplaces.' },
-                { title: 'Advertise: we fund the ads, fees and fulfillment', body: 'Marketplace fees, advertising spend and fulfillment costs are paid by us. This keeps incentives aligned: we only succeed when your brand grows profitably.' },
-                { title: 'Protect: we guard your price and catalog', body: 'We protect your brand on every marketplace we operate: Brand Registry authorization, MAP enforcement, unauthorized-seller removal, and Buy Box and catalog monitoring.' },
-                { title: 'You get visibility and control', body: 'You get a shared dashboard from day one, monthly reports with SKU-level sales, advertising and inventory, and quarterly business reviews. You stay informed and keep approval rights over major decisions.' },
-              ]}
+              numClass={ACCENT}
+              titleClass={`${H3} mb-2`}
+              bodyClass={`leading-relaxed ${BODY}`}
+              steps={STEPS}
             />
           </div>
-        </div>
-      </section>
-
-      {/* What We Don't Do */}
-      <section className="pb-12 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:bg-white orange:bg-transparent leaf:bg-transparent">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20">
-            <h2 className="text-2xl font-bold mb-6 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">What we don't do</h2>
-            <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed mb-6">
-              To be clear about what we're not:
-            </p>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <X className="w-5 h-5 text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500 mt-0.5 flex-shrink-0" />
-                <span>We don't sell a la carte services or consulting packages</span>
-              </li>
-              <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <X className="w-5 h-5 text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500 mt-0.5 flex-shrink-0" />
-                <span>We don't charge hourly rates or project fees</span>
-              </li>
-              <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <X className="w-5 h-5 text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500 mt-0.5 flex-shrink-0" />
-                <span>We don't provide advice without executing the work</span>
-              </li>
-              <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <X className="w-5 h-5 text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500 mt-0.5 flex-shrink-0" />
-                <span>We don't operate on a revenue share model without inventory ownership</span>
-              </li>
-              <li className="flex items-start gap-3 text-gray-300 dark:text-gray-300 soft-dark:text-gray-600 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                <X className="w-5 h-5 text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500 mt-0.5 flex-shrink-0" />
-                <span>We don't work with brands that want to maintain day-to-day operational control internally</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Competitive Landscape Table */}
-      <section className="pb-16 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:bg-white orange:bg-transparent leaf:bg-transparent">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20">
-            <h2 className="text-2xl font-bold mb-2 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Competitive Landscape</h2>
-            <p className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-8">
-              How Epic Global compares to other marketplace operators and accelerators
-            </p>
-            
-            <div className="md:hidden space-y-3">
-              {COMPARE_ROWS.map(([label, values]) => (
-                <div key={label} className="rounded-xl border border-white/10 dark:border-white/10 soft-dark:border-gray-200 light:border-gray-200 orange:border-gray-300 leaf:border-gray-200 water:border-gray-200 p-4">
-                  <p className="font-semibold mb-2 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">{label}</p>
-                  <ul className="grid grid-cols-1 gap-1 text-sm">
-                    {COMPARE_MODELS.map((model, i) => (
-                      <li key={model} className="flex justify-between gap-3">
-                        <span className={`${i === 0 ? 'font-semibold ' : ''}text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800`}>{model}</span>
-                        <span className={`font-semibold ${values[i] ? 'text-green-400 dark:text-green-400 soft-dark:text-green-700 light:text-green-700 orange:text-green-700 leaf:text-green-700 water:text-green-700' : 'text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-500 orange:text-red-500 leaf:text-red-500 water:text-red-500'}`}>{values[i] ? 'Yes' : 'No'}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-            <div className="hidden md:block overflow-x-auto">
-              <table className="w-full border-collapse min-w-[720px]">
-                <thead>
-                  <tr className="border-b border-white/10 dark:border-white/10 soft-dark:border-gray-200 light:border-gray-200 orange:border-gray-300 leaf:border-gray-200 water:border-gray-200">
-                    <th className="text-left py-4 px-3 text-xs font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-800 water:text-gray-900 uppercase tracking-wide">
-                      Capability / Model
-                    </th>
-                    <th className="text-center py-4 px-3 text-xs font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-800 water:text-emerald-800 uppercase tracking-wide">
-                      Epic
-                    </th>
-                    <th className="text-center py-4 px-3 text-xs font-semibold text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 uppercase tracking-wide">
-                      Marketplace accelerator
-                    </th>
-                    <th className="text-center py-4 px-3 text-xs font-semibold text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 uppercase tracking-wide">
-                      Marketplace agency
-                    </th>
-                    <th className="text-center py-4 px-3 text-xs font-semibold text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 uppercase tracking-wide">
-                      Agency + fulfillment
-                    </th>
-                    <th className="text-center py-4 px-3 text-xs font-semibold text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 uppercase tracking-wide">
-                      Wholesale distributor
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/10 dark:divide-white/10 soft-dark:divide-gray-200 light:divide-gray-200 orange:divide-gray-300 leaf:divide-gray-200 water:divide-gray-200">
-                  <tr className="hover:bg-white/[0.02] transition-colors dark:hover:bg-white/[0.02] soft-dark:hover:bg-gray-50 light:hover:bg-gray-50 orange:hover:bg-white/[0.02] leaf:hover:bg-white/20 water:hover:bg-white/20">
-                    <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
-                      <strong>Buys inventory upfront</strong>
-                    </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                  </tr>
-                  <tr className="hover:bg-white/[0.02] transition-colors dark:hover:bg-white/[0.02] soft-dark:hover:bg-gray-50 light:hover:bg-gray-50 orange:hover:bg-white/[0.02] leaf:hover:bg-white/20 water:hover:bg-white/20">
-                    <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
-                      <strong>Sells on their own account</strong>
-                    </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                  </tr>
-                  <tr className="hover:bg-white/[0.02] transition-colors dark:hover:bg-white/[0.02] soft-dark:hover:bg-gray-50 light:hover:bg-gray-50 orange:hover:bg-white/[0.02] leaf:hover:bg-white/20 water:hover:bg-white/20">
-                    <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
-                      <strong>"No fees / no commissions"</strong>
-                    </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                  </tr>
-                  <tr className="hover:bg-white/[0.02] transition-colors dark:hover:bg-white/[0.02] soft-dark:hover:bg-gray-50 light:hover:bg-gray-50 orange:hover:bg-white/[0.02] leaf:hover:bg-white/20 water:hover:bg-white/20">
-                    <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
-                      <strong>Advertising management</strong>
-                    </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                  </tr>
-                  <tr className="hover:bg-white/[0.02] transition-colors dark:hover:bg-white/[0.02] soft-dark:hover:bg-gray-50 light:hover:bg-gray-50 orange:hover:bg-white/[0.02] leaf:hover:bg-white/20 water:hover:bg-white/20">
-                    <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
-                      <strong>Fulfillment / warehousing</strong>
-                    </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                  </tr>
-                  <tr className="hover:bg-white/[0.02] transition-colors dark:hover:bg-white/[0.02] soft-dark:hover:bg-gray-50 light:hover:bg-gray-50 orange:hover:bg-white/[0.02] leaf:hover:bg-white/20 water:hover:bg-white/20">
-                    <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
-                      <strong>Brand protection</strong>
-                    </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                  </tr>
-                  <tr className="hover:bg-white/[0.02] transition-colors dark:hover:bg-white/[0.02] soft-dark:hover:bg-gray-50 light:hover:bg-gray-50 orange:hover:bg-white/[0.02] leaf:hover:bg-white/20 water:hover:bg-white/20">
-                    <td className="py-4 px-3 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
-                      <strong>Global operations</strong>
-                    </td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold dark:text-cyan-400 soft-dark:text-lime-700 light:text-gray-900 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 text-[#05df72]">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-red-400 dark:text-red-400 soft-dark:text-red-500 light:text-red-400 orange:text-red-400 leaf:text-red-500 water:text-red-500">No</td>
-                    <td className="py-4 px-3 text-center text-sm font-semibold text-green-400 dark:text-green-400 soft-dark:text-gray-900 light:text-gray-900 orange:text-green-400 leaf:text-green-700 water:text-green-700">Yes</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Simple CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:from-gray-50 light:to-white orange:bg-transparent leaf:bg-transparent">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
-            Questions about how this works?
-          </h2>
-          <p className="text-lg text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Let's walk through your catalog, marketplace presence, and growth goals. Or email <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 font-medium">{siteConfig.contactEmail}</a>.
+          <p className={`mt-16 text-4xl sm:text-5xl font-bold tracking-tight ${HEAD}`}>
+            <WordFill text="We buy it. You profit." />
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <CtaButton variant="primary" size="lg" location="What We Are Page - Final CTA" />
-            <Link
-              href="/faq"
-              className="px-8 py-3.5 bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-100 orange:bg-white/30 leaf:bg-white/10 water:bg-white/10 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 rounded-lg hover:bg-white/10 soft-dark:hover:bg-gray-200 light:hover:bg-gray-200 orange:hover:bg-white/40 leaf:hover:bg-white/20 water:hover:bg-white/20 transition-all border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-300 orange:border-gray-300 leaf:border-white/20 water:border-white/20 text-base font-medium"
-            >
-              View FAQ
-            </Link>
+        </div>
+      </section>
+
+      {/* 04 What we don't do: pins briefly on desktop while the five "don'ts" step in beside a filling meter. */}
+      <section id="what-we-dont-do" data-chapter data-story-pin className={CHAPTER}>
+        <div className={`${INNER} w-full`}>
+          <ChapterMarker n={4} />
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            <div>
+              <h2 className={`${H2} mb-4`}>What we don&apos;t do</h2>
+              <p className={`text-lg leading-relaxed ${BODY}`}>To be clear about what we&apos;re not:</p>
+            </div>
+            <div className="relative min-[900px]:pl-8">
+              <div aria-hidden="true" data-story-meter="" className="absolute left-0 top-1 bottom-1 w-[3px] overflow-hidden rounded-full bg-gray-400/30">
+                <div data-story="steps-meter" className={`h-full w-full rounded-full ${ACCENT_BG}`} />
+              </div>
+              <ul className="space-y-5">
+                {WE_DONT.map((item) => (
+                  <li key={item} data-story="step" className={`flex items-start gap-3 text-lg leading-relaxed ${BODY}`}>
+                    <X aria-hidden="true" className={`w-5 h-5 mt-1.5 flex-shrink-0 ${MUTED}`} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 05 How we compare: the table rises into place. */}
+      <section id="compare" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker n={5} />
+          <h2 className={`${H2} mb-4`}>Competitive landscape</h2>
+          <p className={`text-lg leading-relaxed max-w-3xl mb-10 ${BODY}`}>
+            How Epic Global compares to other marketplace operators and accelerators
+          </p>
+          <div data-story="rise">
+            <CompareTable />
+          </div>
+        </div>
+      </section>
+
+      {/* 06 Questions: the story hands off to a conversation. */}
+      <section id="questions" data-chapter className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
+        <div data-story="fade-up" className={INNER}>
+          <ChapterMarker n={6} />
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
+            <div className="max-w-2xl">
+              <h2 className={`${H2} mb-4`}>Questions about how this works?</h2>
+              <p className={`text-lg leading-relaxed ${BODY}`}>
+                Let&apos;s walk through your catalog, marketplace presence, and growth goals. Or email{' '}
+                <a href={`mailto:${siteConfig.contactEmail}`} className={`underline underline-offset-2 font-medium ${HEAD}`}>
+                  {siteConfig.contactEmail}
+                </a>
+                .
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 shrink-0 self-start sm:self-auto">
+              <CtaButton variant="primary" size="lg" location="What We Are Page - Final CTA" />
+              {/* While booking is off, the FAQ is the page's main next step, so it takes the pop button. */}
+              {siteConfig.bookACallEnabled ? (
+                <Link href="/faq" className={QUIET_BUTTON}>
+                  View FAQ
+                </Link>
+              ) : (
+                <PopLink href="/faq">View FAQ</PopLink>
+              )}
+            </div>
           </div>
         </div>
       </section>
