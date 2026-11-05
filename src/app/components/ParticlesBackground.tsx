@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { themeParticleColor } from '@/app/components/themeParticleColor';
 
 export function ParticlesBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -12,18 +13,7 @@ export function ParticlesBackground() {
 
     // Detect theme from root element
     const getParticleColor = () => {
-      const rootClasses = document.documentElement.classList;
-      if (rootClasses.contains('leaf')) {
-        return { r: 14, g: 165, b: 233 }; // Sky-500 #0ea5e9 for leaf theme
-      }
-      if (rootClasses.contains('water')) {
-        return { r: 63, g: 98, b: 18 }; // Lime-800 #3f6212 for water theme
-      }
-      if (rootClasses.contains('orange')) {
-        return { r: 249, g: 115, b: 22 }; // Orange-500 #f97316 for fire/orange theme - warmer, more vibrant
-      }
-      // Default cyan-500 #06b6d4 for dark/moon theme
-      return { r: 6, g: 182, b: 212 };
+      return themeParticleColor();
     };
 
     // Set canvas size
@@ -127,7 +117,7 @@ export function ParticlesBackground() {
       ref={canvasRef}
       aria-hidden="true"
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.3 }}
+      style={{ opacity: 0.55 }}
     />
   );
 }
