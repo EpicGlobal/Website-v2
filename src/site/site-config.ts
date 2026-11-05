@@ -8,6 +8,9 @@ export const siteConfig = {
   name: 'Epic Global Inc.',
   shortName: 'Epic Global',
   bookACallEnabled: process.env.NEXT_PUBLIC_BOOK_A_CALL_ENABLED === 'true',
+  // Case study and template downloads (they ask visitors to sign in first). Hidden for now while the team decides
+  // whether to keep the sign-in (To-do b23). Set to true to bring the download buttons back.
+  downloadsEnabled: false,
   url: siteUrl,
   logo: '/logo.png',
   founderName: 'Glen Jensen',

@@ -8,7 +8,7 @@ import { CtaButton } from '@/app/components/CtaButton';
 import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
 import dynamic from 'next/dynamic';
 import { ChapterMarker, PopLink } from '@/app/components/story/StoryKit';
-import { BODY, CHAPTER, H1, H2, H3, HEAD, INNER, MUTED, PAGE_BG, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
+import { BODY, CARD_HOVER, CHAPTER, H1, H2, H3, HEAD, INNER, MUTED, PAGE_BG, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
 import { ProofMetrics } from '@/app/components/proof/ProofKit';
 import { CARD, CARD_SOFT, TAG } from '@/app/components/proof/proofTokens';
@@ -266,7 +266,7 @@ export function CaseStudies() {
           <ul className="grid gap-4 sm:grid-cols-2">
             {caseStudies.map((study) => (
               <li key={study.id}>
-                <a href={`#${study.anchor}`} className={`${CARD} group flex h-full items-start justify-between gap-4 p-6 transition-colors hover:bg-white/10 orange:hover:bg-white light:hover:bg-gray-50`}>
+                <a href={`#${study.anchor}`} className={`${CARD} ${CARD_HOVER} group flex h-full items-start justify-between gap-4 p-6`}>
                   <span>
                     <span className={`block text-sm font-semibold ${MUTED}`}>{study.client}</span>
                     <span className={`mt-1 block text-lg font-semibold leading-snug ${HEAD}`}>{study.title}</span>
@@ -294,7 +294,7 @@ export function CaseStudies() {
 
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between mb-4">
               <h2 className={`${H2} max-w-3xl`}>{study.title}</h2>
-              {study.googleDriveUrl && (
+              {siteConfig.downloadsEnabled && study.googleDriveUrl && (
                 <GatedDownloadButton
                   href={study.googleDriveUrl}
                   fileName={study.title}

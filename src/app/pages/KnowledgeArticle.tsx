@@ -145,7 +145,7 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
               <Calendar className="w-4 h-4" aria-hidden="true" />
               <span>Updated {article.lastUpdated}</span>
             </div>
-            {article.downloadable && article.downloadUrl && (
+            {siteConfig.downloadsEnabled && article.downloadable && article.downloadUrl && (
               <GatedDownloadButton
                 href={article.downloadUrl}
                 fileName={article.title}

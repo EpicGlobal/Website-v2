@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Download } from 'lucide-react';
+import { siteConfig } from '@/site/site-config';
 import type { KnowledgeArticle } from '@/app/data/knowledgeArticles';
 import { ACCENT, HEAD, MUTED } from '@/app/components/story/tokens';
 import { CARD_LINK } from './reading';
@@ -27,7 +28,7 @@ export function ArticleCard({ article, showType = true, showDate = true }: { art
       {showDate ? (
         <div className={`mt-auto pt-4 flex items-center justify-between text-xs ${MUTED}`}>
           <span>Updated {article.lastUpdated}</span>
-          {article.downloadable ? <Download className={`w-4 h-4 ${ACCENT}`} aria-hidden="true" /> : null}
+          {siteConfig.downloadsEnabled && article.downloadable ? <Download className={`w-4 h-4 ${ACCENT}`} aria-hidden="true" /> : null}
         </div>
       ) : null}
     </Link>
