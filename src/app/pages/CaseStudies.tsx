@@ -1,13 +1,32 @@
 'use client';
 
-import { ShoppingCart, Globe2, Shield, TrendingUp, ArrowUp, Download } from 'lucide-react';
+import type { ReactNode } from 'react';
+import { ArrowDown, ArrowUp, Download } from 'lucide-react';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, Cell } from 'recharts';
+import dynamic from 'next/dynamic';
+import { ChapterMarker, PopLink } from '@/app/components/story/StoryKit';
+import { BODY, CHAPTER, H1, H2, H3, HEAD, INNER, MUTED, PAGE_BG, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
+import '@/app/components/story/story.css';
+import { ProofMetrics } from '@/app/components/proof/ProofKit';
+import { CARD, CARD_SOFT, TAG } from '@/app/components/proof/proofTokens';
+
+// Charts load after the page so recharts stays out of the first load (recharts never rendered them server-side).
+const CaseStudyChart = dynamic(() => import('@/app/components/proof/CaseStudyChart'), { ssr: false });
+const CHART_HEIGHT: Record<string, number> = {
+  'Fulfillment Optimization': 300,
+  'A/B Testing & Image Optimization': 300,
+  '3P Model Implementation': 400,
+};
 import { siteConfig } from '@/site/site-config';
 
+/*
+ * Case Studies (Tier 2 proof page): numbered chapters in the story-kit layout. 01 is the answer and an index,
+ * then one chapter per study (headline numbers count up, charts and tables rise into place), then the next step.
+ * No pins and no chapter rail; all motion is native CSS (story.css) plus CountUp, so GSAP never loads here.
+ */
 export function CaseStudies() {
   const caseStudies = [
     {
@@ -211,9 +230,11 @@ export function CaseStudies() {
     }
   ];
 
+  const chapterLabel = (n: number, label: string) => <ChapterMarker n={n} label={label} />;
+
   return (
-    <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
-      <SEO 
+    <div className={PAGE_BG}>
+      <SEO
         title="Case Studies - Proven Results from Epic Global Inc."
         description="Real marketplace expansion results: Amazon profitability improvements, multi-marketplace launches, global expansion case studies, and brand protection success stories from Epic Global Inc."
         canonicalUrl={`${siteConfig.url}/case-studies`}
@@ -233,230 +254,149 @@ export function CaseStudies() {
           { name: 'Case Studies', url: `${siteConfig.url}/case-studies` },
         ])}
       />
-      
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="inline-block px-4 py-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-gradient-to-r orange:from-orange-700 orange:to-orange-800 orange:shadow-lg leaf:bg-cyan-600/20 water:bg-gradient-to-r water:from-emerald-700 water:to-emerald-800 water:shadow-lg water:shadow-emerald-500/20 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-white leaf:text-cyan-900 water:text-white rounded-full text-sm font-semibold tracking-wide mb-6">
-            REAL RESULTS
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-600 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828] bg-clip-text text-transparent leading-tight">
-            Case Studies
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-800 water:text-[#101828] leading-relaxed">
+
+      {/* 01 Real results: answer first, then an index of the studies on this page. */}
+      <section id="overview" className="scroll-mt-20 pt-28 pb-0 px-4 sm:px-6 lg:px-8">
+        <div className={INNER}>
+          {chapterLabel(1, 'Real results')}
+          <h1 className={`${H1} mb-6`}>Case Studies</h1>
+          <p className={`text-xl leading-relaxed ${BODY} max-w-3xl mb-10`}>
             See how Epic Global transforms eCommerce performance through our Buy-Sell-Advertise-Protect model
           </p>
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {caseStudies.map((study) => (
+              <li key={study.id}>
+                <a href={`#${study.anchor}`} className={`${CARD} group flex h-full items-start justify-between gap-4 p-6 transition-colors hover:bg-white/10 orange:hover:bg-white light:hover:bg-gray-50`}>
+                  <span>
+                    <span className={`block text-sm font-semibold ${MUTED}`}>{study.client}</span>
+                    <span className={`mt-1 block text-lg font-semibold leading-snug ${HEAD}`}>{study.title}</span>
+                    <span className={`mt-2 block text-sm ${MUTED}`}>{study.industry} | {study.region}</span>
+                  </span>
+                  <ArrowDown aria-hidden="true" className={`mt-1 h-5 w-5 shrink-0 transition-transform group-hover:translate-y-0.5 ${HEAD}`} />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto space-y-12">
-          {caseStudies.map((study) => (
-            <div
-              key={study.id}
-              id={study.anchor}
-              className="scroll-mt-32 bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20"
-            >
-              {/* Pillar Tags */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {study.pillar.map((p) => (
-                  <span
-                    key={p}
-                    className="px-3 py-1 text-xs font-semibold rounded-full bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-orange-100 leaf:bg-cyan-600/20 water:bg-emerald-100 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-700 orange:text-orange-700 leaf:text-cyan-900 water:text-emerald-800"
-                  >
-                    {p}
-                  </span>
-                ))}
+      {/* 02-03 One chapter per study: headline numbers count up, then goals, challenges, execution and results. */}
+      {caseStudies.map((study, studyIdx) => (
+        <section key={study.id} id={study.anchor} data-chapter className={CHAPTER}>
+          <div className={INNER}>
+            {chapterLabel(studyIdx + 2, study.client)}
+
+            <div className="flex flex-wrap gap-2 mb-5">
+              {study.pillar.map((p) => (
+                <span key={p} className={TAG}>{p}</span>
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between mb-4">
+              <h2 className={`${H2} max-w-3xl`}>{study.title}</h2>
+              {study.googleDriveUrl && (
+                <GatedDownloadButton
+                  href={study.googleDriveUrl}
+                  fileName={study.title}
+                  fileType="case-study"
+                  className={`${QUIET_BUTTON} shrink-0 self-start !px-4 !py-2 text-sm`}
+                  title="Download Case Study"
+                >
+                  <Download className="w-4 h-4" aria-hidden="true" />
+                  Download Case Study
+                </GatedDownloadButton>
+              )}
+            </div>
+
+            <p className={`flex flex-wrap gap-2 text-sm mb-10 ${MUTED}`}>
+              <span>{study.client}</span>
+              <span aria-hidden="true">|</span>
+              <span>{study.industry}</span>
+              <span aria-hidden="true">|</span>
+              <span>{study.region}</span>
+            </p>
+
+            {study.keyMetrics && (
+              <div className="mb-10">
+                <ProofMetrics metrics={study.keyMetrics} />
               </div>
+            )}
 
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 flex items-center gap-3">
-                {study.title}
-                {study.googleDriveUrl && (
-                  <GatedDownloadButton
-                    href={study.googleDriveUrl}
-                    fileName={study.title}
-                    fileType="case-study"
-                    className="inline-flex p-2 bg-cyan-500/10 dark:bg-cyan-500/10 soft-dark:bg-lime-600/20 light:bg-cyan-100 orange:bg-orange-100 leaf:bg-cyan-600/20 water:bg-emerald-100 rounded-lg hover:opacity-80 transition-opacity"
-                    title="Download Case Study"
-                  >
-                    <Download className="w-4 h-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-700 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800" />
-                  </GatedDownloadButton>
-                )}
-              </h2>
+            <div>
+              <Row title="Goals">
+                <p className={`text-lg leading-relaxed max-w-3xl ${BODY}`}>{study.goals}</p>
+              </Row>
 
-              <div className="flex flex-wrap gap-2 text-sm mb-6 text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-gray-700 leaf:text-gray-600 water:text-gray-700">
-                <span>{study.client}</span>
-                <span>|</span>
-                <span>{study.industry}</span>
-                <span>|</span>
-                <span>{study.region}</span>
-              </div>
+              <Row title="Initial Challenges / Pain Points">
+                <ol className="space-y-5 max-w-3xl">
+                  {study.challengeDetails.map((challenge, idx) => (
+                    <li key={idx}>
+                      <h4 className={`font-semibold mb-1.5 ${HEAD}`}>
+                        Challenge {idx + 1}: {challenge.title}
+                      </h4>
+                      <p className={`leading-relaxed ${BODY}`}>{challenge.description}</p>
+                    </li>
+                  ))}
+                </ol>
+              </Row>
 
-              {/* Key Metrics */}
-              {study.keyMetrics && (
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                  {study.keyMetrics.map((metric, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/50 light:bg-gray-100 orange:bg-white/50 leaf:bg-white/50 water:bg-white/50 rounded-lg p-4 border border-white/10 dark:border-white/10 soft-dark:border-white/30 light:border-gray-300 orange:border-gray-300 leaf:border-white/30 water:border-white/30"
-                    >
-                      <div className="text-xs font-medium mb-1 text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-600 orange:text-gray-700 leaf:text-gray-600 water:text-gray-600">
-                        {metric.label}
-                      </div>
-                      <div className="text-2xl font-bold mb-1 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
-                        {metric.value}
-                      </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-500 soft-dark:text-gray-600 light:text-gray-500 orange:text-gray-600 leaf:text-gray-600 water:text-gray-600">
-                        {metric.subtext}
-                      </div>
+              <Row title="Epic Global's Strategy & Execution">
+                <div className="space-y-8">
+                  {study.strategyDetails.map((section, idx) => (
+                    <div key={idx}>
+                      <h4 className={`text-lg font-semibold mb-3 ${HEAD}`}>{section.title}</h4>
+                      <ul className="space-y-3 max-w-3xl">
+                        {section.items.map((item, itemIdx) => (
+                          <li key={itemIdx} className={`leading-relaxed ${BODY}`}>
+                            <span className={`font-semibold ${HEAD}`}>{item.label}:</span> {item.text}
+                          </li>
+                        ))}
+                      </ul>
+                      {section.results && (
+                        <div className={`${CARD_SOFT} mt-5 p-5 max-w-3xl`}>
+                          <p className={`font-semibold mb-2 ${HEAD}`}>Results:</p>
+                          <p className={`leading-relaxed ${BODY}`}>{section.results}</p>
+                          {'resultBullets' in section && section.resultBullets && (
+                            <ul className="mt-3 space-y-2 list-disc pl-5">
+                              {section.resultBullets.map((bullet, bulletIdx) => (
+                                <li key={bulletIdx} className={`leading-relaxed ${BODY}`}>{bullet}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      )}
+                      {'chartData' in section && section.chartData && (
+                        <div data-story="rise" className={`mt-6 rounded-xl border ${RULE} bg-white p-4 sm:p-5`}>
+                          <div style={{ minHeight: CHART_HEIGHT[section.title] ?? 300 }}>
+                            <CaseStudyChart title={section.title} data={section.chartData} />
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
-              )}
+              </Row>
 
-              <div className="space-y-6">
-                {/* Goals */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
-                    Goals
-                  </h3>
-                  <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 leading-relaxed">
-                    {study.goals}
-                  </p>
-                </div>
-
-                {/* Initial Challenges */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-3 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
-                    Initial Challenges / Pain Points
-                  </h3>
-                  <div className="space-y-4">
-                    {study.challengeDetails.map((challenge, idx) => (
-                      <div key={idx}>
-                        <h4 className="font-bold text-gray-200 dark:text-gray-200 soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 mb-2">
-                          Challenge {idx + 1}: {challenge.title}
-                        </h4>
-                        <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 pl-4">
-                          {challenge.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Strategy & Execution */}
-                <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-cyan-50 light:bg-cyan-50 orange:bg-orange-50 leaf:bg-cyan-50 water:bg-emerald-50 rounded-lg p-6 border border-white/10 dark:border-white/10 soft-dark:border-cyan-200 light:border-cyan-200 orange:border-orange-200 leaf:border-cyan-200 water:border-emerald-200">
-                  <h3 className="text-lg font-semibold mb-4 text-cyan-400 dark:text-cyan-400 soft-dark:text-cyan-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
-                    Epic Global's Strategy & Execution
-                  </h3>
+              {study.comparisonTables && study.comparisonTables.length > 0 && (
+                <Row title="Detailed Financial Comparison">
                   <div className="space-y-6">
-                    {study.strategyDetails.map((section, idx) => (
-                      <div key={idx}>
-                        <h4 className="font-bold text-gray-200 dark:text-gray-200 soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 mb-3">
-                          {section.title}
-                        </h4>
-                        <ul className="space-y-2 pl-4">
-                          {section.items.map((item, itemIdx) => (
-                            <li key={itemIdx} className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">
-                              <span className="font-semibold">{item.label}:</span> {item.text}
-                            </li>
-                          ))}
-                        </ul>
-                        {section.results && (
-                          <div className="mt-3 pl-4">
-                            <p className="font-semibold text-gray-200 dark:text-gray-200 soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 mb-2">
-                              Results:
-                            </p>
-                            <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-2">
-                              {section.results}
-                            </p>
-                            {'resultBullets' in section && section.resultBullets && (
-                              <ul className="space-y-1">
-                                {section.resultBullets.map((bullet, bulletIdx) => (
-                                  <li key={bulletIdx} className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">
-                                    - {bullet}
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </div>
-                        )}
-                        {'chartData' in section && section.chartData && (
-                          <div className="mt-4 bg-white dark:bg-white soft-dark:bg-white light:bg-white orange:bg-white leaf:bg-white water:bg-white rounded-lg p-4">
-                            {section.title === 'Fulfillment Optimization' ? (
-                              <ResponsiveContainer width="100%" height={300}>
-                                <BarChart data={section.chartData}>
-                                  <CartesianGrid strokeDasharray="3 3" />
-                                  <XAxis dataKey="product" />
-                                  <YAxis label={{ value: 'FBA Fees ($)', angle: -90, position: 'insideLeft' }} />
-                                  <Tooltip />
-                                  <Legend formatter={(value) => <span className="text-gray-200 dark:text-gray-200 soft-dark:text-gray-800 light:text-slate-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700">{value}</span>} />
-                                  <Bar dataKey="before" fill="#64748b" name="Before" />
-                                  <Bar dataKey="after" fill="#16a34a" name="After" />
-                                </BarChart>
-                              </ResponsiveContainer>
-                            ) : section.title === 'A/B Testing & Image Optimization' ? (
-                              <ResponsiveContainer width="100%" height={300}>
-                                <BarChart data={section.chartData}>
-                                  <CartesianGrid strokeDasharray="3 3" />
-                                  <XAxis dataKey="product" />
-                                  <YAxis label={{ value: 'Conversion Rate (%)', angle: -90, position: 'insideLeft' }} />
-                                  <Tooltip />
-                                  <Legend formatter={(value) => <span className="text-gray-200 dark:text-gray-200 soft-dark:text-gray-800 light:text-slate-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700">{value}</span>} />
-                                  <Bar dataKey="control" fill="#64748b" name="Control" />
-                                  <Bar dataKey="variant" name="Variant">
-                                    {section.chartData.map((entry: any, index: number) => (
-                                      <Cell key={`cell-${index}`} fill={entry.success ? '#22c55e' : '#ef4444'} />
-                                    ))}
-                                  </Bar>
-                                </BarChart>
-                              </ResponsiveContainer>
-                            ) : section.title === '3P Model Implementation' ? (
-                              <ResponsiveContainer width="100%" height={400}>
-                                <BarChart data={section.chartData} layout="vertical">
-                                  <CartesianGrid strokeDasharray="3 3" />
-                                  <XAxis type="number" label={{ value: 'Amount ($)', position: 'bottom' }} />
-                                  <YAxis type="category" dataKey="product" width={150} />
-                                  <Tooltip />
-                                  <Legend formatter={(value) => <span className="text-gray-200 dark:text-gray-200 soft-dark:text-gray-800 light:text-slate-700 orange:text-slate-700 leaf:text-slate-700 water:text-slate-700">{value}</span>} />
-                                  <Bar dataKey="model1P_net" fill="#ef4444" name="1P Net Revenue" />
-                                  <Bar dataKey="model3P_net" fill="#16a34a" name="3P Net Revenue" />
-                                </BarChart>
-                              </ResponsiveContainer>
-                            ) : null}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Comparison Tables (for Auto Parts case study) */}
-                {study.comparisonTables && study.comparisonTables.length > 0 && (
-                  <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
-                      Detailed Financial Comparison
-                    </h3>
                     {study.comparisonTables.map((table, tableIdx) => (
-                      <div key={tableIdx} className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/50 light:bg-white orange:bg-white/50 leaf:bg-white/50 water:bg-white/50 rounded-lg p-6 border border-white/10 dark:border-white/10 soft-dark:border-white/30 light:border-gray-300 orange:border-gray-300 leaf:border-white/30 water:border-white/30 overflow-x-auto">
-                        <h4 className="font-bold text-gray-200 dark:text-gray-200 soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 mb-4">
-                          {table.title}
-                        </h4>
-                        <table className="w-full text-left">
+                      <div key={tableIdx} data-story="rise" className={`${CARD} p-5 sm:p-6 overflow-x-auto`}>
+                        <h4 className={`font-semibold mb-4 ${HEAD}`}>{table.title}</h4>
+                        <table className="w-full min-w-[34rem] text-left text-sm sm:text-base">
                           <thead>
-                            <tr className="border-b-2 border-gray-700 dark:border-gray-700 soft-dark:border-gray-300 light:border-gray-300 orange:border-gray-300 leaf:border-gray-300 water:border-gray-300">
-                              <th className="py-3 px-4 font-semibold text-gray-300 dark:text-gray-300 soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Metric</th>
-                              <th className="py-3 px-4 font-semibold text-gray-300 dark:text-gray-300 soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">1P Model (Amazon Retailer)</th>
-                              <th className="py-3 px-4 font-semibold text-gray-300 dark:text-gray-300 soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">3P Model (Epic Global Seller)</th>
+                            <tr className={`border-b-2 ${RULE}`}>
+                              <th scope="col" className={`py-3 pr-4 font-semibold ${HEAD}`}>Metric</th>
+                              <th scope="col" className={`py-3 px-4 font-semibold ${HEAD}`}>1P Model (Amazon Retailer)</th>
+                              <th scope="col" className={`py-3 pl-4 font-semibold ${HEAD}`}>3P Model (Epic Global Seller)</th>
                             </tr>
                           </thead>
                           <tbody>
                             {table.data.map((row, rowIdx) => (
-                              <tr key={rowIdx} className="border-b border-gray-800 dark:border-gray-800 soft-dark:border-gray-200 light:border-gray-200 orange:border-gray-200 leaf:border-gray-200 water:border-gray-200">
-                                <td className="py-3 px-4 font-medium text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800">{row.metric}</td>
-                                <td className="py-3 px-4 text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700">{row.model1P}</td>
-                                <td className="py-3 px-4 font-semibold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">{row.model3P}</td>
+                              <tr key={rowIdx} className={`border-b last:border-b-0 ${RULE}`}>
+                                <th scope="row" className={`py-3 pr-4 font-medium ${HEAD}`}>{row.metric}</th>
+                                <td className={`py-3 px-4 ${BODY}`}>{row.model1P}</td>
+                                <td className={`py-3 pl-4 font-semibold ${HEAD}`}>{row.model3P}</td>
                               </tr>
                             ))}
                           </tbody>
@@ -464,48 +404,55 @@ export function CaseStudies() {
                       </div>
                     ))}
                   </div>
-                )}
+                </Row>
+              )}
 
-                {/* Results */}
-                <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-lime-50 light:bg-cyan-50 orange:bg-orange-50 leaf:bg-cyan-50 water:bg-emerald-50 rounded-lg p-6 border border-white/10 dark:border-white/10 soft-dark:border-lime-200 light:border-cyan-200 orange:border-orange-200 leaf:border-cyan-200 water:border-emerald-200">
-                  <h3 className="text-lg font-semibold mb-3 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800">
-                    Results
-                  </h3>
-                  <ul className="space-y-2">
-                    {study.results.map((result, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <ArrowUp className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800 font-medium">
-                          {result}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      {siteConfig.bookACallEnabled ? (
-        <section className="pb-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-gray-300 leaf:border-white/20 water:border-white/20 text-center">
-              <h2 className="text-3xl font-bold mb-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
-                Ready to Get Similar Results?
-              </h2>
-              <p className="text-lg text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-8">
-                Let's discuss how Epic Global can transform your eCommerce performance
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <CtaButton variant="primary" size="lg" location="Case Studies Page - Final CTA" />
-              </div>
+              <Row title="Results">
+                <ul data-story="fade-up" className={`${CARD} p-6 space-y-3 max-w-3xl`}>
+                  {study.results.map((result, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <ArrowUp aria-hidden="true" className={`w-5 h-5 flex-shrink-0 mt-0.5 ${HEAD}`} />
+                      <span className={`font-medium leading-relaxed ${HEAD}`}>{result}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Row>
             </div>
           </div>
         </section>
-      ) : null}
+      ))}
+
+      {/* 04 Next step: the closing call to action settles in. */}
+      <section id="next-step" data-chapter className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
+        <div data-story="fade-up" className={INNER}>
+          {chapterLabel(caseStudies.length + 2, 'Next step')}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
+            <div className="max-w-2xl">
+              <h2 className={`${H2} mb-4`}>Ready to Get Similar Results?</h2>
+              <p className={`text-lg leading-relaxed ${BODY}`}>
+                Let&apos;s discuss how Epic Global can transform your eCommerce performance
+              </p>
+            </div>
+            {siteConfig.bookACallEnabled ? (
+              <CtaButton variant="primary" size="lg" location="Case Studies Page - Final CTA" className="shrink-0 self-start sm:self-auto" />
+            ) : (
+              <PopLink href={siteConfig.primaryCtaHref} className="shrink-0 self-start sm:self-auto">
+                Request an Assessment
+              </PopLink>
+            )}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+/** One labeled row of a case study: the H3 sits in a left column on wide screens, the content on the right. */
+function Row({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className={`grid gap-4 py-8 border-t ${RULE} lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-10`}>
+      <h3 className={`${H3} lg:pt-0.5`}>{title}</h3>
+      <div className="min-w-0">{children}</div>
     </div>
   );
 }
