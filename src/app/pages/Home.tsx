@@ -247,7 +247,8 @@ export function Home() {
               <p className={`${LEAD} max-w-3xl mb-10`}>
                 Epic Global Inc. buys your inventory upfront and runs your Amazon business, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment; <strong className={`font-semibold ${HEAD}`}>you keep the brand</strong>.
               </p>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              {/* Phones: the button at its natural width, centered, with "How it works" centered under it. */}
+              <div className="flex flex-col items-center sm:flex-row sm:items-center gap-4">
                 <CtaButton variant="primary" size="lg" location="Hero Section" />
                 <Link
                   href="/case-studies"
