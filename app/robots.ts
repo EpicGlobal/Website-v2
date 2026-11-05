@@ -18,6 +18,11 @@ export default function robots(): MetadataRoute.Robots {
           'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
           'PerplexityBot', 'Perplexity-User',
           'Google-Extended', 'Applebot', 'Applebot-Extended', 'CCBot',
+          // Bing (Copilot and ChatGPT search use Bing's index), Meta AI, Amazon (Alexa, Rufus), DuckDuckGo's AI answers,
+          // Mistral's Le Chat. xAI publishes no crawler page; GrokBot, xAI-Grok and Grok-DeepSearch are the names
+          // bot directories report (Nov 2026).
+          'Bingbot', 'meta-externalagent', 'Amazonbot', 'DuckAssistBot', 'MistralAI-User',
+          'GrokBot', 'xAI-Grok', 'Grok-DeepSearch',
         ],
         allow: '/',
       },
