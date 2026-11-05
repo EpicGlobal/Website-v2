@@ -45,6 +45,7 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
   // The first logos (Bucked Up, Young Living...) hold still and fully visible for a moment before the strip moves.
   const HOLD_MS = 3000;
   const [moving, setMoving] = React.useState(false);
+  const [centeredView, setCenteredView] = React.useState(false);
   React.useEffect(() => { const t = setTimeout(() => setMoving(true), HOLD_MS); return () => clearTimeout(t); }, []);
 
   const applyOffset = React.useCallback(() => {
@@ -64,11 +65,22 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
       reducedMotionRef.current = reducedMotionQuery.matches;
     };
 
+    let centered = false;
     const measure = () => {
       const width = group.scrollWidth;
       if (!width) return;
 
       groupWidthRef.current = width;
+      // Desktop: start with the first logo in the middle of the strip (the logos before it are the end of the list).
+      if (!centered && window.innerWidth >= 1024) {
+        const view = wrap.parentElement?.clientWidth ?? 0;
+        const first = group.firstElementChild as HTMLElement | null;
+        if (view && first?.offsetWidth) {
+          offsetRef.current = view / 2 - first.offsetWidth / 2 - width;
+          centered = true;
+          setCenteredView(true);
+        }
+      }
       offsetRef.current = normalizeOffset(offsetRef.current, width);
       applyOffset();
     };
@@ -202,9 +214,9 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
       className="relative overflow-hidden py-2"
       aria-label="Brand logo carousel"
       style={{
-        // Soft fade at both ends so logos glide in and out instead of being cut at the edge.
-        maskImage: moving ? "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)" : "linear-gradient(to right, #000 88%, transparent)",
-        WebkitMaskImage: moving ? "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)" : "linear-gradient(to right, #000 88%, transparent)",
+        // Soft fade at both ends so logos glide in and out. Phones hold the first logos at the left edge with no left fade.
+        maskImage: moving || centeredView ? "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)" : "linear-gradient(to right, #000 88%, transparent)",
+        WebkitMaskImage: moving || centeredView ? "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)" : "linear-gradient(to right, #000 88%, transparent)",
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
