@@ -135,10 +135,10 @@ export function Intelligence() {
           <ChapterMarker n={1} />
           <h1 className={`${H1} mb-8 max-w-4xl`}>Marketplace commerce is becoming machine-run.</h1>
           <p className={`${LEAD} max-w-3xl mb-5`}>
-            The future of global commerce will not be managed by teams. It will be orchestrated by intelligence layers. Epic operates that layer.
+            Epic Global Inc. runs brands&apos; marketplace operations, Amazon first, plus Walmart and international marketplaces, with its own software for demand forecasting, pricing, inventory placement and brand protection, so brands grow without building that system themselves.
           </p>
           <p className={`text-lg leading-relaxed max-w-3xl ${MUTED}`}>
-            While competitors hire more people to manage more complexity, Epic deploys systems that remove the need for human intervention entirely, except where strategic decisions still require operator judgment.
+            Where others add people to manage more complexity, Epic adds systems, and keeps its people on the decisions that need operator judgment.
           </p>
         </div>
       </section>
