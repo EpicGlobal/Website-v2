@@ -49,11 +49,11 @@ function ChapterMarker({ n, accent }: { n: number; accent?: string }) {
 }
 
 const STEPS = [
-  { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own the inventory and take on the retail execution risk.' },
-  { title: 'Sell: we run Amazon, Walmart and other approved marketplaces', body: 'We manage listings, pricing, inventory allocation, fulfillment coordination and catalog integrity on Amazon, Walmart, eBay and international marketplaces.' },
-  { title: 'Advertise: we fund the ads, fees and fulfillment', body: 'Marketplace fees, advertising spend and fulfillment costs are paid by us. This keeps incentives aligned: we only succeed when your brand grows profitably.' },
-  { title: 'Protect: we guard your price and catalog', body: 'We protect your brand on every marketplace we operate: Brand Registry authorization, MAP enforcement, unauthorized-seller removal, and Buy Box and catalog monitoring.' },
-  { title: 'You get visibility and control', body: 'You get a shared dashboard from day one, monthly reports with SKU-level sales, advertising and inventory, and quarterly business reviews. You stay informed and keep approval rights over major decisions.' },
+  { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own it, and the retail risk.' },
+  { title: 'Sell: we run Amazon, Walmart and other approved marketplaces', body: 'We run listings, pricing and inventory on Amazon, Walmart, eBay and international marketplaces.' },
+  { title: 'Advertise: we fund the ads, fees and fulfillment', body: 'We pay the ad spend, marketplace fees and fulfillment, so we only win when you do.' },
+  { title: 'Protect: we guard your price and catalog', body: 'Brand Registry authorization, MAP enforcement, unauthorized-seller removal, and Buy Box and catalog monitoring.' },
+  { title: 'You get visibility and control', body: 'A shared dashboard from day one, monthly reports, quarterly reviews, and your approval on major decisions.' },
 ];
 
 const WE_DONT = [
