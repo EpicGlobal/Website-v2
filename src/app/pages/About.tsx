@@ -126,11 +126,8 @@ export function About() {
           <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-8 leading-[1.08] max-w-4xl ${HEAD}`}>
             We run marketplace growth like operations, not marketing.
           </h1>
-          <p className={`text-lg sm:text-xl leading-relaxed max-w-3xl mb-5 ${BODY}`}>
-            Epic Global Inc. is an Amazon-first wholesale trade partner that also runs Walmart and international marketplaces. We buy your inventory upfront at wholesale, run your storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect your brand. We own the inventory, so the retail execution risk is ours.
-          </p>
-          <p className={`text-lg leading-relaxed max-w-3xl mb-12 ${MUTED}`}>
-            The same model works for U.S. growth and international expansion: whether a brand is underperforming in the United States, losing margin to fees, or getting ready to sell abroad.
+          <p className={`text-lg sm:text-xl leading-relaxed max-w-3xl mb-12 ${BODY}`}>
+            Epic Global Inc. is an Amazon-first wholesale trade partner that also runs Walmart and international marketplaces. We buy your inventory upfront and pay the ads, fees and fulfillment, for U.S. growth or selling abroad.
           </p>
           <dl className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
             {facts.map((f) => (
@@ -178,16 +175,10 @@ export function About() {
               <h2 className={H2}>Glen Jensen</h2>
               <p className={`mt-1 mb-8 text-lg ${MUTED}`}>Founder &amp; CEO</p>
               <p data-story="lit-step" className={`leading-relaxed mb-5 ${BODY}`}>
-                {"Glen Jensen is the founder and CEO of Epic Global Inc., an Amazon-first wholesale trade partner. Epic buys brands' inventory and sells it on Amazon, plus Walmart and international marketplaces, so brands can grow without running those marketplaces themselves."}
-              </p>
-              <p data-story="lit-step" className={`leading-relaxed mb-5 ${BODY}`}>
-                {"Instead of following the agency model, Glen built Epic on a wholesale partnership that ties Epic's success to the brand's. Epic buys the inventory upfront, invests its own capital, and takes responsibility for marketplace advertising, logistics and day-to-day execution. Brands reach more marketplaces without carrying that financial and operational load."}
-              </p>
-              <p data-story="lit-step" className={`leading-relaxed mb-5 ${BODY}`}>
-                {"Under Glen's leadership, Epic has grown into an international company operating in about 40 countries across North and South America, Europe and Asia-Pacific. Every partner's brand equity is protected: the brand keeps its Brand Registry, and Epic enforces its minimum advertised price and works to remove unauthorized sellers."}
+                {"Glen Jensen is the founder and CEO of Epic Global Inc., an Amazon-first wholesale trade partner. Instead of an agency, he built Epic on a wholesale partnership: Epic buys the inventory upfront with its own capital and runs the advertising, logistics and day-to-day execution."}
               </p>
               <p data-story="lit-step" className={`leading-relaxed ${BODY}`}>
-                {"Glen's approach centers on innovation, accountability and execution, with a forward-looking focus on technology and automation. His vision is simple:"}
+                {"Under Glen, Epic has grown to about 40 countries across North and South America, Europe and Asia-Pacific. Brands keep their Brand Registry, and Epic enforces their minimum advertised price. His vision is simple:"}
               </p>
               <blockquote className="mt-8">
                 <p className={`text-2xl sm:text-3xl font-semibold leading-snug tracking-tight ${HEAD}`}>
