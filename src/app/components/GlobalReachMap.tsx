@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { ACCENT, BODY, HEAD, MUTED, RULE } from '@/app/components/story/tokens';
 import { motion } from 'framer-motion';
 import { geoPath, geoMercator } from 'd3-geo';
 import { feature } from 'topojson-client';
@@ -18,7 +19,7 @@ const countryData = [
     country: 'Canada',
     code: 'CAN',
     region: 'North America',
-    marketplaces: ['Amazon', 'eBay'],
+    marketplaces: ['Amazon', 'Walmart', 'eBay'],
     color: '#22d3ee',
   },
   
@@ -58,7 +59,7 @@ const countryData = [
     country: 'United Kingdom',
     code: 'GBR',
     region: 'Europe',
-    marketplaces: ['Amazon'],
+    marketplaces: ['Amazon', 'eBay'],
     color: '#22d3ee',
   },
   {
@@ -295,6 +296,20 @@ const countryData = [
     color: '#22d3ee',
   },
 ];
+
+/** The crawler-readable list: regions in map order, the wide one last; inside each, countries with the same marketplaces share a row. */
+function regionGroups() {
+  return Array.from(new Set(countryData.map((c) => c.region))).map((region) => {
+    const inRegion = countryData.filter((c) => c.region === region);
+    const rows = new Map<string, { names: string[]; marketplaces: string[] }>();
+    for (const c of inRegion) {
+      const key = c.marketplaces.join('|');
+      if (!rows.has(key)) rows.set(key, { names: [], marketplaces: c.marketplaces });
+      rows.get(key)!.names.push(c.country);
+    }
+    return { region, countries: inRegion.length, rows: Array.from(rows.values()) };
+  }).sort((a, b) => Number(a.countries > 10) - Number(b.countries > 10)); // the wide card (Europe) goes last
+}
 
 export function GlobalReachMap() {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
@@ -968,26 +983,37 @@ export function GlobalReachMap() {
         </div>
       </div>
 
-      {/* The same markets as plain text in the page HTML for search/AI crawlers; folded shut so the page stays clean */}
+      {/* The same markets as plain text in the page HTML for search/AI crawlers; folded shut so the page stays clean.
+          Open, it shows one card per region; countries that share the same marketplaces sit on one row. */}
       <details className="mt-8 group">
-        <summary className="inline-flex cursor-pointer list-none items-center gap-2 rounded-full border border-current/20 px-4 py-1.5 text-sm font-medium opacity-80 hover:opacity-100 [&::-webkit-details-marker]:hidden text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">
-          <span className="group-open:hidden">See all countries and marketplaces</span>
+        <summary className={`inline-flex cursor-pointer list-none items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium hover:border-[var(--pop)] [&::-webkit-details-marker]:hidden ${RULE} ${HEAD}`}>
+          <span className="group-open:hidden">See all {countryData.length} countries and marketplaces</span>
           <span className="hidden group-open:inline">Hide the list</span>
           <span aria-hidden="true" className="transition-transform group-open:rotate-180">▾</span>
         </summary>
-        <h3 className="mt-6 text-base font-semibold mb-3 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">Countries and marketplaces</h3>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from(new Set(countryData.map((c) => c.region))).map((region) => (
-            <div key={region}>
-              <p className="text-sm font-semibold mb-1 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">{region}</p>
-              <ul className="text-sm space-y-0.5 text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] leaf:text-[#101828]">
-                {countryData
-                  .filter((c) => c.region === region)
-                  .map((c) => (
-                    <li key={c.code}>
-                      {c.country}: {c.marketplaces.join(', ')}
-                    </li>
-                  ))}
+        <h3 className={`mt-8 mb-4 text-lg font-semibold ${HEAD}`}>Countries and marketplaces by region</h3>
+        <div className="grid gap-4 md:grid-cols-2 items-start">
+          {regionGroups().map(({ region, countries, rows }) => (
+            <div
+              key={region}
+              className={`rounded-xl border p-5 ${RULE} bg-white/5 orange:bg-white/70 light:bg-white leaf:bg-white/70 water:bg-white/70 soft-dark:bg-white/80 ${countries > 10 ? 'md:col-span-2' : ''}`}
+            >
+              <div className="flex items-baseline justify-between gap-4 mb-3">
+                <h4 className={`font-semibold ${HEAD}`}>{region}</h4>
+                <span className={`text-xs ${MUTED}`}>{countries} {countries === 1 ? 'country' : 'countries'}</span>
+              </div>
+              <ul className="space-y-3">
+                {rows.map((row) => (
+                  <li key={row.names.join()} className="text-sm leading-relaxed">
+                    <span className={BODY}>{row.names.join(', ')}</span>
+                    <span className="sr-only">: </span>
+                    <span className="mt-1.5 flex flex-wrap gap-1.5">
+                      {row.marketplaces.map((m) => (
+                        <span key={m} className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${RULE} ${ACCENT}`}>{m}</span>
+                      ))}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
