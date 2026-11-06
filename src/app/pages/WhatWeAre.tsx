@@ -10,6 +10,7 @@ import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema, serviceSchemas } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
+import { QuickAnswers } from '@/app/components/QuickAnswers';
 import { CompareTable } from '@/app/components/ourmodel/CompareTable';
 import { FitColumns } from '@/app/components/home/SkimSections';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
@@ -243,6 +244,14 @@ export function WhatWeAre() {
       <section id="questions" data-chapter className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
         <div data-story="fade-up" className={INNER}>
           <ChapterMarker n={6} />
+          <QuickAnswers
+            id="our-model-answers"
+            questions={[
+              "Will Epic buy my brand's inventory?",
+              'Do you charge retainers, hourly rates or project fees?',
+              'Do we keep our Brand Registry, listings, reviews and rank?',
+            ]}
+          />
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
             <div className="max-w-2xl">
               <h2 className={`${H2} mb-4`}>Questions about how this works?</h2>

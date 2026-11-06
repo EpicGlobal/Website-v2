@@ -10,6 +10,7 @@ import { MarkTable } from '@/app/components/home/SkimSections';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
+import { QuickAnswers } from '@/app/components/QuickAnswers';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink } from '@/app/components/story/StoryKit';
 import { ACCENT, BODY, CARD_HOVER, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
@@ -268,6 +269,14 @@ export function Intelligence() {
       <section id="next" data-chapter className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
         <div data-story="fade-up" className={INNER}>
           <ChapterMarker n={5} />
+          <QuickAnswers
+            id="intelligence-answers"
+            questions={[
+              'How do you handle brand protection, MAP and unauthorized sellers?',
+              'What kind of reporting and visibility do we get?',
+              'Who runs and pays for advertising?',
+            ]}
+          />
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
             <div className="max-w-2xl">
               <h2 className={`${H2} mb-4`}>You don&apos;t build the system. Epic runs it for you.</h2>
