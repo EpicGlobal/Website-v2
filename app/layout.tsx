@@ -10,7 +10,7 @@ import tabLogo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Wholesale Trade Partner for Amazon Brands`,
+    default: `${siteConfig.name} | Wholesale Trade Partner That Buys Your Inventory`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: siteConfig.url,
-    title: `${siteConfig.name} | Wholesale Trade Partner for Amazon Brands`,
+    title: `${siteConfig.name} | Wholesale Trade Partner That Buys Your Inventory`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     locale: 'en_US',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${siteConfig.name} | Wholesale Trade Partner for Amazon Brands`,
+    title: `${siteConfig.name} | Wholesale Trade Partner That Buys Your Inventory`,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },

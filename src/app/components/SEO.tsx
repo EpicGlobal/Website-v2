@@ -16,7 +16,7 @@ interface SEOProps {
 }
 
 export function SEO({
-  title = 'Epic Global Inc. - Wholesale Trade Partner for Amazon Brands',
+  title = 'Epic Global Inc. | Wholesale Trade Partner That Buys Your Inventory',
   description = 'Epic Global Inc. is a wholesale trade partner and global marketplace operator. We buy your inventory upfront at wholesale, sell it on Amazon, Walmart and other marketplaces, and pay for the advertising, marketplace fees and fulfillment.',
   keywords = 'global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, wholesale trade partner, global retail, cross-border ecommerce, marketplace management, brand protection',
   canonicalUrl = `${siteConfig.url}/`,
