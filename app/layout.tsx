@@ -92,6 +92,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        {/* Short and full plain-text summaries of the site for AI assistants. */}
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt" />
+      </head>
       <body>
         {!isWebsitePreview && wafIntegrationUrl ? (
           <Script
