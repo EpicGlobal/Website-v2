@@ -149,7 +149,7 @@ export function Home() {
     { name: 'Make Wellness', logo: makeWellnessLogo, tone: 'light' },
     { name: 'Novex Biotech', logo: novexBiotechLogo, tone: 'dark' },
     { name: 'Muscle Moose', logo: muscleMooseLogo, tone: 'deep' },
-    { name: 'Midisem', logo: midisemLogo, keepColor: true },
+    { name: 'Midisem', logo: midisemLogo, badge: true },
     { name: 'Lionstrike', logo: lionStrikeLogo, tone: 'dark' },
     { name: 'Neumi', logo: neumiLogo, tone: 'dark' },
     { name: 'Mixhers', logo: mixhersLogo },

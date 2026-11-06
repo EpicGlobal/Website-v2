@@ -7,8 +7,8 @@ type BrandLogo = StaticImageData;
 /**
  * All logos show in one color (white on the dark theme, near-black on the light themes) so the strip reads as one
  * calm row. On mouse hover a logo pops (grows a little) and shows its real colors; the tone below only fixes those
- * real colors so they still read on the theme. A logo marked keepColor (a solid badge that would become a blank
- * square in one color) always shows its own colors.
+ * real colors so they still read on the theme. A logo marked badge (a solid square badge that would become a blank
+ * square in one color) goes grey instead, so its inner mark stays visible.
  *
  * Tone, used on hover only:
  * - light: a white or very pale logo, shown dark on the light themes (natural on dark).
@@ -50,7 +50,7 @@ function normalizeOffset(value: number, width: number) {
   return normalized;
 }
 
-export type MarqueeBrand = { name: string; logo: BrandLogo; tone?: LogoTone; keepColor?: boolean };
+export type MarqueeBrand = { name: string; logo: BrandLogo; tone?: LogoTone; badge?: boolean };
 
 export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
   const wrapRef = React.useRef<HTMLDivElement | null>(null);
@@ -251,7 +251,7 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
       <div ref={wrapRef} className={`marquee${isDragging ? " is-dragging" : ""}`}>
         <div ref={groupRef} className="marquee__group">
           {brands.map((brand, index) => (
-            <div key={`g1-${index}`} className="logo" data-tone={brand.tone} data-keep-color={brand.keepColor ? "" : undefined} style={logoSize(brand.logo)}>
+            <div key={`g1-${index}`} className="logo" data-tone={brand.tone} data-badge={brand.badge ? "" : undefined} style={logoSize(brand.logo)}>
               <Image src={brand.logo} alt={brand.name} title={brand.name} sizes="240px" className="object-contain" />
             </div>
           ))}
@@ -259,7 +259,7 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
 
         <div className="marquee__group" aria-hidden="true">
           {brands.map((brand, index) => (
-            <div key={`g2-${index}`} className="logo" data-tone={brand.tone} data-keep-color={brand.keepColor ? "" : undefined} style={logoSize(brand.logo)}>
+            <div key={`g2-${index}`} className="logo" data-tone={brand.tone} data-badge={brand.badge ? "" : undefined} style={logoSize(brand.logo)}>
               <Image src={brand.logo} alt="" sizes="240px" className="object-contain" />
             </div>
           ))}
@@ -302,7 +302,8 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
         .logo img{ transition: filter 300ms, opacity 300ms; }
         .dark .logo img{ filter: brightness(0) invert(1); opacity: .85; }
         html:not(.dark) .logo img{ filter: brightness(0); opacity: .75; }
-        .marquee .logo[data-keep-color] img{ filter: none; opacity: 1; }
+        .dark .marquee .logo[data-badge] img{ filter: grayscale(1) brightness(1.6) contrast(1.1); }
+        :where(html:not(.dark)) .marquee .logo[data-badge] img{ filter: grayscale(1) brightness(0.5) contrast(1.4); }
         /* Mouse hover: the logo pops out a little and shows its real colors (tone keeps them readable on the theme). */
         @media (hover: hover){
           .marquee:not(.is-dragging) .logo:hover{ transform: scale(1.12); }
