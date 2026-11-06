@@ -123,7 +123,7 @@ export function Home() {
   useScrollStory(rootRef, homeBeats);
 
   const brands: { name: string; logo: StaticImageData; tone?: LogoTone }[] = [
-    { name: 'BUCKED UP', logo: buckedUpLogo },
+    { name: 'BUCKED UP', logo: buckedUpLogo, tone: 'pale' },
     { name: 'Young Living', logo: youngLivingLogo, tone: 'pale' },
     { name: 'Think Smarter Products', logo: thinkSmarterProductsLogo, tone: 'deep' },
     { name: 'Younique', logo: youniqueLogo, tone: 'dark' },
