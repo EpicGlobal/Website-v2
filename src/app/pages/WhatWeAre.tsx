@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRef } from 'react';
 import Image from 'next/image';
-import { ArrowDown, ArrowRight, BarChart3, Building2, Cpu, Database, Globe2, Package, Search, Shield, ShoppingCart, Users, X } from 'lucide-react';
+import { BarChart3, Cpu, Database, Globe2, Package, Search, Shield, ShoppingCart, X } from 'lucide-react';
 import epicMark from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
@@ -20,9 +20,9 @@ import { siteConfig } from '@/site/site-config';
 
 /*
  * Our Model, redesigned Nov 6 (Brex): the detailed version of the homepage, in the same order of thought.
- * 01 the model as a picture (how goods and money flow: your brand -> Epic -> shoppers), 02 the five steps lighting up
+ * 01 the model in four lines beside the title, laid out like the homepage hero (Epic's two lines lit), 02 the five steps lighting up
  * as you scroll, 03 what we run day to day, 04 how we compare (table, then what we don't do), 05 who it's for,
- * 06 questions. Cards use the site-wide hover glow; Epic's card in the flow is the one lit (pop) moment.
+ * 06 questions. Cards use the site-wide hover glow; Epic's lines in the hero are the one lit (pop) moment.
  * The rail (wide screens) shows where you are. Phones get the same text as a calm static page.
  */
 
@@ -51,24 +51,13 @@ function ChapterMarker({ n, accent }: { n: number; accent?: string }) {
   return <KitChapterMarker n={n} label={CHAPTERS[n - 1].label} accent={accent} />;
 }
 
-/** The model as a picture: who does what, left to right. Epic's card is the lit one. */
-const FLOW = [
-  { who: 'You', icon: Building2, title: 'Your brand', body: 'Sells us inventory at an agreed wholesale price. You get paid for it; we own the stock.' },
-  { who: 'Epic', icon: null, title: 'Epic Global Inc.', body: 'Lists, advertises and ships it on Amazon, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment.' },
-  { who: 'Shoppers', icon: Users, title: 'Shoppers', body: 'Buy your products at retail. Epic earns its margin only when they sell.' },
+/** The model in four lines (hero, right column). Epic's two lines are lit; yours are quieter. */
+const MODEL_LINES = [
+  { who: 'You', lead: 'You make it.', body: 'You build the product and the brand.' },
+  { who: 'Epic', lead: 'buy', body: 'Upfront, at an agreed wholesale price. You get paid; we own the stock.' },
+  { who: 'Epic', lead: 'sell', body: 'On Amazon, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment.' },
+  { who: 'You', lead: 'You keep the brand.', body: 'Brand Registry, listings and reviews stay yours, and we enforce your MAP.' },
 ] as const;
-
-// A ring (not a shadow), so the card's own shadow and the hover glow can't wipe it out.
-const LIT = 'ring-2 ring-[var(--pop)]';
-
-function FlowArrow() {
-  return (
-    <div aria-hidden="true" className={`flex items-center justify-center py-1 lg:py-0 ${MUTED}`}>
-      <ArrowDown className="w-5 h-5 lg:hidden" />
-      <ArrowRight className="w-5 h-5 hidden lg:block" />
-    </div>
-  );
-}
 
 const STEPS = [
   { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own it, and the retail risk.' },
@@ -135,39 +124,46 @@ export function WhatWeAre() {
       <section id="what-we-do" data-chapter="hero" className="scroll-mt-20 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div data-story="hero-inner" className={INNER}>
           <ChapterMarker n={1} accent="text-[var(--pop)] orange:text-[#101828]" />
-          <h1 className={`${H1} mb-6 max-w-4xl`}>Our wholesale trade partner model</h1>
-          <p className={`${LEAD} max-w-3xl mb-10`}>
-            Epic Global Inc. is an Amazon-first wholesale trade partner: we buy your inventory upfront and sell it on Amazon, plus Walmart and international marketplaces.
-          </p>
-          <h2 className="sr-only">How the model works, in one picture</h2>
-          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.15fr)_auto_minmax(0,1fr)] lg:items-stretch">
-            {FLOW.map((step, i) => {
-              const Icon = step.icon;
-              const epic = step.who === 'Epic';
-              return [
-                i > 0 ? <FlowArrow key={`arrow-${step.who}`} /> : null,
-                <div key={step.who} className={`${CARD} ${CARD_HOVER} p-6 ${epic ? LIT : ''}`}>
-                  <span className={`${ICON_TILE} mb-5`}>
-                    {Icon ? (
-                      <Icon aria-hidden="true" className="w-5 h-5" />
-                    ) : (
-                      <Image src={epicMark} alt="" className="w-6 h-6 object-contain" />
-                    )}
-                  </span>
-                  <h3 className={`${H3} mb-2`}>{step.title}</h3>
-                  <p className={`leading-relaxed ${BODY}`}>{step.body}</p>
-                </div>,
-              ];
-            })}
-          </div>
-          <div className={`${CARD} mt-3 flex flex-col sm:flex-row sm:items-center gap-4 p-5`}>
-            <Shield aria-hidden="true" className={`w-5 h-5 shrink-0 ${ACCENT}`} />
-            <p className={`flex-1 leading-relaxed ${BODY}`}>
-              <strong className={`font-semibold ${HEAD}`}>You keep your brand.</strong> Your Brand Registry, listings and reviews stay yours, and we enforce your MAP.
-            </p>
-            <a href="#how-it-works" className={`shrink-0 text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
-              How it works &darr;
-            </a>
+          {/* Laid out like the homepage hero: the answer on the left, the model in four lines on the right. */}
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16 lg:items-center">
+            <div>
+              <h1 className={`${H1} mb-6`}>Our wholesale trade partner model</h1>
+              <p className={`${LEAD} mb-8`}>
+                Epic Global Inc. is an Amazon-first wholesale trade partner: we buy your inventory upfront and sell it on Amazon, plus Walmart and international marketplaces.
+              </p>
+              <a href="#how-it-works" className={`text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
+                How it works &darr;
+              </a>
+            </div>
+            <div>
+              <h2 className="sr-only">The model in four lines</h2>
+              <ol className="relative pl-7">
+                {/* The rail: a faint line the full height, lit beside Epic's two lines. */}
+                <span aria-hidden="true" className={`absolute left-0 top-0 bottom-0 w-0.5 bg-current opacity-15 ${MUTED}`} />
+                <span aria-hidden="true" className={`absolute left-0 top-1/4 h-1/2 w-0.5 bg-current shadow-[0_0_14px_currentColor] ${ACCENT}`} />
+                {MODEL_LINES.map((line) => {
+                  const epic = line.who === 'Epic';
+                  return (
+                    <li key={line.lead} className="py-3.5">
+                      <span className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] mb-1 ${epic ? ACCENT : MUTED}`}>
+                        {epic ? <Image src={epicMark} alt="" className="w-4 h-4 object-contain" /> : null}
+                        {line.who}
+                      </span>
+                      <p className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.05] ${HEAD} ${epic ? '' : 'opacity-45'}`}>
+                        {epic ? (
+                          <>
+                            We <span className={ACCENT}>{line.lead}</span> it.
+                          </>
+                        ) : (
+                          line.lead
+                        )}
+                      </p>
+                      <p className={`mt-1.5 leading-relaxed ${epic ? BODY : MUTED}`}>{line.body}</p>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
           </div>
         </div>
       </section>
