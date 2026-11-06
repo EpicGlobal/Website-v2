@@ -7,13 +7,12 @@
 import type { ReactNode } from 'react';
 import { Globe2, Star, Store, Users, type LucideIcon } from 'lucide-react';
 import { CountUp } from '@/app/components/scroll/ScrollEffects';
-import { TrustLogosMarquee, type LogoTone } from '@/app/components/TrustLogosMarquee';
-import type { StaticImageData } from 'next/image';
+import { TrustLogosMarquee, type MarqueeBrand } from '@/app/components/TrustLogosMarquee';
 import { ACCENT, BODY, HEAD, INNER } from '@/app/components/story/tokens';
 import { CARD, ICON_TILE } from './homeStyles';
 import { MARKETPLACE_COUNT } from '@/app/data/markets';
 
-type Brand = { name: string; logo: StaticImageData; tone?: LogoTone };
+type Brand = MarqueeBrand;
 
 const brandsStat = { value: 50, suffix: '+' };
 const countriesStat = { value: 40, prefix: '~' };

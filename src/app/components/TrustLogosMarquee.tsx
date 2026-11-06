@@ -5,7 +5,12 @@ import Image, { type StaticImageData } from "next/image";
 // (the PNGs are 1,000+ px wide but shown at most 176 x 56 px).
 type BrandLogo = StaticImageData;
 /**
- * How a logo is recolored so it reads on every theme without a backdrop behind it:
+ * All logos show in one color (white on the dark theme, near-black on the light themes) so the strip reads as one
+ * calm row. On mouse hover a logo pops (grows a little) and shows its real colors; the tone below only fixes those
+ * real colors so they still read on the theme. A logo marked keepColor (a solid badge that would become a blank
+ * square in one color) always shows its own colors.
+ *
+ * Tone, used on hover only:
  * - light: a white or very pale logo, shown dark on the light themes (natural on dark).
  * - pale:  a light-colored logo, deepened on the light themes and brightened in the dark theme (keeps its colors).
  * - dark:  a black or grey logo, shown white in the dark theme (natural on light).
@@ -45,7 +50,9 @@ function normalizeOffset(value: number, width: number) {
   return normalized;
 }
 
-export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: BrandLogo; tone?: LogoTone }[] }) {
+export type MarqueeBrand = { name: string; logo: BrandLogo; tone?: LogoTone; keepColor?: boolean };
+
+export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
   const wrapRef = React.useRef<HTMLDivElement | null>(null);
   const groupRef = React.useRef<HTMLDivElement | null>(null);
   const groupWidthRef = React.useRef(0);
@@ -244,16 +251,16 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
       <div ref={wrapRef} className={`marquee${isDragging ? " is-dragging" : ""}`}>
         <div ref={groupRef} className="marquee__group">
           {brands.map((brand, index) => (
-            <div key={`g1-${index}`} className="logo" data-tone={brand.tone} style={logoSize(brand.logo)}>
-              <Image src={brand.logo} alt={brand.name} sizes="240px" className="object-contain mix-blend-multiply" />
+            <div key={`g1-${index}`} className="logo" data-tone={brand.tone} data-keep-color={brand.keepColor ? "" : undefined} style={logoSize(brand.logo)}>
+              <Image src={brand.logo} alt={brand.name} title={brand.name} sizes="240px" className="object-contain" />
             </div>
           ))}
         </div>
 
         <div className="marquee__group" aria-hidden="true">
           {brands.map((brand, index) => (
-            <div key={`g2-${index}`} className="logo" data-tone={brand.tone} style={logoSize(brand.logo)}>
-              <Image src={brand.logo} alt="" sizes="240px" className="object-contain mix-blend-multiply" />
+            <div key={`g2-${index}`} className="logo" data-tone={brand.tone} data-keep-color={brand.keepColor ? "" : undefined} style={logoSize(brand.logo)}>
+              <Image src={brand.logo} alt="" sizes="240px" className="object-contain" />
             </div>
           ))}
         </div>
@@ -283,7 +290,7 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
           align-items:center;
           justify-content:center;
           height:5.5rem;
-          transition: opacity 300ms, filter 300ms;
+          transition: transform 250ms ease;
         }
         /* Phones: smaller logos and gaps so the first two (Bucked Up, Young Living) fit side by side. */
         @media (max-width: 639px){
@@ -291,13 +298,24 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
           .logo{ height:4rem; }
           .marquee .logo img{ width:var(--mw); height:var(--mh); }
         }
-        /* Recolor by tone (see LogoTone), so every logo reads on every theme with no box behind it. */
-        html:not(.dark) .logo[data-tone="light"] img{ filter: brightness(0); }
-        html:not(.dark) .logo[data-tone="pale"] img{ filter: brightness(0.6) saturate(1.4); }
-        .dark .logo img{ mix-blend-mode: normal; }
-        .dark .logo[data-tone="dark"] img{ filter: brightness(0) invert(1); }
-        .dark .logo[data-tone="pale"] img,
-        .dark .logo[data-tone="deep"] img{ filter: brightness(1.7) saturate(1.1); }
+        /* One color: white on the dark theme, near-black on the light themes. */
+        .logo img{ transition: filter 300ms, opacity 300ms; }
+        .dark .logo img{ filter: brightness(0) invert(1); opacity: .85; }
+        html:not(.dark) .logo img{ filter: brightness(0); opacity: .75; }
+        .marquee .logo[data-keep-color] img{ filter: none; opacity: 1; }
+        /* Mouse hover: the logo pops out a little and shows its real colors (tone keeps them readable on the theme). */
+        @media (hover: hover){
+          .marquee:not(.is-dragging) .logo:hover{ transform: scale(1.12); }
+          .marquee:not(.is-dragging) .logo:hover img{ filter: none; opacity: 1; }
+          html:not(.dark) .marquee:not(.is-dragging) .logo[data-tone="light"]:hover img{ filter: brightness(0); }
+          html:not(.dark) .marquee:not(.is-dragging) .logo[data-tone="pale"]:hover img{ filter: brightness(0.6) saturate(1.4); }
+          .dark .marquee:not(.is-dragging) .logo[data-tone="dark"]:hover img{ filter: brightness(0) invert(1); }
+          .dark .marquee:not(.is-dragging) .logo[data-tone="pale"]:hover img,
+          .dark .marquee:not(.is-dragging) .logo[data-tone="deep"]:hover img{ filter: brightness(1.7) saturate(1.1); }
+        }
+        @media (prefers-reduced-motion: reduce){
+          .marquee .logo:hover{ transform: none; }
+        }
         .logo img{
           width:var(--dw);
           height:var(--dh);

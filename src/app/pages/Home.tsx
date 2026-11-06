@@ -1,11 +1,10 @@
 'use client';
 
-import type { StaticImageData } from 'next/image';
 import { useRef } from 'react';
 import Link from 'next/link';
 import { ShoppingCart, Globe2, BarChart3, Shield, ArrowRight } from 'lucide-react';
 import { Globe } from '@/app/components/Globe';
-import { type LogoTone } from '@/app/components/TrustLogosMarquee';
+import { type MarqueeBrand } from '@/app/components/TrustLogosMarquee';
 import { BrandsProof } from '@/app/components/home/BrandsProof';
 import { TrustLogosMarquee } from '@/app/components/TrustLogosMarquee';
 import { ScrollHighlightSteps, WordReveal } from '@/app/components/scroll/ScrollEffects';
@@ -122,58 +121,58 @@ export function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
   useScrollStory(rootRef, homeBeats);
 
-  const brands: { name: string; logo: StaticImageData; tone?: LogoTone }[] = [
-    { name: 'BUCKED UP', logo: buckedUpLogo, tone: 'pale' },
+  const brands: MarqueeBrand[] = [
+    { name: 'Bucked Up', logo: buckedUpLogo, tone: 'pale' },
     { name: 'Young Living', logo: youngLivingLogo, tone: 'pale' },
     { name: 'Think Smarter Products', logo: thinkSmarterProductsLogo, tone: 'deep' },
     { name: 'Younique', logo: youniqueLogo, tone: 'dark' },
-    { name: 'ACTIVATION', logo: activationLogo, tone: 'dark' },
+    { name: 'Activation', logo: activationLogo, tone: 'dark' },
     { name: 'ageLOC', logo: ageLOCLogo },
-    { name: 'AP 24', logo: ap24Logo, tone: 'pale' },
+    { name: 'AP24', logo: ap24Logo, tone: 'pale' },
     { name: 'Ambr Group', logo: ambrGroupLogo, tone: 'dark' },
-    { name: 'BONA BOTANICA', logo: bonaBotanicaLogo, tone: 'dark' },
-    { name: 'BEAUTY FOCUS', logo: beautyFocusLogo },
-    { name: 'botalab', logo: botalabLogo, tone: 'dark' },
-    { name: 'bode PRO', logo: bodeProLogo, tone: 'deep' },
-    { name: 'epoch', logo: epochLogo, tone: 'deep' },
-    { name: "Doctor's BEST", logo: doctorsBestLogo, tone: 'pale' },
+    { name: 'Bona Botanica', logo: bonaBotanicaLogo, tone: 'dark' },
+    { name: 'Beauty Focus', logo: beautyFocusLogo },
+    { name: 'Botalab', logo: botalabLogo, tone: 'dark' },
+    { name: 'Bode Pro', logo: bodeProLogo, tone: 'deep' },
+    { name: 'Epoch', logo: epochLogo, tone: 'deep' },
+    { name: "Doctor's Best", logo: doctorsBestLogo, tone: 'pale' },
     { name: 'Gentlemen Republic', logo: gentlemenRepublicLogo, tone: 'dark' },
-    { name: 'H2O CARDIO', logo: h2oCardioLogo, tone: 'dark' },
-    { name: 'ICE ELEMENTS', logo: iceElementsLogo, tone: 'dark' },
-    { name: 'INCELLDERM', logo: incelldermLogo, tone: 'dark' },
+    { name: 'H2O Cardio', logo: h2oCardioLogo, tone: 'dark' },
+    { name: 'Ice Elements', logo: iceElementsLogo, tone: 'dark' },
+    { name: 'Incellderm', logo: incelldermLogo, tone: 'dark' },
     { name: 'Lifening', logo: lifeningLogo, tone: 'dark' },
-    { name: 'HEALTHY home', logo: healthyHomeLogo },
-    { name: 'heroine make', logo: heroineMakeLogo, tone: 'light' },
+    { name: 'Healthy Home', logo: healthyHomeLogo },
+    { name: 'Heroine Make', logo: heroineMakeLogo, tone: 'light' },
     { name: 'K', logo: kLogo, tone: 'light' },
-    { name: 'KINGS', logo: kingsLogo, tone: 'light' },
-    { name: 'life cider', logo: lifeCiderLogo },
-    { name: 'MAKE WELLNESS', logo: makeWellnessLogo, tone: 'light' },
+    { name: 'Kings', logo: kingsLogo, tone: 'light' },
+    { name: 'Life Cider', logo: lifeCiderLogo },
+    { name: 'Make Wellness', logo: makeWellnessLogo, tone: 'light' },
     { name: 'Novex Biotech', logo: novexBiotechLogo, tone: 'dark' },
-    { name: 'MUSCLE MOOSE', logo: muscleMooseLogo, tone: 'deep' },
-    { name: 'MIDISEM', logo: midisemLogo },
-    { name: 'lionstrike', logo: lionStrikeLogo, tone: 'dark' },
-    { name: 'neumi', logo: neumiLogo, tone: 'dark' },
-    { name: 'mixhers', logo: mixhersLogo },
-    { name: 'made', logo: madeLogo, tone: 'dark' },
-    { name: 'Live PURE', logo: livePureLogo, tone: 'dark' },
+    { name: 'Muscle Moose', logo: muscleMooseLogo, tone: 'deep' },
+    { name: 'Midisem', logo: midisemLogo, keepColor: true },
+    { name: 'Lionstrike', logo: lionStrikeLogo, tone: 'dark' },
+    { name: 'Neumi', logo: neumiLogo, tone: 'dark' },
+    { name: 'Mixhers', logo: mixhersLogo },
+    { name: 'Made', logo: madeLogo, tone: 'dark' },
+    { name: 'LivePure', logo: livePureLogo, tone: 'dark' },
     { name: 'NOW Foods', logo: nowLogo, tone: 'deep' },
-    { name: 'PHONESOAP', logo: phoneSoapLogo },
-    { name: 'RADIANSOME', logo: radiansomeLogo, tone: 'dark' },
-    { name: 'PERFECT PRESS', logo: perfectPressLogo, tone: 'dark' },
-    { name: 'plexus', logo: plexusLogo },
-    { name: 'PURE FUEL', logo: pureFuelLogo, tone: 'dark' },
-    { name: 'PHARMANEX', logo: pharmanexLogo, tone: 'pale' },
-    { name: 'NUTRICENTIALS', logo: nutricientialsLogo, tone: 'light' },
-    { name: 'ORGANO', logo: organoLogo, tone: 'deep' },
-    { name: 'NU SKIN', logo: nuSkinLogo, tone: 'deep' },
+    { name: 'PhoneSoap', logo: phoneSoapLogo },
+    { name: 'Radiansome', logo: radiansomeLogo, tone: 'dark' },
+    { name: 'Perfect Press', logo: perfectPressLogo, tone: 'dark' },
+    { name: 'Plexus', logo: plexusLogo },
+    { name: 'Pure Fuel', logo: pureFuelLogo, tone: 'dark' },
+    { name: 'Pharmanex', logo: pharmanexLogo, tone: 'pale' },
+    { name: 'Nutricentials', logo: nutricientialsLogo, tone: 'light' },
+    { name: 'Organo', logo: organoLogo, tone: 'deep' },
+    { name: 'Nu Skin', logo: nuSkinLogo, tone: 'deep' },
     { name: 'SeroVital', logo: seroVitalLogo, tone: 'dark' },
-    { name: 'sutera', logo: suteraLogo, tone: 'dark' },
-    { name: 'thrive', logo: thriveLogo, tone: 'deep' },
-    { name: 'TRANONT', logo: tranontLogo, tone: 'dark' },
+    { name: 'Sutera', logo: suteraLogo, tone: 'dark' },
+    { name: 'Thrive', logo: thriveLogo, tone: 'deep' },
+    { name: 'Tranont', logo: tranontLogo, tone: 'dark' },
     { name: 'Simmtronics', logo: simmtronicsLogo, tone: 'dark' },
     { name: 'Truvy', logo: truvyLogo, tone: 'dark' },
-    { name: 'REUZEL', logo: reuzelLogo, tone: 'dark' },
-    { name: 'RELACORE', logo: relacoreLogo, tone: 'dark' },
+    { name: 'Reuzel', logo: reuzelLogo, tone: 'dark' },
+    { name: 'Relacore', logo: relacoreLogo, tone: 'dark' },
     { name: 'Rodan + Fields', logo: rfLogo, tone: 'pale' },
     { name: 'Zantrex', logo: zantrexLogo, tone: 'dark' },
     { name: 'Zive', logo: ziveLogo, tone: 'dark' },
@@ -276,7 +275,7 @@ export function Home() {
 
       {/* Brands we work with: the logo strip sits right under the hero, still on the first screen. Bucked Up, Young Living,
           Think Smarter and Younique lead. */}
-        <div className="relative z-10 -mt-4 mb-2 px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mt-10 sm:mt-8 mb-2 px-4 sm:px-6 lg:px-8">
           <p className={`${INNER} text-xs font-semibold uppercase tracking-[0.18em] mb-2 ${MUTED}`}>Brands we work with</p>
           <div className="max-w-6xl mx-auto"><TrustLogosMarquee brands={brands} /></div>
         </div>
