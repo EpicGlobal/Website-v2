@@ -3,7 +3,7 @@
 import image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f from '@/assets/7827c6003ae306e0f9f630e11162a9aa55ffdd3f.png';
 import Image from 'next/image';
 import { useRef } from 'react';
-import { Calendar, Globe2, Linkedin, MapPin, Star, Store, Users, type LucideIcon } from 'lucide-react';
+import { Calendar, Globe2, Linkedin, MapPin, Star, UserRound, type LucideIcon } from 'lucide-react';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { StructuredData, founderSchema, getBreadcrumbSchema, getWebPageSchema, organizationSchema, organizationRef } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
@@ -13,7 +13,6 @@ import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink, StepList, Word
 import { ACCENT, ACCENT_BG, BODY, CHAPTER, H2, HEAD, INNER, MUTED, PAGE_BG } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
 import { siteConfig } from '@/site/site-config';
-import { MARKETPLACE_COUNT } from '@/app/data/markets';
 
 /*
  * About page as one scroll story in five chapters. Each chapter opens with a numbered marker whose rule draws in
@@ -76,13 +75,13 @@ export function About() {
     },
   ];
 
-  // Shown as cards from the first paint (same look as the homepage's At a glance); the rating card is the lit one.
+  // Who Epic is, as cards from the first paint (same look as the homepage's At a glance). Brands and marketplaces stay
+  // on the homepage so the two pages don't repeat each other; the rating is the one proof worth repeating (lit, wide).
   const facts: { label: string; value: string; icon: LucideIcon; lit?: boolean }[] = [
     { label: 'On Amazon since', value: '2015', icon: Calendar },
     { label: 'Headquarters', value: 'Lindon, Utah', icon: MapPin },
+    { label: 'Founder & CEO', value: 'Glen Jensen', icon: UserRound },
     { label: 'Countries', value: '~40', icon: Globe2 },
-    { label: 'Brands', value: '50+', icon: Users },
-    { label: 'Marketplaces', value: String(MARKETPLACE_COUNT), icon: Store },
     { label: 'Amazon US seller rating (9,600+ ratings)', value: '4.9/5', icon: Star, lit: true },
   ];
 
@@ -129,7 +128,7 @@ export function About() {
             {facts.map(({ label, value, icon: Icon, lit }) => (
               <div
                 key={label}
-                className={`${CARD} flex flex-col-reverse justify-end p-4 sm:p-5 ${lit ? '!shadow-[0_0_0_2px_var(--pop),0_20px_40px_-20px_var(--pop)]' : ''}`}
+                className={`${CARD} flex flex-col-reverse justify-end p-4 sm:p-5 ${lit ? 'col-span-2 !shadow-[0_0_0_2px_var(--pop),0_20px_40px_-20px_var(--pop)]' : ''}`}
               >
                 <dt className={`text-sm mt-1 leading-snug ${BODY}`}>{label}</dt>
                 <dd>
