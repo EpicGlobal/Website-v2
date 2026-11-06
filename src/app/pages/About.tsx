@@ -3,13 +3,14 @@
 import image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f from '@/assets/7827c6003ae306e0f9f630e11162a9aa55ffdd3f.png';
 import Image from 'next/image';
 import { useRef } from 'react';
-import { Linkedin } from 'lucide-react';
+import { Calendar, Globe2, Linkedin, MapPin, Star, Store, Users, type LucideIcon } from 'lucide-react';
+import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { StructuredData, founderSchema, getBreadcrumbSchema, getWebPageSchema, organizationSchema, organizationRef } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { GlobalReachMap } from '@/app/components/GlobalReachMap';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink, StepList, WordFill } from '@/app/components/story/StoryKit';
-import { ACCENT_BG, BODY, CHAPTER, H2, HEAD, INNER, MUTED, PAGE_BG } from '@/app/components/story/tokens';
+import { ACCENT, ACCENT_BG, BODY, CHAPTER, H2, HEAD, INNER, MUTED, PAGE_BG } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
 import { siteConfig } from '@/site/site-config';
 import { MARKETPLACE_COUNT } from '@/app/data/markets';
@@ -36,22 +37,16 @@ function ChapterMarker({ n, accent }: { n: number; accent?: string }) {
   return <KitChapterMarker n={n} label={CHAPTERS[n - 1].label} accent={accent} />;
 }
 
-/** About's one-off beats: the hero pins while the facts underline, then hands off to the founder chapter. */
+/** About's one-off beats: the hero dims and lifts away as the founder chapter rises over it. */
 const aboutBeats: StoryExtra = (gsap, _ScrollTrigger, root) => {
   const one = (sel: string) => root.querySelector<HTMLElement>(sel);
   const hero = one('[data-chapter="hero"]');
   const founder = one('#founder');
-  if (hero) {
-    gsap
-      .timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: hero, start: 'top top', end: '+=25%', pin: true, scrub: 0.6 } })
-      .from(root.querySelectorAll('[data-story="fact-bar"]'), { scaleX: 0, transformOrigin: 'left center', duration: 1, stagger: 0.6 })
-      .to({}, { duration: 0.4 });
-    if (founder) {
-      gsap.to(one('[data-story="hero-inner"]'), {
-        opacity: 0.2, y: -40, scale: 0.97, transformOrigin: 'left top', ease: 'none',
-        scrollTrigger: { trigger: founder, start: 'top bottom', end: 'top 25%', scrub: 0.6 },
-      });
-    }
+  if (hero && founder) {
+    gsap.to(one('[data-story="hero-inner"]'), {
+      opacity: 0.2, y: -40, scale: 0.97, transformOrigin: 'left top', ease: 'none',
+      scrollTrigger: { trigger: founder, start: 'top bottom', end: 'top 25%', scrub: 0.6 },
+    });
   }
   const bio = one('[data-story="bio"]');
   if (bio) {
@@ -81,13 +76,14 @@ export function About() {
     },
   ];
 
-  const facts = [
-    { label: 'On Amazon since', value: '2015' },
-    { label: 'Headquarters', value: 'Lindon, Utah' },
-    { label: 'Countries', value: '~40' },
-    { label: 'Brands', value: '50+' },
-    { label: 'Marketplaces', value: String(MARKETPLACE_COUNT) },
-    { label: 'Amazon US seller rating (9,600+ ratings)', value: '4.9/5' },
+  // Shown as cards from the first paint (same look as the homepage's At a glance); the rating card is the lit one.
+  const facts: { label: string; value: string; icon: LucideIcon; lit?: boolean }[] = [
+    { label: 'On Amazon since', value: '2015', icon: Calendar },
+    { label: 'Headquarters', value: 'Lindon, Utah', icon: MapPin },
+    { label: 'Countries', value: '~40', icon: Globe2 },
+    { label: 'Brands', value: '50+', icon: Users },
+    { label: 'Marketplaces', value: String(MARKETPLACE_COUNT), icon: Store },
+    { label: 'Amazon US seller rating (9,600+ ratings)', value: '4.9/5', icon: Star, lit: true },
   ];
 
   const aboutPageSchema = getWebPageSchema({
@@ -119,7 +115,7 @@ export function About() {
       {/* Chapter rail (wide screens): real links to each chapter; the line fills as you read. */}
       <ChapterRail chapters={CHAPTERS} label="About page chapters" />
 
-      {/* 01 Who we are: answer first, then the facts people check. Pins briefly on desktop. */}
+      {/* 01 Who we are: answer first, then the facts people check, as cards. */}
       <section id="who-we-are" data-chapter="hero" className="scroll-mt-20 pt-28 lg:pt-36 pb-6 px-4 sm:px-6 lg:px-8">
         <div data-story="hero-inner" className="max-w-5xl mx-auto w-full">
           <ChapterMarker n={1} accent="text-[var(--pop)] orange:text-[#101828]" />
@@ -129,14 +125,28 @@ export function About() {
           <p className={`text-lg sm:text-xl leading-relaxed max-w-3xl mb-12 ${BODY}`}>
             Epic Global Inc. is an Amazon-first wholesale trade partner that also runs Walmart and international marketplaces. We buy your inventory upfront and pay the ads, fees and fulfillment, for U.S. growth or selling abroad.
           </p>
-          <dl className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
-            {facts.map((f) => (
-              <div key={f.label}>
-                <dt className={`text-sm ${MUTED}`}>
-                  <span aria-hidden="true" data-story="fact-bar" className={`block h-[3px] w-12 mb-4 rounded-full ${ACCENT_BG}`} />
-                  {f.label}
-                </dt>
-                <dd className={`text-2xl font-semibold mt-1 tabular-nums ${HEAD}`}>{f.value}</dd>
+          <dl className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+            {facts.map(({ label, value, icon: Icon, lit }) => (
+              <div
+                key={label}
+                className={`${CARD} flex flex-col-reverse justify-end p-4 sm:p-5 ${lit ? '!shadow-[0_0_0_2px_var(--pop),0_20px_40px_-20px_var(--pop)]' : ''}`}
+              >
+                <dt className={`text-sm mt-1 leading-snug ${BODY}`}>{label}</dt>
+                <dd>
+                  <span className="flex items-center justify-between mb-3">
+                    <span aria-hidden="true" className={`${ICON_TILE} !w-9 !h-9 !rounded-lg`}>
+                      <Icon className="w-[18px] h-[18px]" />
+                    </span>
+                    {lit ? (
+                      <span aria-hidden="true" className={`flex gap-0.5 ${ACCENT}`}>
+                        {Array.from({ length: 5 }, (_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                        ))}
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className={`block text-2xl sm:text-3xl font-bold tracking-tight tabular-nums ${HEAD}`}>{value}</span>
+                </dd>
               </div>
             ))}
           </dl>
