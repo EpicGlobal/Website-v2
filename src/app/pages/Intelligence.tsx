@@ -95,22 +95,32 @@ function FlowArrow() {
 }
 
 /**
- * One beat for this page (desktop only, via useScrollStory): when "How it works" comes into view, the flow lights up
- * in order (signals, then Epic's three systems, then actions), once. No pin, no scrub. Everything is fully visible in
- * the HTML and on phones; GSAP only starts from a dimmed state after it loads.
+ * One beat for this page (desktop only, via useScrollStory): "How it works" pins while your scroll lights the flow up
+ * in order (signals, then Epic's three systems, then actions), then releases. Everything is fully visible in the
+ * HTML and on phones; GSAP only starts from a dimmed state after it loads.
  */
 const intelBeats: StoryExtra = (gsap, _ScrollTrigger, root) => {
   const flow = root.querySelector<HTMLElement>('[data-story="flow"]');
   if (!flow) return;
   const q = (sel: string) => Array.from(flow.querySelectorAll<HTMLElement>(sel));
   const [toCore, toActions] = q('[data-flow="arrow"]');
+  // Hold the whole chapter (heading + flow) when it fits under the header; on short laptops hold just the flow.
+  const HEADER = 96;
+  const chapter = flow.closest<HTMLElement>('[data-chapter] > div');
+  const pin = chapter && chapter.offsetHeight + HEADER + 16 <= window.innerHeight
+    ? { trigger: chapter, start: `top ${HEADER}px`, end: '+=90%', pin: true, scrub: 0.6 }
+    : { trigger: flow, start: 'center 55%', end: '+=90%', pin: true, scrub: 0.6 };
   gsap
-    .timeline({ defaults: { ease: 'power2.out' }, scrollTrigger: { trigger: flow, start: 'top 70%', once: true } })
-    .from(q('[data-flow="in"]'), { opacity: 0.2, x: -16, duration: 0.45, stagger: 0.08 })
-    .from(toCore, { opacity: 0, x: -8, duration: 0.3 }, '-=0.1')
-    .from(q('[data-flow="core"]'), { opacity: 0.25, scale: 0.96, duration: 0.6 }, '-=0.05')
-    .from(toActions, { opacity: 0, x: -8, duration: 0.3 }, '-=0.15')
-    .from(q('[data-flow="out"]'), { opacity: 0.2, x: -16, duration: 0.45, stagger: 0.08 }, '-=0.05');
+    .timeline({
+      defaults: { ease: 'power1.out' },
+      scrollTrigger: pin,
+    })
+    .from(q('[data-flow="in"]'), { opacity: 0.15, x: -24, duration: 1, stagger: 0.25 })
+    .from(toCore, { opacity: 0, x: -10, duration: 0.5 })
+    .from(q('[data-flow="core"]'), { opacity: 0.2, scale: 0.95, duration: 1.4 })
+    .from(toActions, { opacity: 0, x: -10, duration: 0.5 })
+    .from(q('[data-flow="out"]'), { opacity: 0.15, x: -24, duration: 1, stagger: 0.25 })
+    .to({}, { duration: 0.6 }); // short hold on the finished flow before the pin releases
 };
 
 export function Intelligence() {
