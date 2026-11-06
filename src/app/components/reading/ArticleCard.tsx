@@ -3,7 +3,7 @@ import { Download } from 'lucide-react';
 import { siteConfig } from '@/site/site-config';
 import type { KnowledgeArticle } from '@/app/data/knowledgeArticles';
 import { ACCENT, HEAD, MUTED } from '@/app/components/story/tokens';
-import { CARD_LINK } from './reading';
+import { CARD_LINK, PILL } from './reading';
 
 /** One Knowledge Base article as a card: category, title, summary, date. Used on the index and under articles. */
 export function ArticleCard({ article, showType = true, showDate = true }: { article: KnowledgeArticle; showType?: boolean; showDate?: boolean }) {
@@ -11,7 +11,7 @@ export function ArticleCard({ article, showType = true, showDate = true }: { art
   return (
     <Link href={`/knowledge-base/${article.slug}`} className={`${CARD_LINK} flex flex-col`}>
       <p className="mb-3 text-xs font-semibold">
-        <span className={ACCENT}>{article.category}</span>
+        <span className={`${PILL} ${ACCENT}`}>{article.category}</span>
         {meta.map((m) => (
           <span key={m} className={`font-normal ${MUTED}`}>
             <span aria-hidden="true"> · </span>

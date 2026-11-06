@@ -10,7 +10,7 @@ import { CtaButton } from '@/app/components/CtaButton';
 import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
 import { ACCENT, BODY, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, RULE } from '@/app/components/story/tokens';
 import { ArticleCard } from '@/app/components/reading/ArticleCard';
-import { MEASURE, SURFACE } from '@/app/components/reading/reading';
+import { MEASURE, PILL, SURFACE } from '@/app/components/reading/reading';
 import '@/app/components/reading/reading.css';
 import { siteConfig } from '@/site/site-config';
 
@@ -124,7 +124,7 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
 
           {/* Article Meta */}
           <p className="mb-5 text-sm font-semibold">
-            <span className={ACCENT}>{article.category}</span>
+            <span className={`${PILL} ${ACCENT}`}>{article.category}</span>
             {meta.map((m) => (
               <span key={m} className={`font-normal ${MUTED}`}>
                 <span aria-hidden="true"> · </span>
