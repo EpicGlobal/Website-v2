@@ -67,7 +67,7 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
   const releaseVelocityRef = React.useRef(0);
   const reducedMotionRef = React.useRef(false);
   const [isDragging, setIsDragging] = React.useState(false);
-  // The first logos (Bucked Up, Young Living...) hold still and fully visible for a moment before the strip moves.
+  // The first logos (Bucked Up, Nu Skin, Younique, Young Living) hold still and fully visible for a moment before the strip moves.
   const HOLD_MS = 3000;
   const [moving, setMoving] = React.useState(false);
   const [centeredView, setCenteredView] = React.useState(false);
@@ -96,12 +96,14 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
       if (!width) return;
 
       groupWidthRef.current = width;
-      // Desktop: start with the first logo in the middle of the strip (the logos before it are the end of the list).
+      // Desktop: start with the first four logos centered in the strip (the logos before them are the end of the list).
       if (!centered && window.innerWidth >= 1024) {
         const view = wrap.parentElement?.clientWidth ?? 0;
         const first = group.firstElementChild as HTMLElement | null;
-        if (view && first?.offsetWidth) {
-          offsetRef.current = view / 2 - first.offsetWidth / 2 - width;
+        const fourth = group.children[Math.min(3, group.children.length - 1)] as HTMLElement | undefined;
+        if (view && first?.offsetWidth && fourth) {
+          const middle = (fourth.offsetLeft + fourth.offsetWidth - first.offsetLeft) / 2;
+          offsetRef.current = view / 2 - middle - width;
           centered = true;
           setCenteredView(true);
         }

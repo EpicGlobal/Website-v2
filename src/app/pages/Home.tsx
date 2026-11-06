@@ -123,9 +123,10 @@ export function Home() {
 
   const brands: MarqueeBrand[] = [
     { name: 'Bucked Up', logo: buckedUpLogo, tone: 'pale' },
+    { name: 'Nu Skin', logo: nuSkinLogo, tone: 'deep' },
+    { name: 'Younique', logo: youniqueLogo, tone: 'dark' },
     { name: 'Young Living', logo: youngLivingLogo, tone: 'pale' },
     { name: 'Think Smarter Products', logo: thinkSmarterProductsLogo, tone: 'deep' },
-    { name: 'Younique', logo: youniqueLogo, tone: 'dark' },
     { name: 'Activation', logo: activationLogo, tone: 'dark' },
     { name: 'ageLOC', logo: ageLOCLogo },
     { name: 'AP24', logo: ap24Logo, tone: 'pale' },
@@ -164,7 +165,6 @@ export function Home() {
     { name: 'Pharmanex', logo: pharmanexLogo, tone: 'pale' },
     { name: 'Nutricentials', logo: nutricientialsLogo, tone: 'light' },
     { name: 'Organo', logo: organoLogo, tone: 'deep' },
-    { name: 'Nu Skin', logo: nuSkinLogo, tone: 'deep' },
     { name: 'SeroVital', logo: seroVitalLogo, tone: 'dark' },
     { name: 'Sutera', logo: suteraLogo, tone: 'dark' },
     { name: 'Thrive', logo: thriveLogo, tone: 'deep' },
@@ -273,8 +273,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Brands we work with: the logo strip sits right under the hero, still on the first screen. Bucked Up, Young Living,
-          Think Smarter and Younique lead. */}
+      {/* Brands we work with: the logo strip sits right under the hero, still on the first screen. Bucked Up, Nu Skin,
+          Younique and Young Living lead (phones show Bucked Up and Nu Skin first). */}
         <div className="relative z-10 mt-10 sm:mt-8 mb-2 px-4 sm:px-6 lg:px-8">
           <p className={`${INNER} text-xs font-semibold uppercase tracking-[0.18em] mb-2 ${MUTED}`}>Brands we work with</p>
           <div className="max-w-6xl mx-auto"><TrustLogosMarquee brands={brands} /></div>
