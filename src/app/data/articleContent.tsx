@@ -343,7 +343,7 @@ export const articleContent: Record<string, () => JSX.Element> = {
         <h2 className="text-3xl font-bold mb-4 text-white">Related Resources</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a href="/knowledge-base/what-is-epic-global-inc" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
-            <h3 className="font-semibold text-cyan-400 mb-1">What is Epic Global Inc</h3>
+            <h3 className="font-semibold text-cyan-400 mb-1">What is Epic Global Inc.?</h3>
             <p className="text-sm text-gray-400">Foundational explanation for brand partners</p>
           </a>
           <a href="/case-studies" className="block p-4 bg-cyan-500/5 border border-cyan-500/20 rounded-lg hover:bg-cyan-500/10 transition-colors">
