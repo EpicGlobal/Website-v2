@@ -10,7 +10,7 @@ import { MarkTable } from '@/app/components/home/SkimSections';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
-import { useScrollStory } from '@/app/components/story/useScrollStory';
+import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink } from '@/app/components/story/StoryKit';
 import { ACCENT, BODY, CARD_HOVER, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
@@ -69,13 +69,13 @@ const SHIFT = [
 
 const CHIP = `${CARD} flex items-center gap-3 px-4 py-3 text-sm ${BODY}`;
 
-function FlowColumn({ title, items, icon: Icon }: { title: string; items: string[]; icon: LucideIcon }) {
+function FlowColumn({ title, items, icon: Icon, step }: { title: string; items: string[]; icon: LucideIcon; step: 'in' | 'out' }) {
   return (
     <div>
       <h3 className={`text-xs font-bold uppercase tracking-[0.16em] mb-3 ${MUTED}`}>{title}</h3>
       <ul className="flex flex-col gap-2.5">
         {items.map((item) => (
-          <li key={item} className={CHIP}>
+          <li key={item} data-flow={step} className={CHIP}>
             <Icon aria-hidden="true" className={`w-4 h-4 shrink-0 ${MUTED}`} />
             {item}
           </li>
@@ -87,16 +87,35 @@ function FlowColumn({ title, items, icon: Icon }: { title: string; items: string
 
 function FlowArrow() {
   return (
-    <div aria-hidden="true" className={`flex justify-center ${MUTED}`}>
+    <div aria-hidden="true" data-flow="arrow" className={`flex justify-center ${MUTED}`}>
       <ArrowDown className="w-5 h-5 lg:hidden" />
       <ArrowRight className="w-5 h-5 hidden lg:block" />
     </div>
   );
 }
 
+/**
+ * One beat for this page (desktop only, via useScrollStory): when "How it works" comes into view, the flow lights up
+ * in order (signals, then Epic's three systems, then actions), once. No pin, no scrub. Everything is fully visible in
+ * the HTML and on phones; GSAP only starts from a dimmed state after it loads.
+ */
+const intelBeats: StoryExtra = (gsap, _ScrollTrigger, root) => {
+  const flow = root.querySelector<HTMLElement>('[data-story="flow"]');
+  if (!flow) return;
+  const q = (sel: string) => Array.from(flow.querySelectorAll<HTMLElement>(sel));
+  const [toCore, toActions] = q('[data-flow="arrow"]');
+  gsap
+    .timeline({ defaults: { ease: 'power2.out' }, scrollTrigger: { trigger: flow, start: 'top 70%', once: true } })
+    .from(q('[data-flow="in"]'), { opacity: 0.2, x: -16, duration: 0.45, stagger: 0.08 })
+    .from(toCore, { opacity: 0, x: -8, duration: 0.3 }, '-=0.1')
+    .from(q('[data-flow="core"]'), { opacity: 0.25, scale: 0.96, duration: 0.6 }, '-=0.05')
+    .from(toActions, { opacity: 0, x: -8, duration: 0.3 }, '-=0.15')
+    .from(q('[data-flow="out"]'), { opacity: 0.2, x: -16, duration: 0.45, stagger: 0.08 }, '-=0.05');
+};
+
 export function Intelligence() {
   const rootRef = useRef<HTMLDivElement>(null);
-  useScrollStory(rootRef);
+  useScrollStory(rootRef, intelBeats);
 
   return (
     <div ref={rootRef} className={PAGE_BG}>
@@ -190,10 +209,10 @@ export function Intelligence() {
           <p className={`text-lg leading-relaxed max-w-2xl mb-10 ${BODY}`}>
             Epic&apos;s systems read what&apos;s happening on every marketplace, decide what to change, and do it. People make the big calls.
           </p>
-          <div data-story="rise" className="grid gap-4 lg:grid-cols-[minmax(0,0.8fr)_auto_minmax(0,1.6fr)_auto_minmax(0,0.8fr)] lg:items-center">
-            <FlowColumn title="Marketplace signals" items={SIGNALS} icon={Activity} />
+          <div data-story="flow" className="grid gap-4 lg:grid-cols-[minmax(0,0.8fr)_auto_minmax(0,1.6fr)_auto_minmax(0,0.8fr)] lg:items-center">
+            <FlowColumn title="Marketplace signals" items={SIGNALS} icon={Activity} step="in" />
             <FlowArrow />
-            <div className={`${CARD} p-6 ring-2 ring-[var(--pop)] shadow-[0_30px_60px_-30px_var(--pop)]`}>
+            <div data-flow="core" className={`${CARD} p-6 ring-2 ring-[var(--pop)] shadow-[0_30px_60px_-30px_var(--pop)]`}>
               <h3 className={`text-xs font-bold uppercase tracking-[0.16em] mb-2 ${ACCENT}`}>Epic&apos;s three systems</h3>
               <ul>
                 {intelligencePillars.map(({ icon: Icon, title, description }) => (
@@ -210,7 +229,7 @@ export function Intelligence() {
               </ul>
             </div>
             <FlowArrow />
-            <FlowColumn title="Actions" items={ACTIONS} icon={Check} />
+            <FlowColumn title="Actions" items={ACTIONS} icon={Check} step="out" />
           </div>
           <p className={`mt-5 flex items-start gap-3 rounded-2xl border border-dashed border-current/20 px-5 py-4 ${BODY}`}>
             <UserRound aria-hidden="true" className={`w-5 h-5 shrink-0 mt-0.5 ${ACCENT}`} />
