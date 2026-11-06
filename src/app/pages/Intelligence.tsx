@@ -2,35 +2,53 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
-import { Shield, TrendingUp, Zap } from 'lucide-react';
+import {
+  Activity, ArrowDown, ArrowRight, Check, LayoutGrid, LineChart, RefreshCw, Shield, TrendingUp, UserRound, Users, Zap,
+  type LucideIcon,
+} from 'lucide-react';
 import { MarkTable } from '@/app/components/home/SkimSections';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
 import { useScrollStory } from '@/app/components/story/useScrollStory';
-import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink, StepList, WordFill } from '@/app/components/story/StoryKit';
-import { BODY, CARD_HOVER, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
+import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink } from '@/app/components/story/StoryKit';
+import { ACCENT, BODY, CARD_HOVER, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
 import { siteConfig } from '@/site/site-config';
 
 /*
- * AI Intelligence page as one scroll story in six chapters: the claim, the gap brands face (a short pinned list on
- * desktop), the old way vs Epic (the same check / X table as Home), the three systems (one line each), Epic's point
- * of view (lit paragraphs and one word-fill sentence), and the next step. Plain claims only, no hype (Nov 5). Phones get the same text as a calm static page.
+ * AI Intelligence page, redesigned Nov 6 (Brex) in five chapters: the claim beside a "what the system does" panel
+ * (laid out like the homepage and Our Model heroes), the gap brands face (2x2 cards), how the system works (signals in,
+ * Epic's three systems, actions out; the one lit moment), the old way vs Epic (the same check / X table as Home), and
+ * the next step, which carries the old point-of-view line. Plain claims only, no hype, no made-up numbers.
  */
 
 const CHAPTERS = [
   { id: 'intelligence-layer', label: 'The Epic intelligence layer' },
   { id: 'the-gap', label: 'The gap' },
-  { id: 'the-shift', label: 'The shift' },
-  { id: 'pillars', label: 'The systems' },
-  { id: 'point-of-view', label: 'Our point of view' },
+  { id: 'how-it-works', label: 'How the system works' },
+  { id: 'the-shift', label: 'The old way vs Epic' },
   { id: 'next', label: 'Next step' },
 ] as const;
 
 function ChapterMarker({ n }: { n: number }) {
   return <KitChapterMarker n={n} label={CHAPTERS[n - 1].label} />;
 }
+
+/** Hero panel: the kinds of tasks the systems run (an illustration, no figures). The first one is lit. */
+const SYSTEM_TASKS: { icon: LucideIcon; title: string; detail: string }[] = [
+  { icon: Zap, title: 'Price checked on Amazon', detail: 'Kept within your MAP' },
+  { icon: Shield, title: 'Unauthorized seller flagged', detail: 'Removal started' },
+  { icon: TrendingUp, title: 'Demand shift spotted', detail: 'Stock moved to where it sells' },
+  { icon: LayoutGrid, title: 'Listing updated on every marketplace', detail: 'One change, all channels' },
+];
+
+const gap: { icon: LucideIcon; title: string; description: string }[] = [
+  { icon: LayoutGrid, title: 'Every marketplace works differently', description: 'Listings, ads, inventory and rules differ on each one.' },
+  { icon: RefreshCw, title: 'Prices and sellers change daily', description: 'Competitors reprice and unauthorized sellers appear faster than weekly meetings can react.' },
+  { icon: LineChart, title: 'Reporting takes real data work', description: 'One view across marketplaces and countries needs data engineering, not spreadsheets.' },
+  { icon: Users, title: 'Tools still need a team', description: 'Most software needs people to run it. Epic runs the system for you.' },
+];
 
 /** The three systems, one plain line each: what the software does, not how impressive it is. */
 const intelligencePillars = [
@@ -39,6 +57,9 @@ const intelligencePillars = [
   { icon: Shield, title: 'Brand protection', description: 'Spots unauthorized sellers, price violations and hijacked listings early, so we act fast.' },
 ];
 
+const SIGNALS = ['Prices and Buy Box', 'Sales and demand', 'New sellers', 'Ads and rankings'];
+const ACTIONS = ['Reprice within MAP', 'Move stock', 'Adjust ads', 'Remove sellers'];
+
 const SHIFT = [
   { q: 'Channel management', epic: 'One system updates every marketplace', old: 'Manual updates, one platform at a time' },
   { q: 'Pricing', epic: 'Watched every day, kept within your MAP', old: 'Reviewed every quarter by a team' },
@@ -46,12 +67,32 @@ const SHIFT = [
   { q: 'Inventory', epic: 'Forecasts place stock before demand shifts', old: "Last year's data and gut feel" },
 ];
 
-const gap = [
-  { title: 'Every marketplace works differently', description: 'Listings, ads, inventory and rules differ on each one.' },
-  { title: 'Prices and sellers change daily', description: 'Competitors reprice and unauthorized sellers appear faster than weekly meetings can react.' },
-  { title: 'Reporting takes real data work', description: 'One view across marketplaces and countries needs data engineering, not spreadsheets.' },
-  { title: 'Tools still need a team', description: 'Most software needs people to run it. Epic runs the system for you.' },
-];
+const CHIP = `${CARD} flex items-center gap-3 px-4 py-3 text-sm ${BODY}`;
+
+function FlowColumn({ title, items, icon: Icon }: { title: string; items: string[]; icon: LucideIcon }) {
+  return (
+    <div>
+      <h3 className={`text-xs font-bold uppercase tracking-[0.16em] mb-3 ${MUTED}`}>{title}</h3>
+      <ul className="flex flex-col gap-2.5">
+        {items.map((item) => (
+          <li key={item} className={CHIP}>
+            <Icon aria-hidden="true" className={`w-4 h-4 shrink-0 ${MUTED}`} />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function FlowArrow() {
+  return (
+    <div aria-hidden="true" className={`flex justify-center ${MUTED}`}>
+      <ArrowDown className="w-5 h-5 lg:hidden" />
+      <ArrowRight className="w-5 h-5 hidden lg:block" />
+    </div>
+  );
+}
 
 export function Intelligence() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -78,38 +119,112 @@ export function Intelligence() {
 
       <ChapterRail chapters={CHAPTERS} label="AI Intelligence page chapters" />
 
-      {/* 01 The claim, answer first. */}
+      {/* 01 The claim, answer first, beside an illustration of what the system does day to day. */}
       <section id="intelligence-layer" data-chapter className="scroll-mt-20 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className={INNER}>
           <ChapterMarker n={1} />
-          <h1 className={`${H1} mb-8 max-w-4xl`}>Marketplace commerce is becoming machine-run.</h1>
-          <p className={`${LEAD} max-w-3xl mb-5`}>
-            Epic Global Inc. runs brands&apos; marketplace operations, Amazon first, plus Walmart and international marketplaces, with its own software for demand forecasting, pricing, inventory placement and brand protection, so brands grow without building that system themselves.
-          </p>
-          <p className={`text-lg leading-relaxed max-w-3xl ${MUTED}`}>
-            Where others add people to manage more complexity, Epic adds systems, and keeps its people on the decisions that need operator judgment.
-          </p>
-        </div>
-      </section>
-
-      {/* 02 The gap: pins briefly on desktop while the four pressures step in. */}
-      {/* Sized to fit a 1366x657 laptop while pinned: the marker sits in the left column and the list gets the wider one. */}
-      <section id="the-gap" data-chapter data-story-pin className="scroll-mt-20 py-20 lg:py-12 px-4 sm:px-6 lg:px-8">
-        <div className={`${INNER} w-full`}>
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] gap-12 lg:gap-16 items-start">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-14 lg:items-center">
             <div>
-              <ChapterMarker n={2} />
-              <h2 className={`${H2}`}>Why brands can&apos;t keep up</h2>
+              <h1 className={`${H1} mb-8`}>Marketplace commerce is becoming machine-run.</h1>
+              <p className={`${LEAD} mb-5`}>
+                Epic Global Inc. runs brands&apos; marketplace operations, Amazon first, plus Walmart and international marketplaces, with its own software for demand forecasting, pricing, inventory placement and brand protection, so brands grow without building that system themselves.
+              </p>
+              <p className={`text-lg leading-relaxed ${MUTED}`}>
+                Where others add people to manage more complexity, Epic adds systems, and keeps its people on the decisions that need operator judgment.
+              </p>
             </div>
-            <StepList items={gap} />
+            <figure className={`${CARD} p-5 sm:p-6`}>
+              <div className="flex items-center justify-between gap-4 mb-2">
+                <p className={`font-semibold ${HEAD}`}>What the system does</p>
+                <p className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] ${ACCENT}`}>
+                  <span aria-hidden="true" className="w-2 h-2 rounded-full bg-current shadow-[0_0_10px_currentColor]" />
+                  Runs daily
+                </p>
+              </div>
+              <ul>
+                {SYSTEM_TASKS.map(({ icon: Icon, title, detail }, i) => (
+                  <li key={title} className="flex items-start gap-3 py-3 border-t border-current/10">
+                    <span
+                      aria-hidden="true"
+                      className={`${ICON_TILE} !w-8 !h-8 !rounded-lg shrink-0 ${i === 0 ? '!bg-[var(--pop)] !text-[var(--on-pop)]' : ''}`}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </span>
+                    <span>
+                      <span className={`block font-semibold text-[15px] ${HEAD}`}>{title}</span>
+                      <span className={`block text-sm mt-0.5 ${MUTED}`}>{detail}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <figcaption className={`text-xs mt-2 ${MUTED}`}>Examples of the tasks Epic&apos;s systems run.</figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      {/* 03 The shift: old way against the Epic way, row by row. */}
-      <section id="the-shift" data-chapter className={CHAPTER}>
+      {/* 02 The gap: four pressures as cards. */}
+      <section id="the-gap" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker n={2} />
+          <h2 className={`${H2} mb-8`}>Why brands can&apos;t keep up</h2>
+          <div data-story="rise" className="grid sm:grid-cols-2 gap-4">
+            {gap.map(({ icon: Icon, title, description }) => (
+              <div key={title} className={`${CARD} ${CARD_HOVER} p-6`}>
+                <span className={`${ICON_TILE} mb-5`}>
+                  <Icon aria-hidden="true" className="w-5 h-5" />
+                </span>
+                <h3 className={`${H3} mb-2`}>{title}</h3>
+                <p className={`leading-relaxed ${BODY}`}>{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 03 How the system works: signals in, Epic's three systems (the lit card), actions out; people on the big calls. */}
+      <section id="how-it-works" data-chapter className={CHAPTER}>
         <div className={INNER}>
           <ChapterMarker n={3} />
+          <h2 className={`${H2} mb-4`}>Signals in, decisions out</h2>
+          <p className={`text-lg leading-relaxed max-w-2xl mb-10 ${BODY}`}>
+            Epic&apos;s systems read what&apos;s happening on every marketplace, decide what to change, and do it. People make the big calls.
+          </p>
+          <div data-story="rise" className="grid gap-4 lg:grid-cols-[minmax(0,0.8fr)_auto_minmax(0,1.6fr)_auto_minmax(0,0.8fr)] lg:items-center">
+            <FlowColumn title="Marketplace signals" items={SIGNALS} icon={Activity} />
+            <FlowArrow />
+            <div className={`${CARD} p-6 ring-2 ring-[var(--pop)] shadow-[0_30px_60px_-30px_var(--pop)]`}>
+              <h3 className={`text-xs font-bold uppercase tracking-[0.16em] mb-2 ${ACCENT}`}>Epic&apos;s three systems</h3>
+              <ul>
+                {intelligencePillars.map(({ icon: Icon, title, description }) => (
+                  <li key={title} className="flex items-start gap-4 py-4 border-t border-current/10 first:border-t-0">
+                    <span aria-hidden="true" className={`${ICON_TILE} shrink-0`}>
+                      <Icon className="w-5 h-5" />
+                    </span>
+                    <span>
+                      <span className={`block text-lg font-semibold ${HEAD}`}>{title}</span>
+                      <span className={`block mt-1 leading-relaxed ${BODY}`}>{description}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <FlowArrow />
+            <FlowColumn title="Actions" items={ACTIONS} icon={Check} />
+          </div>
+          <p className={`mt-5 flex items-start gap-3 rounded-2xl border border-dashed border-current/20 px-5 py-4 ${BODY}`}>
+            <UserRound aria-hidden="true" className={`w-5 h-5 shrink-0 mt-0.5 ${ACCENT}`} />
+            <span>
+              <strong className={`font-semibold ${HEAD}`}>People make the big calls.</strong> Epic&apos;s team stays on the decisions that need operator judgment.
+            </span>
+          </p>
+        </div>
+      </section>
+
+      {/* 04 The old way against the Epic way, row by row. */}
+      <section id="the-shift" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker n={4} />
           <h2 className={`${H2} mb-8`}>The old way vs Epic</h2>
           <div data-story="rise">
             <MarkTable
@@ -120,54 +235,13 @@ export function Intelligence() {
         </div>
       </section>
 
-      {/* 04 The pillars: the three systems rise into place together. */}
-      <section id="pillars" data-chapter className={CHAPTER}>
-        <div className={INNER}>
-          <ChapterMarker n={4} />
-          <h2 className={`${H2} mb-10`}>Three systems Epic runs for you</h2>
-          <div data-story="rise" className="grid md:grid-cols-3 gap-4">
-            {intelligencePillars.map((pillar) => {
-              const Icon = pillar.icon;
-              return (
-                <div key={pillar.title} className={`${CARD} ${CARD_HOVER} p-6`}>
-                  <span className={`${ICON_TILE} mb-5`}>
-                    <Icon aria-hidden="true" className="w-5 h-5" />
-                  </span>
-                  <h3 className={`${H3} mb-2`}>{pillar.title}</h3>
-                  <p className={`leading-relaxed ${BODY}`}>{pillar.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 05 Our point of view: the paragraph you're reading is lit; the closing line fills word by word. */}
-      <section id="point-of-view" data-chapter className={CHAPTER}>
-        <div className={INNER}>
-          <ChapterMarker n={5} />
-          <h2 className={`${H2} mb-10`}>Our point of view</h2>
-          <div className="max-w-3xl">
-            <p data-story="lit-step" className={`text-xl sm:text-2xl font-semibold leading-snug mb-6 ${HEAD}`}>
-              Marketplaces now move too fast, and there are too many of them, for a brand team to run by hand.
-            </p>
-            <p data-story="lit-step" className={`text-lg leading-relaxed mb-10 ${BODY}`}>
-              Data pipelines, automation, daily monitoring and links to every marketplace take more than most brand teams can build. Epic already runs that system.
-            </p>
-            <p className={`text-2xl sm:text-3xl font-semibold leading-snug tracking-tight ${HEAD}`}>
-              <WordFill text="You don't build the system. Epic runs it for you." />
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 06 Next step: the closing call to action settles in. */}
+      {/* 05 Next step: the point-of-view line becomes the closing headline. */}
       <section id="next" data-chapter className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
         <div data-story="fade-up" className={INNER}>
-          <ChapterMarker n={6} />
+          <ChapterMarker n={5} />
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
             <div className="max-w-2xl">
-              <h2 className={`${H2} mb-4`}>Let Epic run the system</h2>
+              <h2 className={`${H2} mb-4`}>You don&apos;t build the system. Epic runs it for you.</h2>
               <p className={`text-lg leading-relaxed ${BODY}`}>
                 We buy your inventory and run your marketplaces with these systems.
                 {siteConfig.bookACallEnabled ? " Let's map what that looks like for your brand." : null}
