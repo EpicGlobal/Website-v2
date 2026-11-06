@@ -2,7 +2,9 @@
 
 import Link from 'next/link';
 import { useRef } from 'react';
-import { BadgeCheck, BarChart3, Cpu, Database, Globe2, Package, Search, Shield, ShoppingCart, Wallet, X } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowDown, ArrowRight, BarChart3, Building2, Cpu, Database, Globe2, Package, Search, Shield, ShoppingCart, Users, X } from 'lucide-react';
+import epicMark from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
 import { StructuredData, getBreadcrumbSchema, getWebPageSchema, serviceSchemas } from '@/app/components/StructuredData';
@@ -12,15 +14,16 @@ import { CompareTable } from '@/app/components/ourmodel/CompareTable';
 import { FitColumns } from '@/app/components/home/SkimSections';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink, WordFill } from '@/app/components/story/StoryKit';
-import { ACCENT, ACCENT_BG, BODY, CARD_HOVER, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
+import { ACCENT, BODY, CARD_HOVER, CHAPTER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, QUIET_BUTTON } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
 import { siteConfig } from '@/site/site-config';
 
 /*
- * Our Model as one scroll story in six chapters: the detailed version of the homepage's Buy-Sell-Advertise-Protect.
- * The hero dims and lifts away as "Who it's for" arrives; the five steps light up one by one (ScrollTimeline) and
- * close on "We buy it. You profit." filling in word by word; "What we don't do" pins briefly while its points step
- * in. The rail (wide screens) shows where you are. Phones get the same text as a calm static page.
+ * Our Model, redesigned Nov 6 (Brex): the detailed version of the homepage, in the same order of thought.
+ * 01 the model as a picture (how goods and money flow: your brand -> Epic -> shoppers), 02 the five steps lighting up
+ * as you scroll, 03 what we run day to day, 04 how we compare (table, then what we don't do), 05 who it's for,
+ * 06 questions. Cards use the site-wide hover glow; Epic's card in the flow is the one lit (pop) moment.
+ * The rail (wide screens) shows where you are. Phones get the same text as a calm static page.
  */
 
 /** What Epic runs day to day (moved here from the homepage, Nov 5): one line each. */
@@ -37,10 +40,10 @@ const CAPABILITIES = [
 
 const CHAPTERS = [
   { id: 'what-we-do', label: 'What we do' },
-  { id: 'who-its-for', label: "Who it's for" },
   { id: 'how-it-works', label: 'How it works' },
-  { id: 'what-we-dont-do', label: "What we don't do" },
+  { id: 'what-we-run', label: 'What we run' },
   { id: 'compare', label: 'How we compare' },
+  { id: 'who-its-for', label: "Who it's for" },
   { id: 'questions', label: 'Questions' },
 ] as const;
 
@@ -48,12 +51,24 @@ function ChapterMarker({ n, accent }: { n: number; accent?: string }) {
   return <KitChapterMarker n={n} label={CHAPTERS[n - 1].label} accent={accent} />;
 }
 
-/** The model in three promises, shown under the hero answer. */
-const PROMISES = [
-  { icon: Package, title: 'We buy your inventory upfront', body: 'At an agreed wholesale price. You get paid; we own the stock.' },
-  { icon: Wallet, title: 'We pay to sell it', body: 'Ads, marketplace fees and fulfillment are on us.' },
-  { icon: BadgeCheck, title: 'You keep your brand', body: 'Your Brand Registry, listings and reviews stay yours.' },
-];
+/** The model as a picture: who does what, left to right. Epic's card is the lit one. */
+const FLOW = [
+  { who: 'You', icon: Building2, title: 'Your brand', body: 'Sells us inventory at an agreed wholesale price. You get paid for it; we own the stock.' },
+  { who: 'Epic', icon: null, title: 'Epic Global Inc.', body: 'Lists, advertises and ships it on Amazon, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment.' },
+  { who: 'Shoppers', icon: Users, title: 'Shoppers', body: 'Buy your products at retail. Epic earns its margin only when they sell.' },
+] as const;
+
+// A ring (not a shadow), so the card's own shadow and the hover glow can't wipe it out.
+const LIT = 'ring-2 ring-[var(--pop)]';
+
+function FlowArrow() {
+  return (
+    <div aria-hidden="true" className={`flex items-center justify-center py-1 lg:py-0 ${MUTED}`}>
+      <ArrowDown className="w-5 h-5 lg:hidden" />
+      <ArrowRight className="w-5 h-5 hidden lg:block" />
+    </div>
+  );
+}
 
 const STEPS = [
   { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own it, and the retail risk.' },
@@ -64,11 +79,11 @@ const STEPS = [
 ];
 
 const WE_DONT = [
-  "We don't sell a la carte services or consulting packages",
-  "We don't charge hourly rates or project fees",
-  "We don't provide advice without executing the work",
-  "We don't operate on a revenue share model without inventory ownership",
-  "We don't work with brands that want to maintain day-to-day operational control internally",
+  'No à la carte services or consulting packages',
+  'No hourly rates or project fees',
+  'No advice without doing the work',
+  'No revenue share without owning the inventory',
+  'Not for brands that want to keep day-to-day control in-house',
 ];
 
 /** The hero dims and lifts away as the next chapter rises over it (no pin: the page stays short). */
@@ -124,41 +139,44 @@ export function WhatWeAre() {
           <p className={`${LEAD} max-w-3xl mb-10`}>
             Epic Global Inc. is an Amazon-first wholesale trade partner: we buy your inventory upfront and sell it on Amazon, plus Walmart and international marketplaces.
           </p>
-          <h2 className="sr-only">What we do</h2>
-          <ul className="grid gap-4 md:grid-cols-3">
-            {PROMISES.map(({ icon: Icon, title, body }) => (
-              <li key={title} className={`${CARD} ${CARD_HOVER} p-6`}>
-                <span className={`${ICON_TILE} mb-5`}>
-                  <Icon aria-hidden="true" className="w-5 h-5" />
-                </span>
-                <h3 className={`${H3} mb-2`}>{title}</h3>
-                <p className={`leading-relaxed ${BODY}`}>{body}</p>
-              </li>
-            ))}
-          </ul>
-          <a href="#how-it-works" className={`inline-block mt-8 text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
-            How it works &darr;
-          </a>
+          <h2 className="sr-only">How the model works, in one picture</h2>
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.15fr)_auto_minmax(0,1fr)] lg:items-stretch">
+            {FLOW.map((step, i) => {
+              const Icon = step.icon;
+              const epic = step.who === 'Epic';
+              return [
+                i > 0 ? <FlowArrow key={`arrow-${step.who}`} /> : null,
+                <div key={step.who} className={`${CARD} ${CARD_HOVER} p-6 ${epic ? LIT : ''}`}>
+                  <span className={`${ICON_TILE} mb-5`}>
+                    {Icon ? (
+                      <Icon aria-hidden="true" className="w-5 h-5" />
+                    ) : (
+                      <Image src={epicMark} alt="" className="w-6 h-6 object-contain" />
+                    )}
+                  </span>
+                  <h3 className={`${H3} mb-2`}>{step.title}</h3>
+                  <p className={`leading-relaxed ${BODY}`}>{step.body}</p>
+                </div>,
+              ];
+            })}
+          </div>
+          <div className={`${CARD} mt-3 flex flex-col sm:flex-row sm:items-center gap-4 p-5`}>
+            <Shield aria-hidden="true" className={`w-5 h-5 shrink-0 ${ACCENT}`} />
+            <p className={`flex-1 leading-relaxed ${BODY}`}>
+              <strong className={`font-semibold ${HEAD}`}>You keep your brand.</strong> Your Brand Registry, listings and reviews stay yours, and we enforce your MAP.
+            </p>
+            <a href="#how-it-works" className={`shrink-0 text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
+              How it works &darr;
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* 02 Who it's for: the brand recognizes itself before the mechanics. */}
-      <section id="who-its-for" data-chapter className={CHAPTER}>
-        <div className={INNER}>
-          <ChapterMarker n={2} />
-          <h2 className={`${H2} mb-4`}>Who it&apos;s for</h2>
-          <p className={`text-lg leading-relaxed max-w-2xl mb-8 ${BODY}`}>
-            Brands that want to scale on marketplaces without building an internal eCommerce operations team.
-          </p>
-          <FitColumns />
-        </div>
-      </section>
-
-      {/* 03 How it works: the heart of the page. Buy, Sell, Advertise, Protect light up one by one as you scroll,
-          then the homepage promise fills in word by word. */}
+      {/* 02 How it works: Buy, Sell, Advertise, Protect light up one by one as you scroll, then the homepage promise
+          fills in word by word. */}
       <section id="how-it-works" data-chapter className={CHAPTER}>
         <div className={INNER}>
-          <ChapterMarker n={3} />
+          <ChapterMarker n={2} />
           <h2 className={`${H2} mb-10`}>How our wholesale model works</h2>
           <div className="max-w-3xl">
             <ScrollTimeline
@@ -171,12 +189,21 @@ export function WhatWeAre() {
           <p className={`mt-16 text-4xl sm:text-5xl font-bold tracking-tight ${HEAD}`}>
             <WordFill text="We buy it. You profit.™" />
           </p>
-          <h3 className={`${H3} mt-16 mb-6`}>What we run day to day</h3>
+        </div>
+      </section>
+
+      {/* 03 What we run: eight one-line cards with the site-wide hover glow. */}
+      <section id="what-we-run" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker n={3} />
+          <h2 className={`${H2} mb-8`}>What we run day to day</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {CAPABILITIES.map(({ icon: Icon, title, description }) => (
-              <div key={title} className={`${CARD} p-5`}>
-                <Icon className={`w-5 h-5 mb-3 ${ACCENT}`} aria-hidden="true" />
-                <h4 className={`font-semibold mb-1 leading-snug ${HEAD}`}>{title}</h4>
+              <div key={title} className={`${CARD} ${CARD_HOVER} p-5`}>
+                <span className={`${ICON_TILE} !w-9 !h-9 !rounded-lg mb-4`}>
+                  <Icon className="w-[18px] h-[18px]" aria-hidden="true" />
+                </span>
+                <h3 className={`font-semibold mb-1 leading-snug ${HEAD}`}>{title}</h3>
                 <p className={`text-sm leading-snug ${MUTED}`}>{description}</p>
               </div>
             ))}
@@ -184,43 +211,35 @@ export function WhatWeAre() {
         </div>
       </section>
 
-      {/* 04 What we don't do: pins briefly on desktop while the five "don'ts" step in beside a filling meter. */}
-      <section id="what-we-dont-do" data-chapter data-story-pin className={CHAPTER}>
-        <div className={`${INNER} w-full`}>
-          <ChapterMarker n={4} />
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-            <div>
-              <h2 className={`${H2} mb-4`}>What we don&apos;t do</h2>
-              <p className={`text-lg leading-relaxed ${BODY}`}>To be clear about what we&apos;re not:</p>
-            </div>
-            <div className="relative min-[900px]:pl-8">
-              <div aria-hidden="true" data-story-meter="" className="absolute left-0 top-1 bottom-1 w-[3px] overflow-hidden rounded-full bg-gray-400/30">
-                <div data-story="steps-meter" className={`h-full w-full rounded-full ${ACCENT_BG}`} />
-              </div>
-              <ul className="space-y-5">
-                {WE_DONT.map((item) => (
-                  <li key={item} data-story="step" className={`flex items-start gap-3 text-lg leading-relaxed ${BODY}`}>
-                    <X aria-hidden="true" className={`w-5 h-5 mt-1.5 flex-shrink-0 ${MUTED}`} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 05 How we compare: the table rises into place. */}
+      {/* 04 How we compare: the table, then what we don't do (the same point from the other side). */}
       <section id="compare" data-chapter className={CHAPTER}>
         <div className={INNER}>
-          <ChapterMarker n={5} />
-          <h2 className={`${H2} mb-4`}>Competitive landscape</h2>
-          <p className={`text-lg leading-relaxed max-w-3xl mb-10 ${BODY}`}>
-            How Epic Global compares to other marketplace operators and accelerators
-          </p>
+          <ChapterMarker n={4} />
+          <h2 className={`${H2} mb-8`}>How Epic compares</h2>
           <div data-story="rise">
             <CompareTable />
           </div>
+          <h3 className={`${H3} mt-12 mb-5`}>What we don&apos;t do</h3>
+          <ul className="grid gap-x-10 gap-y-3 md:grid-cols-2">
+            {WE_DONT.map((item) => (
+              <li key={item} className={`flex items-start gap-3 leading-relaxed ${BODY}`}>
+                <X aria-hidden="true" className={`w-5 h-5 mt-0.5 flex-shrink-0 ${MUTED}`} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 05 Who it's for: the same fit list as the homepage. */}
+      <section id="who-its-for" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker n={5} />
+          <h2 className={`${H2} mb-4`}>Who it&apos;s for</h2>
+          <p className={`text-lg leading-relaxed max-w-2xl mb-8 ${BODY}`}>
+            Brands that want to scale on marketplaces without building an internal eCommerce operations team.
+          </p>
+          <FitColumns />
         </div>
       </section>
 
