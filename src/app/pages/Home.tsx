@@ -277,7 +277,9 @@ export function Home() {
           Younique and Young Living lead (phones show Bucked Up and Nu Skin first). */}
         <div className="relative z-10 mt-10 sm:mt-8 mb-2 px-4 sm:px-6 lg:px-8">
           <p className={`${INNER} text-xs font-semibold uppercase tracking-[0.18em] mb-2 ${MUTED}`}>Brands we work with</p>
-          <div className="max-w-6xl mx-auto"><TrustLogosMarquee brands={brands} /></div>
+          {/* On TV-size screens (1880px+, e.g. the office screen) the strip widens to fill the hero, stopping short of
+              the chapter dots on the right; smaller screens keep the content width. */}
+          <div className="max-w-6xl min-[1880px]:max-w-[min(calc(100vw_-_280px),2200px)] mx-auto"><TrustLogosMarquee brands={brands} /></div>
         </div>
 
       {/* 02 Brands we work with: the trust logos, then the proof strip (real numbers in the HTML; they count up once on screen). */}
