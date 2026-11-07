@@ -78,15 +78,30 @@ const serviceDefinitions = [
 ] as const;
 
 const organizationReference = {
+  '@type': 'Organization',
   '@id': organizationId,
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: { '@type': 'ImageObject', url: `${siteConfig.url}${siteConfig.logo}` },
 };
+
+export const websiteReference = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  name: siteConfig.name,
+  url: siteConfig.url,
+};
+
+/** Organization reference for author/publisher on articles. */
+export const organizationRef = organizationReference;
 
 export const founderSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': founderId,
   name: siteConfig.founderName,
-  jobTitle: 'Founder',
+  jobTitle: 'Founder & CEO',
+  description: "Glen Jensen is the founder and CEO of Epic Global Inc., an Amazon-first wholesale trade partner. He founded Epic on a simple principle: brands deserve a better way to succeed in ecommerce. Instead of an agency, Epic buys brands' inventory with its own capital and runs their marketplaces.",
   url: siteConfig.founderLinkedIn,
   sameAs: [siteConfig.founderLinkedIn],
   worksFor: organizationReference,
@@ -123,6 +138,7 @@ export const organizationSchema = {
     '@type': 'Place',
     name: siteConfig.headquarters,
   },
+  alternateName: siteConfig.alternateName,
   sameAs: siteConfig.organizationSameAs,
   founder: {
     '@id': founderId,
@@ -166,7 +182,10 @@ export const organizationSchema = {
       '@type': 'ListItem',
       position: index + 1,
       item: {
+        '@type': 'Service',
         '@id': service['@id'],
+        name: service.name,
+        url: service.url,
       },
     })),
   },
@@ -178,7 +197,7 @@ export const websiteSchema = {
   '@id': websiteId,
   name: siteConfig.name,
   url: siteConfig.url,
-  description: 'Global marketplace operator and technology platform for end-to-end ecommerce execution',
+  description: 'Amazon-first wholesale trade partner: buys brand inventory at wholesale and sells it on Amazon, plus Walmart and international marketplaces',
   publisher: organizationReference,
 };
 
@@ -206,9 +225,7 @@ export function getWebPageSchema(
     '@type': 'WebPage',
     ...pageData,
     about: organizationReference,
-    isPartOf: {
-      '@id': websiteId,
-    },
+    isPartOf: websiteReference,
     publisher: organizationReference,
   };
 }

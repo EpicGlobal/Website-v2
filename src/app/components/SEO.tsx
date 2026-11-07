@@ -1,3 +1,4 @@
+import { siteConfig } from '@/site/site-config';
 interface SEOProps {
   title?: string;
   description?: string;
@@ -15,11 +16,11 @@ interface SEOProps {
 }
 
 export function SEO({
-  title = 'Epic Global Inc. - Zero-Risk Global Commerce Operator',
-  description = 'Epic Global Inc. is the world\'s first Zero-Risk Global Commerce Operator. We purchase inventory upfront, operate marketplace storefronts end to end, fund all advertising and logistics, and protect brand equity. Expand to 40 countries risk-free.',
-  keywords = 'global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, zero risk ecommerce, global retail, cross-border ecommerce, marketplace management, brand protection',
-  canonicalUrl = 'https://epicglobalinc.com/',
-  ogImage = 'https://epicglobalinc.com/opengraph-image.png',
+  title = 'Epic Global Inc. | Wholesale Trade Partner That Buys Your Inventory',
+  description = 'Epic Global Inc. is a wholesale trade partner and global marketplace operator. We buy your inventory upfront at wholesale, sell it on Amazon, Walmart and other marketplaces, and pay for the advertising, marketplace fees and fulfillment.',
+  keywords = 'global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, wholesale trade partner, global retail, cross-border ecommerce, marketplace management, brand protection',
+  canonicalUrl = `${siteConfig.url}/`,
+  ogImage = `${siteConfig.url}/opengraph-image.png`,
   ogType = 'website',
   article,
 }: SEOProps) {

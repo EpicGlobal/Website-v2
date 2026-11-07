@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { KnowledgeArticle } from '@/app/pages/KnowledgeArticle';
-import { knowledgeArticles } from '@/app/data/knowledgeArticles';
+import { isoDate, knowledgeArticles } from '@/app/data/knowledgeArticles';
 import { createPageMetadata } from '@/site/site-config';
 
 type KnowledgeArticlePageProps = {
@@ -26,11 +26,16 @@ export async function generateMetadata({ params }: KnowledgeArticlePageProps) {
   }
 
   return createPageMetadata({
-    title: article.title,
-    description: article.summary,
+    title: article.seoTitle ?? article.title,
+    description: article.seoDescription ?? article.summary,
     path: `/knowledge-base/${article.slug}`,
     keywords: article.tags,
     type: 'article',
+    // "Coming Soon" placeholders stay out of search until the article is written.
+    noindex: !article.hasContent,
+    // The articles keep one date (last updated); it's used for both, the same as the article schema.
+    articleDate: isoDate(article.lastUpdated),
+    image: { url: `/knowledge-base/${article.slug}/opengraph-image`, alt: `${article.title} | Epic Global Inc. Knowledge Base` },
   });
 }
 

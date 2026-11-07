@@ -41,7 +41,7 @@ function AnimatedStat({ value, suffix = '', prefix = '', label, duration = 2 }: 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6 }}
       className="text-center"
@@ -73,7 +73,7 @@ export function AnimatedStats() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}

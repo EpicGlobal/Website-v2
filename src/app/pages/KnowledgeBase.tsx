@@ -3,12 +3,17 @@
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Search, Book, Lightbulb, CheckSquare, BookOpen, FileText, Download, Sparkles } from 'lucide-react';
+import { Search, Book, Lightbulb, CheckSquare, BookOpen, FileText, Sparkles } from 'lucide-react';
 import { SEO } from '@/app/components/SEO';
+import { StructuredData, getBreadcrumbSchema, websiteReference } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
+import { ACCENT, BODY, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
+import { ArticleCard } from '@/app/components/reading/ArticleCard';
+import { CARD_LINK, FIELD, OPTIONS } from '@/app/components/reading/reading';
 
 // This will be replaced with actual articles from a data file
 import { knowledgeArticles } from '@/app/data/knowledgeArticles';
+import { siteConfig } from '@/site/site-config';
 
 const categories = [
   'All',
@@ -27,7 +32,7 @@ const categories = [
   'Library',
 ];
 
-const pillars = ['All', 'Purchase', 'Expand', 'Cover'];
+const pillars = ['All', 'Buy', 'Sell', 'Advertise', 'Protect'];
 const marketplaces = ['All', 'Amazon', 'Walmart', 'eBay', 'International'];
 
 function normalizeFilter(value: string, options: string[]) {
@@ -84,7 +89,9 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
   };
 
   // Filter articles
-  const filteredArticles = knowledgeArticles.filter((article) => {
+  // Only published articles are listed; unwritten ones stay hidden until they have content.
+  const publishedArticles = knowledgeArticles.filter((article) => article.hasContent);
+  const filteredArticles = publishedArticles.filter((article) => {
     const matchesSearch =
       searchQuery === '' ||
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -104,129 +111,113 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
   });
 
   // Popular articles
-  const popularArticles = knowledgeArticles.filter((a) => a.featured).slice(0, 6);
+  const popularArticles = publishedArticles.filter((a) => a.featured).slice(0, 6);
 
   // Quick access tiles
   const quickTiles = [
     {
       icon: Sparkles,
       title: 'Start Here',
-      description: 'New to Epic Global? Start with these fundamentals.',
-      link: '/knowledge-base?category=Start+Here',
-      color: 'from-cyan-500/20 to-cyan-600/10',
+      description: 'New to Epic Global? Start with what we do and how we work with brands.',
+      link: '/knowledge-base/what-is-epic-global-inc',
     },
     {
       icon: Book,
       title: 'How Our Model Works',
-      description: 'Purchase, Expand, Cover explained in detail.',
+      description: 'Buy, Sell, Advertise, Protect explained in detail.',
       link: '/knowledge-base/how-our-model-works',
-      color: 'from-blue-500/20 to-blue-600/10',
     },
     {
       icon: Lightbulb,
       title: 'Playbooks',
       description: 'Step-by-step workflows for key operations.',
       link: '/knowledge-base?category=Marketplace+Operations',
-      color: 'from-purple-500/20 to-purple-600/10',
     },
     {
       icon: CheckSquare,
       title: 'Checklists',
       description: 'Ready-to-use checklists for every stage.',
       link: '/knowledge-base?category=Templates+and+Downloads',
-      color: 'from-green-500/20 to-green-600/10',
     },
     {
       icon: BookOpen,
       title: 'Glossary',
       description: 'Definitions and marketplace terminology.',
       link: '/knowledge-base?category=Glossary',
-      color: 'from-orange-500/20 to-orange-600/10',
     },
     {
       icon: FileText,
       title: 'Browse All Articles',
       description: 'Explore the complete knowledge library.',
       link: '/knowledge-base?category=All',
-      color: 'from-gray-500/20 to-gray-600/10',
     },
   ];
 
+  const filtersActive =
+    searchQuery !== '' || selectedCategory !== 'All' || selectedPillar !== 'All' || selectedMarketplace !== 'All';
+  const SECTION = 'px-4 sm:px-6 lg:px-8';
+
   return (
-    <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
-      <SEO 
+    <div className={PAGE_BG}>
+      <SEO
         title="Knowledge Base - Marketplace Operations & Global Expansion Resources"
         description="Comprehensive guides on marketplace expansion, brand protection, advertising operations, inventory management, and global ecommerce strategies from Epic Global Inc."
-        canonicalUrl="https://epicglobalinc.com/knowledge-base"
+        canonicalUrl={`${siteConfig.url}/knowledge-base`}
         keywords="marketplace guides, ecommerce knowledge base, amazon expansion guide, marketplace operations, brand protection strategies"
       />
-      {/* Hero Section */}
-      <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:from-gray-50 light:to-white orange:bg-transparent leaf:bg-transparent">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-600 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-gray-900 water:to-gray-700 bg-clip-text text-transparent leading-tight">
-              Knowledge Base
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-600 orange:text-[#101828] leaf:text-gray-800 water:text-gray-800 mb-8 leading-relaxed">
-              Operator-grade playbooks, checklists, and definitions for running marketplaces as a system.
-            </p>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          '@id': `${siteConfig.url}/knowledge-base#webpage`,
+          name: 'Knowledge Base',
+          url: `${siteConfig.url}/knowledge-base`,
+          description: 'Operator-grade playbooks, checklists, and definitions for running Amazon, Walmart and international marketplaces as a system.',
+          isPartOf: websiteReference,
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: publishedArticles.length,
+            itemListElement: publishedArticles.map((a, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              url: `${siteConfig.url}/knowledge-base/${a.slug}`,
+              name: a.seoTitle ?? a.title,
+            })),
+          },
+        }}
+      />
+      <StructuredData
+        data={getBreadcrumbSchema([
+          { name: 'Home', url: `${siteConfig.url}/` },
+          { name: 'Knowledge Base', url: `${siteConfig.url}/knowledge-base` },
+        ])}
+      />
 
-            {/* Search Bar */}
-            <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-500 orange:text-gray-600 leaf:text-gray-600 water:text-gray-600" />
-              <input
-                type="text"
-                placeholder="Search playbooks, checklists, and answers..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white/5 dark:bg-white/5 soft-dark:bg-white/70 light:bg-gray-100 orange:bg-white/70 leaf:bg-white/70 water:bg-white/70 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-300 orange:border-white/30 leaf:border-white/20 water:border-white/20 rounded-lg pl-12 pr-4 py-4 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 placeholder-gray-500 dark:placeholder-gray-500 soft-dark:placeholder-gray-600 light:placeholder-gray-500 orange:placeholder-gray-600 leaf:placeholder-gray-600 water:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 orange:focus:ring-orange-500/50 water:focus:ring-emerald-500/50"
-              />
-            </div>
+      {/* Hero: answer first, then the tools to find an article (search and filters together). */}
+      <section className={`pt-32 pb-10 ${SECTION}`}>
+        <div className={INNER}>
+          <h1 className={`${H1} mb-5`}>Knowledge Base</h1>
+          <p className={`${LEAD} max-w-3xl mb-10`}>
+            Operator-grade playbooks, checklists, and definitions for running Amazon, Walmart and international marketplaces as a system.
+          </p>
+
+          <div className="relative mb-4">
+            <Search className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none ${MUTED}`} aria-hidden="true" />
+            <input
+              type="search"
+              aria-label="Search the Knowledge Base"
+              placeholder="Search playbooks, checklists, and answers..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={`${FIELD} pl-12 pr-4 py-4 text-base`}
+            />
           </div>
-        </div>
-      </section>
 
-      {/* Quick Access Tiles */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:bg-transparent orange:bg-transparent leaf:bg-transparent">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold mb-8 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Quick Access</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {quickTiles.map((tile, index) => {
-              const Icon = tile.icon;
-              return (
-                <Link
-                  key={index}
-                  href={tile.link}
-                  className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-6 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/30 leaf:border-white/20 water:border-white/20 hover:border-cyan-500/30 soft-dark:hover:border-lime-600/30 orange:hover:border-orange-500/30 leaf:hover:border-cyan-600/50 water:hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 soft-dark:hover:shadow-lime-500/10 orange:hover:shadow-orange-500/20 light:hover:shadow-cyan-500/20 water:hover:shadow-emerald-500/20 overflow-hidden"
-                >
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 soft-dark:from-lime-500/10 orange:from-orange-500/10 water:from-emerald-500/10 to-transparent rounded-2xl" />
-                  </div>
-                  
-                  <div className="relative z-10">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${tile.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                      <Icon className="w-6 h-6 text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 group-hover:text-cyan-400 soft-dark:group-hover:text-lime-700 light:group-hover:text-cyan-600 orange:group-hover:text-orange-700 leaf:group-hover:text-cyan-700 water:group-hover:text-emerald-700 transition-colors">
-                      {tile.title}
-                    </h3>
-                    <p className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">{tile.description}</p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Filters */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:bg-transparent orange:bg-transparent leaf:bg-transparent water:bg-transparent">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700 mb-2 block">Category</label>
+              <label htmlFor="kb-filter-category" className={`text-sm mb-2 block ${MUTED}`}>Category</label>
               <select
+                id="kb-filter-category"
                 value={selectedCategory}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -237,7 +228,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
                     marketplace: selectedMarketplace,
                   });
                 }}
-                className="w-full bg-white/5 dark:bg-white/5 soft-dark:bg-white/70 light:bg-white orange:bg-white/70 leaf:bg-white/70 water:bg-white/70 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-300 orange:border-white/20 leaf:border-white/20 water:border-white/20 rounded-lg px-4 py-2 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 water:focus:ring-emerald-500/50 [&>option]:bg-gray-900 dark:[&>option]:bg-gray-900 soft-dark:[&>option]:bg-slate-800 light:[&>option]:bg-white orange:[&>option]:bg-orange-900 leaf:[&>option]:bg-slate-800 water:[&>option]:bg-white [&>option]:text-white dark:[&>option]:text-white soft-dark:[&>option]:text-gray-100 light:[&>option]:text-gray-900 orange:[&>option]:text-white leaf:[&>option]:text-gray-100 water:[&>option]:text-gray-900"
+                className={`${FIELD} ${OPTIONS} px-4 py-2.5 text-sm`}
               >
                 {categories.map((cat) => (
                   <option key={cat} value={cat}>
@@ -248,8 +239,9 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
             </div>
 
             <div>
-              <label className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700 mb-2 block">Pillar</label>
+              <label htmlFor="kb-filter-pillar" className={`text-sm mb-2 block ${MUTED}`}>Pillar</label>
               <select
+                id="kb-filter-pillar"
                 value={selectedPillar}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -260,7 +252,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
                     marketplace: selectedMarketplace,
                   });
                 }}
-                className="w-full bg-white/5 dark:bg-white/5 soft-dark:bg-white/70 light:bg-white orange:bg-white/70 leaf:bg-white/70 water:bg-white/70 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-300 orange:border-white/20 leaf:border-white/20 water:border-white/20 rounded-lg px-4 py-2 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 water:focus:ring-emerald-500/50 [&>option]:bg-gray-900 dark:[&>option]:bg-gray-900 soft-dark:[&>option]:bg-slate-800 light:[&>option]:bg-white orange:[&>option]:bg-orange-900 leaf:[&>option]:bg-slate-800 water:[&>option]:bg-white [&>option]:text-white dark:[&>option]:text-white soft-dark:[&>option]:text-gray-100 light:[&>option]:text-gray-900 orange:[&>option]:text-white leaf:[&>option]:text-gray-100 water:[&>option]:text-gray-900"
+                className={`${FIELD} ${OPTIONS} px-4 py-2.5 text-sm`}
               >
                 {pillars.map((pillar) => (
                   <option key={pillar} value={pillar}>
@@ -271,8 +263,9 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
             </div>
 
             <div>
-              <label className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700 mb-2 block">Marketplace</label>
+              <label htmlFor="kb-filter-marketplace" className={`text-sm mb-2 block ${MUTED}`}>Marketplace</label>
               <select
+                id="kb-filter-marketplace"
                 value={selectedMarketplace}
                 onChange={(e) => {
                   const value = e.target.value;
@@ -283,7 +276,7 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
                     marketplace: value,
                   });
                 }}
-                className="w-full bg-white/5 dark:bg-white/5 soft-dark:bg-white/70 light:bg-white orange:bg-white/70 leaf:bg-white/70 water:bg-white/70 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-300 orange:border-white/20 leaf:border-white/20 water:border-white/20 rounded-lg px-4 py-2 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 water:focus:ring-emerald-500/50 [&>option]:bg-gray-900 dark:[&>option]:bg-gray-900 soft-dark:[&>option]:bg-slate-800 light:[&>option]:bg-white orange:[&>option]:bg-orange-900 leaf:[&>option]:bg-slate-800 water:[&>option]:bg-white [&>option]:text-white dark:[&>option]:text-white soft-dark:[&>option]:text-gray-100 light:[&>option]:text-gray-900 orange:[&>option]:text-white leaf:[&>option]:text-gray-100 water:[&>option]:text-gray-900"
+                className={`${FIELD} ${OPTIONS} px-4 py-2.5 text-sm`}
               >
                 {marketplaces.map((mp) => (
                   <option key={mp} value={mp}>
@@ -296,69 +289,52 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
         </div>
       </section>
 
-      {/* Popular Articles */}
-      {searchQuery === '' && selectedCategory === 'All' && selectedPillar === 'All' && selectedMarketplace === 'All' && (
-        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:from-white light:to-gray-50 orange:from-orange-900 orange:to-orange-950 leaf:bg-transparent">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Popular Articles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {popularArticles.map((article) => (
-                <Link
-                  key={article.slug}
-                  href={`/knowledge-base/${article.slug}`}
-                  className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-xl p-6 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/30 leaf:border-white/20 water:border-white/20 hover:border-cyan-500/30 soft-dark:hover:border-lime-600/30 orange:hover:border-orange-500/30 leaf:hover:border-cyan-600/50 water:hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 soft-dark:hover:shadow-lime-500/10 orange:hover:shadow-orange-500/20 light:hover:shadow-cyan-500/20 water:hover:shadow-emerald-500/20 overflow-hidden"
-                >
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 soft-dark:from-lime-500/10 orange:from-orange-500/10 water:from-emerald-500/10 to-transparent rounded-xl" />
-                  </div>
-                  
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="px-3 py-1 bg-cyan-500/10 soft-dark:bg-lime-600/20 text-cyan-400 soft-dark:text-lime-800 light:bg-cyan-100 light:text-cyan-700 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:shadow-lg orange:shadow-orange-500/20 orange:text-white leaf:bg-cyan-600/20 leaf:text-cyan-900 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:shadow-lg water:shadow-emerald-500/20 water:text-white rounded-full text-xs font-semibold">
-                        {article.category}
-                      </span>
-                      {article.pillar && (
-                        <span className="px-3 py-1 bg-white/5 soft-dark:bg-white/20 soft-dark:text-gray-700 light:bg-gray-100 light:text-gray-700 orange:bg-white/20 orange:text-[#101828] leaf:bg-white/20 leaf:text-gray-700 water:bg-white/20 water:text-gray-700 rounded-full text-xs">
-                          {article.pillar}
-                        </span>
-                      )}
-                      {!article.hasContent && (
-                        <span className="px-3 py-1 bg-yellow-500/10 soft-dark:bg-yellow-600/20 text-yellow-400 soft-dark:text-yellow-800 light:bg-yellow-100 light:text-yellow-700 orange:bg-yellow-500/10 orange:text-yellow-400 leaf:bg-yellow-600/20 leaf:text-yellow-800 water:bg-yellow-600/20 water:text-yellow-800 rounded-full text-xs font-semibold">
-                          Coming Soon
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 group-hover:text-cyan-400 soft-dark:group-hover:text-lime-700 light:group-hover:text-cyan-600 orange:group-hover:text-orange-700 leaf:group-hover:text-cyan-700 water:group-hover:text-emerald-700 transition-colors">
-                      {article.title}
-                    </h3>
-                    <p className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-4 line-clamp-2">
-                      {!article.hasContent ? 'Coming Soon - ' : ''}{article.summary}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-500 soft-dark:text-gray-600 light:text-gray-500 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700">Updated {article.lastUpdated}</p>
+      {/* Quick Access: six ways in, as quiet cards. */}
+      <section className={`py-10 ${SECTION}`}>
+        <div className={INNER}>
+          <h2 className={`${H2} mb-8`}>Quick Access</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {quickTiles.map((tile) => {
+              const Icon = tile.icon;
+              return (
+                <Link key={tile.title} href={tile.link} className={`${CARD_LINK} flex gap-4 items-start`}>
+                  <Icon className={`w-5 h-5 mt-1 shrink-0 ${ACCENT}`} aria-hidden="true" />
+                  <div>
+                    <h3 className={`text-lg font-semibold mb-1 ${HEAD} group-hover:underline underline-offset-4 decoration-1`}>{tile.title}</h3>
+                    <p className={`text-sm leading-relaxed ${MUTED}`}>{tile.description}</p>
                   </div>
                 </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Articles (only when nothing is filtered) */}
+      {!filtersActive && (
+        <section className={`py-10 ${SECTION}`}>
+          <div className={INNER}>
+            <h2 className={`${H2} mb-8`}>Popular Articles</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {popularArticles.map((article) => (
+                <ArticleCard key={article.slug} article={article} showType={false} />
               ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* All Articles */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:bg-transparent orange:bg-transparent leaf:bg-transparent">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
-              {searchQuery || selectedCategory !== 'All' || selectedPillar !== 'All' || selectedMarketplace !== 'All'
-                ? 'Search Results'
-                : 'All Articles'}
-            </h2>
-            <p className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 text-sm">{filteredArticles.length} articles</p>
+      {/* All Articles / Search Results */}
+      <section className={`py-10 ${SECTION}`}>
+        <div className={INNER}>
+          <div className="flex items-baseline justify-between gap-4 mb-8">
+            <h2 className={H2}>{filtersActive ? 'Search Results' : 'All Articles'}</h2>
+            <p className={`text-sm shrink-0 ${MUTED}`}>{filteredArticles.length} articles</p>
           </div>
 
           {filteredArticles.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-4">No articles found matching your search.</p>
+            <div className="py-12">
+              <p className={`mb-4 ${BODY}`}>No articles found matching your search.</p>
               <button
                 onClick={() => {
                   setSearchQuery('');
@@ -371,80 +347,32 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
                     marketplace: 'All',
                   });
                 }}
-                className="text-cyan-400 hover:text-cyan-300 soft-dark:text-lime-700 soft-dark:hover:text-lime-800 light:text-cyan-600 light:hover:text-cyan-700 orange:text-orange-700 orange:hover:text-orange-600 leaf:text-cyan-700 leaf:hover:text-cyan-600 water:text-emerald-700 water:hover:text-emerald-600 text-sm"
+                className={QUIET_BUTTON}
               >
                 Clear filters
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredArticles.map((article) => (
-                <Link
-                  key={article.slug}
-                  href={`/knowledge-base/${article.slug}`}
-                  className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-xl p-6 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/30 leaf:border-white/20 water:border-white/20 hover:border-cyan-500/30 soft-dark:hover:border-lime-600/30 orange:hover:border-orange-500/30 leaf:hover:border-cyan-600/50 water:hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 soft-dark:hover:shadow-lime-500/10 orange:hover:shadow-orange-500/20 light:hover:shadow-cyan-500/20 water:hover:shadow-emerald-500/20 overflow-hidden"
-                >
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 soft-dark:from-lime-500/10 orange:from-orange-500/10 water:from-emerald-500/10 to-transparent rounded-xl" />
-                  </div>
-                  
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-2 mb-3 flex-wrap">
-                      <span className="px-3 py-1 bg-cyan-500/10 soft-dark:bg-lime-600/20 text-cyan-400 soft-dark:text-lime-800 light:bg-cyan-100 light:text-cyan-700 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:shadow-lg orange:shadow-orange-500/20 orange:text-white leaf:bg-cyan-600/20 leaf:text-cyan-900 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:shadow-lg water:shadow-emerald-500/20 water:text-white rounded-full text-xs font-semibold">
-                        {article.category}
-                      </span>
-                      {article.pillar && (
-                        <span className="px-3 py-1 bg-white/5 soft-dark:bg-white/20 text-gray-400 soft-dark:text-gray-700 light:bg-gray-100 light:text-gray-700 orange:bg-white/20 orange:text-[#101828] leaf:bg-white/20 leaf:text-gray-700 water:bg-white/20 water:text-gray-700 rounded-full text-xs">
-                          {article.pillar}
-                        </span>
-                      )}
-                      {article.type && (
-                        <span className="px-3 py-1 bg-purple-500/10 soft-dark:bg-purple-600/20 text-purple-400 soft-dark:text-purple-800 light:bg-purple-100 light:text-purple-700 orange:bg-purple-500/10 orange:text-purple-400 leaf:bg-purple-600/20 leaf:text-purple-800 water:bg-purple-600/20 water:text-purple-800 rounded-full text-xs">
-                          {article.type}
-                        </span>
-                      )}
-                      {!article.hasContent && (
-                        <span className="px-3 py-1 bg-yellow-500/10 soft-dark:bg-yellow-600/20 text-yellow-400 soft-dark:text-yellow-800 light:bg-yellow-100 light:text-yellow-700 orange:bg-yellow-500/10 orange:text-yellow-400 leaf:bg-yellow-600/20 leaf:text-yellow-800 water:bg-yellow-600/20 water:text-yellow-800 rounded-full text-xs font-semibold">
-                          Coming Soon
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 group-hover:text-cyan-400 soft-dark:group-hover:text-lime-700 light:group-hover:text-cyan-600 orange:group-hover:text-orange-700 leaf:group-hover:text-cyan-700 water:group-hover:text-emerald-700 transition-colors">
-                      {article.title}
-                    </h3>
-                    <p className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-4 line-clamp-2">
-                      {!article.hasContent ? 'Coming Soon - ' : ''}{article.summary}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <p className="text-xs text-gray-500 dark:text-gray-500 soft-dark:text-gray-600 light:text-gray-500 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700">Updated {article.lastUpdated}</p>
-                      {article.downloadable && (
-                        <Download className="w-4 h-4 text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
-                      )}
-                    </div>
-                  </div>
-                </Link>
+                <ArticleCard key={article.slug} article={article} />
               ))}
             </div>
           )}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent dark:bg-transparent soft-dark:bg-transparent light:from-gray-50 light:to-white orange:from-orange-900 orange:to-orange-950 leaf:bg-transparent border-t border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/10 leaf:border-white/20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
-            Can't find what you're looking for?
-          </h2>
-          <p className="text-lg text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Let's talk through your specific situation and map the right approach.
+      {/* Closing call to action */}
+      <section className={CHAPTER}>
+        <div className={`${INNER} border-t ${RULE} pt-14`}>
+          <h2 className={`${H2} mb-4`}>Can&apos;t find what you&apos;re looking for?</h2>
+          <p className={`text-lg leading-relaxed max-w-2xl mb-8 ${BODY}`}>
+            Let&apos;s talk through your specific situation and map the right approach. Or email <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 font-medium">{siteConfig.contactEmail}</a>.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <CtaButton variant="primary" size="lg" location="Knowledge Base Page - Final CTA" />
-            <Link
-              href="/faq"
-              className="px-8 py-3.5 bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-100 orange:bg-white/70 leaf:bg-white/10 water:bg-white/70 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 rounded-lg hover:bg-white/10 light:hover:bg-gray-200 orange:hover:bg-white/80 leaf:hover:bg-white/20 water:hover:bg-white/80 transition-all border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-300 orange:border-white/30 leaf:border-white/20 water:border-white/20 text-base font-medium"
-            >
+            {/* With booking switched off, the FAQ link is the page's one main action. */}
+            <Link href="/faq" className={`${siteConfig.bookACallEnabled ? QUIET_BUTTON : POP_BUTTON} self-start sm:self-auto`}>
               View FAQ
             </Link>
           </div>
@@ -453,4 +381,3 @@ export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
     </div>
   );
 }
-

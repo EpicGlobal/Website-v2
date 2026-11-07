@@ -5,6 +5,7 @@ export const metadata = createPageMetadata({
   title: 'Reset Password',
   description: 'Update the password for your Epic Global account using the secure reset link sent to your email.',
   path: '/reset-password',
+  noindex: true,
   keywords: ['reset password', 'account recovery', 'epic global login'],
 });
 

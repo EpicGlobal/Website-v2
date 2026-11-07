@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { themeParticleColor } from '@/app/components/themeParticleColor';
 
 const AUTO_ROTATION_SPEED = 0.09;
 const DRAG_ROTATION_PER_PIXEL = 0.006;
@@ -27,18 +28,7 @@ export function Globe({ colorOverride, darkerParticles }: { colorOverride?: { r:
         return colorOverride;
       }
       
-      const rootClasses = document.documentElement.classList;
-      if (rootClasses.contains('leaf')) {
-        return { r: 14, g: 165, b: 233 }; // Sky-500 #0ea5e9 for leaf theme
-      }
-      if (rootClasses.contains('water')) {
-        return { r: 63, g: 98, b: 18 }; // Lime-800 #3f6212 for water theme
-      }
-      if (rootClasses.contains('orange')) {
-        return { r: 249, g: 115, b: 22 }; // Orange-500 #f97316 for fire/orange theme - warmer, more vibrant
-      }
-      // Default cyan-500 #06b6d4 for dark/moon theme
-      return { r: 6, g: 182, b: 212 };
+      return themeParticleColor();
     };
 
     let animationId = 0;
@@ -51,7 +41,9 @@ export function Globe({ colorOverride, darkerParticles }: { colorOverride?: { r:
     const points: Array<{ x: number; y: number; z: number }> = [];
     const rotatedPoints: Array<{ x: number; y: number; z: number }> = [];
 
-    for (let i = 0; i < GLOBE_PARTICLE_COUNT; i++) {
+    // Fewer points on small screens: the connecting lines cost (points x points) work every frame.
+    const pointCount = window.innerWidth < 768 ? 240 : GLOBE_PARTICLE_COUNT;
+    for (let i = 0; i < pointCount; i++) {
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
 
@@ -196,7 +188,19 @@ export function Globe({ colorOverride, darkerParticles }: { colorOverride?: { r:
       }
     };
 
+    // Skip drawing while the hero is off screen (keeps scrolling smooth further down the page).
+    let onScreen = true;
+    const visibility = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      lastFrameTime = performance.now();
+    });
+    visibility.observe(canvas);
+
     const animate = () => {
+      if (!onScreen) {
+        animationId = requestAnimationFrame(animate);
+        return;
+      }
       if (!syncCanvasSize()) {
         lastFrameTime = performance.now();
         animationId = requestAnimationFrame(animate);
@@ -290,6 +294,7 @@ export function Globe({ colorOverride, darkerParticles }: { colorOverride?: { r:
     animationId = requestAnimationFrame(animate);
 
     return () => {
+      visibility.disconnect();
       resizeObserver.disconnect();
       window.removeEventListener('resize', syncCanvasSize);
       document.removeEventListener('pointerdown', startDrag, true);
@@ -315,7 +320,7 @@ export function Globe({ colorOverride, darkerParticles }: { colorOverride?: { r:
   return (
     <canvas
       ref={canvasRef}
-      aria-label="Interactive globe"
+      aria-hidden="true"
       data-globe-canvas="true"
       className="w-full h-full cursor-grab active:cursor-grabbing"
       style={{ width: '100%', height: '100%', cursor: 'grab' }}

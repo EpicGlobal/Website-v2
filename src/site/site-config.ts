@@ -1,18 +1,29 @@
 import type { Metadata } from 'next';
 
-const defaultSiteUrl = 'https://epicglobalinc.com';
+// The site serves every page from www (the bare domain redirects there), so canonical tags and the sitemap use www too.
+const defaultSiteUrl = 'https://www.epicglobalinc.com';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, '') || defaultSiteUrl;
 
 export const siteConfig = {
   name: 'Epic Global Inc.',
   shortName: 'Epic Global',
   bookACallEnabled: process.env.NEXT_PUBLIC_BOOK_A_CALL_ENABLED === 'true',
+  // Case study and template downloads (they ask visitors to sign in first). Hidden for now while the team decides
+  // whether to keep the sign-in (To-do b23). Set to true to bring the download buttons back.
+  downloadsEnabled: false,
   url: siteUrl,
   logo: '/logo.png',
   founderName: 'Glen Jensen',
   founderLinkedIn: 'https://www.linkedin.com/in/glen-jensen-54a27/',
-  organizationSameAs: ['https://www.linkedin.com/company/epic-global-inc'],
-  foundingDate: '2014',
+  alternateName: ['Epic Global'],
+  // Official profiles only. Add the Amazon storefront and new directory/review profiles as they're confirmed.
+  organizationSameAs: [
+    'https://www.linkedin.com/company/epic-global-inc',
+    'https://www.walmart.com/seller/13412',
+    'https://www.amazon.com/sp?seller=A36Z6L3RI4IXSS',
+    'https://www.wikidata.org/wiki/Q141937180',
+  ],
+  foundingDate: '2015',
   headquarters: 'Lindon, Utah, United States',
   streetAddress: '333 S 520 W Ste 250',
   locality: 'Lindon',
@@ -44,7 +55,7 @@ export const siteConfig = {
     'Marketplace automation',
   ],
   description:
-    'Epic Global Inc. is a global marketplace operator that buys inventory at wholesale, manages marketplace sales channels, funds advertising, and protects brand equity across international ecommerce platforms.',
+    'Epic Global Inc. is an Amazon-first wholesale trade partner: we buy inventory at wholesale and sell it on Amazon, plus Walmart and global marketplaces.',
   ogImage: '/opengraph-image.png',
   twitterImage: '/twitter-image.png',
 };
@@ -55,12 +66,21 @@ export function createPageMetadata({
   path,
   keywords,
   type = 'website',
+  noindex = false,
+  image,
+  articleDate,
 }: {
   title: string;
   description: string;
   path: string;
   keywords?: string[];
   type?: 'website' | 'article';
+  /** Keep the page out of search results (placeholders, account pages). */
+  noindex?: boolean;
+  /** Page-specific link-preview image (for example a Knowledge Base article card). */
+  image?: { url: string; alt: string };
+  /** ISO date (YYYY-MM-DD) for article:published_time and article:modified_time. */
+  articleDate?: string;
 }): Metadata {
   const url = new URL(path, siteConfig.url).toString();
   const hasSiteName = title.includes(siteConfig.name);
@@ -72,8 +92,11 @@ export function createPageMetadata({
     title: isRootPath ? { absolute: fullTitle } : metadataTitle,
     description,
     keywords,
+    ...(noindex ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: url,
+      // Knowledge Base feed, so feed readers and AI tools can find new articles from any page.
+      types: { 'application/rss+xml': [{ url: '/knowledge-base/rss.xml', title: `${siteConfig.name} Knowledge Base` }] },
     },
     openGraph: {
       type,
@@ -82,12 +105,13 @@ export function createPageMetadata({
       description,
       siteName: siteConfig.name,
       locale: 'en_US',
+      ...(type === 'article' && articleDate ? { publishedTime: articleDate, modifiedTime: articleDate } : {}),
       images: [
         {
-          url: siteConfig.ogImage,
+          url: image?.url ?? siteConfig.ogImage,
           width: 1200,
           height: 630,
-          alt: siteConfig.name,
+          alt: image?.alt ?? siteConfig.name,
         },
       ],
     },
@@ -95,7 +119,7 @@ export function createPageMetadata({
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [siteConfig.twitterImage],
+      images: [image?.url ?? siteConfig.twitterImage],
     },
   };
 }
