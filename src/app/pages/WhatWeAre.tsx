@@ -52,13 +52,16 @@ function ChapterMarker({ n, accent }: { n: number; accent?: string }) {
   return <KitChapterMarker n={n} label={CHAPTERS[n - 1].label} accent={accent} />;
 }
 
-/** The model in four lines (hero, right column). Epic's two lines are lit; yours are quieter. */
-const MODEL_LINES = [
+/**
+ * The model in four lines (hero, right column). Epic's two lines are lit and stand alone (How it works explains
+ * them); your two lines are quieter and keep a short note, since nothing below covers them.
+ */
+const MODEL_LINES: { who: 'You' | 'Epic'; lead: string; body?: string }[] = [
   { who: 'You', lead: 'You make it.', body: 'You build the product and the brand.' },
-  { who: 'Epic', lead: 'buy', body: 'Upfront, at an agreed wholesale price. You get paid; we own the stock.' },
-  { who: 'Epic', lead: 'sell', body: 'On Amazon, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment.' },
+  { who: 'Epic', lead: 'buy' },
+  { who: 'Epic', lead: 'sell' },
   { who: 'You', lead: 'You keep the brand.', body: 'Brand Registry, listings and reviews stay yours, and we enforce your MAP.' },
-] as const;
+];
 
 const STEPS = [
   { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own it, and the retail risk.' },
@@ -130,7 +133,7 @@ export function WhatWeAre() {
             <div>
               <h1 className={`${H1} mb-6`}>Our wholesale trade partner model</h1>
               <p className={`${LEAD} mb-8`}>
-                Epic Global Inc. is an Amazon-first wholesale trade partner: we buy your inventory upfront and sell it on Amazon, plus Walmart and international marketplaces.
+                Epic Global Inc. is an Amazon-first wholesale trade partner: we buy your inventory upfront, sell it on Amazon, plus Walmart and international marketplaces, and pay the ads, fees and fulfillment.
               </p>
               <a href="#how-it-works" className={`text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
                 How it works &darr;
@@ -139,13 +142,15 @@ export function WhatWeAre() {
             <div>
               <h2 className="sr-only">The model in four lines</h2>
               <ol className="relative pl-7">
-                {/* The rail: a faint line the full height, lit beside Epic's two lines. */}
+                {/* The rail: a faint line the full height; each Epic line lights its own stretch of it. */}
                 <span aria-hidden="true" className={`absolute left-0 top-0 bottom-0 w-0.5 bg-current opacity-15 ${MUTED}`} />
-                <span aria-hidden="true" className={`absolute left-0 top-1/4 h-1/2 w-0.5 bg-current shadow-[0_0_14px_currentColor] ${ACCENT}`} />
                 {MODEL_LINES.map((line) => {
                   const epic = line.who === 'Epic';
                   return (
-                    <li key={line.lead} className="py-3.5">
+                    <li key={line.lead} className="relative py-3.5">
+                      {epic ? (
+                        <span aria-hidden="true" className={`absolute -left-7 top-0 bottom-0 w-0.5 bg-current shadow-[0_0_14px_currentColor] ${ACCENT}`} />
+                      ) : null}
                       <span className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] mb-1 ${epic ? ACCENT : MUTED}`}>
                         {epic ? <Image src={epicMark} alt="" className="w-4 h-4 object-contain" /> : null}
                         {line.who}
@@ -159,7 +164,7 @@ export function WhatWeAre() {
                           line.lead
                         )}
                       </p>
-                      <p className={`mt-1.5 leading-relaxed ${epic ? BODY : MUTED}`}>{line.body}</p>
+                      {line.body ? <p className={`mt-1.5 leading-relaxed ${MUTED}`}>{line.body}</p> : null}
                     </li>
                   );
                 })}
