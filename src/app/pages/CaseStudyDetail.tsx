@@ -74,7 +74,7 @@ export function CaseStudyDetail({ study }: { study: CaseStudy }) {
           <div className={INNER}>
             {/* At a glance: the whole case in three lines, for skimmers and AI answers. */}
             <dl className={`${CARD} grid gap-5 sm:grid-cols-3 p-6 mb-8`}>
-              {([['The problem', study.glance.problem], ['What Epic did', study.glance.did], ['The result', study.glance.result]] as const).map(([k, v]) => (
+              {([['The result', study.glance.result], ['The problem', study.glance.problem], ['What Epic did', study.glance.did]] as const).map(([k, v]) => (
                 <div key={k}>
                   <dt className={`text-xs font-semibold uppercase tracking-[0.14em] mb-2 ${MUTED}`}>{k}</dt>
                   <dd className={`leading-relaxed ${k === 'The result' ? `font-semibold ${HEAD}` : BODY}`}>{v}</dd>

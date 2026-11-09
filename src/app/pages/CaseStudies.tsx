@@ -111,7 +111,9 @@ export function CaseStudies() {
                   </div>
                 ))}
               </dl>
-              <p className={`mt-8 max-w-3xl leading-relaxed ${BODY}`}>
+              {/* Answer first: the result, then how it happened. */}
+              <p className={`mt-8 max-w-3xl text-lg font-semibold leading-relaxed ${HEAD}`}>{featured.glance.result}</p>
+              <p className={`mt-3 max-w-3xl leading-relaxed ${BODY}`}>
                 <span className={`font-semibold ${HEAD}`}>The problem:</span> {featured.glance.problem}{' '}
                 <span className={`font-semibold ${HEAD}`}>What Epic did:</span> {featured.glance.did}
               </p>
@@ -147,7 +149,7 @@ export function CaseStudies() {
                       <p className={`text-sm mb-5 ${MUTED}`}>{lead.label.toLowerCase()} · {lead.note}</p>
                       <h3 className={`text-lg font-semibold leading-snug mb-2 ${HEAD}`}>{study.title}</h3>
                       <Meta study={study} />
-                      <p className={`mt-4 leading-relaxed ${BODY}`}>{study.glance.problem}</p>
+                      <p className={`mt-4 leading-relaxed ${BODY}`}>{study.glance.result}</p>
                       <span className={`mt-auto pt-6 inline-flex items-center gap-2 text-sm font-semibold ${ACCENT}`}>
                         Read the case study
                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />

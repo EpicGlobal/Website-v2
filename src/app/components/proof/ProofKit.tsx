@@ -59,8 +59,9 @@ export function MetricValue({ value }: { value: string }) {
 export function ProofMetrics({ metrics }: { metrics: readonly { label: string; value: string; subtext: string }[] }) {
   return (
     <dl className={`grid grid-cols-2 gap-4 ${metrics.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'}`}>
-      {metrics.map((metric) => (
-        <div key={metric.label} className={`${CARD} p-5 flex flex-col`}>
+      {metrics.map((metric, i) => (
+        // Two metrics can share a label (e.g. the same measure for two products), so the key adds the position.
+        <div key={`${i}-${metric.label}`} className={`${CARD} p-5 flex flex-col`}>
           <dt className={`order-2 text-sm font-medium mt-2 ${HEAD}`}>{metric.label}</dt>
           <dd className="order-1">
             <span aria-hidden="true" className={`block h-[3px] w-10 mb-4 rounded-full ${ACCENT_BG}`} />
