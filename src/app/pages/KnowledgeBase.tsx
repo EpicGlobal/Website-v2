@@ -12,7 +12,7 @@ import { ArticleCard } from '@/app/components/reading/ArticleCard';
 import { CARD_LINK, FIELD, OPTIONS } from '@/app/components/reading/reading';
 
 // This will be replaced with actual articles from a data file
-import { knowledgeArticles } from '@/app/data/knowledgeArticles';
+import type { KnowledgeArticle } from '@/app/data/knowledgeArticles';
 import { siteConfig } from '@/site/site-config';
 
 const categories = [
@@ -47,9 +47,11 @@ export type KnowledgeBaseFilters = {
 
 type KnowledgeBaseProps = {
   initialFilters: KnowledgeBaseFilters;
+  /** All articles as the public sees them today (from articlesAsOf on the server). */
+  articles: KnowledgeArticle[];
 };
 
-export function KnowledgeBase({ initialFilters }: KnowledgeBaseProps) {
+export function KnowledgeBase({ initialFilters, articles: knowledgeArticles }: KnowledgeBaseProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState('');

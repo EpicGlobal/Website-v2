@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { isoDate, knowledgeArticles } from '@/app/data/knowledgeArticles';
+import { articlesAsOf, isoDate } from '@/app/data/knowledgeArticles';
 import { publishedCaseStudies } from '@/app/data/caseStudies';
 import { siteConfig } from '@/site/site-config';
 
@@ -19,6 +19,9 @@ const staticRoutes = [
   { path: '/terms', priority: 0.4, updated: '2026-10-29' },
 ];
 
+// Rebuilt hourly so scheduled articles join the sitemap on their publish day.
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: `${siteConfig.url}${route.path}`,
@@ -28,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Only written articles: "Coming Soon" placeholders stay out of the sitemap until they have content.
-  const articleEntries: MetadataRoute.Sitemap = knowledgeArticles
+  const articleEntries: MetadataRoute.Sitemap = articlesAsOf()
     .filter((article) => article.hasContent)
     .map((article) => ({
       url: `${siteConfig.url}/knowledge-base/${article.slug}`,

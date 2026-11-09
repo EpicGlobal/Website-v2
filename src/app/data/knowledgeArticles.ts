@@ -1,3 +1,10 @@
+/*
+ * Knowledge Base articles. Each article is one Markdown file in content/knowledge-base/ (how to write one:
+ * content/knowledge-base/README.md). scripts/build-articles.mjs turns those files into knowledgeArticles.generated.ts
+ * before every build, so this file only holds the shape of an article and the publish-date rules.
+ */
+import { generatedArticles } from './knowledgeArticles.generated';
+
 export interface KnowledgeArticle {
   slug: string;
   title: string;
@@ -13,42 +20,43 @@ export interface KnowledgeArticle {
   objective?: string;
   type?: 'Answer Page' | 'Playbook' | 'Checklist' | 'Glossary' | 'Template' | 'Deep Dive';
   difficulty?: 'Intro' | 'Operator' | 'Advanced';
+  /** The date readers see, like "January 22, 2026": the last edit, or the publish date if that's later. */
   lastUpdated: string;
+  /** YYYY-MM-DD. Until this day (Utah time) the article stays hidden: no page, no card, not in the sitemap. */
+  publishOn?: string;
   tags: string[];
   featured?: boolean;
   downloadable?: boolean;
   downloadUrl?: string;
-  content?: any; // Will be used for actual article content
-  hasContent?: boolean; // Whether the article content has been written
-  /** Slugs to show under Related Articles first (only ones with content are shown). */
+  /** Whether the article is written (and, from articlesAsOf, already published). */
+  hasContent?: boolean;
+  /** Slugs to show under Related Articles first (only published ones are shown). */
   related?: string[];
 }
 
-// Articles that have full content written
-export const articlesWithContent = [
-  'weekly-operating-cadence-doc',
-  'weekly-executive-dashboard',
-  'variation-strategy-basics',
-  'unauthorized-seller-monitoring-workflow',
-  'search-term-harvesting-playbook',
-  'reorder-point-logic-explained',
-  'listing-qa-checklist',
-  'inventory-reorder-model-template',
-  'creative-testing-loop',
-  'catalog-qa-checklist',
-  'catalog-integrity-controls',
-  'campaign-structure-playbook',
-  'brand-protection-escalation-template',
-  'amazon-marketplace-glossary',
-  'ad-account-rebuild-checklist',
-  'what-is-epic-global-inc',
-  'how-our-model-works',
-  'catalog-hygiene-what-it-is-why-it-matters',
-  'kpi-glossary',
-  'who-we-are-fit-for',
-  'marketplace-operating-cadence',
-  'epic-operational-process',
-];
+/** Every article in list order, as written (ignores publish dates). Use articlesAsOf() for what the public sees. */
+export const knowledgeArticles: KnowledgeArticle[] = generatedArticles;
+
+/** Today's date in Utah (Epic's office), as YYYY-MM-DD. */
+export function utahToday(now: Date = new Date()): string {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Denver', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+}
+
+/** Written and its publish date has arrived. */
+export function isPublished(article: KnowledgeArticle, today: string = utahToday()): boolean {
+  return Boolean(article.hasContent) && (!article.publishOn || article.publishOn <= today);
+}
+
+/**
+ * The articles as the public sees them on a given day: an article scheduled for later counts as not written yet
+ * (hasContent false), so every page, card, feed and the sitemap hide it until its day.
+ */
+export function articlesAsOf(today: string = utahToday()): KnowledgeArticle[] {
+  return knowledgeArticles.map((article) => ({ ...article, hasContent: isPublished(article, today) }));
+}
+
+/** How often pages that list articles rebuild themselves, so scheduled articles appear without a new deploy. */
+export const ARTICLE_REFRESH_SECONDS = 3600;
 
 const months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 
@@ -59,445 +67,3 @@ export function isoDate(text: string): string {
   if (!match || !month) throw new Error(`Article date must look like "January 22, 2026": ${text}`);
   return `${match[3]}-${String(month).padStart(2, '0')}-${match[2].padStart(2, '0')}`;
 }
-
-export const knowledgeArticles: KnowledgeArticle[] = [
-  // START HERE
-  {
-    slug: 'what-is-epic-global-inc',
-    title: 'What is Epic Global Inc.?',
-    seoTitle: 'What Is Epic Global Inc.? A Wholesale Trade Partner',
-    seoDescription: 'Epic Global Inc. is an Amazon-first wholesale trade partner: we buy brand inventory at wholesale and sell it on Amazon, plus Walmart and more.',
-    summary: "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory upfront at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.",
-    category: 'Start Here',
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'November 5, 2026',
-    tags: ['overview', 'model', 'introduction'],
-    featured: true,
-    hasContent: true,
-  },
-  {
-    slug: 'how-our-model-works',
-    title: 'How Our Model Works: Buy, Sell, Advertise, Protect',
-    seoTitle: 'How Our Model Works',
-    summary: 'A complete breakdown of our four-part model: we buy inventory at wholesale, sell it across marketplaces, fund the advertising, and protect the brand.',
-    category: 'Model and Process',
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'November 5, 2026',
-    tags: ['model', 'purchase', 'expand', 'cover', 'overview'],
-    featured: true,
-    hasContent: true,
-  },
-  {
-    slug: 'who-we-are-fit-for',
-    title: "What Types of Brands We're a Fit For",
-    summary: 'Learn which brands benefit most from our operator model: typically doing $50K+ monthly revenue and needing control at scale.',
-    category: 'Model and Process',
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'November 5, 2026',
-    tags: ['fit', 'brands', 'requirements'],
-    featured: true,
-    hasContent: true,
-  },
-  {
-    slug: 'marketplace-operating-cadence',
-    title: 'The Incentive Trap: Why Epic Isn\'t an "Agency"',
-    seoTitle: 'The Incentive Trap: Epic vs. Agencies',
-    summary: 'How to cut through marketplace partner noise by comparing business models, not tactics—agencies, distributors, aggregators, and the Epic operator model.',
-    category: 'Model and Process',
-    type: 'Playbook',
-    difficulty: 'Operator',
-    lastUpdated: 'November 5, 2026',
-    tags: ['model', 'agency', 'comparison', 'incentives'],
-    featured: true,
-    hasContent: true,
-  },
-
-  // MODEL AND PROCESS
-  {
-    slug: 'inventory-purchase-model-explained',
-    title: 'Inventory Purchase Model Explained',
-    summary: 'How our wholesale inventory purchase model works: we buy inventory upfront, take ownership, and run retail operations across marketplaces.',
-    category: 'Model and Process',
-    pillar: 'Buy',
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'January 19, 2026',
-    tags: ['inventory', 'purchase', 'wholesale', 'model'],
-    featured: false,
-  },
-  {
-    slug: 'end-to-end-expense-coverage',
-    title: 'End-to-End Expense Coverage Explained',
-    summary: 'Why we cover advertising, marketplace fees, and fulfillment costs—and how this aligns incentives for sustainable growth.',
-    category: 'Model and Process',
-    pillar: 'Advertise',
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'January 19, 2026',
-    tags: ['expenses', 'coverage', 'advertising', 'fees', 'incentives'],
-    featured: false,
-  },
-  {
-    slug: 'global-expansion-readiness-model',
-    title: 'Global Expansion Readiness Model',
-    summary: 'How we assess brand readiness for international expansion: compliance, localization, catalog structure, and go-live sequencing.',
-    category: 'Model and Process',
-    pillar: 'Sell',
-    type: 'Answer Page',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['global', 'expansion', 'international', 'readiness'],
-    featured: false,
-  },
-
-  // MARKETPLACE OPERATIONS
-  {
-    slug: 'catalog-hygiene-what-it-is-why-it-matters',
-    pillar: 'Sell',
-    title: 'The Silent Growth Killer: Mastering Catalog Hygiene in 2026',
-    seoTitle: 'Catalog Hygiene: Why It Matters',
-    summary: 'Catalog hygiene is the disciplined habit of keeping product data clean, consistent, and current across every SKU and marketplace.',
-    category: 'Marketplace Operations',
-    marketplace: ['Amazon', 'Walmart', 'eBay'],
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'November 5, 2026',
-    tags: ['catalog', 'hygiene', 'data quality', 'listings'],
-    featured: true,
-    hasContent: true,
-  },
-  {
-    slug: 'listing-qa-checklist',
-    pillar: 'Sell',
-    title: "Listing QA Checklist: What to Check Before a Listing Goes Live",
-    seoTitle: "Listing QA Checklist",
-    summary: "A pre-launch checklist for Amazon and Walmart listings covering titles, images, attributes, variations, compliance and day 1 and day 7 checks.",
-    seoDescription: "A pre-launch listing QA checklist for Amazon and Walmart: titles, images, attributes, variations, compliance and post-launch checks.",
-    type: "Checklist",
-    lastUpdated: "November 3, 2026",
-    hasContent: true,
-    related: ["catalog-hygiene-what-it-is-why-it-matters", "catalog-qa-checklist", "variation-strategy-basics"],
-    category: 'Marketplace Operations',
-    marketplace: ['Amazon', 'Walmart'],
-    difficulty: 'Operator',
-    tags: ['listing', 'qa', 'checklist', 'optimization'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'variation-strategy-basics',
-    pillar: 'Sell',
-    title: "Variation Strategy Basics: How Should You Set Up Product Variations on Amazon?",
-    seoTitle: "Variation Strategy Basics",
-    summary: "How Amazon parent-child variations work, when to group products, when to keep them separate, and how to avoid broken families.",
-    seoDescription: "How Amazon parent-child variations work, when to group products, when to keep them separate, and how to avoid broken families.",
-    type: "Answer Page",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["catalog-hygiene-what-it-is-why-it-matters", "listing-qa-checklist", "catalog-integrity-controls", "catalog-qa-checklist"],
-    category: 'Marketplace Operations',
-    marketplace: ['Amazon'],
-    difficulty: 'Operator',
-    tags: ['variations', 'parent-child', 'catalog structure'],
-    featured: false,
-  },
-
-  // ADVERTISING
-  {
-    slug: 'campaign-structure-playbook',
-    title: "Campaign Structure Playbook: How Should You Structure Amazon Ad Campaigns?",
-    seoTitle: "Campaign Structure Playbook",
-    summary: "How to build a baseline Amazon ads structure with campaigns by objective, match type and SKU priority, plus naming rules and weekly checks.",
-    seoDescription: "How to build a baseline Amazon ads structure: campaigns by objective, match type and SKU priority, with naming rules and weekly checks.",
-    type: "Playbook",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["search-term-harvesting-playbook", "creative-testing-loop", "ad-account-rebuild-checklist", "kpi-glossary", "how-our-model-works"],
-    category: 'Advertising Operations',
-    pillar: 'Advertise',
-    marketplace: ['Amazon', 'Walmart'],
-    difficulty: 'Operator',
-    tags: ['advertising', 'campaigns', 'structure', 'ppc'],
-    featured: false,
-  },
-  {
-    slug: 'search-term-harvesting-playbook',
-    title: "Search Term Harvesting Playbook: How Do You Turn Search Term Reports Into Better Campaigns?",
-    seoTitle: "Search Term Harvesting Playbook",
-    summary: "How to mine the Amazon search term report: promote converting terms to exact match, negate waste, and keep campaigns from competing.",
-    seoDescription: "How to mine the Amazon search term report: promote converting terms to exact match, negate waste, and keep campaigns from competing.",
-    type: "Playbook",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["campaign-structure-playbook", "creative-testing-loop", "ad-account-rebuild-checklist", "kpi-glossary"],
-    category: 'Advertising Operations',
-    pillar: 'Advertise',
-    marketplace: ['Amazon'],
-    difficulty: 'Advanced',
-    tags: ['search terms', 'keywords', 'harvesting', 'optimization'],
-    featured: false,
-  },
-  {
-    slug: 'creative-testing-loop',
-    pillar: 'Advertise',
-    title: "Creative Testing Loop: How Do You Test Images and Content to Improve Amazon Conversion?",
-    seoTitle: "Creative Testing Loop",
-    summary: "A repeatable cycle for testing one listing element at a time on Amazon, keeping the winner and starting the next test.",
-    seoDescription: "A repeatable loop for testing Amazon main images, titles, A+ content and video with Manage Your Experiments to raise conversion.",
-    type: "Playbook",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["campaign-structure-playbook", "listing-qa-checklist", "search-term-harvesting-playbook", "weekly-executive-dashboard"],
-    category: 'Advertising Operations',
-    marketplace: ['Amazon', 'Walmart'],
-    difficulty: 'Operator',
-    tags: ['creative', 'testing', 'images', 'conversion'],
-    featured: false,
-  },
-
-  // INVENTORY
-  {
-    slug: 'reorder-point-logic-explained',
-    title: "Reorder Point Logic Explained",
-    summary: "How to calculate a marketplace reorder point from daily demand, full lead time and safety stock, with a worked example.",
-    seoDescription: "How to set a marketplace reorder point from daily demand, full lead time and safety stock, with a worked example and the formulas.",
-    type: "Deep Dive",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["inventory-reorder-model-template", "kpi-glossary"],
-    category: 'Inventory and Forecasting',
-    pillar: 'Buy',
-    difficulty: 'Operator',
-    tags: ['inventory', 'reorder', 'forecasting', 'planning'],
-    featured: false,
-  },
-  {
-    slug: 'allocation-planning-by-region',
-    title: 'Allocation Planning by Region',
-    summary: 'Framework for allocating inventory across regions based on demand signals, compliance, and fulfillment constraints.',
-    category: 'Inventory and Forecasting',
-    pillar: 'Buy',
-    type: 'Playbook',
-    difficulty: 'Advanced',
-    lastUpdated: 'January 19, 2026',
-    tags: ['allocation', 'regional', 'inventory', 'planning'],
-    featured: false,
-  },
-
-  // BRAND PROTECTION
-  {
-    slug: 'unauthorized-seller-monitoring-workflow',
-    title: "Unauthorized Seller Monitoring Workflow: How Do You Find and Remove Unauthorized Sellers?",
-    seoTitle: "Unauthorized Seller Monitoring Workflow",
-    summary: "Monitor, identify, collect evidence, classify and act on unauthorized Amazon sellers, and learn what Amazon can and can't remove.",
-    seoDescription: "A step-by-step workflow for spotting unauthorized Amazon sellers, collecting evidence, and choosing enforcement that actually holds up.",
-    type: "Playbook",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["catalog-integrity-controls", "brand-protection-escalation-template", "how-our-model-works", "catalog-hygiene-what-it-is-why-it-matters"],
-    category: 'Brand Protection',
-    pillar: 'Protect',
-    marketplace: ['Amazon', 'eBay'],
-    difficulty: 'Operator',
-    tags: ['brand protection', 'unauthorized sellers', 'enforcement'],
-    featured: false,
-  },
-  {
-    slug: 'catalog-integrity-controls',
-    pillar: 'Protect',
-    title: "Catalog Integrity Controls and Evidence Collection: How Do You Keep Listings Accurate and Prove It?",
-    seoTitle: "Catalog Integrity Controls",
-    summary: "The records and routines that keep Amazon listings correct, plus the evidence to collect and the steps to correct an unwanted change.",
-    seoDescription: "How to protect Amazon listings from unwanted edits: a source of truth, change logs, weekly audits, and evidence that supports corrections.",
-    type: "Checklist",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["unauthorized-seller-monitoring-workflow", "catalog-hygiene-what-it-is-why-it-matters", "brand-protection-escalation-template", "variation-strategy-basics"],
-    category: 'Brand Protection',
-    difficulty: 'Operator',
-    tags: ['catalog integrity', 'compliance', 'audit', 'controls'],
-    featured: false,
-  },
-
-  // DATA AND REPORTING
-  {
-    slug: 'kpi-glossary',
-    pillar: 'Sell',
-    title: 'The Marketplace KPI Glossary: Definitions, Calculations, and Tactical Interpretation',
-    seoTitle: 'Marketplace KPI Glossary and Formulas',
-    summary: 'Definitions and calculation methods for key marketplace performance metrics.',
-    seoDescription: 'Plain definitions, formulas and how to read the marketplace KPIs that matter: CTR, CPC, ACoS, ROAS, TACoS, conversion rate, organic sales share and more.',
-    category: 'Data and Reporting',
-    type: 'Glossary',
-    difficulty: 'Intro',
-    lastUpdated: 'November 5, 2026',
-    tags: ['kpi', 'metrics', 'glossary', 'definitions'],
-    featured: true,
-    hasContent: true,
-  },
-  {
-    slug: 'weekly-executive-dashboard',
-    pillar: 'Sell',
-    title: "Weekly Executive Dashboard: What It Should Show",
-    seoTitle: "Weekly Executive Dashboard",
-    summary: "What belongs on a one-page weekly marketplace dashboard, with a sample layout, display rules and a build process.",
-    seoDescription: "What a weekly marketplace executive dashboard should show: sales, contribution margin, ads, inventory and brand protection, with a sample layout.",
-    type: "Deep Dive",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["kpi-glossary", "weekly-operating-cadence-doc", "reorder-point-logic-explained", "epic-operational-process"],
-    category: 'Data and Reporting',
-    difficulty: 'Operator',
-    tags: ['dashboard', 'reporting', 'metrics', 'executive'],
-    featured: false,
-  },
-
-  // TEMPLATES
-  {
-    slug: 'market-launch-checklist',
-    title: 'Market Launch Checklist',
-    summary: 'Complete pre-launch checklist for entering a new marketplace or region: compliance, catalog, logistics, and go-live sequencing.',
-    category: 'Templates and Downloads',
-    pillar: 'Sell',
-    type: 'Checklist',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['launch', 'checklist', 'template', 'expansion'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'catalog-qa-checklist',
-    pillar: 'Sell',
-    title: "Catalog QA Checklist",
-    summary: "A catalog-level audit checklist for finding suppressed listings, broken variations, bad data and price conflicts that cost sales.",
-    seoDescription: "A catalog-wide QA checklist for marketplace brands: suppressed listings, variations, attributes, images, content, pricing and brand control.",
-    type: "Checklist",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["catalog-hygiene-what-it-is-why-it-matters", "listing-qa-checklist", "variation-strategy-basics", "catalog-integrity-controls"],
-    category: 'Templates and Downloads',
-    difficulty: 'Operator',
-    tags: ['catalog', 'qa', 'checklist', 'template'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'weekly-operating-cadence-doc',
-    pillar: 'Sell',
-    title: "Weekly Operating Cadence Template",
-    summary: "A day-by-day weekly schedule, meeting agenda and action log for running Amazon and other marketplaces.",
-    seoDescription: "A weekly operating cadence template for marketplace teams: day-by-day tasks for listings, ads, inventory and brand protection, with owners.",
-    type: "Template",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["weekly-executive-dashboard", "epic-operational-process", "search-term-harvesting-playbook", "inventory-reorder-model-template", "unauthorized-seller-monitoring-workflow"],
-    category: 'Templates and Downloads',
-    difficulty: 'Operator',
-    tags: ['cadence', 'operations', 'template', 'weekly'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'ad-account-rebuild-checklist',
-    title: "Ad Account Rebuild Checklist",
-    summary: "A four-phase checklist for replacing a messy marketplace ad account with a clean structure without losing sales or keyword history.",
-    seoDescription: "A step-by-step checklist for rebuilding a marketplace ad account: audit, new campaign structure, phased migration and post-launch testing.",
-    type: "Checklist",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["campaign-structure-playbook", "search-term-harvesting-playbook", "creative-testing-loop", "kpi-glossary", "listing-qa-checklist"],
-    category: 'Templates and Downloads',
-    pillar: 'Advertise',
-    difficulty: 'Advanced',
-    tags: ['advertising', 'rebuild', 'checklist', 'template'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'inventory-reorder-model-template',
-    title: "Inventory Reorder Model Template",
-    summary: "A one-row-per-SKU spreadsheet layout with columns and formulas for safety stock, reorder point and order quantity.",
-    seoDescription: "A spreadsheet template for marketplace reorder planning: columns and formulas for safety stock, reorder point and order quantity per SKU.",
-    type: "Template",
-    lastUpdated: "November 3, 2026",
-    hasContent: true,
-    related: ["reorder-point-logic-explained", "weekly-operating-cadence-doc", "kpi-glossary"],
-    category: 'Templates and Downloads',
-    pillar: 'Buy',
-    difficulty: 'Advanced',
-    tags: ['inventory', 'reorder', 'template', 'forecasting'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'brand-protection-escalation-template',
-    pillar: 'Protect',
-    title: "Brand Protection Escalation Template",
-    summary: "A fixed escalation ladder and evidence log for unauthorized sellers, counterfeits, hijacked listings and pricing violations.",
-    seoDescription: "A template for logging evidence and escalating marketplace brand violations, from test buy to Brand Registry report to legal action.",
-    type: "Template",
-    lastUpdated: "November 5, 2026",
-    hasContent: true,
-    related: ["unauthorized-seller-monitoring-workflow", "catalog-integrity-controls", "catalog-hygiene-what-it-is-why-it-matters", "how-our-model-works"],
-    category: 'Templates and Downloads',
-    difficulty: 'Operator',
-    tags: ['brand protection', 'template', 'escalation', 'compliance'],
-    downloadable: true,
-    featured: false,
-  },
-
-  // LIBRARY (Catch-all for misc content)
-  {
-    slug: 'marketplace-ai-decisioning',
-    title: 'How We Use AI for Marketplace Decisioning',
-    summary: 'Deep dive into our AI-driven approach to bid management, inventory allocation, and catalog optimization.',
-    category: 'Library',
-    type: 'Deep Dive',
-    difficulty: 'Advanced',
-    lastUpdated: 'January 19, 2026',
-    tags: ['ai', 'automation', 'decisioning', 'technology'],
-    featured: false,
-  },
-  {
-    slug: 'why-agencies-fail-at-marketplace-ops',
-    title: 'Why Agencies Fail at Marketplace Operations',
-    summary: 'The structural reasons why traditional agencies struggle with day-to-day marketplace execution—and what operators do differently.',
-    category: 'Library',
-    type: 'Deep Dive',
-    difficulty: 'Intro',
-    lastUpdated: 'January 19, 2026',
-    tags: ['agencies', 'operators', 'model', 'insights'],
-    featured: false,
-  },
-  {
-    slug: 'epic-operational-process',
-    title: 'Epic\'s Operational Process: A Deep Dive',
-    seoTitle: 'How Epic Runs Marketplace Operations',
-    summary: 'An in-depth look at the processes and systems that power Epic\'s global marketplace operations.',
-    seoDescription: 'How Epic runs marketplace growth in four phases (Assess, Build, Execute, Scale), and the product data, assets and priorities it needs from brands.',
-    category: 'Library',
-    type: 'Deep Dive',
-    difficulty: 'Advanced',
-    lastUpdated: 'January 19, 2026',
-    tags: ['operations', 'process', 'deep dive'],
-    featured: false,
-    hasContent: true,
-  },
-  {
-    slug: 'amazon-marketplace-glossary',
-    title: "Amazon and Marketplace Glossary",
-    summary: "Plain-English definitions of the Amazon, Walmart, TikTok Shop and wholesale terms brand owners run into, and how a wholesale trade partner differs from other models.",
-    seoDescription: "Plain-English definitions of Amazon, Walmart, TikTok Shop and wholesale terms brand owners need, from 1P and FBA to MAP and landed cost.",
-    type: "Glossary",
-    lastUpdated: "November 3, 2026",
-    hasContent: true,
-    related: ["kpi-glossary", "how-our-model-works", "what-is-epic-global-inc", "unauthorized-seller-monitoring-workflow"],
-    category: "Glossary",
-    difficulty: "Intro",
-    tags: ["glossary", "amazon", "marketplace terms", "definitions"],
-  },
-];

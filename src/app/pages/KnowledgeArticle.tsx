@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, Download, Share2 } from 'lucide-react';
-import { isoDate, knowledgeArticles, type KnowledgeArticle as KnowledgeArticleType } from '@/app/data/knowledgeArticles';
+import type { ReactNode } from 'react';
+import { isoDate, type KnowledgeArticle as KnowledgeArticleType } from '@/app/data/knowledgeArticles';
 import { StructuredData, getBreadcrumbSchema, organizationRef } from '@/app/components/StructuredData';
 import { ReadingProgressRing } from '@/app/components/scroll/ScrollEffects';
 import { SEO } from '@/app/components/SEO';
@@ -14,12 +15,10 @@ import { MEASURE, PILL, SURFACE } from '@/app/components/reading/reading';
 import '@/app/components/reading/reading.css';
 import { siteConfig } from '@/site/site-config';
 
-// Import article content components
-import { getArticleContent } from '@/app/data/articleContent';
-
 /*
  * Knowledge Base article template (tier 3, reading page): calm, on the site's theme background, one reading column
- * of about 70 characters. The articles themselves (articleContent.tsx) are unchanged; reading.css re-themes them.
+ * of about 70 characters. The article text comes from its Markdown file (content/knowledge-base), rendered by
+ * ArticleMarkdown on the server and passed in as `body`; reading.css themes it.
  */
 
 const SECTION = 'px-4 sm:px-6 lg:px-8';
@@ -27,9 +26,13 @@ const SMALL_BUTTON = `px-5 py-2 rounded-lg border text-sm font-medium transition
 
 type KnowledgeArticleProps = {
   slug: string;
+  /** All articles as the public sees them today (scheduled ones count as not written). */
+  articles: KnowledgeArticleType[];
+  /** The rendered article text, or null for a Coming Soon article. */
+  body: ReactNode;
 };
 
-export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
+export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: KnowledgeArticleProps) {
   const article = knowledgeArticles.find((a) => a.slug === slug);
 
   if (!article) {
@@ -47,7 +50,6 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
     );
   }
 
-  const ArticleContent = getArticleContent(article.slug);
   const listed = (article.related ?? [])
     .map((slug) => knowledgeArticles.find((a) => a.slug === slug))
     .filter((a): a is KnowledgeArticleType => Boolean(a?.hasContent) && a!.slug !== article.slug);
@@ -168,7 +170,7 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
       <section className={`pt-4 pb-16 ${SECTION}`}>
         <div className={INNER}>
           <article className={`kb-prose ${MEASURE}`}>
-            <ArticleContent />
+            {body ?? <ComingSoonArticle />}
           </article>
 
           <div className={MEASURE}>
@@ -224,6 +226,31 @@ export function KnowledgeArticle({ slug }: KnowledgeArticleProps) {
           </div>
         </section>
       ) : null}
+    </div>
+  );
+}
+
+/** Shown for an article that isn't written or published yet (the page is also kept out of search). */
+function ComingSoonArticle() {
+  return (
+    <div className="space-y-8">
+      <section className="text-center py-16">
+        <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-600/5 backdrop-blur-xl rounded-xl p-12 border border-yellow-500/20">
+          <div className="mb-6">
+            <span className="px-4 py-2 bg-yellow-500/10 text-yellow-400 rounded-full text-sm font-semibold">Coming Soon</span>
+          </div>
+          <h2 className="text-3xl font-bold mb-4 text-white">This Article Is In Progress</h2>
+          <p className="text-gray-300 leading-relaxed max-w-2xl mx-auto mb-8">
+            We're currently developing this content. Check back soon for detailed insights, frameworks, and actionable guidance.
+          </p>
+          <p className="text-sm text-gray-400">
+            Looking for an answer in the meantime?{' '}
+            <a href="/faq" className="text-cyan-400 hover:text-cyan-300 underline">
+              Browse the FAQ
+            </a>
+          </p>
+        </div>
+      </section>
     </div>
   );
 }

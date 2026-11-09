@@ -2,16 +2,18 @@
  * Knowledge Base RSS feed: title, summary, link and date for every written article, newest first.
  * Built once at build time; updates itself whenever an article is added or its date changes.
  */
-import { isoDate, knowledgeArticles } from '@/app/data/knowledgeArticles';
+import { articlesAsOf, isoDate } from '@/app/data/knowledgeArticles';
 import { siteConfig } from '@/site/site-config';
 
 export const dynamic = 'force-static';
+// Rebuilt hourly so scheduled articles join the feed on their publish day.
+export const revalidate = 3600;
 
 const escape = (text: string) =>
   text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 
 export function GET() {
-  const articles = knowledgeArticles
+  const articles = articlesAsOf()
     .filter((a) => a.hasContent)
     .map((a) => ({ ...a, date: isoDate(a.lastUpdated) }))
     .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : a.title.localeCompare(b.title)));

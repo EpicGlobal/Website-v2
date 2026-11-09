@@ -1,11 +1,17 @@
 import { notFound } from 'next/navigation';
 import { KnowledgeArticle } from '@/app/pages/KnowledgeArticle';
-import { isoDate, knowledgeArticles } from '@/app/data/knowledgeArticles';
+import { ArticleMarkdown } from '@/app/components/reading/ArticleMarkdown';
+import { articleBodies } from '@/app/data/articleBodies.generated';
+import { articlesAsOf, isoDate, knowledgeArticles } from '@/app/data/knowledgeArticles';
 import { createPageMetadata } from '@/site/site-config';
 
 type KnowledgeArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
+
+// Rebuild each article page at most once an hour, so an article with a future publishOn date appears on its day
+// without a new deploy (keep in step with ARTICLE_REFRESH_SECONDS; Next needs a plain number here).
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return knowledgeArticles.map((article) => ({
@@ -15,7 +21,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: KnowledgeArticlePageProps) {
   const { slug } = await params;
-  const article = knowledgeArticles.find((entry) => entry.slug === slug);
+  const article = articlesAsOf().find((entry) => entry.slug === slug);
 
   if (!article) {
     return createPageMetadata({
@@ -31,7 +37,7 @@ export async function generateMetadata({ params }: KnowledgeArticlePageProps) {
     path: `/knowledge-base/${article.slug}`,
     keywords: article.tags,
     type: 'article',
-    // "Coming Soon" placeholders stay out of search until the article is written.
+    // "Coming Soon" placeholders and scheduled articles stay out of search until they're live.
     noindex: !article.hasContent,
     // The articles keep one date (last updated); it's used for both, the same as the article schema.
     articleDate: isoDate(article.lastUpdated),
@@ -41,11 +47,14 @@ export async function generateMetadata({ params }: KnowledgeArticlePageProps) {
 
 export default async function KnowledgeArticlePage({ params }: KnowledgeArticlePageProps) {
   const { slug } = await params;
-  const article = knowledgeArticles.find((entry) => entry.slug === slug);
+  const articles = articlesAsOf();
+  const article = articles.find((entry) => entry.slug === slug);
 
   if (!article) {
     notFound();
   }
 
-  return <KnowledgeArticle slug={slug} />;
+  // Scheduled articles render as "Coming Soon" until their day; their text is never sent early.
+  const body = article.hasContent && articleBodies[slug] ? <ArticleMarkdown markdown={articleBodies[slug]} /> : null;
+  return <KnowledgeArticle slug={slug} articles={articles} body={body} />;
 }

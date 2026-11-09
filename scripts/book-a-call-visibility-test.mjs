@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { access, readFile } from 'node:fs/promises';
+import { access, readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const read = (file) => readFile(path.resolve(file), 'utf8');
@@ -40,7 +40,10 @@ const [
   read('app/sitemap.ts'),
   read('src/app/components/StructuredData.tsx'),
   read('src/app/pages/Privacy.tsx'),
-  read('src/app/data/articleContent.tsx'),
+  // Knowledge Base articles are Markdown files now; check all of them together.
+  readdir(path.resolve('content/knowledge-base')).then((files) =>
+    Promise.all(files.filter((f) => f.endsWith('.md')).map((f) => read(`content/knowledge-base/${f}`))).then((all) => all.join(String.fromCharCode(10))),
+  ),
   read('public/knowledge-index.html'),
   read('public/llms.txt'),
   exists('app/contact/page.tsx'),
@@ -72,7 +75,7 @@ assert.doesNotMatch(navbar, /to:\s*['"]\/contact['"]/);
 assert.doesNotMatch(footer, /href=['"]\/contact['"]/);
 assert.doesNotMatch(sitemap, /path:\s*['"]\/contact['"]/);
 assert.doesNotMatch(privacy, /siteConfig\.contactPath|epicglobalinc\.com\/contact|contact form/i);
-assert.doesNotMatch(articleContent, /href=['"]\/contact['"]/);
+assert.doesNotMatch(articleContent, /href=['"]\/contact['"]|\]\(\/contact\)/);
 assert.doesNotMatch(knowledgeIndex, /href=['"]\/contact['"]/);
 assert.doesNotMatch(llms, /\/contact\b/);
 assert.doesNotMatch(
