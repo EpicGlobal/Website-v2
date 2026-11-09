@@ -95,7 +95,7 @@ try {
     assert.equal(page.status, 200, route);
     assert.equal(page.headers.get('x-robots-tag'), 'noindex, nofollow, noarchive');
     const policy = page.headers.get('content-security-policy');
-    assert.match(policy, /connect-src 'self' https:\/\/unpkg.com;/);
+    assert.match(policy, /connect-src 'self';/);
     assert.match(policy, /frame-src 'none'/);
     const html = await page.text();
     assert.match(html, /Development preview/);

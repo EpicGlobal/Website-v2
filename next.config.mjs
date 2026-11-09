@@ -17,7 +17,7 @@ const nextConfig = {
     return [{ source: '/:path*', headers: [
       ...common,
       { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' },
-      { key: 'Content-Security-Policy', value: "connect-src 'self' https://unpkg.com; script-src 'self' 'unsafe-inline'; frame-src 'none'; form-action 'self'; img-src 'self' data: blob: https://unpkg.com; object-src 'none'; base-uri 'self'" },
+      { key: 'Content-Security-Policy', value: "connect-src 'self'; script-src 'self' 'unsafe-inline'; frame-src 'none'; form-action 'self'; img-src 'self' data: blob:; object-src 'none'; base-uri 'self'" },
     ] }];
   },
   // Escape hatch if Amplify's image optimization fails on the preview: set NEXT_IMAGE_UNOPTIMIZED=true

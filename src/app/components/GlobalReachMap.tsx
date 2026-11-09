@@ -179,15 +179,42 @@ export function GlobalReachMap() {
   };
 
   useEffect(() => {
-    // Fetch world map data from CDN
-      fetch('//unpkg.com/world-atlas/countries-110m.json')
-      .then((response) => response.json())
-      .then((data) => {
-        const countries = feature(data, data.objects.countries) as unknown as { features: any[] };
-        setWorldMapData(countries);
-        setAllCountries(countries.features);
-      })
-      .catch((error) => console.error('Error loading world map:', error));
+    // The world shapes are the heavy part of this map (download, parse, ~180 animated paths), so they load only
+    // when the map is about to scroll into view; the page's text, stats and country list never wait for them.
+    // The file is world-atlas@2.0.2 countries-110m (ISC license, public/data/world-atlas-LICENSE.txt), served
+    // from this site so the map doesn't depend on another company's server.
+    const container = containerRef.current;
+    if (!container) return;
+    let cancelled = false;
+    const load = () => {
+      fetch('/data/world-countries-110m.json')
+        .then((response) => response.json())
+        .then((data) => {
+          if (cancelled) return;
+          const countries = feature(data, data.objects.countries) as unknown as { features: any[] };
+          setWorldMapData(countries);
+          setAllCountries(countries.features);
+        })
+        .catch((error) => console.error('Error loading world map:', error));
+    };
+    if (!('IntersectionObserver' in window)) {
+      load();
+      return () => { cancelled = true; };
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          observer.disconnect();
+          load();
+        }
+      },
+      { rootMargin: '600px 0px' },
+    );
+    observer.observe(container);
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
   }, []);
 
   // Native wheel listener for smooth zoom without page scroll
