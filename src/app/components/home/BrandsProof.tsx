@@ -15,7 +15,7 @@ import { MARKETPLACE_COUNT } from '@/app/data/markets';
 type Brand = MarqueeBrand;
 
 const brandsStat = { value: 50, suffix: '+' };
-const countriesStat = { value: 40, prefix: '~' };
+const countriesStat = { value: 40 };
 const marketsStat = { value: MARKETPLACE_COUNT };
 const ratingStat = { value: 4.9, decimals: 1, suffix: '/5' };
 

@@ -212,7 +212,7 @@ export function Home() {
     <div ref={rootRef} className={PAGE_BG}>
       <SEO
         title="Epic Global Inc. | Wholesale Trade Partner That Buys Your Inventory"
-        description="Epic Global buys your inventory upfront at wholesale, sells it on Amazon, Walmart and more in about 40 countries, funds the ads and protects your brand."
+        description="Epic Global buys your inventory upfront at wholesale, sells it on Amazon, Walmart and more in 40 countries, funds the ads and protects your brand."
         canonicalUrl={`${siteConfig.url}/`}
         keywords="global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, wholesale trade partner"
       />
