@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { isoDate, knowledgeArticles } from '@/app/data/knowledgeArticles';
+import { publishedCaseStudies } from '@/app/data/caseStudies';
 import { siteConfig } from '@/site/site-config';
 
 // Change a page's date only when its content really changes, so search engines can trust lastModified.
@@ -36,5 +37,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: article.featured ? 0.7 : 0.6,
     }));
 
-  return [...staticEntries, ...articleEntries];
+  // Published case studies only (drafts and studies in review stay out). No date yet: SET ON MERGE to the go-live day.
+  const caseStudyEntries: MetadataRoute.Sitemap = publishedCaseStudies.map((study) => ({
+    url: `${siteConfig.url}/case-studies/${study.slug}`,
+    lastModified: study.updated ?? study.published ?? '2026-10-29',
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...articleEntries, ...caseStudyEntries];
 }

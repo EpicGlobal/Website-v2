@@ -187,7 +187,7 @@ export function Home() {
       objective: 'Cut FBA fees on 18 of 21 products, lift conversion 21% in A/B tests and win back branded search from competitors',
       metric: '+21%',
       metricLabel: 'conversion in A/B tests',
-      link: '/case-studies#sutera',
+      link: '/case-studies/sutera-amazon-fees-conversion-brand-defense',
     },
     {
       pillar: 'Buy · Sell',
@@ -197,7 +197,7 @@ export function Home() {
       objective: 'Move from Amazon 1P to Epic 3P: the brand pays no Amazon fees and nets more per unit',
       metric: '+159%',
       metricLabel: 'net revenue per unit on one brake kit',
-      link: '/case-studies#auto-parts-1p-vs-3p',
+      link: '/case-studies/auto-parts-amazon-1p-vs-epic-3p',
     },
   ];
 

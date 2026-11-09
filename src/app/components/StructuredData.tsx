@@ -282,7 +282,7 @@ export function getBreadcrumbSchema(items: Array<{ name: string; url: string }>)
 export function getCaseStudySchema(
   title: string,
   description: string,
-  datePublished: string,
+  datePublished: string | undefined,
   url: string,
 ) {
   return {
@@ -290,7 +290,7 @@ export function getCaseStudySchema(
     '@type': 'Article',
     headline: title,
     description,
-    datePublished,
+    ...(datePublished ? { datePublished } : {}),
     author: organizationReference,
     publisher: {
       '@type': 'Organization',

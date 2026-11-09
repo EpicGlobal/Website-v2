@@ -58,7 +58,7 @@ export function MetricValue({ value }: { value: string }) {
 
 export function ProofMetrics({ metrics }: { metrics: readonly { label: string; value: string; subtext: string }[] }) {
   return (
-    <dl className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <dl className={`grid grid-cols-2 gap-4 ${metrics.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'}`}>
       {metrics.map((metric) => (
         <div key={metric.label} className={`${CARD} p-5 flex flex-col`}>
           <dt className={`order-2 text-sm font-medium mt-2 ${HEAD}`}>{metric.label}</dt>
