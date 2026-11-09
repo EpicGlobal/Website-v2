@@ -7,7 +7,7 @@ pillar: "Advertise"
 type: "Checklist"
 difficulty: "Advanced"
 updated: 2026-11-05
-publishOn:
+publishOn: 2027-01-04
 tags: ["advertising", "rebuild", "checklist", "template"]
 related: ["campaign-structure-playbook", "search-term-harvesting-playbook", "creative-testing-loop", "kpi-glossary", "listing-qa-checklist"]
 featured: false

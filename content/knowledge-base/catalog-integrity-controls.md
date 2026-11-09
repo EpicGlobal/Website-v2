@@ -8,7 +8,7 @@ pillar: "Protect"
 type: "Checklist"
 difficulty: "Operator"
 updated: 2026-11-05
-publishOn:
+publishOn: 2027-01-20
 tags: ["catalog integrity", "compliance", "audit", "controls"]
 related: ["unauthorized-seller-monitoring-workflow", "catalog-hygiene-what-it-is-why-it-matters", "brand-protection-escalation-template", "variation-strategy-basics"]
 featured: false

@@ -9,7 +9,7 @@ marketplace: ["Amazon", "Walmart"]
 type: "Checklist"
 difficulty: "Operator"
 updated: 2026-11-03
-publishOn:
+publishOn: 2026-12-21
 tags: ["listing", "qa", "checklist", "optimization"]
 related: ["catalog-hygiene-what-it-is-why-it-matters", "catalog-qa-checklist", "variation-strategy-basics"]
 featured: false

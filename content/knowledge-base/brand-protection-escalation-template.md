@@ -7,7 +7,7 @@ pillar: "Protect"
 type: "Template"
 difficulty: "Operator"
 updated: 2026-11-05
-publishOn:
+publishOn: 2027-01-22
 tags: ["brand protection", "template", "escalation", "compliance"]
 related: ["unauthorized-seller-monitoring-workflow", "catalog-integrity-controls", "catalog-hygiene-what-it-is-why-it-matters", "how-our-model-works"]
 featured: false

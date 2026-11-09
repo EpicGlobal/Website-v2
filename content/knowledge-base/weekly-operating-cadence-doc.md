@@ -7,7 +7,7 @@ pillar: "Sell"
 type: "Template"
 difficulty: "Operator"
 updated: 2026-11-05
-publishOn:
+publishOn: 2027-01-15
 tags: ["cadence", "operations", "template", "weekly"]
 related: ["weekly-executive-dashboard", "epic-operational-process", "search-term-harvesting-playbook", "inventory-reorder-model-template", "unauthorized-seller-monitoring-workflow"]
 featured: false

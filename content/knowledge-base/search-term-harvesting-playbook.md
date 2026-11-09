@@ -9,7 +9,7 @@ marketplace: ["Amazon"]
 type: "Playbook"
 difficulty: "Advanced"
 updated: 2026-11-05
-publishOn:
+publishOn: 2026-12-30
 tags: ["search terms", "keywords", "harvesting", "optimization"]
 related: ["campaign-structure-playbook", "creative-testing-loop", "ad-account-rebuild-checklist", "kpi-glossary"]
 featured: false

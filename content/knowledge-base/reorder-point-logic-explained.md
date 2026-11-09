@@ -7,7 +7,7 @@ pillar: "Buy"
 type: "Deep Dive"
 difficulty: "Operator"
 updated: 2026-11-05
-publishOn:
+publishOn: 2027-01-06
 tags: ["inventory", "reorder", "forecasting", "planning"]
 related: ["inventory-reorder-model-template", "kpi-glossary"]
 featured: false

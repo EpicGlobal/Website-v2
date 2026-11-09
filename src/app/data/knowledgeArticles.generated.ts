@@ -166,7 +166,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     ],
     "type": "Checklist",
     "difficulty": "Operator",
-    "lastUpdated": "November 3, 2026",
+    "lastUpdated": "December 21, 2026",
+    "publishOn": "2026-12-21",
     "tags": [
       "listing",
       "qa",
@@ -195,7 +196,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     ],
     "type": "Answer Page",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "December 23, 2026",
+    "publishOn": "2026-12-23",
     "tags": [
       "variations",
       "parent-child",
@@ -224,7 +226,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     ],
     "type": "Playbook",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "December 28, 2026",
+    "publishOn": "2026-12-28",
     "tags": [
       "advertising",
       "campaigns",
@@ -254,7 +257,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     ],
     "type": "Playbook",
     "difficulty": "Advanced",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "December 30, 2026",
+    "publishOn": "2026-12-30",
     "tags": [
       "search terms",
       "keywords",
@@ -284,7 +288,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     ],
     "type": "Playbook",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "December 31, 2026",
+    "publishOn": "2026-12-31",
     "tags": [
       "creative",
       "testing",
@@ -309,7 +314,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     "pillar": "Buy",
     "type": "Deep Dive",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "January 6, 2027",
+    "publishOn": "2027-01-06",
     "tags": [
       "inventory",
       "reorder",
@@ -355,7 +361,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     ],
     "type": "Playbook",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "January 18, 2027",
+    "publishOn": "2027-01-18",
     "tags": [
       "brand protection",
       "unauthorized sellers",
@@ -380,7 +387,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     "pillar": "Protect",
     "type": "Checklist",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "January 20, 2027",
+    "publishOn": "2027-01-20",
     "tags": [
       "catalog integrity",
       "compliance",
@@ -426,7 +434,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     "pillar": "Sell",
     "type": "Deep Dive",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "January 13, 2027",
+    "publishOn": "2027-01-13",
     "tags": [
       "dashboard",
       "reporting",
@@ -470,7 +479,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     "pillar": "Sell",
     "type": "Checklist",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "December 24, 2026",
+    "publishOn": "2026-12-24",
     "tags": [
       "catalog",
       "qa",
@@ -496,7 +506,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     "pillar": "Sell",
     "type": "Template",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "January 15, 2027",
+    "publishOn": "2027-01-15",
     "tags": [
       "cadence",
       "operations",
@@ -523,7 +534,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     "pillar": "Advertise",
     "type": "Checklist",
     "difficulty": "Advanced",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "January 4, 2027",
+    "publishOn": "2027-01-04",
     "tags": [
       "advertising",
       "rebuild",
@@ -550,7 +562,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     "pillar": "Buy",
     "type": "Template",
     "difficulty": "Advanced",
-    "lastUpdated": "November 3, 2026",
+    "lastUpdated": "January 11, 2027",
+    "publishOn": "2027-01-11",
     "tags": [
       "inventory",
       "reorder",
@@ -575,7 +588,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     "pillar": "Protect",
     "type": "Template",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "January 22, 2027",
+    "publishOn": "2027-01-22",
     "tags": [
       "brand protection",
       "template",
@@ -652,7 +666,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     "category": "Glossary",
     "type": "Glossary",
     "difficulty": "Intro",
-    "lastUpdated": "November 3, 2026",
+    "lastUpdated": "December 14, 2026",
+    "publishOn": "2026-12-14",
     "tags": [
       "glossary",
       "amazon",

@@ -7,7 +7,7 @@ pillar: "Sell"
 type: "Checklist"
 difficulty: "Operator"
 updated: 2026-11-05
-publishOn:
+publishOn: 2026-12-24
 tags: ["catalog", "qa", "checklist", "template"]
 related: ["catalog-hygiene-what-it-is-why-it-matters", "listing-qa-checklist", "variation-strategy-basics", "catalog-integrity-controls"]
 featured: false

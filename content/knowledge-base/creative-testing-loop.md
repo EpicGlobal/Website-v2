@@ -9,7 +9,7 @@ marketplace: ["Amazon", "Walmart"]
 type: "Playbook"
 difficulty: "Operator"
 updated: 2026-11-05
-publishOn:
+publishOn: 2026-12-31
 tags: ["creative", "testing", "images", "conversion"]
 related: ["campaign-structure-playbook", "listing-qa-checklist", "search-term-harvesting-playbook", "weekly-executive-dashboard"]
 featured: false

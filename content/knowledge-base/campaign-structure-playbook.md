@@ -9,7 +9,7 @@ marketplace: ["Amazon", "Walmart"]
 type: "Playbook"
 difficulty: "Operator"
 updated: 2026-11-05
-publishOn:
+publishOn: 2026-12-28
 tags: ["advertising", "campaigns", "structure", "ppc"]
 related: ["search-term-harvesting-playbook", "creative-testing-loop", "ad-account-rebuild-checklist", "kpi-glossary", "how-our-model-works"]
 featured: false

@@ -9,7 +9,7 @@ marketplace: ["Amazon", "eBay"]
 type: "Playbook"
 difficulty: "Operator"
 updated: 2026-11-05
-publishOn:
+publishOn: 2027-01-18
 tags: ["brand protection", "unauthorized sellers", "enforcement"]
 related: ["catalog-integrity-controls", "brand-protection-escalation-template", "how-our-model-works", "catalog-hygiene-what-it-is-why-it-matters"]
 featured: false

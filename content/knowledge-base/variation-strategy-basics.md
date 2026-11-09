@@ -9,7 +9,7 @@ marketplace: ["Amazon"]
 type: "Answer Page"
 difficulty: "Operator"
 updated: 2026-11-05
-publishOn:
+publishOn: 2026-12-23
 tags: ["variations", "parent-child", "catalog structure"]
 related: ["catalog-hygiene-what-it-is-why-it-matters", "listing-qa-checklist", "catalog-integrity-controls", "catalog-qa-checklist"]
 featured: false

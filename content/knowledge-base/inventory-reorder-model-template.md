@@ -7,7 +7,7 @@ pillar: "Buy"
 type: "Template"
 difficulty: "Advanced"
 updated: 2026-11-03
-publishOn:
+publishOn: 2027-01-11
 tags: ["inventory", "reorder", "template", "forecasting"]
 related: ["reorder-point-logic-explained", "weekly-operating-cadence-doc", "kpi-glossary"]
 featured: false

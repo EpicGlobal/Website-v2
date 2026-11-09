@@ -8,7 +8,7 @@ pillar: "Sell"
 type: "Deep Dive"
 difficulty: "Operator"
 updated: 2026-11-05
-publishOn:
+publishOn: 2027-01-13
 tags: ["dashboard", "reporting", "metrics", "executive"]
 related: ["kpi-glossary", "weekly-operating-cadence-doc", "reorder-point-logic-explained", "epic-operational-process"]
 featured: false
