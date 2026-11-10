@@ -18,6 +18,7 @@ import remarkGfm from 'remark-gfm';
 import remarkDirective from 'remark-directive';
 import { visit } from 'unist-util-visit';
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
+import { articlesAsOf } from '@/app/data/knowledgeArticles';
 
 const CLASS = {
   card: 'bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10 mb-4 [&>*:last-child]:mb-0',
@@ -57,6 +58,9 @@ type MdNode = {
   children?: MdNode[];
   data?: Record<string, unknown>;
 };
+
+/** Whether a Knowledge Base article is published today (written and its publish date has come). */
+const isLive = (slug: string) => articlesAsOf().some((a) => a.slug === slug && a.hasContent);
 
 const textOf = (node: MdNode): string => node.value ?? (node.children ?? []).map(textOf).join('');
 
@@ -108,6 +112,12 @@ function epicBlocks() {
           node.data = { hName: 'div' };
           for (const list of node.children ?? []) {
             if (list.type !== 'list') continue;
+            // Link cards to articles that aren't published yet are left out until their day.
+            list.children = (list.children ?? []).filter((item) => {
+              const url = item.children?.[0]?.children?.find((c) => c.type === 'link')?.url ?? '';
+              const kb = /^\/knowledge-base\/([a-z0-9-]+)/.exec(url);
+              return !kb || isLive(kb[1]);
+            });
             list.data = { hName: 'ul', hProperties: { className: CLASS.links } };
             for (const item of list.children ?? []) {
               const para = item.children?.[0];
@@ -167,6 +177,10 @@ const components: Components = {
   },
   strong: ({ className, children }) => <strong className={withDefault(className, 'text-white')}>{children}</strong>,
   a: ({ href = '', className, children }) => {
+    // A link to an article that isn't published yet stays plain text until that article's day (no link to a
+    // "Coming Soon" page); the pages rebuild hourly, so the link appears on its own.
+    const kb = /^\/knowledge-base\/([a-z0-9-]+)/.exec(href);
+    if (kb && !isLive(kb[1])) return <>{children}</>;
     const cls = withDefault(className, CLASS.link);
     return href.startsWith('/') ? <Link href={href} className={cls}>{children}</Link> : <a href={href} className={cls}>{children}</a>;
   },
