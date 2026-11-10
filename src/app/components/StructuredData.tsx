@@ -196,6 +196,8 @@ export const websiteSchema = {
   '@type': 'WebSite',
   '@id': websiteId,
   name: siteConfig.name,
+  // Google's site-name fallbacks, so results say "Epic Global" (not the bare domain or another Epic).
+  alternateName: [...siteConfig.alternateName, 'epicglobalinc.com'],
   url: siteConfig.url,
   description: 'Amazon-first wholesale trade partner: buys brand inventory at wholesale and sells it on Amazon, plus Walmart and international marketplaces',
   publisher: organizationReference,
