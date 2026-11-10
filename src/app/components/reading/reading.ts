@@ -19,9 +19,5 @@ export const PILL = 'inline-block rounded-full border border-current/35 bg-curre
 /** Search box and filter selects. */
 export const FIELD = `w-full rounded-lg border ${RULE} bg-white/5 dark:bg-white/5 soft-dark:bg-white/80 light:bg-white orange:bg-white/80 leaf:bg-white/80 water:bg-white/80 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 placeholder-gray-400 orange:placeholder-gray-600 light:placeholder-gray-500 leaf:placeholder-gray-600 water:placeholder-gray-600 soft-dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--pop)]/60 orange:focus:ring-[#0068B4]/50`;
 
-/** Option list colors for the native selects (the dropdown itself is drawn by the browser). */
-export const OPTIONS =
-  '[&>option]:bg-gray-900 [&>option]:text-white soft-dark:[&>option]:bg-white soft-dark:[&>option]:text-gray-900 light:[&>option]:bg-white light:[&>option]:text-gray-900 orange:[&>option]:bg-white orange:[&>option]:text-gray-900 leaf:[&>option]:bg-white leaf:[&>option]:text-gray-900 water:[&>option]:bg-white water:[&>option]:text-gray-900';
-
 /** The reading measure for long text (about 70 characters a line). */
 export const MEASURE = 'max-w-[70ch]';

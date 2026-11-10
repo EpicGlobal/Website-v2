@@ -9,7 +9,8 @@ import { StructuredData, getBreadcrumbSchema, websiteReference } from '@/app/com
 import { CtaButton } from '@/app/components/CtaButton';
 import { ACCENT, BODY, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
 import { ArticleCard } from '@/app/components/reading/ArticleCard';
-import { CARD_LINK, FIELD, OPTIONS } from '@/app/components/reading/reading';
+import { CARD_LINK, FIELD } from '@/app/components/reading/reading';
+import { ThemedSelect } from '@/app/components/reading/ThemedSelect';
 
 // This will be replaced with actual articles from a data file
 import type { KnowledgeArticle } from '@/app/data/knowledgeArticles';
@@ -217,75 +218,45 @@ export function KnowledgeBase({ initialFilters, articles: knowledgeArticles }: K
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label htmlFor="kb-filter-category" className={`text-sm mb-2 block ${MUTED}`}>Category</label>
-              <select
-                id="kb-filter-category"
-                value={selectedCategory}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setSelectedCategory(value);
-                  updateFilterUrl({
-                    category: value,
-                    pillar: selectedPillar,
-                    marketplace: selectedMarketplace,
-                  });
-                }}
-                className={`${FIELD} ${OPTIONS} px-4 py-2.5 text-sm`}
-              >
-                {categories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
+            <ThemedSelect
+              id="kb-filter-category"
+              label="Category"
+              labelClassName={`text-sm mb-2 block ${MUTED}`}
+              value={selectedCategory}
+              options={categories}
+              onChange={(value) => {
+                setSelectedCategory(value);
+                updateFilterUrl({ category: value, pillar: selectedPillar, marketplace: selectedMarketplace });
+              }}
+            />
             </div>
 
             <div>
-              <label htmlFor="kb-filter-pillar" className={`text-sm mb-2 block ${MUTED}`}>Pillar</label>
-              <select
-                id="kb-filter-pillar"
-                value={selectedPillar}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setSelectedPillar(value);
-                  updateFilterUrl({
-                    category: selectedCategory,
-                    pillar: value,
-                    marketplace: selectedMarketplace,
-                  });
-                }}
-                className={`${FIELD} ${OPTIONS} px-4 py-2.5 text-sm`}
-              >
-                {pillars.map((pillar) => (
-                  <option key={pillar} value={pillar}>
-                    {pillar}
-                  </option>
-                ))}
-              </select>
+            <ThemedSelect
+              id="kb-filter-pillar"
+              label="Pillar"
+              labelClassName={`text-sm mb-2 block ${MUTED}`}
+              value={selectedPillar}
+              options={pillars}
+              onChange={(value) => {
+                setSelectedPillar(value);
+                updateFilterUrl({ category: selectedCategory, pillar: value, marketplace: selectedMarketplace });
+              }}
+            />
             </div>
 
             <div>
-              <label htmlFor="kb-filter-marketplace" className={`text-sm mb-2 block ${MUTED}`}>Marketplace</label>
-              <select
-                id="kb-filter-marketplace"
-                value={selectedMarketplace}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setSelectedMarketplace(value);
-                  updateFilterUrl({
-                    category: selectedCategory,
-                    pillar: selectedPillar,
-                    marketplace: value,
-                  });
-                }}
-                className={`${FIELD} ${OPTIONS} px-4 py-2.5 text-sm`}
-              >
-                {marketplaces.map((mp) => (
-                  <option key={mp} value={mp}>
-                    {mp}
-                  </option>
-                ))}
-              </select>
+            <ThemedSelect
+              id="kb-filter-marketplace"
+              label="Marketplace"
+              labelClassName={`text-sm mb-2 block ${MUTED}`}
+              value={selectedMarketplace}
+              options={marketplaces}
+              onChange={(value) => {
+                setSelectedMarketplace(value);
+                updateFilterUrl({ category: selectedCategory, pillar: selectedPillar, marketplace: value });
+              }}
+            />
             </div>
           </div>
         </div>
