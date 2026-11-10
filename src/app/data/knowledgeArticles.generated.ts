@@ -666,8 +666,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "category": "Glossary",
     "type": "Glossary",
     "difficulty": "Intro",
-    "lastUpdated": "December 14, 2026",
-    "publishOn": "2026-12-14",
+    "lastUpdated": "November 3, 2026",
     "tags": [
       "glossary",
       "amazon",

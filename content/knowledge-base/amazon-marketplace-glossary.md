@@ -6,7 +6,7 @@ category: "Glossary"
 type: "Glossary"
 difficulty: "Intro"
 updated: 2026-11-03
-publishOn: 2026-12-14
+publishOn:
 tags: ["glossary", "amazon", "marketplace terms", "definitions"]
 related: ["kpi-glossary", "how-our-model-works", "what-is-epic-global-inc", "unauthorized-seller-monitoring-workflow"]
 order: 29
