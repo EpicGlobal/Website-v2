@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
+import { StructuredData, getWebPageSchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
 import { ChapterMarker, PopLink } from '@/app/components/story/StoryKit';
 import { ACCENT, BODY, CARD_HOVER, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, RULE } from '@/app/components/story/tokens';
@@ -66,12 +66,6 @@ export function CaseStudies() {
             url: `${siteConfig.url}${href(study)}`,
           })),
         }}
-      />
-      <StructuredData
-        data={getBreadcrumbSchema([
-          { name: 'Home', url: `${siteConfig.url}/` },
-          { name: 'Case Studies', url: `${siteConfig.url}/case-studies` },
-        ])}
       />
 
       {/* 01 Answer first: what's here, in one paragraph. */}

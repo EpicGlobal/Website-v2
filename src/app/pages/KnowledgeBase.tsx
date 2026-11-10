@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Search, Book, Lightbulb, CheckSquare, BookOpen, FileText, Sparkles } from 'lucide-react';
 import { SEO } from '@/app/components/SEO';
-import { StructuredData, getBreadcrumbSchema, websiteReference } from '@/app/components/StructuredData';
+import { StructuredData, websiteReference } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
 import { ACCENT, BODY, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
 import { ArticleCard } from '@/app/components/reading/ArticleCard';
@@ -188,12 +188,6 @@ export function KnowledgeBase({ initialFilters, articles: knowledgeArticles }: K
             })),
           },
         }}
-      />
-      <StructuredData
-        data={getBreadcrumbSchema([
-          { name: 'Home', url: `${siteConfig.url}/` },
-          { name: 'Knowledge Base', url: `${siteConfig.url}/knowledge-base` },
-        ])}
       />
 
       {/* Hero: answer first, then the tools to find an article (search and filters together). */}

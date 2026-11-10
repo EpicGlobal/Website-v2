@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { MarkTable } from '@/app/components/home/SkimSections';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
-import { StructuredData, getBreadcrumbSchema, getWebPageSchema } from '@/app/components/StructuredData';
+import { StructuredData, getWebPageSchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
 import { QuickAnswers } from '@/app/components/QuickAnswers';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
@@ -140,12 +140,6 @@ export function Intelligence() {
           description: 'Software Epic Global Inc. runs for demand forecasting, pricing, listings, ads and brand protection across Amazon, Walmart and international marketplaces.',
         },
       })} />
-      <StructuredData
-        data={getBreadcrumbSchema([
-          { name: 'Home', url: `${siteConfig.url}/` },
-          { name: 'AI Intelligence', url: `${siteConfig.url}/intelligence` },
-        ])}
-      />
 
       <ChapterRail chapters={CHAPTERS} label="AI Intelligence page chapters" />
 

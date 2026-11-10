@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/app/components/ui/accordion';
-import { StructuredData, getBreadcrumbSchema, getFAQPageSchema } from '@/app/components/StructuredData';
+import { StructuredData, getFAQPageSchema } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { BODY, H1, H2, HEAD, INNER, LEAD, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
@@ -30,12 +30,6 @@ export function FAQ() {
         keywords="ecommerce faq, marketplace operator questions, wholesale trade partner faq, global expansion questions"
       />
       <StructuredData data={getFAQPageSchema(faqs, `${siteConfig.url}/faq`)} />
-      <StructuredData
-        data={getBreadcrumbSchema([
-          { name: 'Home', url: `${siteConfig.url}/` },
-          { name: 'FAQ', url: `${siteConfig.url}/faq` },
-        ])}
-      />
       {/* Hero Section */}
       <section className={`pt-32 pb-10 ${SECTION}`}>
         <div className={INNER}>

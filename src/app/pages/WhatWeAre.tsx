@@ -7,7 +7,7 @@ import { BarChart3, Cpu, Database, Globe2, Package, Search, Shield, ShoppingCart
 import epicMark from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
-import { StructuredData, getBreadcrumbSchema, getWebPageSchema, serviceSchemas } from '@/app/components/StructuredData';
+import { StructuredData, getWebPageSchema, serviceSchemas } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { QuickAnswers } from '@/app/components/QuickAnswers';
@@ -114,12 +114,6 @@ export function WhatWeAre() {
       {serviceSchemas.map((s) => (
         <StructuredData key={s.name} data={s} />
       ))}
-      <StructuredData
-        data={getBreadcrumbSchema([
-          { name: 'Home', url: `${siteConfig.url}/` },
-          { name: 'Our Model', url: `${siteConfig.url}/our-model` },
-        ])}
-      />
 
       {/* Chapter rail (wide screens): real links to each chapter; the line fills as you read. */}
       <ChapterRail chapters={CHAPTERS} label="Our Model page chapters" />

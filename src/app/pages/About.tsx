@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import { Calendar, Globe2, Linkedin, MapPin, Star, UserRound, type LucideIcon } from 'lucide-react';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
-import { StructuredData, founderSchema, getBreadcrumbSchema, getWebPageSchema, organizationSchema, organizationRef } from '@/app/components/StructuredData';
+import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, organizationRef } from '@/app/components/StructuredData';
 import { SEO } from '@/app/components/SEO';
 import { GlobalReachMap } from '@/app/components/GlobalReachMap';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
@@ -104,12 +104,6 @@ export function About() {
       <StructuredData data={organizationSchema} />
       <StructuredData data={founderSchema} />
       <StructuredData data={aboutPageSchema} />
-      <StructuredData
-        data={getBreadcrumbSchema([
-          { name: 'Home', url: `${siteConfig.url}/` },
-          { name: 'About', url: `${siteConfig.url}/about` },
-        ])}
-      />
 
       {/* Chapter rail (wide screens): real links to each chapter; the line fills as you read. */}
       <ChapterRail chapters={CHAPTERS} label="About page chapters" />
