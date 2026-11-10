@@ -697,7 +697,7 @@ export function GlobalReachMap() {
       {/* Stats */}
       <div className="mt-8 grid grid-cols-3 gap-4">
         <div className="rounded-xl p-4 text-center border shadow-sm bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10 soft-dark:bg-white/80 soft-dark:border-gray-200 light:bg-white light:border-gray-200 orange:bg-white/80 orange:border-orange-200 water:bg-white/75 water:border-emerald-200 leaf:bg-white/75 leaf:border-sky-200">
-          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">40</div>
+          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">{countryData.length}</div>
           <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Countries</div>
         </div>
         <div className="rounded-xl p-4 text-center border shadow-sm bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10 soft-dark:bg-white/80 soft-dark:border-gray-200 light:bg-white light:border-gray-200 orange:bg-white/80 orange:border-orange-200 water:bg-white/75 water:border-emerald-200 leaf:bg-white/75 leaf:border-sky-200">

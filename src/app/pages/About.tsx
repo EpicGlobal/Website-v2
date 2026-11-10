@@ -81,7 +81,7 @@ export function About() {
     { label: 'On Amazon since', value: '2015', icon: Calendar },
     { label: 'Headquarters', value: 'Lindon, Utah', icon: MapPin },
     { label: 'Founder & CEO', value: 'Glen Jensen', icon: UserRound },
-    { label: 'Countries', value: '40', icon: Globe2 },
+    { label: 'Countries', value: '42', icon: Globe2 },
     { label: 'Amazon US seller rating (9,600+ ratings)', value: '4.9/5', icon: Star, lit: true },
   ];
 
@@ -97,7 +97,7 @@ export function About() {
     <div ref={rootRef} className={PAGE_BG}>
       <SEO
         title="About Epic Global Inc. - Wholesale Trade Partner"
-        description="Epic Global Inc. is an Amazon-first wholesale trade partner: we buy brands' inventory and sell it on Amazon, plus Walmart and international marketplaces in 40 countries."
+        description="Epic Global Inc. is an Amazon-first wholesale trade partner: we buy brands' inventory and sell it on Amazon, plus Walmart and international marketplaces in 42 countries."
         canonicalUrl={`${siteConfig.url}/about`}
         keywords="commerce operator, marketplace management, global ecommerce, operator-first approach, marketplace technology"
       />
@@ -190,7 +190,7 @@ export function About() {
                 {"Rather than follow the agency model, Glen built a wholesale partnership that ties Epic's success to its brand partners'. Epic buys the inventory, invests its own capital, and takes on the advertising, logistics and day-to-day execution, so brands grow on Amazon, Walmart, TikTok Shop and other marketplaces without carrying that load."}
               </p>
               <p data-story="lit-step" className={`leading-relaxed ${BODY}`}>
-                {"Under Glen, Epic has grown to 40 countries. He believes strong partnerships come from sharing the opportunity, owning the results and committing for the long term, and he keeps moving Epic forward in technology, automation and new markets. His vision is simple:"}
+                {"Under Glen, Epic has grown to 42 countries. He believes strong partnerships come from sharing the opportunity, owning the results and committing for the long term, and he keeps moving Epic forward in technology, automation and new markets. His vision is simple:"}
               </p>
               <blockquote className="mt-8">
                 <p className={`text-2xl sm:text-3xl font-semibold leading-snug tracking-tight ${HEAD}`}>

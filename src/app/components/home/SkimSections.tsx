@@ -127,7 +127,7 @@ export const HOME_FAQ = [
   },
   {
     q: 'Which marketplaces do you run?',
-    a: 'Amazon is our main marketplace: we have sold on Amazon since 2015. We also run Walmart, eBay and select international marketplaces in 40 countries.',
+    a: 'Amazon is our main marketplace: we have sold on Amazon since 2015. We also run Walmart, eBay and select international marketplaces in 42 countries.',
   },
   {
     q: 'Who sets the retail price?',

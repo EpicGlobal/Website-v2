@@ -311,3 +311,6 @@ export const countryData = [
 
 /** Distinct marketplace platforms across all countries. */
 export const MARKETPLACE_COUNT = new Set(countryData.flatMap((c) => c.marketplaces)).size;
+
+/** Countries Epic sells in (the map list). */
+export const COUNTRY_COUNT = countryData.length;

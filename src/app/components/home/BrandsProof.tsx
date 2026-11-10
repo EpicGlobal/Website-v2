@@ -10,12 +10,12 @@ import { CountUp } from '@/app/components/scroll/ScrollEffects';
 import { TrustLogosMarquee, type MarqueeBrand } from '@/app/components/TrustLogosMarquee';
 import { ACCENT, BODY, HEAD, INNER } from '@/app/components/story/tokens';
 import { CARD, ICON_TILE } from './homeStyles';
-import { MARKETPLACE_COUNT } from '@/app/data/markets';
+import { COUNTRY_COUNT, MARKETPLACE_COUNT } from '@/app/data/markets';
 
 type Brand = MarqueeBrand;
 
 const brandsStat = { value: 50, suffix: '+' };
-const countriesStat = { value: 40 };
+const countriesStat = { value: COUNTRY_COUNT };
 const marketsStat = { value: MARKETPLACE_COUNT };
 const ratingStat = { value: 4.9, decimals: 1, suffix: '/5' };
 
