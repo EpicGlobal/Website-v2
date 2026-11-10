@@ -214,7 +214,7 @@ export function WhatWeAre() {
       </section>
 
       {/* 04 How we compare: the table, then what we don't do (the same point from the other side). */}
-      <section id="compare" data-chapter className={CHAPTER}>
+      <section id="compare" data-chapter className={`${CHAPTER} !pb-0`}>
         <div className={INNER}>
           <ChapterMarker n={4} />
           <h2 className={`${H2} mb-8`}>How Epic compares</h2>
@@ -222,19 +222,19 @@ export function WhatWeAre() {
             <CompareTable />
           </div>
           <h3 className={`${H3} mt-12 mb-5`}>What we don&apos;t do</h3>
-          {/* Same cards and hover glow as "What we run"; an odd last card spans both columns so the rows stay even. */}
-          <ul className="grid gap-3 md:grid-cols-2">
-            {WE_DONT.map((item, i) => (
+          {/* Plain lines (no cards). On hover a line nudges right, its X lights up in the theme's pop color with a soft
+              glow: the same hover language as the rest of the site, without the box. */}
+          <ul className="grid gap-x-10 gap-y-1 md:grid-cols-2">
+            {WE_DONT.map((item) => (
               <li
                 key={item}
-                className={`${CARD} ${CARD_HOVER} flex items-center gap-4 px-5 py-4 ${
-                  WE_DONT.length % 2 === 1 && i === WE_DONT.length - 1 ? 'md:col-span-2' : ''
-                }`}
+                className={`group flex items-center gap-3 py-2 leading-relaxed transition-transform duration-300 ease-out hover:translate-x-1 ${BODY}`}
               >
-                <span className={`${ICON_TILE} !w-9 !h-9 !rounded-lg flex-shrink-0`}>
-                  <X aria-hidden="true" className="w-[18px] h-[18px]" />
-                </span>
-                <span className={`leading-snug ${BODY}`}>{item}</span>
+                <X
+                  aria-hidden="true"
+                  className={`w-5 h-5 flex-shrink-0 transition-[color,filter] duration-300 ${MUTED} group-hover:!text-[var(--pop)] group-hover:drop-shadow-[0_0_8px_var(--pop)]`}
+                />
+                <span>{item}</span>
               </li>
             ))}
           </ul>
@@ -242,7 +242,8 @@ export function WhatWeAre() {
       </section>
 
       {/* 05 Who it's for: the same fit list as the homepage. */}
-      <section id="who-its-for" data-chapter className={CHAPTER}>
+      {/* pt-10 + the last line's own 8px = 48px, the same gap as the table to "What we don't do" above. */}
+      <section id="who-its-for" data-chapter className={`${CHAPTER} !pt-10`}>
         <div className={INNER}>
           <ChapterMarker n={5} />
           <h2 className={`${H2} mb-4`}>Who it&apos;s for</h2>
