@@ -45,7 +45,7 @@ const [
     Promise.all(files.filter((f) => f.endsWith('.md')).map((f) => read(`content/knowledge-base/${f}`))).then((all) => all.join(String.fromCharCode(10))),
   ),
   read('public/knowledge-index.html'),
-  read('public/llms.txt'),
+  read('content/llms.txt'),
   exists('app/contact/page.tsx'),
 ]);
 

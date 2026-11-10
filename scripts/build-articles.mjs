@@ -18,6 +18,8 @@ const ROOT = process.cwd();
 const DIR = path.join(ROOT, 'content', 'knowledge-base');
 const OUT_META = path.join(ROOT, 'src', 'app', 'data', 'knowledgeArticles.generated.ts');
 const OUT_BODY = path.join(ROOT, 'src', 'app', 'data', 'articleBodies.generated.ts');
+const LLMS_IN = path.join(ROOT, 'content', 'llms.txt');
+const OUT_LLMS = path.join(ROOT, 'src', 'app', 'data', 'llms.generated.ts');
 const CHECK_ONLY = process.argv.includes('--check');
 
 const TYPES = ['Answer Page', 'Playbook', 'Checklist', 'Glossary', 'Template', 'Deep Dive'];
@@ -137,12 +139,17 @@ const metaTs = `${header}import type { KnowledgeArticle } from './knowledgeArtic
 )};\n`;
 const bodyTs = `${header}// Article text, read only on the server (never sent to the browser as data).\nexport const articleBodies: Record<string, string> = ${JSON.stringify(bodies, null, 2)};\n`;
 
+// content/llms.txt, served at /llms.txt with articles that aren't published yet left out (see src/app/data/llmsText.ts).
+const llmsSource = fs.readFileSync(LLMS_IN, 'utf8').replace(/\r\n/g, '\n');
+const llmsTs = `${header.replace('content/knowledge-base/*.md', 'content/llms.txt').replace('edit the .md files', 'edit content/llms.txt')}export const llmsTemplate = ${JSON.stringify(llmsSource)};\n`;
+
 if (CHECK_ONLY) {
-  const same = fs.existsSync(OUT_META) && fs.readFileSync(OUT_META, 'utf8') === metaTs && fs.existsSync(OUT_BODY) && fs.readFileSync(OUT_BODY, 'utf8') === bodyTs;
+  const same = fs.existsSync(OUT_META) && fs.readFileSync(OUT_META, 'utf8') === metaTs && fs.existsSync(OUT_BODY) && fs.readFileSync(OUT_BODY, 'utf8') === bodyTs && fs.existsSync(OUT_LLMS) && fs.readFileSync(OUT_LLMS, 'utf8') === llmsTs;
   console.log(`Knowledge Base: ${articles.length} articles OK${same ? '' : ' (generated files are out of date; run node scripts/build-articles.mjs)'}`);
   process.exit(same ? 0 : 1);
 }
 fs.writeFileSync(OUT_META, metaTs);
 fs.writeFileSync(OUT_BODY, bodyTs);
+fs.writeFileSync(OUT_LLMS, llmsTs);
 const scheduled = articles.filter((a) => a.publishOn).length;
 console.log(`Knowledge Base: ${articles.length} articles (${Object.keys(bodies).length} written, ${scheduled} with a publish date)`);
