@@ -6,13 +6,14 @@ import type { ReactNode } from 'react';
 import { isoDate, type KnowledgeArticle as KnowledgeArticleType } from '@/app/data/knowledgeArticles';
 import { StructuredData, getBreadcrumbSchema, organizationRef, reviewedPage } from '@/app/components/StructuredData';
 import { Byline } from '@/app/components/reading/Byline';
+import { ArticleFeedback } from '@/app/components/reading/ArticleFeedback';
 import { ReadingProgressRing } from '@/app/components/scroll/ScrollEffects';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
 import { ACCENT, BODY, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, RULE } from '@/app/components/story/tokens';
 import { ArticleCard } from '@/app/components/reading/ArticleCard';
-import { MEASURE, PILL, SURFACE } from '@/app/components/reading/reading';
+import { MEASURE, PILL } from '@/app/components/reading/reading';
 import '@/app/components/reading/reading.css';
 import { siteConfig } from '@/site/site-config';
 
@@ -23,7 +24,6 @@ import { siteConfig } from '@/site/site-config';
  */
 
 const SECTION = 'px-4 sm:px-6 lg:px-8';
-const SMALL_BUTTON = `px-5 py-2 rounded-lg border text-sm font-medium transition-colors ${RULE} ${HEAD} hover:bg-white/10 orange:hover:bg-[#101828]/5 light:hover:bg-gray-100 leaf:hover:bg-white/50 water:hover:bg-white/50 soft-dark:hover:bg-white/50`;
 
 type KnowledgeArticleProps = {
   slug: string;
@@ -198,14 +198,8 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
               </div>
             )}
 
-            {/* Feedback */}
-            <div className={`mt-10 p-6 ${SURFACE}`}>
-              <p className={`text-lg font-semibold mb-4 ${HEAD}`}>Was this article helpful?</p>
-              <div className="flex flex-wrap gap-3">
-                <button className={SMALL_BUTTON}>Yes, helpful</button>
-                <button className={SMALL_BUTTON}>No, needs improvement</button>
-              </div>
-            </div>
+            {/* Feedback (only on written articles, not Coming Soon pages) */}
+            {body ? <ArticleFeedback slug={article.slug} /> : null}
           </div>
         </div>
       </section>
