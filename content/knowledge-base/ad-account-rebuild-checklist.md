@@ -114,6 +114,6 @@ Audit and design usually fit in one to two weeks; migration and stabilization ta
 
 No. Archive them. Archived campaigns keep their reporting history, which helps when you compare results later.
 
-### What is the difference between ACoS and TACoS?
+### Should I judge the rebuild by ACoS or TACoS?
 
-[ACoS](/knowledge-base/kpi-glossary) is ad spend divided by ad-attributed sales. TACoS is ad spend divided by total sales, including organic. TACoS shows whether advertising is lifting the whole business.
+Track both. [ACoS](/knowledge-base/kpi-glossary) (ad spend divided by ad-attributed sales) tells you if each campaign pays for itself. TACoS (ad spend divided by total sales, organic included) tells you if the rebuilt account is growing the whole business.

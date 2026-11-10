@@ -110,9 +110,9 @@ Generally not through an IP report, because reselling genuine goods is usually l
 
 Marketplaces expect evidence that the specific seller's product is fake. A test buy with photos and an order number gives them that, and protects you from filing an inaccurate report.
 
-### Does Amazon enforce my MAP policy?
+### Can I report a MAP violation to Amazon?
 
-No. MAP is a policy between a brand and its resellers. Enforcement happens through your supply chain agreements, not marketplace reports.
+No. A MAP policy is an agreement you set with your own resellers, so Amazon has no part in it. Enforcement happens through your supply chain agreements, not marketplace reports.
 
 ### What other marketplace programs exist besides Brand Registry?
 
