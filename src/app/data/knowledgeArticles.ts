@@ -22,6 +22,8 @@ export interface KnowledgeArticle {
   difficulty?: 'Intro' | 'Operator' | 'Advanced';
   /** The date readers see, like "January 22, 2026": the last edit, or the publish date if that's later. */
   lastUpdated: string;
+  /** YYYY-MM-DD the article first went live (front matter "published", else publishOn, else the last edit). */
+  published?: string;
   /** YYYY-MM-DD. Until this day (Utah time) the article stays hidden: no page, no card, not in the sitemap. */
   publishOn?: string;
   tags: string[];

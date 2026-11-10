@@ -6,6 +6,7 @@ category: "Model and Process"
 type: "Playbook"
 difficulty: "Operator"
 updated: 2026-11-05
+published: 2026-01-23
 publishOn:
 tags: ["model", "agency", "comparison", "incentives"]
 featured: true

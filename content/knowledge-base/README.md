@@ -25,6 +25,7 @@ type: "Template"                    # Answer Page, Playbook, Checklist, Glossary
 difficulty: "Operator"              # Intro, Operator or Advanced
 updated: 2026-11-05                 # last real edit (YYYY-MM-DD)
 publishOn: 2026-11-16               # optional: hidden until this day (Utah time), then goes live by itself
+published: 2026-01-22               # optional: the day it first went live (for an article that was live before publishOn existed)
 tags: ["dashboard", "reporting"]
 related: ["kpi-glossary"]           # optional: other article file names to show under Related Articles
 featured: false                     # optional: show in Popular on the Knowledge Base page

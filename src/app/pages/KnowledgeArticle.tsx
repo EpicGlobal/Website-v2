@@ -58,6 +58,8 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
     ...knowledgeArticles.filter((a) => a.slug !== article.slug && a.category === article.category && a.hasContent && !listed.includes(a)),
   ].slice(0, 3);
   const updated = isoDate(article.lastUpdated);
+  const published = article.published ?? updated;
+  const publishedText = new Date(`${published}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
   const articleUrl = `${siteConfig.url}/knowledge-base/${article.slug}`;
   const meta = [article.pillar, article.type, article.difficulty].filter((m): m is NonNullable<typeof m> => Boolean(m));
 
@@ -66,7 +68,7 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
     '@type': 'Article',
     headline: article.title,
     description: article.seoDescription ?? article.summary,
-    datePublished: updated,
+    datePublished: published,
     dateModified: updated,
     mainEntityOfPage: articleUrl,
     image: [`${siteConfig.url}${siteConfig.ogImage}`],
@@ -83,7 +85,7 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
         keywords={`${article.category}, ${article.pillar}, marketplace guide, ecommerce strategy`}
         ogType="article"
         article={{
-          publishedTime: updated,
+          publishedTime: published,
           modifiedTime: updated,
           author: 'Epic Global Inc.',
           section: article.category,
@@ -145,7 +147,13 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
           <div className={`flex flex-wrap items-center gap-x-6 gap-y-3 pb-8 border-b text-sm ${RULE} ${MUTED}`}>
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" aria-hidden="true" />
-              <span>Updated {article.lastUpdated}</span>
+              {published === updated ? (
+                <span>Published <time dateTime={published}>{publishedText}</time></span>
+              ) : (
+                <span>
+                  Published <time dateTime={published}>{publishedText}</time> · Updated <time dateTime={updated}>{article.lastUpdated}</time>
+                </span>
+              )}
             </div>
             {siteConfig.downloadsEnabled && article.downloadable && article.downloadUrl && (
               <GatedDownloadButton

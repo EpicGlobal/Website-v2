@@ -66,6 +66,7 @@ for (const file of files) {
 
   const updated = day(data.updated, file, 'updated', true);
   const publishOn = day(data.publishOn, file, 'publishOn', false);
+  const publishedOn = day(data.published, file, 'published', false);
   const body = content.trim();
 
   for (const m of body.matchAll(/(?:^|\s|\[|\()(:{1,})([a-z]+)[[{\n]/gm)) {
@@ -88,7 +89,10 @@ for (const file of files) {
   if (/<[a-z][\s\S]*?>/i.test(body.replace(/`[^`]*`/g, ''))) fail(file, 'HTML tags are not allowed; use Markdown or the blocks in README.md');
 
   // The date readers see: the publish date if it's later than the last edit.
-  const shown = publishOn && updated && publishOn > updated ? publishOn : updated;
+  // First published: the "published" date if given, else the scheduled publish day, else the last edit.
+  const first = publishedOn ?? publishOn ?? updated;
+  // The "updated" date readers see is never earlier than the day the article went live.
+  const shown = [updated, publishOn, publishedOn].filter(Boolean).sort().pop();
   articles.push({
     slug,
     title: data.title,
@@ -103,6 +107,7 @@ for (const file of files) {
     type: data.type,
     difficulty: data.difficulty,
     lastUpdated: shown ? longDate(shown) : '',
+    ...(first ? { published: first } : {}),
     ...(publishOn ? { publishOn } : {}),
     tags: data.tags ?? [],
     ...(data.featured !== undefined ? { featured: Boolean(data.featured) } : {}),

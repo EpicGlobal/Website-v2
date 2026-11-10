@@ -6,6 +6,7 @@ category: "Model and Process"
 type: "Answer Page"
 difficulty: "Intro"
 updated: 2026-11-05
+published: 2026-01-22
 publishOn:
 tags: ["model", "purchase", "expand", "cover", "overview"]
 featured: true

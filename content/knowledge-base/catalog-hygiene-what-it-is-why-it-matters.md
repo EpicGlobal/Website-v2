@@ -1,5 +1,5 @@
 ---
-title: "The Silent Growth Killer: Mastering Catalog Hygiene in 2026"
+title: "The Silent Growth Killer: Mastering Catalog Hygiene"
 seoTitle: "Catalog Hygiene: Why It Matters"
 summary: "Catalog hygiene is the disciplined habit of keeping product data clean, consistent, and current across every SKU and marketplace."
 category: "Marketplace Operations"
@@ -8,13 +8,14 @@ marketplace: ["Amazon", "Walmart", "eBay"]
 type: "Answer Page"
 difficulty: "Intro"
 updated: 2026-11-05
+published: 2026-01-23
 publishOn:
 tags: ["catalog", "hygiene", "data quality", "listings"]
 featured: true
 order: 8
 ---
 
-## The Silent Growth Killer: Mastering Catalog Hygiene in 2026
+## The Silent Growth Killer: Mastering Catalog Hygiene
 
 Catalog hygiene is the disciplined habit of keeping product data clean, consistent, and current across every SKU and marketplace. When it's done well, listings stay stable, ads behave predictably, and growth becomes repeatable instead of a never-ending cycle of reactive fixes.
 

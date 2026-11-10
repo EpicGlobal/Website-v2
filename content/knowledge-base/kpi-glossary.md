@@ -8,6 +8,7 @@ pillar: "Sell"
 type: "Glossary"
 difficulty: "Intro"
 updated: 2026-11-05
+published: 2026-01-23
 publishOn:
 tags: ["kpi", "metrics", "glossary", "definitions"]
 featured: true

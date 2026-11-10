@@ -12,6 +12,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Answer Page",
     "difficulty": "Intro",
     "lastUpdated": "November 5, 2026",
+    "published": "2026-01-22",
     "tags": [
       "overview",
       "model",
@@ -29,6 +30,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Answer Page",
     "difficulty": "Intro",
     "lastUpdated": "November 5, 2026",
+    "published": "2026-01-22",
     "tags": [
       "model",
       "purchase",
@@ -47,6 +49,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Answer Page",
     "difficulty": "Intro",
     "lastUpdated": "November 5, 2026",
+    "published": "2026-01-23",
     "tags": [
       "fit",
       "brands",
@@ -64,6 +67,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Playbook",
     "difficulty": "Operator",
     "lastUpdated": "November 5, 2026",
+    "published": "2026-01-23",
     "tags": [
       "model",
       "agency",
@@ -82,6 +86,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Answer Page",
     "difficulty": "Intro",
     "lastUpdated": "January 19, 2026",
+    "published": "2026-01-19",
     "tags": [
       "inventory",
       "purchase",
@@ -100,6 +105,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Answer Page",
     "difficulty": "Intro",
     "lastUpdated": "January 19, 2026",
+    "published": "2026-01-19",
     "tags": [
       "expenses",
       "coverage",
@@ -119,6 +125,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Answer Page",
     "difficulty": "Operator",
     "lastUpdated": "January 19, 2026",
+    "published": "2026-01-19",
     "tags": [
       "global",
       "expansion",
@@ -130,7 +137,7 @@ export const generatedArticles: KnowledgeArticle[] = [
   },
   {
     "slug": "catalog-hygiene-what-it-is-why-it-matters",
-    "title": "The Silent Growth Killer: Mastering Catalog Hygiene in 2026",
+    "title": "The Silent Growth Killer: Mastering Catalog Hygiene",
     "seoTitle": "Catalog Hygiene: Why It Matters",
     "summary": "Catalog hygiene is the disciplined habit of keeping product data clean, consistent, and current across every SKU and marketplace.",
     "category": "Marketplace Operations",
@@ -143,6 +150,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Answer Page",
     "difficulty": "Intro",
     "lastUpdated": "November 5, 2026",
+    "published": "2026-01-23",
     "tags": [
       "catalog",
       "hygiene",
@@ -167,6 +175,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Checklist",
     "difficulty": "Operator",
     "lastUpdated": "December 21, 2026",
+    "published": "2026-12-21",
     "publishOn": "2026-12-21",
     "tags": [
       "listing",
@@ -197,6 +206,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Answer Page",
     "difficulty": "Operator",
     "lastUpdated": "December 23, 2026",
+    "published": "2026-12-23",
     "publishOn": "2026-12-23",
     "tags": [
       "variations",
@@ -227,6 +237,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Playbook",
     "difficulty": "Operator",
     "lastUpdated": "December 28, 2026",
+    "published": "2026-12-28",
     "publishOn": "2026-12-28",
     "tags": [
       "advertising",
@@ -258,6 +269,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Playbook",
     "difficulty": "Advanced",
     "lastUpdated": "December 30, 2026",
+    "published": "2026-12-30",
     "publishOn": "2026-12-30",
     "tags": [
       "search terms",
@@ -289,6 +301,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Playbook",
     "difficulty": "Operator",
     "lastUpdated": "December 31, 2026",
+    "published": "2026-12-31",
     "publishOn": "2026-12-31",
     "tags": [
       "creative",
@@ -315,6 +328,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Deep Dive",
     "difficulty": "Operator",
     "lastUpdated": "January 6, 2027",
+    "published": "2027-01-06",
     "publishOn": "2027-01-06",
     "tags": [
       "inventory",
@@ -338,6 +352,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Playbook",
     "difficulty": "Advanced",
     "lastUpdated": "January 19, 2026",
+    "published": "2026-01-19",
     "tags": [
       "allocation",
       "regional",
@@ -362,6 +377,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Playbook",
     "difficulty": "Operator",
     "lastUpdated": "January 18, 2027",
+    "published": "2027-01-18",
     "publishOn": "2027-01-18",
     "tags": [
       "brand protection",
@@ -388,6 +404,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Checklist",
     "difficulty": "Operator",
     "lastUpdated": "January 20, 2027",
+    "published": "2027-01-20",
     "publishOn": "2027-01-20",
     "tags": [
       "catalog integrity",
@@ -415,6 +432,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Glossary",
     "difficulty": "Intro",
     "lastUpdated": "November 5, 2026",
+    "published": "2026-01-23",
     "tags": [
       "kpi",
       "metrics",
@@ -435,6 +453,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Deep Dive",
     "difficulty": "Operator",
     "lastUpdated": "January 13, 2027",
+    "published": "2027-01-13",
     "publishOn": "2027-01-13",
     "tags": [
       "dashboard",
@@ -460,6 +479,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Checklist",
     "difficulty": "Operator",
     "lastUpdated": "January 19, 2026",
+    "published": "2026-01-19",
     "tags": [
       "launch",
       "checklist",
@@ -480,6 +500,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Checklist",
     "difficulty": "Operator",
     "lastUpdated": "December 24, 2026",
+    "published": "2026-12-24",
     "publishOn": "2026-12-24",
     "tags": [
       "catalog",
@@ -507,6 +528,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Template",
     "difficulty": "Operator",
     "lastUpdated": "January 15, 2027",
+    "published": "2027-01-15",
     "publishOn": "2027-01-15",
     "tags": [
       "cadence",
@@ -535,6 +557,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Checklist",
     "difficulty": "Advanced",
     "lastUpdated": "January 4, 2027",
+    "published": "2027-01-04",
     "publishOn": "2027-01-04",
     "tags": [
       "advertising",
@@ -563,6 +586,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Template",
     "difficulty": "Advanced",
     "lastUpdated": "January 11, 2027",
+    "published": "2027-01-11",
     "publishOn": "2027-01-11",
     "tags": [
       "inventory",
@@ -589,6 +613,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Template",
     "difficulty": "Operator",
     "lastUpdated": "January 22, 2027",
+    "published": "2027-01-22",
     "publishOn": "2027-01-22",
     "tags": [
       "brand protection",
@@ -614,6 +639,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Deep Dive",
     "difficulty": "Advanced",
     "lastUpdated": "January 19, 2026",
+    "published": "2026-01-19",
     "tags": [
       "ai",
       "automation",
@@ -633,6 +659,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "type": "Deep Dive",
     "difficulty": "Advanced",
     "lastUpdated": "January 19, 2026",
+    "published": "2026-01-19",
     "tags": [
       "operations",
       "process",
@@ -649,7 +676,8 @@ export const generatedArticles: KnowledgeArticle[] = [
     "category": "Glossary",
     "type": "Glossary",
     "difficulty": "Intro",
-    "lastUpdated": "November 3, 2026",
+    "lastUpdated": "November 10, 2026",
+    "published": "2026-11-10",
     "tags": [
       "glossary",
       "amazon",

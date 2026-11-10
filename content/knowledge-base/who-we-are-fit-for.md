@@ -5,6 +5,7 @@ category: "Model and Process"
 type: "Answer Page"
 difficulty: "Intro"
 updated: 2026-11-05
+published: 2026-01-23
 publishOn:
 tags: ["fit", "brands", "requirements"]
 featured: true

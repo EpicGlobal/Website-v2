@@ -7,6 +7,7 @@ category: "Start Here"
 type: "Answer Page"
 difficulty: "Intro"
 updated: 2026-11-05
+published: 2026-01-22
 publishOn:
 tags: ["overview", "model", "introduction"]
 featured: true
