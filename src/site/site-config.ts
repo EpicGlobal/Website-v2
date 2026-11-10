@@ -30,6 +30,8 @@ export const siteConfig = {
   region: 'UT',
   postalCode: '84042',
   countryCode: 'US',
+  // Main phone, written the same way as on the Google Business Profile (Google: name, address and phone must match).
+  telephone: '+1-801-808-3001',
   primaryCtaHref: '/campaigns/marketplace-assessment#assessment-form',
   contactEmail: 'info@epicglobalinc.com',
   legalEmail: 'info@epicglobalinc.com',

@@ -165,10 +165,12 @@ export const organizationSchema = {
     postalCode: siteConfig.postalCode,
     addressCountry: siteConfig.countryCode,
   },
+  telephone: siteConfig.telephone,
   contactPoint: [
     {
       '@type': 'ContactPoint',
       contactType: 'Sales',
+      telephone: siteConfig.telephone,
       email: siteConfig.contactEmail,
       areaServed: siteConfig.areaServed,
       availableLanguage: ['English'],
