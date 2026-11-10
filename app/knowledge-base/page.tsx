@@ -3,7 +3,7 @@ import { articlesAsOf } from '@/app/data/knowledgeArticles';
 import { createPageMetadata } from '@/site/site-config';
 
 export const metadata = createPageMetadata({
-  title: 'Knowledge Base',
+  title: 'Amazon and Walmart Seller Guides',
   description:
     'Operator-grade guides for Amazon, Walmart and international marketplaces: expansion, advertising, inventory management, brand protection and execution.',
   path: '/knowledge-base',
