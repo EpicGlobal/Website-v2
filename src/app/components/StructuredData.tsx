@@ -95,6 +95,20 @@ export const websiteReference = {
 /** Organization reference for author/publisher on articles. */
 export const organizationRef = organizationReference;
 
+/** Glen as the reviewer of a page (matches the visible Byline). */
+export const founderRef = {
+  '@type': 'Person',
+  '@id': founderId,
+  name: siteConfig.founderName,
+  jobTitle: 'Founder & CEO',
+  url: `${siteConfig.url}/about#founder`,
+};
+
+/** The WebPage around an article or case study: the Epic team wrote it, Glen reviewed it. */
+export function reviewedPage(url: string, lastReviewed?: string) {
+  return { '@type': 'WebPage', '@id': url, reviewedBy: founderRef, ...(lastReviewed ? { lastReviewed } : {}) };
+}
+
 export const founderSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -295,6 +309,7 @@ export function getCaseStudySchema(
     description,
     ...(datePublished ? { datePublished } : {}),
     ...(image ? { image: [image] } : {}),
+    mainEntityOfPage: reviewedPage(url, datePublished),
     author: organizationReference,
     publisher: {
       '@type': 'Organization',

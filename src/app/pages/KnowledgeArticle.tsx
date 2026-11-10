@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, Download, Share2 } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { isoDate, type KnowledgeArticle as KnowledgeArticleType } from '@/app/data/knowledgeArticles';
-import { StructuredData, getBreadcrumbSchema, organizationRef } from '@/app/components/StructuredData';
+import { StructuredData, getBreadcrumbSchema, organizationRef, reviewedPage } from '@/app/components/StructuredData';
+import { Byline } from '@/app/components/reading/Byline';
 import { ReadingProgressRing } from '@/app/components/scroll/ScrollEffects';
 import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
@@ -70,7 +71,7 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
     description: article.seoDescription ?? article.summary,
     datePublished: published,
     dateModified: updated,
-    mainEntityOfPage: articleUrl,
+    mainEntityOfPage: reviewedPage(articleUrl, updated),
     image: [`${articleUrl}/opengraph-image`],
     author: organizationRef,
     publisher: organizationRef,
@@ -155,6 +156,7 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
                 </span>
               )}
             </div>
+            {body ? <Byline /> : null}
             {siteConfig.downloadsEnabled && article.downloadable && article.downloadUrl && (
               <GatedDownloadButton
                 href={article.downloadUrl}

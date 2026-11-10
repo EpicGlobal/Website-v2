@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUp } from 'lucide-react';
 import { StructuredData, getBreadcrumbSchema, getCaseStudySchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
+import { Byline } from '@/app/components/reading/Byline';
 import { PopLink } from '@/app/components/story/StoryKit';
 import { ACCENT, BODY, CARD_HOVER, H1, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, RULE } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
@@ -54,6 +55,7 @@ export function CaseStudyDetail({ study }: { study: CaseStudy }) {
             </div>
             <h1 className={`${H1} max-w-4xl mb-5`}>{study.title}</h1>
             <p className={`${LEAD} max-w-3xl`}>{study.dek}</p>
+            <Byline writer="Prepared by the Epic team" className={`mt-5 text-sm ${MUTED}`} />
             <dl className={`mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t pt-6 text-sm sm:grid-cols-4 ${RULE}`}>
               {([
                 ['Brand', study.anonymous ? `${study.brand} (name withheld)` : study.brand],
