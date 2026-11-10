@@ -56,7 +56,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "hasContent": true
   },
   {
-    "slug": "marketplace-operating-cadence",
+    "slug": "why-epic-isnt-an-agency",
     "title": "The Incentive Trap: Why Epic Isn't an \"Agency\"",
     "seoTitle": "The Incentive Trap: Epic vs. Agencies",
     "summary": "How to cut through marketplace partner noise by comparing business models, not tactics—agencies, distributors, aggregators, and the Epic operator model.",
@@ -619,23 +619,6 @@ export const generatedArticles: KnowledgeArticle[] = [
       "automation",
       "decisioning",
       "technology"
-    ],
-    "featured": false,
-    "hasContent": false
-  },
-  {
-    "slug": "why-agencies-fail-at-marketplace-ops",
-    "title": "Why Agencies Fail at Marketplace Operations",
-    "summary": "The structural reasons why traditional agencies struggle with day-to-day marketplace execution—and what operators do differently.",
-    "category": "Library",
-    "type": "Deep Dive",
-    "difficulty": "Intro",
-    "lastUpdated": "January 19, 2026",
-    "tags": [
-      "agencies",
-      "operators",
-      "model",
-      "insights"
     ],
     "featured": false,
     "hasContent": false

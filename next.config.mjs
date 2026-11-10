@@ -50,6 +50,17 @@ const nextConfig = {
         destination: '/campaigns/marketplace-assessment',
         permanent: true,
       },
+      // The Epic-vs-agencies article had an unrelated URL; its old address and the duplicate stub point to it now.
+      {
+        source: '/knowledge-base/marketplace-operating-cadence',
+        destination: '/knowledge-base/why-epic-isnt-an-agency',
+        permanent: true,
+      },
+      {
+        source: '/knowledge-base/why-agencies-fail-at-marketplace-ops',
+        destination: '/knowledge-base/why-epic-isnt-an-agency',
+        permanent: true,
+      },
       // About page address from the previous site.
       {
         source: '/about-1',

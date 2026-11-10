@@ -15,7 +15,7 @@ downloadable: true
 order: 22
 ---
 
-A weekly [operating cadence](/knowledge-base/marketplace-operating-cadence) is a fixed schedule that tells a marketplace team what to review, decide and fix on each day of the week. It turns the work of running Amazon, Walmart and other marketplaces (listings, ads, inventory, pricing and brand protection) into a repeatable loop, so problems are caught within days instead of at month end.
+A weekly operating cadence is a fixed schedule that tells a marketplace team what to review, decide and fix on each day of the week. It turns the work of running Amazon, Walmart and other marketplaces (listings, ads, inventory, pricing and brand protection) into a repeatable loop, so problems are caught within days instead of at month end.
 
 The template below is built for a small team or a single operator. Adjust the days to match when your marketplace reports refresh.
 

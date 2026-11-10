@@ -37,7 +37,7 @@ New articles are listed in the RSS feed: https://www.epicglobalinc.com/knowledge
 - [What is Epic Global Inc.?](https://www.epicglobalinc.com/knowledge-base/what-is-epic-global-inc): entity definition and business model overview
 - [How Our Model Works](https://www.epicglobalinc.com/knowledge-base/how-our-model-works): how the model works, step by step
 - [What Types of Brands We're a Fit For](https://www.epicglobalinc.com/knowledge-base/who-we-are-fit-for): ideal partner profile
-- [The Incentive Trap: Epic vs. Agencies](https://www.epicglobalinc.com/knowledge-base/marketplace-operating-cadence): why Epic isn't an agency; the wholesale trade partner model compared with agencies and aggregators
+- [The Incentive Trap: Epic vs. Agencies](https://www.epicglobalinc.com/knowledge-base/why-epic-isnt-an-agency): why Epic isn't an agency; the wholesale trade partner model compared with agencies and aggregators
 - [Epic's Operational Process](https://www.epicglobalinc.com/knowledge-base/epic-operational-process): the four phases (Assess, Build, Execute, Scale) and what Epic needs from brands
 - [Marketplace KPI Glossary](https://www.epicglobalinc.com/knowledge-base/kpi-glossary): marketplace performance definitions and calculations
 - [Catalog Hygiene](https://www.epicglobalinc.com/knowledge-base/catalog-hygiene-what-it-is-why-it-matters): why clean product data matters
