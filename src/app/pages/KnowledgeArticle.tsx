@@ -71,7 +71,7 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
     datePublished: published,
     dateModified: updated,
     mainEntityOfPage: articleUrl,
-    image: [`${siteConfig.url}${siteConfig.ogImage}`],
+    image: [`${articleUrl}/opengraph-image`],
     author: organizationRef,
     publisher: organizationRef,
   };

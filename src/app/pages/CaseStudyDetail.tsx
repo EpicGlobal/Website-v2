@@ -26,7 +26,7 @@ export function CaseStudyDetail({ study }: { study: CaseStudy }) {
 
   return (
     <div className={PAGE_BG}>
-      <StructuredData data={getCaseStudySchema(study.title, study.seoDescription, study.published, url)} />
+      <StructuredData data={getCaseStudySchema(study.title, study.seoDescription, study.published, url, `${url}/opengraph-image`)} />
       <StructuredData
         data={getBreadcrumbSchema([
           { name: 'Home', url: `${siteConfig.url}/` },

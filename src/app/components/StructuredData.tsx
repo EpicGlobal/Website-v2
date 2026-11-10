@@ -284,6 +284,7 @@ export function getCaseStudySchema(
   description: string,
   datePublished: string | undefined,
   url: string,
+  image?: string,
 ) {
   return {
     '@context': 'https://schema.org',
@@ -291,6 +292,7 @@ export function getCaseStudySchema(
     headline: title,
     description,
     ...(datePublished ? { datePublished } : {}),
+    ...(image ? { image: [image] } : {}),
     author: organizationReference,
     publisher: {
       '@type': 'Organization',
