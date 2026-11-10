@@ -222,11 +222,19 @@ export function WhatWeAre() {
             <CompareTable />
           </div>
           <h3 className={`${H3} mt-12 mb-5`}>What we don&apos;t do</h3>
-          <ul className="grid gap-x-10 gap-y-3 md:grid-cols-2">
-            {WE_DONT.map((item) => (
-              <li key={item} className={`flex items-start gap-3 leading-relaxed ${BODY}`}>
-                <X aria-hidden="true" className={`w-5 h-5 mt-0.5 flex-shrink-0 ${MUTED}`} />
-                <span>{item}</span>
+          {/* Same cards and hover glow as "What we run"; an odd last card spans both columns so the rows stay even. */}
+          <ul className="grid gap-3 md:grid-cols-2">
+            {WE_DONT.map((item, i) => (
+              <li
+                key={item}
+                className={`${CARD} ${CARD_HOVER} flex items-center gap-4 px-5 py-4 ${
+                  WE_DONT.length % 2 === 1 && i === WE_DONT.length - 1 ? 'md:col-span-2' : ''
+                }`}
+              >
+                <span className={`${ICON_TILE} !w-9 !h-9 !rounded-lg flex-shrink-0`}>
+                  <X aria-hidden="true" className="w-[18px] h-[18px]" />
+                </span>
+                <span className={`leading-snug ${BODY}`}>{item}</span>
               </li>
             ))}
           </ul>
