@@ -5,7 +5,6 @@ import { SiteShell } from '@/site/SiteShell';
 import { ConsentManagedTracking } from '@/app/components/ConsentManagedTracking';
 import { siteConfig } from '@/site/site-config';
 import { isWebsitePreview } from '@/site/preview-mode';
-import tabLogo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -24,19 +23,14 @@ export const metadata: Metadata = {
     'wholesale trade partner',
     'brand protection',
   ],
+  // Fixed addresses (not build-hashed) so Google can keep showing Epic's icon next to search results.
+  // 192px is a multiple of 48, as Google asks. Made from src/assets/89c6c6...png (the tab logo).
   icons: {
     icon: [
-      {
-        url: tabLogo.src,
-        type: 'image/png',
-      },
+      { url: '/favicon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '48x48' },
     ],
-    shortcut: [
-      {
-        url: tabLogo.src,
-        type: 'image/png',
-      },
-    ],
+    shortcut: [{ url: '/favicon.ico' }],
     apple: [
       {
         url: '/apple-touch-icon.png',
