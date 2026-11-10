@@ -4,19 +4,20 @@ import { publishedCaseStudies } from '@/app/data/caseStudies';
 import { siteConfig } from '@/site/site-config';
 
 // Change a page's date only when its content really changes, so search engines can trust lastModified.
-// Every page below changes in this release (canonical moves to www), so all take its go-live date.
-// SET ON MERGE: change 2026-10-29 to the day this goes live.
+// Every page below changed in this release (www canonical, 42 countries, titles, schema), so all share its date.
+// On go-live day, set RELEASE to that day once; after that, edit a page's own date only when that page changes.
+const RELEASE = '2026-11-10';
 const staticRoutes = [
-  { path: '/', priority: 1, updated: '2026-10-29' },
-  { path: '/about', priority: 0.9, updated: '2026-10-29' },
-  { path: '/our-model', priority: 0.9, updated: '2026-10-29' },
-  { path: '/intelligence', priority: 0.8, updated: '2026-10-29' },
-  { path: '/case-studies', priority: 0.8, updated: '2026-10-29' },
-  { path: '/knowledge-base', priority: 0.8, updated: '2026-10-29' },
-  { path: '/faq', priority: 0.7, updated: '2026-10-29' }, // SET ON MERGE: PR 2 changes this page
-  { path: '/privacy', priority: 0.4, updated: '2026-10-29' },
-  { path: '/privacy-choices', priority: 0.4, updated: '2026-10-29' },
-  { path: '/terms', priority: 0.4, updated: '2026-10-29' },
+  { path: '/', priority: 1, updated: RELEASE },
+  { path: '/about', priority: 0.9, updated: RELEASE },
+  { path: '/our-model', priority: 0.9, updated: RELEASE },
+  { path: '/intelligence', priority: 0.8, updated: RELEASE },
+  { path: '/case-studies', priority: 0.8, updated: RELEASE },
+  { path: '/knowledge-base', priority: 0.8, updated: RELEASE },
+  { path: '/faq', priority: 0.7, updated: RELEASE },
+  { path: '/privacy', priority: 0.4, updated: RELEASE },
+  { path: '/privacy-choices', priority: 0.4, updated: RELEASE },
+  { path: '/terms', priority: 0.4, updated: RELEASE },
 ];
 
 // Rebuilt hourly so scheduled articles join the sitemap on their publish day.
@@ -40,10 +41,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: article.featured ? 0.7 : 0.6,
     }));
 
-  // Published case studies only (drafts and studies in review stay out). No date yet: SET ON MERGE to the go-live day.
+  // Published case studies only (drafts and studies in review stay out). No study date yet, so the release date.
   const caseStudyEntries: MetadataRoute.Sitemap = publishedCaseStudies.map((study) => ({
     url: `${siteConfig.url}/case-studies/${study.slug}`,
-    lastModified: study.updated ?? study.published ?? '2026-10-29',
+    lastModified: study.updated ?? study.published ?? RELEASE,
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
