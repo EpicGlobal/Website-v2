@@ -340,7 +340,7 @@ export const caseStudies: readonly CaseStudy[] = [
     },
     related: [
       { href: '/our-model', label: 'How Epic buys inventory and pays the marketplace costs' },
-      { href: '/what-we-are', label: 'Epic vs an agency vs an aggregator' },
+      { href: '/our-model', label: 'Epic vs an agency vs an aggregator' },
     ],
   },
 ];

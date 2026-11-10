@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ThankYouRedirect } from './ThankYouRedirect';
 
 export const metadata: Metadata = {
-  title: 'Thank You | Epic Global Inc.',
+  title: 'Thank You',
   description: 'Your Epic Global strategy call has been booked.',
   robots: {
     index: false,

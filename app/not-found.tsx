@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+// Its own title and a single robots rule, instead of the home page's title and "index, follow".
+export const metadata: Metadata = {
+  title: 'Page Not Found',
+  robots: { index: false, follow: true },
+};
+
 export default function NotFound() {
   return (
     <div className="min-h-screen px-4 pt-32 text-white">

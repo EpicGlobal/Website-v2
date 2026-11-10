@@ -12,8 +12,6 @@ featured: true
 order: 3
 ---
 
-## What Types of Brands We're a Fit For
-
 Most brands don't need "more marketplace help." They need a cleaner model.
 
 Because the real problem isn't usually effort. It's that marketplace growth has turned into a stack of risk: inventory bets, ad spend, fee creep, pricing pressure, operational fires, and a rotating cast of vendors who can all say they did their part while the total system still underperforms.
