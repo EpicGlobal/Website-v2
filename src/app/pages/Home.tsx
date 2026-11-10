@@ -33,7 +33,6 @@ import bodeProLogo from '@/assets/dd52d621b52abc573986f37f46a1c4defdf9e2e1.png';
 import epochLogo from '@/assets/1a51400c847b43ceb652f7b37844917910e49662.png';
 import doctorsBestLogo from '@/assets/986dd0a0a85aa440a5b4d8924b7bdef2acd069ce.png';
 import gentlemenRepublicLogo from '@/assets/41f6e55df1fa2c29fdc640f9ef5481334f819ad5.png';
-import h2oCardioLogo from '@/assets/6e83860a8e1e07bf9143171faaa89952db9fd600.png';
 import iceElementsLogo from '@/assets/398340e50590d80a267db4420b16873a69c96d3c.png';
 import incelldermLogo from '@/assets/d7d83b3aba9e9324d0971b91c01187787a9373d2.png';
 import lifeningLogo from '@/assets/7050cfcd254a8e6b35a5e7eae127ccf0431d032f.png';
@@ -138,7 +137,6 @@ export function Home() {
     { name: 'Epoch', logo: epochLogo, tone: 'deep' },
     { name: "Doctor's Best", logo: doctorsBestLogo, tone: 'pale' },
     { name: 'Gentlemen Republic', logo: gentlemenRepublicLogo, tone: 'dark' },
-    { name: 'H2O Cardio', logo: h2oCardioLogo, tone: 'dark' },
     { name: 'Ice Elements', logo: iceElementsLogo, tone: 'dark' },
     { name: 'Incellderm', logo: incelldermLogo, tone: 'dark' },
     { name: 'Lifening', logo: lifeningLogo, tone: 'dark' },
