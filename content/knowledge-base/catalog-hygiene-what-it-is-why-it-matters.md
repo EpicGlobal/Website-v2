@@ -70,7 +70,7 @@ The "boring stuff" drives outsized results because everything else depends on it
 
 ## The Epic methodology: a simple operating loop
 
-Catalog hygiene isn't a quarterly cleanup. It's a weekly operating discipline.
+Catalog hygiene isn't a quarterly cleanup. It's a weekly operating discipline, part of the Execute phase in [Epic's operational process](/knowledge-base/epic-operational-process).
 
 :::card
 ### 1) Baseline audit
@@ -177,3 +177,5 @@ Fix patterns category-wide using bulk operations and repeatable rules, not one-o
 ## Bottom line
 
 Catalog hygiene is not glamorous, but it's one of the few levers that improves search, conversion, advertising efficiency, and account stability at the same time. In 2026, the brands that scale cleanly aren't doing "more hacks" — they're running tighter systems.
+
+To measure the effect, track conversion and suppressed listings with the definitions in the [Marketplace KPI Glossary](/knowledge-base/kpi-glossary). For the terms used here (ASIN, variation, Buy Box), see the [Amazon and Marketplace Glossary](/knowledge-base/amazon-marketplace-glossary).

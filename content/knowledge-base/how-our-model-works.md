@@ -167,5 +167,6 @@ Marketplace growth should not require brands to gamble. It should require a syst
 
 :::links
 - [What is Epic Global Inc.?](/knowledge-base/what-is-epic-global-inc): Foundational explanation for brand partners
+- [Epic's Operational Process](/knowledge-base/epic-operational-process): The four phases from first assessment to scaling across regions
 - [Case Studies](/case-studies): Real outcomes from real operations
 :::

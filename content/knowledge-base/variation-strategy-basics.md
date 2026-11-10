@@ -16,7 +16,7 @@ featured: false
 order: 10
 ---
 
-Variations group versions of the same product, such as sizes, colors or pack counts, under one non-buyable parent listing so shoppers can switch between them on one page.
+Variations group versions of the same product, such as sizes, colors or pack counts, under one non-buyable parent listing so shoppers can switch between them on one page. Variations are one part of [catalog hygiene](/knowledge-base/catalog-hygiene-what-it-is-why-it-matters); check each new family with the [Listing QA Checklist](/knowledge-base/listing-qa-checklist) before it goes live.
 
 Set them up when the products are truly the same item in different versions, and keep them separate when they are different products, because Amazon prohibits grouping unrelated items and a bad family can hurt conversion and reviews for every child.
 

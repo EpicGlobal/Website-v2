@@ -99,7 +99,7 @@ If you want to keep your business and still get operator-level execution, aggreg
 
 Epic is a wholesale trade partner. We buy the inventory and run the marketplace business end to end.
 
-Our model is built on four parts: **Buy, Sell, Advertise, Protect**.
+[Our model](/knowledge-base/how-our-model-works) is built on four parts: **Buy, Sell, Advertise, Protect**.
 
 :::card
 ### BUY
@@ -176,7 +176,7 @@ Choosing a marketplace partner isn't just hiring help. It's choosing an incentiv
 ### Epic is:
 
 :::checks
-- an Amazon-first wholesale trade partner that also runs Walmart and international marketplaces
+- an Amazon-first [wholesale trade partner](/knowledge-base/what-is-epic-global-inc) that also runs Walmart and international marketplaces
 - we buy the inventory, run the system, fund growth, and align our success with yours
 :::
 ::::

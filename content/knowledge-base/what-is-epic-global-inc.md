@@ -47,7 +47,7 @@ We fund and manage the advertising, and pay the marketplace fees and fulfillment
 :::card
 ### 4. Protect
 
-We protect the brand on every marketplace we operate: Brand Registry authorization, unauthorized-seller removal, MAP enforcement, and Buy Box and catalog monitoring.
+We protect the brand on every marketplace we operate: Brand Registry authorization, unauthorized-seller removal, MAP enforcement, and Buy Box and catalog monitoring. The [Amazon and Marketplace Glossary](/knowledge-base/amazon-marketplace-glossary) explains these terms in plain English.
 :::
 
 ## Common Pitfalls (What We're Not)

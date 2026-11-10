@@ -19,7 +19,7 @@ order: 18
 
 ::tagline[Definitions, calculations, and tactical interpretation]
 
-KPIs are only useful if the whole team is using the same math to make decisions. This glossary covers the core metrics of marketplace operations, how to calculate them, and—more importantly—what they're trying to tell you.
+KPIs are only useful if the whole team is using the same math to make decisions. This glossary covers the core metrics of marketplace operations, how to calculate them, and—more importantly—what they're trying to tell you. For the Amazon and wholesale terms behind these numbers (ASIN, Buy Box, 1P and 3P), see the [Amazon and Marketplace Glossary](/knowledge-base/amazon-marketplace-glossary).
 
 ## 1) Traffic & advertising efficiency
 
@@ -132,7 +132,7 @@ Launch/expansion: ~15–20%]
 
 ## 2) Conversion & listing performance
 
-Once a shopper lands on the page, these metrics track your ability to close the deal.
+Once a shopper lands on the page, these metrics track your ability to close the deal. Weak conversion often starts with messy product data; [catalog hygiene](/knowledge-base/catalog-hygiene-what-it-is-why-it-matters) covers how to fix it.
 
 :::card
 ### Sessions / Visits
