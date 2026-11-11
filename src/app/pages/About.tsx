@@ -178,7 +178,7 @@ export function About() {
               <h2 className={H2}>Glen Jensen</h2>
               <p className={`mt-1 mb-8 text-lg ${MUTED}`}>Founder &amp; CEO</p>
               <p data-story="lit-step" className={`leading-relaxed mb-5 ${BODY}`}>
-                {"Glen Jensen is the founder and CEO of Epic Global Inc., an Amazon-first wholesale trade partner. An entrepreneur who loves building businesses and challenging traditional industry models, he founded Epic on a simple principle: brands deserve a better way to succeed in ecommerce."}
+                {"Glen Jensen is the founder and CEO of Epic Global Inc., an Amazon-first wholesale trade partner and marketplace operator. An entrepreneur who loves building businesses and challenging traditional industry models, he founded Epic on a simple principle: brands deserve a better way to succeed in ecommerce."}
               </p>
               <p data-story="lit-step" className={`leading-relaxed mb-5 ${BODY}`}>
                 {"Rather than follow the agency model, Glen built a wholesale partnership that ties Epic's success to its brand partners'. Epic buys the inventory, invests its own capital, and takes on the advertising, logistics and day-to-day execution, so brands grow on Amazon, Walmart, TikTok Shop and other marketplaces without carrying that load."}
