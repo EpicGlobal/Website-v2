@@ -5,13 +5,15 @@ summary: "How to cut through marketplace partner noise by comparing business mod
 category: "Model and Process"
 type: "Playbook"
 difficulty: "Operator"
-updated: 2026-11-05
+updated: 2026-11-11
 published: 2026-01-23
 publishOn:
 tags: ["model", "agency", "comparison", "incentives"]
 featured: true
 order: 4
 ---
+
+Agencies are paid a retainer or a share of ad spend, so they earn the same whether your products sell profitably or not, and the brand carries the inventory, ad and fee risk. A wholesale trade partner like Epic buys the inventory upfront and pays for the ads and marketplace fees itself, so it only makes money when the product actually sells.
 
 Most brands evaluating marketplace partners run into the same problem: after the third discovery call, every pitch sounds identical. Everyone "scales Amazon." Everyone has a "proven playbook." Everyone promises control.
 

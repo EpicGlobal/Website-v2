@@ -66,7 +66,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "category": "Model and Process",
     "type": "Playbook",
     "difficulty": "Operator",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "November 11, 2026",
     "published": "2026-01-23",
     "tags": [
       "model",
