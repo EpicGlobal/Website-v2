@@ -312,5 +312,12 @@ export const countryData = [
 /** Distinct marketplace platforms across all countries. */
 export const MARKETPLACE_COUNT = new Set(countryData.flatMap((c) => c.marketplaces)).size;
 
+/** Each marketplace platform once, main ones first, for the schema (Coupang US Global is part of Coupang). */
+const PLATFORM_ORDER = ['Amazon', 'Walmart', 'eBay', 'TikTok Shop', 'Temu', 'Shopify', 'Mercado Libre', 'Coupang', 'Shopee', 'Lazada', 'Rakuten', 'Naver'];
+const rank = (name: string) => (PLATFORM_ORDER.indexOf(name) + 1 || PLATFORM_ORDER.length + 1);
+export const MARKETPLACE_PLATFORMS = [...new Set(countryData.flatMap((c) => c.marketplaces))]
+  .filter((name) => name !== 'Coupang US Global')
+  .sort((a, b) => rank(a) - rank(b));
+
 /** Countries Epic sells in (the map list). */
 export const COUNTRY_COUNT = countryData.length;

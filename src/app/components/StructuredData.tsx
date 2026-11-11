@@ -1,4 +1,5 @@
 import { siteConfig } from '@/site/site-config';
+import { MARKETPLACE_PLATFORMS } from '@/app/data/markets';
 
 interface StructuredDataProps {
   data: unknown;
@@ -30,8 +31,7 @@ const serviceDefinitions = [
     slug: 'marketplace-operations',
     name: 'Marketplace Operations',
     serviceType: 'Marketplace management',
-    description:
-      'Daily execution across Amazon, Walmart, eBay, and other approved marketplaces including listings, catalog hygiene, and operating workflows.',
+    description: `Daily execution across ${MARKETPLACE_PLATFORMS.slice(0, -1).join(', ')} and ${MARKETPLACE_PLATFORMS.at(-1)}, including listings, catalog hygiene, and operating workflows.`,
   },
   {
     slug: 'global-expansion',
@@ -189,7 +189,7 @@ export const organizationSchema = {
     },
   ],
   areaServed: siteConfig.areaServed,
-  knowsAbout: siteConfig.knowsAbout,
+  knowsAbout: [...siteConfig.knowsAbout, ...MARKETPLACE_PLATFORMS.map((name) => (name === 'Walmart' ? 'Walmart Marketplace' : name))],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     '@id': serviceCatalogId,
