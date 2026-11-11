@@ -23,7 +23,7 @@ export const siteConfig = {
     'https://www.amazon.com/sp?seller=A36Z6L3RI4IXSS',
     'https://www.wikidata.org/wiki/Q141937180',
   ],
-  foundingDate: '2015',
+  foundingDate: '2014',
   headquarters: 'Lindon, Utah, United States',
   streetAddress: '333 S 520 W Ste 250',
   locality: 'Lindon',
