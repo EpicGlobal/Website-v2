@@ -57,7 +57,7 @@ export const siteConfig = {
     'Marketplace automation',
   ],
   description:
-    'Epic Global Inc. is an Amazon-first wholesale trade partner: we buy inventory at wholesale and sell it on Amazon, plus Walmart and global marketplaces.',
+    'Epic Global Inc. is an Amazon-first wholesale trade partner: we buy inventory at wholesale, pay for the ads and marketplace fees ourselves, and sell it on Amazon, plus Walmart and global marketplaces.',
   ogImage: '/opengraph-image.png',
   twitterImage: '/twitter-image.png',
 };
