@@ -217,7 +217,7 @@ export function Home() {
       <StructuredData data={organizationSchema} />
       <StructuredData data={founderSchema} />
       <StructuredData data={websiteSchema} />
-      <StructuredData data={getWebPageSchema('Home', `${siteConfig.url}`, 'Amazon-first wholesale trade partner that buys inventory and sells it on Amazon, plus Walmart and international marketplaces')} />
+      <StructuredData data={getWebPageSchema('Home', `${siteConfig.url}`, 'Amazon-first wholesale trade partner and marketplace operator that buys inventory and sells it on Amazon, Walmart, eBay, TikTok Shop, Temu, Shopify and other international marketplaces')} />
       <StructuredData data={getFAQPageSchema(HOME_FAQ.map((f) => ({ question: f.q, answer: f.a })), `${siteConfig.url}/`)} />
       {serviceSchemas.map((schema) => (
         <StructuredData key={schema['@id']} data={schema} />
