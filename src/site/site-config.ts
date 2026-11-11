@@ -15,7 +15,7 @@ export const siteConfig = {
   logo: '/logo.png',
   founderName: 'Glen Jensen',
   founderLinkedIn: 'https://www.linkedin.com/in/glen-jensen-54a27/',
-  alternateName: ['Epic Global'],
+  alternateName: ['Epic Global', 'Epic Global Inc'],
   // Official profiles only. Add the Amazon storefront and new directory/review profiles as they're confirmed.
   organizationSameAs: [
     'https://www.linkedin.com/company/epic-global-inc',
