@@ -6,7 +6,6 @@ import { useRef } from 'react';
 import { Calendar, Globe2, Linkedin, MapPin, Star, UserRound, type LucideIcon } from 'lucide-react';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, organizationRef } from '@/app/components/StructuredData';
-import { SEO } from '@/app/components/SEO';
 import { GlobalReachMap } from '@/app/components/GlobalReachMap';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail, PopLink, StepList, WordFill } from '@/app/components/story/StoryKit';
@@ -95,12 +94,6 @@ export function About() {
 
   return (
     <div ref={rootRef} className={PAGE_BG}>
-      <SEO
-        title="About Epic Global Inc. - Wholesale Trade Partner"
-        description="Epic Global Inc. is an Amazon-first wholesale trade partner: we buy brands' inventory and sell it on Amazon, plus Walmart and international marketplaces in 42 countries."
-        canonicalUrl={`${siteConfig.url}/about`}
-        keywords="commerce operator, marketplace management, global ecommerce, operator-first approach, marketplace technology"
-      />
       <StructuredData data={organizationSchema} />
       <StructuredData data={founderSchema} />
       <StructuredData data={aboutPageSchema} />

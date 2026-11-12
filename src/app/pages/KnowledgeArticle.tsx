@@ -8,7 +8,6 @@ import { StructuredData, getBreadcrumbSchema, organizationRef, reviewedPage } fr
 import { Byline } from '@/app/components/reading/Byline';
 import { ArticleFeedback } from '@/app/components/reading/ArticleFeedback';
 import { ReadingProgressRing } from '@/app/components/scroll/ScrollEffects';
-import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
 import { ACCENT, BODY, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, RULE } from '@/app/components/story/tokens';
@@ -79,20 +78,6 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
 
   return (
     <div className={PAGE_BG}>
-      <SEO
-        title={`${article.seoTitle ?? article.title} | Epic Global Inc.`}
-        description={article.seoDescription ?? article.summary}
-        canonicalUrl={articleUrl}
-        keywords={`${article.category}, ${article.pillar}, marketplace guide, ecommerce strategy`}
-        ogType="article"
-        article={{
-          publishedTime: published,
-          modifiedTime: updated,
-          author: 'Epic Global Inc.',
-          section: article.category,
-          tags: [article.pillar, article.category].filter((tag): tag is string => Boolean(tag))
-        }}
-      />
       <StructuredData data={articleSchema} />
       <ReadingProgressRing />
       <StructuredData

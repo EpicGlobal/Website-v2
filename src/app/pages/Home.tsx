@@ -11,7 +11,6 @@ import { ScrollHighlightSteps, WordReveal } from '@/app/components/scroll/Scroll
 import { CompareTable, FitColumns, HomeFaq, HOME_FAQ } from '@/app/components/home/SkimSections';
 import { ParticlesBackground } from '@/app/components/ParticlesBackground';
 import { StructuredData, founderSchema, getFAQPageSchema, getWebPageSchema, organizationSchema, serviceSchemas, websiteSchema } from '@/app/components/StructuredData';
-import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { DeferredMount } from '@/app/components/DeferredMount';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
@@ -208,12 +207,6 @@ export function Home() {
 
   return (
     <div ref={rootRef} className={PAGE_BG}>
-      <SEO
-        title="Epic Global Inc. | Wholesale Trade Partner That Buys Your Inventory"
-        description="Epic Global buys your inventory upfront at wholesale, sells it on Amazon, Walmart and more in 42 countries, funds the ads and protects your brand."
-        canonicalUrl={`${siteConfig.url}/`}
-        keywords="global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, wholesale trade partner"
-      />
       <StructuredData data={organizationSchema} />
       <StructuredData data={founderSchema} />
       <StructuredData data={websiteSchema} />

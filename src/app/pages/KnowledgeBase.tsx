@@ -4,7 +4,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Search, Book, Lightbulb, CheckSquare, BookOpen, FileText, Sparkles } from 'lucide-react';
-import { SEO } from '@/app/components/SEO';
 import { StructuredData, websiteReference } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
 import { ACCENT, BODY, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
@@ -162,12 +161,6 @@ export function KnowledgeBase({ initialFilters, articles: knowledgeArticles }: K
 
   return (
     <div className={PAGE_BG}>
-      <SEO
-        title="Knowledge Base - Marketplace Operations & Global Expansion Resources"
-        description="Comprehensive guides on marketplace expansion, brand protection, advertising operations, inventory management, and global ecommerce strategies from Epic Global Inc."
-        canonicalUrl={`${siteConfig.url}/knowledge-base`}
-        keywords="marketplace guides, ecommerce knowledge base, amazon expansion guide, marketplace operations, brand protection strategies"
-      />
       <StructuredData
         data={{
           '@context': 'https://schema.org',

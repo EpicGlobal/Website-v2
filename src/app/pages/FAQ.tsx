@@ -8,7 +8,6 @@ import {
   AccordionTrigger,
 } from '@/app/components/ui/accordion';
 import { StructuredData, getFAQPageSchema } from '@/app/components/StructuredData';
-import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { BODY, H1, H2, HEAD, INNER, LEAD, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
 import { MEASURE } from '@/app/components/reading/reading';
@@ -23,12 +22,6 @@ export function FAQ() {
 
   return (
     <div className={PAGE_BG}>
-      <SEO
-        title="FAQ - Frequently Asked Questions | Epic Global Inc."
-        description="Get answers to common questions about Epic Global Inc.'s wholesale trade partner model, marketplace operations, timelines, pricing, and how we differ from traditional agencies."
-        canonicalUrl={`${siteConfig.url}/faq`}
-        keywords="ecommerce faq, marketplace operator questions, wholesale trade partner faq, global expansion questions"
-      />
       <StructuredData data={getFAQPageSchema(faqs, `${siteConfig.url}/faq`)} />
       {/* Hero Section */}
       <section className={`pt-32 pb-10 ${SECTION}`}>

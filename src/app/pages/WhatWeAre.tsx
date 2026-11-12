@@ -8,7 +8,6 @@ import epicMark from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
 import { StructuredData, getWebPageSchema, serviceSchemas } from '@/app/components/StructuredData';
-import { SEO } from '@/app/components/SEO';
 import { CtaButton } from '@/app/components/CtaButton';
 import { QuickAnswers } from '@/app/components/QuickAnswers';
 import { CompareTable } from '@/app/components/ourmodel/CompareTable';
@@ -98,12 +97,6 @@ export function WhatWeAre() {
 
   return (
     <div ref={rootRef} className={PAGE_BG}>
-      <SEO
-        title="Our Model - How Epic's Wholesale Model Works"
-        description="How Epic Global, an Amazon-first wholesale trade partner, buys inventory upfront, runs Amazon, Walmart and international storefronts, and pays the ads, fees and fulfillment."
-        canonicalUrl={`${siteConfig.url}/our-model`}
-        keywords="wholesale trade partner, marketplace operator business model, inventory purchase model, wholesale inventory purchase"
-      />
       <StructuredData
         data={getWebPageSchema({
           name: 'Our Model',
