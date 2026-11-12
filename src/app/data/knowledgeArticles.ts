@@ -91,10 +91,11 @@ export function getPublishedArticle(slug: string, today: string = utahToday()): 
 
 /**
  * What a browser component may receive about a published article: the card and page fields only, never the
- * publishing calendar (publishOn) or the review status. Use for every article passed to a 'use client' component.
+ * publishing calendar (publishOn), the review status or the related list (it can name scheduled articles; related
+ * cards are worked out on the server by relatedArticles). Use for every article passed to a 'use client' component.
  */
 export function toArticleCard(article: KnowledgeArticle): KnowledgeArticle {
-  const { publishOn: _publishOn, status: _status, ...card } = article;
+  const { publishOn: _publishOn, status: _status, related: _related, ...card } = article;
   return { ...card, hasContent: true };
 }
 
