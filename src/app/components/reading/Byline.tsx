@@ -1,23 +1,42 @@
-import Link from 'next/link';
 import { UserCheck } from 'lucide-react';
-import { ACCENT } from '@/app/components/story/tokens';
-import { siteConfig } from '@/site/site-config';
+import type { ArticleReview } from '@/app/data/knowledgeArticles';
 
 /**
- * Who stands behind a page (Google: "Is it obvious who wrote the content?"). The Epic team writes it and Glen,
- * Founder & CEO, reviews it before it goes live; his name links to his bio. The matching schema is
- * reviewedByFounder in StructuredData.tsx. Keep it true: only use it on pages Glen has reviewed.
+ * Who stands behind a page (Google: "Is it obvious who wrote the content?"). Shows the writer, and a reviewer only
+ * when the review is recorded (an approved article's front matter: reviewedBy, reviewerRole, reviewedOn and a link
+ * to the approval). Nobody is ever shown as a reviewer by default. The matching schema is reviewedPage() and
+ * articleAuthor() in StructuredData.tsx.
  */
-export function Byline({ writer = 'Written by the Epic team', className = '' }: { writer?: string; className?: string }) {
+export function Byline({
+  author,
+  writer,
+  review,
+  className = '',
+}: {
+  /** The writer's name from the front matter; without it the line says "Written by the Epic team". */
+  author?: string;
+  /** Override the whole first half, e.g. "Prepared by the Epic team" on case studies. */
+  writer?: string;
+  review?: ArticleReview;
+  className?: string;
+}) {
+  const reviewedText = review
+    ? new Date(`${review.on}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+    : '';
   return (
     <p className={`flex items-center gap-2 ${className}`}>
       <UserCheck className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
       <span>
-        {writer} · Reviewed by{' '}
-        <Link href="/about#founder" className={`font-semibold underline-offset-4 decoration-1 hover:underline ${ACCENT}`}>
-          {siteConfig.founderName}
-        </Link>
-        , Founder &amp; CEO
+        {writer ?? (author ? `Written by ${author}` : 'Written by the Epic team')}
+        {review ? (
+          <>
+            {' · Reviewed by '}
+            <span className="font-semibold">{review.by}</span>
+            {review.role ? `, ${review.role}` : ''}
+            {', '}
+            <time dateTime={review.on}>{reviewedText}</time>
+          </>
+        ) : null}
       </span>
     </p>
   );

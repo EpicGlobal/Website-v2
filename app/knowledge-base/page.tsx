@@ -1,5 +1,5 @@
 import { KnowledgeBase, type KnowledgeBaseFilters } from '@/app/pages/KnowledgeBase';
-import { articlesAsOf } from '@/app/data/knowledgeArticles';
+import { publishedArticles, toArticleCard } from '@/app/data/knowledgeArticles';
 import { createPageMetadata } from '@/site/site-config';
 
 export const metadata = createPageMetadata({
@@ -35,5 +35,6 @@ export default async function KnowledgeBasePage({ searchParams }: KnowledgeBaseP
     marketplace: readFilterValue(params.marketplace),
   };
 
-  return <KnowledgeBase initialFilters={initialFilters} articles={articlesAsOf()} />;
+  // Published articles only, card fields only: drafts and the publishing calendar never reach the browser.
+  return <KnowledgeBase initialFilters={initialFilters} articles={publishedArticles().map(toArticleCard)} />;
 }

@@ -95,18 +95,23 @@ export const websiteReference = {
 /** Organization reference for author/publisher on articles. */
 export const organizationRef = organizationReference;
 
-/** Glen as the reviewer of a page (matches the visible Byline). */
-export const founderRef = {
-  '@type': 'Person',
-  '@id': founderId,
-  name: siteConfig.founderName,
-  jobTitle: 'Founder & CEO',
-  url: `${siteConfig.url}/about#founder`,
-};
+/** Article author: the named writer when the front matter has one, otherwise Epic Global Inc. (matches the Byline). */
+export function articleAuthor(name?: string) {
+  return name ? { '@type': 'Person', name, worksFor: organizationReference } : organizationReference;
+}
 
-/** The WebPage around an article or case study: the Epic team wrote it, Glen reviewed it. */
-export function reviewedPage(url: string, lastReviewed?: string) {
-  return { '@type': 'WebPage', '@id': url, reviewedBy: founderRef, ...(lastReviewed ? { lastReviewed } : {}) };
+/**
+ * The WebPage around an article or case study. reviewedBy and lastReviewed appear only when a review is recorded
+ * (front matter reviewedBy, reviewerRole, reviewedOn and reviewRecord), the same rule as the visible Byline.
+ */
+export function reviewedPage(url: string, review?: { by: string; role: string; on: string }) {
+  return {
+    '@type': 'WebPage',
+    '@id': url,
+    ...(review
+      ? { reviewedBy: { '@type': 'Person', name: review.by, jobTitle: review.role, worksFor: organizationReference }, lastReviewed: review.on }
+      : {}),
+  };
 }
 
 export const founderSchema = {
@@ -311,7 +316,7 @@ export function getCaseStudySchema(
     description,
     ...(datePublished ? { datePublished } : {}),
     ...(image ? { image: [image] } : {}),
-    mainEntityOfPage: reviewedPage(url, datePublished),
+    mainEntityOfPage: reviewedPage(url),
     author: organizationReference,
     publisher: {
       '@type': 'Organization',

@@ -1,5 +1,5 @@
 import { llmsTemplate } from './llms.generated';
-import { articlesAsOf } from './knowledgeArticles';
+import { publishedArticles } from './knowledgeArticles';
 
 /**
  * /llms.txt as AI assistants see it today: content/llms.txt with every link to a Knowledge Base article that isn't
@@ -7,7 +7,7 @@ import { articlesAsOf } from './knowledgeArticles';
  * listed on its publish day, the same day it joins the sitemap, and never before.
  */
 export function llmsText(today?: string): string {
-  const live = new Set(articlesAsOf(today).filter((a) => a.hasContent).map((a) => a.slug));
+  const live = new Set(publishedArticles(today).map((a) => a.slug));
   const kept = llmsTemplate.split('\n').filter((line) => {
     const m = /\/knowledge-base\/([a-z0-9-]+)\)/.exec(line);
     return !m || live.has(m[1]);

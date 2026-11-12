@@ -1,20 +1,18 @@
 /**
  * Link-preview card for each Knowledge Base article (LinkedIn, Slack, iMessage, X).
- * Made once at build time with Next's built-in image generator, so it adds nothing to page load.
+ * Made with Next's built-in image generator when a link preview asks for it; it adds nothing to page load.
  */
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { ImageResponse } from 'next/og';
-import { knowledgeArticles } from '@/app/data/knowledgeArticles';
+import { notFound } from 'next/navigation';
+import { getPublishedArticle } from '@/app/data/knowledgeArticles';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const dynamic = 'force-static';
+// Like the article page: made on request, and a 404 until the article is published (no early title).
+export const dynamic = 'force-dynamic';
 export const alt = 'Epic Global Inc. Knowledge Base article';
-
-export function generateStaticParams() {
-  return knowledgeArticles.map((article) => ({ slug: article.slug }));
-}
 
 async function dataUrl(file: string) {
   const bytes = await readFile(path.join(process.cwd(), 'src/assets/og', file));
@@ -23,9 +21,10 @@ async function dataUrl(file: string) {
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = knowledgeArticles.find((a) => a.slug === slug);
-  const title = article?.title ?? 'Knowledge Base';
-  const category = article?.category ?? '';
+  const article = getPublishedArticle(slug);
+  if (!article) notFound();
+  const title = article.title;
+  const category = article.category;
   const [mark, wordmark] = await Promise.all([dataUrl('epic-mark.png'), dataUrl('epic-wordmark.png')]);
   const titleSize = title.length > 60 ? 54 : title.length > 36 ? 64 : 76;
 

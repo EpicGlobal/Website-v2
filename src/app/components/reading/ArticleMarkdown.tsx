@@ -18,7 +18,7 @@ import remarkGfm from 'remark-gfm';
 import remarkDirective from 'remark-directive';
 import { visit } from 'unist-util-visit';
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
-import { articlesAsOf } from '@/app/data/knowledgeArticles';
+import { getPublishedArticle } from '@/app/data/knowledgeArticles';
 
 const CLASS = {
   card: 'bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-xl p-6 border border-white/10 mb-4 [&>*:last-child]:mb-0',
@@ -60,7 +60,7 @@ type MdNode = {
 };
 
 /** Whether a Knowledge Base article is published today (written and its publish date has come). */
-const isLive = (slug: string) => articlesAsOf().some((a) => a.slug === slug && a.hasContent);
+const isLive = (slug: string) => Boolean(getPublishedArticle(slug));
 
 const textOf = (node: MdNode): string => node.value ?? (node.children ?? []).map(textOf).join('');
 

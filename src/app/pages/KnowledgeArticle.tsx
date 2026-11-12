@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, Download, Share2 } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { isoDate, type KnowledgeArticle as KnowledgeArticleType } from '@/app/data/knowledgeArticles';
-import { StructuredData, getBreadcrumbSchema, organizationRef, reviewedPage } from '@/app/components/StructuredData';
+import { StructuredData, articleAuthor, getBreadcrumbSchema, organizationRef, reviewedPage } from '@/app/components/StructuredData';
 import { Byline } from '@/app/components/reading/Byline';
 import { ArticleFeedback } from '@/app/components/reading/ArticleFeedback';
 import { ReadingProgressRing } from '@/app/components/scroll/ScrollEffects';
 import { CtaButton } from '@/app/components/CtaButton';
 import { GatedDownloadButton } from '@/app/components/GatedDownloadButton';
-import { ACCENT, BODY, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, RULE } from '@/app/components/story/tokens';
+import { ACCENT, BODY, CHAPTER, H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, RULE } from '@/app/components/story/tokens';
 import { ArticleCard } from '@/app/components/reading/ArticleCard';
 import { MEASURE, PILL } from '@/app/components/reading/reading';
 import '@/app/components/reading/reading.css';
@@ -25,38 +25,15 @@ import { siteConfig } from '@/site/site-config';
 const SECTION = 'px-4 sm:px-6 lg:px-8';
 
 type KnowledgeArticleProps = {
-  slug: string;
-  /** All articles as the public sees them today (scheduled ones count as not written). */
-  articles: KnowledgeArticleType[];
-  /** The rendered article text, or null for a Coming Soon article. */
+  /** The published article (card fields only; the server never passes drafts or the publishing calendar). */
+  article: KnowledgeArticleType;
+  /** Up to three published articles for Related Articles. */
+  related: KnowledgeArticleType[];
+  /** The article text, rendered on the server. */
   body: ReactNode;
 };
 
-export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: KnowledgeArticleProps) {
-  const article = knowledgeArticles.find((a) => a.slug === slug);
-
-  if (!article) {
-    return (
-      <div className={`${PAGE_BG} pt-32 pb-20 ${SECTION}`}>
-        <div className={INNER}>
-          <h1 className={`${H1} mb-4`}>Article Not Found</h1>
-          <p className={`text-lg mb-8 ${BODY}`}>The article you&apos;re looking for doesn&apos;t exist.</p>
-          <Link href="/knowledge-base" className={POP_BUTTON}>
-            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-            Back to Knowledge Base
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  const listed = (article.related ?? [])
-    .map((slug) => knowledgeArticles.find((a) => a.slug === slug))
-    .filter((a): a is KnowledgeArticleType => Boolean(a?.hasContent) && a!.slug !== article.slug);
-  const relatedArticles = [
-    ...listed,
-    ...knowledgeArticles.filter((a) => a.slug !== article.slug && a.category === article.category && a.hasContent && !listed.includes(a)),
-  ].slice(0, 3);
+export function KnowledgeArticle({ article, related: relatedArticles, body }: KnowledgeArticleProps) {
   const updated = isoDate(article.lastUpdated);
   const published = article.published ?? updated;
   const publishedText = new Date(`${published}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -70,9 +47,10 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
     description: article.seoDescription ?? article.summary,
     datePublished: published,
     dateModified: updated,
-    mainEntityOfPage: reviewedPage(articleUrl, updated),
+    // A reviewer appears only when the approval is recorded in the article's front matter.
+    mainEntityOfPage: reviewedPage(articleUrl, article.review),
     image: [`${articleUrl}/opengraph-image`],
-    author: organizationRef,
+    author: articleAuthor(article.author),
     publisher: organizationRef,
   };
 
@@ -147,7 +125,7 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
                 </span>
               )}
             </div>
-            {body ? <Byline /> : null}
+            <Byline author={article.author} review={article.review} />
             {siteConfig.downloadsEnabled && article.downloadable && article.downloadUrl && (
               <GatedDownloadButton
                 href={article.downloadUrl}
@@ -171,7 +149,7 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
       <section className={`pt-4 pb-16 ${SECTION}`}>
         <div className={INNER}>
           <article className={`kb-prose ${MEASURE}`}>
-            {body ?? <ComingSoonArticle />}
+            {body}
           </article>
 
           <div className={MEASURE}>
@@ -189,8 +167,7 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
               </div>
             )}
 
-            {/* Feedback (only on written articles, not Coming Soon pages) */}
-            {body ? <ArticleFeedback slug={article.slug} /> : null}
+            <ArticleFeedback slug={article.slug} />
           </div>
         </div>
       </section>
@@ -221,31 +198,6 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
           </div>
         </section>
       ) : null}
-    </div>
-  );
-}
-
-/** Shown for an article that isn't written or published yet (the page is also kept out of search). */
-function ComingSoonArticle() {
-  return (
-    <div className="space-y-8">
-      <section className="text-center py-16">
-        <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-600/5 backdrop-blur-xl rounded-xl p-12 border border-yellow-500/20">
-          <div className="mb-6">
-            <span className="px-4 py-2 bg-yellow-500/10 text-yellow-400 rounded-full text-sm font-semibold">Coming Soon</span>
-          </div>
-          <h2 className="text-3xl font-bold mb-4 text-white">This Article Is In Progress</h2>
-          <p className="text-gray-300 leading-relaxed max-w-2xl mx-auto mb-8">
-            We're currently developing this content. Check back soon for detailed insights, frameworks, and actionable guidance.
-          </p>
-          <p className="text-sm text-gray-400">
-            Looking for an answer in the meantime?{' '}
-            <a href="/faq" className="text-cyan-400 hover:text-cyan-300 underline">
-              Browse the FAQ
-            </a>
-          </p>
-        </div>
-      </section>
     </div>
   );
 }

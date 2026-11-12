@@ -5,8 +5,9 @@ import suteraLogo from '@/assets/967c8426adebcc2a86cafe0b4d49f813b966b007.png';
  * Every case study lives here, one object each. The Case Studies gallery, each study's own page
  * (/case-studies/<slug>), the sitemap and the homepage cards all read from this list.
  *
- * Adding a study: copy an entry, fill it from the brand's report, set status to 'review' while Glen and the
- * brand check it, then 'published' once both approve. Only 'published' studies appear anywhere on the site.
+ * Adding a study: copy an entry, fill it from the brand's report, set status to 'review' while the designated Epic
+ * reviewer and the brand check it, then 'published' once both approve. Only 'published' studies appear anywhere on
+ * the site. The page says "Prepared by the Epic team"; it names no reviewer (none is recorded for case studies).
  *
  * Rules (Kevin's facts, Glen Nov 9): never put internal figures here (wholesale % or purchase price as a
  * share of retail, payment terms, revenue, SKU counts). Mark estimates as estimates. Leave a field out

@@ -1,22 +1,24 @@
 /**
- * Knowledge Base RSS feed: title, summary, link and date for every written article, newest first.
- * Built once at build time; updates itself whenever an article is added or its date changes.
+ * Knowledge Base RSS feed: title, summary, link and first-publish date for every published article, newest first.
+ * Made on each request, so an approved article scheduled for later joins the feed at midnight Utah time on its day.
  */
-import { articlesAsOf, isoDate } from '@/app/data/knowledgeArticles';
+import { isoDate, publishedArticles } from '@/app/data/knowledgeArticles';
 import { siteConfig } from '@/site/site-config';
 
-export const dynamic = 'force-static';
-// Rebuilt hourly so scheduled articles join the feed on their publish day.
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 const escape = (text: string) =>
   text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 
+const rssDate = (iso: string) => new Date(`${iso}T12:00:00Z`).toUTCString();
+
 export function GET() {
-  const articles = articlesAsOf()
-    .filter((a) => a.hasContent)
-    .map((a) => ({ ...a, date: isoDate(a.lastUpdated) }))
-    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : a.title.localeCompare(b.title)));
+  // pubDate is when the article first went live (the same date as the schema's datePublished), so an edit doesn't
+  // make an old article look new in feed readers. lastBuildDate is the newest edit.
+  const articles = publishedArticles()
+    .map((a) => ({ ...a, updated: isoDate(a.lastUpdated), first: a.published ?? isoDate(a.lastUpdated) }))
+    .sort((a, b) => (a.first < b.first ? 1 : a.first > b.first ? -1 : a.title.localeCompare(b.title)));
+  const newestEdit = articles.map((a) => a.updated).sort().pop();
 
   const feedUrl = `${siteConfig.url}/knowledge-base/rss.xml`;
   const items = articles
@@ -29,7 +31,7 @@ export function GET() {
         `      <guid isPermaLink="true">${url}</guid>`,
         `      <description>${escape(a.seoDescription ?? a.summary)}</description>`,
         `      <category>${escape(a.category)}</category>`,
-        `      <pubDate>${new Date(`${a.date}T12:00:00Z`).toUTCString()}</pubDate>`,
+        `      <pubDate>${rssDate(a.first)}</pubDate>`,
         '    </item>',
       ].join('\n');
     })
@@ -43,7 +45,7 @@ export function GET() {
     <description>Playbooks, checklists, templates and definitions for running Amazon, Walmart and other marketplaces, from Epic Global Inc., a wholesale trade partner.</description>
     <language>en-us</language>
     <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />
-    <lastBuildDate>${articles[0] ? new Date(`${articles[0].date}T12:00:00Z`).toUTCString() : new Date().toUTCString()}</lastBuildDate>
+    <lastBuildDate>${newestEdit ? rssDate(newestEdit) : new Date().toUTCString()}</lastBuildDate>
 ${items}
   </channel>
 </rss>
