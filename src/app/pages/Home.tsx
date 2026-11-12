@@ -87,9 +87,9 @@ const CHAPTERS = [
   { id: 'wholesale-trade-partner', label: 'Wholesale trade partner' },
   { id: 'brands', label: 'At a glance' },
   { id: 'model', label: 'How it works' },
+  { id: 'fit', label: "Who we're a fit for" },
   { id: 'case-studies', label: 'Results' },
   { id: 'compare', label: 'Epic vs agency vs aggregator' },
-  { id: 'fit', label: "Who we're a fit for" },
   { id: 'faq', label: 'Questions' },
   { id: 'next-step', label: 'Next step' },
 ] as const;
@@ -325,6 +325,15 @@ export function Home() {
         </div>
       </section>
 
+      {/* Who we're a fit for: right after how it works, so brands check fit before the results. */}
+      <section id="fit" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker id="fit" />
+          <h2 className={`${H2} mb-8`}>Who we&apos;re a fit for</h2>
+          <FitColumns />
+        </div>
+      </section>
+
       {/* 05 How we execute: two featured case studies settle in, then the way to all of them. */}
       <section id="case-studies" data-chapter className="scroll-mt-20 pt-20 pb-16 px-4 sm:px-6 lg:px-8">
         <div className={INNER}>
@@ -359,15 +368,6 @@ export function Home() {
           <ChapterMarker id="compare" />
           <h2 className={`${H2} mb-8`}>A wholesale trade partner, not an agency or aggregator</h2>
           <CompareTable />
-        </div>
-      </section>
-
-      {/* Who we're a fit for, then the five questions asked first. */}
-      <section id="fit" data-chapter className={CHAPTER}>
-        <div className={INNER}>
-          <ChapterMarker id="fit" />
-          <h2 className={`${H2} mb-8`}>Who we&apos;re a fit for</h2>
-          <FitColumns />
         </div>
       </section>
 
