@@ -14,7 +14,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+// js-yaml comes with gray-matter (pinned in package-lock). Its JSON schema reads dates as plain text, so an
+// impossible date like 2026-02-30 reaches the date check instead of silently becoming March 2.
+import yaml from 'js-yaml';
 import { scanContent } from './content-rules.mjs';
+
+const readFrontMatter = (text) => matter(text, { engines: { yaml: (source) => yaml.load(source, { schema: yaml.JSON_SCHEMA }) } });
 
 const ROOT = process.cwd();
 const DIR = path.join(ROOT, 'content', 'knowledge-base');
@@ -48,7 +53,7 @@ const fail = (file, msg) => errors.push(`${file}: ${msg}`);
 const utahToday = () =>
   new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Denver', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
 
-/** YAML turns 2026-11-05 into a Date; keep dates as YYYY-MM-DD text and reject days that don't exist (2026-02-30). */
+/** Dates stay YYYY-MM-DD text (see readFrontMatter); reject days that don't exist (2026-02-30). */
 function day(value, file, field, required) {
   if (value === undefined || value === null || value === '') {
     if (required) fail(file, `"${field}" is required (YYYY-MM-DD)`);
@@ -98,7 +103,7 @@ const today = utahToday();
 for (const file of files) {
   const slug = file.replace(/\.md$/, '');
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) fail(file, 'file name must be lowercase words joined by hyphens, like my-new-article.md');
-  const { data, content } = matter(fs.readFileSync(path.join(DIR, file), 'utf8'));
+  const { data, content } = readFrontMatter(fs.readFileSync(path.join(DIR, file), 'utf8'));
   for (const field of ['title', 'summary', 'category', 'type', 'difficulty', 'tags', 'order', 'status']) {
     if (data[field] === undefined || data[field] === null || data[field] === '') fail(file, `"${field}" is required`);
   }

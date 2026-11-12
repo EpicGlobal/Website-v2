@@ -23,6 +23,7 @@
     "test:lead-capture:staging": "node scripts/lead-capture-staging-test.mjs",
     "check:articles": "node scripts/build-articles.mjs --check",
     "test:content": "node scripts/site-content-test.mjs",
+    "test:articles": "node scripts/article-checks-test.mjs",
     "test:deploy-guard": "node scripts/deploy-env-guard-test.mjs",
     "check:reviews": "node scripts/verify-review-records.mjs"
   },

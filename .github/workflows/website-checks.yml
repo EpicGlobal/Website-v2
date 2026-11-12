@@ -27,6 +27,8 @@ jobs:
       - run: npm ci
       - name: Articles (fields, dates, links, review records, content rules)
         run: npm run check:articles
+      - name: Article checker catches each kind of mistake
+        run: npm run test:articles
       - name: Approvals link to real reviews
         run: npm run check:reviews
         env:
