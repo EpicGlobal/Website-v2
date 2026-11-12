@@ -44,7 +44,8 @@ const [
   readdir(path.resolve('content/knowledge-base')).then((files) =>
     Promise.all(files.filter((f) => f.endsWith('.md')).map((f) => read(`content/knowledge-base/${f}`))).then((all) => all.join(String.fromCharCode(10))),
   ),
-  read('public/knowledge-index.html'),
+  // The old static index was removed (it listed scheduled articles); it now redirects to /knowledge-base.
+  exists('public/knowledge-index.html').then((present) => (present ? read('public/knowledge-index.html') : '')),
   read('content/llms.txt'),
   exists('app/contact/page.tsx'),
 ]);

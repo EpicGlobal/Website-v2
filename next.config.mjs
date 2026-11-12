@@ -61,6 +61,12 @@ const nextConfig = {
         destination: '/knowledge-base/why-epic-isnt-an-agency',
         permanent: true,
       },
+      // Old hand-made article index (it listed scheduled articles before their publish day).
+      {
+        source: '/knowledge-index.html',
+        destination: '/knowledge-base',
+        permanent: true,
+      },
       // About page address from the previous site.
       {
         source: '/about-1',
