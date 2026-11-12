@@ -25,7 +25,8 @@
     "test:content": "node scripts/site-content-test.mjs",
     "test:articles": "node scripts/article-checks-test.mjs",
     "test:deploy-guard": "node scripts/deploy-env-guard-test.mjs",
-    "check:reviews": "node scripts/verify-review-records.mjs"
+    "check:reviews": "node scripts/verify-review-records.mjs",
+    "test:reviews": "node scripts/review-records-test.mjs"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

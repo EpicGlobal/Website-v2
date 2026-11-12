@@ -54,7 +54,8 @@ reviewedBy: "Reviewer Name"         # approved only: exactly as they agreed to b
 reviewerRole: "Brand Manager"       # approved only: their role at Epic
 reviewedOn: 2026-11-14              # approved only: the day they approved the final text
 reviewRecord: "https://github.com/EpicGlobal/Website-v2/pull/123#pullrequestreview-456"  # approved only: link to the approval
-reviewerGitHub: "their-github-name" # optional: CI checks the GitHub review was left by this account
+reviewerGitHub: "their-github-name" # GitHub approvals: the account that clicked Approve
+recordConfirmation: "https://github.com/EpicGlobal/Website-v2/pull/123#pullrequestreview-789"  # Doc/email approvals only (see Review)
 ---
 ```
 
@@ -67,11 +68,25 @@ A field that says `approved` is not proof by itself, so every approval links to 
 
 1. **Reviewer uses GitHub (preferred).** Open a pull request with the article. The reviewer reads it in the
    "Files changed" tab and clicks **Review changes → Approve**. Copy the link to that review (it ends in
-   `#pullrequestreview-<number>`) into `reviewRecord`. CI checks it is a real approval by someone other than the
-   pull request's author.
-2. **Reviewer uses Google Docs.** Share the draft as a Google Doc. The reviewer leaves a comment like
-   "Approved for publication" on the final text. Copy the link to that comment into `reviewRecord`.
-3. **Reviewer replies by email.** Save the reply as a PDF in the shared Drive folder and link it.
+   `#pullrequestreview-<number>`) into `reviewRecord`, and their GitHub account name into `reviewerGitHub`.
+2. **Reviewer uses Google Docs.** Share the final text as a Google Doc. The reviewer leaves a comment like
+   "Approved for publication" on it. Copy the link to that comment into `reviewRecord`.
+3. **Reviewer replies by email.** Save the reply as a PDF in the shared Drive folder and link it in `reviewRecord`.
+
+For 2 and 3, a link alone can't be checked by a machine, so one more step happens on GitHub: someone other than
+the pull request's author opens the link, checks it approves the text in the pull request, and clicks
+**Review changes → Approve** with the link pasted in the review text. Copy the link to that review into
+`recordConfirmation`.
+
+CI (`npm run check:reviews -- --strict`) then checks with GitHub that the review is on this repository, is an
+approval by a person (not a bot) other than the pull request's author, is on a pull request that changes this
+article, and, for 1, was left by `reviewerGitHub`; for 2 and 3, that its text contains the `reviewRecord` link.
+It also compares the article at the reviewed commit with the final article: if anything other than `status`, the
+review fields, `publishOn`, `order` or `featured` changed after the review, the check fails and the final text
+needs a new approval. Record the approval in a commit after the review; that's expected and allowed.
+
+What stays a human check: that the Google Doc comment or email really comes from the named reviewer (the
+confirmer vouches for it on GitHub), and that the reviewer actually read the text.
 
 Then set `status: approved`, `reviewedBy`, `reviewerRole` and `reviewedOn` (the approval date, on or after the
 last edit). The build refuses an approval without all of these, a review dated in the future, a review older

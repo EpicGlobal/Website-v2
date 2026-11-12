@@ -18,6 +18,7 @@ import matter from 'gray-matter';
 // impossible date like 2026-02-30 reaches the date check instead of silently becoming March 2.
 import yaml from 'js-yaml';
 import { scanContent } from './content-rules.mjs';
+import { recordFieldProblems } from './review-rules.mjs';
 
 const readFrontMatter = (text) => matter(text, { engines: { yaml: (source) => yaml.load(source, { schema: yaml.JSON_SCHEMA }) } });
 
@@ -137,11 +138,12 @@ for (const file of files) {
       if (!value) fail(file, `"status: approved" needs "${field}" (who wrote it, who approved it, their role, the date and a link to the approval)`);
     }
     if (reviewRecord && !/^https:\/\/\S+$/.test(reviewRecord)) fail(file, '"reviewRecord" must be a https:// link to the approval (GitHub PR review, Google Doc, or saved email)');
+    else for (const problem of recordFieldProblems({ reviewRecord, reviewerGitHub: text(data.reviewerGitHub), recordConfirmation: text(data.recordConfirmation) })) fail(file, problem);
     if (reviewedOn && reviewedOn > today) fail(file, `"reviewedOn" (${reviewedOn}) is in the future; record a review only after it happens`);
     if (reviewedOn && publishOn && reviewedOn > publishOn) fail(file, `"reviewedOn" (${reviewedOn}) is after "publishOn" (${publishOn}); it must be approved before it goes live`);
     if (reviewedOn && updated && reviewedOn < updated) fail(file, `"reviewedOn" (${reviewedOn}) is before the last edit "updated" (${updated}); the reviewer must approve the final text`);
   } else {
-    for (const [field, value] of Object.entries(reviewFields)) {
+    for (const [field, value] of Object.entries({ ...reviewFields, reviewerGitHub: text(data.reviewerGitHub), recordConfirmation: text(data.recordConfirmation) })) {
       if (value) fail(file, `"${field}" is set but "status" is "${status}"; review details belong only on an approved article`);
     }
   }

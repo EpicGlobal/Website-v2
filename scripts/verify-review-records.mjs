@@ -1,66 +1,120 @@
 /**
- * Checks that every approved article's approval is real, where a machine can check it.
+ * Checks that every approved article's approval is real and covers the final text, using the GitHub API.
+ * A front-matter field saying "approved" is not proof; the rules are in scripts/review-rules.mjs.
  *
- * A front-matter field saying "approved" is not proof. Each approved article links its approval in reviewRecord:
- *   - a GitHub pull-request review (https://github.com/<owner>/<repo>/pull/<n>#pullrequestreview-<id>): with a
- *     GITHUB_TOKEN (CI has one), this script confirms the review exists, its state is APPROVED, it was not left by
- *     the pull request's own author, and, if the article sets reviewerGitHub, that the reviewer is that account;
- *   - anything else (a Google Doc comment, a saved email): listed as "recorded, check by hand".
+ * For the GitHub review that backs each approval (reviewRecord for a GitHub approval, recordConfirmation for a
+ * Google Doc or email approval) this confirms that:
+ *   - it is on this repository, its state is APPROVED, it was left by a person (not a bot) other than the pull
+ *     request's author;
+ *   - the pull request changes this article, and the article at the reviewed commit matches the final article
+ *     (only workflow fields such as status, the review fields and publishOn may change afterwards);
+ *   - GitHub approval: the reviewer is the "reviewerGitHub" account;
+ *   - Google Doc or email approval: the review text contains the reviewRecord link (the confirmer opened it).
  *
- *   node scripts/verify-review-records.mjs            check (GitHub reviews skipped without GITHUB_TOKEN)
- *   node scripts/verify-review-records.mjs --strict   also fail when a GitHub review can't be checked
+ *   node scripts/verify-review-records.mjs            check (skips with a note when there's no GITHUB_TOKEN)
+ *   node scripts/verify-review-records.mjs --strict   fail when an approval can't be checked (CI uses this)
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import matter from 'gray-matter';
+import { pathToFileURL } from 'node:url';
+import { approvedContent, parseReviewUrl, readFrontMatter, recordFieldProblems } from './review-rules.mjs';
 
-const DIR = path.join(process.cwd(), 'content', 'knowledge-base');
-const token = process.env.GITHUB_TOKEN;
-const strict = process.argv.includes('--strict');
-const problems = [];
-const notes = [];
+const ARTICLE_DIR = 'content/knowledge-base';
 
-const approved = fs
-  .readdirSync(DIR)
-  .filter((f) => f.endsWith('.md') && f !== 'README.md')
-  .map((f) => ({ file: f, data: matter(fs.readFileSync(path.join(DIR, f), 'utf8')).data }))
-  .filter(({ data }) => data.status === 'approved');
-
-async function github(url) {
-  const res = await fetch(url, { headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'User-Agent': 'website-review-check' } });
-  if (!res.ok) throw new Error(`GitHub API ${res.status} for ${url}`);
-  return res.json();
+/** GitHub REST client. Tests pass their own `api` with the same shape. */
+export function githubApi(token) {
+  const get = async (url) => {
+    const res = await fetch(`https://api.github.com${url}`, { headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'User-Agent': 'website-review-check' } });
+    if (!res.ok) throw new Error(`GitHub API ${res.status} for ${url}`);
+    return res.json();
+  };
+  return {
+    pull: (o, r, n) => get(`/repos/${o}/${r}/pulls/${n}`),
+    review: (o, r, n, id) => get(`/repos/${o}/${r}/pulls/${n}/reviews/${id}`),
+    async files(o, r, n) {
+      const names = [];
+      for (let page = 1; page <= 30; page += 1) {
+        const batch = await get(`/repos/${o}/${r}/pulls/${n}/files?per_page=100&page=${page}`);
+        names.push(...batch.map((f) => f.filename));
+        if (batch.length < 100) break;
+      }
+      return names;
+    },
+    async fileAt(o, r, filePath, ref) {
+      const file = await get(`/repos/${o}/${r}/contents/${filePath.split('/').map(encodeURIComponent).join('/')}?ref=${ref}`);
+      return Buffer.from(file.content, 'base64').toString('utf8');
+    },
+  };
 }
 
-for (const { file, data } of approved) {
-  const record = String(data.reviewRecord ?? '');
-  const m = /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/pull\/(\d+)#pullrequestreview-(\d+)$/.exec(record);
-  if (!m) {
-    notes.push(`${file}: approval recorded outside GitHub (${record}); check by hand`);
-    continue;
-  }
-  if (!token) {
-    (strict ? problems : notes).push(`${file}: GitHub review not checked (no GITHUB_TOKEN)`);
-    continue;
-  }
-  const [, owner, repo, pull, id] = m;
+/** Problems with one approved article's approval ([] when it checks out). */
+export async function verifyApproval({ file, text }, api) {
+  const { data } = readFrontMatter(text);
+  const say = (msg) => `${file}: ${msg}`;
+  const reviewRecord = String(data.reviewRecord ?? '').trim();
+  const offline = recordFieldProblems({ reviewRecord, reviewerGitHub: data.reviewerGitHub, recordConfirmation: data.recordConfirmation });
+  if (!reviewRecord) return [say('approved without a reviewRecord')];
+  if (offline.length) return offline.map(say);
+
+  const viaGitHub = Boolean(parseReviewUrl(reviewRecord));
+  const link = viaGitHub ? reviewRecord : String(data.recordConfirmation).trim();
+  const { owner, repo, pull, id } = parseReviewUrl(link);
+  const label = viaGitHub ? `review ${id} on PR #${pull}` : `confirmation ${id} on PR #${pull}`;
+  const problems = [];
   try {
-    const pr = await github(`https://api.github.com/repos/${owner}/${repo}/pulls/${pull}`);
-    const review = await github(`https://api.github.com/repos/${owner}/${repo}/pulls/${pull}/reviews/${id}`);
-    if (review.state !== 'APPROVED') problems.push(`${file}: review ${id} on PR #${pull} is ${review.state}, not APPROVED`);
-    if (review.user?.login === pr.user?.login) problems.push(`${file}: review ${id} was left by the pull request's own author`);
-    if (data.reviewerGitHub && review.user?.login?.toLowerCase() !== String(data.reviewerGitHub).toLowerCase()) {
-      problems.push(`${file}: review ${id} is by ${review.user?.login}, but reviewerGitHub is ${data.reviewerGitHub}`);
+    const [pr, review] = await Promise.all([api.pull(owner, repo, pull), api.review(owner, repo, pull, id)]);
+    const login = review.user?.login ?? '';
+    if (review.state !== 'APPROVED') problems.push(`${label} is ${review.state}, not APPROVED`);
+    if (review.user?.type === 'Bot' || /\[bot\]$/i.test(login)) problems.push(`${label} was left by a bot (${login})`);
+    if (login.toLowerCase() === String(pr.user?.login ?? '').toLowerCase()) problems.push(`${label} was left by the pull request's own author (${login})`);
+    if (viaGitHub && login.toLowerCase() !== String(data.reviewerGitHub).trim().toLowerCase()) problems.push(`${label} is by ${login}, but reviewerGitHub is ${data.reviewerGitHub}`);
+    if (!viaGitHub && !String(review.body ?? '').includes(reviewRecord)) problems.push(`${label} doesn't contain the reviewRecord link; the confirmer must paste it into the review`);
+
+    const articlePath = `${ARTICLE_DIR}/${file}`;
+    if (!(await api.files(owner, repo, pull)).includes(articlePath)) problems.push(`PR #${pull} doesn't change ${articlePath}, so its review didn't cover this article`);
+    else {
+      let reviewed = null;
+      try {
+        reviewed = await api.fileAt(owner, repo, articlePath, review.commit_id);
+      } catch {
+        problems.push(`${articlePath} can't be read at the reviewed commit ${String(review.commit_id).slice(0, 7)}`);
+      }
+      if (reviewed !== null && approvedContent(reviewed) !== approvedContent(text)) {
+        problems.push(`the article changed after ${label} (commit ${String(review.commit_id).slice(0, 7)}); the final text needs a new approval`);
+      }
     }
-    if (!problems.some((p) => p.startsWith(file))) notes.push(`${file}: approved on PR #${pull} by ${review.user?.login}`);
   } catch (error) {
-    problems.push(`${file}: couldn't check the GitHub review (${error.message})`);
+    problems.push(`couldn't check ${label} (${error.message})`);
   }
+  return problems.map(say);
 }
 
-for (const note of notes) console.log(`  ${note}`);
-if (problems.length) {
-  console.error(`\nReview records: ${problems.length} problem(s):\n  - ${problems.join('\n  - ')}\n`);
-  process.exit(1);
+async function main() {
+  const dir = path.join(process.cwd(), ARTICLE_DIR);
+  const strict = process.argv.includes('--strict');
+  const approved = fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith('.md') && f !== 'README.md')
+    .map((file) => ({ file, text: fs.readFileSync(path.join(dir, file), 'utf8') }))
+    .filter(({ text }) => readFrontMatter(text).data.status === 'approved');
+
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) {
+    const message = `Review records: ${approved.length} approved article(s) not checked (no GITHUB_TOKEN).`;
+    if (strict && approved.length) {
+      console.error(message);
+      process.exit(1);
+    }
+    console.log(message);
+    return;
+  }
+  const api = githubApi(token);
+  const problems = (await Promise.all(approved.map((a) => verifyApproval(a, api)))).flat();
+  if (problems.length) {
+    console.error(`\nReview records: ${problems.length} problem(s):\n  - ${problems.join('\n  - ')}\n`);
+    process.exit(1);
+  }
+  console.log(`Review records: ${approved.length} approved article(s) checked against GitHub; each approval covers the final text.`);
 }
-console.log(`Review records: ${approved.length} approved article(s) checked.`);
+
+if (import.meta.url === pathToFileURL(process.argv[1]).href) await main();

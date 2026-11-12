@@ -29,8 +29,10 @@ jobs:
         run: npm run check:articles
       - name: Article checker catches each kind of mistake
         run: npm run test:articles
-      - name: Approvals link to real reviews
-        run: npm run check:reviews
+      - name: Approval checker catches made-up, outdated and unconfirmed approvals
+        run: npm run test:reviews
+      - name: Approvals are real GitHub approvals of the final text
+        run: npm run check:reviews -- --strict
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: TypeScript
