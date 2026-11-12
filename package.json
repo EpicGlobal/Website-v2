@@ -22,7 +22,9 @@
     "test:lead-capture:edge": "deno test supabase/functions/lead-capture/gateway_test.ts",
     "test:lead-capture:staging": "node scripts/lead-capture-staging-test.mjs",
     "check:articles": "node scripts/build-articles.mjs --check",
-    "test:content": "node scripts/site-content-test.mjs"
+    "test:content": "node scripts/site-content-test.mjs",
+    "test:deploy-guard": "node scripts/deploy-env-guard-test.mjs",
+    "check:reviews": "node scripts/verify-review-records.mjs"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
