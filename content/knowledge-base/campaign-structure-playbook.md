@@ -14,6 +14,7 @@ tags: ["advertising", "campaigns", "structure", "ppc"]
 related: ["search-term-harvesting-playbook", "creative-testing-loop", "ad-account-rebuild-checklist", "kpi-glossary", "how-our-model-works"]
 featured: false
 order: 11
+status: review
 ---
 
 A good baseline Amazon ads structure separates campaigns by objective (discovery, performance, brand defense and competitor conquest), by match type, and by product priority, so each campaign has one job and its own budget. That separation lets you read the data cleanly, move budget to what works, and stop spend on what doesn't without affecting everything else.

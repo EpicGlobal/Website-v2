@@ -13,6 +13,7 @@ tags: ["catalog integrity", "compliance", "audit", "controls"]
 related: ["unauthorized-seller-monitoring-workflow", "catalog-hygiene-what-it-is-why-it-matters", "brand-protection-escalation-template", "variation-strategy-basics"]
 featured: false
 order: 17
+status: review
 ---
 
 Catalog integrity controls are the records and routines that keep your product listings correct: an approved source of truth, a log of every change, regular checks of the live pages, and saved evidence you can show a marketplace when something is wrong.

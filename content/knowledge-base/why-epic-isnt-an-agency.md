@@ -11,6 +11,7 @@ publishOn:
 tags: ["model", "agency", "comparison", "incentives"]
 featured: true
 order: 4
+status: live-unreviewed
 ---
 
 Agencies are paid a retainer or a share of ad spend, so they earn the same whether your products sell profitably or not, and the brand carries the inventory, ad and fee risk. A wholesale trade partner like Epic buys the inventory upfront and pays for the ads and marketplace fees itself, so it only makes money when the product actually sells.

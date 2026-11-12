@@ -14,6 +14,7 @@ tags: ["brand protection", "unauthorized sellers", "enforcement"]
 related: ["catalog-integrity-controls", "brand-protection-escalation-template", "how-our-model-works", "catalog-hygiene-what-it-is-why-it-matters"]
 featured: false
 order: 16
+status: review
 ---
 
 To deal with unauthorized sellers, monitor your listings for new offers, identify who each seller is, collect evidence of a real violation, and then use the right tool for that violation: a marketplace infringement report, a test buy, or a direct notice to the seller.

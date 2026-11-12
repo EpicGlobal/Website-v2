@@ -15,6 +15,7 @@ related: ["catalog-hygiene-what-it-is-why-it-matters", "catalog-qa-checklist", "
 featured: false
 downloadable: true
 order: 9
+status: review
 ---
 
 A listing QA check confirms, before launch, that a new product's title, images, attributes, variations and compliance details are correct and meet marketplace rules. It takes under an hour per listing and prevents the most common launch problems: suppressed listings, wrong search placement, and ad spend sent to a page that does not convert.

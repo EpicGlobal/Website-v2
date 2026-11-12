@@ -13,6 +13,7 @@ related: ["campaign-structure-playbook", "search-term-harvesting-playbook", "cre
 featured: false
 downloadable: true
 order: 23
+status: review
 ---
 
 The Ad Account Rebuild Checklist is a step-by-step plan for replacing a disorganized marketplace advertising account with a clean [campaign structure](/knowledge-base/campaign-structure-playbook), without losing the sales and keyword data the old account built up.

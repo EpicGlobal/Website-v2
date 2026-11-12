@@ -13,6 +13,7 @@ related: ["catalog-hygiene-what-it-is-why-it-matters", "listing-qa-checklist", "
 featured: false
 downloadable: true
 order: 21
+status: review
 ---
 
 The Catalog QA Checklist is an audit of a brand's whole marketplace catalog at once, looking for problems that only show up across many listings: suppressed or duplicate listings, broken [variation families](/knowledge-base/variation-strategy-basics), inconsistent attributes, missing content and price conflicts.

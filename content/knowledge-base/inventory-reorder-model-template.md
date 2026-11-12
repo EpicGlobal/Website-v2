@@ -13,6 +13,7 @@ related: ["reorder-point-logic-explained", "weekly-operating-cadence-doc", "kpi-
 featured: false
 downloadable: true
 order: 24
+status: review
 ---
 
 This template is a one-row-per-SKU spreadsheet that tells you, each week, which SKUs to reorder and how many units to order. It calculates safety stock, the [reorder point](/knowledge-base/reorder-point-logic-explained) and the order quantity from four inputs: daily demand, demand variability, full lead time and current inventory.

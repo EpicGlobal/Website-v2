@@ -13,6 +13,7 @@ publishOn:
 tags: ["catalog", "hygiene", "data quality", "listings"]
 featured: true
 order: 8
+status: live-unreviewed
 ---
 
 ## What is catalog hygiene

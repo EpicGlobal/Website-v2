@@ -14,6 +14,7 @@ tags: ["creative", "testing", "images", "conversion"]
 related: ["campaign-structure-playbook", "listing-qa-checklist", "search-term-harvesting-playbook", "weekly-executive-dashboard"]
 featured: false
 order: 13
+status: review
 ---
 
 A creative testing loop is a repeatable cycle: pick one element of a listing (such as the main image), form a hypothesis, run a controlled A/B test, keep the winner, and start the next test. On Amazon, brand-registered sellers can run these tests with Manage Your Experiments, which splits real shopper traffic between two versions and reports which one sold better. Judge each test by conversion rate as defined in the [Marketplace KPI Glossary](/knowledge-base/kpi-glossary), and check every new version with the [Listing QA Checklist](/knowledge-base/listing-qa-checklist).

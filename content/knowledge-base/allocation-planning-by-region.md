@@ -10,5 +10,6 @@ publishOn:
 tags: ["allocation", "regional", "inventory", "planning"]
 featured: false
 order: 15
+status: draft
 ---
 

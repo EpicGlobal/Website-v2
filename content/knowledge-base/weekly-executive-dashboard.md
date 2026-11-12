@@ -13,6 +13,7 @@ tags: ["dashboard", "reporting", "metrics", "executive"]
 related: ["kpi-glossary", "weekly-operating-cadence-doc", "reorder-point-logic-explained", "epic-operational-process"]
 featured: false
 order: 19
+status: review
 ---
 
 A weekly executive dashboard should fit on one page and answer five questions: are we growing, are we making money, is advertising pulling its weight, will we stay in stock, and is the brand protected. That means about 12 to 15 metrics, each shown against last week, the same week last year and target, plus a short list of decisions needed.

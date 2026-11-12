@@ -12,6 +12,7 @@ tags: ["inventory", "reorder", "forecasting", "planning"]
 related: ["inventory-reorder-model-template", "kpi-glossary"]
 featured: false
 order: 14
+status: review
 ---
 
 A reorder point is the inventory level at which you place the next purchase order, so new stock arrives before the old stock runs out. It equals average daily demand multiplied by the full lead time in days, plus a safety stock buffer for demand and supply surprises.

@@ -11,6 +11,7 @@ publishOn:
 tags: ["model", "purchase", "expand", "cover", "overview"]
 featured: true
 order: 2
+status: live-unreviewed
 ---
 
 ## How Epic's Wholesale Trade Partner Model Works

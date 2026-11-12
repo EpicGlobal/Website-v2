@@ -14,6 +14,7 @@ tags: ["search terms", "keywords", "harvesting", "optimization"]
 related: ["campaign-structure-playbook", "creative-testing-loop", "ad-account-rebuild-checklist", "kpi-glossary"]
 featured: false
 order: 12
+status: review
 ---
 
 Search term harvesting means reviewing the Amazon search term report on a fixed schedule, moving terms that convert profitably into their own exact-match targets, and adding terms that spend without converting as negatives. Done weekly, it moves budget toward proven demand and away from waste, which is how most accounts improve efficiency without simply cutting spend. It works best on a clean [campaign structure](/knowledge-base/campaign-structure-playbook), and the metrics it uses (ACoS, ROAS, conversion rate) are defined in the [Marketplace KPI Glossary](/knowledge-base/kpi-glossary).

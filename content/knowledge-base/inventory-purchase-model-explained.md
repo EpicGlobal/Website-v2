@@ -10,5 +10,6 @@ publishOn:
 tags: ["inventory", "purchase", "wholesale", "model"]
 featured: false
 order: 5
+status: draft
 ---
 

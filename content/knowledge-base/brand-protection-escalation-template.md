@@ -13,6 +13,7 @@ related: ["unauthorized-seller-monitoring-workflow", "catalog-integrity-controls
 featured: false
 downloadable: true
 order: 25
+status: review
 ---
 
 The Brand Protection Escalation Template is a standard way to record evidence of a marketplace violation and move it up a fixed ladder: monitor, test buy, marketplace report, seller contact, and legal action.

@@ -10,6 +10,7 @@ publishOn:
 tags: ["fit", "brands", "requirements"]
 featured: true
 order: 3
+status: live-unreviewed
 ---
 
 **Short answer:** Epic is usually a fit for established brands doing $1M+ a year in sales that want one partner to buy their inventory and run their marketplaces. Newer or smaller brands can still work with us: we can build a brand up, but it takes more investment and testing, so we look at fit case by case.

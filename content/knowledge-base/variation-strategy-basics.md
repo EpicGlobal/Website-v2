@@ -14,6 +14,7 @@ tags: ["variations", "parent-child", "catalog structure"]
 related: ["catalog-hygiene-what-it-is-why-it-matters", "listing-qa-checklist", "catalog-integrity-controls", "catalog-qa-checklist"]
 featured: false
 order: 10
+status: review
 ---
 
 Variations group versions of the same product, such as sizes, colors or pack counts, under one non-buyable parent listing so shoppers can switch between them on one page. Variations are one part of [catalog hygiene](/knowledge-base/catalog-hygiene-what-it-is-why-it-matters); check each new family with the [Listing QA Checklist](/knowledge-base/listing-qa-checklist) before it goes live.

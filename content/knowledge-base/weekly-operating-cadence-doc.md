@@ -13,6 +13,7 @@ related: ["weekly-executive-dashboard", "epic-operational-process", "search-term
 featured: false
 downloadable: true
 order: 22
+status: review
 ---
 
 A weekly operating cadence is a fixed schedule that tells a marketplace team what to review, decide and fix on each day of the week. It turns the work of running Amazon, Walmart and other marketplaces (listings, ads, inventory, pricing and brand protection) into a repeatable loop, so problems are caught within days instead of at month end.

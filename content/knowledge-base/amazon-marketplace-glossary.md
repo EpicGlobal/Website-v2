@@ -5,12 +5,13 @@ seoDescription: "Plain-English definitions of Amazon, Walmart, TikTok Shop and w
 category: "Glossary"
 type: "Glossary"
 difficulty: "Intro"
-updated: 2026-11-03
+updated: 2026-11-10
 published: 2026-11-10
 publishOn:
 tags: ["glossary", "amazon", "marketplace terms", "definitions"]
 related: ["kpi-glossary", "how-our-model-works", "what-is-epic-global-inc", "unauthorized-seller-monitoring-workflow"]
 order: 29
+status: live-unreviewed
 ---
 
 This glossary defines the Amazon, Walmart, TikTok Shop and wholesale terms brand owners run into when they sell through online marketplaces, in one or two plain sentences each. Where it matters, we also say how Epic Global Inc., a wholesale trade partner that buys a brand's inventory and sells it on Amazon first, plus Walmart and other marketplaces, handles that term in practice.
