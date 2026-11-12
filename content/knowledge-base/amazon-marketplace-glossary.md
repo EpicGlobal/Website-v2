@@ -62,7 +62,7 @@ A Brand Store is a free, multi-page storefront on Amazon with its own URL, avail
 
 ::term[Buy Box (Featured Offer)]
 
-The Buy Box is the "Add to Cart" and "Buy Now" area on an Amazon product page, and the seller who wins it gets most of that page's sales. Amazon awards it based on factors like price, fulfillment, delivery speed and seller performance. The share of time you hold it is Buy Box %; see Epic's KPI Glossary. Enforcing MAP and removing unauthorized sellers keeps the Buy Box from being won by off-price or gray-market offers.
+The Buy Box is the "Add to Cart" and "Buy Now" area on an Amazon product page, and the seller who wins it gets most of that page's sales. Amazon awards it based on factors like price, fulfillment, delivery speed and seller performance. The share of time you hold it is Buy Box %; see Epic's KPI Glossary. Holding prices at or above MAP and acting on unauthorized sellers (through Brand Registry, where a violation can be shown) helps keep the Buy Box from going to off-price or gray-market offers.
 
 ::term[Consignment]
 
@@ -210,7 +210,7 @@ Transparency is Amazon's product serialization program: brands put a unique code
 
 ::term[Unauthorized Seller]
 
-An unauthorized seller is anyone selling a brand's products without the brand's approval, often below MAP and sometimes with old, damaged or diverted stock. They can take the Buy Box, erode price and hurt reviews. Removing unauthorized sellers is part of Epic's brand protection work.
+An unauthorized seller is anyone selling a brand's products without the brand's approval, often below MAP and sometimes with old, damaged or diverted stock. They can take the Buy Box, erode price and hurt reviews. Monitoring unauthorized sellers and reporting the violations Amazon acts on is part of Epic's brand protection work; Amazon generally won't remove a seller of genuine, new goods just for being unauthorized.
 
 ::term[VAT (Value-Added Tax)]
 

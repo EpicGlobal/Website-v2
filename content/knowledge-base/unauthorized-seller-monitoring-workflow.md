@@ -98,7 +98,7 @@ Put each case into one category from the table above. The category decides the a
 ## How Epic handles this
 
 - Epic Global Inc. is a wholesale trade partner: we buy the inventory upfront, so unauthorized sellers and below-MAP pricing cut into sales of stock we own.
-- Our brand protection covers seller removal, MAP enforcement, Transparency enrollment and [Buy Box](/knowledge-base/amazon-marketplace-glossary) monitoring, using the evidence-based approach above.
+- Our brand protection covers violation reports through Brand Registry, MAP policy follow-up, Transparency (when the brand enrolls) and [Buy Box](/knowledge-base/amazon-marketplace-glossary) monitoring, using the evidence-based approach above.
 - The brand keeps its Brand Registry and authorizes Epic to act on it.
 
 ## FAQ

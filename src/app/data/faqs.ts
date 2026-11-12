@@ -25,7 +25,7 @@ export const FAQS: Faq[] = [
   {
     question: 'How do you handle brand protection, MAP and unauthorized sellers?',
     answer:
-      'Compliance and brand protection are built into our workflows, not bolted on afterward. We design every process around marketplace policies, documentation requirements, and auditability. For brand protection, we get authorized under your Brand Registry, remove unauthorized sellers, enforce MAP pricing, use Amazon Transparency where it fits, monitor the Buy Box and your catalog, and send you brand protection reports by marketplace. Every enforcement action is documented and tracked.',
+      'Compliance and brand protection are built into our workflows, not bolted on afterward. We design every process around marketplace policies, documentation requirements, and auditability. For brand protection, we get authorized under your Brand Registry, monitor unauthorized sellers and report the violations Amazon acts on, follow up on MAP violations through your reseller policy, use Amazon Transparency where you enroll, monitor the Buy Box and your catalog, and send you brand protection reports by marketplace. Every enforcement action is documented and tracked.',
   },
   {
     question: 'What kind of reporting and visibility do we get?',
@@ -50,7 +50,7 @@ export const FAQS: Faq[] = [
   {
     question: 'Who sets the retail price?',
     answer:
-      'Epic sets the retail price on the marketplaces we operate, and we sell at or above your minimum advertised price (MAP). We also enforce MAP against other sellers, so your pricing stays consistent across marketplaces.',
+      'Epic sets the retail price on the marketplaces we operate, and we sell at or above your minimum advertised price (MAP). Amazon does not enforce MAP, so we monitor the prices of other sellers and follow up through your MAP and reseller policy to keep pricing consistent.',
   },
   {
     question: 'Do we keep our Brand Registry, listings, reviews and rank?',

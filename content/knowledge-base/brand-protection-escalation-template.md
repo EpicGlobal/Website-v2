@@ -99,7 +99,7 @@ Add one row each time you observe the seller.
 
 ## How Epic handles this
 
-Epic is a wholesale trade partner: it buys the brand's inventory upfront, so [unauthorized sellers](/knowledge-base/unauthorized-seller-monitoring-workflow) and price undercutting hit Epic's own sales. Epic runs the monitoring, MAP enforcement and seller removal in this template through the brand's Brand Registry, with the brand's authorization.
+Epic is a wholesale trade partner: it buys the brand's inventory upfront, so [unauthorized sellers](/knowledge-base/unauthorized-seller-monitoring-workflow) and price undercutting hit Epic's own sales. Epic runs the monitoring, MAP policy follow-up and violation reports in this template through the brand's Brand Registry, with the brand's authorization.
 
 ## FAQ
 

@@ -202,7 +202,7 @@ export function Home() {
     { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We buy your inventory upfront at wholesale. You get cash; we own the stock.', tagline: 'Cash now. We own the stock.' },
     { icon: Globe2, num: '02', title: 'Sell', desc: 'We run your listings on Amazon first, plus Walmart and international.', tagline: 'One system. Every market.' },
     { icon: BarChart3, num: '03', title: 'Advertise', desc: 'We pay for and run the ads, built for profit, not spend.', tagline: 'We fund. We optimize.' },
-    { icon: Shield, num: '04', title: 'Protect', desc: 'We enforce MAP, remove unauthorized sellers and defend your branded search.', tagline: 'Your brand. Our defense.' },
+    { icon: Shield, num: '04', title: 'Protect', desc: 'We hold your price at or above MAP, act on unauthorized sellers and defend your branded search.', tagline: 'Your brand. Our defense.' },
   ];
 
   return (

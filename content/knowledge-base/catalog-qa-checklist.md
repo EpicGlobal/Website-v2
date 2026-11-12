@@ -97,7 +97,7 @@ The [Listing QA](/knowledge-base/listing-qa-checklist) Checklist checks one list
 
 ## How Epic handles this
 
-As a wholesale trade partner, Epic buys the brand's inventory upfront, so a broken listing costs Epic sales on stock it owns. Pricing and seller checks from section 5 feed Epic's MAP enforcement and its work against [unauthorized sellers](/knowledge-base/unauthorized-seller-monitoring-workflow).
+As a wholesale trade partner, Epic buys the brand's inventory upfront, so a broken listing costs Epic sales on stock it owns. Pricing and seller checks from section 5 feed Epic's MAP monitoring and its work on [unauthorized sellers](/knowledge-base/unauthorized-seller-monitoring-workflow).
 
 ## FAQ
 

@@ -3,7 +3,7 @@
 > Epic Global Inc. is an Amazon-first wholesale trade partner and marketplace operator, selling on Amazon since 2015. It buys brands' inventory upfront at wholesale and sells it on Amazon, plus Walmart, eBay, TikTok Shop and other international marketplaces, paying for the advertising, marketplace fees and fulfillment itself so incentives stay aligned. It is not an agency: no retainers, hourly rates or consulting packages.
 
 ## Key facts
-- Model: Buy, Sell, Advertise, Protect. Epic buys inventory upfront at wholesale, sells it at retail, funds the advertising, and protects price and catalog (Brand Registry authorization, MAP enforcement, removing unauthorized sellers).
+- Model: Buy, Sell, Advertise, Protect. Epic buys inventory upfront at wholesale, sells it at retail, funds the advertising, and protects price and catalog (Brand Registry authorization, selling at or above MAP, monitoring unauthorized sellers and reporting provable violations).
 - What Epic does: purchases inventory at wholesale pricing; operates retail sales across approved marketplaces; covers operating expenses including advertising, marketplace fees and fulfillment; gives brands a shared dashboard from day one, monthly SKU-level reports and quarterly business reviews.
 - Global expansion: launches and scales brands on new marketplaces and in new regions, with localization and compliance.
 - Marketplaces: Amazon first (Epic's main marketplace), plus Walmart, eBay, TikTok Shop, Temu and select international marketplaces (13 marketplace platforms) across North America, Europe and other growth regions.
@@ -17,7 +17,7 @@
 
 ## Common questions (answers from the FAQ)
 - Does Epic charge retainers or fees? No. Epic earns its margin by buying inventory at wholesale and selling at retail, and pays for advertising, marketplace fees and fulfillment itself.
-- Who sets the retail price? Epic sets it on the marketplaces it operates and sells at or above the brand's minimum advertised price (MAP), and enforces MAP against other sellers.
+- Who sets the retail price? Epic sets it on the marketplaces it operates and sells at or above the brand's minimum advertised price (MAP). Amazon doesn't enforce MAP, so Epic monitors other sellers' prices and follows up through the brand's MAP and reseller policy.
 - Does the brand keep its Brand Registry, listings and reviews? Yes. The brand keeps Brand Registry and authorizes Epic to sell; Epic sells on the existing product pages, so listings, reviews and sales rank carry over.
 - How long is a typical contract? Typically 3 years.
 - Who handles fulfillment? Epic does, and pays for it, mostly through Fulfillment by Amazon (FBA) plus Epic's own US warehouse.

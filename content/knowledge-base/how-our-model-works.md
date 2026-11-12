@@ -81,7 +81,7 @@ Epic funds and manages advertising across marketplaces. That matters because it 
 :::card
 ### Protect: Brand equity is defended while growth is built
 
-Marketplace growth creates exposure: unauthorized sellers, price erosion, listing instability, branded search hijacking, and counterfeit risk. Epic's model integrates brand protection into the operating system rather than treating it as an afterthought. Through the Brand Protection Command Center™, we enforce pricing integrity, remove unauthorized sellers, and defend branded search demand — in the U.S. and globally.
+Marketplace growth creates exposure: unauthorized sellers, price erosion, listing instability, branded search hijacking, and counterfeit risk. Epic's model integrates brand protection into the operating system rather than treating it as an afterthought. Through the Brand Protection Command Center™, we keep our prices at or above MAP, monitor unauthorized sellers and report provable violations through Brand Registry, and defend branded search demand — in the U.S. and globally.
 :::
 
 *This is the core difference between "growth services" and a true commerce operator. Services improve parts of the machine. Operators control the machine.*
@@ -138,7 +138,7 @@ The value isn't simply "international availability." It's the ability to scale w
 
 Growth that destroys pricing integrity is not growth. It's a slow leak.
 
-The Brand Protection Command Center™ operates continuously across U.S. and international marketplaces. Epic removes unauthorized sellers, enforces MAP compliance, and defends branded search visibility. The result is durable growth that protects the customer experience and preserves brand equity as volume increases.
+The Brand Protection Command Center™ operates continuously across U.S. and international marketplaces. Epic monitors unauthorized sellers and reports the violations marketplaces act on, follows up on MAP violations through the brand's reseller policy, and defends branded search visibility. The result is durable growth that protects the customer experience and preserves brand equity as volume increases.
 
 In most models, brand protection is reactive and fragmented. In Epic's model, it's proactive, integrated, and aligned with revenue generation.
 

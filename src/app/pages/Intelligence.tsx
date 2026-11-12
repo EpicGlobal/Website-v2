@@ -59,7 +59,7 @@ const intelligencePillars = [
 ];
 
 const SIGNALS = ['Prices and Buy Box', 'Sales and demand', 'New sellers', 'Ads and rankings'];
-const ACTIONS = ['Reprice within MAP', 'Move stock', 'Adjust ads', 'Remove sellers'];
+const ACTIONS = ['Reprice within MAP', 'Move stock', 'Adjust ads', 'Report sellers'];
 
 const SHIFT = [
   { q: 'Channel management', epic: 'One system updates every marketplace', old: 'Manual updates, one platform at a time' },

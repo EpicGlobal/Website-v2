@@ -1,11 +1,11 @@
 ---
 title: "The Incentive Trap: Why Epic Isn't an \"Agency\""
 seoTitle: "The Incentive Trap: Epic vs. Agencies"
-summary: "How to cut through marketplace partner noise by comparing business models, not tactics—agencies, distributors, aggregators, and the Epic operator model."
+summary: "How to cut through marketplace partner noise by comparing business models, not tactics—agencies, distributors, Amazon 1P, aggregators, and the Epic wholesale trade partner model."
 category: "Model and Process"
-type: "Playbook"
+type: "Answer Page"
 difficulty: "Operator"
-updated: 2026-11-11
+updated: 2026-11-12
 published: 2026-01-23
 publishOn:
 tags: ["model", "agency", "comparison", "incentives"]
@@ -14,88 +14,85 @@ order: 4
 status: live-unreviewed
 ---
 
-Agencies are paid a retainer or a share of ad spend, so they earn the same whether your products sell profitably or not, and the brand carries the inventory, ad and fee risk. A wholesale trade partner like Epic buys the inventory upfront and pays for the ads and marketplace fees itself, so it only makes money when the product actually sells.
+Agencies are usually paid a retainer, an hourly fee, or a share of ad spend or sales, while the brand owns the inventory and pays for the ads and marketplace fees. A wholesale trade partner like Epic buys the inventory upfront and pays for the ads and marketplace fees itself, so it earns its margin only when that inventory sells.
 
 Most brands evaluating marketplace partners run into the same problem: after the third discovery call, every pitch sounds identical. Everyone "scales Amazon." Everyone has a "proven playbook." Everyone promises control.
 
-And yet, brands keep ending up in the same cycle—paying for activity, absorbing the downside, and watching margins get chipped away by fee creep, ad volatility, and operational complexity.
-
 The fastest way to cut through the noise is to stop comparing tactics and start comparing business models.
 
-**Because the model determines the incentives. And the incentives determine the results.**
+**Because the model determines the incentives. And the incentives shape the results.**
 
 ## The marketplace partner landscape
 
-Most partners fall into four buckets. Here's how they stack up against Epic.
+Most partners fall into a few business models. Each one can be the right fit for a different brand; the differences are who owns the stock, who pays the costs, and how the partner gets paid.
 
-| Partner type | What they do | Who carries the risk | What they're incentivized to optimize |
+| Partner type | What they do | Who carries the inventory and cost risk | How they're paid |
 |---|---|---|---|
-| Agencies | Manage ads, listings, creative, SEO for a fee/retainer | The brand | Deliverables, activity, and short-term metrics |
-| Distributors / 1P-style | Buy inventory and sell into the channel | Shared | Their margin and velocity (often with less brand control) |
-| Aggregators | Acquire brands outright | The aggregator | EBITDA consolidation for their exit |
-| Wholesale trade partner (Epic) | Buys inventory and runs the marketplace system | Epic | Total channel outcomes: profitable sell-through, stability, and control |
+| Agency | Manages ads, listings, creative and SEO on the brand's own seller account | Mostly the brand: it owns the stock and funds ads and fees | A retainer, hourly fees, a share of ad spend or sales, or a performance fee |
+| Distributor | Buys inventory and resells it to retailers or online | Shared: the distributor owns the stock it buys | Its resale margin |
+| Amazon 1P (Vendor Central) | Amazon itself buys the inventory and sells it as the retailer | Amazon owns the stock; the brand negotiates vendor terms such as co-op and chargebacks | Amazon's retail margin |
+| Aggregator | Acquires brands outright and runs them as a portfolio | The aggregator, once it owns the brand | The value and profit of the brands it owns |
+| Wholesale trade partner (Epic) | Buys inventory at wholesale and resells it on marketplaces from its own seller accounts | Epic, for the inventory it buys and the ads and fees it pays | Its margin when that inventory sells |
 
 :::callout
-**Epic is an Operator.** That one word is the difference between "helping you do commerce" and "running commerce on your behalf."
+**Epic is a marketplace operator that owns the stock it sells.** That's the difference between a partner paid to work on your channel and one that buys your inventory and earns only when it sells.
 :::
 
-## 1) Agencies: you pay, you risk, you hope
+## 1) Agencies: you own the stock and fund the bet
 
-Agencies are service providers. They sell work—listing projects, ad management, creative, SEO—usually via a retainer, hourly billing, or % of spend.
+Agencies are service providers. They sell work—listing projects, ad management, creative, SEO—through a retainer, hourly billing, a percentage of spend or sales, or a performance fee.
 
-**The core limitation isn't effort. It's structure.**
-
-Agencies can optimize ads while inventory is unstable. They can rewrite copy while Buy Box is inconsistent. They can create images while pricing is eroding. They're working on pieces of a machine they don't control.
+Good agencies do valuable work. The limit is structural: they work on an account the brand owns, so inventory, pricing and budget decisions still sit with the brand.
 
 :::card
-### The incentive mismatch:
+### How the incentives line up:
 
-They get paid whether you're profitable or not. Even great agencies are still "hedged" against performance because the brand funds the bet.
+Under a retainer or percentage-of-spend fee, the agency is paid for the work whether or not the products sell profitably. Performance-based fees share some of the outcome, but the brand still owns the inventory and funds the ads.
 :::
 
 ::::card
-### The burden stays with you:
+### What usually stays with the brand:
 
 :::checks
 - inventory commitments
 - ad spend and budget risk
-- fees, chargebacks, returns
+- marketplace fees, chargebacks and returns
 - internal coordination overhead
-- the downside if performance dips
+- the downside if sales slow
 :::
 ::::
 
 :::callout
-**Epic is not a retainer-based agency.** We don't sell pieces. We operate the system.
+**Epic is not a retainer-based agency.** We buy the inventory and run the channel ourselves.
 :::
 
-## 2) Distributors and 1P-style relationships: cash flow, but less control
+## 2) Distributors and Amazon 1P: cash for the inventory, less say over the shelf
 
-Traditional distributors buy inventory (which can be great for cash flow). Some 1P-style arrangements can reduce operational burden.
+A distributor buys your inventory and resells it, which can help cash flow. With Amazon 1P (Vendor Central), Amazon itself is the buyer: it orders your stock and sets the retail price.
 
-The tradeoff brands often experience is control and transparency:
+The tradeoffs brands often mention:
 
 :::checks
-- pricing and presentation can drift
-- customer "shelf" decisions aren't always aligned to long-term brand equity
-- reporting can be limited or delayed
-- incentives often prioritize distributor margin and velocity
+- less say over retail price and presentation
+- reporting depends on what the buyer shares
+- the buyer's priorities (its margin and turnover) can differ from your brand plan
+- Amazon 1P vendors also negotiate co-op, chargebacks and other vendor terms
 :::
 
 :::callout
-**Epic also purchases inventory,** but we're not "set it and forget it distribution." Our model is built to operate the channel with brand control, performance accountability, and ongoing system management—not just placement.
+**Epic also purchases inventory,** but it doesn't stop at placement. Epic sells at or above your minimum advertised price (MAP), runs the listings and advertising, and reports to you by SKU every month.
 :::
 
-## 3) Aggregators: they want your company, not just your inventory
+## 3) Aggregators: they buy the company, not just the inventory
 
-Aggregators are an M&A model. They buy brands, then apply their operational playbooks to increase EBITDA.
+Aggregators buy brands outright and run them as part of a portfolio.
 
-If you want to sell your business, aggregators are a path.
+If you want to sell your business, an aggregator is one path.
 
-If you want to keep your business and still get operator-level execution, aggregators aren't the answer.
+If you want to keep your business and still hand off marketplace operations, it isn't.
 
 :::callout
-**Epic does not buy brands.** We don't take equity. We don't require an exit to deliver operator-level outcomes.
+**Epic does not buy brands.** We don't take equity. You keep your company, your trademark and your Brand Registry.
 :::
 
 ## Buy, Sell, Advertise, Protect: how the model works
@@ -107,7 +104,7 @@ Epic is a wholesale trade partner. We buy the inventory and run the marketplace 
 :::card
 ### BUY
 
-Epic purchases your inventory upfront at wholesale. This converts inventory into cash and removes the "sitting stock" risk from your balance sheet.
+Epic purchases your inventory upfront at wholesale, so stock that would sit in your warehouse becomes a wholesale sale.
 :::
 
 :::card
@@ -119,44 +116,44 @@ We operate marketplaces end-to-end. Not just "management"—we run the operating
 :::card
 ### ADVERTISE
 
-Epic covers the costs that normally make growth risky. We fund and manage the advertising and pay the marketplace fees and fulfillment required to scale. When performance dips, our capital is exposed, not yours.
+Epic covers the costs that normally make growth risky. We fund and manage the advertising and pay the marketplace fees and fulfillment. The ad spend and fees on inventory Epic owns are Epic's cost, not yours.
 :::
 
 :::card
 ### PROTECT
 
-We protect the brand on every marketplace we operate: Brand Registry authorization, unauthorized-seller removal, MAP enforcement, Amazon Transparency where it fits, Buy Box and catalog monitoring, and brand protection reports.
+We protect the brand on the marketplaces we operate: Brand Registry authorization, monitoring for unauthorized sellers and reporting provable violations, keeping our prices at or above MAP and following up on MAP violations through your reseller policy, Amazon Transparency where you enroll, Buy Box and catalog monitoring, and brand protection reports.
 :::
 
 :::callout
-This is the operator reality: when a partner carries the cost and the risk, they become disciplined about what works—not what sounds good in a monthly status report.
+This is the operator reality: when a partner carries the cost and the risk, it has every reason to be disciplined about what works.
 :::
 
 ## "How are we different from other big marketplace players?"
 
-There are other large buy-and-sell operators in the market. Some may look similar at first glance. The best way to tell models apart is to ask a few operator questions that expose incentives and responsibility.
+There are other buy-and-sell operators in the market, and some look similar at first glance. The best way to tell models apart is to ask a few questions about incentives and responsibility.
 
 ::::card
 ### The four operator questions
 
 #### 1) Who funds advertising?
 
-If you fund ads, you're still funding the risk. In Epic's model, Epic carries the spend.
+If you fund ads, you're still funding the risk. In Epic's model, Epic pays for the ads on the inventory it owns.
 
 #### 2) Who owns execution end-to-end?
 
-Do you still coordinate agencies, freelancers, and internal approvals—or does one operator actually run the machine?
+Do you still coordinate agencies, freelancers, and internal approvals—or does one operator run the channel?
 
 #### 3) Is there a retainer or fixed fee?
 
-If there's a monthly fee, the partner is insulated from your downside. Epic only wins when products sell through profitably.
+A monthly fee is paid even when sales are slow. Epic charges no retainer; it earns its margin when the inventory it bought sells.
 
-#### 4) What happens when performance dips?
+#### 4) What happens when sales slow?
 
-Do they still get paid the same? Or do they feel the downside alongside you?
+Does the partner still get paid the same, or does it share the downside?
 
 :::callout
-The answers reveal the true model fast.
+The answers show the real model fast.
 :::
 ::::
 
@@ -180,7 +177,7 @@ Choosing a marketplace partner isn't just hiring help. It's choosing an incentiv
 
 :::checks
 - an Amazon-first [wholesale trade partner](/knowledge-base/what-is-epic-global-inc) that also runs Walmart and international marketplaces
-- we buy the inventory, run the system, fund growth, and align our success with yours
+- we buy the inventory, run the channel, pay for the ads and fees, and earn when your products sell
 :::
 ::::
 :::::

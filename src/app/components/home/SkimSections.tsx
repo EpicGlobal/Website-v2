@@ -134,7 +134,7 @@ export const HOME_FAQ = [
   },
   {
     q: 'Who sets the retail price?',
-    a: 'Epic sets it on the marketplaces we run, at or above your minimum advertised price (MAP), and we enforce MAP against other sellers.',
+    a: 'Epic sets it on the marketplaces we run, at or above your minimum advertised price (MAP), and we monitor the prices of other sellers and follow up through your MAP policy.',
   },
 ];
 
