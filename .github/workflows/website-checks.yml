@@ -37,7 +37,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: TypeScript
         run: npx tsc --noEmit -p .
-      - name: Public content (no competitors, internal figures, prices or automatic reviewer)
+      - name: Public content (rule examples, then every public file: no competitors, internal figures, prices or automatic reviewer)
         run: npm run test:content
       - name: Deploy guard (preview is noindex, production never is)
         run: npm run test:deploy-guard

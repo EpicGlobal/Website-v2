@@ -12,8 +12,19 @@ import { dollarAmounts, scanContent } from './content-rules.mjs';
 
 const read = (file) => readFile(path.resolve(file), 'utf8');
 const pages = (await readdir('src/app/pages')).filter((f) => f.endsWith('.tsx')).map((f) => `src/app/pages/${f}`);
-const homeParts = (await readdir('src/app/components/home')).filter((f) => f.endsWith('.tsx')).map((f) => `src/app/components/home/${f}`);
-const publicFiles = [...pages, ...homeParts, 'src/app/data/faqs.ts', 'src/app/data/caseStudies.ts', 'content/llms.txt', 'src/app/components/StructuredData.tsx'];
+const under = async (dir, ext) =>
+  (await readdir(dir, { recursive: true }))
+    .map((f) => `${dir}/${f.split(path.sep).join('/')}`)
+    .filter((f) => ext.test(f) && !f.includes('/components/ui/') && !f.endsWith('.generated.ts'));
+// Everything that renders public text: pages, every component, route files and metadata, site settings, data
+// (articles are checked by build-articles.mjs; their generated copies are skipped), llms.txt and public text files.
+const publicFiles = [
+  ...(await under('src/app', /\.(tsx?|md)$/)),
+  ...(await under('app', /\.(tsx?)$/)),
+  ...(await under('src/site', /\.tsx?$/)),
+  ...(await under('public', /\.(txt|html|xml|json|webmanifest)$/)),
+  'content/llms.txt',
+];
 
 const problems = [];
 for (const file of publicFiles) {
