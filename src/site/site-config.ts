@@ -2,7 +2,25 @@ import type { Metadata } from 'next';
 
 // The site serves every page from www (the bare domain redirects there), so canonical tags and the sitemap use www too.
 const defaultSiteUrl = 'https://www.epicglobalinc.com';
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, '') || defaultSiteUrl;
+
+/**
+ * The address used for canonical tags, the sitemap, robots.txt, feeds and schema. An env value of the bare domain
+ * (https://epicglobalinc.com only redirects to www) is corrected to www, so canonicals never point at a redirect even
+ * if the hosting setting is left as it is. Preview and local addresses are kept as given.
+ */
+export function normalizeSiteUrl(raw: string | undefined): string {
+  const value = raw?.trim().replace(/\/+$/, '');
+  if (!value) return defaultSiteUrl;
+  try {
+    const url = new URL(value);
+    if (url.hostname === 'epicglobalinc.com' || url.hostname === 'www.epicglobalinc.com') return defaultSiteUrl;
+    return url.origin;
+  } catch {
+    return defaultSiteUrl;
+  }
+}
+
+const siteUrl = normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const siteConfig = {
   name: 'Epic Global Inc.',
@@ -70,7 +88,8 @@ export function createPageMetadata({
   type = 'website',
   noindex = false,
   image,
-  articleDate,
+  publishedTime,
+  modifiedTime,
 }: {
   title: string;
   description: string;
@@ -81,8 +100,10 @@ export function createPageMetadata({
   noindex?: boolean;
   /** Page-specific link-preview image (for example a Knowledge Base article card). */
   image?: { url: string; alt: string };
-  /** ISO date (YYYY-MM-DD) for article:published_time and article:modified_time. */
-  articleDate?: string;
+  /** YYYY-MM-DD the article first went live (article:published_time); must match the page's schema datePublished. */
+  publishedTime?: string;
+  /** YYYY-MM-DD of the last real edit (article:modified_time); must match the schema dateModified. */
+  modifiedTime?: string;
 }): Metadata {
   const url = new URL(path, siteConfig.url).toString();
   const hasSiteName = title.includes(siteConfig.name);
@@ -107,7 +128,8 @@ export function createPageMetadata({
       description,
       siteName: siteConfig.name,
       locale: 'en_US',
-      ...(type === 'article' && articleDate ? { publishedTime: articleDate, modifiedTime: articleDate } : {}),
+      ...(type === 'article' && publishedTime ? { publishedTime } : {}),
+      ...(type === 'article' && (modifiedTime ?? publishedTime) ? { modifiedTime: modifiedTime ?? publishedTime } : {}),
       images: [
         {
           url: image?.url ?? siteConfig.ogImage,

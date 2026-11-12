@@ -25,7 +25,8 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
     description: study.seoDescription,
     path: `/case-studies/${study.slug}`,
     type: 'article',
-    articleDate: study.updated ?? study.published,
+    publishedTime: study.published,
+    modifiedTime: study.updated ?? study.published,
     image: { url: `/case-studies/${study.slug}/opengraph-image`, alt: `${study.title} | Epic Global Inc. case study` },
   });
 }

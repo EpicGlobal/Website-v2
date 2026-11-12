@@ -39,8 +39,9 @@ export async function generateMetadata({ params }: KnowledgeArticlePageProps) {
     type: 'article',
     // "Coming Soon" placeholders and scheduled articles stay out of search until they're live.
     noindex: !article.hasContent,
-    // The articles keep one date (last updated); it's used for both, the same as the article schema.
-    articleDate: isoDate(article.lastUpdated),
+    // Same two dates as the article schema and the visible "Published · Updated" line.
+    publishedTime: article.published ?? isoDate(article.lastUpdated),
+    modifiedTime: isoDate(article.lastUpdated),
     image: { url: `/knowledge-base/${article.slug}/opengraph-image`, alt: `${article.title} | Epic Global Inc. Knowledge Base` },
   });
 }
