@@ -191,9 +191,9 @@ export function Home() {
       title: 'Auto Parts Brand: Amazon 1P vs Epic 3P',
       marketplace: 'Amazon US',
       region: 'North America',
-      objective: 'Move from Amazon 1P to Epic 3P: the brand pays no Amazon fees and nets more per unit',
+      objective: 'Compare Amazon 1P with Epic’s 3P offer: the brand pays no Amazon fees and nets more per unit',
       metric: '+159%',
-      metricLabel: 'net revenue per unit on one brake kit',
+      metricLabel: 'net revenue per unit on one brake kit, based on Epic’s offer',
       link: '/case-studies/auto-parts-amazon-1p-vs-epic-3p',
     },
   ];

@@ -23,8 +23,11 @@ export type Metric = {
   value: string;
   label: string;
   note: string;
-  /** Measured from account data, or an estimate/projection derived from it. */
-  basis?: 'measured' | 'estimate';
+  /**
+   * measured: from account data. estimate: a projection derived from it. offer: from the terms Epic offered (not a
+   * sales result). The note must say so for estimate and offer (the page adds "Estimate." for estimates).
+   */
+  basis?: 'measured' | 'estimate' | 'offer';
 };
 
 /** Per-item change chart (one bar per product), drawn from the brand report's chart. */
@@ -242,25 +245,25 @@ export const caseStudies: readonly CaseStudy[] = [
     dek: 'What a brand nets per unit when Amazon buys as a 1P retailer, compared with Epic buying the inventory and paying the Amazon fees.',
     seoTitle: 'Amazon 1P vs 3P Case Study: Auto Parts Brand Net Revenue',
     seoDescription:
-      'An auto parts brand compared Amazon 1P with Epic Global’s 3P model: net revenue per unit rose 159% on one brake kit and 53% on another.',
+      'An auto parts brand compared its Amazon 1P results with Epic Global’s 3P offer: 159% more net revenue per unit on one brake kit and 53% more on another.',
     industry: 'Automotive Parts',
     marketplaces: ['Amazon US'],
     region: 'United States',
     pillars: ['Buy', 'Sell'],
     glance: {
       problem: 'Thin margins and unpredictable fees under Amazon 1P.',
-      did: "Moved the brand to Epic's 3P model: Epic buys the inventory and pays the Amazon fees.",
-      result: 'Net revenue per unit up 159% on one brake kit and 53% on another.',
+      did: "Compared the brand's 1P results with Epic's 3P offer: Epic buys the inventory and pays the Amazon fees.",
+      result: "Under Epic's offer, net revenue per unit is 159% higher on one brake kit and 53% higher on another than under 1P.",
     },
     metrics: [
-      { value: '+159%', label: 'Net revenue per unit', note: 'Escalade brake kit (+$215.43)', basis: 'measured' },
-      { value: '+53%', label: 'Net revenue per unit', note: 'Civic brake kit (+$58.58)', basis: 'measured' },
-      { value: '$0', label: 'Amazon fees paid by the brand', note: 'Epic pays fees, chargebacks and co-op', basis: 'measured' },
+      { value: '+159%', label: 'Net revenue per unit', note: 'Escalade brake kit, based on Epic’s offer vs. 1P', basis: 'offer' },
+      { value: '+53%', label: 'Net revenue per unit', note: 'Civic brake kit, based on Epic’s offer vs. 1P', basis: 'offer' },
+      { value: 'None', label: 'Amazon fees paid by the brand', note: 'Epic pays fees, chargebacks and co-op', basis: 'offer' },
     ],
     challenges: [
       {
         title: 'Low net margin under 1P',
-        text: 'As an Amazon 1P vendor, the brand absorbed nearly all Amazon-imposed fees and netted only about 15–30% of retail price.',
+        text: 'As an Amazon 1P vendor, the brand absorbed nearly all Amazon-imposed fees and kept only a thin share of the retail price.',
       },
       {
         title: 'Fees that were hard to predict',
@@ -268,7 +271,7 @@ export const caseStudies: readonly CaseStudy[] = [
       },
       {
         title: 'Little left after cost of goods',
-        text: 'With high manufacturing costs, a 15–30% net margin left the brand very little profit.',
+        text: 'With high manufacturing costs, that thin margin left the brand very little profit.',
       },
     ],
     workstreams: [
@@ -284,58 +287,31 @@ export const caseStudies: readonly CaseStudy[] = [
             text: 'Epic buys the inventory at an agreed wholesale price, sells it on its own Amazon seller account and pays the Amazon fees.',
           },
         ],
-        result: 'The question is simple: what does the brand actually keep per unit after fees? The two brake kits below answer it.',
-        chart: {
-          kind: 'compare',
-          title: 'Brand net revenue per unit',
-          unit: '$',
-          series: ['Amazon 1P', 'Epic 3P'],
-          items: [
-            { label: 'Escalade brake kit', values: [135.72, 351.15] },
-            { label: 'Civic brake kit', values: [111.46, 170.04] },
-          ],
-          caption: 'What the brand keeps per unit after all fees.',
-        },
-      },
-      {
-        title: 'Brake kit (2015–2020 Escalade, Silverado, Suburban, Sierra, Yukon)',
-        actions: [],
+        result:
+          'The question is simple: what does the brand actually keep per unit after fees? For the two brake kits below, Epic’s offer leaves the brand more per unit than its 1P results. Exact per-unit prices are confidential and not shown.',
         table: {
-          title: 'Escalade brake kit, per unit',
-          columns: ['', 'Amazon 1P', 'Epic 3P'],
+          title: 'Brand net revenue per unit: Amazon 1P vs Epic’s 3P offer',
+          columns: ['', 'Amazon 1P', 'Epic 3P offer'],
           rows: [
-            ['Paid to the brand', '$489.85', '$351.15'],
-            ['Fees paid by the brand', '$354.13 (Amazon fees, chargebacks, etc.)', '$0 (Epic pays all fees)'],
-            ['Brand net revenue', '$135.72', '$351.15'],
-            ['Change', '', '+159% (+$215.43 per unit)'],
-          ],
-        },
-      },
-      {
-        title: 'Front and rear brake kit (2016–2021 Honda Civic)',
-        actions: [],
-        table: {
-          title: 'Civic brake kit, per unit',
-          columns: ['', 'Amazon 1P', 'Epic 3P'],
-          rows: [
-            ['Paid to the brand', '$230.23', '$170.04'],
-            ['Fees paid by the brand', '$118.77 (Amazon fees, chargebacks, etc.)', '$0 (Epic pays all fees)'],
-            ['Brand net revenue', '$111.46', '$170.04'],
-            ['Change', '', '+53% (+$58.58 per unit)'],
+            ['Amazon fees, chargebacks and co-op', 'Paid by the brand', 'Paid by Epic'],
+            ['Brake kit (2015–2020 Escalade, Silverado, Suburban, Sierra, Yukon)', 'Baseline', '+159% per unit'],
+            ['Front and rear brake kit (2016–2021 Honda Civic)', 'Baseline', '+53% per unit'],
           ],
         },
       },
     ],
     results: [
-      'Escalade brake kit: brand net revenue per unit up 159%, from $135.72 to $351.15 (+$215.43).',
-      'Civic brake kit: brand net revenue per unit up 53%, from $111.46 to $170.04 (+$58.58).',
-      'The brand pays no Amazon fees, chargebacks or co-op costs.',
+      'Escalade brake kit: under Epic’s offer, brand net revenue per unit is 159% higher than under 1P.',
+      'Civic brake kit: under Epic’s offer, brand net revenue per unit is 53% higher than under 1P.',
+      'The brand pays no Amazon fees, chargebacks or co-op costs on what Epic buys.',
       'A predictable price per unit instead of fees that change month to month.',
     ],
     evidence: {
-      source: 'The brand’s Amazon 1P figures for two products, compared with Epic’s 3P offer, from Epic’s 1P vs 3P financial breakdown.',
+      source: 'The brand’s Amazon 1P figures for two products, compared with Epic’s 3P offer for the same products, from Epic’s 1P vs 3P financial breakdown.',
       notes: [
-        'Per-unit figures for two products; other products and brands will differ.',
+        'These percentages compare an offer with past 1P results; they are not measured sales results.',
+        'Per-unit prices are confidential (they include Epic’s wholesale purchase price), so only the percentage change is shown.',
+        'Two products only; other products and brands will differ.',
         'The report does not state the dates of the comparison.',
       ],
     },
