@@ -6,6 +6,8 @@ frontend:
         - nvm use 20 || nvm install 20
         - rm -f .env.production
         - env | grep -e NEXT_PUBLIC_ >> .env.production || true
+        # Stops the build if main has the preview flag or another branch doesn't (see scripts/check-deploy-env.mjs).
+        - node scripts/check-deploy-env.mjs
         - npm ci
     build:
       commands:
