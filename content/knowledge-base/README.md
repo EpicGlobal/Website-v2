@@ -3,12 +3,30 @@
 Every article is one Markdown file in this folder. The file name is the web address:
 `weekly-executive-dashboard.md` becomes `/knowledge-base/weekly-executive-dashboard`.
 
-## Add an article
+Brex writes the articles (with AI help). A designated Epic team member reviews and approves each one before it
+goes live. Nobody is credited as a reviewer unless their approval is recorded (see "Review" below).
 
-1. Copy an existing article file, rename it (lowercase words joined by hyphens), and change the details at the top.
-2. Write the article below the second `---`.
-3. Set `publishOn` to the day it should go live, or leave it empty to publish as soon as it's merged.
-4. Push to the preview branch. The build checks every file and stops with a clear message if something is wrong.
+## The short version (what to tell Claude)
+
+> "Claude, prepare these three approved articles for publication Monday, Wednesday and Friday."
+
+Claude then: creates or updates the three Markdown files, fills in the details at the top (dates in Utah time,
+tags, related articles, SEO title and description), adds internal links, records each approval, runs
+`npm run check:articles`, and opens a pull request for review. Claude never approves or merges an article.
+Someone with permission to merge to `main` merges the pull request any time before the first publish day; each
+article then goes live by itself at midnight Utah time on its date. No deploy is needed on publish days.
+
+## Statuses
+
+| status | Meaning | Public? |
+|---|---|---|
+| `draft` | Being written | Never (404) |
+| `review` | Sent to a reviewer | Never (404) |
+| `approved` | A named reviewer approved the final text; the approval is recorded | From its `publishOn` day (or right away without one) |
+| `live-unreviewed` | Went live before reviews began (Nov 12, 2026). No reviewer is shown. New articles can't use it | Yes |
+
+Before its day, or while it's a draft or in review, an article has no page (404), no card, no link preview, and
+isn't in the sitemap, RSS feed, llms.txt or llms-full.txt. Links to it from other articles show as plain text.
 
 ## The details at the top
 
@@ -24,20 +42,77 @@ marketplace: ["Amazon", "Walmart"]  # optional
 type: "Template"                    # Answer Page, Playbook, Checklist, Glossary, Template or Deep Dive
 difficulty: "Operator"              # Intro, Operator or Advanced
 updated: 2026-11-05                 # last real edit (YYYY-MM-DD)
-publishOn: 2026-11-16               # optional: hidden until this day (Utah time), then goes live by itself
-published: 2026-01-22               # optional: the day it first went live (for an article that was live before publishOn existed)
+publishOn: 2026-11-16               # optional: hidden until this day (Utah time), then live by itself
+published: 2026-01-22               # optional: the day it first went live (only for articles already live)
 tags: ["dashboard", "reporting"]
 related: ["kpi-glossary"]           # optional: other article file names to show under Related Articles
 featured: false                     # optional: show in Popular on the Knowledge Base page
 order: 30                           # position in the list (each article a different number)
+status: approved                    # draft, review, approved (or live-unreviewed for pre-Nov 12 articles)
+author: "Brexton Hansen"            # who wrote it; shown as "Written by ..." (leave out for "the Epic team")
+reviewedBy: "Reviewer Name"         # approved only: exactly as they agreed to be credited
+reviewerRole: "Brand Manager"       # approved only: their role at Epic
+reviewedOn: 2026-11-14              # approved only: the day they approved the final text
+reviewRecord: "https://github.com/EpicGlobal/Website-v2/pull/123#pullrequestreview-456"  # approved only: link to the approval
+reviewerGitHub: "their-github-name" # optional: CI checks the GitHub review was left by this account
 ---
 ```
 
-The date readers see is `updated`, or `publishOn` if that's later. Until its `publishOn` day an article has no page,
-no card, and isn't in the sitemap, feed or llms-full.txt. Pages refresh hourly, so it appears within about an hour
-of midnight Utah time on its day, with no new deploy.
+Readers see "Published (first day) · Updated (last edit)", and on an approved article "Reviewed by (name),
+(role), (date)". The page's search data (Open Graph and Article schema) uses the same author, reviewer and dates.
 
-An article with nothing written below the details shows as "Coming Soon" and stays out of search.
+## Review
+
+A field that says `approved` is not proof by itself, so every approval links to a record:
+
+1. **Reviewer uses GitHub (preferred).** Open a pull request with the article. The reviewer reads it in the
+   "Files changed" tab and clicks **Review changes → Approve**. Copy the link to that review (it ends in
+   `#pullrequestreview-<number>`) into `reviewRecord`. CI checks it is a real approval by someone other than the
+   pull request's author.
+2. **Reviewer uses Google Docs.** Share the draft as a Google Doc. The reviewer leaves a comment like
+   "Approved for publication" on the final text. Copy the link to that comment into `reviewRecord`.
+3. **Reviewer replies by email.** Save the reply as a PDF in the shared Drive folder and link it.
+
+Then set `status: approved`, `reviewedBy`, `reviewerRole` and `reviewedOn` (the approval date, on or after the
+last edit). The build refuses an approval without all of these, a review dated in the future, a review older
+than the last edit, or a review dated after the publish day. Never fill these in for someone who hasn't
+approved the final text.
+
+## Add and schedule articles
+
+1. Create the file (copy an existing article, rename it with lowercase words joined by hyphens).
+2. Write the article below the second `---`, with `status: draft` and your `author`.
+3. When it's ready, set `status: review` and send it to the reviewer (pull request or Google Doc).
+4. After approval, record it (above) and set `publishOn` to the day it should go live (Utah date).
+   For Monday, Wednesday, Friday: three files with three `publishOn` dates, one pull request.
+5. Run `npm run check:articles`. It stops with a clear message if anything is wrong.
+6. Open the pull request into `main`. CI runs the checks. Someone authorized merges it before the first date.
+
+## Edit a live article
+
+Change the text and set `updated` to today. A real change to facts or advice needs a new review: record the new
+approval (`reviewedOn` on or after `updated`). Fixing a typo doesn't need a new date or review.
+
+## Unpublish or delay
+
+- Delay: move `publishOn` to a later day (works until its current day arrives).
+- Take down: set `status: draft`. The page becomes a 404 at the next deploy. Links to it from other articles turn
+  into plain text by themselves. If it was live for a while, consider a redirect to the closest article in
+  `next.config.mjs` instead.
+
+## Roll back
+
+Every change is a commit. To undo one, revert that commit (`git revert <hash>`) in a pull request and merge it;
+the site goes back to the previous version at the next deploy.
+
+## Content rules (the build enforces them)
+
+- No named competitors in public content. Compare business models (agency, distributor, Amazon 1P, aggregator,
+  wholesale trade partner), not companies. The private AIEO dashboard may track names.
+- Never put internal figures in an article: wholesale % of retail, payment terms, purchase prices, revenue,
+  SKU counts. Case studies show approved percentages, never per-unit prices.
+- Label estimates and offers as such; only measured results are stated as results.
+- Company numbers (countries, marketplaces, founding year) only as already approved on the site.
 
 ## Writing
 
@@ -99,4 +174,3 @@ A numbered phase card. Text, a #### label and a checklist can go inside.
 A block inside another block uses one fewer colon than the block around it, and each block closes with the
 same number of colons it opened with (like the grid above: `::::grid` ... `::::`, with `:::card` ... `:::` inside).
 
-Never put internal figures in an article (wholesale %, payment terms, revenue, SKU counts).
