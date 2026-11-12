@@ -41,7 +41,9 @@ export function CaseStudyDetail({ study }: { study: CaseStudy }) {
         <header className="pt-28 pb-10 px-4 sm:px-6 lg:px-8">
           <div className={INNER}>
             <nav aria-label="Breadcrumb" className={`mb-8 text-sm ${MUTED}`}>
-              <Link href="/case-studies" className="underline-offset-4 hover:underline">Case studies</Link>
+              <Link href="/" className="underline-offset-4 hover:underline">Home</Link>
+              <span aria-hidden="true"> / </span>
+              <Link href="/case-studies" className="underline-offset-4 hover:underline">Case Studies</Link>
               <span aria-hidden="true"> / </span>
               <span aria-current="page">{study.brand}</span>
             </nav>

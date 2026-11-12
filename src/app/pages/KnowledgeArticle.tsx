@@ -99,16 +99,22 @@ export function KnowledgeArticle({ slug, articles: knowledgeArticles, body }: Kn
             Back to Knowledge Base
           </Link>
 
-          {/* Breadcrumb */}
+          {/* Breadcrumb: the same three steps as the BreadcrumbList schema above. */}
           <nav aria-label="Breadcrumb" className={`text-sm mb-6 ${MUTED}`}>
             <ol className="flex flex-wrap items-center gap-2">
+              <li>
+                <Link href="/" className="underline-offset-4 decoration-1 hover:underline">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
               <li>
                 <Link href="/knowledge-base" className="underline-offset-4 decoration-1 hover:underline">
                   Knowledge Base
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page">{article.category}</li>
+              <li aria-current="page">{article.title}</li>
             </ol>
           </nav>
 
