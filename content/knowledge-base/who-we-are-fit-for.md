@@ -1,10 +1,10 @@
 ---
 title: "What Types of Brands We're a Fit For"
-summary: "Learn which brands benefit most from our operator model: typically doing $50K+ monthly revenue and needing control at scale."
+summary: "Epic is usually a fit for established brands doing $1M+ a year in sales. Newer or smaller brands are considered case by case."
 category: "Model and Process"
 type: "Answer Page"
 difficulty: "Intro"
-updated: 2026-11-05
+updated: 2026-11-12
 published: 2026-01-23
 publishOn:
 tags: ["fit", "brands", "requirements"]
@@ -12,13 +12,15 @@ featured: true
 order: 3
 ---
 
+**Short answer:** Epic is usually a fit for established brands doing $1M+ a year in sales that want one partner to buy their inventory and run their marketplaces. Newer or smaller brands can still work with us: we can build a brand up, but it takes more investment and testing, so we look at fit case by case.
+
 Most brands don't need "more marketplace help." They need a cleaner model.
 
 Because the real problem isn't usually effort. It's that marketplace growth has turned into a stack of risk: inventory bets, ad spend, fee creep, pricing pressure, operational fires, and a rotating cast of vendors who can all say they did their part while the total system still underperforms.
 
 Epic's operator model is built for brands that are past the early guessing phase. You have demand. You have traction. You may even have momentum. What you don't have is the time, appetite, or internal bandwidth to keep gambling capital and stitching together execution across listings, ads, inventory, and brand defense.
 
-As a rule of thumb, we're typically a fit once a brand is doing $50K+ per month and the marketplace channel starts behaving less like a side project and more like an operating discipline.
+As a rule of thumb, we're typically a fit once a brand is doing $1M+ a year in sales and the marketplace channel starts behaving less like a side project and more like an operating discipline.
 
 ## The simplest way to know if you're ready
 
@@ -106,7 +108,7 @@ If any of those sound familiar, you're not alone. They're normal problems at sca
 
 Not every brand should use this structure.
 
-If you're still early and experimenting, you may be better served by learning fast and staying flexible. If you want to keep all operations in-house, an operator model will feel too integrated. And if you're looking for à la carte help — a one-time listing rewrite or a short ad project — that's not what we're built for.
+If you're a newer or smaller brand, we can still talk: building a brand up takes more investment and extensive testing, so we look at it case by case. If you want to keep all operations in-house, an operator model will feel too integrated. And if you're looking for à la carte help — a one-time listing rewrite or a short ad project — that's not what we're built for.
 
 Epic works best when the goal is simple: build a controlled, scalable marketplace system and run it consistently.
 
@@ -114,7 +116,7 @@ Epic works best when the goal is simple: build a controlled, scalable marketplac
 
 Epic is for brands that already have demand — and now want the channel to behave like a system instead of a gamble.
 
-If you're doing $50K+ per month, want more control, and don't want to keep carrying the downside of marketplace growth, we're likely a fit.
+If you're doing $1M+ a year in sales, want more control, and don't want to keep carrying the downside of marketplace growth, we're likely a fit.
 
 ::tagline[We buy it. You profit.™]
 

@@ -35,7 +35,7 @@ export const FAQS: Faq[] = [
   {
     question: 'Do you work with brands of all sizes?',
     answer:
-      'We work best with brands doing $50K+ monthly revenue that need control at scale. If you\'re earlier stage but planning aggressive marketplace expansion, we can assess fit. Our model is built for brands that want a system-driven operator, not a collection of one-off tactics.',
+      'We work best with established brands, typically doing $1M+ a year in sales. Newer or smaller brands can still work with us: we can build a brand up, but it takes more investment and testing, so we look at fit case by case. Our model is built for brands that want a system-driven operator, not a collection of one-off tactics.',
   },
   {
     question: "Will Epic buy my brand's inventory?",

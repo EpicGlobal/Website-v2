@@ -44,11 +44,11 @@ export const generatedArticles: KnowledgeArticle[] = [
   {
     "slug": "who-we-are-fit-for",
     "title": "What Types of Brands We're a Fit For",
-    "summary": "Learn which brands benefit most from our operator model: typically doing $50K+ monthly revenue and needing control at scale.",
+    "summary": "Epic is usually a fit for established brands doing $1M+ a year in sales. Newer or smaller brands are considered case by case.",
     "category": "Model and Process",
     "type": "Answer Page",
     "difficulty": "Intro",
-    "lastUpdated": "November 5, 2026",
+    "lastUpdated": "November 12, 2026",
     "published": "2026-01-23",
     "tags": [
       "fit",

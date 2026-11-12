@@ -74,12 +74,11 @@ export function CompareTable() {
 
 export function FitColumns() {
   const fit = [
-    'You already have demand: typically $50K+ a month',
+    'You are an established brand: typically $1M+ a year in sales',
     'You want Amazon to run as a system, not a side project',
     'You would rather sell at wholesale than fund ads and fees',
   ];
   const notFit = [
-    'You are still early and experimenting',
     'You want to keep every operation in-house',
     'You only need à la carte help',
   ];
@@ -107,6 +106,10 @@ export function FitColumns() {
           ))}
         </ul>
       </div>
+      <p className={`md:col-span-2 text-sm ${MUTED}`}>
+        Newer or smaller brand? We can still build you up, but it takes more investment and testing, so we start with a
+        conversation about fit.
+      </p>
     </div>
   );
 }
