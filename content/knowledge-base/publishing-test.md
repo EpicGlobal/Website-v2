@@ -8,8 +8,13 @@ updated: 2026-11-13
 publishOn: 2026-11-14
 tags: ["test"]
 order: 999
-status: review
+status: approved
 author: "Brexton Hansen"
+reviewedBy: "Brexton Hansen"
+reviewerRole: "Administrative Assistant"
+reviewedOn: 2026-11-13
+reviewRecord: "https://github.com/EpicGlobal/Website-v2/pull/2#pullrequestreview-5896338813"
+reviewerGitHub: "bhansen-epic"
 ---
 
 ## Publishing test

@@ -734,8 +734,13 @@ export const generatedArticles: KnowledgeArticle[] = [
     "tags": [
       "test"
     ],
-    "status": "review",
+    "status": "approved",
     "author": "Brexton Hansen",
+    "review": {
+      "by": "Brexton Hansen",
+      "role": "Administrative Assistant",
+      "on": "2026-11-13"
+    },
     "hasContent": true
   }
 ];
