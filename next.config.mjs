@@ -12,8 +12,15 @@ const nextConfig = {
       { key: 'X-Content-Type-Options', value: 'nosniff' },
       { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
       { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+      // Apply only to this HTTPS host; other company subdomains have separate hosting.
+      { key: 'Strict-Transport-Security', value: 'max-age=31536000' },
     ];
-    if (process.env.NEXT_PUBLIC_WEBSITE_PREVIEW !== 'true') return [{ source: '/:path*', headers: common }];
+    if (process.env.NEXT_PUBLIC_WEBSITE_PREVIEW !== 'true') return [{ source: '/:path*', headers: [
+      ...common,
+      // Baseline protection compatible with Next's static inline hydration and existing
+      // consent-managed integrations. Script nonces need a separate rendering change.
+      { key: 'Content-Security-Policy', value: "object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'" },
+    ] }];
     return [{ source: '/:path*', headers: [
       ...common,
       { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' },
