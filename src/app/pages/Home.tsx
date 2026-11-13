@@ -1,15 +1,23 @@
-﻿'use client';
+'use client';
 
-import React from 'react';
+import { useRef } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Globe2, Search, BarChart3, Package, Shield, Database, Cpu, ArrowRight, Sparkles } from 'lucide-react';
+import { ShoppingCart, Globe2, BarChart3, Shield, ArrowRight } from 'lucide-react';
 import { Globe } from '@/app/components/Globe';
+import { type MarqueeBrand } from '@/app/components/TrustLogosMarquee';
+import { BrandsProof } from '@/app/components/home/BrandsProof';
 import { TrustLogosMarquee } from '@/app/components/TrustLogosMarquee';
+import { ScrollHighlightSteps, WordReveal } from '@/app/components/scroll/ScrollEffects';
+import { CompareTable, FitColumns, HomeFaq, HOME_FAQ } from '@/app/components/home/SkimSections';
 import { ParticlesBackground } from '@/app/components/ParticlesBackground';
-import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, serviceSchemas, websiteSchema } from '@/app/components/StructuredData';
-import { SEO } from '@/app/components/SEO';
+import { StructuredData, founderSchema, getFAQPageSchema, getWebPageSchema, organizationSchema, serviceSchemas, websiteSchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
-import { motion } from 'framer-motion';
+import { DeferredMount } from '@/app/components/DeferredMount';
+import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
+import { ChapterMarker as KitChapterMarker, ChapterRail } from '@/app/components/story/StoryKit';
+import { ACCENT, BODY, CHAPTER, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
+import '@/app/components/story/story.css';
+import { CARD, CARD_LINK, ICON_TILE } from '@/app/components/home/homeStyles';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { siteConfig } from '@/site/site-config';
 import activationLogo from '@/assets/11ff501713732b442477ea6dc6d2ee5695107009.png';
@@ -23,9 +31,7 @@ import botalabLogo from '@/assets/22e8e47e93878bd055f3f0784ad51324a14e2e86.png';
 import bodeProLogo from '@/assets/dd52d621b52abc573986f37f46a1c4defdf9e2e1.png';
 import epochLogo from '@/assets/1a51400c847b43ceb652f7b37844917910e49662.png';
 import doctorsBestLogo from '@/assets/986dd0a0a85aa440a5b4d8924b7bdef2acd069ce.png';
-import cronkNutrientsLogo from '@/assets/ba0e3491f303ef8e07257a25c46835bd5dba4666.png';
 import gentlemenRepublicLogo from '@/assets/41f6e55df1fa2c29fdc640f9ef5481334f819ad5.png';
-import h2oCardioLogo from '@/assets/6e83860a8e1e07bf9143171faaa89952db9fd600.png';
 import iceElementsLogo from '@/assets/398340e50590d80a267db4420b16873a69c96d3c.png';
 import incelldermLogo from '@/assets/d7d83b3aba9e9324d0971b91c01187787a9373d2.png';
 import lifeningLogo from '@/assets/7050cfcd254a8e6b35a5e7eae127ccf0431d032f.png';
@@ -50,7 +56,6 @@ import perfectPressLogo from '@/assets/012ff1bc223010a71f1ed759ebf1618f606042a4.
 import plexusLogo from '@/assets/56a41e768ec1c8cf98a6c6962f504e0a3e5dba67.png';
 import pureFuelLogo from '@/assets/d67ca1954efd70528ba0a525762f054428302858.png';
 import pharmanexLogo from '@/assets/21fb64a9aee9200a3ba0b9e6615bba9e7b4d4c5a.png';
-import rimanLogo from '@/assets/bf61859afc82053a96f8ade2ed15258358dd8cf8.png';
 import nutricientialsLogo from '@/assets/6210ed77610d27a5f3abdd2bbc3872b72b4a11df.png';
 import organoLogo from '@/assets/e1a2b5126b39c8bafb6e331307cdb83cf21fe64e.png';
 import nuSkinLogo from '@/assets/5f1a49c0a0b32f372b4ee6beb26a48631d147029.png';
@@ -69,502 +74,319 @@ import youniqueLogo from '@/assets/7762de3ef51cb8cc05069238ad5ebc05c432ec99.png'
 import zantrexLogo from '@/assets/a02203de0f65132ee8277243eb83905610259bc6.png';
 import ziveLogo from '@/assets/bac9c727078929bc5f7386af4f562d2fe9fefe30.png';
 
+/*
+ * Homepage, skim first (Brex, Nov 5): hero ("We Buy It. You Profit.") -> brand logos -> 4 numbers -> Buy-Sell-Advertise-Protect
+ * -> results -> Epic vs agency vs aggregator -> who we're a fit for -> 5 questions. Company facts moved to
+ * About and the 8 capabilities to Our Model.
+ * Each chapter opens with a numbered marker and the chapter rail (wide screens) shows where you are. The page's one
+ * pin is Brex's approved ScrollHighlightSteps for the model. Phones get the same text as a calm static page.
+ */
+
+const CHAPTERS = [
+  { id: 'wholesale-trade-partner', label: 'Wholesale trade partner' },
+  { id: 'brands', label: 'At a glance' },
+  { id: 'model', label: 'How it works' },
+  { id: 'fit', label: "Who we're a fit for" },
+  { id: 'case-studies', label: 'Results' },
+  { id: 'compare', label: 'Epic vs agency vs aggregator' },
+  { id: 'faq', label: 'Questions' },
+  { id: 'next-step', label: 'Next step' },
+] as const;
+
+type ChapterId = (typeof CHAPTERS)[number]['id'];
+
+/** The final call-to-action chapter only exists while booking a call is switched on. */
+const VISIBLE_CHAPTERS = CHAPTERS.filter((c) => c.id !== 'next-step' || siteConfig.bookACallEnabled);
+
+function ChapterMarker({ id, accent }: { id: ChapterId; accent?: string }) {
+  const n = VISIBLE_CHAPTERS.findIndex((c) => c.id === id) + 1;
+  return <KitChapterMarker n={n} label={CHAPTERS.find((c) => c.id === id)!.label} accent={accent} />;
+}
+
+/** Homepage's one-off beat: the hero dims and lifts away as the brands chapter rises over it (no pin). */
+const homeBeats: StoryExtra = (gsap, _ScrollTrigger, root) => {
+  const hero = root.querySelector<HTMLElement>('#wholesale-trade-partner');
+  const heroInner = root.querySelector<HTMLElement>('[data-story="hero-inner"]');
+  if (!hero || !heroInner) return;
+  gsap.to(heroInner, {
+    opacity: 0.25, y: -40, scale: 0.97, transformOrigin: 'left top', ease: 'none',
+    scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom 15%', scrub: 0.6 },
+  });
+};
+
 export function Home() {
   const { trackClick } = useAnalytics();
+  const rootRef = useRef<HTMLDivElement>(null);
+  useScrollStory(rootRef, homeBeats);
 
-  const brands = [
-    { name: 'ACTIVATION', logo: activationLogo },
+  const brands: MarqueeBrand[] = [
+    { name: 'Bucked Up', logo: buckedUpLogo, tone: 'pale' },
+    { name: 'Nu Skin', logo: nuSkinLogo, tone: 'deep' },
+    { name: 'Younique', logo: youniqueLogo, tone: 'dark' },
+    { name: 'Young Living', logo: youngLivingLogo, tone: 'pale' },
+    { name: 'Think Smarter Products', logo: thinkSmarterProductsLogo, tone: 'deep' },
+    { name: 'Activation', logo: activationLogo, tone: 'dark' },
     { name: 'ageLOC', logo: ageLOCLogo },
-    { name: 'AP 24', logo: ap24Logo },
-    { name: 'Ambr Group', logo: ambrGroupLogo },
-    { name: 'BONA BOTANICA', logo: bonaBotanicaLogo },
-    { name: 'BUCKED UP', logo: buckedUpLogo },
-    { name: 'BEAUTY FOCUS', logo: beautyFocusLogo },
-    { name: 'botalab', logo: botalabLogo },
-    { name: 'bode PRO', logo: bodeProLogo },
-    { name: 'epoch', logo: epochLogo },
-    { name: "Doctor's BEST", logo: doctorsBestLogo },
-    { name: 'CRONK NUTRIENTS', logo: cronkNutrientsLogo },
-    { name: 'Gentlemen Republic', logo: gentlemenRepublicLogo },
-    { name: 'H2O CARDIO', logo: h2oCardioLogo },
-    { name: 'ICE ELEMENTS', logo: iceElementsLogo },
-    { name: 'INCELLDERM', logo: incelldermLogo },
-    { name: 'Lifening', logo: lifeningLogo },
-    { name: 'HEALTHY home', logo: healthyHomeLogo },
-    { name: 'heroine make', logo: heroineMakeLogo },
-    { name: 'K', logo: kLogo },
-    { name: 'KINGS', logo: kingsLogo },
-    { name: 'life cider', logo: lifeCiderLogo },
-    { name: 'MAKE WELLNESS', logo: makeWellnessLogo },
-    { name: 'Novex Biotech', logo: novexBiotechLogo },
-    { name: 'MUSCLE MOOSE', logo: muscleMooseLogo },
-    { name: 'MIDISEM', logo: midisemLogo },
-    { name: 'lionstrike', logo: lionStrikeLogo },
-    { name: 'neumi', logo: neumiLogo },
-    { name: 'mixhers', logo: mixhersLogo },
-    { name: 'made', logo: madeLogo },
-    { name: 'Live PURE', logo: livePureLogo },
-    { name: 'now', logo: nowLogo },
-    { name: 'PHONESOAP', logo: phoneSoapLogo },
-    { name: 'RADIANSOME', logo: radiansomeLogo },
-    { name: 'PERFECT PRESS', logo: perfectPressLogo },
-    { name: 'plexus', logo: plexusLogo },
-    { name: 'PURE FUEL', logo: pureFuelLogo },
-    { name: 'PHARMANEX', logo: pharmanexLogo },
-    { name: 'Riman', logo: rimanLogo },
-    { name: 'NUTRICENTIALS', logo: nutricientialsLogo },
-    { name: 'ORGANO', logo: organoLogo },
-    { name: 'NU SKIN', logo: nuSkinLogo },
-    { name: 'SeroVital', logo: seroVitalLogo },
-    { name: 'sutera', logo: suteraLogo },
-    { name: 'thrive', logo: thriveLogo },
-    { name: 'TRANONT', logo: tranontLogo },
-    { name: 'Simmtronics', logo: simmtronicsLogo },
-    { name: 'Think Smarter Products', logo: thinkSmarterProductsLogo },
-    { name: 'Truvy', logo: truvyLogo },
-    { name: 'REUZEL', logo: reuzelLogo },
-    { name: 'RELACORE', logo: relacoreLogo },
-    { name: 'R+F', logo: rfLogo },
-    { name: 'Young Living', logo: youngLivingLogo },
-    { name: 'Younique', logo: youniqueLogo },
-    { name: 'Zantrex', logo: zantrexLogo },
-    { name: 'Zive', logo: ziveLogo },
-  ];
-
-  const capabilities = [
-    {
-      icon: ShoppingCart,
-      title: 'Marketplace Management',
-      description: 'End-to-end operations across Amazon, Walmart, eBay, and international platforms.',
-    },
-    {
-      icon: Globe2,
-      title: 'Global Expansion',
-      description: 'Repeatable launch system for new marketplaces: account setup, listing deployment, and go-live coordination.',
-    },
-    {
-      icon: Search,
-      title: 'Listing Optimization',
-      description: 'Title structure, attribute mapping, keyword placement, and conversion-focused creative.',
-    },
-    {
-      icon: BarChart3,
-      title: 'Advertising Operations',
-      description: 'Campaign architecture, bid management, creative rotation, and performance analysis.',
-    },
-    {
-      icon: Package,
-      title: 'Inventory + Forecasting',
-      description: 'Demand planning, marketplace allocation, reorder triggers, and inventory health monitoring.',
-    },
-    {
-      icon: Shield,
-      title: 'Brand Protection',
-      description: 'Unauthorized seller detection, IP enforcement, catalog integrity, and marketplace policy monitoring.',
-    },
-    {
-      icon: Database,
-      title: 'Data + Reporting Layer',
-      description: 'Unified dashboards, SKU-level attribution, regional performance, and actionable insights.',
-    },
-    {
-      icon: Cpu,
-      title: 'Execution Engine',
-      description: 'We use internal systems, automation, and bulk operations to keep catalogs clean, changes consistent, and execution fast across marketplaces.',
-    },
-  ];
-
-  const executionSteps = [
-    {
-      step: '01',
-      title: 'Assess',
-      description: 'Intake current state, baseline performance, map SKU catalog, identify quick wins and structural gaps.',
-    },
-    {
-      step: '02',
-      title: 'Build the System',
-      description: 'Establish rules, workflows, reporting structure, and automation. Set up the repeatable operating model.',
-    },
-    {
-      step: '03',
-      title: 'Execute and Iterate',
-      description: 'Run weekly operating cadence: listings, ads, inventory, catalog health. Track, refine, and document every cycle.',
-    },
-    {
-      step: '04',
-      title: 'Scale Globally',
-      description: 'Replicate the proven system across new marketplaces and regions using the same operational framework.',
-    },
+    { name: 'AP24', logo: ap24Logo, tone: 'pale' },
+    { name: 'Ambr Group', logo: ambrGroupLogo, tone: 'dark' },
+    { name: 'Bona Botanica', logo: bonaBotanicaLogo, tone: 'dark' },
+    { name: 'Beauty Focus', logo: beautyFocusLogo },
+    { name: 'Botalab', logo: botalabLogo, tone: 'dark' },
+    { name: 'Bode Pro', logo: bodeProLogo, tone: 'deep' },
+    { name: 'Epoch', logo: epochLogo, tone: 'deep' },
+    { name: "Doctor's Best", logo: doctorsBestLogo, tone: 'pale' },
+    { name: 'Gentlemen Republic', logo: gentlemenRepublicLogo, tone: 'dark' },
+    { name: 'Ice Elements', logo: iceElementsLogo, tone: 'dark' },
+    { name: 'Incellderm', logo: incelldermLogo, tone: 'dark' },
+    { name: 'Lifening', logo: lifeningLogo, tone: 'dark' },
+    { name: 'Healthy Home', logo: healthyHomeLogo },
+    { name: 'Heroine Make', logo: heroineMakeLogo, tone: 'light' },
+    { name: 'K', logo: kLogo, tone: 'light' },
+    { name: 'Kings', logo: kingsLogo, tone: 'light' },
+    { name: 'Life Cider', logo: lifeCiderLogo },
+    { name: 'Make Wellness', logo: makeWellnessLogo, tone: 'light' },
+    { name: 'Novex Biotech', logo: novexBiotechLogo, tone: 'dark' },
+    { name: 'Muscle Moose', logo: muscleMooseLogo, tone: 'deep' },
+    { name: 'Midisem', logo: midisemLogo, badge: true },
+    { name: 'Lionstrike', logo: lionStrikeLogo, tone: 'dark' },
+    { name: 'Neumi', logo: neumiLogo, tone: 'dark' },
+    { name: 'Mixhers', logo: mixhersLogo },
+    { name: 'Made', logo: madeLogo, tone: 'dark' },
+    { name: 'LivePure', logo: livePureLogo, tone: 'dark' },
+    { name: 'NOW Foods', logo: nowLogo, tone: 'deep' },
+    { name: 'PhoneSoap', logo: phoneSoapLogo },
+    { name: 'Radiansome', logo: radiansomeLogo, tone: 'dark' },
+    { name: 'Perfect Press', logo: perfectPressLogo, tone: 'dark' },
+    { name: 'Plexus', logo: plexusLogo },
+    { name: 'Pure Fuel', logo: pureFuelLogo, tone: 'dark' },
+    { name: 'Pharmanex', logo: pharmanexLogo, tone: 'pale' },
+    { name: 'Nutricentials', logo: nutricientialsLogo, tone: 'light' },
+    { name: 'Organo', logo: organoLogo, tone: 'deep' },
+    { name: 'SeroVital', logo: seroVitalLogo, tone: 'dark' },
+    { name: 'Sutera', logo: suteraLogo, tone: 'dark' },
+    { name: 'Thrive', logo: thriveLogo, tone: 'deep' },
+    { name: 'Tranont', logo: tranontLogo, tone: 'dark' },
+    { name: 'Simmtronics', logo: simmtronicsLogo, tone: 'dark' },
+    { name: 'Truvy', logo: truvyLogo, tone: 'dark' },
+    { name: 'Reuzel', logo: reuzelLogo, tone: 'dark' },
+    { name: 'Relacore', logo: relacoreLogo, tone: 'dark' },
+    { name: 'Rodan + Fields', logo: rfLogo, tone: 'pale' },
+    { name: 'Zantrex', logo: zantrexLogo, tone: 'dark' },
+    { name: 'Zive', logo: ziveLogo, tone: 'dark' },
   ];
 
   const featuredCases = [
     {
-      pillar: 'Purchase',
-      title: 'Catalog Rebuild + Conversion Clarity',
+      pillar: 'Sell · Advertise · Protect',
+      title: 'Sutera: Lower Fees, Higher Conversion, Branded Search Won Back',
       marketplace: 'Amazon US',
       region: 'North America',
-      objective: 'Fix fragmented catalog structure and improve listing quality',
-      link: '/case-studies#catalog-rebuild',
+      objective: 'Cut FBA fees on 18 of 21 products, lift conversion 21% in A/B tests and win back branded search from competitors',
+      metric: '+21%',
+      metricLabel: 'conversion in A/B tests',
+      link: '/case-studies/sutera-amazon-fees-conversion-brand-defense',
     },
     {
-      pillar: 'Expand',
-      title: 'Multi-Market Launch Pipeline',
-      marketplace: 'Amazon EU',
-      region: 'Europe',
-      objective: 'Launch into 5 European markets with streamlined marketplace setup',
-      link: '/case-studies#eu-expansion',
-    },
-    {
-      pillar: 'Cover',
-      title: 'Advertising Operational Restructure',
-      marketplace: 'Amazon + Walmart',
+      pillar: 'Buy · Sell',
+      title: 'Auto Parts Brand: Amazon 1P vs Epic 3P',
+      marketplace: 'Amazon US',
       region: 'North America',
-      objective: 'Reorganize ad structure and improve ROAS accountability',
-      link: '/case-studies#ad-restructure',
+      objective: 'Compare Amazon 1P with Epic’s 3P offer: the brand pays no Amazon fees and nets more per unit',
+      metric: '+159%',
+      metricLabel: 'net revenue per unit on one brake kit, based on Epic’s offer',
+      link: '/case-studies/auto-parts-amazon-1p-vs-epic-3p',
     },
   ];
 
-  const entityFacts = [
-    {
-      label: 'Company',
-      value: 'Epic Global Inc.',
-      detail: 'Global marketplace operator and operating platform',
-    },
-    {
-      label: 'Founder',
-      value: 'Glen Jensen',
-      detail: 'Founder and operator of the Epic model',
-    },
-    {
-      label: 'Headquarters',
-      value: 'United States',
-      detail: 'Built for North America and international expansion',
-    },
-    {
-      label: 'Business model',
-      value: 'Buy, Sell, Advertise, Protect',
-      detail: 'Epic buys inventory, operates channels, funds ads, and protects brand equity',
-    },
-    {
-      label: 'Market coverage',
-      value: '40 countries',
-      detail: 'Operating across 40 countries and growing',
-    },
-    {
-      label: 'Primary marketplaces',
-      value: 'Amazon, Walmart, eBay',
-      detail: 'Plus select approved international ecommerce platforms',
-    },
+  const model = [
+    { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We buy your inventory upfront at wholesale. You get cash; we own the stock.', tagline: 'Cash now. We own the stock.' },
+    { icon: Globe2, num: '02', title: 'Sell', desc: 'We run your listings on Amazon first, plus Walmart and international.', tagline: 'One system. Every market.' },
+    { icon: BarChart3, num: '03', title: 'Advertise', desc: 'We pay for and run the ads, built for profit, not spend.', tagline: 'We fund. We optimize.' },
+    { icon: Shield, num: '04', title: 'Protect', desc: 'We hold your price at or above MAP, act on unauthorized sellers and defend your branded search.', tagline: 'Your brand. Our defense.' },
   ];
 
   return (
-    <div className="min-h-screen text-white bg-gradient-to-br from-transparent via-transparent to-transparent dark:text-white dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:text-gray-900 soft-dark:from-lime-500 soft-dark:via-lime-100 soft-dark:to-white leaf:text-gray-900 leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:text-gray-900 water:from-lime-500 water:via-lime-100 water:to-white light:text-gray-900 light:from-lime-400 light:via-lime-100 light:to-white orange:text-gray-900 orange:from-[#F68932] orange:via-orange-100 orange:to-white">
-      <SEO 
-        title="Epic Global Inc. - Zero-Risk Global Commerce Operator"
-        description="The world's first Zero-Risk Global Commerce Operator. We purchase inventory upfront, operate marketplace storefronts, fund advertising, and protect your brand. Expand to 40 countries risk-free."
-        canonicalUrl="https://epicglobalinc.com/"
-        keywords="global commerce operator, ecommerce operator, marketplace expansion, amazon FBA, international ecommerce, zero risk ecommerce"
-      />
+    <div ref={rootRef} className={PAGE_BG}>
       <StructuredData data={organizationSchema} />
       <StructuredData data={founderSchema} />
       <StructuredData data={websiteSchema} />
-      <StructuredData data={getWebPageSchema('Home', 'https://epicglobalinc.com', 'Global marketplace operator and technology platform for end-to-end eCommerce execution')} />
+      <StructuredData data={getWebPageSchema('Home', `${siteConfig.url}`, 'Amazon-first wholesale trade partner and marketplace operator that buys inventory and sells it on Amazon, Walmart, eBay, TikTok Shop, Temu, Shopify and other international marketplaces')} />
+      <StructuredData data={getFAQPageSchema(HOME_FAQ.map((f) => ({ question: f.q, answer: f.a })), `${siteConfig.url}/`)} />
       {serviceSchemas.map((schema) => (
         <StructuredData key={schema['@id']} data={schema} />
       ))}
-      
-      {/* Hero Section */}
-      <section className="relative pt-40 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Animated particles background */}
-        <ParticlesBackground />
-        
-        <div className="absolute inset-x-0 top-24 bottom-0 z-0 flex items-center justify-center" style={{ opacity: 0.6 }}>
-          <div className="w-full h-full max-w-4xl max-h-[700px] relative">
-            <Globe darkerParticles={true} />
-          </div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-block px-4 py-2 bg-cyan-500/20 soft-dark:bg-cyan-600/30 water:bg-gradient-to-r water:from-emerald-600 water:to-emerald-700 water:text-white water:shadow-lg water:shadow-emerald-500/20 leaf:bg-gradient-to-r leaf:from-sky-600 leaf:to-sky-700 text-cyan-300 dark:text-cyan-300 soft-dark:text-cyan-900 leaf:text-white light:text-cyan-900 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:text-white orange:shadow-lg orange:shadow-orange-500/20 leaf:shadow-lg leaf:shadow-sky-500/20 rounded-full text-sm font-semibold tracking-wide mb-6"
-            >
-              THE OPERATING SYSTEM FOR MARKETPLACE COMMERCE
-            </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-white dark:text-white leaf:text-gray-900 water:text-gray-900 light:text-gray-900 orange:text-[#101828] leading-tight"
-            >
-              We Buy It. You Profit.&trade;
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg sm:text-xl text-[rgb(0,0,0)] dark:text-gray-300 soft-dark:text-gray-800 leaf:text-gray-900 water:text-[#101828] light:text-gray-700 orange:text-[#101828] mb-8 max-w-3xl mx-auto leading-relaxed"
-            >
-              Epic Global Inc. is the world's first <strong className="text-white dark:text-white soft-dark:text-gray-900 water:text-[#101828] orange:text-[#101828]">Zero-Risk Global Commerce Operator</strong>. We replace marketplace complexity with infrastructure. Purchase inventory. Operate storefronts. Fund advertising. Protect brand equity. You carry zero risk. Zero operational burden.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
-            >
-              <CtaButton variant="primary" size="lg" location="Hero Section" />
-              <Link
-                href="/case-studies"
-                onClick={() => trackClick('View Case Studies', 'CTA Button', { location: 'Hero Section' })}
-                className="px-8 py-3.5 bg-white/10 dark:bg-white/10 soft-dark:bg-white/70 leaf:bg-white/70 water:bg-white/70 light:bg-white/10 orange:bg-white/70 text-[rgb(0,0,0)] dark:text-white soft-dark:text-gray-900 leaf:text-gray-900 water:text-[#101828] light:text-gray-900 orange:text-[#101828] rounded-lg hover:bg-white/20 soft-dark:hover:bg-white/80 orange:hover:bg-white/80 leaf:hover:bg-white/80 water:hover:bg-white/80 transition-all border border-white/20 orange:border-white/30 leaf:border-white/30 water:border-white/30 backdrop-blur-sm text-base font-medium hover:scale-105 active:scale-95"
-              >
-                View Case Studies
-              </Link>
-            </motion.div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-sm text-cyan-400/70 dark:text-cyan-400/70 soft-dark:text-cyan-600 water:text-lime-800 leaf:text-sky-700 light:text-cyan-600 orange:text-orange-700 font-medium"
-            >
-              We buy it. You profit.
-            </motion.p>
-          </div>
-        </div>
-      </section>
 
-      {/* Trust Logos Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-        className="py-16 px-0 overflow-hidden"
-      >
-        <TrustLogosMarquee brands={brands} />
-      </motion.section>
+      {/* Chapter rail (wide screens): real links to each chapter; the line fills as you read. */}
+      <ChapterRail chapters={VISIBLE_CHAPTERS} label="Homepage chapters" />
 
-      {/* Capabilities - Bento Grid */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-transparent pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 water:text-[#101828]">
-              Full-stack marketplace operations
-            </h2>
-            <p className="text-gray-700 max-w-2xl mx-auto dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-700 water:text-[#101828]">
-              Every capability required to run marketplaces as a system, not a collection of one-off tasks.
-            </p>
-          </div>
+      {/* 01 Hero: the answer first. Dims and lifts away as the brands chapter rises over it (desktop). */}
+      <section id="wholesale-trade-partner" data-chapter className="relative scroll-mt-20 pt-32 sm:pt-36 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Decorative: loads after the text and buttons, when the browser is idle */}
+        <DeferredMount>
+          <ParticlesBackground />
+        </DeferredMount>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {capabilities.map((capability, index) => {
-              const Icon = capability.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="group bg-gradient-to-br from-white/[0.12] to-white/[0.05] dark:from-white/[0.12] dark:to-white/[0.05] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-6 border border-white/20 dark:border-white/20 soft-dark:border-white/20 light:border-gray-200 orange:border-white/30 leaf:border-white/20 water:border-white/30 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 relative overflow-hidden flex flex-col min-h-[200px] dark:hover:border-cyan-500/50 dark:hover:shadow-cyan-500/20 soft-dark:hover:border-lime-600/50 soft-dark:hover:shadow-lime-500/20 light:hover:border-cyan-600/50 light:hover:shadow-cyan-500/20 orange:hover:border-orange-600/50 orange:hover:shadow-orange-500/20 leaf:hover:border-cyan-600/50 leaf:hover:shadow-cyan-500/20 water:hover:border-emerald-600/50 water:hover:shadow-emerald-500/20"
+        <div data-story="hero-inner" className={`relative z-10 ${INNER}`}>
+          <ChapterMarker id="wholesale-trade-partner" accent="text-[var(--pop)] orange:text-[#101828]" />
+          {/* Text and globe share one row, centered on each other (desktop). On phones the globe sits faintly behind the text. */}
+          <div className="relative lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:items-center lg:gap-10">
+            <div className="relative z-10">
+              <h1 className={`text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6 ${HEAD}`}>
+                We Buy It. You Profit.&trade;
+              </h1>
+              <p className={`${LEAD} max-w-3xl mb-10`}>
+                Epic Global Inc. buys your inventory upfront and runs your Amazon business, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment; <strong className={`font-semibold ${HEAD}`}>you keep the brand</strong>.
+              </p>
+              {/* Phones: the button at its natural width, centered, with "How it works" centered under it. */}
+              <div className="flex flex-col items-center sm:flex-row sm:items-center gap-4">
+                <CtaButton variant="primary" size="lg" location="Hero Section" />
+                <Link
+                  href="/case-studies"
+                  onClick={() => trackClick('View Case Studies', 'CTA Button', { location: 'Hero Section' })}
+                  className={siteConfig.bookACallEnabled ? QUIET_BUTTON : POP_BUTTON}
                 >
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-2xl dark:from-cyan-500/10 soft-dark:from-lime-500/10 light:from-cyan-500/10 orange:from-orange-500/10 leaf:from-sky-500/10" />
-                  </div>
-                  
-                  <div className="relative z-10 flex flex-col h-full">
-                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-cyan-500/20 dark:from-cyan-500/30 dark:to-cyan-600/10 dark:shadow-cyan-500/20 soft-dark:from-lime-600/30 soft-dark:to-lime-700/10 soft-dark:shadow-lime-500/20 light:from-cyan-600/30 light:to-cyan-700/10 light:shadow-cyan-500/20 orange:from-orange-600/30 orange:to-orange-700/10 orange:shadow-orange-500/20 water:from-lime-600/30 water:to-lime-700/10 water:shadow-lg water:shadow-lime-500/20 leaf:from-sky-600/30 leaf:to-sky-700/10 leaf:shadow-lg leaf:shadow-sky-500/20">
-                      <Icon className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors dark:text-cyan-400 dark:group-hover:text-cyan-300 soft-dark:text-lime-700 soft-dark:group-hover:text-lime-600 light:text-cyan-600 light:group-hover:text-cyan-500 orange:text-orange-700 water:text-lime-700 leaf:text-sky-700" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-white transition-colors duration-300 dark:text-white dark:group-hover:text-cyan-300 soft-dark:text-gray-900 soft-dark:group-hover:text-lime-700 light:text-gray-900 light:group-hover:text-cyan-600 orange:text-gray-900 orange:group-hover:text-orange-700 water:text-[#101828] water:group-hover:text-lime-700">{capability.title}</h3>
-                    <p className="text-sm text-gray-700 leading-relaxed flex-grow dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-700 water:text-[#101828]">{capability.description}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+                  View Case Studies
+                </Link>
+                <a href="#model" className={`text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
+                  How it works &darr;
+                </a>
+              </div>
+            </div>
+            {/* Decorative: loads after the text and buttons, when the browser is idle */}
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 opacity-30 lg:static lg:opacity-60 lg:aspect-square">
+              <DeferredMount>
+                <div className="relative h-full w-full animate-[fadeIn_1s_ease-out]">
+                  <Globe darkerParticles={true} />
+                </div>
+              </DeferredMount>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* How Our Model Works - REQUIRED HIGH ON PAGE */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-4">
-            <span className="inline-block px-4 py-1.5 bg-lime-600/20 text-lime-800 rounded-full text-xs font-semibold tracking-wide mb-6 dark:bg-cyan-500/20 dark:text-cyan-400 soft-dark:bg-cyan-500/20 soft-dark:text-cyan-600 light:bg-cyan-100 light:text-cyan-700 orange:bg-gradient-to-r orange:from-orange-600 orange:to-orange-700 orange:text-white orange:shadow-lg orange:shadow-orange-500/20 water:bg-lime-600/20 water:text-lime-900 leaf:bg-gradient-to-r leaf:from-sky-600 leaf:to-sky-700 leaf:text-white leaf:shadow-lg leaf:shadow-sky-500/20">
-              THE BUY-SELL-ADVERTISE-PROTECT MODEL
-            </span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-center bg-gradient-to-b from-gray-900 to-gray-700 bg-clip-text text-transparent leading-tight pb-2 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-700 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-[#101828] water:to-[#101828]">
-            Zero risk. Full control.<br />One operating system.
-          </h2>
-          <p className="text-lg text-gray-800 text-center max-w-3xl mx-auto mb-16 leading-relaxed dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
-            Epic operates through the Buy-Sell-Advertise-Protect model, which governs both U.S. and global execution. We assume inventory ownership, operate storefronts directly, fund advertising, and protect brand equity, all under one unified structure.
-          </p>
+      {/* Brands we work with: the logo strip sits right under the hero, still on the first screen. Bucked Up, Nu Skin,
+          Younique and Young Living lead (phones show Bucked Up and Nu Skin first). */}
+        <div className="relative z-10 mt-10 sm:mt-8 mb-2 px-4 sm:px-6 lg:px-8">
+          <p className={`${INNER} text-xs font-semibold uppercase tracking-[0.18em] mb-2 ${MUTED}`}>Brands we work with</p>
+          {/* On TV-size screens (1880px+, e.g. the office screen) the strip widens to fill the hero, stopping short of
+              the chapter dots on the right; smaller screens keep the content width. */}
+          <div className="max-w-6xl min-[1880px]:max-w-[min(calc(100vw_-_280px),2200px)] mx-auto"><TrustLogosMarquee brands={brands} /></div>
+        </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {[
-              { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'Epic performs an upfront inventory purchase, immediately converting inventory into cash for the brand and removing inventory risk.', tagline: 'Cash now. Risk removed.' },
-              { icon: Globe2, num: '02', title: 'Sell', desc: 'Epic operates listings and storefronts across U.S. and international marketplaces using a unified operational framework.', tagline: 'One system. Every market.' },
-              { icon: BarChart3, num: '03', title: 'Advertise', desc: 'Epic funds and manages all advertising in the U.S. and abroad. Campaigns are optimized for efficiency and profitability, not budget utilization.', tagline: 'We fund. We optimize.' },
-              { icon: Shield, num: '04', title: 'Protect', desc: 'Through the Brand Protection Command Center, Epic enforces pricing integrity, removes unauthorized sellers, and defends branded search demand globally.', tagline: 'Your brand. Our defense.' }
-            ].map((card, index) => {
+      {/* 02 Brands we work with: the trust logos, then the proof strip (real numbers in the HTML; they count up once on screen). */}
+      <section id="brands" data-chapter aria-label="Epic Global Inc. at a glance" className={CHAPTER}>
+        <BrandsProof brands={brands} logos={false} marker={<ChapterMarker id="brands" />} />
+      </section>
+
+      {/* 04 Buy, Sell, Advertise, Protect: the chapter pins and each card lights up in turn (ScrollHighlightSteps). */}
+      <section id="model" data-chapter className={CHAPTER}>
+        <div className="max-w-7xl mx-auto">
+          <ScrollHighlightSteps
+            header={
+              <>
+                <ChapterMarker id="model" />
+                <WordReveal
+                  lines={['We own the inventory.', 'You keep the brand.']}
+                  className={`text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-5 pb-1 ${HEAD}`}
+                />
+                <p className={`${LEAD} max-w-3xl mb-8`}>Four steps, one partner.</p>
+              </>
+            }
+            cards={model.map((card) => {
               const Icon = card.icon;
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative bg-gradient-to-br from-white/10 to-white/[0.05] dark:from-white/10 dark:to-white/[0.05] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 border border-white/20 dark:border-white/20 soft-dark:border-white/20 light:border-gray-200 orange:border-white/30 leaf:border-white/20 water:border-white/30 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/20 hover:-translate-y-1 dark:hover:border-cyan-500/30 dark:hover:shadow-cyan-500/10 soft-dark:hover:border-lime-600/30 soft-dark:hover:shadow-lime-500/10 light:hover:border-cyan-600/30 light:hover:shadow-cyan-500/10 orange:hover:border-orange-600/30 orange:hover:shadow-orange-500/10 leaf:hover:border-cyan-600/50 leaf:hover:shadow-cyan-500/20 water:hover:border-emerald-600/50 water:hover:shadow-emerald-500/20"
-                >
-                  {/* Number indicator */}
-                  <div className="absolute top-6 right-6 text-5xl font-bold text-cyan-500/20 group-hover:text-cyan-500/30 transition-colors dark:text-cyan-500/20 dark:group-hover:text-cyan-500/30 soft-dark:text-lime-700/20 soft-dark:group-hover:text-lime-700/30 light:text-cyan-600/20 light:group-hover:text-cyan-600/30 orange:text-orange-700/20 orange:group-hover:text-orange-700/30 leaf:text-cyan-600/20 leaf:group-hover:text-cyan-600/30 water:text-emerald-600/20 water:group-hover:text-emerald-600/30">
+                <div key={card.title} className={`${CARD} relative h-full p-6`}>
+                  <div aria-hidden="true" className={`absolute top-5 right-6 text-4xl font-bold tabular-nums opacity-20 ${HEAD}`}>
                     {card.num}
                   </div>
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-all dark:bg-cyan-500/5 dark:group-hover:bg-cyan-500/10 soft-dark:bg-lime-500/5 soft-dark:group-hover:bg-lime-500/10 light:bg-cyan-500/5 light:group-hover:bg-cyan-500/10 orange:bg-orange-500/5 orange:group-hover:bg-orange-500/10 water:bg-sky-500/5 water:group-hover:bg-sky-500/10 leaf:bg-lime-500/5 leaf:group-hover:bg-lime-500/10"></div>
-                  <div className="relative">
-                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/30 to-cyan-600/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all dark:from-cyan-500/20 dark:to-cyan-600/10 soft-dark:from-lime-600/20 soft-dark:to-lime-700/10 light:from-cyan-600/20 light:to-cyan-700/10 orange:from-orange-600/30 orange:to-orange-700/10 orange:shadow-lg orange:shadow-orange-500/20 water:from-lime-600/30 water:to-lime-700/10 water:shadow-lg water:shadow-lime-500/20 leaf:from-sky-600/30 leaf:to-sky-700/10 leaf:shadow-lg leaf:shadow-sky-500/20">
-                      <Icon className="w-6 h-6 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-lime-700" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">{card.title}</h3>
-                    <p className="text-gray-700 mb-4 leading-relaxed dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
-                      {card.desc}
-                    </p>
-                    <p className="text-sm text-cyan-400 font-medium dark:text-cyan-400 soft-dark:text-lime-800 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-lime-700">
-                      {card.tagline}
-                    </p>
+                  <div className={`${ICON_TILE} mb-6`}>
+                    <Icon className="w-5 h-5" aria-hidden="true" />
                   </div>
-                </motion.div>
+                  <h3 className={`${H3} mb-3`}>{card.title}</h3>
+                  <p className={`leading-relaxed ${BODY}`}>{card.desc}</p>
+                </div>
               );
             })}
-          </div>
-
-          {siteConfig.bookACallEnabled ? (
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <CtaButton variant="primary" size="md" location="Model Section" />
-            </div>
-          ) : null}
+            footer={
+              siteConfig.bookACallEnabled ? (
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <CtaButton variant="secondary" size="md" location="Model Section" />
+                </div>
+              ) : null
+            }
+          />
         </div>
       </section>
 
-      {/* Featured Case Studies */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-[#101828]">
-              How we execute
-            </h2>
-            <p className="text-gray-700 max-w-2xl mx-auto dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-700 leaf:text-gray-700 water:text-[#101828]">
-              Real outcomes from real operations, organized around the operating model behind our marketplace execution.
-            </p>
-          </div>
+      {/* Who we're a fit for: right after how it works, so brands check fit before the results. */}
+      <section id="fit" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker id="fit" />
+          <h2 className={`${H2} mb-8`}>Who we&apos;re a fit for</h2>
+          <FitColumns />
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {featuredCases.map((caseStudy, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Link
-                  href={caseStudy.link}
-                  className="group bg-gradient-to-br from-white/10 to-white/[0.05] dark:from-white/10 dark:to-white/[0.05] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-sm rounded-xl p-6 border border-white/20 dark:border-white/20 soft-dark:border-white/20 light:border-gray-200 orange:border-white/20 leaf:border-white/20 water:border-white/30 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 block h-full hover:-translate-y-1 dark:hover:border-cyan-500/30 dark:hover:shadow-cyan-500/10 soft-dark:hover:border-lime-600/30 soft-dark:hover:shadow-lime-500/10 light:hover:border-cyan-600/30 light:hover:shadow-cyan-500/10 orange:hover:border-orange-600/30 orange:hover:shadow-orange-500/10 leaf:hover:border-cyan-600/50 leaf:hover:shadow-cyan-500/20 water:hover:border-emerald-600/50 water:hover:shadow-emerald-500/20"
-                >
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-xs font-semibold dark:bg-cyan-500/20 dark:text-cyan-400 soft-dark:bg-lime-600/20 soft-dark:text-lime-800 light:bg-cyan-100 light:text-cyan-700 orange:bg-orange-700/30 orange:text-gray-900 water:bg-lime-600/20 water:text-lime-900 leaf:bg-sky-600/20 leaf:text-sky-900">
-                      {caseStudy.pillar}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold mb-3 text-gray-900 group-hover:text-white transition-colors dark:text-white dark:group-hover:text-cyan-400 soft-dark:text-gray-900 soft-dark:group-hover:text-lime-700 light:text-gray-900 light:group-hover:text-cyan-600 orange:text-gray-900 orange:group-hover:text-orange-700 leaf:text-gray-900 leaf:group-hover:text-cyan-700 water:text-[#101828] water:group-hover:text-emerald-700">
-                    {caseStudy.title}
-                  </h3>
-                  <div className="space-y-2 mb-4">
-                    <p className="text-sm text-gray-700 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-700 leaf:text-gray-700 water:text-[#101828]">
-                      <span className="text-gray-800 dark:text-gray-200 soft-dark:text-gray-800 light:text-gray-800 orange:text-gray-800 leaf:text-gray-800 water:text-[#101828]">Marketplace:</span> {caseStudy.marketplace}
-                    </p>
-                    <p className="text-sm text-gray-700 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-700 leaf:text-gray-700 water:text-[#101828]">
-                      <span className="text-gray-800 dark:text-gray-200 soft-dark:text-gray-800 light:text-gray-800 orange:text-gray-800 leaf:text-gray-800 water:text-[#101828]">Region:</span> {caseStudy.region}
-                    </p>
-                  </div>
-                  <p className="text-sm text-gray-800 mb-4 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-gray-800 leaf:text-gray-800 water:text-[#101828]">{caseStudy.objective}</p>
-                  <div className="flex items-center gap-2 text-cyan-400 text-sm font-medium dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-lime-700 leaf:text-sky-700">
-                    View case study
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </Link>
-              </motion.div>
+      {/* 05 How we execute: two featured case studies settle in, then the way to all of them. */}
+      <section id="case-studies" data-chapter className="scroll-mt-20 pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className={INNER}>
+          <ChapterMarker id="case-studies" />
+          <h2 className={`${H2} mb-10`}>Results from real brands</h2>
+
+          <div data-story="fade-up" className="grid md:grid-cols-2 gap-6 mb-10">
+            {featuredCases.map((caseStudy) => (
+              <Link key={caseStudy.link} href={caseStudy.link} className={`${CARD_LINK} group p-6 h-full`}>
+                <p className={`text-4xl font-bold tracking-tight tabular-nums ${ACCENT}`}>{caseStudy.metric}</p>
+                <p className={`text-sm mb-4 ${MUTED}`}>{caseStudy.metricLabel}</p>
+                <h3 className={`text-lg font-semibold mb-4 ${HEAD}`}>{caseStudy.title}</h3>
+
+                <span className={`inline-flex items-center gap-2 text-sm font-semibold ${ACCENT}`}>
+                  View case study
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </Link>
             ))}
           </div>
 
-          <div className="text-center">
-            <Link
-              href="/case-studies"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-gray-900 rounded-lg hover:bg-white/20 transition-all border border-white/20 text-sm font-medium hover:scale-105 active:scale-95 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-[#101828]"
-            >
-              View all case studies
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          <Link href="/case-studies" className={QUIET_BUTTON}>
+            View all case studies
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-gradient-to-br from-white/[0.12] to-white/[0.04] dark:from-white/[0.12] dark:to-white/[0.04] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-white/20 soft-dark:border-white/20 light:border-gray-200 orange:border-white/30 leaf:border-white/20 water:border-white/30 p-8 md:p-10">
-            <div className="max-w-4xl mb-8">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828]">
-                Company Facts
-              </h2>
-              <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828] leading-relaxed">
-                Epic Global Inc. is a global marketplace operator that buys inventory at wholesale, manages marketplace sales channels, funds advertising, and handles brand protection across international ecommerce platforms. The company is led by Glen Jensen and operates across Amazon, Walmart, eBay, and select international marketplaces with a system built around the Buy, Sell, Advertise, Protect model.
-              </p>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {entityFacts.map((fact) => (
-                <div
-                  key={fact.label}
-                  className="rounded-2xl border border-white/15 dark:border-white/15 soft-dark:border-white/20 light:border-gray-200 orange:border-white/20 leaf:border-white/20 water:border-white/20 bg-white/5 dark:bg-white/5 soft-dark:bg-white/60 light:bg-white orange:bg-white/40 leaf:bg-white/50 water:bg-white/50 p-5"
-                >
-                  <p className="text-xs uppercase tracking-[0.18em] text-cyan-500 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700 mb-2">
-                    {fact.label}
-                  </p>
-                  <p className="text-lg font-semibold text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-[#101828] mb-2">
-                    {fact.value}
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828] leading-relaxed">
-                    {fact.detail}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+      {/* Epic vs agency vs aggregator: the comparison a brand owner makes first, as a table. */}
+      <section id="compare" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker id="compare" />
+          <h2 className={`${H2} mb-8`}>A wholesale trade partner, not an agency or aggregator</h2>
+          <CompareTable />
         </div>
       </section>
 
-      {/* Final CTA Strip */}
+      <section id="faq" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker id="faq" />
+          <h2 className={`${H2} mb-8`}>Common questions</h2>
+          <HomeFaq />
+        </div>
+      </section>
+
+      {/* 07 Next step: the closing call to action (only while booking a call is switched on). */}
       {siteConfig.bookACallEnabled ? (
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900">
-              Ready for an operator model,<br />not another agency?
-            </h2>
-            <p className="text-lg text-gray-800 mb-10 max-w-2xl mx-auto leading-relaxed dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-700 orange:text-gray-800 leaf:text-gray-700">
-              If you want execution that looks like a system, let's map your next 90 days.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <CtaButton variant="primary" size="lg" location="Final CTA Section" />
+        <section id="next-step" data-chapter className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
+          <div data-story="fade-up" className={INNER}>
+            <ChapterMarker id="next-step" />
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+              <div className="max-w-2xl">
+                <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-5 ${HEAD}`}>
+                  Ready for a wholesale trade partner,<br />not another agency?
+                </h2>
+                <p className={`${LEAD}`}>
+                  If you want execution that looks like a system, let&apos;s map your next 90 days.
+                </p>
+              </div>
+              <CtaButton variant="primary" size="lg" location="Final CTA Section" className="shrink-0 self-start md:self-auto" />
             </div>
           </div>
         </section>
@@ -572,4 +394,3 @@ export function Home() {
     </div>
   );
 }
-

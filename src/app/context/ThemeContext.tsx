@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 type ThemeMode = 'dark' | 'leaf' | 'water' | 'light' | 'orange';
-const THEME_STORAGE_KEY = 'epic-theme-v2';
+// v3 (Nov 5): dark is now the default; v2 had saved the old default (orange) for every visitor.
+const THEME_STORAGE_KEY = 'epic-theme-v3';
 
 interface ThemeContextType {
   theme: ThemeMode;
@@ -12,7 +13,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 const THEMES: ThemeMode[] = ['dark', 'leaf', 'water', 'light', 'orange'];
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<ThemeMode>('orange');
+  const [theme, setTheme] = useState<ThemeMode>('dark');
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, LogOut, User } from 'lucide-react';
 import { type MouseEvent, useState, useEffect, useRef } from 'react';
@@ -141,9 +142,9 @@ export function Navbar() {
   // Determine which logo to show based on theme
   const getLogoForTheme = () => {
     if (theme === 'water') {
-      return epicLogoDark.src; // Black logo for water/lime green theme
+      return epicLogoDark; // Black logo for water/lime green theme
     }
-    return epicLogo.src; // White/green gradient logo for all other themes
+    return epicLogo; // White/green gradient logo for all other themes
   };
 
   return (
@@ -158,15 +159,19 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2.5 group">
-            <img 
-              src={logo.src} 
-              alt="Epic Global Inc." 
-              className="w-11 h-11 transition-transform group-hover:scale-105" 
+            <Image
+              src={logo}
+              alt="Epic Global Inc."
+              sizes="44px"
+              priority
+              className="w-11 h-11 transition-transform group-hover:scale-105"
             />
-            <img 
-              src={getLogoForTheme()} 
-              alt="Epic" 
-              className="h-32 transition-transform group-hover:scale-105" 
+            <Image
+              src={getLogoForTheme()}
+              alt=""
+              sizes="128px"
+              priority
+              className="h-32 w-auto transition-transform group-hover:scale-105"
             />
           </Link>
 

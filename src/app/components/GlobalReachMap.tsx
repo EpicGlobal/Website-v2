@@ -1,300 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
+import { HEAD, RULE } from '@/app/components/story/tokens';
+import { MarketList } from '@/app/components/about/MarketList';
+import { countryData } from '@/app/data/markets';
 import { motion } from 'framer-motion';
 import { geoPath, geoMercator } from 'd3-geo';
 import { feature } from 'topojson-client';
 import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 
 // Country data with marketplaces
-const countryData = [
-  // North America
-  {
-    country: 'United States',
-    code: 'USA',
-    region: 'North America',
-    marketplaces: ['Amazon', 'Walmart', 'TikTok Shop', 'eBay', 'Coupang US Global'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Canada',
-    code: 'CAN',
-    region: 'North America',
-    marketplaces: ['Amazon', 'eBay'],
-    color: '#22d3ee',
-  },
-  
-  {
-    country: 'Mexico',
-    code: 'MEX',
-    region: 'Central America',
-    marketplaces: ['Amazon', 'Mercado Libre', 'TikTok Shop', 'Shopify'],
-    color: '#22d3ee',
-  },
-  
-  // South America
-  {
-    country: 'Argentina',
-    code: 'ARG',
-    region: 'South America',
-    marketplaces: ['Mercado Libre'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Colombia',
-    code: 'COL',
-    region: 'South America',
-    marketplaces: ['Mercado Libre'],
-    color: '#22d3ee',
-  },
-  
-  // Europe
-  {
-    country: 'Ireland',
-    code: 'IRL',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'United Kingdom',
-    code: 'GBR',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Portugal',
-    code: 'PRT',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Spain',
-    code: 'ESP',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'France',
-    code: 'FRA',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Netherlands',
-    code: 'NLD',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Belgium',
-    code: 'BEL',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Luxembourg',
-    code: 'LUX',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Germany',
-    code: 'DEU',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Italy',
-    code: 'ITA',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Denmark',
-    code: 'DNK',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Sweden',
-    code: 'SWE',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Poland',
-    code: 'POL',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Czechia',
-    code: 'CZE',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Slovakia',
-    code: 'SVK',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Hungary',
-    code: 'HUN',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Romania',
-    code: 'ROU',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Bulgaria',
-    code: 'BGR',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Greece',
-    code: 'GRC',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Cyprus',
-    code: 'CYP',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Malta',
-    code: 'MLT',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Austria',
-    code: 'AUT',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Slovenia',
-    code: 'SVN',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Croatia',
-    code: 'HRV',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Lithuania',
-    code: 'LTU',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Latvia',
-    code: 'LVA',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Estonia',
-    code: 'EST',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Finland',
-    code: 'FIN',
-    region: 'Europe',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  
-  // APAC
-  {
-    country: 'Australia',
-    code: 'AUS',
-    region: 'APAC',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'India',
-    code: 'IND',
-    region: 'APAC',
-    marketplaces: ['Amazon'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Japan',
-    code: 'JPN',
-    region: 'APAC',
-    marketplaces: ['Amazon', 'Rakuten'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Malaysia',
-    code: 'MYS',
-    region: 'APAC',
-    marketplaces: ['Shopee', 'Lazada'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Philippines',
-    code: 'PHL',
-    region: 'APAC',
-    marketplaces: ['Shopee', 'Lazada'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'Singapore',
-    code: 'SGP',
-    region: 'APAC',
-    marketplaces: ['Amazon', 'Shopee', 'Lazada'],
-    color: '#22d3ee',
-  },
-  {
-    country: 'South Korea',
-    code: 'KOR',
-    region: 'APAC',
-    marketplaces: ['Coupang', 'Naver'],
-    color: '#22d3ee',
-  },
-];
 
 export function GlobalReachMap() {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
@@ -416,6 +129,8 @@ export function GlobalReachMap() {
     // South America
     '032': 'ARG', // Argentina
     '170': 'COL', // Colombia
+    '152': 'CHL', // Chile
+    '604': 'PER', // Peru
     
     // Europe
     '040': 'AUT', // Austria
@@ -464,15 +179,42 @@ export function GlobalReachMap() {
   };
 
   useEffect(() => {
-    // Fetch world map data from CDN
-      fetch('//unpkg.com/world-atlas/countries-110m.json')
-      .then((response) => response.json())
-      .then((data) => {
-        const countries = feature(data, data.objects.countries) as unknown as { features: any[] };
-        setWorldMapData(countries);
-        setAllCountries(countries.features);
-      })
-      .catch((error) => console.error('Error loading world map:', error));
+    // The world shapes are the heavy part of this map (download, parse, ~180 animated paths), so they load only
+    // when the map is about to scroll into view; the page's text, stats and country list never wait for them.
+    // The file is world-atlas@2.0.2 countries-110m (ISC license, public/data/world-atlas-LICENSE.txt), served
+    // from this site so the map doesn't depend on another company's server.
+    const container = containerRef.current;
+    if (!container) return;
+    let cancelled = false;
+    const load = () => {
+      fetch('/data/world-countries-110m.json')
+        .then((response) => response.json())
+        .then((data) => {
+          if (cancelled) return;
+          const countries = feature(data, data.objects.countries) as unknown as { features: any[] };
+          setWorldMapData(countries);
+          setAllCountries(countries.features);
+        })
+        .catch((error) => console.error('Error loading world map:', error));
+    };
+    if (!('IntersectionObserver' in window)) {
+      load();
+      return () => { cancelled = true; };
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          observer.disconnect();
+          load();
+        }
+      },
+      { rootMargin: '600px 0px' },
+    );
+    observer.observe(container);
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
   }, []);
 
   // Native wheel listener for smooth zoom without page scroll
@@ -593,10 +335,7 @@ export function GlobalReachMap() {
 
   return (
     <div className="bg-gradient-to-br from-white/5 to-white/[0.02] dark:from-white/5 dark:to-white/[0.02] soft-dark:from-white/70 soft-dark:to-white/60 light:from-gray-50 light:to-white orange:from-white/70 orange:to-white/60 leaf:from-white/70 leaf:to-white/60 water:from-white/70 water:to-white/60 backdrop-blur-xl rounded-2xl p-8 border border-white/10 dark:border-white/10 soft-dark:border-white/20 light:border-gray-200 orange:border-white/20 leaf:border-white/20 water:border-white/30">
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-[rgb(0,0,0)] dark:text-white water:text-[#101828]">Global Marketplace Reach</h2>
-        <p className="text-[rgb(54,65,83)] dark:text-gray-400 soft-dark:text-[#101828] light:text-[#101828] orange:text-[#101828] water:text-gray-700">Hover over countries to see available marketplaces</p>
-      </div>
+      <p className="mb-6 text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700">Hover over a country to see its marketplaces</p>
 
       {/* Map Container */}
       <div 
@@ -753,7 +492,7 @@ export function GlobalReachMap() {
                       className={country ? 'cursor-pointer transition-all duration-300' : ''}
                       onMouseEnter={() => country && setHoveredCountry(countryCodeMap[feature.id])}
                       onMouseLeave={() => country && setHoveredCountry(null)}
-                      initial={{ opacity: 0 }}
+                      initial={false}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.05 + index * 0.002 }}
                       style={{
@@ -780,6 +519,8 @@ export function GlobalReachMap() {
                 // South America
                 ARG: { lat: -38.4161, lng: -63.6167 },
                 COL: { lat: 4.5709, lng: -74.2973 },
+                CHL: { lat: -33.4489, lng: -70.6693 },
+                PER: { lat: -12.0464, lng: -77.0428 },
                 
                 // Europe
                 AUT: { lat: 47.5162, lng: 14.5501 },
@@ -835,7 +576,10 @@ export function GlobalReachMap() {
               const projected = projection([coords.lng, coords.lat]);
               if (!projected) return null;
 
-              const [x, y] = projected;
+              // Round to 2 decimals: the server and the browser round the last digits of this math differently,
+              // which React reports as a hydration mismatch.
+              const x = Math.round(projected[0] * 100) / 100;
+              const y = Math.round(projected[1] * 100) / 100;
 
               return (
                 <g key={`marker-${country.code}`}>
@@ -879,24 +623,24 @@ export function GlobalReachMap() {
         {/* Tooltip */}
         {hoveredCountry && (
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute top-4 left-4 z-50 bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-slate-900/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-cyan-500/30 water:border-emerald-600/30 rounded-lg p-4 shadow-xl shadow-cyan-500/20 soft-dark:shadow-lime-500/20 water:shadow-emerald-500/20"
+            className="absolute top-4 left-4 z-50 bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-slate-900/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-cyan-500/30 water:border-emerald-600/30 rounded-lg p-4 shadow-xl shadow-cyan-500/20 soft-dark:shadow-lime-500/20 water:shadow-emerald-500/20 leaf:bg-white/95 leaf:border-sky-600/30"
           >
             {countryData
               .filter((c) => c.code === hoveredCountry)
               .map((country) => (
                 <div key={country.code}>
-                  <h3 className="text-lg font-bold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-white water:text-[#101828] mb-1">{country.country}</h3>
-                  <p className="text-xs text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-cyan-400 water:text-emerald-700 mb-3">{country.region}</p>
+                  <h3 className="text-lg font-bold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-white water:text-[#101828] mb-1 leaf:text-[#101828]">{country.country}</h3>
+                  <p className="text-xs text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-cyan-400 water:text-emerald-800 mb-3 leaf:text-sky-700">{country.region}</p>
                   <div className="space-y-1">
-                    <p className="text-xs text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-400 water:text-[#101828] font-semibold mb-2">Available Marketplaces:</p>
+                    <p className="text-xs text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-gray-400 water:text-[#101828] font-semibold mb-2 leaf:text-[#101828]">Available Marketplaces:</p>
                     {country.marketplaces.map((marketplace) => (
                       <div
                         key={marketplace}
-                        className="flex items-center gap-2 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-gray-300 water:text-[#101828]"
+                        className="flex items-center gap-2 text-sm text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-800 orange:text-gray-300 water:text-[#101828] leaf:text-[#101828]"
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 dark:bg-cyan-400 soft-dark:bg-lime-600 light:bg-cyan-600 orange:bg-cyan-400 water:bg-emerald-600" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 dark:bg-cyan-400 soft-dark:bg-lime-600 light:bg-cyan-600 orange:bg-cyan-400 water:bg-emerald-600 leaf:bg-sky-600" />
                         {marketplace}
                       </div>
                     ))}
@@ -912,28 +656,28 @@ export function GlobalReachMap() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={handleZoomIn}
-            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors"
+            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors leaf:bg-white/95 leaf:border-sky-600/30 leaf:hover:bg-sky-600/10"
             title="Zoom In"
           >
-            <ZoomIn className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700" />
+            <ZoomIn className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700" />
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={handleZoomOut}
-            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors"
+            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors leaf:bg-white/95 leaf:border-sky-600/30 leaf:hover:bg-sky-600/10"
             title="Zoom Out"
           >
-            <ZoomOut className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700" />
+            <ZoomOut className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700" />
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={handleMaximize}
-            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors"
+            className="bg-slate-900/95 dark:bg-slate-900/95 soft-dark:bg-white/95 light:bg-white orange:bg-white/95 water:bg-white/95 backdrop-blur-xl border border-cyan-500/30 dark:border-cyan-500/30 soft-dark:border-lime-600/30 light:border-cyan-500/30 orange:border-orange-600/30 water:border-emerald-600/30 rounded-lg p-2 hover:bg-cyan-500/10 soft-dark:hover:bg-lime-600/10 orange:hover:bg-orange-600/10 water:hover:bg-emerald-600/10 transition-colors leaf:bg-white/95 leaf:border-sky-600/30 leaf:hover:bg-sky-600/10"
             title="Reset View"
           >
-            <Maximize2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700" />
+            <Maximize2 className="w-5 h-5 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700" />
           </motion.button>
         </div>
       </div>
@@ -941,32 +685,43 @@ export function GlobalReachMap() {
       {/* Legend */}
       <div className="mt-6 flex items-center justify-center gap-8 text-sm">
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded-full bg-cyan-500/40 dark:bg-cyan-500/40 soft-dark:bg-lime-700/60 light:bg-cyan-500/40 orange:bg-orange-600/40 water:bg-emerald-500/60 border border-cyan-500 dark:border-cyan-500 soft-dark:border-lime-800 light:border-cyan-500 orange:border-orange-600 water:border-emerald-600" />
-          <span className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-900 light:text-gray-700 orange:text-[#101828] water:text-[#101828]">Active Markets</span>
+          <div className="w-4 h-4 rounded-full bg-cyan-500/40 dark:bg-cyan-500/40 soft-dark:bg-lime-700/60 light:bg-cyan-500/40 orange:bg-orange-600/40 water:bg-emerald-500/60 border border-cyan-500 dark:border-cyan-500 soft-dark:border-lime-800 light:border-cyan-500 orange:border-orange-600 water:border-emerald-600 leaf:bg-sky-500/60 leaf:border-sky-600" />
+          <span className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-900 light:text-gray-700 orange:text-[#101828] water:text-[#101828] leaf:text-[#101828]">Active Markets</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-cyan-400 dark:bg-cyan-400 soft-dark:bg-lime-900 light:bg-cyan-600 orange:bg-orange-600 water:bg-emerald-600" />
-          <span className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-900 light:text-gray-700 orange:text-[#101828] water:text-[#101828]">Market Locations</span>
+          <div className="w-2 h-2 rounded-full bg-cyan-400 dark:bg-cyan-400 soft-dark:bg-lime-900 light:bg-cyan-600 orange:bg-orange-600 water:bg-emerald-600 leaf:bg-sky-600" />
+          <span className="text-gray-400 dark:text-gray-400 soft-dark:text-gray-900 light:text-gray-700 orange:text-[#101828] water:text-[#101828] leaf:text-[#101828]">Market Locations</span>
         </div>
       </div>
 
       {/* Stats */}
       <div className="mt-8 grid grid-cols-3 gap-4">
-        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center">
-          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700">40</div>
-          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1">Countries</div>
+        <div className="rounded-xl p-4 text-center border shadow-sm bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10 soft-dark:bg-white/80 soft-dark:border-gray-200 light:bg-white light:border-gray-200 orange:bg-white/80 orange:border-orange-200 water:bg-white/75 water:border-emerald-200 leaf:bg-white/75 leaf:border-sky-200">
+          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">{countryData.length}</div>
+          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Countries</div>
         </div>
-        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center">
-          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700">
+        <div className="rounded-xl p-4 text-center border shadow-sm bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10 soft-dark:bg-white/80 soft-dark:border-gray-200 light:bg-white light:border-gray-200 orange:bg-white/80 orange:border-orange-200 water:bg-white/75 water:border-emerald-200 leaf:bg-white/75 leaf:border-sky-200">
+          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">
             {new Set(countryData.flatMap((c) => c.marketplaces)).size}
           </div>
-          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1">Marketplaces</div>
+          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Marketplaces</div>
         </div>
-        <div className="bg-white/5 dark:bg-white/5 soft-dark:bg-white/10 light:bg-gray-50 orange:bg-white/5 water:bg-white/10 rounded-lg p-4 text-center">
-          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-700">5</div>
-          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1">Regions</div>
+        <div className="rounded-xl p-4 text-center border shadow-sm bg-white/5 border-white/10 dark:bg-white/5 dark:border-white/10 soft-dark:bg-white/80 soft-dark:border-gray-200 light:bg-white light:border-gray-200 orange:bg-white/80 orange:border-orange-200 water:bg-white/75 water:border-emerald-200 leaf:bg-white/75 leaf:border-sky-200">
+          <div className="text-3xl font-bold text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 water:text-emerald-800 leaf:text-sky-700">{new Set(countryData.map((c) => c.region)).size}</div>
+          <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Regions</div>
         </div>
       </div>
+
+      {/* The same markets as plain text in the page HTML for search/AI crawlers; folded shut so the page stays clean.
+          The list layout lives in about/MarketList.tsx. */}
+      <details className="mt-8 group">
+        <summary className={`inline-flex cursor-pointer list-none items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium hover:border-[var(--pop)] [&::-webkit-details-marker]:hidden ${RULE} ${HEAD}`}>
+          <span className="group-open:hidden">See all {countryData.length} countries and marketplaces</span>
+          <span className="hidden group-open:inline">Hide the list</span>
+          <span aria-hidden="true" className="text-base leading-none transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <MarketList data={countryData} />
+      </details>
     </div>
   );
 }

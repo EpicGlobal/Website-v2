@@ -1,4 +1,5 @@
 import { siteConfig } from '@/site/site-config';
+import { MARKETPLACE_PLATFORMS } from '@/app/data/markets';
 
 interface StructuredDataProps {
   data: unknown;
@@ -30,8 +31,7 @@ const serviceDefinitions = [
     slug: 'marketplace-operations',
     name: 'Marketplace Operations',
     serviceType: 'Marketplace management',
-    description:
-      'Daily execution across Amazon, Walmart, eBay, and other approved marketplaces including listings, catalog hygiene, and operating workflows.',
+    description: `Daily execution across ${MARKETPLACE_PLATFORMS.slice(0, -1).join(', ')} and ${MARKETPLACE_PLATFORMS.at(-1)}, including listings, catalog hygiene, and operating workflows.`,
   },
   {
     slug: 'global-expansion',
@@ -78,15 +78,49 @@ const serviceDefinitions = [
 ] as const;
 
 const organizationReference = {
+  '@type': 'Organization',
   '@id': organizationId,
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: { '@type': 'ImageObject', url: `${siteConfig.url}${siteConfig.logo}` },
 };
+
+export const websiteReference = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  name: siteConfig.name,
+  url: siteConfig.url,
+};
+
+/** Organization reference for author/publisher on articles. */
+export const organizationRef = organizationReference;
+
+/** Article author: the named writer when the front matter has one, otherwise Epic Global Inc. (matches the Byline). */
+export function articleAuthor(name?: string) {
+  return name ? { '@type': 'Person', name, worksFor: organizationReference } : organizationReference;
+}
+
+/**
+ * The WebPage around an article or case study. reviewedBy and lastReviewed appear only when a review is recorded
+ * (front matter reviewedBy, reviewerRole, reviewedOn and reviewRecord), the same rule as the visible Byline.
+ */
+export function reviewedPage(url: string, review?: { by: string; role: string; on: string }) {
+  return {
+    '@type': 'WebPage',
+    '@id': url,
+    ...(review
+      ? { reviewedBy: { '@type': 'Person', name: review.by, jobTitle: review.role, worksFor: organizationReference }, lastReviewed: review.on }
+      : {}),
+  };
+}
 
 export const founderSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': founderId,
   name: siteConfig.founderName,
-  jobTitle: 'Founder',
+  jobTitle: 'Founder & CEO',
+  description: "Glen Jensen is the founder and CEO of Epic Global Inc., an Amazon-first wholesale trade partner and marketplace operator. He founded Epic on a simple principle: brands deserve a better way to succeed in ecommerce. Instead of an agency, Epic buys brands' inventory with its own capital and runs their marketplaces.",
   url: siteConfig.founderLinkedIn,
   sameAs: [siteConfig.founderLinkedIn],
   worksFor: organizationReference,
@@ -123,6 +157,7 @@ export const organizationSchema = {
     '@type': 'Place',
     name: siteConfig.headquarters,
   },
+  alternateName: siteConfig.alternateName,
   sameAs: siteConfig.organizationSameAs,
   founder: {
     '@id': founderId,
@@ -135,10 +170,12 @@ export const organizationSchema = {
     postalCode: siteConfig.postalCode,
     addressCountry: siteConfig.countryCode,
   },
+  telephone: siteConfig.telephone,
   contactPoint: [
     {
       '@type': 'ContactPoint',
       contactType: 'Sales',
+      telephone: siteConfig.telephone,
       email: siteConfig.contactEmail,
       areaServed: siteConfig.areaServed,
       availableLanguage: ['English'],
@@ -157,7 +194,7 @@ export const organizationSchema = {
     },
   ],
   areaServed: siteConfig.areaServed,
-  knowsAbout: siteConfig.knowsAbout,
+  knowsAbout: [...siteConfig.knowsAbout, ...MARKETPLACE_PLATFORMS.map((name) => (name === 'Walmart' ? 'Walmart Marketplace' : name))],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     '@id': serviceCatalogId,
@@ -166,7 +203,10 @@ export const organizationSchema = {
       '@type': 'ListItem',
       position: index + 1,
       item: {
+        '@type': 'Service',
         '@id': service['@id'],
+        name: service.name,
+        url: service.url,
       },
     })),
   },
@@ -177,8 +217,10 @@ export const websiteSchema = {
   '@type': 'WebSite',
   '@id': websiteId,
   name: siteConfig.name,
+  // Google's site-name fallbacks, so results say "Epic Global" (not the bare domain or another Epic).
+  alternateName: [...siteConfig.alternateName, 'epicglobalinc.com'],
   url: siteConfig.url,
-  description: 'Global marketplace operator and technology platform for end-to-end ecommerce execution',
+  description: 'Amazon-first wholesale trade partner and marketplace operator: buys brand inventory at wholesale and sells it on Amazon, Walmart, eBay, TikTok Shop, Temu, Shopify and other international marketplaces',
   publisher: organizationReference,
 };
 
@@ -206,9 +248,7 @@ export function getWebPageSchema(
     '@type': 'WebPage',
     ...pageData,
     about: organizationReference,
-    isPartOf: {
-      '@id': websiteId,
-    },
+    isPartOf: websiteReference,
     publisher: organizationReference,
   };
 }
@@ -265,15 +305,18 @@ export function getBreadcrumbSchema(items: Array<{ name: string; url: string }>)
 export function getCaseStudySchema(
   title: string,
   description: string,
-  datePublished: string,
+  datePublished: string | undefined,
   url: string,
+  image?: string,
 ) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
     description,
-    datePublished,
+    ...(datePublished ? { datePublished } : {}),
+    ...(image ? { image: [image] } : {}),
+    mainEntityOfPage: reviewedPage(url),
     author: organizationReference,
     publisher: {
       '@type': 'Organization',

@@ -2,15 +2,15 @@ import { Home } from '@/app/pages/Home';
 import { createPageMetadata } from '@/site/site-config';
 
 export const metadata = createPageMetadata({
-  title: 'Zero-Risk Global Commerce Operator',
+  title: 'Epic Global Inc. | Wholesale Trade Partner That Buys Your Inventory',
   description:
-    "The world's first Zero-Risk Global Commerce Operator. Epic Global purchases inventory upfront, operates marketplace storefronts, funds advertising, and protects your brand across 40 countries.",
+    "Epic Global buys your inventory upfront at wholesale, sells it on Amazon, Walmart and more in 42 countries, funds the ads and protects your brand.",
   path: '/',
   keywords: [
     'global commerce operator',
     'ecommerce operator',
     'marketplace expansion',
-    'zero risk ecommerce',
+    'wholesale trade partner',
   ],
 });
 

@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { isWebsitePreview } from '@/site/preview-mode';
 
 interface HubSpotFormEmbedProps {
   className?: string;
@@ -85,7 +86,13 @@ function ensureHubSpotFormScript() {
   return formScriptPromise;
 }
 
-export function HubSpotFormEmbed({
+export function HubSpotFormEmbed(props: HubSpotFormEmbedProps) {
+  return isWebsitePreview
+    ? <p role="status">Development preview: contact submissions are disabled.</p>
+    : <LiveHubSpotFormEmbed {...props} />;
+}
+
+function LiveHubSpotFormEmbed({
   className = '',
   successTitle = 'Thanks. Your request was submitted.',
   successMessage = 'Our team will review your information and follow up with the right next step.',

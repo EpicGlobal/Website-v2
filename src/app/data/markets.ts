@@ -1,0 +1,323 @@
+/**
+ * Every country Epic sells in and the marketplaces it runs there: the About map, its crawler-readable list and the
+ * Home "Marketplaces" number all read from here, so the counts always match. Marketplaces are counted once per
+ * platform (Walmart US and Walmart Canada are one platform).
+ */
+export const countryData = [
+  // North America
+  {
+    country: 'United States',
+    code: 'USA',
+    region: 'North America',
+    marketplaces: ['Amazon', 'Walmart', 'TikTok Shop', 'eBay', 'Temu', 'Coupang US Global'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Canada',
+    code: 'CAN',
+    region: 'North America',
+    marketplaces: ['Amazon', 'Walmart', 'eBay'],
+    color: '#22d3ee',
+  },
+  
+  {
+    country: 'Mexico',
+    code: 'MEX',
+    region: 'North America',
+    marketplaces: ['Amazon', 'Mercado Libre', 'TikTok Shop', 'Shopify'],
+    color: '#22d3ee',
+  },
+  
+  // South America
+  {
+    country: 'Argentina',
+    code: 'ARG',
+    region: 'South America',
+    marketplaces: ['Mercado Libre'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Colombia',
+    code: 'COL',
+    region: 'South America',
+    marketplaces: ['Mercado Libre'],
+    color: '#22d3ee',
+  },
+  // Chile and Peru added Nov 5, 2026 (Brex). Mercado Libre confirmed by Brex Nov 5; TikTok Shop, Coupang and Coupang US Global confirmed too.
+  {
+    country: 'Chile',
+    code: 'CHL',
+    region: 'South America',
+    marketplaces: ['Mercado Libre'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Peru',
+    code: 'PER',
+    region: 'South America',
+    marketplaces: ['Mercado Libre'],
+    color: '#22d3ee',
+  },
+  
+  // Europe
+  {
+    country: 'Ireland',
+    code: 'IRL',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'United Kingdom',
+    code: 'GBR',
+    region: 'Europe',
+    marketplaces: ['Amazon', 'eBay'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Portugal',
+    code: 'PRT',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Spain',
+    code: 'ESP',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'France',
+    code: 'FRA',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Netherlands',
+    code: 'NLD',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Belgium',
+    code: 'BEL',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Luxembourg',
+    code: 'LUX',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Germany',
+    code: 'DEU',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Italy',
+    code: 'ITA',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Denmark',
+    code: 'DNK',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Sweden',
+    code: 'SWE',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Poland',
+    code: 'POL',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Czechia',
+    code: 'CZE',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Slovakia',
+    code: 'SVK',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Hungary',
+    code: 'HUN',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Romania',
+    code: 'ROU',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Bulgaria',
+    code: 'BGR',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Greece',
+    code: 'GRC',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Cyprus',
+    code: 'CYP',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Malta',
+    code: 'MLT',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Austria',
+    code: 'AUT',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Slovenia',
+    code: 'SVN',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Croatia',
+    code: 'HRV',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Lithuania',
+    code: 'LTU',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Latvia',
+    code: 'LVA',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Estonia',
+    code: 'EST',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Finland',
+    code: 'FIN',
+    region: 'Europe',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  
+  // APAC
+  {
+    country: 'Australia',
+    code: 'AUS',
+    region: 'APAC',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'India',
+    code: 'IND',
+    region: 'APAC',
+    marketplaces: ['Amazon'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Japan',
+    code: 'JPN',
+    region: 'APAC',
+    marketplaces: ['Amazon', 'Rakuten'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Malaysia',
+    code: 'MYS',
+    region: 'APAC',
+    marketplaces: ['Shopee', 'Lazada'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Philippines',
+    code: 'PHL',
+    region: 'APAC',
+    marketplaces: ['Shopee', 'Lazada'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'Singapore',
+    code: 'SGP',
+    region: 'APAC',
+    marketplaces: ['Amazon', 'Shopee', 'Lazada'],
+    color: '#22d3ee',
+  },
+  {
+    country: 'South Korea',
+    code: 'KOR',
+    region: 'APAC',
+    marketplaces: ['Coupang', 'Naver'],
+    color: '#22d3ee',
+  },
+];
+
+/** Distinct marketplace platforms across all countries. */
+export const MARKETPLACE_COUNT = new Set(countryData.flatMap((c) => c.marketplaces)).size;
+
+/** Each marketplace platform once, main ones first, for the schema (Coupang US Global is part of Coupang). */
+const PLATFORM_ORDER = ['Amazon', 'Walmart', 'eBay', 'TikTok Shop', 'Temu', 'Shopify', 'Mercado Libre', 'Coupang', 'Shopee', 'Lazada', 'Rakuten', 'Naver'];
+const rank = (name: string) => (PLATFORM_ORDER.indexOf(name) + 1 || PLATFORM_ORDER.length + 1);
+export const MARKETPLACE_PLATFORMS = [...new Set(countryData.flatMap((c) => c.marketplaces))]
+  .filter((name) => name !== 'Coupang US Global')
+  .sort((a, b) => rank(a) - rank(b));
+
+/** Countries Epic sells in (the map list). */
+export const COUNTRY_COUNT = countryData.length;

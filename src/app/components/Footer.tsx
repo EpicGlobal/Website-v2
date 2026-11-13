@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { siteConfig } from '@/site/site-config';
+import Image from 'next/image';
 import { useTheme } from '@/app/context/ThemeContext';
 import logo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 import epicLogo from '@/assets/008bdb4c58b9b740867427493f73689a3f551b75.png';
@@ -10,10 +12,10 @@ export function Footer() {
 
   const getLogoForTheme = () => {
     if (theme === 'water') {
-      return epicLogoDark.src;
+      return epicLogoDark;
     }
 
-    return epicLogo.src;
+    return epicLogo;
   };
 
   return (
@@ -23,31 +25,36 @@ export function Footer() {
           <div className="md:col-span-5">
             <div className="flex items-center space-x-2.5 mb-4">
               <Link href="/" className="flex items-center space-x-2.5 group">
-                <img
-                  src={logo.src}
+                <Image
+                  src={logo}
                   alt="Epic Global Inc."
+                  sizes="44px"
                   className="w-11 h-11 transition-transform group-hover:scale-105"
                 />
-                <img
+                <Image
                   src={getLogoForTheme()}
-                  alt="Epic"
-                  className="h-24 transition-transform group-hover:scale-105"
+                  alt=""
+                  sizes="96px"
+                  className="h-24 w-auto transition-transform group-hover:scale-105"
                 />
               </Link>
             </div>
             <p className="text-gray-200 leaf:text-gray-100 text-sm max-w-md leading-relaxed mb-4">
-              Epic Global Inc. is the world's first Zero-Risk Global Commerce Operator. We
-              purchase inventory upfront, operate marketplace storefronts end to end, fund
-              all advertising and logistics, and protect brand equity while you carry zero
-              risk and zero operational burden.
+              Epic Global Inc. is an Amazon-first wholesale trade partner. We buy your inventory upfront, sell it on Amazon,
+              plus Walmart and international marketplaces, and pay for the ads, fees and fulfillment.
             </p>
             <p className="text-cyan-300 leaf:text-sky-200 text-sm font-medium">
-              We buy it. You profit.
+              We buy it. You profit.&trade;
             </p>
+            <address className="not-italic mt-3 text-sm text-gray-300 leaf:text-sky-100">
+              {siteConfig.streetAddress}, {siteConfig.locality}, {siteConfig.region} {siteConfig.postalCode}
+              <br />
+              <a href={`mailto:${siteConfig.contactEmail}`} className="underline underline-offset-2 hover:text-white">{siteConfig.contactEmail}</a>
+            </address>
           </div>
 
           <div className="md:col-span-3">
-            <h4 className="text-white text-sm font-semibold mb-4">Navigation</h4>
+            <h2 className="text-white text-sm font-semibold mb-4">Navigation</h2>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
@@ -78,7 +85,7 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-4">
-            <h4 className="text-white text-sm font-semibold mb-4">Resources</h4>
+            <h2 className="text-white text-sm font-semibold mb-4">Resources</h2>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/faq" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">

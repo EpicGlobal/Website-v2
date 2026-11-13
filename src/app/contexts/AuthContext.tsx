@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import { supabase } from '@/utils/supabase/client';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { projectId, publicAnonKey } from '@/utils/supabase/info';
+import { isWebsitePreview } from '@/site/preview-mode';
 
 interface User {
   id: string;
@@ -25,6 +26,17 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  if (isWebsitePreview) {
+    const disabled = async () => { throw new Error('Sign-in is disabled in the development preview.'); };
+    return <AuthContext.Provider value={{ user: null, isAuthenticated: false, isLoading: false,
+      signInWithGoogle: disabled, signInWithEmail: disabled, signUpWithEmail: disabled,
+      requestPasswordReset: disabled, updatePassword: disabled, logout: disabled,
+    }}>{children}</AuthContext.Provider>;
+  }
+  return <LiveAuthProvider>{children}</LiveAuthProvider>;
+}
+
+function LiveAuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 

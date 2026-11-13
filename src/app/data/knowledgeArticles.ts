@@ -1,7 +1,33 @@
+/*
+ * Knowledge Base articles. Each article is one Markdown file in content/knowledge-base/ (how to write, review and
+ * schedule one: content/knowledge-base/README.md). scripts/build-articles.mjs turns those files into
+ * knowledgeArticles.generated.ts before every build, so this file only holds the shape of an article and the
+ * publishing rules.
+ *
+ * Server-only data: the full list includes drafts and the publishing calendar. Browser components get articles
+ * through publishedArticles() and toArticleCard(), never the full list.
+ */
+import { generatedArticles } from './knowledgeArticles.generated';
+
+export type ArticleStatus = 'draft' | 'review' | 'approved' | 'live-unreviewed';
+
+export interface ArticleReview {
+  /** Reviewer's name, exactly as they agreed to be credited. */
+  by: string;
+  /** Their role at Epic, e.g. "Brand Manager". */
+  role: string;
+  /** YYYY-MM-DD they approved the final text. */
+  on: string;
+}
+
 export interface KnowledgeArticle {
   slug: string;
   title: string;
+  /** Shorter title for search results when the page title runs over 70 characters with " | Epic Global Inc." added. */
+  seoTitle?: string;
   summary: string;
+  /** Longer description for search results (150-160 characters) when the card summary is too short. */
+  seoDescription?: string;
   category: string;
   pillar?: string;
   marketplace?: string[];
@@ -9,383 +35,84 @@ export interface KnowledgeArticle {
   objective?: string;
   type?: 'Answer Page' | 'Playbook' | 'Checklist' | 'Glossary' | 'Template' | 'Deep Dive';
   difficulty?: 'Intro' | 'Operator' | 'Advanced';
+  /** The date readers see, like "January 22, 2026": the last edit, or the publish date if that's later. */
   lastUpdated: string;
+  /** YYYY-MM-DD the article first went live (front matter "published", else publishOn, else the last edit). */
+  published?: string;
+  /** YYYY-MM-DD. Until this day (Utah time) the article stays hidden: 404, no card, not in the sitemap or feeds. */
+  publishOn?: string;
   tags: string[];
   featured?: boolean;
   downloadable?: boolean;
   downloadUrl?: string;
-  content?: any; // Will be used for actual article content
-  hasContent?: boolean; // Whether the article content has been written
+  /** Review status from the front matter; only approved and live-unreviewed articles are ever published. */
+  status?: ArticleStatus;
+  /** Who wrote it (front matter "author"); without it the byline says "the Epic team". */
+  author?: string;
+  /** The recorded approval. Present only on approved articles; the byline and schema show a reviewer only then. */
+  review?: ArticleReview;
+  /** Whether the article is written (and, from articlesAsOf, already published). */
+  hasContent?: boolean;
+  /** Slugs to show under Related Articles first (only published ones are shown). */
+  related?: string[];
 }
 
-// Articles that have full content written
-export const articlesWithContent = [
-  'what-is-epic-global-inc',
-  'how-our-model-works',
-  'catalog-hygiene-what-it-is-why-it-matters',
-  'kpi-glossary',
-  'who-we-are-fit-for',
-  'marketplace-operating-cadence',
-  'epic-operational-process',
-];
+/** Every article in list order, as written (drafts and scheduled ones too). Server-only. */
+export const knowledgeArticles: KnowledgeArticle[] = generatedArticles;
 
-export const knowledgeArticles: KnowledgeArticle[] = [
-  // START HERE
-  {
-    slug: 'what-is-epic-global-inc',
-    title: 'What is Epic Global Inc.?',
-    summary: 'Epic Global Inc. is a global marketplace operator and technology platform that purchases inventory at wholesale and runs end-to-end eCommerce execution across marketplaces worldwide.',
-    category: 'Start Here',
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'January 22, 2026',
-    tags: ['overview', 'model', 'introduction'],
-    featured: true,
-    hasContent: true,
-  },
-  {
-    slug: 'how-our-model-works',
-    title: 'How Our Model Works: Purchase, Expand, Cover',
-    summary: 'A complete breakdown of our three-pillar operating model: inventory purchase at wholesale, global marketplace expansion, and end-to-end expense coverage.',
-    category: 'Start Here',
-    pillar: 'All',
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'January 22, 2026',
-    tags: ['model', 'purchase', 'expand', 'cover', 'overview'],
-    featured: true,
-    hasContent: true,
-  },
-  {
-    slug: 'who-we-are-fit-for',
-    title: "What Types of Brands We're a Fit For",
-    summary: 'Learn which brands benefit most from our operator model: typically doing $100K+ monthly revenue and needing control at scale.',
-    category: 'Start Here',
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'January 23, 2026',
-    tags: ['fit', 'brands', 'requirements'],
-    featured: true,
-    hasContent: true,
-  },
-  {
-    slug: 'marketplace-operating-cadence',
-    title: 'The Incentive Trap: Why Epic Isn\'t an "Agency"',
-    summary: 'How to cut through marketplace partner noise by comparing business models, not tactics—agencies, distributors, aggregators, and the Epic operator model.',
-    category: 'Start Here',
-    type: 'Playbook',
-    difficulty: 'Operator',
-    lastUpdated: 'January 23, 2026',
-    tags: ['model', 'agency', 'comparison', 'incentives'],
-    featured: true,
-    hasContent: true,
-  },
+/** Today's date in Utah (Epic's office), as YYYY-MM-DD. */
+export function utahToday(now: Date = new Date()): string {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Denver', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+}
 
-  // MODEL AND PROCESS
-  {
-    slug: 'inventory-purchase-model-explained',
-    title: 'Inventory Purchase Model Explained',
-    summary: 'How our wholesale inventory purchase model works: we buy inventory upfront, take ownership, and run retail operations across marketplaces.',
-    category: 'Model and Process',
-    pillar: 'Purchase',
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'January 19, 2026',
-    tags: ['inventory', 'purchase', 'wholesale', 'model'],
-    featured: false,
-  },
-  {
-    slug: 'end-to-end-expense-coverage',
-    title: 'End-to-End Expense Coverage Explained',
-    summary: 'Why we cover advertising, marketplace fees, and fulfillment costs—and how this aligns incentives for sustainable growth.',
-    category: 'Model and Process',
-    pillar: 'Cover',
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'January 19, 2026',
-    tags: ['expenses', 'coverage', 'advertising', 'fees', 'incentives'],
-    featured: false,
-  },
-  {
-    slug: 'global-expansion-readiness-model',
-    title: 'Global Expansion Readiness Model',
-    summary: 'How we assess brand readiness for international expansion: compliance, localization, catalog structure, and go-live sequencing.',
-    category: 'Model and Process',
-    pillar: 'Expand',
-    type: 'Answer Page',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['global', 'expansion', 'international', 'readiness'],
-    featured: false,
-  },
+/** Written, approved (or live before reviews began) and its publish date has arrived in Utah. */
+export function isPublished(article: KnowledgeArticle, today: string = utahToday()): boolean {
+  const publishable = article.status === 'approved' || article.status === 'live-unreviewed';
+  return Boolean(article.hasContent) && publishable && (!article.publishOn || article.publishOn <= today);
+}
 
-  // MARKETPLACE OPERATIONS
-  {
-    slug: 'catalog-hygiene-what-it-is-why-it-matters',
-    title: 'The Silent Growth Killer: Mastering Catalog Hygiene in 2026',
-    summary: 'Catalog hygiene is the disciplined habit of keeping product data clean, consistent, and current across every SKU and marketplace.',
-    category: 'Marketplace Operations',
-    marketplace: ['Amazon', 'Walmart', 'eBay'],
-    type: 'Answer Page',
-    difficulty: 'Intro',
-    lastUpdated: 'January 23, 2026',
-    tags: ['catalog', 'hygiene', 'data quality', 'listings'],
-    featured: true,
-    hasContent: true,
-  },
-  {
-    slug: 'listing-qa-checklist',
-    title: 'Listing QA Checklist',
-    summary: 'Pre-launch checklist for new listings: title structure, images, attributes, compliance, and optimization.',
-    category: 'Marketplace Operations',
-    marketplace: ['Amazon', 'Walmart'],
-    type: 'Checklist',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['listing', 'qa', 'checklist', 'optimization'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'variation-strategy-basics',
-    title: 'Variation Strategy Basics',
-    summary: 'How to structure product variations (parent-child relationships) for better discoverability and conversion.',
-    category: 'Marketplace Operations',
-    marketplace: ['Amazon'],
-    type: 'Answer Page',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['variations', 'parent-child', 'catalog structure'],
-    featured: false,
-  },
+/**
+ * Every article with hasContent set to "published today", in list order. Server-only (it still includes
+ * unpublished entries); filter with hasContent or use publishedArticles() before anything leaves the server.
+ */
+export function articlesAsOf(today: string = utahToday()): KnowledgeArticle[] {
+  return knowledgeArticles.map((article) => ({ ...article, hasContent: isPublished(article, today) }));
+}
 
-  // ADVERTISING
-  {
-    slug: 'campaign-structure-playbook',
-    title: 'Campaign Structure Playbook: Building a Baseline',
-    summary: 'Step-by-step guide to structuring advertising campaigns by objective, match type, and SKU priority.',
-    category: 'Advertising Operations',
-    pillar: 'Cover',
-    marketplace: ['Amazon', 'Walmart'],
-    type: 'Playbook',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['advertising', 'campaigns', 'structure', 'ppc'],
-    featured: false,
-  },
-  {
-    slug: 'search-term-harvesting-playbook',
-    title: 'Search Term Harvesting Playbook',
-    summary: 'How to mine search term reports, identify high-intent keywords, and restructure campaigns for efficiency.',
-    category: 'Advertising Operations',
-    pillar: 'Cover',
-    marketplace: ['Amazon'],
-    type: 'Playbook',
-    difficulty: 'Advanced',
-    lastUpdated: 'January 19, 2026',
-    tags: ['search terms', 'keywords', 'harvesting', 'optimization'],
-    featured: false,
-  },
-  {
-    slug: 'creative-testing-loop',
-    title: 'Creative Testing Loop',
-    summary: 'A repeatable process for testing main images, A+ content, and video assets to improve conversion rates.',
-    category: 'Advertising Operations',
-    marketplace: ['Amazon', 'Walmart'],
-    type: 'Playbook',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['creative', 'testing', 'images', 'conversion'],
-    featured: false,
-  },
+/** Only the articles the public can see today, in list order. */
+export function publishedArticles(today: string = utahToday()): KnowledgeArticle[] {
+  return articlesAsOf(today).filter((article) => article.hasContent);
+}
 
-  // INVENTORY
-  {
-    slug: 'reorder-point-logic-explained',
-    title: 'Reorder Point Logic Explained',
-    summary: 'How we calculate reorder points based on lead time, sell-through velocity, and safety stock requirements.',
-    category: 'Inventory and Forecasting',
-    pillar: 'Purchase',
-    type: 'Answer Page',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['inventory', 'reorder', 'forecasting', 'planning'],
-    featured: false,
-  },
-  {
-    slug: 'allocation-planning-by-region',
-    title: 'Allocation Planning by Region',
-    summary: 'Framework for allocating inventory across regions based on demand signals, compliance, and fulfillment constraints.',
-    category: 'Inventory and Forecasting',
-    pillar: 'Expand',
-    type: 'Playbook',
-    difficulty: 'Advanced',
-    lastUpdated: 'January 19, 2026',
-    tags: ['allocation', 'regional', 'inventory', 'planning'],
-    featured: false,
-  },
+/** The published article with this slug, or undefined (scheduled, draft, in review, or no such article). */
+export function getPublishedArticle(slug: string, today: string = utahToday()): KnowledgeArticle | undefined {
+  return publishedArticles(today).find((article) => article.slug === slug);
+}
 
-  // BRAND PROTECTION
-  {
-    slug: 'unauthorized-seller-monitoring-workflow',
-    title: 'Unauthorized Seller Monitoring Workflow',
-    summary: 'Automated monitoring system for detecting unauthorized sellers, documenting violations, and executing enforcement actions.',
-    category: 'Brand Protection',
-    pillar: 'Cover',
-    marketplace: ['Amazon', 'eBay'],
-    type: 'Playbook',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['brand protection', 'unauthorized sellers', 'enforcement'],
-    featured: false,
-  },
-  {
-    slug: 'catalog-integrity-controls',
-    title: 'Catalog Integrity Controls and Evidence Collection',
-    summary: 'How we maintain catalog integrity: version control, change logs, audit trails, and violation documentation.',
-    category: 'Brand Protection',
-    type: 'Answer Page',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['catalog integrity', 'compliance', 'audit', 'controls'],
-    featured: false,
-  },
+/**
+ * What a browser component may receive about a published article: the card and page fields only, never the
+ * publishing calendar (publishOn), the review status or the related list (it can name scheduled articles; related
+ * cards are worked out on the server by relatedArticles). Use for every article passed to a 'use client' component.
+ */
+export function toArticleCard(article: KnowledgeArticle): KnowledgeArticle {
+  const { publishOn: _publishOn, status: _status, related: _related, ...card } = article;
+  return { ...card, hasContent: true };
+}
 
-  // DATA AND REPORTING
-  {
-    slug: 'kpi-glossary',
-    title: 'The Marketplace KPI Glossary: Definitions, Calculations, and Tactical Interpretation',
-    summary: 'Definitions and calculation methods for key marketplace performance metrics.',
-    category: 'Data and Reporting',
-    type: 'Glossary',
-    difficulty: 'Intro',
-    lastUpdated: 'January 23, 2026',
-    tags: ['kpi', 'metrics', 'glossary', 'definitions'],
-    featured: true,
-    hasContent: true,
-  },
-  {
-    slug: 'weekly-executive-dashboard',
-    title: 'Weekly Executive Dashboard: What It Should Show',
-    summary: 'The essential metrics every executive dashboard should track: sales, margins, inventory health, ad performance, and compliance.',
-    category: 'Data and Reporting',
-    type: 'Answer Page',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['dashboard', 'reporting', 'metrics', 'executive'],
-    featured: false,
-  },
+/** Up to three published articles to show under an article: its "related" list first, then the same category. */
+export function relatedArticles(article: KnowledgeArticle, today: string = utahToday()): KnowledgeArticle[] {
+  const live = publishedArticles(today).filter((a) => a.slug !== article.slug);
+  const listed = (article.related ?? []).map((slug) => live.find((a) => a.slug === slug)).filter((a): a is KnowledgeArticle => Boolean(a));
+  const sameCategory = live.filter((a) => a.category === article.category && !listed.includes(a));
+  return [...listed, ...sameCategory].slice(0, 3);
+}
 
-  // TEMPLATES
-  {
-    slug: 'market-launch-checklist',
-    title: 'Market Launch Checklist',
-    summary: 'Complete pre-launch checklist for entering a new marketplace or region: compliance, catalog, logistics, and go-live sequencing.',
-    category: 'Templates and Downloads',
-    pillar: 'Expand',
-    type: 'Checklist',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['launch', 'checklist', 'template', 'expansion'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'catalog-qa-checklist',
-    title: 'Catalog QA Checklist',
-    summary: 'Quality assurance checklist for catalog reviews: image specs, attribute completeness, compliance, and SEO.',
-    category: 'Templates and Downloads',
-    type: 'Checklist',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['catalog', 'qa', 'checklist', 'template'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'weekly-operating-cadence-doc',
-    title: 'Weekly Operating Cadence Template',
-    summary: 'Template for running weekly marketplace operations: listings, ads, inventory, compliance, and review cycles.',
-    category: 'Templates and Downloads',
-    type: 'Template',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['cadence', 'operations', 'template', 'weekly'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'ad-account-rebuild-checklist',
-    title: 'Ad Account Rebuild Checklist',
-    summary: 'Step-by-step checklist for restructuring advertising accounts from scratch: audit, architecture, migration, and testing.',
-    category: 'Templates and Downloads',
-    pillar: 'Cover',
-    type: 'Checklist',
-    difficulty: 'Advanced',
-    lastUpdated: 'January 19, 2026',
-    tags: ['advertising', 'rebuild', 'checklist', 'template'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'inventory-reorder-model-template',
-    title: 'Inventory Reorder Model Template',
-    summary: 'Spreadsheet template for calculating reorder points, safety stock, and lead time adjustments.',
-    category: 'Templates and Downloads',
-    pillar: 'Purchase',
-    type: 'Template',
-    difficulty: 'Advanced',
-    lastUpdated: 'January 19, 2026',
-    tags: ['inventory', 'reorder', 'template', 'forecasting'],
-    downloadable: true,
-    featured: false,
-  },
-  {
-    slug: 'brand-protection-escalation-template',
-    title: 'Brand Protection Escalation Template',
-    summary: 'Template for documenting and escalating brand protection violations: evidence collection, reporting, and resolution tracking.',
-    category: 'Templates and Downloads',
-    type: 'Template',
-    difficulty: 'Operator',
-    lastUpdated: 'January 19, 2026',
-    tags: ['brand protection', 'template', 'escalation', 'compliance'],
-    downloadable: true,
-    featured: false,
-  },
+const months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 
-  // LIBRARY (Catch-all for misc content)
-  {
-    slug: 'marketplace-ai-decisioning',
-    title: 'How We Use AI for Marketplace Decisioning',
-    summary: 'Deep dive into our AI-driven approach to bid management, inventory allocation, and catalog optimization.',
-    category: 'Library',
-    type: 'Deep Dive',
-    difficulty: 'Advanced',
-    lastUpdated: 'January 19, 2026',
-    tags: ['ai', 'automation', 'decisioning', 'technology'],
-    featured: false,
-  },
-  {
-    slug: 'why-agencies-fail-at-marketplace-ops',
-    title: 'Why Agencies Fail at Marketplace Operations',
-    summary: 'The structural reasons why traditional agencies struggle with day-to-day marketplace execution—and what operators do differently.',
-    category: 'Library',
-    type: 'Deep Dive',
-    difficulty: 'Intro',
-    lastUpdated: 'January 19, 2026',
-    tags: ['agencies', 'operators', 'model', 'insights'],
-    featured: false,
-  },
-  {
-    slug: 'epic-operational-process',
-    title: 'Epic\'s Operational Process: A Deep Dive',
-    summary: 'An in-depth look at the processes and systems that power Epic\'s global marketplace operations.',
-    category: 'Library',
-    type: 'Deep Dive',
-    difficulty: 'Advanced',
-    lastUpdated: 'January 19, 2026',
-    tags: ['operations', 'process', 'deep dive'],
-    featured: false,
-    hasContent: true,
-  },
-];
+/** "January 22, 2026" -> "2026-01-22", for the sitemap and article schema (search engines expect ISO dates). */
+export function isoDate(text: string): string {
+  const match = /^([A-Za-z]+) (\d{1,2}), (\d{4})$/.exec(text.trim());
+  const month = match ? months.indexOf(match[1].toLowerCase()) + 1 : 0;
+  if (!match || !month) throw new Error(`Article date must look like "January 22, 2026": ${text}`);
+  return `${match[3]}-${String(month).padStart(2, '0')}-${match[2].padStart(2, '0')}`;
+}
