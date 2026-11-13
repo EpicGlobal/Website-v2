@@ -720,5 +720,22 @@ export const generatedArticles: KnowledgeArticle[] = [
       "what-is-epic-global-inc",
       "unauthorized-seller-monitoring-workflow"
     ]
+  },
+  {
+    "slug": "publishing-test",
+    "title": "Publishing Test (Preview Only)",
+    "summary": "A test page that checks scheduled articles go live on their date without a new deploy. It is removed before the site goes to production.",
+    "category": "Data and Reporting",
+    "type": "Answer Page",
+    "difficulty": "Intro",
+    "lastUpdated": "November 14, 2026",
+    "published": "2026-11-14",
+    "publishOn": "2026-11-14",
+    "tags": [
+      "test"
+    ],
+    "status": "review",
+    "author": "Brexton Hansen",
+    "hasContent": true
   }
 ];
