@@ -5,7 +5,9 @@
  * For the GitHub review that backs each approval (reviewRecord for a GitHub approval, recordConfirmation for a
  * Google Doc or email approval) this confirms that:
  *   - it is on this repository, its state is APPROVED, it was left by a person (not a bot) other than the pull
- *     request's author;
+ *     request's author. A review GitHub dismissed automatically because a later commit arrived (main dismisses
+ *     stale approvals, and recording the approval is itself a later commit) still counts, because the article
+ *     check below proves the approved text didn't change. A review someone dismissed by hand never counts;
  *   - the pull request changes this article, and the article at the reviewed commit matches the final article
  *     (only workflow fields such as status, the review fields and publishOn may change afterwards);
  *   - GitHub approval: the reviewer is the "reviewerGitHub" account;
@@ -40,6 +42,16 @@ export function githubApi(token) {
       }
       return names;
     },
+    /** How a review was dismissed: { byCommit, message } from the pull request's timeline, or null. */
+    async dismissal(o, r, n, id) {
+      for (let page = 1; page <= 30; page += 1) {
+        const events = await get(`/repos/${o}/${r}/issues/${n}/timeline?per_page=100&page=${page}`);
+        const hit = events.find((e) => e.event === 'review_dismissed' && e.dismissed_review?.review_id === id);
+        if (hit) return { byCommit: hit.dismissed_review.dismissal_commit_id ?? null, message: hit.dismissed_review.dismissal_message ?? null };
+        if (events.length < 100) return null;
+      }
+      return null;
+    },
     async fileAt(o, r, filePath, ref) {
       const file = await get(`/repos/${o}/${r}/contents/${filePath.split('/').map(encodeURIComponent).join('/')}?ref=${ref}`);
       return Buffer.from(file.content, 'base64').toString('utf8');
@@ -64,7 +76,10 @@ export async function verifyApproval({ file, text }, api) {
   try {
     const [pr, review] = await Promise.all([api.pull(owner, repo, pull), api.review(owner, repo, pull, id)]);
     const login = review.user?.login ?? '';
-    if (review.state !== 'APPROVED') problems.push(`${label} is ${review.state}, not APPROVED`);
+    if (review.state === 'DISMISSED') {
+      const how = api.dismissal ? await api.dismissal(owner, repo, pull, id) : null;
+      if (!how?.byCommit || how.message) problems.push(`${label} was dismissed${how?.message ? ` ("${how.message}")` : ''}, not just made stale by a later commit; it needs a new approval`);
+    } else if (review.state !== 'APPROVED') problems.push(`${label} is ${review.state}, not APPROVED`);
     if (review.user?.type === 'Bot' || /\[bot\]$/i.test(login)) problems.push(`${label} was left by a bot (${login})`);
     if (login.toLowerCase() === String(pr.user?.login ?? '').toLowerCase()) problems.push(`${label} was left by the pull request's own author (${login})`);
     if (viaGitHub && login.toLowerCase() !== String(data.reviewerGitHub).trim().toLowerCase()) problems.push(`${label} is by ${login}, but reviewerGitHub is ${data.reviewerGitHub}`);

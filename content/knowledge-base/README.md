@@ -83,7 +83,10 @@ approval by a person (not a bot) other than the pull request's author, is on a p
 article, and, for 1, was left by `reviewerGitHub`; for 2 and 3, that its text contains the `reviewRecord` link.
 It also compares the article at the reviewed commit with the final article: if anything other than `status`, the
 review fields, `publishOn`, `order` or `featured` changed after the review, the check fails and the final text
-needs a new approval. Record the approval in a commit after the review; that's expected and allowed.
+needs a new approval. Record the approval in a commit after the review; that's expected and allowed. GitHub
+marks the approval "dismissed" when that commit arrives (main dismisses stale approvals); the check accepts that,
+because the text is compared, but not an approval someone dismissed by hand. The pull request still needs a fresh
+approval on its latest commit before it can merge.
 
 What stays a human check: that the Google Doc comment or email really comes from the named reviewer (the
 confirmer vouches for it on GitHub), and that the reviewer actually read the text.
