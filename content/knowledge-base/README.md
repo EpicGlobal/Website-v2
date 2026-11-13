@@ -103,6 +103,9 @@ approved the final text.
 5. Run `npm run check:articles`. It stops with a clear message if anything is wrong.
 6. Open the pull request into `main`. CI runs the checks. Someone authorized merges it before the first date.
 
+Search engines hear about it right away: each night just after midnight (Utah time) a GitHub job tells Bing,
+through IndexNow, which articles went live or changed (`scripts/indexnow.mjs`). Nothing to do by hand.
+
 ## Edit a live article
 
 Change the text and set `updated` to today. A real change to facts or advice needs a new review: record the new

@@ -35,6 +35,8 @@ jobs:
         run: npm run check:reviews -- --strict
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: IndexNow picks only live, changed articles
+        run: npm run test:indexnow
       - name: TypeScript
         run: npx tsc --noEmit -p .
       - name: Public content (rule examples, then every public file; no competitors, internal figures, prices or automatic reviewer)
