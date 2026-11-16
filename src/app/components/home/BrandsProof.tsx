@@ -52,10 +52,14 @@ const STATS: Stat[] = [
   },
 ];
 
-/** The rating ring. Server HTML draws it full (works with no JS); on the client it empties and fills once in view. */
+/**
+ * The rating ring. Server HTML draws it full (works with no JS, and with reduced motion). On the client the lime ring
+ * is tied to the scroll (Brex, Nov 16): it starts empty as the ring comes up from the bottom of the screen and draws
+ * in as you scroll, reaching 4.9/5 when the ring is a little above the middle. Scrolling back up un-draws it.
+ */
 function RatingRing({ size = 'md' }: { size?: 'md' | 'lg' }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [filled, setFilled] = useState(true);
+  const [progress, setProgress] = useState(1);
   const R = 88;
   const C = 2 * Math.PI * R;
   const share = RATING / 5;
@@ -63,18 +67,21 @@ function RatingRing({ size = 'md' }: { size?: 'md' | 'lg' }) {
   useEffect(() => {
     const el = ref.current;
     if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (el.getBoundingClientRect().top < window.innerHeight * 0.8) return; // already on screen: leave it full
-    setFilled(false);
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        io.disconnect();
-        requestAnimationFrame(() => setFilled(true));
-      },
-      { threshold: 0.5 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
+    const update = () => {
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const center = r.top + r.height / 2;
+      // 0 when the ring's center enters at the bottom of the screen, 1 when it reaches 45% from the top.
+      const p = Math.min(1, Math.max(0, (vh - center) / (vh * 0.55)));
+      setProgress((prev) => (Math.abs(prev - p) < 0.002 ? prev : p)); // React skips the render when nothing moved
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
   }, []);
 
   return (
@@ -90,8 +97,9 @@ function RatingRing({ size = 'md' }: { size?: 'md' | 'lg' }) {
           strokeLinecap="round"
           stroke="var(--pop)"
           strokeDasharray={C}
-          strokeDashoffset={filled ? C * (1 - share) : C}
-          style={{ transition: 'stroke-dashoffset 1.6s cubic-bezier(0.22, 1, 0.36, 1)' }}
+          strokeDashoffset={C * (1 - share * progress)}
+          opacity={progress > 0.01 ? 1 : 0}
+          style={{ transition: 'stroke-dashoffset 120ms linear' }}
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
