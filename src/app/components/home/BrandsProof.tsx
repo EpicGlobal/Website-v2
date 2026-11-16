@@ -1,40 +1,104 @@
 /**
- * Home chapter 02, "Brands we work with": the logo strip, then four compact proof cards in one row (Brex's pick, Nov 5,
- * from four options). Each card has an icon tile, the number and its label; the rating card carries the pop outline,
- * glow and small stars, the section's one pop moment. Every number is real text in the server HTML and counts up once
- * on screen (CountUp). Only facts already on the site are used.
+ * Home chapter 02, "At a glance" (design R1, Brex's pick Nov 13 2026 after Jake's review): the Amazon rating sits in a
+ * lime ring in the center and four proof numbers sit in the corners, joined to it by thin lines. The ring fills once
+ * as the section scrolls into view; every number is real text in the server HTML (CountUp only animates what is
+ * already there). Phones: the ring on top, the four numbers in a 2x2 grid below.
+ *
+ * Numbers are the ones already on the site. Jake's totals (ratings, offices, unauthorized sellers removed) replace
+ * them in Phase 3, once confirmed.
  */
-import type { ReactNode } from 'react';
-import { Globe2, Star, Store, Users, type LucideIcon } from 'lucide-react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { Star } from 'lucide-react';
 import { CountUp } from '@/app/components/scroll/ScrollEffects';
 import { TrustLogosMarquee, type MarqueeBrand } from '@/app/components/TrustLogosMarquee';
 import { ACCENT, BODY, HEAD, INNER } from '@/app/components/story/tokens';
-import { CARD, ICON_TILE } from './homeStyles';
 import { COUNTRY_COUNT, MARKETPLACE_COUNT } from '@/app/data/markets';
 
 type Brand = MarqueeBrand;
 
-const brandsStat = { value: 50, suffix: '+' };
-const countriesStat = { value: COUNTRY_COUNT };
-const marketsStat = { value: MARKETPLACE_COUNT };
-const ratingStat = { value: 4.9, decimals: 1, suffix: '/5' };
+const RATING = 4.9;
+const RATING_COUNT = '9,600+';
 
-const Num = ({ s }: { s: { value: number; decimals?: number; prefix?: string; suffix?: string } }) => (
-  <CountUp value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
-);
+type Corner = { label: string; value: ReactNode; pop?: boolean };
+const CORNERS: Corner[] = [
+  { label: 'Brands we work with', value: <CountUp value={50} suffix="+" /> },
+  { label: 'Marketplaces', value: <CountUp value={MARKETPLACE_COUNT} /> },
+  { label: 'Countries', value: <CountUp value={COUNTRY_COUNT} /> },
+  { label: 'Weeks to clear unauthorized sellers', value: '8–20', pop: true },
+];
 
-export function BrandsProof({ brands, marker, logos = true }: { brands: Brand[]; marker: ReactNode; logos?: boolean }) {
-  return <CompactCards brands={brands} marker={marker} logos={logos} />;
+/** The rating ring. Server HTML draws it full (works with no JS); on the client it empties and fills once in view. */
+function RatingRing() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [filled, setFilled] = useState(true);
+  const R = 88;
+  const C = 2 * Math.PI * R;
+  const share = RATING / 5;
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.8) return; // already on screen: leave it full
+    setFilled(false);
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        requestAnimationFrame(() => setFilled(true));
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="relative mx-auto w-56 h-56 sm:w-64 sm:h-64">
+      <svg aria-hidden="true" viewBox="0 0 200 200" className="absolute inset-0 w-full h-full -rotate-90">
+        <circle cx="100" cy="100" r={R} fill="none" strokeWidth="6" className="stroke-white/10" />
+        <circle
+          cx="100"
+          cy="100"
+          r={R}
+          fill="none"
+          strokeWidth="6"
+          strokeLinecap="round"
+          stroke="var(--pop)"
+          strokeDasharray={C}
+          strokeDashoffset={filled ? C * (1 - share) : C}
+          style={{ transition: 'stroke-dashoffset 1.6s cubic-bezier(0.22, 1, 0.36, 1)' }}
+        />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+        <span aria-hidden="true" className={`flex gap-0.5 mb-1 ${ACCENT}`}>
+          {Array.from({ length: 5 }, (_, i) => (
+            <Star key={i} className="w-4 h-4 fill-current" />
+          ))}
+        </span>
+        <span className={`text-5xl sm:text-6xl font-bold tracking-tight tabular-nums ${HEAD}`}>
+          <CountUp value={RATING} decimals={1} />
+        </span>
+        <span className={`mt-1 text-sm leading-snug ${BODY}`}>
+          out of 5 from {RATING_COUNT} ratings
+          <br />
+          <span aria-hidden="true">Amazon US seller rating</span>
+        </span>
+      </div>
+    </div>
+  );
 }
 
-/* Compact cards */
-function CompactCards({ brands, marker, logos }: { brands: Brand[]; marker: ReactNode; logos: boolean }) {
-  const stats: { label: string; s: { value: number; decimals?: number; prefix?: string; suffix?: string }; icon: LucideIcon; lit?: boolean }[] = [
-    { label: 'Brands we work with', s: brandsStat, icon: Users },
-    { label: 'Countries', s: countriesStat, icon: Globe2 },
-    { label: 'Marketplaces', s: marketsStat, icon: Store },
-    { label: 'Amazon US seller rating (9,600+ ratings)', s: ratingStat, icon: Star, lit: true },
-  ];
+function CornerStat({ c, align, className = '' }: { c: Corner; align: 'left' | 'right'; className?: string }) {
+  return (
+    <div className={`flex flex-col-reverse justify-end ${align === 'right' ? 'text-right' : ''} ${className}`}>
+      <dt className={`mt-1 text-sm leading-snug ${BODY}`}>{c.label}</dt>
+      <dd className={`text-3xl sm:text-4xl font-bold tracking-tight tabular-nums ${c.pop ? ACCENT : HEAD}`}>{c.value}</dd>
+    </div>
+  );
+}
+
+export function BrandsProof({ brands, marker, logos = true }: { brands: Brand[]; marker: ReactNode; logos?: boolean }) {
+  const [tl, tr, bl, br] = CORNERS;
   return (
     <>
       <div className={INNER}>{marker}</div>
@@ -43,33 +107,31 @@ function CompactCards({ brands, marker, logos }: { brands: Brand[]; marker: Reac
           <TrustLogosMarquee brands={brands} />
         </div>
       ) : null}
-      <dl className={`${INNER} ${logos ? 'mt-10' : ''} grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4`}>
-        {stats.map(({ label, s, icon: Icon, lit }) => (
-          <div
-            key={label}
-            className={`${CARD} flex flex-col-reverse justify-end p-5 ${lit ? '!shadow-[0_0_0_2px_var(--pop),0_20px_40px_-20px_var(--pop)]' : ''}`}
-          >
-            <dt className={`text-sm mt-1 leading-snug ${BODY}`}>{label}</dt>
+
+      <div className={`max-w-4xl mx-auto relative ${logos ? 'mt-10' : ''}`}>
+        {/* Thin lines from each corner to the ring (desktop only; decoration). */}
+        <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none">
+          <g className="stroke-white/25" strokeWidth="1">
+            <line x1="21" y1="22" x2="39" y2="36" vectorEffect="non-scaling-stroke" />
+            <line x1="79" y1="22" x2="61" y2="36" vectorEffect="non-scaling-stroke" />
+            <line x1="21" y1="78" x2="39" y2="64" vectorEffect="non-scaling-stroke" />
+            <line x1="79" y1="78" x2="61" y2="64" vectorEffect="non-scaling-stroke" />
+          </g>
+        </svg>
+
+        <dl className="relative grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-[1fr_auto_1fr] lg:grid-rows-2 lg:gap-x-12 lg:gap-y-16 lg:items-center">
+          <div className="col-span-2 mb-2 lg:mb-0 lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:row-span-2">
+            <dt className="sr-only">Amazon US seller rating</dt>
             <dd>
-              <span className="flex items-center justify-between mb-3">
-                <span aria-hidden="true" className={`${ICON_TILE} !w-9 !h-9 !rounded-lg`}>
-                  <Icon className="w-[18px] h-[18px]" />
-                </span>
-                {lit ? (
-                  <span aria-hidden="true" className={`flex gap-0.5 ${ACCENT}`}>
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                    ))}
-                  </span>
-                ) : null}
-              </span>
-              <span className={`block text-3xl sm:text-4xl font-bold tracking-tight tabular-nums ${HEAD}`}>
-                <Num s={s} />
-              </span>
+              <RatingRing />
             </dd>
           </div>
-        ))}
-      </dl>
+          <CornerStat c={tl} align="left" className="lg:col-start-1 lg:row-start-1" />
+          <CornerStat c={tr} align="right" className="lg:col-start-3 lg:row-start-1" />
+          <CornerStat c={bl} align="left" className="lg:col-start-1 lg:row-start-2" />
+          <CornerStat c={br} align="right" className="lg:col-start-3 lg:row-start-2" />
+        </dl>
+      </div>
     </>
   );
 }
