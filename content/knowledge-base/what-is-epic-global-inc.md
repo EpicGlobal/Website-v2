@@ -1,7 +1,7 @@
 ---
 title: "What is Epic Global Inc.?"
 seoTitle: "What Is Epic Global Inc.? A Wholesale Trade Partner"
-summary: "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory upfront at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves."
+summary: "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory outright at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves."
 seoDescription: "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy brand inventory at wholesale and sell it on Amazon, plus Walmart and more."
 category: "Start Here"
 type: "Answer Page"
@@ -17,7 +17,7 @@ status: live-unreviewed
 
 ## Definition
 
-Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory upfront at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves. We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned.
+Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory outright at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves. We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned.
 
 ## Why It Matters
 
@@ -30,7 +30,7 @@ This model eliminates the misalignment that happens when agencies charge fees re
 :::card
 ### 1. Buy
 
-We buy your inventory upfront at an agreed wholesale price and take ownership. This means we have real skin in the game: our success is tied to retail performance, not billable hours.
+We buy your inventory outright at an agreed wholesale price and take ownership. This means we have real skin in the game: our success is tied to retail performance, not billable hours.
 :::
 
 :::card

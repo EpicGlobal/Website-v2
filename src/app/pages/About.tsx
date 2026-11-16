@@ -109,7 +109,7 @@ export function About() {
             We run marketplace growth like operations, not marketing.
           </h1>
           <p className={`text-lg sm:text-xl leading-relaxed max-w-3xl mb-12 ${BODY}`}>
-            Epic Global Inc. is an Amazon-first wholesale trade partner that also runs Walmart and international marketplaces. We buy your inventory upfront and pay the ads, fees and fulfillment, for U.S. growth or selling abroad.
+            Epic Global Inc. is an Amazon-first wholesale trade partner that also runs Walmart and international marketplaces. We buy your inventory outright and pay the ads, fees and fulfillment, for U.S. growth or selling abroad.
           </p>
           <dl className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
             {facts.map(({ label, value, icon: Icon, lit }) => (

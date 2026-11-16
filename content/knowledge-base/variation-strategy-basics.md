@@ -79,7 +79,7 @@ Merging two families can pool reviews and simplify the page, but only if the pro
 
 ## How Epic handles this
 
-Epic Global Inc. is a wholesale trade partner: we buy the inventory upfront and pay for the ads. Because we own every SKU in a family, we plan variations around how shoppers buy and what is in stock, and check them weekly.
+Epic Global Inc. is a wholesale trade partner: we buy the inventory outright and pay for the ads. Because we own every SKU in a family, we plan variations around how shoppers buy and what is in stock, and check them weekly.
 
 ## FAQ
 

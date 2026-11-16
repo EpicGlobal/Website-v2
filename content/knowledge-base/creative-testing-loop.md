@@ -74,7 +74,7 @@ In one Epic partner-brand case study, A/B tests ran across the brand's top 10 pr
 
 ## How Epic handles this
 
-Epic Global Inc. is a wholesale trade partner. We buy the inventory upfront and pay for the ads, so a better-converting listing sells our own stock faster and stretches our ad spend. Testing runs weekly, with the brand's approval on new brand assets.
+Epic Global Inc. is a wholesale trade partner. We buy the inventory outright and pay for the ads, so a better-converting listing sells our own stock faster and stretches our ad spend. Testing runs weekly, with the brand's approval on new brand assets.
 
 ## FAQ
 

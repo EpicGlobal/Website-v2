@@ -101,7 +101,7 @@ export function WhatWeAre() {
         data={getWebPageSchema({
           name: 'Our Model',
           url: `${siteConfig.url}/our-model`,
-          description: 'How Epic Global, an Amazon-first wholesale trade partner, buys inventory upfront, runs Amazon, Walmart and international storefronts, and pays the ads, fees and fulfillment.',
+          description: 'How Epic Global, an Amazon-first wholesale trade partner, buys inventory outright, runs Amazon, Walmart and international storefronts, and pays the ads, fees and fulfillment.',
         })}
       />
       {serviceSchemas.map((s) => (
@@ -120,7 +120,7 @@ export function WhatWeAre() {
             <div>
               <h1 className={`${H1} mb-6`}>Our wholesale trade partner model</h1>
               <p className={`${LEAD} mb-8`}>
-                Epic Global Inc. is an Amazon-first wholesale trade partner: we buy your inventory upfront, sell it on Amazon, plus Walmart and international marketplaces, and pay the ads, fees and fulfillment.
+                Epic Global Inc. is an Amazon-first wholesale trade partner: we buy your inventory outright, sell it on Amazon, plus Walmart and international marketplaces, and pay the ads, fees and fulfillment.
               </p>
               <a href="#how-it-works" className={`text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
                 How it works &darr;

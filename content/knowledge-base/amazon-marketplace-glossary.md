@@ -66,7 +66,7 @@ The Buy Box is the "Add to Cart" and "Buy Now" area on an Amazon product page, a
 
 ::term[Consignment]
 
-Consignment is an arrangement where a retailer or seller lists a brand's goods but only pays the brand after they sell; the brand owns the stock until then and carries the risk of unsold inventory. In Epic's standard model, Epic buys the inventory upfront, so the brand is paid for the goods on agreed payment terms rather than waiting on sell-through.
+Consignment is an arrangement where a retailer or seller lists a brand's goods but only pays the brand after they sell; the brand owns the stock until then and carries the risk of unsold inventory. In Epic's standard model, Epic buys the inventory outright, so the brand is paid for the goods on agreed payment terms rather than waiting on sell-through.
 
 ::term[Contribution Margin]
 
@@ -238,7 +238,7 @@ Wholesale is selling products in bulk to a business that resells them, at a pric
 
 ::term[Wholesale Trade Partner]
 
-A wholesale trade partner buys a brand's inventory upfront at wholesale and sells it directly to consumers on online marketplaces, paying for the advertising, marketplace fees and fulfillment itself. The brand keeps its company and gets paid for its products, while the partner earns its margin only by selling them at retail. This is Epic's model: Epic buys the inventory upfront and funds the ads, fees and fulfillment.
+A wholesale trade partner buys a brand's inventory outright at wholesale and sells it directly to consumers on online marketplaces, paying for the advertising, marketplace fees and fulfillment itself. The brand keeps its company and gets paid for its products, while the partner earns its margin only by selling them at retail. This is Epic's model: Epic buys the inventory outright and funds the ads, fees and fulfillment.
 
 ## How the four models compare
 

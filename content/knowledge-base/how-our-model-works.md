@@ -16,9 +16,9 @@ status: live-unreviewed
 
 ## How Epic's Wholesale Trade Partner Model Works
 
-Epic Global Inc. is a wholesale trade partner. We buy a brand's inventory upfront at wholesale, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon first, plus Walmart and international marketplaces, pay for the advertising, marketplace fees and fulfillment ourselves, and protect the brand's pricing and listings.
+Epic Global Inc. is a wholesale trade partner. We buy a brand's inventory outright at wholesale, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon first, plus Walmart and international marketplaces, pay for the advertising, marketplace fees and fulfillment ourselves, and protect the brand's pricing and listings.
 
-Our Zero-Risk model works because we own the inventory: we buy it upfront, so the retail execution risk sits with us, not the brand. The brand keeps its brand and Brand Registry, and does not pay retainers, fund ad spend, and hope the numbers work out.
+Our Zero-Risk model works because we own the inventory: we buy it outright, so the retail execution risk sits with us, not the brand. The brand keeps its brand and Brand Registry, and does not pay retainers, fund ad spend, and hope the numbers work out.
 
 Most marketplace models work the other way: the brand funds the inventory, fees and ads, and carries the downside whether performance improves or not. Growth should not require brands to gamble capital or coordinate a patchwork of agencies and vendors who each optimize only their slice of the problem. The work, the risk and the incentives are interconnected.
 
@@ -47,7 +47,7 @@ Epic is a wholesale trade partner: we own the inventory, and you keep the brand.
 That means we apply one integrated model across the U.S. and global marketplaces:
 
 :::checks
-- We assume inventory ownership through upfront purchases.
+- We assume inventory ownership through outright purchases.
 - We operate marketplace storefronts directly.
 - We fund advertising and manage it for efficiency and profitability.
 - We manage logistics and marketplace execution end-to-end.
@@ -61,9 +61,9 @@ Epic becomes the brand's marketplace operating system. That structure allows us 
 Epic operates through a unified framework: Buy – Sell – Advertise – Protect. This governs both U.S. execution and international expansion. It is the reason the model works — not as theory, but as a system.
 
 :::card
-### Buy: Upfront inventory purchase
+### Buy: Outright inventory purchase
 
-Epic purchases inventory upfront at wholesale pricing. For the brand, this immediately converts inventory into cash and removes inventory risk. Instead of tying up capital in uncertain outcomes, the brand gets predictable economics at the start of the cycle.
+Epic purchases inventory outright at wholesale pricing. For the brand, this turns inventory into a wholesale sale, paid on agreed payment terms, and moves the inventory risk to Epic. Instead of tying up capital in uncertain outcomes, the brand gets predictable economics at the start of the cycle.
 :::
 
 :::card

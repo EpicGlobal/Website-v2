@@ -7,7 +7,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "slug": "what-is-epic-global-inc",
     "title": "What is Epic Global Inc.?",
     "seoTitle": "What Is Epic Global Inc.? A Wholesale Trade Partner",
-    "summary": "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory upfront at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.",
+    "summary": "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory outright at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves.",
     "seoDescription": "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy brand inventory at wholesale and sell it on Amazon, plus Walmart and more.",
     "category": "Start Here",
     "type": "Answer Page",
@@ -85,7 +85,7 @@ export const generatedArticles: KnowledgeArticle[] = [
   {
     "slug": "inventory-purchase-model-explained",
     "title": "Inventory Purchase Model Explained",
-    "summary": "How our wholesale inventory purchase model works: we buy inventory upfront, take ownership, and run retail operations across marketplaces.",
+    "summary": "How our wholesale inventory purchase model works: we buy inventory outright, take ownership, and run retail operations across marketplaces.",
     "category": "Model and Process",
     "pillar": "Buy",
     "type": "Answer Page",

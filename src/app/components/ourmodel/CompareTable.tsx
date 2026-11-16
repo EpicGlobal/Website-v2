@@ -6,7 +6,7 @@ import { MarkTable } from '@/app/components/home/SkimSections';
 
 const MODELS = ['Epic', 'Marketplace accelerator', 'Marketplace agency', 'Agency + fulfillment', 'Wholesale distributor'];
 const ROWS: Array<[string, boolean[]]> = [
-  ['Buys inventory upfront', [true, true, false, false, true]],
+  ['Buys inventory outright', [true, true, false, false, true]],
   ['Sells on their own account', [true, true, false, false, true]],
   ['No fees or commissions', [true, false, false, false, false]],
   ['Advertising management', [true, true, true, true, false]],

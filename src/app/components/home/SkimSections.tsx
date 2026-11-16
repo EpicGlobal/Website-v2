@@ -10,7 +10,7 @@ import { CARD } from './homeStyles';
 /** Each cell: good for the brand owner (yes), bad (no), plus a few words. Icon + word, so it never relies on color. */
 type Cell = { ok: boolean; text: string };
 const rows: { q: string; epic: Cell; agency: Cell; aggregator: Cell }[] = [
-  { q: 'Buys your inventory upfront', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'No' }, aggregator: { ok: false, text: 'Buys your whole company' } },
+  { q: 'Buys your inventory outright', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'No' }, aggregator: { ok: false, text: 'Buys your whole company' } },
   { q: 'Pays for ads, fees and fulfillment', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'No, you do' }, aggregator: { ok: true, text: 'Yes' } },
   { q: 'No retainers or % of ad spend', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'Usually charges' }, aggregator: { ok: true, text: 'Yes' } },
   { q: 'You keep your brand', epic: { ok: true, text: 'Yes' }, agency: { ok: true, text: 'Yes' }, aggregator: { ok: false, text: 'No, they own it' } },
@@ -118,7 +118,7 @@ export function FitColumns() {
 export const HOME_FAQ = [
   {
     q: 'Will Epic buy my inventory?',
-    a: 'Yes. We buy it upfront at an agreed wholesale price and own it from then on. The opening order is usually about 60 to 90 days of stock, then monthly replenishment.',
+    a: 'Yes. We buy it outright at an agreed wholesale price, pay on agreed terms, and own it from then on. The opening order is usually about 60 to 90 days of stock, then monthly replenishment.',
   },
   {
     q: 'Do you charge retainers or fees?',

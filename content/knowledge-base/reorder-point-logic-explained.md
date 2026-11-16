@@ -99,7 +99,7 @@ With a 30-day review period in the illustrative example: 40 × (45 + 30) + 111 =
 
 ## How Epic handles this
 
-- Epic is a wholesale trade partner, so reorder points are Epic's problem: it buys the inventory upfront and carries the cost of overstock or a stockout.
+- Epic is a wholesale trade partner, so reorder points are Epic's problem: it buys the inventory outright and carries the cost of overstock or a stockout.
 - Epic turns reorder points into purchase orders to the brand, replenishing monthly after an opening order of about 60 to 90 days of stock.
 - The brand's most useful input is an accurate production lead time and early notice of changes.
 

@@ -110,7 +110,7 @@ Launch is when a listing is most fragile. It has no sales history, no reviews an
 
 ## How Epic handles this
 
-As a wholesale trade partner, Epic buys the inventory upfront and pays for the ads that send traffic to each listing, so a listing that fails QA wastes our money first. Listing QA is done within about 4 weeks of kickoff, before a product goes live with Epic, and the post-launch checks roll into our weekly work.
+As a wholesale trade partner, Epic buys the inventory outright and pays for the ads that send traffic to each listing, so a listing that fails QA wastes our money first. Listing QA is done within about 4 weeks of kickoff, before a product goes live with Epic, and the post-launch checks roll into our weekly work.
 
 ## FAQ
 

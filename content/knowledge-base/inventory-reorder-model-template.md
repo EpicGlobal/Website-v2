@@ -100,7 +100,7 @@ The RISK flag matters: the 500 inbound units should arrive well before day 32, s
 
 ## How Epic handles this
 
-As a wholesale trade partner, Epic buys a brand's inventory upfront at wholesale, so this model drives Epic's own purchase orders to the brand. Epic owns the forecast and the inventory risk, and pays for fulfillment and storage. The brand's part is to supply reliable lead times, case packs and minimums, and to flag production changes early.
+As a wholesale trade partner, Epic buys a brand's inventory outright at wholesale, so this model drives Epic's own purchase orders to the brand. Epic owns the forecast and the inventory risk, and pays for fulfillment and storage. The brand's part is to supply reliable lead times, case packs and minimums, and to flag production changes early.
 
 ## FAQ
 

@@ -72,7 +72,7 @@ Set thresholds before you open the report, based on your product's price, margin
 
 ## How Epic handles this
 
-Epic Global Inc. is a wholesale trade partner. We buy the brand's inventory upfront and pay for the advertising ourselves, so every wasted click is our own cost. That is why search term harvesting is a standing weekly task.
+Epic Global Inc. is a wholesale trade partner. We buy the brand's inventory outright and pay for the advertising ourselves, so every wasted click is our own cost. That is why search term harvesting is a standing weekly task.
 
 ## FAQ
 

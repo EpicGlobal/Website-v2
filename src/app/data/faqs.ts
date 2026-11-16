@@ -5,7 +5,7 @@ export const FAQS: Faq[] = [
   {
     question: 'How is Epic Global different from an Amazon agency or aggregator?',
     answer:
-      'We\'re an alternative to both: a wholesale trade partner that operates, not an agency. We purchase inventory upfront at wholesale pricing and run end-to-end marketplace execution ourselves. Agencies advise and charge retainers; we take ownership of inventory, cover operating expenses (ads, fees, fulfillment), and succeed only when your brand grows. Aggregators buy the brand itself; we buy inventory at wholesale, and you keep your brand, Brand Registry and listings. Our incentives are aligned from day one.',
+      'We\'re an alternative to both: a wholesale trade partner that operates, not an agency. We purchase inventory outright at wholesale pricing and run end-to-end marketplace execution ourselves. Agencies advise and charge retainers; we take ownership of inventory, cover operating expenses (ads, fees, fulfillment), and succeed only when your brand grows. Aggregators buy the brand itself; we buy inventory at wholesale, and you keep your brand, Brand Registry and listings. Our incentives are aligned from day one.',
   },
   {
     question: 'Which marketplaces do you operate on?',
@@ -40,7 +40,7 @@ export const FAQS: Faq[] = [
   {
     question: "Will Epic buy my brand's inventory?",
     answer:
-      'Yes. Epic Global is a wholesale trade partner, one of the companies that buys brand inventory outright. We buy your inventory upfront at an agreed wholesale price and own it from then on. The opening order is usually sized to about 60-90 days of stock, followed by monthly replenishment orders. You\'re paid on the payment terms set in your contract.',
+      'Yes. Epic Global is a wholesale trade partner, one of the companies that buys brand inventory outright. We buy your inventory at an agreed wholesale price and own it from then on. The opening order is usually sized to about 60-90 days of stock, followed by monthly replenishment orders. You\'re paid on the payment terms set in your contract.',
   },
   {
     question: 'Do you charge retainers, hourly rates or project fees?',

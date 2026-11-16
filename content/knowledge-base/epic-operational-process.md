@@ -17,7 +17,7 @@ status: live-unreviewed
 
 ## How Epic Operates Marketplace Growth End to End
 
-Epic Global Inc. is a wholesale trade partner. We buy your inventory upfront at an agreed wholesale price, operate marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect brand equity. We own the inventory, so the retail execution risk is ours, and you keep your brand.
+Epic Global Inc. is a wholesale trade partner. We buy your inventory outright at an agreed wholesale price, operate marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect brand equity. We own the inventory, so the retail execution risk is ours, and you keep your brand.
 
 ::tagline[We buy it. You profit.™]
 

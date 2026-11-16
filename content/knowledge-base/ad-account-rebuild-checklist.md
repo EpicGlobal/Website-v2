@@ -99,7 +99,7 @@ Never pause the old account all at once. Old campaigns hold keyword history and 
 
 ## How Epic handles this
 
-Epic is a wholesale trade partner, not a paid ad manager. It buys the brand's inventory upfront and pays for the advertising itself, so every wasted ad dollar comes out of Epic's own margin. There are no retainers, hourly fees or percentage-of-spend charges.
+Epic is a wholesale trade partner, not a paid ad manager. It buys the brand's inventory outright and pays for the advertising itself, so every wasted ad dollar comes out of Epic's own margin. There are no retainers, hourly fees or percentage-of-spend charges.
 
 ## FAQ
 

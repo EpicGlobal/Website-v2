@@ -79,7 +79,7 @@ When an unwanted change happens, add:
 
 ## How Epic handles this
 
-Epic Global Inc. is a wholesale trade partner: we buy the inventory upfront and pay for the ads, so an unnoticed listing change wastes our own spend. Catalog checks feed our brand protection work against [unauthorized sellers](/knowledge-base/unauthorized-seller-monitoring-workflow), with reports by marketplace.
+Epic Global Inc. is a wholesale trade partner: we buy the inventory outright and pay for the ads, so an unnoticed listing change wastes our own spend. Catalog checks feed our brand protection work against [unauthorized sellers](/knowledge-base/unauthorized-seller-monitoring-workflow), with reports by marketplace.
 
 ## FAQ
 

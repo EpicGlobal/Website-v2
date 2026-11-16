@@ -76,7 +76,7 @@ export function ExitIntentPopup() {
             </h2>
             
             <p className="text-gray-300 dark:text-gray-300 soft-dark:text-gray-800 light:text-gray-300 orange:text-gray-300 mb-6 leading-relaxed">
-              We purchase your inventory upfront, operate marketplaces end-to-end, and fund all advertising. You're paid for your inventory on agreed terms, without running the day-to-day marketplace work.
+              We purchase your inventory outright, operate marketplaces end-to-end, and fund all advertising. You're paid for your inventory on agreed terms, without running the day-to-day marketplace work.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">

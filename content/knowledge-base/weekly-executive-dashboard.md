@@ -81,7 +81,7 @@ Below the table, a short notes block explains the story in plain words. For this
 
 ## How Epic handles this
 
-- Epic is a wholesale trade partner: it buys the inventory upfront and pays for the ads, fees and fulfillment itself.
+- Epic is a wholesale trade partner: it buys the inventory outright and pays for the ads, fees and fulfillment itself.
 - So this dashboard is Epic's own operating view, not a report produced to justify a retainer.
 - Brand partners get a shared dashboard from day one, monthly reports and quarterly business reviews.
 

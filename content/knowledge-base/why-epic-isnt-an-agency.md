@@ -14,7 +14,7 @@ order: 4
 status: live-unreviewed
 ---
 
-Agencies are usually paid a retainer, an hourly fee, or a share of ad spend or sales, while the brand owns the inventory and pays for the ads and marketplace fees. A wholesale trade partner like Epic buys the inventory upfront and pays for the ads and marketplace fees itself, so it earns its margin only when that inventory sells.
+Agencies are usually paid a retainer, an hourly fee, or a share of ad spend or sales, while the brand owns the inventory and pays for the ads and marketplace fees. A wholesale trade partner like Epic buys the inventory outright and pays for the ads and marketplace fees itself, so it earns its margin only when that inventory sells.
 
 Most brands evaluating marketplace partners run into the same problem: after the third discovery call, every pitch sounds identical. Everyone "scales Amazon." Everyone has a "proven playbook." Everyone promises control.
 
@@ -104,7 +104,7 @@ Epic is a wholesale trade partner. We buy the inventory and run the marketplace 
 :::card
 ### BUY
 
-Epic purchases your inventory upfront at wholesale, so stock that would sit in your warehouse becomes a wholesale sale.
+Epic purchases your inventory outright at wholesale, so stock that would sit in your warehouse becomes a wholesale sale.
 :::
 
 :::card
