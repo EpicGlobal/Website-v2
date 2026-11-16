@@ -23,6 +23,21 @@ export const FAQS: Faq[] = [
       'To begin, we need four things: (1) Product data and SKU list with complete attributes, (2) Asset library access including images, packaging designs, and compliance docs, (3) Market and region priorities in order of importance, and (4) Constraints around pricing floors, inventory limits, and brand guidelines. We\'ll provide a detailed intake checklist during assessment.',
   },
   {
+    question: 'What is the difference between 1P and 3P on Amazon?',
+    answer:
+      '1P (first party) means your brand sells to Amazon as a vendor: Amazon buys your stock at a wholesale cost, then sets the retail price and decides how much to order. 3P (third party) means a seller lists and sells to shoppers on Amazon’s marketplace through Seller Central and keeps control of price, listings and stock.',
+  },
+  {
+    question: 'Does Epic sell 1P or 3P?',
+    answer:
+      'Mainly 3P. We buy your inventory at wholesale and sell it on Amazon as a 3P seller, so pricing at or above MAP, listings, ads and stock stay in one operator’s hands. We work with both models, and for brands selling 1P we look at whether 3P would serve them better.',
+  },
+  {
+    question: 'Why do brands often earn less in 1P than in 3P?',
+    answer:
+      'In 1P, Amazon controls the retail price and the order volume: it can lower the price, cut or pause purchase orders, and vendor terms usually add allowances and fees. Amazon often prefers to keep large brands in 1P for that control. In 3P, the price and the stock stay with the seller, so the brand keeps more say over how it is sold. Our case study on an auto parts brand compares the two on one product.',
+  },
+  {
     question: 'What are typical timelines from assessment to launch?',
     answer:
       'Most brands go from signed agreement to purchase order and Brand Registry authorization within days. We build and optimize your listings, A+ content and Storefront within about 4 weeks, and products typically go live 3-4 weeks after inventory arrives. Additional marketplaces and countries usually follow 1-6 months after Amazon US, depending on registration in each market.',
