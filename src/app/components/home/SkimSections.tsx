@@ -81,6 +81,7 @@ export function FitColumns() {
   const notFit = [
     'You want to keep every operation in-house',
     'You only need à la carte help',
+    'You’re a reseller, not the brand owner',
   ];
   return (
     <div className="grid gap-4 md:grid-cols-2">
