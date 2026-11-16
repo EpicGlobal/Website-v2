@@ -9,7 +9,7 @@ export const countryData = [
     country: 'United States',
     code: 'USA',
     region: 'North America',
-    marketplaces: ['Amazon', 'Walmart', 'TikTok Shop', 'eBay', 'Temu', 'Coupang US Global'],
+    marketplaces: ['Amazon', 'Walmart', 'TikTok Shop', 'eBay', 'Temu', 'Coupang Global Fulfillment'],
     color: '#22d3ee',
   },
   {
@@ -43,7 +43,7 @@ export const countryData = [
     marketplaces: ['Mercado Libre'],
     color: '#22d3ee',
   },
-  // Chile and Peru added Nov 5, 2026 (Brex). Mercado Libre confirmed by Brex Nov 5; TikTok Shop, Coupang and Coupang US Global confirmed too.
+  // Chile and Peru added Nov 5, 2026 (Brex). Mercado Libre confirmed by Brex Nov 5; TikTok Shop, Coupang and Coupang Global Fulfillment confirmed too.
   {
     country: 'Chile',
     code: 'CHL',
@@ -312,11 +312,11 @@ export const countryData = [
 /** Distinct marketplace platforms across all countries. */
 export const MARKETPLACE_COUNT = new Set(countryData.flatMap((c) => c.marketplaces)).size;
 
-/** Each marketplace platform once, main ones first, for the schema (Coupang US Global is part of Coupang). */
+/** Each marketplace platform once, main ones first, for the schema (Coupang Global Fulfillment is part of Coupang). */
 const PLATFORM_ORDER = ['Amazon', 'Walmart', 'eBay', 'TikTok Shop', 'Temu', 'Shopify', 'Mercado Libre', 'Coupang', 'Shopee', 'Lazada', 'Rakuten', 'Naver'];
 const rank = (name: string) => (PLATFORM_ORDER.indexOf(name) + 1 || PLATFORM_ORDER.length + 1);
 export const MARKETPLACE_PLATFORMS = [...new Set(countryData.flatMap((c) => c.marketplaces))]
-  .filter((name) => name !== 'Coupang US Global')
+  .filter((name) => name !== 'Coupang Global Fulfillment')
   .sort((a, b) => rank(a) - rank(b));
 
 /** Countries Epic sells in (the map list). */
