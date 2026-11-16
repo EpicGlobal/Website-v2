@@ -4,9 +4,9 @@ import { createPageMetadata } from '@/site/site-config';
 export const metadata = createPageMetadata({
   title: 'Wholesale Trade Partner FAQ',
   description:
-    "Answers to common questions about Epic Global Inc.'s wholesale trade partner model, operating process, timelines, and marketplace coverage.",
+    "Answers about Epic Global's wholesale model: 1P vs 3P on Amazon, our warehouse, unauthorized sellers, timelines and the 14 marketplaces we sell on.",
   path: '/faq',
-  keywords: ['faq', 'marketplace operator faq', 'wholesale trade partner faq'],
+  keywords: ['faq', 'marketplace operator faq', 'wholesale trade partner faq', 'Amazon 1P vs 3P'],
 });
 
 export default function FAQPage() {
