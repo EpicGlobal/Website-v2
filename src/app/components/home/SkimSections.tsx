@@ -130,11 +130,11 @@ export const HOME_FAQ = [
   },
   {
     q: 'Which marketplaces do you run?',
-    a: 'Amazon is our main marketplace: we have sold on Amazon since 2015. We also run Walmart, eBay and select international marketplaces in 42 countries.',
+    a: 'Amazon is our main marketplace: we have sold on Amazon since 2015. We also run Walmart, Target, eBay and select international marketplaces in 42 countries.',
   },
   {
-    q: 'Who sets the retail price?',
-    a: 'Epic sets it on the marketplaces we run, at or above your minimum advertised price (MAP), and we monitor the prices of other sellers and follow up through your MAP policy.',
+    q: 'Do you sell 1P or 3P on Amazon?',
+    a: 'Mainly 3P: we buy your inventory and sell it on Amazon ourselves as a third-party seller, so we set the price at or above your MAP and control listings, ads and stock. In 1P, Amazon buys your stock and sets the price. For brands selling 1P today, we look at whether 3P would serve them better.',
   },
 ];
 

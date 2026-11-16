@@ -64,7 +64,7 @@ const MODEL_LINES: { who: 'You' | 'Epic'; lead: string; body?: string }[] = [
 
 const STEPS = [
   { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own it, and the retail risk.' },
-  { title: 'Sell: we sell 3P on Amazon, Walmart and other approved marketplaces', body: 'We run listings, pricing and inventory as the 3P (third-party) seller on Amazon, Walmart, eBay and international marketplaces. Selling 1P to Amazon today? We look at whether 3P would serve you better.' },
+  { title: 'Sell: we’re the seller on Amazon, Walmart and other approved marketplaces', body: 'We list, price and ship your products ourselves as a third-party (3P) seller, instead of you selling them to Amazon to resell (1P). We run listings, pricing and inventory on Amazon, Walmart, eBay and international marketplaces. Selling 1P to Amazon today? We look at whether 3P would serve you better.' },
   { title: 'Advertise: we fund the ads, fees and fulfillment', body: 'We pay the ad spend, marketplace fees and fulfillment, so we only win when you do.' },
   { title: 'Protect: we guard your price and catalog', body: 'Brand Registry authorization, MAP monitoring, removal of unauthorized sellers, and Buy Box and catalog monitoring.' },
   { title: 'You get visibility and control', body: 'A shared dashboard from day one, monthly reports, quarterly reviews, and your approval on major decisions.' },
