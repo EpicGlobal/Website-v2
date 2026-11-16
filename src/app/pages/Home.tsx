@@ -277,7 +277,9 @@ export function Home() {
         </div>
 
       {/* 02 Brands we work with: the trust logos, then the proof strip (real numbers in the HTML; they count up once on screen). */}
-      <section id="brands" data-chapter aria-label="Epic Global Inc. at a glance" className={CHAPTER}>
+      {/* 02 At a glance: design R1, option A (Nov 16): the rating ring with four cards in the corners. Even spacing:
+          no bottom padding here, so the gap under the marker matches the gap above How it works. */}
+      <section id="brands" data-chapter aria-label="Epic Global Inc. at a glance" className="scroll-mt-20 pt-20 pb-0 px-4 sm:px-6 lg:px-8">
         <BrandsProof brands={brands} logos={false} marker={<ChapterMarker id="brands" />} />
       </section>
 
