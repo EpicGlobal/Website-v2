@@ -18,7 +18,7 @@ status: live-unreviewed
 
 Epic Global Inc. is a wholesale trade partner. We buy a brand's inventory outright at wholesale, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon first, plus Walmart and international marketplaces, pay for the advertising, marketplace fees and fulfillment ourselves, and protect the brand's pricing and listings.
 
-Our Zero-Risk model works because we own the inventory: we buy it outright, so the retail execution risk sits with us, not the brand. The brand keeps its brand and Brand Registry, and does not pay retainers, fund ad spend, and hope the numbers work out.
+Our model works because we own the inventory: we buy it outright, so the retail execution risk sits with us, not the brand. The brand keeps its brand and Brand Registry, and does not pay retainers, fund ad spend, and hope the numbers work out.
 
 Most marketplace models work the other way: the brand funds the inventory, fees and ads, and carries the downside whether performance improves or not. Growth should not require brands to gamble capital or coordinate a patchwork of agencies and vendors who each optimize only their slice of the problem. The work, the risk and the incentives are interconnected.
 
