@@ -3,8 +3,6 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, LogOut, User } from 'lucide-react';
 import { type MouseEvent, useState, useEffect, useRef } from 'react';
-import { ThemeToggle } from '@/app/components/ThemeToggle';
-import { useTheme } from '@/app/context/ThemeContext';
 import { useAuth } from '@/app/contexts/AuthContext';
 import { HubSpotModal } from '@/app/components/HubSpotModal';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -12,7 +10,6 @@ import { getDefaultCtaVariant, readOrCreateCtaVariant } from '@/site/cta-variant
 import { siteConfig } from '@/site/site-config';
 import logo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 import epicLogo from '@/assets/008bdb4c58b9b740867427493f73689a3f551b75.png';
-import epicLogoDark from '@/assets/68e949a3afd2d5c92b966261b04168a3d4cfacfb.png';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +20,6 @@ export function Navbar() {
   const timerRef = useRef<number | null>(null);
   const hasTriggeredRef = useRef(false);
   const pathname = usePathname();
-  const { theme } = useTheme();
   const { user, logout } = useAuth();
   const { trackClick, trackCtaButtonClick, trackCtaButtonVariantShown } = useAnalytics();
 
@@ -139,14 +135,6 @@ export function Navbar() {
     };
   }, [isHovering]);
 
-  // Determine which logo to show based on theme
-  const getLogoForTheme = () => {
-    if (theme === 'water') {
-      return epicLogoDark; // Black logo for water/lime green theme
-    }
-    return epicLogo; // White/green gradient logo for all other themes
-  };
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -167,7 +155,7 @@ export function Navbar() {
               className="w-11 h-11 transition-transform group-hover:scale-105"
             />
             <Image
-              src={getLogoForTheme()}
+              src={epicLogo}
               alt=""
               sizes="128px"
               priority
@@ -192,9 +180,8 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Desktop CTA + Theme Toggle */}
+          {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-4">
-            <ThemeToggle />
             
             {/* User Profile / Logout */}
             {user && (
@@ -269,9 +256,6 @@ export function Navbar() {
               </Link>
             ))}
             <div className="pt-3 mt-3 border-t border-white/10 flex flex-col gap-3">
-              <div className="flex justify-center">
-                <ThemeToggle />
-              </div>
               {siteConfig.bookACallEnabled ? (
                 <Link
                   href={siteConfig.primaryCtaHref}

@@ -1,22 +1,11 @@
 import Link from 'next/link';
 import { siteConfig } from '@/site/site-config';
 import Image from 'next/image';
-import { useTheme } from '@/app/context/ThemeContext';
 import logo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 import epicLogo from '@/assets/008bdb4c58b9b740867427493f73689a3f551b75.png';
-import epicLogoDark from '@/assets/68e949a3afd2d5c92b966261b04168a3d4cfacfb.png';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const { theme } = useTheme();
-
-  const getLogoForTheme = () => {
-    if (theme === 'water') {
-      return epicLogoDark;
-    }
-
-    return epicLogo;
-  };
 
   return (
     <footer className="bg-black leaf:bg-sky-800 water:bg-lime-800 orange:bg-orange-900 border-t border-white/10 leaf:border-sky-600/20 water:border-lime-600/20 orange:border-orange-700/20">
@@ -32,7 +21,7 @@ export function Footer() {
                   className="w-11 h-11 transition-transform group-hover:scale-105"
                 />
                 <Image
-                  src={getLogoForTheme()}
+                  src={epicLogo}
                   alt=""
                   sizes="96px"
                   className="h-24 w-auto transition-transform group-hover:scale-105"

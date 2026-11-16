@@ -106,21 +106,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             strategy="afterInteractive"
           />
         ) : null}
-        <Script id="epic-theme-init" strategy="beforeInteractive">
-          {`
-            (() => {
-              try {
-                const allowed = ['dark', 'leaf', 'water', 'light', 'orange'];
-                const saved = window.localStorage.getItem('epic-theme-v3');
-                const theme = allowed.includes(saved) ? saved : 'dark';
-                document.documentElement.classList.remove(...allowed);
-                document.documentElement.classList.add(theme);
-              } catch (error) {
-                document.documentElement.classList.add('dark');
-              }
-            })();
-          `}
-        </Script>
         <Script id="epic-privacy-init" strategy="beforeInteractive">
           {`
             (() => {
