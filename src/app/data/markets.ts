@@ -9,7 +9,7 @@ export const countryData = [
     country: 'United States',
     code: 'USA',
     region: 'North America',
-    marketplaces: ['Amazon', 'Walmart', 'TikTok Shop', 'eBay', 'Temu', 'Coupang Global Fulfillment'],
+    marketplaces: ['Amazon', 'Walmart', 'Target', 'TikTok Shop', 'eBay', 'Temu', 'Coupang Global Fulfillment'],
     color: '#22d3ee',
   },
   {
@@ -313,11 +313,15 @@ export const countryData = [
 export const MARKETPLACE_COUNT = new Set(countryData.flatMap((c) => c.marketplaces)).size;
 
 /** Each marketplace platform once, main ones first, for the schema (Coupang Global Fulfillment is part of Coupang). */
-const PLATFORM_ORDER = ['Amazon', 'Walmart', 'eBay', 'TikTok Shop', 'Temu', 'Shopify', 'Mercado Libre', 'Coupang', 'Shopee', 'Lazada', 'Rakuten', 'Naver'];
+const PLATFORM_ORDER = ['Amazon', 'Walmart', 'Target', 'eBay', 'TikTok Shop', 'Temu', 'Shopify', 'Mercado Libre', 'Coupang', 'Shopee', 'Lazada', 'Rakuten', 'Naver'];
 const rank = (name: string) => (PLATFORM_ORDER.indexOf(name) + 1 || PLATFORM_ORDER.length + 1);
 export const MARKETPLACE_PLATFORMS = [...new Set(countryData.flatMap((c) => c.marketplaces))]
   .filter((name) => name !== 'Coupang Global Fulfillment')
   .sort((a, b) => rank(a) - rank(b));
+
+/** US retail marketplaces planned for 2027 (Brex, Nov 13 2026). Shown as "coming", never counted as live. */
+export const COMING_MARKETPLACES = ["Macy's", 'Nordstrom', "Lowe's", "Kohl's"];
+export const COMING_YEAR = 2027;
 
 /** Countries Epic sells in (the map list). */
 export const COUNTRY_COUNT = countryData.length;

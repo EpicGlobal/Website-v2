@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { HEAD, RULE } from '@/app/components/story/tokens';
 import { MarketList } from '@/app/components/about/MarketList';
-import { countryData } from '@/app/data/markets';
+import { COMING_MARKETPLACES, COMING_YEAR, countryData } from '@/app/data/markets';
 import { motion } from 'framer-motion';
 import { geoPath, geoMercator } from 'd3-geo';
 import { feature } from 'topojson-client';
@@ -711,6 +711,10 @@ export function GlobalReachMap() {
           <div className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] water:text-[#101828] mt-1 leaf:text-[#101828]">Regions</div>
         </div>
       </div>
+
+      <p className="mt-4 text-center text-sm text-gray-400">
+        Coming in {COMING_YEAR}: {COMING_MARKETPLACES.slice(0, -1).join(', ')} and {COMING_MARKETPLACES.at(-1)}.
+      </p>
 
       {/* The same markets as plain text in the page HTML for search/AI crawlers; folded shut so the page stays clean.
           The list layout lives in about/MarketList.tsx. */}
