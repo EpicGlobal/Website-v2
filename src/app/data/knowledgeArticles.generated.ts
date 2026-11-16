@@ -720,5 +720,34 @@ export const generatedArticles: KnowledgeArticle[] = [
       "what-is-epic-global-inc",
       "unauthorized-seller-monitoring-workflow"
     ]
+  },
+  {
+    "slug": "amazon-1p-vs-3p",
+    "title": "Amazon 1P vs 3P: What Changes for Your Brand",
+    "seoTitle": "Amazon 1P vs 3P: Price Control, Fees and Margin Compared",
+    "summary": "1P means Amazon buys your stock and sets the price; 3P means a seller keeps control of price, listings and stock. Here is what each model changes for a brand, and why many earn less in 1P.",
+    "seoDescription": "Amazon 1P vs 3P explained: who sets the price, who decides order volume, which fees apply, and why many brands earn less per unit in 1P than in 3P.",
+    "category": "Model and Process",
+    "pillar": "Sell",
+    "marketplace": [
+      "Amazon"
+    ],
+    "type": "Answer Page",
+    "difficulty": "Intro",
+    "lastUpdated": "November 16, 2026",
+    "published": "2026-11-16",
+    "tags": [
+      "1P",
+      "3P",
+      "vendor central",
+      "seller central",
+      "amazon"
+    ],
+    "featured": false,
+    "status": "draft",
+    "hasContent": true,
+    "related": [
+      "unauthorized-seller-monitoring-workflow"
+    ]
   }
 ];
