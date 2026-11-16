@@ -33,7 +33,7 @@ const CAPABILITIES = [
   { icon: Search, title: 'Listing Optimization', description: 'Titles, keywords and creative that convert.' },
   { icon: BarChart3, title: 'Advertising Operations', description: 'Campaigns, bids and creative, paid by Epic.' },
   { icon: Package, title: 'Inventory + Forecasting', description: 'Demand planning and reorders.' },
-  { icon: Shield, title: 'Brand Protection & MAP Monitoring', description: 'Act on unauthorized sellers, protect MAP pricing.' },
+  { icon: Shield, title: 'Brand Protection & MAP Monitoring', strong: 'We remove unauthorized sellers', description: 'and protect MAP pricing.' },
   { icon: Database, title: 'Data + Reporting Layer', description: 'Shared dashboard and monthly reports.' },
   { icon: Cpu, title: 'Execution Engine', description: 'Automation that keeps catalogs clean and fast.' },
 ];
@@ -66,7 +66,7 @@ const STEPS = [
   { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own it, and the retail risk.' },
   { title: 'Sell: we run Amazon, Walmart and other approved marketplaces', body: 'We run listings, pricing and inventory on Amazon, Walmart, eBay and international marketplaces.' },
   { title: 'Advertise: we fund the ads, fees and fulfillment', body: 'We pay the ad spend, marketplace fees and fulfillment, so we only win when you do.' },
-  { title: 'Protect: we guard your price and catalog', body: 'Brand Registry authorization, MAP monitoring, action on unauthorized sellers, and Buy Box and catalog monitoring.' },
+  { title: 'Protect: we guard your price and catalog', body: 'Brand Registry authorization, MAP monitoring, removal of unauthorized sellers, and Buy Box and catalog monitoring.' },
   { title: 'You get visibility and control', body: 'A shared dashboard from day one, monthly reports, quarterly reviews, and your approval on major decisions.' },
 ];
 
@@ -187,13 +187,13 @@ export function WhatWeAre() {
           <ChapterMarker n={3} />
           <h2 className={`${H2} mb-8`}>What we run day to day</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {CAPABILITIES.map(({ icon: Icon, title, description }) => (
+            {CAPABILITIES.map(({ icon: Icon, title, strong, description }) => (
               <div key={title} className={`${CARD} ${CARD_HOVER} p-5`}>
                 <span className={`${ICON_TILE} !w-9 !h-9 !rounded-lg mb-4`}>
                   <Icon className="w-[18px] h-[18px]" aria-hidden="true" />
                 </span>
                 <h3 className={`font-semibold mb-1 leading-snug ${HEAD}`}>{title}</h3>
-                <p className={`text-sm leading-snug ${MUTED}`}>{description}</p>
+                <p className={`text-sm leading-snug ${MUTED}`}>{strong ? <><strong className={`font-semibold ${HEAD}`}>{strong}</strong>{' '}</> : null}{description}</p>
               </div>
             ))}
           </div>

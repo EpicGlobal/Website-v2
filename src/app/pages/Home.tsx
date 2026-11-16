@@ -202,7 +202,7 @@ export function Home() {
     { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We buy your inventory outright at wholesale. You get paid on agreed terms; we own the stock.', tagline: 'Sold to us. We own the stock.' },
     { icon: Globe2, num: '02', title: 'Sell', desc: 'We run your listings on Amazon first, plus Walmart and international.', tagline: 'One system. Every market.' },
     { icon: BarChart3, num: '03', title: 'Advertise', desc: 'We pay for and run the ads, built for profit, not spend.', tagline: 'We fund. We optimize.' },
-    { icon: Shield, num: '04', title: 'Protect', desc: 'We hold your price at or above MAP, act on unauthorized sellers and defend your branded search.', tagline: 'Your brand. Our defense.' },
+    { icon: Shield, num: '04', title: 'Protect', strong: 'We remove unauthorized sellers.', desc: 'Then we hold your price at or above MAP and defend your branded search.', tagline: 'Your brand. Our defense.' },
   ];
 
   return (
@@ -303,7 +303,7 @@ export function Home() {
                     <Icon className="w-5 h-5" aria-hidden="true" />
                   </div>
                   <h3 className={`${H3} mb-3`}>{card.title}</h3>
-                  <p className={`leading-relaxed ${BODY}`}>{card.desc}</p>
+                  <p className={`leading-relaxed ${BODY}`}>{card.strong ? <><strong className={`font-semibold ${HEAD}`}>{card.strong}</strong>{' '}</> : null}{card.desc}</p>
                 </div>
               );
             })}

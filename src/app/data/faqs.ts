@@ -25,7 +25,7 @@ export const FAQS: Faq[] = [
   {
     question: 'How do you handle brand protection, MAP and unauthorized sellers?',
     answer:
-      'Compliance and brand protection are built into our workflows, not bolted on afterward. We design every process around marketplace policies, documentation requirements, and auditability. For brand protection, we get authorized under your Brand Registry, monitor unauthorized sellers and report the violations Amazon acts on, follow up on MAP violations through your reseller policy, use Amazon Transparency where you enroll, monitor the Buy Box and your catalog, and send you brand protection reports by marketplace. Every enforcement action is documented and tracked.',
+      'We remove unauthorized sellers. Through your Brand Registry we report each violation until Amazon takes the offer down, so your MAP pricing holds. Compliance and brand protection are built into our workflows, not bolted on afterward. We design every process around marketplace policies, documentation requirements, and auditability. For brand protection, we get authorized under your Brand Registry, monitor for new unauthorized sellers, follow up on MAP violations through your reseller policy, use Amazon Transparency where you enroll, monitor the Buy Box and your catalog, and send you brand protection reports by marketplace. Every enforcement action is documented and tracked.',
   },
   {
     question: 'What kind of reporting and visibility do we get?',
