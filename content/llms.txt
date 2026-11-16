@@ -21,6 +21,7 @@
 - Does the brand keep its Brand Registry, listings and reviews? Yes. The brand keeps Brand Registry and authorizes Epic to sell; Epic sells on the existing product pages, so listings, reviews and sales rank carry over.
 - How long is a typical contract? Typically 3 years.
 - Who handles fulfillment? Epic does, and pays for it, mostly through Fulfillment by Amazon (FBA) plus Epic's own US warehouse.
+- Do you have a warehouse? Yes. Sister company Epic Warehouse Operations runs a 100,000 sq ft flow-through facility in Springville, Utah: inventory is prepped, labeled and shipped out to the marketplaces, not stored long term.
 - Full list: [FAQ](https://www.epicglobalinc.com/faq)
 
 ## Main pages

@@ -8,6 +8,11 @@ export const FAQS: Faq[] = [
       'We\'re an alternative to both: a wholesale trade partner that operates, not an agency. We purchase inventory outright at wholesale pricing and run end-to-end marketplace execution ourselves. Agencies advise and charge retainers; we take ownership of inventory, cover operating expenses (ads, fees, fulfillment), and succeed only when your brand grows. Aggregators buy the brand itself; we buy inventory at wholesale, and you keep your brand, Brand Registry and listings. Our incentives are aligned from day one.',
   },
   {
+    question: 'Do you have a warehouse?',
+    answer:
+      'Yes. Our sister company, Epic Warehouse Operations, runs a 100,000 sq ft facility in Springville, Utah. It is a flow-through hub, not long-term storage: inventory comes in, gets prepped and labeled, and ships out quickly to Amazon, Walmart and the other marketplaces we sell on.',
+  },
+  {
     question: 'Which marketplaces do you operate on?',
     answer:
       'Amazon is our main marketplace: we have sold on Amazon since 2015, including Amazon US, CA, EU and other regions. We also run Walmart, Target, eBay, TikTok Shop, Temu, Shopify, Mercado Libre, Coupang, Shopee, Lazada, Rakuten and Naver, in the regions where they fit your catalog. We prioritize marketplaces based on your brand\'s category fit and regional opportunity. During assessment, we\'ll map which platforms make sense for your catalog. Coming in 2027: Macy\'s, Nordstrom, Lowe\'s and Kohl\'s.',
