@@ -15,8 +15,11 @@ import { CtaButton } from '@/app/components/CtaButton';
 import { DeferredMount } from '@/app/components/DeferredMount';
 import { useScrollStory, type StoryExtra } from '@/app/components/story/useScrollStory';
 import { ChapterMarker as KitChapterMarker, ChapterRail } from '@/app/components/story/StoryKit';
-import { ACCENT, BODY, CHAPTER, H2, H3, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
+import { ACCENT, BODY, CHAPTER, H2, H3, HEAD, LEAD, MUTED, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
 import '@/app/components/story/story.css';
+
+/** Homepage width: every chapter matches How it works (max-w-7xl), Brex Nov 16. */
+const HOME_INNER = 'max-w-7xl mx-auto';
 import { CARD, CARD_LINK, ICON_TILE } from '@/app/components/home/homeStyles';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { siteConfig } from '@/site/site-config';
@@ -226,7 +229,7 @@ export function Home() {
           <ParticlesBackground />
         </DeferredMount>
 
-        <div data-story="hero-inner" className={`relative z-10 ${INNER}`}>
+        <div data-story="hero-inner" className={`relative z-10 ${HOME_INNER}`}>
           <ChapterMarker id="wholesale-trade-partner" accent="text-[var(--pop)] orange:text-[#101828]" />
           {/* Text and globe share one row, centered on each other (desktop). On phones the globe sits faintly behind the text. */}
           <div className="relative lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:items-center lg:gap-10">
@@ -267,10 +270,10 @@ export function Home() {
       {/* Brands we work with: the logo strip sits right under the hero, still on the first screen. Bucked Up, Nu Skin,
           Younique and Young Living lead (phones show Bucked Up and Nu Skin first). */}
         <div className="relative z-10 mt-10 sm:mt-8 mb-2 px-4 sm:px-6 lg:px-8">
-          <p className={`${INNER} text-xs font-semibold uppercase tracking-[0.18em] mb-2 ${MUTED}`}>Brands we work with</p>
+          <p className={`${HOME_INNER} text-xs font-semibold uppercase tracking-[0.18em] mb-2 ${MUTED}`}>Brands we work with</p>
           {/* On TV-size screens (1880px+, e.g. the office screen) the strip widens to fill the hero, stopping short of
               the chapter dots on the right; smaller screens keep the content width. */}
-          <div className="max-w-6xl min-[1880px]:max-w-[min(calc(100vw_-_280px),2200px)] mx-auto"><TrustLogosMarquee brands={brands} /></div>
+          <div className="max-w-7xl min-[1880px]:max-w-[min(calc(100vw_-_280px),2200px)] mx-auto"><TrustLogosMarquee brands={brands} /></div>
         </div>
 
       {/* 02 Brands we work with: the trust logos, then the proof strip (real numbers in the HTML; they count up once on screen). */}
@@ -320,7 +323,7 @@ export function Home() {
 
       {/* Who we're a fit for: right after how it works, so brands check fit before the results. */}
       <section id="fit" data-chapter className={CHAPTER}>
-        <div className={INNER}>
+        <div className={HOME_INNER}>
           <ChapterMarker id="fit" />
           <h2 className={`${H2} mb-8`}>Who we&apos;re a fit for</h2>
           <FitColumns />
@@ -329,7 +332,7 @@ export function Home() {
 
       {/* 05 How we execute: two featured case studies settle in, then the way to all of them. */}
       <section id="case-studies" data-chapter className="scroll-mt-20 pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className={INNER}>
+        <div className={HOME_INNER}>
           <ChapterMarker id="case-studies" />
           <h2 className={`${H2} mb-10`}>Results from real brands</h2>
 
@@ -357,7 +360,7 @@ export function Home() {
 
       {/* Epic vs agency vs aggregator: the comparison a brand owner makes first, as a table. */}
       <section id="compare" data-chapter className={CHAPTER}>
-        <div className={INNER}>
+        <div className={HOME_INNER}>
           <ChapterMarker id="compare" />
           <h2 className={`${H2} mb-8`}>A wholesale trade partner, not an agency or aggregator</h2>
           <CompareTable />
@@ -365,7 +368,7 @@ export function Home() {
       </section>
 
       <section id="faq" data-chapter className={CHAPTER}>
-        <div className={INNER}>
+        <div className={HOME_INNER}>
           <ChapterMarker id="faq" />
           <h2 className={`${H2} mb-8`}>Common questions</h2>
           <HomeFaq />
@@ -375,7 +378,7 @@ export function Home() {
       {/* 07 Next step: the closing call to action (only while booking a call is switched on). */}
       {siteConfig.bookACallEnabled ? (
         <section id="next-step" data-chapter className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
-          <div data-story="fade-up" className={INNER}>
+          <div data-story="fade-up" className={HOME_INNER}>
             <ChapterMarker id="next-step" />
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
               <div className="max-w-2xl">
