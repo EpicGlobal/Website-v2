@@ -40,8 +40,8 @@ function ChapterMarker({ n }: { n: number }) {
 const SYSTEM_TASKS: { icon: LucideIcon; title: string; detail: string }[] = [
   { icon: Zap, title: 'Price checked on Amazon', detail: 'Our price kept at or above your MAP' },
   { icon: Shield, title: 'Unauthorized seller flagged', detail: 'Violation reported' },
-  { icon: TrendingUp, title: 'Demand shift spotted', detail: 'Stock moved to where it sells' },
-  { icon: LayoutGrid, title: 'Listing updated on every marketplace', detail: 'One change, all channels' },
+  { icon: TrendingUp, title: 'Demand shift spotted', detail: 'Stock planned to where it sells' },
+  { icon: LayoutGrid, title: 'Listing updated on every marketplace', detail: 'One change, every channel we sell on' },
 ];
 
 const gap: { icon: LucideIcon; title: string; description: string }[] = [
@@ -149,7 +149,7 @@ export function Intelligence() {
           <ChapterMarker n={1} />
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-14 lg:items-center">
             <div>
-              <h1 className={`${H1} mb-8`}>Marketplace commerce is becoming machine-run.</h1>
+              <h1 className={`${H1} mb-8`}>Marketplace commerce runs on data. Our team runs it with systems built for it.</h1>
               <p className={`${LEAD} mb-5`}>
                 Epic Global Inc. runs brands&apos; marketplace operations, Amazon first, plus Walmart and international marketplaces, with its own software for demand forecasting, pricing, inventory placement and brand protection, so brands grow without building that system themselves.
               </p>

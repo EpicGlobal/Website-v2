@@ -14,7 +14,7 @@ const rows: { q: string; epic: Cell; agency: Cell; aggregator: Cell }[] = [
   { q: 'Pays for ads, fees and fulfillment', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'No, you do' }, aggregator: { ok: true, text: 'Yes' } },
   { q: 'No retainers or % of ad spend', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'Usually charges' }, aggregator: { ok: true, text: 'Yes' } },
   { q: 'You keep your brand', epic: { ok: true, text: 'Yes' }, agency: { ok: true, text: 'Yes' }, aggregator: { ok: false, text: 'No, they own it' } },
-  { q: 'Paid only when your products sell', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'No, fees either way' }, aggregator: { ok: false, text: 'No, a one-time buyout' } },
+  { q: 'Earns only when your products sell', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'No, fees either way' }, aggregator: { ok: false, text: 'No, a one-time buyout' } },
 ];
 
 function Mark({ cell, strong }: { cell: Cell; strong?: boolean }) {

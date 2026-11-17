@@ -203,7 +203,7 @@ export function Home() {
 
   const model = [
     { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We buy your inventory outright at wholesale. You get paid on agreed terms; we own the stock.', tagline: 'Sold to us. We own the stock.' },
-    { icon: Globe2, num: '02', title: 'Sell', desc: 'We run your listings on Amazon first, plus Walmart and international.', tagline: 'One system. Every market.' },
+    { icon: Globe2, num: '02', title: 'Sell', desc: 'We run your listings on Amazon first, plus Walmart and international.', tagline: 'One system. Every marketplace we sell on.' },
     { icon: BarChart3, num: '03', title: 'Advertise', desc: 'We pay for and run the ads, built for profit, not spend.', tagline: 'We fund. We optimize.' },
     { icon: Shield, num: '04', title: 'Protect', strong: 'We go after unauthorized sellers.', desc: 'We report each violation through your Brand Registry, sell at or above your MAP and defend your branded search.', tagline: 'Your brand. Our defense.' },
   ];
@@ -238,7 +238,7 @@ export function Home() {
                 We Buy It. You Profit.&trade;
               </h1>
               <p className={`${LEAD} max-w-3xl mb-10`}>
-                Epic Global Inc. buys your inventory outright and runs your Amazon business, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment; <strong className={`font-semibold ${HEAD}`}>you keep the brand</strong>.
+                Epic Global Inc. buys your inventory outright and sells it as the seller on Amazon, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment; <strong className={`font-semibold ${HEAD}`}>you keep the brand</strong>.
               </p>
               {/* Phones: the button at its natural width, centered, with "How it works" centered under it. */}
               <div className="flex flex-col items-center sm:flex-row sm:items-center gap-4">

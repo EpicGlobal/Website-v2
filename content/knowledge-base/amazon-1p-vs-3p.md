@@ -51,7 +51,7 @@ In 3P, a seller lists and sells your products on Amazon's marketplace and pays A
 
 In 1P, the brand gives up the retail price and absorbs most of the vendor costs, so it keeps a thin share of each sale. In 3P, the price and the stock stay with the seller.
 
-One example: an auto parts brand compared its 1P results with Epic's 3P offer, in which Epic buys the inventory and pays the Amazon fees. Under Epic's offer, the brand's net revenue per unit was 159% higher on one brake kit and 53% higher on another. See the [auto parts case study](/case-studies/auto-parts-amazon-1p-vs-epic-3p).
+One example: an auto parts brand compared its 1P results with Epic's 3P offer, in which Epic buys the inventory and pays the Amazon fees. Under Epic's offer, the brand's net revenue per unit was projected to be 159% higher on one brake kit and 53% higher on another. These are projections from the offer, not actual sales results. See the [auto parts case study](/case-studies/auto-parts-amazon-1p-vs-epic-3p).
 
 ## Where Epic fits
 

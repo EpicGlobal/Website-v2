@@ -5,7 +5,7 @@ export const FAQS: Faq[] = [
   {
     question: 'How is Epic Global different from an Amazon agency or aggregator?',
     answer:
-      'We\'re an alternative to both: a wholesale trade partner that operates, not an agency. We purchase inventory outright at wholesale pricing and run end-to-end marketplace execution ourselves. Agencies advise and charge retainers; we take ownership of inventory, cover operating expenses (ads, fees, fulfillment), and succeed only when your brand grows. Aggregators buy the brand itself; we buy inventory at wholesale, and you keep your brand, Brand Registry and listings. Our incentives are aligned from day one.',
+      'We\'re an alternative to both: a wholesale trade partner that operates, not an agency. We purchase inventory outright at wholesale pricing and run end-to-end marketplace execution ourselves. Agencies advise and usually charge fees or retainers; we take ownership of inventory, cover operating expenses (ads, fees, fulfillment), and succeed only when your brand grows. Aggregators buy the brand itself; we buy inventory at wholesale, and you keep your brand, Brand Registry and listings. Our incentives are aligned from day one.',
   },
   {
     question: 'Do you have a warehouse?',
