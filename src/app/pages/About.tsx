@@ -81,7 +81,7 @@ export function About() {
     { label: 'Headquarters', value: 'Lindon, Utah', icon: MapPin },
     { label: 'Founder & CEO', value: 'Glen Jensen', icon: UserRound },
     { label: 'Countries', value: '42', icon: Globe2 },
-    { label: 'Amazon US seller rating (9,600+ ratings)', value: '4.9/5', icon: Star, lit: true },
+    { label: 'Amazon seller rating across our stores (265,000+ ratings)', value: '4.8/5', icon: Star, lit: true },
   ];
 
   const aboutPageSchema = getWebPageSchema({

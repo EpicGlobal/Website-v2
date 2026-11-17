@@ -110,7 +110,7 @@ export const FAQS: Faq[] = [
   {
     question: 'How can we check Epic\'s track record?',
     answer:
-      'Epic sells on Amazon US as "Epic Global," rated 4.9 out of 5 from 9,600+ customer ratings (October 2026), and on Walmart as Epic Global Inc. You can see both seller pages, and our case studies show results for partner brands.',
+      'Across all of Epic’s Amazon stores, customers rate us 4.8 out of 5 from 265,000+ ratings (November 2026). Our main Amazon US store is "Epic Global," and on Walmart we sell as Epic Global Inc. You can see both seller pages, and our case studies show results for partner brands.',
   },
 ];
 

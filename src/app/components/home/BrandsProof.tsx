@@ -20,8 +20,9 @@ import { COUNTRY_COUNT, MARKETPLACE_COUNT } from '@/app/data/markets';
 
 type Brand = MarqueeBrand;
 
-const RATING = 4.9;
-const RATING_COUNT = '9,600+';
+const RATING = 4.8;
+// Nov 17 2026 (Brex, from Jake's Seller Central sheet): every Epic Amazon seller account, Univera included.
+const RATING_COUNT = '265,000+';
 
 type Stat = { value: ReactNode; label: string; more: string; icon: LucideIcon; pop?: boolean };
 const STATS: Stat[] = [
@@ -55,7 +56,7 @@ const STATS: Stat[] = [
 /**
  * The rating ring. Server HTML draws it full (works with no JS, and with reduced motion). On the client the lime ring
  * is tied to the scroll (Brex, Nov 16): it starts empty as the ring comes up from the bottom of the screen and draws
- * in as you scroll, reaching 4.9/5 when the ring is a little above the middle. Scrolling back up un-draws it.
+ * in as you scroll, reaching the rating when the ring is a little above the middle. Scrolling back up un-draws it.
  */
 function RatingRing({ size = 'md' }: { size?: 'md' | 'lg' }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -114,7 +115,7 @@ function RatingRing({ size = 'md' }: { size?: 'md' | 'lg' }) {
         <span className={`mt-1 text-sm leading-snug ${BODY}`}>
           out of 5 from {RATING_COUNT} ratings
           <br />
-          <span aria-hidden="true">Amazon US seller rating</span>
+          <span aria-hidden="true">Amazon seller rating, all our stores</span>
         </span>
       </div>
     </div>
@@ -163,7 +164,7 @@ function Lines() {
 function RingItem({ size }: { size?: 'md' | 'lg' }) {
   return (
     <>
-      <dt className="sr-only">Amazon US seller rating</dt>
+      <dt className="sr-only">Amazon seller rating across all Epic stores</dt>
       <dd>
         <RatingRing size={size} />
       </dd>
