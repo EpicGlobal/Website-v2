@@ -113,9 +113,9 @@ function RatingRing({ size = 'md' }: { size?: 'md' | 'lg' }) {
           <CountUp value={RATING} decimals={1} />
         </span>
         <span className={`mt-1 text-sm leading-snug ${BODY}`}>
-          out of 5 from {RATING_COUNT} ratings
+          out of 5 from {RATING_COUNT}
           <br />
-          <span aria-hidden="true">Amazon seller rating, all our stores</span>
+          <span aria-hidden="true">Amazon seller ratings</span>
         </span>
       </div>
     </div>
