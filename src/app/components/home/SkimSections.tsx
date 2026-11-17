@@ -135,7 +135,7 @@ export const HOME_FAQ = [
   },
   {
     q: 'Do you sell 1P or 3P on Amazon?',
-    a: 'Mainly 3P: we buy your inventory and sell it on Amazon ourselves as a third-party seller, so we set the price at or above your MAP and control listings, ads and stock. In 1P, Amazon buys your stock and sets the price. For brands selling 1P today, we look at whether 3P would serve them better.',
+    a: '3P. We purchase your inventory at agreed wholesale prices and sell it on Amazon as the third-party seller, priced at or above your MAP. In 1P, Amazon buys your stock and sets the price. If you sell 1P to Amazon today, we move you to 3P.',
   },
 ];
 

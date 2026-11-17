@@ -30,7 +30,7 @@ export const FAQS: Faq[] = [
   {
     question: 'Does Epic sell 1P or 3P?',
     answer:
-      'Mainly 3P. We buy your inventory at wholesale and sell it on Amazon as a 3P seller, so pricing at or above MAP, listings, ads and stock stay in one operator’s hands. We work with both models, and for brands selling 1P we look at whether 3P would serve them better.',
+      '3P. Epic does not sell to Amazon as a 1P vendor. We take brands that sell 1P on Amazon today and move them to 3P: we purchase the inventory at agreed wholesale prices and sell it on Amazon as the third-party seller, so pricing at or above MAP, listings, ads and stock stay with one operator.',
   },
   {
     question: 'Why do brands often earn less in 1P than in 3P?',
