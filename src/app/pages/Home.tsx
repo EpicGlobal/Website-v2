@@ -31,26 +31,20 @@ import bonaBotanicaLogo from '@/assets/0c3cf0d40d92c09708e347151b005f3e5596072d.
 import buckedUpLogo from '@/assets/43335a8bbd39ae86c6992eb00ce2751179d44ceb.png';
 import beautyFocusLogo from '@/assets/16be2a2697022ec318fc5dffab604ec08c6ea110.png';
 import botalabLogo from '@/assets/22e8e47e93878bd055f3f0784ad51324a14e2e86.png';
-import bodeProLogo from '@/assets/dd52d621b52abc573986f37f46a1c4defdf9e2e1.png';
 import epochLogo from '@/assets/1a51400c847b43ceb652f7b37844917910e49662.png';
 import doctorsBestLogo from '@/assets/986dd0a0a85aa440a5b4d8924b7bdef2acd069ce.png';
 import gentlemenRepublicLogo from '@/assets/41f6e55df1fa2c29fdc640f9ef5481334f819ad5.png';
-import iceElementsLogo from '@/assets/398340e50590d80a267db4420b16873a69c96d3c.png';
 import incelldermLogo from '@/assets/d7d83b3aba9e9324d0971b91c01187787a9373d2.png';
 import lifeningLogo from '@/assets/7050cfcd254a8e6b35a5e7eae127ccf0431d032f.png';
 import healthyHomeLogo from '@/assets/c0c4994bde7fe0a435eabb1839c2db5ae0216b51.png';
 import heroineMakeLogo from '@/assets/ba0e3491f303ef8e07257a25c46835bd5dba4666.png';
 import kLogo from '@/assets/89a47228c49eea9be03629d307026d29fb10245d.png';
 import kingsLogo from '@/assets/ddb35a678bf18d6c48db81488df2c1a687976f18.png';
-import lifeCiderLogo from '@/assets/55a30c6511b44c8a17c8aff06f5280397091adc5.png';
 import makeWellnessLogo from '@/assets/0fd1df88bd92404824795387f70ccee691cd1b04.png';
 import novexBiotechLogo from '@/assets/4fd949eb8c616f3359384cec575169ba872f082a.png';
 import muscleMooseLogo from '@/assets/911cd3b70129bc626e8a2e32e49c28ce2d0780a8.png';
-import midisemLogo from '@/assets/d5bd0fe2ac7d6d0378bc37edf5c072031109480f.png';
-import lionStrikeLogo from '@/assets/b818b6f69f5a38c79a1acd6f6d4fc30300fe8a4a.png';
 import neumiLogo from '@/assets/80f32a538c28c693808c45eac479be8b6e62adc9.png';
 import mixhersLogo from '@/assets/81018778351755f2626aa9ec670f8c62da761311.png';
-import madeLogo from '@/assets/96fbb37ae09cd392e4834ec967b0824a22cbedab.png';
 import livePureLogo from '@/assets/eef3afdcff3f4eee2911c341c057822192f87ebe.png';
 import nowLogo from '@/assets/b4b898dbe9fdbd902dfe9ec3cb4013399a7a6fcb.png';
 import phoneSoapLogo from '@/assets/926eb7b011c9ced870fb1fa1a10dc4e82df9fa85.png';
@@ -64,18 +58,13 @@ import organoLogo from '@/assets/e1a2b5126b39c8bafb6e331307cdb83cf21fe64e.png';
 import nuSkinLogo from '@/assets/5f1a49c0a0b32f372b4ee6beb26a48631d147029.png';
 import seroVitalLogo from '@/assets/1f4eed43c7961e335dc19e64a0f05334073cd6e2.png';
 import suteraLogo from '@/assets/967c8426adebcc2a86cafe0b4d49f813b966b007.png';
-import thriveLogo from '@/assets/6ad188b6a295f7b6d96be106d8d12fdd6566ebdd.png';
 import tranontLogo from '@/assets/3efbc93baa925523f1affbf3643d8d528af7d0d7.png';
-import simmtronicsLogo from '@/assets/9ca3201fd54a521494c7b90bc2f6e0221727094f.png';
 import thinkSmarterProductsLogo from '@/assets/b1e2ea523335f184b5f55c9775f5ada284f6b125.png';
-import truvyLogo from '@/assets/3197f3ef0c1a8b4d9a4dc10ca2db8bc2093cc26f.png';
-import reuzelLogo from '@/assets/883f18fa753a7106216503ca3c6ef72d1178fcf1.png';
 import relacoreLogo from '@/assets/960c114fb5ef207b865b392e3414a92fa2a538e7.png';
 import rfLogo from '@/assets/7df4db1a84b40fbea8116e0deab0bac19dd891bf.png';
 import youngLivingLogo from '@/assets/Young-Living-logo.png';
 import youniqueLogo from '@/assets/7762de3ef51cb8cc05069238ad5ebc05c432ec99.png';
 import zantrexLogo from '@/assets/a02203de0f65132ee8277243eb83905610259bc6.png';
-import ziveLogo from '@/assets/bac9c727078929bc5f7386af4f562d2fe9fefe30.png';
 
 /*
  * Homepage, skim first (Brex, Nov 5; order updated Nov 17: hero, how it works, at a glance, results, compare, fit, questions): hero ("We Buy It. You Profit.") -> brand logos -> 4 numbers -> Buy-Sell-Advertise-Protect
@@ -135,26 +124,20 @@ export function Home() {
     { name: 'Bona Botanica', logo: bonaBotanicaLogo, tone: 'dark' },
     { name: 'Beauty Focus', logo: beautyFocusLogo },
     { name: 'Botalab', logo: botalabLogo, tone: 'dark' },
-    { name: 'Bode Pro', logo: bodeProLogo, tone: 'deep' },
     { name: 'Epoch', logo: epochLogo, tone: 'deep' },
     { name: "Doctor's Best", logo: doctorsBestLogo, tone: 'pale' },
     { name: 'Gentlemen Republic', logo: gentlemenRepublicLogo, tone: 'dark' },
-    { name: 'Ice Elements', logo: iceElementsLogo, tone: 'dark' },
     { name: 'Incellderm', logo: incelldermLogo, tone: 'dark' },
     { name: 'Lifening', logo: lifeningLogo, tone: 'dark' },
     { name: 'Healthy Home', logo: healthyHomeLogo },
     { name: 'Heroine Make', logo: heroineMakeLogo, tone: 'light' },
     { name: 'K', logo: kLogo, tone: 'light' },
     { name: 'Kings', logo: kingsLogo, tone: 'light' },
-    { name: 'Life Cider', logo: lifeCiderLogo },
     { name: 'Make Wellness', logo: makeWellnessLogo, tone: 'light' },
     { name: 'Novex Biotech', logo: novexBiotechLogo, tone: 'dark' },
     { name: 'Muscle Moose', logo: muscleMooseLogo, tone: 'deep' },
-    { name: 'Midisem', logo: midisemLogo, badge: true },
-    { name: 'Lionstrike', logo: lionStrikeLogo, tone: 'dark' },
     { name: 'Neumi', logo: neumiLogo, tone: 'dark' },
     { name: 'Mixhers', logo: mixhersLogo },
-    { name: 'Made', logo: madeLogo, tone: 'dark' },
     { name: 'LivePure', logo: livePureLogo, tone: 'dark' },
     { name: 'NOW Foods', logo: nowLogo, tone: 'deep' },
     { name: 'PhoneSoap', logo: phoneSoapLogo },
@@ -167,15 +150,10 @@ export function Home() {
     { name: 'Organo', logo: organoLogo, tone: 'deep' },
     { name: 'SeroVital', logo: seroVitalLogo, tone: 'dark' },
     { name: 'Sutera', logo: suteraLogo, tone: 'dark' },
-    { name: 'Thrive', logo: thriveLogo, tone: 'deep' },
     { name: 'Tranont', logo: tranontLogo, tone: 'dark' },
-    { name: 'Simmtronics', logo: simmtronicsLogo, tone: 'dark' },
-    { name: 'Truvy', logo: truvyLogo, tone: 'dark' },
-    { name: 'Reuzel', logo: reuzelLogo, tone: 'dark' },
     { name: 'Relacore', logo: relacoreLogo, tone: 'dark' },
     { name: 'Rodan + Fields', logo: rfLogo, tone: 'pale' },
     { name: 'Zantrex', logo: zantrexLogo, tone: 'dark' },
-    { name: 'Zive', logo: ziveLogo, tone: 'dark' },
   ];
 
   const featuredCases = [
