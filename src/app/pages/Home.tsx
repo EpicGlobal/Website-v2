@@ -322,7 +322,6 @@ export function Home() {
           no bottom padding here, so the gap under the marker matches the gap above How it works. */}
       <section id="brands" data-chapter aria-label="Epic Global Inc. at a glance" className="scroll-mt-20 pt-20 pb-0 px-4 sm:px-6 lg:px-8">
         <BrandsProof brands={brands} logos={false} marker={<ChapterMarker id="brands" />} />
-        <p className={`mt-10 text-center text-sm font-medium ${MUTED}`}>Founded in 2014. Selling on Amazon since 2015.</p>
       </section>
 
       {/* 05 How we execute: two featured case studies settle in, then the way to all of them. */}
