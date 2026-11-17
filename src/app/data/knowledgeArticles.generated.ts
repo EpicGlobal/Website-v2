@@ -6,9 +6,9 @@ export const generatedArticles: KnowledgeArticle[] = [
   {
     "slug": "what-is-epic-global-inc",
     "title": "What is Epic Global Inc.?",
-    "seoTitle": "What Is Epic Global? Amazon Wholesale Partner",
-    "summary": "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory at an agreed wholesale price, sell it on Amazon, Walmart and international marketplaces, and pay the advertising, marketplace fees and fulfillment for the products we buy.",
-    "seoDescription": "Epic Global buys brand inventory at wholesale and sells it on Amazon, Walmart and international marketplaces, paying the ads, fees and fulfillment.",
+    "seoTitle": "What Is Epic Global? Amazon Wholesale Trade Partner",
+    "summary": "Epic Global is an Amazon-first wholesale trade partner that purchases brand inventory, operates authorized marketplace sales, and funds advertising, marketplace fees and fulfillment for the products it buys.",
+    "seoDescription": "Learn how Epic Global buys brand inventory at wholesale and manages authorized sales on Amazon, Walmart and international marketplaces.",
     "category": "Start Here",
     "type": "Answer Page",
     "difficulty": "Intro",
@@ -26,8 +26,8 @@ export const generatedArticles: KnowledgeArticle[] = [
   {
     "slug": "how-our-model-works",
     "title": "How Our Model Works: Buy, Sell, Advertise, Protect",
-    "seoTitle": "How Epic's Wholesale Marketplace Model Works",
-    "summary": "How Epic Global buys brand inventory at wholesale, sells it on Amazon and other marketplaces, pays the selling costs and protects the brand.",
+    "seoTitle": "How Epic Global's Wholesale Marketplace Model Works",
+    "summary": "How Epic Global buys brand inventory at wholesale, manages Amazon and other authorized marketplace sales, funds selling costs and supports brand protection.",
     "category": "Model and Process",
     "type": "Answer Page",
     "difficulty": "Intro",
@@ -47,7 +47,7 @@ export const generatedArticles: KnowledgeArticle[] = [
   {
     "slug": "who-we-are-fit-for",
     "title": "What Brands Are a Good Fit for Epic Global?",
-    "seoTitle": "Who Is Epic Global a Fit For?",
+    "seoTitle": "Who Is Epic Global a Fit For? | Amazon Wholesale Partner",
     "summary": "Epic typically partners with established brands generating $1M+ in annual sales that want an Amazon wholesale trade partner. Smaller brands are considered case by case.",
     "seoDescription": "Epic Global typically works with established brands doing $1M+ a year in sales. See who fits our Amazon wholesale trade partner model.",
     "category": "Model and Process",
@@ -681,8 +681,8 @@ export const generatedArticles: KnowledgeArticle[] = [
   {
     "slug": "epic-operational-process",
     "title": "Epic's Operational Process: A Deep Dive",
-    "seoTitle": "Epic's Process: Assess, Build, Execute, Scale",
-    "summary": "A practical guide to Epic Global's four-phase process (Assess, Build, Execute, Scale) and what brands provide during onboarding.",
+    "seoTitle": "Epic Global Marketplace Operations: Assess, Build, Execute, Scale",
+    "summary": "A practical guide to Epic Global's four-phase wholesale marketplace process: Assess, Build, Execute and Scale, including what brands provide during onboarding.",
     "seoDescription": "See how Epic Global assesses, builds, executes and scales Amazon and international marketplace operations, including onboarding, advertising and reporting.",
     "category": "Library",
     "type": "Deep Dive",

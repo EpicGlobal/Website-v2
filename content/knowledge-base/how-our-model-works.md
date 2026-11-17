@@ -1,7 +1,7 @@
 ---
 title: "How Our Model Works: Buy, Sell, Advertise, Protect"
-seoTitle: "How Epic's Wholesale Marketplace Model Works"
-summary: "How Epic Global buys brand inventory at wholesale, sells it on Amazon and other marketplaces, pays the selling costs and protects the brand."
+seoTitle: "How Epic Global's Wholesale Marketplace Model Works"
+summary: "How Epic Global buys brand inventory at wholesale, manages Amazon and other authorized marketplace sales, funds selling costs and supports brand protection."
 category: "Model and Process"
 type: "Answer Page"
 difficulty: "Intro"

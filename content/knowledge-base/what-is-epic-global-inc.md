@@ -1,8 +1,8 @@
 ---
 title: "What is Epic Global Inc.?"
-seoTitle: "What Is Epic Global? Amazon Wholesale Partner"
-summary: "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory at an agreed wholesale price, sell it on Amazon, Walmart and international marketplaces, and pay the advertising, marketplace fees and fulfillment for the products we buy."
-seoDescription: "Epic Global buys brand inventory at wholesale and sells it on Amazon, Walmart and international marketplaces, paying the ads, fees and fulfillment."
+seoTitle: "What Is Epic Global? Amazon Wholesale Trade Partner"
+summary: "Epic Global is an Amazon-first wholesale trade partner that purchases brand inventory, operates authorized marketplace sales, and funds advertising, marketplace fees and fulfillment for the products it buys."
+seoDescription: "Learn how Epic Global buys brand inventory at wholesale and manages authorized sales on Amazon, Walmart and international marketplaces."
 category: "Start Here"
 type: "Answer Page"
 difficulty: "Intro"

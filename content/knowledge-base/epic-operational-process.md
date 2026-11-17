@@ -1,7 +1,7 @@
 ---
 title: "Epic's Operational Process: A Deep Dive"
-seoTitle: "Epic's Process: Assess, Build, Execute, Scale"
-summary: "A practical guide to Epic Global's four-phase process (Assess, Build, Execute, Scale) and what brands provide during onboarding."
+seoTitle: "Epic Global Marketplace Operations: Assess, Build, Execute, Scale"
+summary: "A practical guide to Epic Global's four-phase wholesale marketplace process: Assess, Build, Execute and Scale, including what brands provide during onboarding."
 seoDescription: "See how Epic Global assesses, builds, executes and scales Amazon and international marketplace operations, including onboarding, advertising and reporting."
 category: "Library"
 type: "Deep Dive"

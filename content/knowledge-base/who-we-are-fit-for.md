@@ -1,7 +1,7 @@
 ---
 title: "What Brands Are a Good Fit for Epic Global?"
 summary: "Epic typically partners with established brands generating $1M+ in annual sales that want an Amazon wholesale trade partner. Smaller brands are considered case by case."
-seoTitle: "Who Is Epic Global a Fit For?"
+seoTitle: "Who Is Epic Global a Fit For? | Amazon Wholesale Partner"
 seoDescription: "Epic Global typically works with established brands doing $1M+ a year in sales. See who fits our Amazon wholesale trade partner model."
 category: "Model and Process"
 type: "Answer Page"
