@@ -127,12 +127,19 @@ export function CaseStudyDetail({ study }: { study: CaseStudy }) {
                     {w.chart && <ChartPanel chart={w.chart} />}
                     {w.table && (
                       <div className={`${CARD} mt-5 p-5 sm:p-6 overflow-x-auto`}>
-                        <table className="w-full min-w-[30rem] text-left text-sm sm:text-base">
+                        <table className="w-full min-w-[30rem] table-fixed text-left text-sm sm:text-base">
                           <caption className="sr-only">{w.table.title}</caption>
+                          {/* Even columns: the metric column is wider, each comparison column gets the same width. */}
+                          <colgroup>
+                            <col className="w-[40%]" />
+                            {w.table.columns.slice(1).map((_, i) => (
+                              <col key={i} />
+                            ))}
+                          </colgroup>
                           <thead>
                             <tr className={`border-b-2 ${RULE}`}>
                               {w.table.columns.map((col, i) => (
-                                <th key={i} scope="col" className={`py-3 pr-4 font-semibold ${HEAD}`}>{col || <span className="sr-only">Metric</span>}</th>
+                                <th key={i} scope="col" className={`py-3 pr-4 align-bottom font-semibold ${HEAD}`}>{col || <span className="sr-only">Metric</span>}</th>
                               ))}
                             </tr>
                           </thead>

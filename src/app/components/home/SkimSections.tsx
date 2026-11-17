@@ -39,12 +39,19 @@ export function MarkTable({ columns, rows }: { columns: string[]; rows: { q: str
   const EPIC = 'bg-[var(--pop)]/[0.07]';
   return (
     <div className={`overflow-x-auto rounded-2xl border ${RULE}`}>
-      <table className={`w-full text-left text-sm sm:text-base ${columns.length > 3 ? 'min-w-[48rem]' : 'min-w-[38rem]'}`}>
+      <table className={`w-full table-fixed text-left text-sm sm:text-base ${columns.length > 3 ? 'min-w-[48rem]' : 'min-w-[38rem]'}`}>
+        {/* Even columns: the question column is a bit wider, every answer column gets the same width. */}
+        <colgroup>
+          <col className={columns.length > 3 ? 'w-[22%]' : 'w-[28%]'} />
+          {columns.map((c) => (
+            <col key={c} />
+          ))}
+        </colgroup>
         <thead>
           <tr className={`border-b ${RULE}`}>
             <th scope="col" className="p-4"><span className="sr-only">Question</span></th>
             {columns.map((c, i) => (
-              <th key={c} scope="col" className={`p-4 font-semibold ${i === 0 ? `${ACCENT} ${EPIC}` : HEAD}`}>{c}</th>
+              <th key={c} scope="col" className={`p-4 pl-11 align-bottom font-semibold ${i === 0 ? `${ACCENT} ${EPIC}` : HEAD}`}>{c}</th>
             ))}
           </tr>
         </thead>

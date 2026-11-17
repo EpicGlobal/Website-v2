@@ -186,7 +186,7 @@ const components: Components = {
   },
   table: ({ children }) => (
     <div className={CLASS.table}>
-      <table className="w-full text-left">{children}</table>
+      <table className="w-full table-fixed text-left">{children}</table>
     </div>
   ),
   thead: ({ children }) => <thead>{children}</thead>,
@@ -195,7 +195,7 @@ const components: Components = {
     const inHead = node?.children?.some((c) => c.type === 'element' && c.tagName === 'th');
     return <tr className={inHead ? 'border-b border-cyan-500/20' : 'border-b border-white/5'}>{children}</tr>;
   },
-  th: ({ children }) => <th className="pb-3 pr-4 text-white font-semibold">{children}</th>,
+  th: ({ children }) => <th className="pb-3 pr-4 align-bottom text-white font-semibold">{children}</th>,
   td: ({ children }) => <td className="py-3 pr-4 align-top">{children}</td>,
 };
 
