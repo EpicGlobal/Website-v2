@@ -60,7 +60,8 @@ const LINES = [-152, -28, 28, 152].map((deg) => {
 /**
  * The rating ring. Server HTML draws it full (works with no JS, and with reduced motion). On the client the lime ring
  * is tied to the scroll (Brex, Nov 16): it starts empty as the ring comes up from the bottom of the screen and draws
- * in as you scroll, reaching the rating when the ring is a little above the middle. Scrolling back up un-draws it.
+ * in as you scroll, reaching the rating while the whole section is still on screen (ring a little below the middle;
+ * Nov 17: it used to finish only once the heading had scrolled away). Scrolling back up un-draws it.
  */
 function RatingRing() {
   const ref = useRef<HTMLDivElement>(null);
@@ -76,8 +77,8 @@ function RatingRing() {
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
       const center = r.top + r.height / 2;
-      // 0 when the ring's center enters at the bottom of the screen, 1 when it reaches 45% from the top.
-      const p = Math.min(1, Math.max(0, (vh - center) / (vh * 0.55)));
+      // 0 when the ring's center enters at the bottom of the screen, 1 when it reaches 62% from the top.
+      const p = Math.min(1, Math.max(0, (vh - center) / (vh * 0.38)));
       setProgress((prev) => (Math.abs(prev - p) < 0.002 ? prev : p)); // React skips the render when nothing moved
     };
     update();
