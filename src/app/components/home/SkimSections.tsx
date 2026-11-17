@@ -3,7 +3,7 @@
  * Every word is in the server HTML. Facts come only from the live FAQ and Knowledge Base.
  */
 import Link from 'next/link';
-import { Check, X } from 'lucide-react';
+import { Check, Minus, X } from 'lucide-react';
 import { ACCENT, BODY, HEAD, MUTED, RULE } from '@/app/components/story/tokens';
 import { CARD } from './homeStyles';
 
@@ -62,40 +62,101 @@ export function MarkTable({ columns, rows }: { columns: string[]; rows: { q: str
   );
 }
 
-/** Homepage comparison (Nov 17): what each business model owns and how it earns. Epic's row gets the pop accent. */
-const MODELS: { model: string; inventory: string; brand: string; earns: string; epic?: boolean }[] = [
-  { model: 'Epic Wholesale Partnership', inventory: 'Epic purchases inventory outright', brand: 'Brand owner retains ownership', earns: 'Wholesale resale margin', epic: true },
-  { model: 'Marketplace Agency', inventory: 'Usually owned by the brand', brand: 'Brand owner retains ownership', earns: 'Service or performance fees' },
-  { model: 'Traditional Distributor', inventory: 'Purchases inventory for resale', brand: 'Brand owner retains ownership', earns: 'Resale margin' },
-  { model: 'Brand Aggregator', inventory: 'Owns inventory within acquired brands', brand: 'Typically acquires the brand', earns: 'Profits and enterprise value of owned brands' },
+/**
+ * Homepage comparison, section 05 (Nov 17, second pass): check / X / "varies" signals instead of a text grid, so it
+ * scans fast. Wide screens: one row per question, a column per model, Epic's column tinted lime. Below lg the same
+ * markup stacks into one card per question with the model name beside each answer, so nothing scrolls sideways.
+ * ARIA table roles keep it a table for screen readers in both layouts.
+ */
+type Sig = 'yes' | 'no' | 'some' | 'text';
+type Ans = { sig: Sig; text: string };
+const MODEL_COLS = [
+  { name: 'Epic', sub: 'Wholesale partner' },
+  { name: 'Agency', sub: 'Marketplace agency' },
+  { name: 'Distributor', sub: 'Traditional distributor' },
+  { name: 'Aggregator', sub: 'Brand aggregator' },
+];
+const COMPARE: { q: string; a: [Ans, Ans, Ans, Ans] }[] = [
+  {
+    q: 'Buys your inventory',
+    a: [{ sig: 'yes', text: 'Outright, at wholesale' }, { sig: 'no', text: 'Usually not' }, { sig: 'yes', text: 'For resale' }, { sig: 'some', text: 'Acquires the whole brand' }],
+  },
+  {
+    q: 'Funds ads, fees and fulfillment',
+    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'no', text: 'Usually not' }, { sig: 'some', text: 'Varies' }, { sig: 'some', text: 'As the new owner' }],
+  },
+  {
+    q: 'Runs marketplace operations',
+    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'some', text: 'For a fee' }, { sig: 'some', text: 'Sometimes' }, { sig: 'some', text: 'As the brand owner' }],
+  },
+  {
+    q: 'You keep your brand',
+    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'yes', text: 'Yes' }, { sig: 'yes', text: 'Yes' }, { sig: 'no', text: 'Typically acquires it' }],
+  },
+  {
+    q: 'How it earns',
+    a: [{ sig: 'text', text: 'Wholesale resale margin' }, { sig: 'text', text: 'Service or performance fees' }, { sig: 'text', text: 'Resale margin' }, { sig: 'text', text: 'Profits of the brands it owns' }],
+  },
 ];
 
-export function CompareTable() {
-  const EPIC = 'bg-[var(--pop)]/[0.07]';
-  const cols = ['Inventory Ownership', 'Brand Ownership', 'How It Earns'];
+function Signal({ ans, epic }: { ans: Ans; epic?: boolean }) {
+  const tone = epic ? `font-semibold ${HEAD}` : BODY;
+  if (ans.sig === 'text') return <span className={`text-sm sm:text-base leading-snug ${tone}`}>{ans.text}</span>;
+  const Icon = ans.sig === 'yes' ? Check : ans.sig === 'no' ? X : Minus;
+  const dot =
+    ans.sig === 'yes'
+      ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400'
+      : ans.sig === 'no'
+        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400'
+        : 'bg-white/10 text-gray-400 light:bg-gray-100 light:text-gray-500 orange:bg-[#101828]/10 orange:text-[#101828]/60';
   return (
-    <div className={`overflow-x-auto rounded-2xl border ${RULE}`}>
-      <table className="w-full min-w-[40rem] table-fixed text-left text-sm sm:text-base">
-        <caption className="sr-only">How Epic compares to agencies, distributors and aggregators</caption>
-        <thead>
-          <tr className={`border-b ${RULE}`}>
-            <th scope="col" className={`p-4 align-bottom font-semibold ${HEAD}`}>Business Model</th>
-            {cols.map((c) => (
-              <th key={c} scope="col" className={`p-4 align-bottom font-semibold ${HEAD}`}>{c}</th>
+    <span className={`inline-flex items-start gap-2 text-sm sm:text-base leading-snug ${tone}`}>
+      <span aria-hidden="true" className={`mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${dot}`}>
+        <Icon className="h-3.5 w-3.5" strokeWidth={3} />
+      </span>
+      {ans.text}
+    </span>
+  );
+}
+
+export function CompareTable() {
+  const GRID = 'lg:grid lg:grid-cols-[minmax(0,1.2fr)_repeat(4,minmax(0,1fr))]';
+  const EPIC = 'bg-[var(--pop)]/[0.08]';
+  return (
+    <div className="relative">
+      {/* Decorative: a faint cyan glow behind the panel */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 -inset-y-10 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.10),transparent_65%)] orange:hidden light:hidden" />
+      <div role="table" aria-label="How Epic compares to agencies, distributors and aggregators" className={`relative overflow-hidden rounded-2xl border ${RULE} bg-white/[0.03] light:bg-white orange:bg-white/60`}>
+        <div role="rowgroup" className="hidden lg:block">
+          <div role="row" className={`${GRID} border-b ${RULE}`}>
+            <span role="columnheader" className="p-5"><span className="sr-only">Question</span></span>
+            {MODEL_COLS.map((m, i) => (
+              <span key={m.name} role="columnheader" className={`p-5 ${i === 0 ? EPIC : ''}`}>
+                <span className={`block text-lg font-bold ${i === 0 ? ACCENT : HEAD}`}>{m.name}</span>
+                <span className={`block text-xs font-medium uppercase tracking-[0.12em] ${MUTED}`}>{m.sub}</span>
+              </span>
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {MODELS.map((m) => (
-            <tr key={m.model} className={`border-b last:border-b-0 ${RULE} ${m.epic ? EPIC : ''}`}>
-              <th scope="row" className={`p-4 align-top font-semibold ${m.epic ? ACCENT : HEAD}`}>{m.model}</th>
-              {[m.inventory, m.brand, m.earns].map((v, i) => (
-                <td key={cols[i]} className={`p-4 align-top ${m.epic ? `font-semibold ${HEAD}` : BODY}`}>{v}</td>
+          </div>
+        </div>
+        <div role="rowgroup">
+          {COMPARE.map((r) => (
+            <div key={r.q} role="row" className={`${GRID} border-b last:border-b-0 ${RULE}`}>
+              <span role="rowheader" className={`block px-5 pt-5 pb-3 lg:p-5 font-semibold ${HEAD}`}>{r.q}</span>
+              {r.a.map((ans, i) => (
+                <span
+                  key={MODEL_COLS[i].name}
+                  role="cell"
+                  className={`grid grid-cols-[7rem_minmax(0,1fr)] gap-3 px-5 py-2 last:pb-5 lg:block lg:p-5 ${i === 0 ? EPIC : ''}`}
+                >
+                  {/* model name beside the answer on smaller screens; the column header does this job on wide screens */}
+                  <span className={`text-sm font-semibold lg:hidden ${i === 0 ? ACCENT : MUTED}`}>{MODEL_COLS[i].name}</span>
+                  <Signal ans={ans} epic={i === 0} />
+                </span>
               ))}
-            </tr>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 }
