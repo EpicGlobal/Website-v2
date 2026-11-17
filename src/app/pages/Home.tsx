@@ -65,6 +65,10 @@ import rfLogo from '@/assets/7df4db1a84b40fbea8116e0deab0bac19dd891bf.png';
 import youngLivingLogo from '@/assets/Young-Living-logo.png';
 import youniqueLogo from '@/assets/7762de3ef51cb8cc05069238ad5ebc05c432ec99.png';
 import zantrexLogo from '@/assets/a02203de0f65132ee8277243eb83905610259bc6.png';
+import juicePlusLogo from '@/assets/juice-plus-logo.png';
+import coolCaratsLogo from '@/assets/cool-carats-logo.png';
+import hurdleLogo from '@/assets/hurdle-logo.png';
+import modernColorLogo from '@/assets/modern-color-logo.png';
 
 /*
  * Homepage, skim first (Brex, Nov 5; order updated Nov 17: hero, how it works, at a glance, results, compare, fit, questions): hero ("We Buy It. You Profit.") -> brand logos -> 4 numbers -> Buy-Sell-Advertise-Protect
@@ -154,6 +158,10 @@ export function Home() {
     { name: 'Relacore', logo: relacoreLogo, tone: 'dark' },
     { name: 'Rodan + Fields', logo: rfLogo, tone: 'pale' },
     { name: 'Zantrex', logo: zantrexLogo, tone: 'dark' },
+    { name: 'Juice Plus+', logo: juicePlusLogo },
+    { name: 'Cool Carats', logo: coolCaratsLogo, tone: 'pale', badge: true },
+    { name: 'Hurdle', logo: hurdleLogo, tone: 'deep' },
+    { name: 'Modern Color', logo: modernColorLogo, tone: 'light' },
   ];
 
   const featuredCases = [
