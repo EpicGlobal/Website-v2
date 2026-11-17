@@ -55,6 +55,6 @@ One example: an auto parts brand compared its 1P results with Epic's 3P offer, i
 
 ## Where Epic fits
 
-Epic Global Inc. is a wholesale trade partner that sells mainly as a 3P seller. We buy your inventory outright at wholesale, sell it on Amazon at or above your MAP, pay for the ads, fees and fulfillment, and remove unauthorized sellers. We work with both models, and for brands selling 1P today, we look at whether 3P would serve them better.
+Epic Global Inc. is a wholesale trade partner that sells mainly as a 3P seller. We buy your inventory outright at wholesale, sell it on Amazon at or above your MAP, pay for the ads, fees and fulfillment, and go after unauthorized sellers. We work with both models, and for brands selling 1P today, we look at whether 3P would serve them better.
 
 Read [how our model works](/our-model) or the [FAQ](/faq).

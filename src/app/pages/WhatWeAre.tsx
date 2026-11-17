@@ -33,7 +33,7 @@ const CAPABILITIES = [
   { icon: Search, title: 'Listing Optimization', description: 'Titles, keywords and creative that convert.' },
   { icon: BarChart3, title: 'Advertising Operations', description: 'Campaigns, bids and creative, paid by Epic.' },
   { icon: Package, title: 'Inventory + Forecasting', description: 'Demand planning and reorders.' },
-  { icon: Shield, title: 'Brand Protection & MAP Monitoring', strong: 'We remove unauthorized sellers', description: 'and protect MAP pricing.' },
+  { icon: Shield, title: 'Brand Protection & MAP Monitoring', strong: 'We go after unauthorized sellers', description: 'and sell at or above your MAP.' },
   { icon: Database, title: 'Data + Reporting Layer', description: 'Shared dashboard and monthly reports.' },
   { icon: Cpu, title: 'Execution Engine', description: 'Automation that keeps catalogs clean and fast.' },
 ];
@@ -59,7 +59,7 @@ const MODEL_LINES: { who: 'You' | 'Epic'; lead: string; body?: string }[] = [
   { who: 'You', lead: 'You make it.', body: 'You build the product and the brand.' },
   { who: 'Epic', lead: 'buy' },
   { who: 'Epic', lead: 'sell' },
-  { who: 'You', lead: 'You keep the brand.', body: 'Brand Registry, listings and reviews stay yours, and we enforce your MAP.' },
+  { who: 'You', lead: 'You keep the brand.', body: 'Brand Registry, listings and reviews stay yours, and we sell at or above your MAP.' },
 ];
 
 const STEPS = [

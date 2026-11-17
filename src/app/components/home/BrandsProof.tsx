@@ -45,8 +45,8 @@ const STATS: Stat[] = [
   },
   {
     value: '8–20',
-    label: 'Weeks to clear unauthorized sellers from your listings',
-    more: 'Through your Brand Registry we report each violation until Amazon takes the offer down, so your MAP price holds.',
+    label: 'Weeks we typically take to clear unauthorized sellers',
+    more: 'We document each violation and report it through your Brand Registry until Amazon acts on it. We always sell at or above your MAP.',
     icon: ShieldCheck,
     pop: true,
   },

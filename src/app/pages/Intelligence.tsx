@@ -38,8 +38,8 @@ function ChapterMarker({ n }: { n: number }) {
 
 /** Hero panel: the kinds of tasks the systems run (an illustration, no figures). The first one is lit. */
 const SYSTEM_TASKS: { icon: LucideIcon; title: string; detail: string }[] = [
-  { icon: Zap, title: 'Price checked on Amazon', detail: 'Kept within your MAP' },
-  { icon: Shield, title: 'Unauthorized seller flagged', detail: 'Removal started' },
+  { icon: Zap, title: 'Price checked on Amazon', detail: 'Our price kept at or above your MAP' },
+  { icon: Shield, title: 'Unauthorized seller flagged', detail: 'Violation reported' },
   { icon: TrendingUp, title: 'Demand shift spotted', detail: 'Stock moved to where it sells' },
   { icon: LayoutGrid, title: 'Listing updated on every marketplace', detail: 'One change, all channels' },
 ];
@@ -59,12 +59,12 @@ const intelligencePillars = [
 ];
 
 const SIGNALS = ['Prices and Buy Box', 'Sales and demand', 'New sellers', 'Ads and rankings'];
-const ACTIONS = ['Reprice within MAP', 'Move stock', 'Adjust ads', 'Report sellers'];
+const ACTIONS = ['Reprice at or above MAP', 'Move stock', 'Adjust ads', 'Report sellers'];
 
 const SHIFT = [
   { q: 'Channel management', epic: 'One system updates every marketplace', old: 'Manual updates, one platform at a time' },
-  { q: 'Pricing', epic: 'Watched every day, kept within your MAP', old: 'Reviewed every quarter by a team' },
-  { q: 'Brand protection', epic: 'Daily monitoring, fast enforcement', old: 'Monthly audits, after the damage' },
+  { q: 'Pricing', epic: 'Watched every day, ours kept at or above your MAP', old: 'Reviewed every quarter by a team' },
+  { q: 'Brand protection', epic: 'Daily monitoring, fast reporting', old: 'Monthly audits, after the damage' },
   { q: 'Inventory', epic: 'Forecasts place stock before demand shifts', old: "Last year's data and gut feel" },
 ];
 
