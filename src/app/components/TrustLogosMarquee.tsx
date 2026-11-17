@@ -20,6 +20,15 @@ type BrandLogo = StaticImageData;
 export type LogoTone = "light" | "pale" | "dark" | "deep";
 
 const PX_PER_SECOND = 80;
+/** Width of the soft fade at each end, as a share of the strip. The first logo starts just inside it, fully visible. */
+const FADE = 0.12;
+const FADE_MASK = `linear-gradient(to right, transparent, #000 ${FADE * 100}%, #000 ${100 - FADE * 100}%, transparent)`;
+/**
+ * Once the strip first comes on screen, the first logos hold still this long, then it eases up to full speed over
+ * RAMP_MS (no jump). On phones and short laptops the strip loads below the fold, so the hold waits until it is seen.
+ */
+const HOLD_MS = 1200;
+const RAMP_MS = 700;
 const MOMENTUM_DECAY_SECONDS = 0.22;
 const MAX_RELEASE_VELOCITY = 520;
 
@@ -67,11 +76,6 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
   const releaseVelocityRef = React.useRef(0);
   const reducedMotionRef = React.useRef(false);
   const [isDragging, setIsDragging] = React.useState(false);
-  // The first logos (Bucked Up, Nu Skin, Younique, Young Living) hold still and fully visible for a moment before the strip moves.
-  const HOLD_MS = 3000;
-  const [moving, setMoving] = React.useState(false);
-  const [centeredView, setCenteredView] = React.useState(false);
-  React.useEffect(() => { const t = setTimeout(() => setMoving(true), HOLD_MS); return () => clearTimeout(t); }, []);
 
   const applyOffset = React.useCallback(() => {
     const wrap = wrapRef.current;
@@ -90,22 +94,21 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
       reducedMotionRef.current = reducedMotionQuery.matches;
     };
 
-    let centered = false;
+    let placed = false;
     const measure = () => {
       const width = group.scrollWidth;
       if (!width) return;
 
       groupWidthRef.current = width;
-      // Desktop: start with the first four logos centered in the strip (the logos before them are the end of the list).
-      if (!centered && window.innerWidth >= 1024) {
+      // Start position, every screen size: the first logo (Nu Skin) sits just inside the left fade, fully visible, with
+      // the next logos after it (five on laptops and desktops, two on phones). The server HTML puts it in the same spot
+      // with a margin, so swapping the margin for the transform here moves nothing. The end of the list fills the fade.
+      if (!placed) {
         const view = wrap.parentElement?.clientWidth ?? 0;
-        const first = group.firstElementChild as HTMLElement | null;
-        const fourth = group.children[Math.min(3, group.children.length - 1)] as HTMLElement | undefined;
-        if (view && first?.offsetWidth && fourth) {
-          const middle = (fourth.offsetLeft + fourth.offsetWidth - first.offsetLeft) / 2;
-          offsetRef.current = view / 2 - middle - width;
-          centered = true;
-          setCenteredView(true);
+        if (view) {
+          offsetRef.current = Math.round(view * FADE) - width;
+          wrap.style.marginLeft = "0px";
+          placed = true;
         }
       }
       offsetRef.current = normalizeOffset(offsetRef.current, width);
@@ -132,7 +135,14 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
 
     let frameId = 0;
     let lastTime = performance.now();
-    const startAt = performance.now() + HOLD_MS;
+    let startAt = Infinity; // set when the strip first comes on screen
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.intersectionRatio >= 0.5)) {
+        startAt = performance.now() + HOLD_MS;
+        io.disconnect();
+      }
+    }, { threshold: 0.5 }); // half the strip on screen, not just its top edge
+    io.observe(wrap.parentElement ?? wrap);
 
     const tick = (now: number) => {
       const width = groupWidthRef.current;
@@ -141,7 +151,9 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
 
       if (width && now > startAt && !isDraggingRef.current && !reducedMotionRef.current) {
         const releaseVelocity = releaseVelocityRef.current;
-        const speed = -PX_PER_SECOND + releaseVelocity;
+        // Ease in from a standstill after the hold (smoothstep), then a steady speed for the rest of the loop.
+        const t = Math.min(1, (now - startAt) / RAMP_MS);
+        const speed = -PX_PER_SECOND * t * t * (3 - 2 * t) + releaseVelocity;
 
         offsetRef.current = normalizeOffset(offsetRef.current + speed * elapsedSeconds, width);
         releaseVelocityRef.current *= Math.exp(-elapsedSeconds / MOMENTUM_DECAY_SECONDS);
@@ -162,6 +174,7 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
     return () => {
       cancelAnimationFrame(frameId);
       ro.disconnect();
+      io.disconnect();
       pendingImgs.forEach((img) => {
         img.removeEventListener("load", measure);
         img.removeEventListener("error", measure);
@@ -241,16 +254,17 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
       className="relative overflow-hidden py-2"
       aria-label="Brand logo carousel"
       style={{
-        // Soft fade at both ends so logos glide in and out. Phones hold the first logos at the left edge with no left fade.
-        maskImage: moving || centeredView ? "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)" : "linear-gradient(to right, #000 88%, transparent)",
-        WebkitMaskImage: moving || centeredView ? "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)" : "linear-gradient(to right, #000 88%, transparent)",
+        // Soft fade at both ends so logos glide in and out. It never changes, so nothing flickers when the strip starts.
+        maskImage: FADE_MASK,
+        WebkitMaskImage: FADE_MASK,
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
     >
-      <div ref={wrapRef} className={`marquee${isDragging ? " is-dragging" : ""}`}>
+      {/* marginLeft: the first logo's start position before JavaScript runs (the effect swaps it for the transform) */}
+      <div ref={wrapRef} className={`marquee${isDragging ? " is-dragging" : ""}`} style={{ marginLeft: `${FADE * 100}%` }}>
         <div ref={groupRef} className="marquee__group">
           {brands.map((brand, index) => (
             <div key={`g1-${index}`} className="logo" data-tone={brand.tone} data-badge={brand.badge ? "" : undefined} style={logoSize(brand.logo)}>
@@ -294,7 +308,7 @@ export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
           height:5.5rem;
           transition: transform 250ms ease;
         }
-        /* Phones: smaller logos and gaps so the first two (Bucked Up, Young Living) fit side by side. */
+        /* Phones: smaller logos and gaps so the first two (Nu Skin, Young Living) fit side by side. */
         @media (max-width: 639px){
           .marquee__group{ gap:1.5rem; padding-right:1.5rem; }
           .logo{ height:4rem; }
