@@ -2,9 +2,9 @@ import { Home } from '@/app/pages/Home';
 import { createPageMetadata } from '@/site/site-config';
 
 export const metadata = createPageMetadata({
-  title: 'Epic Global Inc. | Wholesale Trade Partner That Buys Your Inventory',
+  title: 'Epic Global | Amazon Wholesale Trade Partner',
   description:
-    "Epic Global buys your inventory and sells it as a 3P seller on Amazon, Walmart and more in 42 countries. Moving from 1P? We sell 3P, fund the ads and protect your brand.",
+    "Epic Global buys inventory from established brands and sells it as a 3P seller on Amazon, Walmart and more in 42 countries. Moving from 1P? We fund the ads.",
   path: '/',
   keywords: [
     'Amazon 1P vs 3P',
