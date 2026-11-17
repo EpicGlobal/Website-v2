@@ -117,7 +117,7 @@ export const caseStudies: readonly CaseStudy[] = [
     anonymous: false,
     logo: { src: suteraLogo, approved: true },
     title: 'Sutera: Lower Fees, Higher Conversion, Branded Search Won Back',
-    dek: 'How Epic cut FBA fees on 18 of 21 products, lifted conversion in A/B tests and took back Sutera’s branded search on Amazon.',
+    dek: 'How Epic cut FBA fees on 18 of 21 products, lifted conversion in A/B tests and took back Sutera’s branded search on Amazon. Disclosure: Sutera is owned by members of Epic’s leadership. It is not owned by Epic Global Inc.',
     seoTitle: 'Sutera Amazon Case Study: Lower FBA Fees, Higher Conversion',
     seoDescription:
       'How Epic Global cut FBA fees on 18 of 21 Sutera products, lifted conversion 21% in successful A/B tests and won back branded search on Amazon US.',

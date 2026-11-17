@@ -35,7 +35,7 @@ const STATS: Stat[] = [
   {
     value: <CountUp value={MARKETPLACE_COUNT} />,
     label: 'Marketplaces where we sell your products',
-    more: 'Amazon first, plus Walmart, Target, eBay, TikTok Shop, Temu and international marketplaces. Macy’s, Nordstrom, Lowe’s and Kohl’s are coming in 2027.',
+    more: 'Amazon first, plus Walmart, Target, eBay, TikTok Shop, Temu and international marketplaces. Macy’s, Nordstrom, Lowe’s and Kohl’s are planned for 2027.',
     icon: Store,
   },
   {

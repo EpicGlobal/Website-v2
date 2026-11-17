@@ -238,7 +238,7 @@ export function Home() {
                 We Buy It. You Profit.&trade;
               </h1>
               <p className={`${LEAD} max-w-3xl mb-10`}>
-                Epic Global Inc. buys your inventory outright and sells it as the seller on Amazon, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment; <strong className={`font-semibold ${HEAD}`}>you keep the brand</strong>.
+                Epic Global Inc. purchases inventory at agreed wholesale prices and operates authorized third-party marketplace sales, starting with Amazon, plus Walmart and international marketplaces. We pay the ads, fees and fulfillment on the stock we buy; <strong className={`font-semibold ${HEAD}`}>you keep the brand</strong>.
               </p>
               {/* Phones: the button at its natural width, centered, with "How it works" centered under it. */}
               <div className="flex flex-col items-center sm:flex-row sm:items-center gap-4">
