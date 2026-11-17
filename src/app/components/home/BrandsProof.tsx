@@ -2,7 +2,7 @@
  * Home chapter 03, "At a glance". Nov 17 2026: rebuilt from the ChatGPT mockup Brex picked. "Epic at a Glance" heading
  * and one line under it; four wide cards (icon on the left, big lime number, a bold word and a short line) joined by
  * thin lines to the lime rating ring in the middle; "Founded in 2014. Selling on Amazon since 2015." between two rules
- * at the bottom. Hovering (or focusing) a card lifts it with the pop glow and opens a longer description.
+ * at the bottom. Hovering a card lifts it slightly with a thin lime border; card sizes never change.
  * Every number and description is real text in the server HTML.
  *
  * Earlier: design R1 (Nov 13), option A of three (Nov 16): cards in the four corners around the ring.
@@ -11,7 +11,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Boxes, CalendarDays, Globe2, Layers, ShieldCheck, Star, type LucideIcon } from 'lucide-react';
 import { CountUp } from '@/app/components/scroll/ScrollEffects';
 import { TrustLogosMarquee, type MarqueeBrand } from '@/app/components/TrustLogosMarquee';
-import { ACCENT, BODY, H2, HEAD, LEAD, MUTED } from '@/app/components/story/tokens';
+import { ACCENT, BODY, H2, HEAD, LEAD } from '@/app/components/story/tokens';
 import { CARD } from './homeStyles';
 import { COUNTRY_COUNT, MARKETPLACE_COUNT } from '@/app/data/markets';
 
@@ -22,34 +22,30 @@ const RATING = 4.8;
 const RATING_COUNT = '265,000+';
 
 /** word + line read together as the label: "Brands we buy from and sell for". */
-type Stat = { value: ReactNode; word: string; line: string; more: string; icon: LucideIcon };
+type Stat = { value: ReactNode; word: string; line: string; icon: LucideIcon };
 const STATS: Stat[] = [
   {
     value: <CountUp value={50} suffix="+" />,
     word: 'Brands',
     line: 'we buy from and sell for',
-    more: 'Established brands, typically doing $1M+ a year, in health, beauty, home, auto parts and more. Each sells through Epic as its wholesale partner.',
     icon: Boxes,
   },
   {
     value: <CountUp value={MARKETPLACE_COUNT} />,
     word: 'Marketplaces',
     line: 'where we sell your products',
-    more: 'Amazon first, plus Walmart, Target, eBay, TikTok Shop, Temu and international marketplaces. Macy’s, Nordstrom, Lowe’s and Kohl’s are planned for 2027.',
     icon: Layers,
   },
   {
     value: <CountUp value={COUNTRY_COUNT} />,
     word: 'Countries',
     line: 'your brand can reach through us',
-    more: 'Across North America, South America, Europe and Asia-Pacific. We handle the listings, compliance and fulfillment for each market.',
     icon: Globe2,
   },
   {
     value: '8–20',
     word: 'Weeks',
     line: 'we typically take to clear unauthorized sellers',
-    more: 'We monitor unauthorized offers, document potential violations and pursue platform-approved enforcement where eligible.',
     icon: ShieldCheck,
   },
 ];
@@ -140,17 +136,20 @@ function RatingRing() {
   );
 }
 
-/** Lift on hover/focus with the pop glow; at rest a soft lime glow along the bottom edge (the mockup's look). */
+/**
+ * Hover: a small lift (transform only) and a thin lime border glow. Nothing changes the card's size, so the grid
+ * rows and the ring in the middle never move (Nov 17 fix: the old hover opened a description and grew the card).
+ */
 const CARD_FX =
-  'relative overflow-hidden transition-[transform,box-shadow] duration-300 ease-out outline-none hover:z-20 focus-visible:z-20 lg:hover:-translate-y-1 lg:focus-visible:-translate-y-1 hover:shadow-[0_0_0_2px_var(--pop),0_0_48px_-8px_var(--pop)] focus:shadow-[0_0_0_2px_var(--pop),0_0_48px_-8px_var(--pop)]';
+  'relative overflow-hidden transform-gpu transition-[transform,box-shadow] duration-300 ease-out motion-reduce:transition-none hover:-translate-y-1 motion-reduce:hover:translate-y-0 hover:shadow-[0_0_0_1px_var(--pop),0_18px_40px_-24px_var(--pop)]';
 
-/** One card: icon on the left; number, word and line on the right. The longer description opens on hover/focus. */
+/** One card: icon on the left; number, word and line on the right. */
 function StatCard({ s, className = '' }: { s: Stat; className?: string }) {
   const Icon = s.icon;
   return (
-    <div tabIndex={0} className={`group flex items-start gap-5 ${CARD} ${CARD_FX} p-6 sm:p-7 text-left ${className}`}>
+    <div className={`group flex items-start gap-5 ${CARD} ${CARD_FX} p-6 sm:p-7 text-left ${className}`}>
       {/* the lime line on the bottom edge, brightest at the left like the mockup */}
-      <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[var(--pop)]/[0.09] to-transparent" />
+      <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[var(--pop)]/[0.09] to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
       <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-[var(--pop)]/80 via-[var(--pop)]/35 to-[var(--pop)]/5" />
       <span aria-hidden="true" className="pointer-events-none absolute left-0 inset-y-0 w-0.5 bg-gradient-to-t from-[var(--pop)]/60 via-[var(--pop)]/10 to-transparent" />
       <span aria-hidden="true" className={`shrink-0 w-14 h-14 rounded-xl flex items-center justify-center bg-white/10 orange:bg-[#101828]/[0.06] light:bg-gray-100 soft-dark:bg-gray-100 leaf:bg-white water:bg-white ${HEAD}`}>
@@ -163,11 +162,6 @@ function StatCard({ s, className = '' }: { s: Stat; className?: string }) {
           <span className={`block mt-1 text-sm sm:text-base leading-snug ${BODY}`}>{s.line}</span>
         </dt>
         <dd className={`order-1 text-4xl sm:text-5xl font-bold tracking-tight leading-none tabular-nums ${ACCENT}`}>{s.value}</dd>
-        <dd className="order-3 grid grid-rows-[0fr] group-hover:grid-rows-[1fr] group-focus:grid-rows-[1fr] transition-[grid-template-rows] duration-300">
-          <span className={`overflow-hidden text-sm leading-relaxed ${MUTED}`}>
-            <span className="block pt-3">{s.more}</span>
-          </span>
-        </dd>
       </div>
     </div>
   );
@@ -190,7 +184,7 @@ function Corners() {
   return (
     <div className="relative">
       <dl className="relative grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,21rem)_minmax(0,1fr)] lg:grid-rows-2 lg:gap-x-20 lg:gap-y-10 lg:items-stretch">
-        <div className="mb-6 sm:col-span-2 lg:mb-0 lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center">
+        <div className="isolate mb-6 sm:col-span-2 lg:mb-0 lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center">
           <RingItem />
         </div>
         <StatCard s={a} className="lg:col-start-1 lg:row-start-1" />
