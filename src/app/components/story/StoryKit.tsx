@@ -28,12 +28,13 @@ export function ChapterMarker({ n, label, accent = ACCENT }: { n: number; label:
 }
 
 /**
- * Chapter rail (screens 1280px+): real anchor links to each chapter. The line fills with page progress (CSS scroll
+ * Chapter rail (screens 1440px+, where the page margin is wide enough that the dots never sit on content): real
+ * anchor links to each chapter. The line fills with page progress (CSS scroll
  * timeline) and useScrollStory marks the current chapter with aria-current. Use it on story pages with 4+ chapters.
  */
 export function ChapterRail({ chapters, label }: { chapters: readonly Chapter[]; label: string }) {
   return (
-    <nav aria-label={label} className="fixed right-6 top-1/2 -translate-y-1/2 z-30 hidden xl:block print:hidden">
+    <nav aria-label={label} className="fixed right-6 top-1/2 -translate-y-1/2 z-30 hidden min-[1440px]:block print:hidden">
       <div aria-hidden="true" className="absolute right-[5px] top-3 bottom-3 w-0.5 rounded-full bg-gray-400/35 overflow-hidden">
         <div data-story="rail-fill" className={`h-full w-full rounded-full ${ACCENT_BG}`} />
       </div>
@@ -41,7 +42,8 @@ export function ChapterRail({ chapters, label }: { chapters: readonly Chapter[];
         {chapters.map((c) => (
           <li key={c.id}>
             <a href={`#${c.id}`} data-rail-link={c.id} className={`group flex items-center justify-end gap-3 py-1 text-xs font-semibold ${HEAD}`}>
-              <span className="whitespace-nowrap opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 2xl:group-aria-[current=step]:opacity-100">
+              {/* The name shows only on hover/focus, on its own dark pill, so it never sits on top of page text by itself. */}
+              <span className="whitespace-nowrap rounded-full px-3 py-1 bg-black/80 text-white shadow-lg backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
                 {c.label}
               </span>
               <span className="h-3 w-3 shrink-0 rounded-full border-2 border-current transition-colors duration-300 group-aria-[current=step]:bg-current" />
