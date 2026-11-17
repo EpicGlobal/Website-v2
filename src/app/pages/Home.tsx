@@ -69,6 +69,15 @@ import juicePlusLogo from '@/assets/juice-plus-logo.png';
 import coolCaratsLogo from '@/assets/cool-carats-logo.png';
 import hurdleLogo from '@/assets/hurdle-logo.png';
 import modernColorLogo from '@/assets/modern-color-logo.png';
+import pupfordLogo from '@/assets/pupford-logo.png';
+import cronkLogo from '@/assets/cronk-logo.png';
+import cardioMiracleLogo from '@/assets/cardio-miracle-logo.png';
+import crunchyCubLogo from '@/assets/crunchy-cub-logo.png';
+import eppingerLogo from '@/assets/eppinger-logo.png';
+import rapidLashLogo from '@/assets/rapid-lash-logo.png';
+import udrippinLogo from '@/assets/udrippin-logo.png';
+import mettWellnessLogo from '@/assets/mett-wellness-logo.svg';
+import tidalLogo from '@/assets/tidal-logo.svg';
 
 /*
  * Homepage, skim first (Brex, Nov 5; order updated Nov 17: hero, how it works, at a glance, results, compare, fit, questions): hero ("We Buy It. You Profit.") -> brand logos -> 4 numbers -> Buy-Sell-Advertise-Protect
@@ -162,6 +171,15 @@ export function Home() {
     { name: 'Cool Carats', logo: coolCaratsLogo, tone: 'pale', badge: true },
     { name: 'Hurdle', logo: hurdleLogo, tone: 'deep' },
     { name: 'Modern Color', logo: modernColorLogo, tone: 'light' },
+    { name: 'Pupford', logo: pupfordLogo },
+    { name: 'Cronk Nutrients', logo: cronkLogo, tone: 'light' },
+    { name: 'Cardio Miracle', logo: cardioMiracleLogo },
+    { name: 'Crunchy Cub', logo: crunchyCubLogo, tone: 'pale', badge: true },
+    { name: 'Eppinger', logo: eppingerLogo, tone: 'dark' },
+    { name: 'RapidLash', logo: rapidLashLogo, tone: 'dark' },
+    { name: 'uDrippin', logo: udrippinLogo, tone: 'light' },
+    { name: 'Mett Wellness', logo: mettWellnessLogo, tone: 'light' },
+    { name: 'Tidal', logo: tidalLogo, tone: 'light' },
   ];
 
   const featuredCases = [
