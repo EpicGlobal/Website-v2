@@ -1,12 +1,12 @@
 ---
 title: "What is Epic Global Inc.?"
-seoTitle: "What Is Epic Global Inc.? A Wholesale Trade Partner"
-summary: "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory outright at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves."
-seoDescription: "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy brand inventory at wholesale and sell it on Amazon, plus Walmart and more."
+seoTitle: "What Is Epic Global? Amazon Wholesale Partner"
+summary: "Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory at an agreed wholesale price, sell it on Amazon, Walmart and international marketplaces, and pay the advertising, marketplace fees and fulfillment for the products we buy."
+seoDescription: "Epic Global buys brand inventory at wholesale and sells it on Amazon, Walmart and international marketplaces, paying the ads, fees and fulfillment."
 category: "Start Here"
 type: "Answer Page"
 difficulty: "Intro"
-updated: 2026-11-05
+updated: 2026-11-17
 published: 2026-01-22
 publishOn:
 tags: ["overview", "model", "introduction"]
@@ -17,45 +17,45 @@ status: live-unreviewed
 
 ## Definition
 
-Epic Global Inc. is an Amazon-first wholesale trade partner: we buy a brand's inventory outright at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, marketplace fees and fulfillment ourselves. We cover operating costs like advertising, marketplace fees, and fulfillment, so incentives stay aligned.
+Epic Global Inc. is an Amazon-first wholesale trade partner, founded in 2014 and selling on Amazon since 2015. We buy a brand's inventory at an agreed wholesale price and sell it on Amazon, Walmart and international marketplaces. We pay the advertising, marketplace fees and fulfillment for the products we buy, and the brand keeps its business, trademarks and Brand Registry.
 
 ## Why It Matters
 
-Most brands work with agencies that advise but don't execute, or distributors that buy inventory but don't operate with systems and accountability. Epic Global combines inventory ownership with operational execution—we're accountable for outcomes because we fund the work and own the inventory risk.
+Brands can work with an agency, a distributor or an in-house team, and each splits inventory ownership and the day-to-day work differently. Epic does both: we buy the inventory and run the marketplace work ourselves, and we pay the selling costs on the stock we own.
 
-This model eliminates the misalignment that happens when agencies charge fees regardless of performance, or when internal teams lack the bandwidth or expertise to scale globally.
+That ties Epic's income to how well your products sell, and saves you from coordinating separate providers for ads, listings, fulfillment and reporting.
 
 ## How Epic Approaches It: Buy, Sell, Advertise, Protect
 
 :::card
 ### 1. Buy
 
-We buy your inventory outright at an agreed wholesale price and take ownership. This means we have real skin in the game: our success is tied to retail performance, not billable hours.
+We buy your inventory at an agreed wholesale price and own the products we buy. You're paid on the terms in our contract, and Epic earns its margin when those products sell.
 :::
 
 :::card
 ### 2. Sell
 
-We run the storefronts day to day across approved marketplaces: listings, pricing, inventory allocation and compliance.
+We run selling day to day on the marketplaces we operate: listings, pricing for our offers, inventory allocation, catalog health and compliance. We always sell at or above your MAP.
 :::
 
 :::card
 ### 3. Advertise
 
-We fund and manage the advertising, and pay the marketplace fees and fulfillment. You get predictable wholesale revenue; we take on the retail execution risk.
+We fund and run the advertising, and pay the marketplace fees and fulfillment for the inventory we buy. You're paid on agreed wholesale terms; Epic carries the cost and risk of selling at retail.
 :::
 
 :::card
 ### 4. Protect
 
-We protect the brand on every marketplace we operate: Brand Registry authorization, monitoring unauthorized sellers and reporting provable violations, keeping our prices at or above MAP and following up on MAP violations through the brand's reseller policy, and Buy Box and catalog monitoring. The [Amazon and Marketplace Glossary](/knowledge-base/amazon-marketplace-glossary) explains these terms in plain English.
+We go after unauthorized sellers on the marketplaces we operate: we monitor offers, document violations and report them through your Brand Registry. We sell at or above your MAP and watch the Buy Box and your catalog. The [Amazon and Marketplace Glossary](/knowledge-base/amazon-marketplace-glossary) explains these terms in plain English.
 :::
 
 ## Common Pitfalls (What We're Not)
 
 :::warnings
-- We're not a marketing agency that bills hourly and advises from the sidelines
-- We're not a distributor that buys once and then operates with minimal accountability
+- We're not a retainer-based marketing agency: we buy the inventory and do the selling ourselves
+- We're not just a distributor: after we buy, we also run the ads, listings, inventory and monthly reporting
 - We don't sell à la carte services or consulting packages
 - We don't work on revenue share without inventory ownership
 :::

@@ -1,14 +1,14 @@
 ---
 title: "How Our Model Works: Buy, Sell, Advertise, Protect"
-seoTitle: "How Our Model Works"
-summary: "A complete breakdown of our four-part model: we buy inventory at wholesale, sell it across marketplaces, fund the advertising, and protect the brand."
+seoTitle: "How Epic's Wholesale Marketplace Model Works"
+summary: "How Epic Global buys brand inventory at wholesale, sells it on Amazon and other marketplaces, pays the selling costs and protects the brand."
 category: "Model and Process"
 type: "Answer Page"
 difficulty: "Intro"
-updated: 2026-11-05
+updated: 2026-11-17
 published: 2026-01-22
 publishOn:
-tags: ["model", "purchase", "expand", "cover", "overview"]
+tags: ["wholesale trade partner", "amazon wholesale", "marketplace operations", "buy sell advertise protect", "brand protection"]
 featured: true
 order: 2
 status: live-unreviewed
@@ -16,13 +16,13 @@ status: live-unreviewed
 
 ## How Epic's Wholesale Trade Partner Model Works
 
-Epic Global Inc. is a wholesale trade partner. We buy a brand's inventory outright at wholesale, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon first, plus Walmart and international marketplaces, pay for the advertising, marketplace fees and fulfillment ourselves, and protect the brand's pricing and listings.
+Epic Global Inc. is an Amazon-first wholesale trade partner. We buy a brand's inventory at an agreed wholesale price, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon first, plus Walmart and international marketplaces, pay the advertising, marketplace fees and fulfillment for the stock we own, and sell at or above your MAP.
 
-Our model works because we own the inventory: we buy it outright, so the retail execution risk sits with us, not the brand. The brand keeps its brand and Brand Registry, and does not pay retainers, fund ad spend, and hope the numbers work out.
+Our model works because we own the inventory we buy, so the cost and risk of selling it at retail sit with us. The brand keeps its business, trademarks and Brand Registry, and is paid on the wholesale terms in its contract.
 
 Most marketplace models work the other way: the brand funds the inventory, fees and ads, and carries the downside whether performance improves or not. Growth should not require brands to gamble capital or coordinate a patchwork of agencies and vendors who each optimize only their slice of the problem. The work, the risk and the incentives are interconnected.
 
-This isn't a U.S. strategy with international "add-ons." It's one operating system applied everywhere. Whether a brand is underperforming in the United States, losing margin to fees, or preparing to expand globally, Epic functions as a commerce operator built to deliver predictable outcomes.
+Epic uses the same operating framework in every marketplace and region where we sell. Whether you need stronger U.S. results or are planning international expansion, you get one partner that owns the inventory and runs the work.
 
 ## The Problem: Brands Carry All the Downside
 
@@ -40,7 +40,7 @@ That structure creates a second problem: fragmented accountability. One partner 
 
 ## What Epic Global Is
 
-Epic Global is not an advisory firm. We are not a retainer-based agency. We are not a reseller operating at arm's length. We do not shift downside back to the brand through fees, "required ad budgets," or operational responsibilities disguised as partnership.
+Epic Global is a wholesale trade partner, not a retainer-based agency. We buy and own the inventory, pay the advertising and selling costs for it, and work with the brand on approvals, product information and brand standards.
 
 Epic is a wholesale trade partner: we own the inventory, and you keep the brand.
 
@@ -51,7 +51,7 @@ That means we apply one integrated model across the U.S. and global marketplaces
 - We operate marketplace storefronts directly.
 - We fund advertising and manage it for efficiency and profitability.
 - We manage logistics and marketplace execution end-to-end.
-- We protect brand equity with integrated enforcement and defense mechanisms.
+- We protect brand equity: we monitor offers, report violations, sell at or above your MAP and watch your catalog.
 :::
 
 Epic becomes the brand's marketplace operating system. That structure allows us to drive performance in the U.S. while building the foundation for controlled expansion beyond it.
@@ -69,7 +69,7 @@ Epic purchases inventory outright at wholesale pricing. For the brand, this turn
 :::card
 ### Sell: End-to-end marketplace operation
 
-Epic operates listings and storefronts across marketplaces using a unified operational framework. Pricing, listing performance, fulfillment configuration, and day-to-day catalog control are managed centrally. Because we own execution, decisions aren't delayed across vendors and departments — they're run through one operating cadence.
+Epic runs its listings and offers across marketplaces on one operating cadence: pricing at or above your MAP, listing optimization, inventory allocation and fulfillment setup, following your approvals and each marketplace's rules.
 :::
 
 :::card
@@ -81,7 +81,7 @@ Epic funds and manages advertising across marketplaces. That matters because it 
 :::card
 ### Protect: Brand equity is defended while growth is built
 
-Marketplace growth creates exposure: unauthorized sellers, price erosion, listing instability, branded search hijacking, and counterfeit risk. Epic's model integrates brand protection into the operating system rather than treating it as an afterthought. Through the Brand Protection Command Center™, we keep our prices at or above MAP, monitor unauthorized sellers and report provable violations through Brand Registry, and defend branded search demand — in the U.S. and globally.
+Marketplace growth brings exposure: unauthorized sellers, counterfeits, catalog changes and competitors bidding on your brand name. Epic builds protection into daily operations. Through the Brand Protection Command Center™, we sell at or above your MAP, document violations and report them through your Brand Registry, and watch branded search and your catalog in every region we serve.
 :::
 
 *This is the core difference between "growth services" and a true commerce operator. Services improve parts of the machine. Operators control the machine.*
@@ -90,26 +90,26 @@ Marketplace growth creates exposure: unauthorized sellers, price erosion, listin
 
 For many brands, the U.S. marketplace problem isn't demand. It's economics.
 
-The 1P vs 3P Financial Breakdown case study highlights why. Under Amazon's 1P structure, brands receive a nominal purchase price — but absorb a stack of Amazon-imposed fees that materially reduce actual net revenue. These costs can be underestimated, difficult to forecast, and hard to control.
+The 1P vs 3P Financial Breakdown case study highlights why. In Amazon Vendor Central (1P), Amazon buys the inventory and sells it to shoppers. Vendor agreements often include allowances, chargebacks and other deductions that cut what the brand actually keeps, and they vary from agreement to agreement.
 
-In the Auto Parts Brand example, Epic's 3P structure provided a predictable purchase price while Epic absorbed the marketplace fees. The result was materially higher net revenue per unit to the brand compared to Amazon 1P.
+In the Auto Parts Brand comparison, Epic offered a 3P deal with an agreed purchase price, with Epic paying the marketplace fees. Under that offer, the brand's projected net revenue per unit was higher than under Amazon 1P. This is a projection from the offer, not an actual result after switching.
 
-That distinction matters most in the U.S., where fulfillment fees, advertising costs, chargebacks, and operational penalties can quietly erode profitability. Epic's model converts variable outcomes into known economics, enabling brands to scale domestically without margin volatility.
+That distinction matters most in the U.S., where fulfillment fees, advertising costs, chargebacks, and operational penalties can quietly erode profitability. With an agreed wholesale price, brands know what they earn per unit sold to Epic, and Epic pays the retail selling costs on the stock it buys. Total revenue still depends on how much Epic buys and the contract terms.
 
 ## What Execution Looks Like When One Operator Controls the System
 
-The Sutera Amazon Case Study demonstrates what happens when one operator controls inventory, listings, advertising, and enforcement under a unified cadence.
+The Sutera Amazon Case Study shows how Epic runs inventory, listings, advertising and brand protection on one operating cadence. (Disclosure: Sutera is owned by members of Epic's leadership. It is not owned by Epic Global Inc.)
 
 :::callout
 ### Fee reduction through operational control
 
-Epic optimized packaging and inventory management, reducing average FBA fulfillment fees by 2.9% across the catalog.
+Packaging and inventory changes cut average FBA fulfillment fees by 2.9% across the catalog, as measured in the case study.
 :::
 
 :::callout
 ### Conversion improvements through disciplined testing
 
-Through structured A/B testing, imagery upgrades, video assets, and SEO optimization, Epic increased conversion rates by an average of 21% on successful tests.
+Through A/B testing, better images, video and SEO, the successful listing tests lifted conversion by an average of 21%. That is the average of the successful tests, not a catalog-wide lift.
 :::
 
 :::callout
@@ -121,7 +121,7 @@ Epic rebuilt and improved listings to raise visibility and engagement, applying 
 :::callout
 ### Brand defense that protects demand
 
-Epic reclaimed branded search demand, ensuring customers searching for the brand encountered the brand — not competitors.
+Epic won back branded search: all 6 Sutera products now show when shoppers search for Sutera, plus a Sutera Sponsored Brand ad.
 :::
 
 Those outcomes were possible because the system was unified. When different teams control different levers, improvements collide. When one operator controls the full system, improvements compound.
@@ -138,7 +138,7 @@ The value isn't simply "international availability." It's the ability to scale w
 
 Growth that destroys pricing integrity is not growth. It's a slow leak.
 
-The Brand Protection Command Center™ operates continuously across U.S. and international marketplaces. Epic monitors unauthorized sellers and reports the violations marketplaces act on, follows up on MAP violations through the brand's reseller policy, and defends branded search visibility. The result is durable growth that protects the customer experience and preserves brand equity as volume increases.
+The Brand Protection Command Center™ runs across the U.S. and international marketplaces we operate. Epic monitors offers and your catalog, documents violations and reports them through the right marketplace channels, and sells at or above your MAP. What a marketplace removes depends on the evidence and its rules.
 
 In most models, brand protection is reactive and fragmented. In Epic's model, it's proactive, integrated, and aligned with revenue generation.
 
@@ -147,7 +147,7 @@ In most models, brand protection is reactive and fragmented. In Epic's model, it
 Epic Global is best suited for brands that:
 
 :::checks
-- Have established demand in the United States
+- Are established brands, typically generating $1M or more in annual sales (smaller brands considered case by case)
 - Want to improve domestic profitability and control
 - Are preparing for or already pursuing international expansion
 - Value predictable economics and brand protection

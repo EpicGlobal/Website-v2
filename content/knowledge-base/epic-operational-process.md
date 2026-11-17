@@ -1,12 +1,12 @@
 ---
 title: "Epic's Operational Process: A Deep Dive"
-seoTitle: "How Epic Runs Marketplace Operations"
-summary: "An in-depth look at the processes and systems that power Epic's global marketplace operations."
-seoDescription: "How Epic runs marketplace growth in four phases (Assess, Build, Execute, Scale), and the product data, assets and priorities it needs from brands."
+seoTitle: "Epic's Process: Assess, Build, Execute, Scale"
+summary: "A practical guide to Epic Global's four-phase process (Assess, Build, Execute, Scale) and what brands provide during onboarding."
+seoDescription: "See how Epic Global assesses, builds, executes and scales Amazon and international marketplace operations, including onboarding, advertising and reporting."
 category: "Library"
 type: "Deep Dive"
 difficulty: "Advanced"
-updated: 2026-01-19
+updated: 2026-11-17
 published: 2026-01-19
 publishOn:
 tags: ["operations", "process", "deep dive"]
@@ -17,15 +17,15 @@ status: live-unreviewed
 
 ## How Epic Operates Marketplace Growth End to End
 
-Epic Global Inc. is a wholesale trade partner. We buy your inventory outright at an agreed wholesale price, operate marketplace storefronts end to end, pay for the advertising, marketplace fees and fulfillment, and protect brand equity. We own the inventory, so the retail execution risk is ours, and you keep your brand.
+Epic Global Inc. is a wholesale trade partner. We buy your inventory at an agreed wholesale price, run the marketplace selling, pay the advertising, marketplace fees and fulfillment for the stock we own, and protect your brand. You keep your brand and Brand Registry. Our process has four phases: Assess, Build, Execute and Scale.
 
 ::tagline[We buy it. You profit.™]
 
 ## The Four-Phase Operational Model
 
-Our operational process follows a proven four-phase framework: Assess → Build → Execute → Scale. Each phase is designed to create a repeatable, scalable system that delivers predictable outcomes across marketplaces and regions.
+Our process follows four phases: Assess → Build → Execute → Scale. Each one gives us a consistent way to evaluate the opportunity, set up listings and workflows, run the marketplaces and expand where the numbers support it.
 
-::::step{number="01" title="Assess" note="Intake + Baseline (1-2 weeks)"}
+::::step{number="01" title="Assess" note="Intake + Baseline"}
 We analyze your current state, catalog structure, and performance baseline to identify quick wins and structural gaps.
 
 #### Key Activities
@@ -39,8 +39,8 @@ We analyze your current state, catalog structure, and performance baseline to id
 :::
 ::::
 
-::::step{number="02" title="Build" note="Rules, Workflows, Tooling (2-4 weeks)"}
-We establish the operating system: rules, workflows, reporting structure, and automation. This is the foundation for repeatable execution.
+::::step{number="02" title="Build" note="Rules, Workflows, Tooling (listings optimized within about 4 weeks)"}
+Our team sets the listing standards, pricing rules for our offers, ad workflows, inventory processes, reporting and automation. People review exceptions, approvals and marketplace-policy calls.
 
 #### Key Activities
 
@@ -55,7 +55,7 @@ We establish the operating system: rules, workflows, reporting structure, and au
 ::::
 
 ::::step{number="03" title="Execute" note="Weekly Operating Cadence (Ongoing)"}
-We run the work week over week: listings, ads, inventory, catalog health. Every cycle is tracked, measured, and refined.
+Our marketplace team runs the work week over week: listings, ads, inventory and catalog health. You get a shared dashboard from day one, monthly reports and quarterly business reviews.
 
 #### Key Activities
 
@@ -63,14 +63,14 @@ We run the work week over week: listings, ads, inventory, catalog health. Every 
 - Weekly listing updates and optimization
 - Ad campaign monitoring and adjustments
 - Inventory health checks and reorder triggers
-- Brand protection monitoring and enforcement
+- Brand protection: monitoring offers and reporting violations
 - Performance reporting and stakeholder updates
 - Continuous improvement cycles
 :::
 ::::
 
-::::step{number="04" title="Scale" note="Replicate Across Regions (4-8 weeks per marketplace)"}
-Once the system is proven, we replicate it across new marketplaces and regions using the same operational framework.
+::::step{number="04" title="Scale" note="Replicate Across Regions (timeline set per marketplace)"}
+Once a market is working, we bring the same framework to new marketplaces and regions. Launch timing depends on registration, compliance, product assets, inventory and marketplace setup.
 
 #### Key Activities
 
@@ -86,7 +86,7 @@ Once the system is proven, we replicate it across new marketplaces and regions u
 
 ## What We Need From You
 
-To get started, we'll need access to four key areas to properly assess and begin operations:
+To get started, we typically ask for four kinds of information. The exact documents and access depend on your marketplaces and products:
 
 ::::grid
 :::card
@@ -110,7 +110,7 @@ To get started, we'll need access to four key areas to properly assess and begin
 :::card
 ### Constraints
 
-:small[Pricing floors, inventory limits, compliance requirements, and brand guidelines]
+:small[Your MAP policy, inventory limits, compliance requirements and brand guidelines]
 :::
 ::::
 
@@ -128,6 +128,7 @@ To get started, we'll need access to four key areas to properly assess and begin
 ## Related Resources
 
 :::links
+- [What Is Epic Global Inc.?](/knowledge-base/what-is-epic-global-inc): What a wholesale trade partner is and who owns the inventory
 - [How Our Model Works](/knowledge-base/how-our-model-works): Understanding the Buy–Sell–Advertise–Protect framework
 - [Who We're a Fit For](/knowledge-base/who-we-are-fit-for): Brand criteria and requirements
 :::

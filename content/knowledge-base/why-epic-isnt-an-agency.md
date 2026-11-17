@@ -1,11 +1,11 @@
 ---
 title: "The Incentive Trap: Why Epic Isn't an \"Agency\""
-seoTitle: "The Incentive Trap: Epic vs. Agencies"
-summary: "How to cut through marketplace partner noise by comparing business models, not tactics—agencies, distributors, Amazon 1P, aggregators, and the Epic wholesale trade partner model."
+seoTitle: "Wholesale Trade Partner vs Amazon Agency"
+summary: "Compare Amazon agencies, distributors, Vendor Central and wholesale trade partners by inventory ownership, advertising costs and marketplace accountability."
 category: "Model and Process"
 type: "Answer Page"
 difficulty: "Operator"
-updated: 2026-11-12
+updated: 2026-11-17
 published: 2026-01-23
 publishOn:
 tags: ["model", "agency", "comparison", "incentives"]
@@ -14,7 +14,7 @@ order: 4
 status: live-unreviewed
 ---
 
-Agencies are usually paid a retainer, an hourly fee, or a share of ad spend or sales, while the brand owns the inventory and pays for the ads and marketplace fees. A wholesale trade partner like Epic buys the inventory outright and pays for the ads and marketplace fees itself, so it earns its margin only when that inventory sells.
+Agencies are usually paid a fee, such as a retainer, an hourly rate or a share of ad spend or sales, while the brand owns the inventory and pays for the ads and marketplace fees. A wholesale trade partner like Epic buys the inventory at wholesale and pays the ads, marketplace fees and fulfillment on that stock itself, so it earns its margin when that inventory sells.
 
 Most brands evaluating marketplace partners run into the same problem: after the third discovery call, every pitch sounds identical. Everyone "scales Amazon." Everyone has a "proven playbook." Everyone promises control.
 
@@ -30,8 +30,8 @@ Most partners fall into a few business models. Each one can be the right fit for
 |---|---|---|---|
 | Agency | Manages ads, listings, creative and SEO on the brand's own seller account | Mostly the brand: it owns the stock and funds ads and fees | A retainer, hourly fees, a share of ad spend or sales, or a performance fee |
 | Distributor | Buys inventory and resells it to retailers or online | Shared: the distributor owns the stock it buys | Its resale margin |
-| Amazon 1P (Vendor Central) | Amazon itself buys the inventory and sells it as the retailer | Amazon owns the stock; the brand negotiates vendor terms such as co-op and chargebacks | Amazon's retail margin |
-| Aggregator | Acquires brands outright and runs them as a portfolio | The aggregator, once it owns the brand | The value and profit of the brands it owns |
+| Amazon 1P (Vendor Central) | Amazon buys inventory from a brand and sells to shoppers as retailer | Amazon owns purchased inventory; vendor agreements may include allowances, chargebacks and other deductions | Amazon earns its retail margin; the brand receives the negotiated vendor purchase price, subject to contract deductions |
+| Aggregator | Acquires ownership of brands and operates them as a portfolio | The aggregator bears ownership and operating exposure after acquisition | Returns depend on portfolio operating performance and investment outcomes |
 | Wholesale trade partner (Epic) | Buys inventory at wholesale and resells it on marketplaces from its own seller accounts | Epic, for the inventory it buys and the ads and fees it pays | Its margin when that inventory sells |
 
 :::callout
@@ -80,7 +80,7 @@ The tradeoffs brands often mention:
 :::
 
 :::callout
-**Epic also purchases inventory,** but it doesn't stop at placement. Epic sells at or above your minimum advertised price (MAP), runs the listings and advertising, and reports to you by SKU every month.
+**Epic buys inventory and stays involved after the sale.** We sell at or above your MAP, run the listings and advertising, and you get a shared dashboard from day one, monthly reports and quarterly business reviews.
 :::
 
 ## 3) Aggregators: they buy the company, not just the inventory
@@ -92,7 +92,7 @@ If you want to sell your business, an aggregator is one path.
 If you want to keep your business and still hand off marketplace operations, it isn't.
 
 :::callout
-**Epic does not buy brands.** We don't take equity. You keep your company, your trademark and your Brand Registry.
+**Our wholesale partnership doesn't require selling us your brand.** We don't take equity. You keep your company, your trademarks and your Brand Registry; we buy inventory to resell.
 :::
 
 ## Buy, Sell, Advertise, Protect: how the model works
@@ -122,7 +122,7 @@ Epic covers the costs that normally make growth risky. We fund and manage the ad
 :::card
 ### PROTECT
 
-We protect the brand on the marketplaces we operate: Brand Registry authorization, monitoring for unauthorized sellers and reporting provable violations, keeping our prices at or above MAP and following up on MAP violations through your reseller policy, Amazon Transparency where you enroll, Buy Box and catalog monitoring, and brand protection reports.
+We go after unauthorized sellers on the marketplaces we operate: we monitor offers, document violations and report them through your Brand Registry. We sell at or above your MAP, use Amazon Transparency where you enroll, watch the Buy Box and your catalog, and send you brand protection reports.
 :::
 
 :::callout
@@ -146,7 +146,7 @@ Do you still coordinate agencies, freelancers, and internal approvals—or does 
 
 #### 3) Is there a retainer or fixed fee?
 
-A monthly fee is paid even when sales are slow. Epic charges no retainer; it earns its margin when the inventory it bought sells.
+A monthly agency fee is paid even when sales are slow. Epic charges no retainer: we buy the inventory on agreed terms and earn our margin when it sells.
 
 #### 4) What happens when sales slow?
 
@@ -176,7 +176,7 @@ Choosing a marketplace partner isn't just hiring help. It's choosing an incentiv
 ### Epic is:
 
 :::checks
-- an Amazon-first [wholesale trade partner](/knowledge-base/what-is-epic-global-inc) that also runs Walmart and international marketplaces
+- an Amazon-first [wholesale trade partner](/knowledge-base/what-is-epic-global-inc) that buys your inventory and also sells on Walmart and international marketplaces
 - we buy the inventory, run the channel, pay for the ads and fees, and earn when your products sell
 :::
 ::::

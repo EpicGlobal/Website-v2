@@ -1,10 +1,12 @@
 ---
-title: "What Types of Brands We're a Fit For"
-summary: "Epic is usually a fit for established brands doing $1M+ a year in sales. Newer or smaller brands are considered case by case."
+title: "What Brands Are a Good Fit for Epic Global?"
+summary: "Epic typically partners with established brands generating $1M+ in annual sales that want an Amazon wholesale trade partner. Smaller brands are considered case by case."
+seoTitle: "Who Is Epic Global a Fit For?"
+seoDescription: "Epic Global typically works with established brands doing $1M+ a year in sales. See who fits our Amazon wholesale trade partner model."
 category: "Model and Process"
 type: "Answer Page"
 difficulty: "Intro"
-updated: 2026-11-12
+updated: 2026-11-17
 published: 2026-01-23
 publishOn:
 tags: ["fit", "brands", "requirements"]
@@ -13,7 +15,7 @@ order: 3
 status: live-unreviewed
 ---
 
-**Short answer:** Epic is usually a fit for established brands doing $1M+ a year in sales that want one partner to buy their inventory and run their marketplaces. Newer or smaller brands can still work with us: we can build a brand up, but it takes more investment and testing, so we look at fit case by case.
+**Short answer:** Epic is usually a fit for established brands doing $1M+ a year in sales that want one partner to buy their inventory and run their marketplaces. Smaller or newer brands are considered case by case, based on demand, margins and inventory readiness.
 
 Most brands don't need "more marketplace help." They need a cleaner model.
 
@@ -42,7 +44,7 @@ A lot of marketplace "growth" is just brands financing volatility.
 
 You buy inventory. You pay for ads. You pay an agency. You eat the fees. And if results don't show up fast enough, you still carry the downside. That's the normal structure.
 
-Epic is built for brands who want the opposite: a partner that assumes the risk and earns its returns through performance, not through retainers and "activity."
+Epic is built for brands who want the opposite: a partner that buys the inventory, pays the selling costs and earns its margin when products sell, not through retainers.
 :::
 
 ::::card
@@ -54,7 +56,7 @@ Once you reach a certain level, marketplace performance becomes less about cleve
 - Listings drift over time unless they're managed
 - Ads decay unless they're structured and maintained
 - Inventory planning determines whether growth is even possible
-- Pricing integrity either holds or it collapses
+- Consistent pricing matters, and unauthorized sellers need active monitoring
 - Branded search gets defended — or it gets taken
 :::
 
@@ -72,11 +74,11 @@ Epic tends to fit brands that think like operators. They want growth, but they a
 :::
 
 :::card
-### The U.S. channel needs to be profitable before expansion matters
+### Fix U.S. marketplace economics while you plan expansion
 
 A lot of brands talk about going global while the U.S. channel is quietly leaking margin.
 
-If your domestic performance feels like you're fighting fees, ad costs, and margin compression, fixing that system comes first. Epic is designed to improve U.S. performance while building the same operating foundation that can later be extended internationally — without a complete reinvention.
+If domestic fees, ad costs and margin pressure are holding you back, we look at those numbers alongside international opportunities. Epic works to improve U.S. execution and builds the operating foundation you can extend to new markets when the business case is ready.
 :::
 
 :::card
@@ -117,7 +119,7 @@ Epic works best when the goal is simple: build a controlled, scalable marketplac
 
 Epic is for brands that already have demand — and now want the channel to behave like a system instead of a gamble.
 
-If you're doing $1M+ a year in sales, want more control, and don't want to keep carrying the downside of marketplace growth, we're likely a fit.
+If you're doing $1M+ a year in sales and want a partner to buy your inventory and run your marketplaces, we're likely a fit. Before proposing a partnership, we look at demand, product economics, inventory and channel priorities.
 
 ::tagline[We buy it. You profit.™]
 
