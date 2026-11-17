@@ -125,11 +125,40 @@ export function Home() {
   useScrollStory(rootRef, homeBeats);
 
   const brands: MarqueeBrand[] = [
-    { name: 'Bucked Up', logo: buckedUpLogo, tone: 'pale' },
+    // Tier 1: brands most buyers recognize (Nu Skin through Bucked Up fill the first screen)
     { name: 'Nu Skin', logo: nuSkinLogo, tone: 'deep' },
-    { name: 'Younique', logo: youniqueLogo, tone: 'dark' },
     { name: 'Young Living', logo: youngLivingLogo, tone: 'pale' },
+    { name: 'NOW Foods', logo: nowLogo, tone: 'deep' },
+    { name: 'Rodan + Fields', logo: rfLogo, tone: 'pale' },
+    { name: 'Bucked Up', logo: buckedUpLogo, tone: 'pale' },
+    { name: 'Younique', logo: youniqueLogo, tone: 'dark' },
+    { name: 'Plexus', logo: plexusLogo },
+    { name: 'Mixhers', logo: mixhersLogo },
+    { name: 'PhoneSoap', logo: phoneSoapLogo },
+    { name: "Doctor's Best", logo: doctorsBestLogo, tone: 'pale' },
+    { name: 'Juice Plus+', logo: juicePlusLogo },
+    { name: 'SeroVital', logo: seroVitalLogo, tone: 'dark' },
+    { name: 'Sutera', logo: suteraLogo, tone: 'dark' },
+    { name: 'Pupford', logo: pupfordLogo },
+    { name: 'Gentlemen Republic', logo: gentlemenRepublicLogo, tone: 'dark' },
+    // Tier 2: more established brands
+    { name: 'LivePure', logo: livePureLogo, tone: 'dark' },
+    { name: 'Radiansome', logo: radiansomeLogo, tone: 'dark' },
+    { name: 'Perfect Press', logo: perfectPressLogo, tone: 'dark' },
+    { name: 'Neumi', logo: neumiLogo, tone: 'dark' },
+    { name: 'Make Wellness', logo: makeWellnessLogo, tone: 'light' },
     { name: 'Think Smarter Products', logo: thinkSmarterProductsLogo, tone: 'deep' },
+    { name: 'RapidLash', logo: rapidLashLogo, tone: 'dark' },
+    { name: 'Tranont', logo: tranontLogo, tone: 'dark' },
+    { name: 'Organo', logo: organoLogo, tone: 'deep' },
+    { name: 'Tidal', logo: tidalLogo, tone: 'light' },
+    { name: 'Cardio Miracle', logo: cardioMiracleLogo },
+    { name: 'Muscle Moose', logo: muscleMooseLogo, tone: 'deep' },
+    { name: 'Pure Fuel', logo: pureFuelLogo, tone: 'dark' },
+    { name: 'Novex Biotech', logo: novexBiotechLogo, tone: 'dark' },
+    { name: 'Incellderm', logo: incelldermLogo, tone: 'dark' },
+    { name: 'Heroine Make', logo: heroineMakeLogo, tone: 'light' },
+    // Tier 3: more brands and product lines
     { name: 'Activation', logo: activationLogo, tone: 'dark' },
     { name: 'ageLOC', logo: ageLOCLogo },
     { name: 'AP24', logo: ap24Logo, tone: 'pale' },
@@ -138,48 +167,22 @@ export function Home() {
     { name: 'Beauty Focus', logo: beautyFocusLogo },
     { name: 'Botalab', logo: botalabLogo, tone: 'dark' },
     { name: 'Epoch', logo: epochLogo, tone: 'deep' },
-    { name: "Doctor's Best", logo: doctorsBestLogo, tone: 'pale' },
-    { name: 'Gentlemen Republic', logo: gentlemenRepublicLogo, tone: 'dark' },
-    { name: 'Incellderm', logo: incelldermLogo, tone: 'dark' },
     { name: 'Lifening', logo: lifeningLogo, tone: 'dark' },
     { name: 'Healthy Home', logo: healthyHomeLogo },
-    { name: 'Heroine Make', logo: heroineMakeLogo, tone: 'light' },
     { name: 'K', logo: kLogo, tone: 'light' },
     { name: 'Kings', logo: kingsLogo, tone: 'light' },
-    { name: 'Make Wellness', logo: makeWellnessLogo, tone: 'light' },
-    { name: 'Novex Biotech', logo: novexBiotechLogo, tone: 'dark' },
-    { name: 'Muscle Moose', logo: muscleMooseLogo, tone: 'deep' },
-    { name: 'Neumi', logo: neumiLogo, tone: 'dark' },
-    { name: 'Mixhers', logo: mixhersLogo },
-    { name: 'LivePure', logo: livePureLogo, tone: 'dark' },
-    { name: 'NOW Foods', logo: nowLogo, tone: 'deep' },
-    { name: 'PhoneSoap', logo: phoneSoapLogo },
-    { name: 'Radiansome', logo: radiansomeLogo, tone: 'dark' },
-    { name: 'Perfect Press', logo: perfectPressLogo, tone: 'dark' },
-    { name: 'Plexus', logo: plexusLogo },
-    { name: 'Pure Fuel', logo: pureFuelLogo, tone: 'dark' },
-    { name: 'Pharmanex', logo: pharmanexLogo, tone: 'pale' },
     { name: 'Nutricentials', logo: nutricientialsLogo, tone: 'light' },
-    { name: 'Organo', logo: organoLogo, tone: 'deep' },
-    { name: 'SeroVital', logo: seroVitalLogo, tone: 'dark' },
-    { name: 'Sutera', logo: suteraLogo, tone: 'dark' },
-    { name: 'Tranont', logo: tranontLogo, tone: 'dark' },
+    { name: 'Pharmanex', logo: pharmanexLogo, tone: 'pale' },
     { name: 'Relacore', logo: relacoreLogo, tone: 'dark' },
-    { name: 'Rodan + Fields', logo: rfLogo, tone: 'pale' },
     { name: 'Zantrex', logo: zantrexLogo, tone: 'dark' },
-    { name: 'Juice Plus+', logo: juicePlusLogo },
     { name: 'Cool Carats', logo: coolCaratsLogo, tone: 'pale', badge: true },
     { name: 'Hurdle', logo: hurdleLogo, tone: 'deep' },
     { name: 'Modern Color', logo: modernColorLogo, tone: 'light' },
-    { name: 'Pupford', logo: pupfordLogo },
     { name: 'Cronk Nutrients', logo: cronkLogo, tone: 'light' },
-    { name: 'Cardio Miracle', logo: cardioMiracleLogo },
     { name: 'Crunchy Cub', logo: crunchyCubLogo, tone: 'pale', badge: true },
     { name: 'Eppinger', logo: eppingerLogo, tone: 'dark' },
-    { name: 'RapidLash', logo: rapidLashLogo, tone: 'dark' },
     { name: 'uDrippin', logo: udrippinLogo, tone: 'light' },
     { name: 'Mett Wellness', logo: mettWellnessLogo, tone: 'light' },
-    { name: 'Tidal', logo: tidalLogo, tone: 'light' },
   ];
 
   const featuredCases = [
@@ -272,8 +275,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Brands we work with: the logo strip sits right under the hero, still on the first screen. Bucked Up, Nu Skin,
-          Younique and Young Living lead (phones show Bucked Up and Nu Skin first). */}
+      {/* Brands we work with: the logo strip sits right under the hero, still on the first screen. Nu Skin, Young
+          Living, NOW Foods, Rodan + Fields and Bucked Up lead (phones show Nu Skin and Young Living first). */}
         <div className="relative z-10 mt-10 sm:mt-8 mb-2 px-4 sm:px-6 lg:px-8">
           <p className={`${HOME_INNER} text-xs font-semibold uppercase tracking-[0.18em] mb-2 ${MUTED}`}>Brands we work with</p>
           {/* On TV-size screens (1880px+, e.g. the office screen) the strip widens to fill the hero, stopping short of
