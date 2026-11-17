@@ -51,7 +51,7 @@ export function MarkTable({ columns, rows }: { columns: string[]; rows: { q: str
           <tr className={`border-b ${RULE}`}>
             <th scope="col" className="p-4"><span className="sr-only">Question</span></th>
             {columns.map((c, i) => (
-              <th key={c} scope="col" className={`p-4 pl-11 align-bottom font-semibold ${i === 0 ? `${ACCENT} ${EPIC}` : HEAD}`}>{c}</th>
+              <th key={c} scope="col" className={`p-4 align-bottom font-semibold ${i === 0 ? `${ACCENT} ${EPIC}` : HEAD}`}>{c}</th>
             ))}
           </tr>
         </thead>
