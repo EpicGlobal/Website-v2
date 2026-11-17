@@ -202,10 +202,10 @@ export function Home() {
   ];
 
   const model = [
-    { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We buy your inventory outright at wholesale. You get paid on agreed terms; we own the stock.', tagline: 'Sold to us. We own the stock.' },
+    { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We purchase your inventory at agreed wholesale prices. You get paid on agreed terms; we own the stock.', tagline: 'Sold to us. We own the stock.' },
     { icon: Globe2, num: '02', title: 'Sell', desc: 'We run your listings on Amazon first, plus Walmart and international.', tagline: 'One system. Every marketplace we sell on.' },
     { icon: BarChart3, num: '03', title: 'Advertise', desc: 'We pay for and run the ads, built for profit, not spend.', tagline: 'We fund. We optimize.' },
-    { icon: Shield, num: '04', title: 'Protect', strong: 'We go after unauthorized sellers.', desc: 'We report each violation through your Brand Registry, sell at or above your MAP and defend your branded search.', tagline: 'Your brand. Our defense.' },
+    { icon: Shield, num: '04', title: 'Protect', strong: 'We monitor unauthorized offers.', desc: 'We document potential violations and pursue platform-approved enforcement where eligible. We monitor advertised prices against your brand policies and manage our own pricing under the agreement.', tagline: 'Your brand. Our defense.' },
   ];
 
   return (

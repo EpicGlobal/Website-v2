@@ -33,7 +33,7 @@ const CAPABILITIES = [
   { icon: Search, title: 'Listing Optimization', description: 'Titles, keywords and creative that convert.' },
   { icon: BarChart3, title: 'Advertising Operations', description: 'Campaigns, bids and creative, paid by Epic.' },
   { icon: Package, title: 'Inventory + Forecasting', description: 'Demand planning and reorders.' },
-  { icon: Shield, title: 'Brand Protection & MAP Monitoring', strong: 'We go after unauthorized sellers', description: 'and sell at or above your MAP.' },
+  { icon: Shield, title: 'Brand Protection & MAP Monitoring', strong: 'We monitor unauthorized offers', description: 'and pursue platform-approved enforcement where eligible.' },
   { icon: Database, title: 'Data + Reporting Layer', description: 'Shared dashboard and monthly reports.' },
   { icon: Cpu, title: 'Execution Engine', description: 'Automation that keeps catalogs clean and fast.' },
 ];
@@ -120,7 +120,7 @@ export function WhatWeAre() {
             <div>
               <h1 className={`${H1} mb-6`}>Our wholesale trade partner model</h1>
               <p className={`${LEAD} mb-8`}>
-                Epic Global Inc. is an Amazon-first wholesale trade partner: we buy your inventory outright, sell it on Amazon, plus Walmart and international marketplaces, and pay the ads, fees and fulfillment.
+                Epic Global Inc. is an Amazon-first wholesale trade partner: we purchase inventory at agreed wholesale prices and operate authorized third-party marketplace sales, starting with Amazon, plus Walmart and international marketplaces, and we pay the ads, fees and fulfillment.
               </p>
               <a href="#how-it-works" className={`text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
                 How it works &darr;

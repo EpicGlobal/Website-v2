@@ -122,7 +122,7 @@ Epic covers the costs that normally make growth risky. We fund and manage the ad
 :::card
 ### PROTECT
 
-We go after unauthorized sellers on the marketplaces we operate: we monitor offers, document violations and report them through your Brand Registry. We sell at or above your MAP, use Amazon Transparency where you enroll, watch the Buy Box and your catalog, and send you brand protection reports.
+On the marketplaces we operate, we monitor unauthorized offers, document potential violations and pursue platform-approved enforcement where eligible. We monitor advertised prices against brand policies, manage Epic's own pricing under the agreement, use Amazon Transparency where you enroll, watch the Buy Box and your catalog, and send you brand protection reports.
 :::
 
 :::callout

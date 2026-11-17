@@ -48,7 +48,7 @@ We fund and run the advertising, and pay the marketplace fees and fulfillment fo
 :::card
 ### 4. Protect
 
-We go after unauthorized sellers on the marketplaces we operate: we monitor offers, document violations and report them through your Brand Registry. We sell at or above your MAP and watch the Buy Box and your catalog. The [Amazon and Marketplace Glossary](/knowledge-base/amazon-marketplace-glossary) explains these terms in plain English.
+On the marketplaces we operate, we monitor unauthorized offers, document potential violations and pursue platform-approved enforcement where eligible. We monitor advertised prices against brand policies, manage Epic's own pricing under the agreement and watch the Buy Box and your catalog. The [Amazon and Marketplace Glossary](/knowledge-base/amazon-marketplace-glossary) explains these terms in plain English.
 :::
 
 ## Common Pitfalls (What We're Not)
