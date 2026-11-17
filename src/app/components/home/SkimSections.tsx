@@ -9,14 +9,6 @@ import { CARD } from './homeStyles';
 
 /** Each cell: good for the brand owner (yes), bad (no), plus a few words. Icon + word, so it never relies on color. */
 type Cell = { ok: boolean; text: string };
-const rows: { q: string; epic: Cell; agency: Cell; aggregator: Cell }[] = [
-  { q: 'Buys your inventory outright', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'No' }, aggregator: { ok: false, text: 'Buys your whole company' } },
-  { q: 'Pays for ads, fees and fulfillment', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'No, you do' }, aggregator: { ok: true, text: 'Yes' } },
-  { q: 'No retainers or % of ad spend', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'Usually charges' }, aggregator: { ok: true, text: 'Yes' } },
-  { q: 'You keep your brand', epic: { ok: true, text: 'Yes' }, agency: { ok: true, text: 'Yes' }, aggregator: { ok: false, text: 'No, they own it' } },
-  { q: 'Earns only when your products sell', epic: { ok: true, text: 'Yes' }, agency: { ok: false, text: 'No, fees either way' }, aggregator: { ok: false, text: 'No, a one-time buyout' } },
-];
-
 function Mark({ cell, strong }: { cell: Cell; strong?: boolean }) {
   const Icon = cell.ok ? Check : X;
   return (
@@ -70,12 +62,41 @@ export function MarkTable({ columns, rows }: { columns: string[]; rows: { q: str
   );
 }
 
+/** Homepage comparison (Nov 17): what each business model owns and how it earns. Epic's row gets the pop accent. */
+const MODELS: { model: string; inventory: string; brand: string; earns: string; epic?: boolean }[] = [
+  { model: 'Epic Wholesale Partnership', inventory: 'Epic purchases inventory outright', brand: 'Brand owner retains ownership', earns: 'Wholesale resale margin', epic: true },
+  { model: 'Marketplace Agency', inventory: 'Usually owned by the brand', brand: 'Brand owner retains ownership', earns: 'Service or performance fees' },
+  { model: 'Traditional Distributor', inventory: 'Purchases inventory for resale', brand: 'Brand owner retains ownership', earns: 'Resale margin' },
+  { model: 'Brand Aggregator', inventory: 'Owns inventory within acquired brands', brand: 'Typically acquires the brand', earns: 'Profits and enterprise value of owned brands' },
+];
+
 export function CompareTable() {
+  const EPIC = 'bg-[var(--pop)]/[0.07]';
+  const cols = ['Inventory Ownership', 'Brand Ownership', 'How It Earns'];
   return (
-    <MarkTable
-      columns={['Epic', 'Agency', 'Aggregator']}
-      rows={rows.map((r) => ({ q: r.q, cells: [r.epic, r.agency, r.aggregator] }))}
-    />
+    <div className={`overflow-x-auto rounded-2xl border ${RULE}`}>
+      <table className="w-full min-w-[40rem] table-fixed text-left text-sm sm:text-base">
+        <caption className="sr-only">How Epic compares to agencies, distributors and aggregators</caption>
+        <thead>
+          <tr className={`border-b ${RULE}`}>
+            <th scope="col" className={`p-4 align-bottom font-semibold ${HEAD}`}>Business Model</th>
+            {cols.map((c) => (
+              <th key={c} scope="col" className={`p-4 align-bottom font-semibold ${HEAD}`}>{c}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {MODELS.map((m) => (
+            <tr key={m.model} className={`border-b last:border-b-0 ${RULE} ${m.epic ? EPIC : ''}`}>
+              <th scope="row" className={`p-4 align-top font-semibold ${m.epic ? ACCENT : HEAD}`}>{m.model}</th>
+              {[m.inventory, m.brand, m.earns].map((v, i) => (
+                <td key={cols[i]} className={`p-4 align-top ${m.epic ? `font-semibold ${HEAD}` : BODY}`}>{v}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -83,7 +104,7 @@ export function FitColumns() {
   const fit = [
     'You are an established brand: typically $1M+ a year in sales',
     'You want Amazon to run as a system, not a side project',
-    'You would rather sell at wholesale than fund ads and fees',
+    'You want Epic to purchase your inventory and take responsibility for marketplace advertising, selling fees and fulfillment',
   ];
   const notFit = [
     'You want to keep every operation in-house',
@@ -115,8 +136,8 @@ export function FitColumns() {
         </ul>
       </div>
       <p className={`md:col-span-2 text-sm ${MUTED}`}>
-        Newer or smaller brand? We can still build you up, but it takes more investment and testing, so we start with a
-        conversation about fit.
+        Smaller or emerging brand? We evaluate opportunities individually based on product demand, marketplace potential
+        and the investment required.
       </p>
     </div>
   );
@@ -143,6 +164,14 @@ export const HOME_FAQ = [
   {
     q: 'Do you sell 1P or 3P on Amazon?',
     a: '3P. We purchase your inventory at agreed wholesale prices and sell it on Amazon as the third-party seller, priced at or above your MAP. In 1P, Amazon buys your stock and sets the price. If you sell 1P to Amazon today, we move you to 3P.',
+  },
+  {
+    q: 'How does Epic make money?',
+    a: 'Epic earns its margin by purchasing inventory at wholesale and reselling those products through authorized marketplaces. Under our standard wholesale partnership, Epic funds its advertising, marketplace selling fees and fulfillment rather than charging the brand a recurring agency retainer.',
+  },
+  {
+    q: 'How does Epic handle unauthorized sellers?',
+    a: 'Epic monitors unauthorized offers, investigates suspected violations and coordinates documentation and appropriate reporting with the brand. Our typical clearing timeframe is 8–20 weeks, although actual outcomes depend on the evidence, seller circumstances and marketplace policies.',
   },
 ];
 

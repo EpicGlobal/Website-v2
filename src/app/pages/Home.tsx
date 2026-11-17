@@ -78,7 +78,7 @@ import zantrexLogo from '@/assets/a02203de0f65132ee8277243eb83905610259bc6.png';
 import ziveLogo from '@/assets/bac9c727078929bc5f7386af4f562d2fe9fefe30.png';
 
 /*
- * Homepage, skim first (Brex, Nov 5): hero ("We Buy It. You Profit.") -> brand logos -> 4 numbers -> Buy-Sell-Advertise-Protect
+ * Homepage, skim first (Brex, Nov 5; order updated Nov 17: hero, how it works, at a glance, results, compare, fit, questions): hero ("We Buy It. You Profit.") -> brand logos -> 4 numbers -> Buy-Sell-Advertise-Protect
  * -> results -> Epic vs agency vs aggregator -> who we're a fit for -> 5 questions. Company facts moved to
  * About and the 8 capabilities to Our Model.
  * Each chapter opens with a numbered marker and the chapter rail (wide screens) shows where you are. The page's one
@@ -87,11 +87,11 @@ import ziveLogo from '@/assets/bac9c727078929bc5f7386af4f562d2fe9fefe30.png';
 
 const CHAPTERS = [
   { id: 'wholesale-trade-partner', label: 'Wholesale trade partner' },
-  { id: 'brands', label: 'At a glance' },
   { id: 'model', label: 'How it works' },
-  { id: 'fit', label: "Who we're a fit for" },
+  { id: 'brands', label: 'At a glance' },
   { id: 'case-studies', label: 'Results' },
-  { id: 'compare', label: 'Epic vs agency vs aggregator' },
+  { id: 'compare', label: 'Epic vs. other marketplace models' },
+  { id: 'fit', label: "Who we're a fit for" },
   { id: 'faq', label: 'Questions' },
   { id: 'next-step', label: 'Next step' },
 ] as const;
@@ -202,10 +202,10 @@ export function Home() {
   ];
 
   const model = [
-    { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We purchase your inventory at agreed wholesale prices. You get paid on agreed terms; we own the stock.', tagline: 'Sold to us. We own the stock.' },
-    { icon: Globe2, num: '02', title: 'Sell', desc: 'We run your listings on Amazon first, plus Walmart and international.', tagline: 'One system. Every marketplace we sell on.' },
-    { icon: BarChart3, num: '03', title: 'Advertise', desc: 'We pay for and run the ads, built for profit, not spend.', tagline: 'We fund. We optimize.' },
-    { icon: Shield, num: '04', title: 'Protect', strong: 'We monitor unauthorized offers.', desc: 'We document potential violations and pursue platform-approved enforcement where eligible. We monitor advertised prices against your brand policies and manage our own pricing under the agreement.', tagline: 'Your brand. Our defense.' },
+    { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We purchase your inventory outright at agreed wholesale prices. You receive payment on agreed terms; Epic owns the inventory.', tagline: 'Sold to us. We own the stock.' },
+    { icon: Globe2, num: '02', title: 'Sell', desc: 'We manage listings, pricing, inventory and fulfillment across authorized marketplaces, starting with Amazon.', tagline: 'One system. Every marketplace we sell on.' },
+    { icon: BarChart3, num: '03', title: 'Advertise', desc: 'We fund and manage marketplace advertising, optimizing campaigns for profitable sales, not simply higher spend.', tagline: 'We fund. We optimize.' },
+    { icon: Shield, num: '04', title: 'Protect', desc: 'We sell at or above your MAP, monitor unauthorized sellers, document suspected violations and pursue appropriate enforcement.', tagline: 'Your brand. Our defense.' },
   ];
 
   return (
@@ -238,7 +238,7 @@ export function Home() {
                 We Buy It. You Profit.&trade;
               </h1>
               <p className={`${LEAD} max-w-3xl mb-10`}>
-                Epic Global Inc. is an Amazon-first wholesale trade partner. We purchase your inventory at agreed wholesale prices, fund the advertising, pay the marketplace fees and fulfillment, and run day-to-day operations on Amazon, Walmart and international marketplaces.
+                Epic Global Inc. is an Amazon-first wholesale trade partner. We purchase your inventory at agreed wholesale prices, fund advertising, cover marketplace fees and fulfillment, and manage day-to-day marketplace operations across Amazon, Walmart and international markets.
                 <strong className={`block mt-3 text-xl sm:text-2xl font-semibold ${HEAD}`}>You keep the brand.</strong>
               </p>
               {/* Phones: the button at its natural width, centered, with "How it works" centered under it. */}
@@ -277,13 +277,6 @@ export function Home() {
           <div className="max-w-7xl min-[1880px]:max-w-[min(calc(100vw_-_280px),2200px)] mx-auto"><TrustLogosMarquee brands={brands} /></div>
         </div>
 
-      {/* 02 Brands we work with: the trust logos, then the proof strip (real numbers in the HTML; they count up once on screen). */}
-      {/* 02 At a glance: design R1, option A (Nov 16): the rating ring with four cards in the corners. Even spacing:
-          no bottom padding here, so the gap under the marker matches the gap above How it works. */}
-      <section id="brands" data-chapter aria-label="Epic Global Inc. at a glance" className="scroll-mt-20 pt-20 pb-0 px-4 sm:px-6 lg:px-8">
-        <BrandsProof brands={brands} logos={false} marker={<ChapterMarker id="brands" />} />
-      </section>
-
       {/* 04 Buy, Sell, Advertise, Protect: the chapter pins and each card lights up in turn (ScrollHighlightSteps). */}
       <section id="model" data-chapter className={CHAPTER}>
         <div className="max-w-7xl mx-auto">
@@ -309,7 +302,7 @@ export function Home() {
                     <Icon className="w-5 h-5" aria-hidden="true" />
                   </div>
                   <h3 className={`${H3} mb-3`}>{card.title}</h3>
-                  <p className={`leading-relaxed ${BODY}`}>{card.strong ? <><strong className={`font-semibold ${HEAD}`}>{card.strong}</strong>{' '}</> : null}{card.desc}</p>
+                  <p className={`leading-relaxed ${BODY}`}>{card.desc}</p>
                 </div>
               );
             })}
@@ -324,13 +317,12 @@ export function Home() {
         </div>
       </section>
 
-      {/* Who we're a fit for: right after how it works, so brands check fit before the results. */}
-      <section id="fit" data-chapter className={CHAPTER}>
-        <div className={HOME_INNER}>
-          <ChapterMarker id="fit" />
-          <h2 className={`${H2} mb-8`}>Who we&apos;re a fit for</h2>
-          <FitColumns />
-        </div>
+      {/* 02 Brands we work with: the trust logos, then the proof strip (real numbers in the HTML; they count up once on screen). */}
+      {/* 02 At a glance: design R1, option A (Nov 16): the rating ring with four cards in the corners. Even spacing:
+          no bottom padding here, so the gap under the marker matches the gap above How it works. */}
+      <section id="brands" data-chapter aria-label="Epic Global Inc. at a glance" className="scroll-mt-20 pt-20 pb-0 px-4 sm:px-6 lg:px-8">
+        <BrandsProof brands={brands} logos={false} marker={<ChapterMarker id="brands" />} />
+        <p className={`mt-10 text-center text-sm font-medium ${MUTED}`}>Founded in 2014. Selling on Amazon since 2015.</p>
       </section>
 
       {/* 05 How we execute: two featured case studies settle in, then the way to all of them. */}
@@ -361,12 +353,25 @@ export function Home() {
         </div>
       </section>
 
-      {/* Epic vs agency vs aggregator: the comparison a brand owner makes first, as a table. */}
+      {/* Epic vs other marketplace models: what each model owns and how it earns. No intro paragraph. */}
       <section id="compare" data-chapter className={CHAPTER}>
         <div className={HOME_INNER}>
           <ChapterMarker id="compare" />
-          <h2 className={`${H2} mb-8`}>A wholesale trade partner, not an agency or aggregator</h2>
+          <h2 className={`${H2} mb-8`}>How Epic Compares to Agencies, Distributors and Aggregators</h2>
           <CompareTable />
+          <p className={`mt-6 max-w-3xl leading-relaxed ${BODY}`}>
+            <strong className={`font-semibold ${HEAD}`}>What makes Epic different?</strong>{' '}
+            Epic combines wholesale inventory purchasing with marketplace advertising, catalog management, fulfillment and brand protection. You keep your brand. We buy and operate the inventory.
+          </p>
+        </div>
+      </section>
+
+      {/* Who we're a fit for: after the comparison, right before the questions. */}
+      <section id="fit" data-chapter className={CHAPTER}>
+        <div className={HOME_INNER}>
+          <ChapterMarker id="fit" />
+          <h2 className={`${H2} mb-8`}>Is Epic Global the Right Wholesale Partner for Your Brand?</h2>
+          <FitColumns />
         </div>
       </section>
 
