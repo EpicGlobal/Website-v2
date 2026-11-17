@@ -196,7 +196,7 @@ export function Home() {
       region: 'North America',
       objective: 'Compare Amazon 1P with Epic’s 3P offer: the brand pays no Amazon fees and nets more per unit',
       metric: '+159%',
-      metricLabel: 'net revenue per unit on one brake kit, based on Epic’s offer',
+      metricLabel: 'projected net revenue per unit on one brake kit under Epic’s offer (not actual sales)',
       link: '/case-studies/auto-parts-amazon-1p-vs-epic-3p',
     },
   ];
@@ -336,7 +336,7 @@ export function Home() {
       <section id="case-studies" data-chapter className="scroll-mt-20 pt-20 pb-16 px-4 sm:px-6 lg:px-8">
         <div className={HOME_INNER}>
           <ChapterMarker id="case-studies" />
-          <h2 className={`${H2} mb-10`}>Results from real brands</h2>
+          <h2 className={`${H2} mb-10`}>Results and offers from real brands</h2>
 
           <div data-story="fade-up" className="grid md:grid-cols-2 gap-6 mb-10">
             {featuredCases.map((caseStudy) => (

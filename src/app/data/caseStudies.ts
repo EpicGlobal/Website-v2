@@ -253,11 +253,11 @@ export const caseStudies: readonly CaseStudy[] = [
     glance: {
       problem: 'Thin margins and unpredictable fees under Amazon 1P.',
       did: "Compared the brand's 1P results with Epic's 3P offer: Epic buys the inventory and pays the Amazon fees.",
-      result: "Under Epic's offer, net revenue per unit is 159% higher on one brake kit and 53% higher on another than under 1P.",
+      result: "Under Epic's offer, the brand's net revenue per unit is projected to be 159% higher on one brake kit and 53% higher on another than under 1P. These are projections from the offer, not actual sales results.",
     },
     metrics: [
-      { value: '+159%', label: 'Net revenue per unit', note: 'Escalade brake kit, based on Epic’s offer vs. 1P', basis: 'offer' },
-      { value: '+53%', label: 'Net revenue per unit', note: 'Civic brake kit, based on Epic’s offer vs. 1P', basis: 'offer' },
+      { value: '+159%', label: 'Projected net revenue per unit', note: 'Escalade brake kit, based on Epic’s offer vs. 1P', basis: 'offer' },
+      { value: '+53%', label: 'Projected net revenue per unit', note: 'Civic brake kit, based on Epic’s offer vs. 1P', basis: 'offer' },
       { value: 'None', label: 'Amazon fees paid by the brand', note: 'Epic pays fees, chargebacks and co-op', basis: 'offer' },
     ],
     challenges: [
