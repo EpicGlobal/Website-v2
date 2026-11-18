@@ -72,21 +72,24 @@ const STEPS = [
 ];
 
 /**
- * Direct-selling brands (Nov 18 draft, from Jake's Nov 13 note, the CEO's ChatGPT review and Brex's mockup): the
- * challenge on the left, the model in the middle (you keep the brand; Epic runs the channel), Buy / Sell / Advertise /
- * Protect on the right. No brand names, no removal counts, no promises about distributor sales or exclusivity.
+ * Direct-selling brands (Nov 18; Brex picked option C of four): one sentence on the problem, then a single card with the
+ * statement, one line on how it works and the brand -> Epic -> Amazon flow. No brand names, no removal counts, no
+ * promises about distributor sales or exclusivity (those need approval first).
  */
-const DS_CHALLENGES = [
-  'Products reach Amazon through distributor resale, excess inventory and arbitrage.',
-  'Prices drift across many sellers, and shoppers can’t tell which offer is official.',
-  'Discounted listings can compete with your own distributors.',
-];
-const DS_PILLARS = [
-  { icon: Package, title: 'Buy', body: 'We purchase your inventory outright at agreed wholesale prices.' },
-  { icon: ShoppingCart, title: 'Sell', body: 'We run listings, pricing, inventory and fulfillment.' },
-  { icon: BarChart3, title: 'Advertise', body: 'We fund the ads, selling fees and fulfillment.' },
-  { icon: Shield, title: 'Protect', body: 'We sell at or above your MAP and monitor unauthorized offers.' },
-];
+function DsFlow({ className = '' }: { className?: string }) {
+  const side = `flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white/15 light:border-gray-300 orange:border-[#101828]/20 px-4 py-2.5 text-sm font-semibold ${HEAD}`;
+  return (
+    <ol aria-label="Wholesale inventory flow" className={`flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 ${className}`}>
+      <li className={side}><Factory className="w-4 h-4" aria-hidden="true" /> Your brand</li>
+      <li aria-hidden="true" className={`self-center ${ACCENT}`}><ArrowRight className="w-5 h-5 rotate-90 sm:rotate-0" /></li>
+      <li className={`flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border-2 border-[var(--pop)] px-4 py-2.5 text-sm font-bold tracking-[0.14em] uppercase shadow-[0_0_20px_-6px_var(--pop)] ${HEAD}`}>
+        <Image src={epicMark} alt="" className="w-4 h-4 object-contain" /> Epic Global
+      </li>
+      <li aria-hidden="true" className={`self-center ${ACCENT}`}><ArrowRight className="w-5 h-5 rotate-90 sm:rotate-0" /></li>
+      <li className={side}><Store className="w-4 h-4" aria-hidden="true" /> Amazon</li>
+    </ol>
+  );
+}
 
 const WE_DONT = [
   'No à la carte services or consulting packages',
@@ -258,74 +261,26 @@ export function WhatWeAre() {
         </div>
       </section>
 
-      {/* 06 Direct-selling brands, three full-width rows on one grid: the challenge (three equal columns), the model
-          (statement + inventory flow) and Buy / Sell / Advertise / Protect (four equal cards). */}
+      {/* 06 Direct-selling brands: the problem in one sentence, then one card with the answer and the flow. */}
       <section id="direct-selling" data-chapter className={CHAPTER}>
         <div className={INNER}>
           <ChapterMarker n={6} />
           <h2 className={`${H2} mb-4`}>Bring Structure to Amazon for Direct-Selling Brands</h2>
-          <p className={`${LEAD} mb-12 max-w-3xl`}>
-            A wholesale marketplace partner for direct-selling brands that want a more controlled Amazon channel, while
-            respecting their distributor network.
+          <p className={`${LEAD} mb-10 max-w-3xl`}>
+            Direct-selling products often reach Amazon through distributor resale, excess inventory and arbitrage, leaving
+            prices uneven and listings competing with your distributors.
           </p>
-
-          {/* Row 1: the challenge */}
-          <h3 className={`text-xs font-semibold uppercase tracking-[0.18em] mb-4 ${ACCENT}`}>The challenge</h3>
-          <ol className={`${CARD} grid divide-y divide-white/10 light:divide-gray-200 orange:divide-[#101828]/15 md:grid-cols-3 md:divide-y-0 md:divide-x`}>
-            {DS_CHALLENGES.map((item, i) => (
-              <li key={item} className="flex gap-4 p-6">
-                <span aria-hidden="true" className={`text-sm font-bold tabular-nums ${ACCENT}`}>{String(i + 1).padStart(2, '0')}</span>
-                <span className={`leading-relaxed ${BODY}`}>{item}</span>
-              </li>
-            ))}
-          </ol>
-
-          {/* Row 2: the model */}
-          <div className={`${CARD} relative mt-6 overflow-hidden p-7 sm:p-10`}>
-            <span aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[var(--pop)]/[0.08] blur-3xl" />
-            <div className="relative grid gap-10 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:items-center md:gap-12">
-              <div>
-                <p className={`text-3xl sm:text-4xl font-extrabold tracking-tight leading-[1.1] ${HEAD}`}>
-                  You keep the brand.{' '}
-                  <span className={`block ${ACCENT}`}>Epic operates the marketplace channel.</span>
-                </p>
-                <p className={`mt-5 text-lg leading-relaxed ${BODY}`}>
-                  We purchase your inventory, fund the marketplace operation and run your authorized Amazon channel within your
-                  agreed channel strategy. Your trademarks, Brand Registry and distributor network stay yours.
-                </p>
-              </div>
-              <div>
-                <ol aria-label="Wholesale inventory flow" className="mx-auto grid max-w-xs gap-2">
-                  <li className={`flex items-center justify-center gap-2 rounded-xl border border-white/15 light:border-gray-300 orange:border-[#101828]/20 px-4 py-3 font-semibold ${HEAD}`}>
-                    <Factory className="w-4 h-4" aria-hidden="true" /> Your brand
-                  </li>
-                  <li aria-hidden="true" className={`flex justify-center ${ACCENT}`}><ArrowRight className="w-5 h-5 rotate-90" /></li>
-                  <li className={`flex items-center justify-center gap-2 rounded-xl border-2 border-[var(--pop)] px-4 py-3.5 font-bold tracking-[0.14em] uppercase shadow-[0_0_24px_-6px_var(--pop)] ${HEAD}`}>
-                    <Image src={epicMark} alt="" className="w-5 h-5 object-contain" /> Epic Global
-                  </li>
-                  <li aria-hidden="true" className={`flex justify-center ${ACCENT}`}><ArrowRight className="w-5 h-5 rotate-90" /></li>
-                  <li className={`flex items-center justify-center gap-2 rounded-xl border border-white/15 light:border-gray-300 orange:border-[#101828]/20 px-4 py-3 font-semibold ${HEAD}`}>
-                    <Store className="w-4 h-4" aria-hidden="true" /> Amazon
-                  </li>
-                </ol>
-                <p className={`mt-3 text-center text-sm ${MUTED}`}>Wholesale inventory flow</p>
-              </div>
-            </div>
+          <div className={`${CARD} relative overflow-hidden p-7 sm:p-10 text-center`}>
+            <span aria-hidden="true" className="pointer-events-none absolute left-1/2 -top-32 h-64 w-[36rem] max-w-full -translate-x-1/2 rounded-full bg-[var(--pop)]/[0.08] blur-3xl" />
+            <p className={`relative text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight ${HEAD}`}>
+              You keep the brand. <span className={`block sm:inline ${ACCENT}`}>Epic operates the channel.</span>
+            </p>
+            <p className={`relative mx-auto mt-4 max-w-2xl text-lg leading-relaxed ${BODY}`}>
+              We buy your inventory and run one authorized Amazon channel, at or above your MAP, within your agreed channel
+              strategy. Your Brand Registry and distributor network stay yours.
+            </p>
+            <DsFlow className="relative mt-8 justify-center" />
           </div>
-
-          {/* Row 3: Buy, Sell, Advertise, Protect */}
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {DS_PILLARS.map(({ icon: Icon, title, body }) => (
-              <div key={title} className={`${CARD} ${CARD_HOVER} p-6`}>
-                <span className={`${ICON_TILE} !w-11 !h-11 !rounded-lg mb-5`}>
-                  <Icon className="w-5 h-5" aria-hidden="true" />
-                </span>
-                <h3 className={`text-xl font-bold mb-2 ${ACCENT}`}>{title}</h3>
-                <p className={`leading-relaxed ${BODY}`}>{body}</p>
-              </div>
-            ))}
-          </div>
-
           {/* Shows only when booking is turned on (same rule as every other booking button). */}
           {siteConfig.bookACallEnabled ? (
             <div className="mt-12 flex justify-center">
