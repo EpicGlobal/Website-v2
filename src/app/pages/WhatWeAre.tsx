@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRef } from 'react';
 import Image from 'next/image';
-import { BarChart3, Cpu, Database, Globe2, Package, Search, Shield, ShoppingCart, X } from 'lucide-react';
+import { ArrowRight, BarChart3, Cpu, Database, Factory, Globe2, Package, Search, Shield, ShoppingCart, Store, X } from 'lucide-react';
 import epicMark from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { ScrollTimeline } from '@/app/components/scroll/ScrollEffects';
@@ -44,6 +44,7 @@ const CHAPTERS = [
   { id: 'what-we-run', label: 'What we run' },
   { id: 'compare', label: 'How we compare' },
   { id: 'who-its-for', label: "Who it's for" },
+  { id: 'direct-selling', label: 'Direct-selling brands' },
   { id: 'questions', label: 'Questions' },
 ] as const;
 
@@ -68,6 +69,23 @@ const STEPS = [
   { title: 'Advertise: we fund the ads, fees and fulfillment', body: 'We pay the ad spend, marketplace fees and fulfillment, so we only win when you do.' },
   { title: 'Protect: we guard your price and catalog', body: 'Brand Registry authorization, MAP monitoring, removal of unauthorized sellers, and Buy Box and catalog monitoring.' },
   { title: 'You get visibility and control', body: 'A shared dashboard from day one, monthly reports, quarterly reviews, and your approval on major decisions.' },
+];
+
+/**
+ * Direct-selling brands (Nov 18 draft, from Jake's Nov 13 note, the CEO's ChatGPT review and Brex's mockup): the
+ * challenge on the left, the model in the middle (you keep the brand; Epic runs the channel), Buy / Sell / Advertise /
+ * Protect on the right. No brand names, no removal counts, no promises about distributor sales or exclusivity.
+ */
+const DS_CHALLENGES = [
+  'Products reach Amazon through distributor resale, excess inventory and arbitrage.',
+  'Prices drift across many sellers, and shoppers can’t tell which offer is official.',
+  'Discounted listings can compete with your own distributors.',
+];
+const DS_PILLARS = [
+  { icon: Package, title: 'Buy', body: 'We purchase your inventory outright at agreed wholesale prices.' },
+  { icon: ShoppingCart, title: 'Sell', body: 'We run listings, pricing, inventory and fulfillment.' },
+  { icon: BarChart3, title: 'Advertise', body: 'We fund the ads, selling fees and fulfillment.' },
+  { icon: Shield, title: 'Protect', body: 'We sell at or above your MAP and monitor unauthorized offers.' },
 ];
 
 const WE_DONT = [
@@ -240,10 +258,87 @@ export function WhatWeAre() {
         </div>
       </section>
 
+      {/* 06 Direct-selling brands, three full-width rows on one grid: the challenge (three equal columns), the model
+          (statement + inventory flow) and Buy / Sell / Advertise / Protect (four equal cards). */}
+      <section id="direct-selling" data-chapter className={CHAPTER}>
+        <div className={INNER}>
+          <ChapterMarker n={6} />
+          <h2 className={`${H2} mb-4`}>Bring Structure to Amazon for Direct-Selling Brands</h2>
+          <p className={`${LEAD} mb-12 max-w-3xl`}>
+            A wholesale marketplace partner for direct-selling brands that want a more controlled Amazon channel, while
+            respecting their distributor network.
+          </p>
+
+          {/* Row 1: the challenge */}
+          <h3 className={`text-xs font-semibold uppercase tracking-[0.18em] mb-4 ${ACCENT}`}>The challenge</h3>
+          <ol className={`${CARD} grid divide-y divide-white/10 light:divide-gray-200 orange:divide-[#101828]/15 md:grid-cols-3 md:divide-y-0 md:divide-x`}>
+            {DS_CHALLENGES.map((item, i) => (
+              <li key={item} className="flex gap-4 p-6">
+                <span aria-hidden="true" className={`text-sm font-bold tabular-nums ${ACCENT}`}>{String(i + 1).padStart(2, '0')}</span>
+                <span className={`leading-relaxed ${BODY}`}>{item}</span>
+              </li>
+            ))}
+          </ol>
+
+          {/* Row 2: the model */}
+          <div className={`${CARD} relative mt-6 overflow-hidden p-7 sm:p-10`}>
+            <span aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[var(--pop)]/[0.08] blur-3xl" />
+            <div className="relative grid gap-10 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:items-center md:gap-12">
+              <div>
+                <p className={`text-3xl sm:text-4xl font-extrabold tracking-tight leading-[1.1] ${HEAD}`}>
+                  You keep the brand.{' '}
+                  <span className={`block ${ACCENT}`}>Epic operates the marketplace channel.</span>
+                </p>
+                <p className={`mt-5 text-lg leading-relaxed ${BODY}`}>
+                  We purchase your inventory, fund the marketplace operation and run your authorized Amazon channel within your
+                  agreed channel strategy. Your trademarks, Brand Registry and distributor network stay yours.
+                </p>
+              </div>
+              <div>
+                <ol aria-label="Wholesale inventory flow" className="mx-auto grid max-w-xs gap-2">
+                  <li className={`flex items-center justify-center gap-2 rounded-xl border border-white/15 light:border-gray-300 orange:border-[#101828]/20 px-4 py-3 font-semibold ${HEAD}`}>
+                    <Factory className="w-4 h-4" aria-hidden="true" /> Your brand
+                  </li>
+                  <li aria-hidden="true" className={`flex justify-center ${ACCENT}`}><ArrowRight className="w-5 h-5 rotate-90" /></li>
+                  <li className={`flex items-center justify-center gap-2 rounded-xl border-2 border-[var(--pop)] px-4 py-3.5 font-bold tracking-[0.14em] uppercase shadow-[0_0_24px_-6px_var(--pop)] ${HEAD}`}>
+                    <Image src={epicMark} alt="" className="w-5 h-5 object-contain" /> Epic Global
+                  </li>
+                  <li aria-hidden="true" className={`flex justify-center ${ACCENT}`}><ArrowRight className="w-5 h-5 rotate-90" /></li>
+                  <li className={`flex items-center justify-center gap-2 rounded-xl border border-white/15 light:border-gray-300 orange:border-[#101828]/20 px-4 py-3 font-semibold ${HEAD}`}>
+                    <Store className="w-4 h-4" aria-hidden="true" /> Amazon
+                  </li>
+                </ol>
+                <p className={`mt-3 text-center text-sm ${MUTED}`}>Wholesale inventory flow</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Row 3: Buy, Sell, Advertise, Protect */}
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {DS_PILLARS.map(({ icon: Icon, title, body }) => (
+              <div key={title} className={`${CARD} ${CARD_HOVER} p-6`}>
+                <span className={`${ICON_TILE} !w-11 !h-11 !rounded-lg mb-5`}>
+                  <Icon className="w-5 h-5" aria-hidden="true" />
+                </span>
+                <h3 className={`text-xl font-bold mb-2 ${ACCENT}`}>{title}</h3>
+                <p className={`leading-relaxed ${BODY}`}>{body}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Shows only when booking is turned on (same rule as every other booking button). */}
+          {siteConfig.bookACallEnabled ? (
+            <div className="mt-12 flex justify-center">
+              <CtaButton variant="primary" size="lg" location="What We Are Page - Direct Selling" />
+            </div>
+          ) : null}
+        </div>
+      </section>
+
       {/* 06 Questions: the story hands off to a conversation. */}
       <section id="questions" data-chapter className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
         <div data-story="fade-up" className={INNER}>
-          <ChapterMarker n={6} />
+          <ChapterMarker n={7} />
           <QuickAnswers
             id="our-model-answers"
             questions={[
