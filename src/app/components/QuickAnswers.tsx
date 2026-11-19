@@ -9,6 +9,17 @@ import { ACCENT, BODY, CARD_HOVER, HEAD, MUTED } from '@/app/components/story/to
  * page they're on. Text comes from src/app/data/faqs.ts, so it always matches /faq. Each card glows on hover like the
  * other cards and links to its question on /faq, which opens that answer (Nov 19).
  */
+/** The card shows the opening of the answer (whole sentences, about 35 words); /faq keeps the full text. */
+function preview(answer: string): string {
+  const sentences = answer.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [answer];
+  let out = '';
+  for (const s of sentences) {
+    if (out && (out + s).split(/\s+/).length > 38) break;
+    out += s;
+  }
+  return out.trim();
+}
+
 export function QuickAnswers({ questions, id }: { questions: string[]; id: string }) {
   const faqs = pickFaqs(questions);
   return (
@@ -23,12 +34,12 @@ export function QuickAnswers({ questions, id }: { questions: string[]; id: strin
         {faqs.map((f) => (
           <div key={f.question} className={`group relative flex flex-col ${SURFACE} ${CARD_HOVER} p-5`}>
             <dt className={`font-semibold leading-snug mb-2 ${HEAD}`}>{f.question}</dt>
-            <dd className={`text-sm leading-relaxed ${BODY}`}>{f.answer}</dd>
+            <dd className={`text-sm leading-relaxed ${BODY}`}>{preview(f.answer)}</dd>
             <dd className="mt-auto pt-4">
               {/* The whole card is the click target (the link stretches over it). */}
               <Link
                 href={`/faq#${faqSlug(f.question)}`}
-                className={`inline-flex items-center gap-1.5 text-sm font-semibold after:absolute after:inset-0 after:rounded-xl ${ACCENT}`}
+                className={`inline-flex items-center gap-1.5 text-sm font-semibold after:absolute after:inset-0 after:rounded-2xl ${ACCENT}`}
               >
                 Read on the FAQ page
                 <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
