@@ -81,15 +81,15 @@ const MODEL_COLS = [
 const COMPARE: CompareRow[] = [
   {
     q: 'Buys your inventory',
-    a: [{ sig: 'yes', text: 'Outright, at wholesale' }, { sig: 'no', text: 'Usually not' }, { sig: 'yes', text: 'For resale' }, { sig: 'some', text: 'Acquires the whole brand' }],
+    a: [{ sig: 'yes', text: 'Outright, at wholesale' }, { sig: 'no', text: 'No' }, { sig: 'yes', text: 'For resale' }, { sig: 'vary', text: 'Acquires the whole brand' }],
   },
   {
     q: 'Funds ads, fees and fulfillment',
-    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'no', text: 'Usually not' }, { sig: 'some', text: 'Varies' }, { sig: 'some', text: 'As the new owner' }],
+    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'no', text: 'No' }, { sig: 'vary', text: 'Varies' }, { sig: 'vary', text: 'As the new owner' }],
   },
   {
     q: 'Runs marketplace operations',
-    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'some', text: 'For a fee' }, { sig: 'some', text: 'Sometimes' }, { sig: 'some', text: 'As the brand owner' }],
+    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'vary', text: 'For a fee' }, { sig: 'vary', text: 'Sometimes' }, { sig: 'vary', text: 'As the brand owner' }],
   },
   {
     q: 'You keep your brand',
