@@ -46,27 +46,32 @@ export function Footer() {
             <h2 className="text-white text-sm font-semibold mb-4">Navigation</h2>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                <Link href="/" className="text-sm text-gray-200 hover:text-[var(--pop)] leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                <Link href="/about" className="text-sm text-gray-200 hover:text-[var(--pop)] leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/our-model" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                <Link href="/our-model" className="text-sm text-gray-200 hover:text-[var(--pop)] leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
                   Our Model
                 </Link>
               </li>
               <li>
-                <Link href="/case-studies" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                <Link href="/intelligence" className="text-sm text-gray-200 hover:text-[var(--pop)] leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                  AI Intelligence
+                </Link>
+              </li>
+              <li>
+                <Link href="/case-studies" className="text-sm text-gray-200 hover:text-[var(--pop)] leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
                   Case Studies
                 </Link>
               </li>
               <li>
-                <Link href="/knowledge-base" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                <Link href="/knowledge-base" className="text-sm text-gray-200 hover:text-[var(--pop)] leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
                   Knowledge Base
                 </Link>
               </li>
@@ -77,22 +82,22 @@ export function Footer() {
             <h2 className="text-white text-sm font-semibold mb-4">Resources</h2>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/faq" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                <Link href="/faq" className="text-sm text-gray-200 hover:text-[var(--pop)] leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                <Link href="/privacy" className="text-sm text-gray-200 hover:text-[var(--pop)] leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-choices" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                <Link href="/privacy-choices" className="text-sm text-gray-200 hover:text-[var(--pop)] leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
                   Your Privacy Choices
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-sm text-gray-200 hover:text-cyan-300 leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
+                <Link href="/terms" className="text-sm text-gray-200 hover:text-[var(--pop)] leaf:text-gray-100 leaf:hover:text-sky-200 transition-colors">
                   Terms of Service
                 </Link>
               </li>
