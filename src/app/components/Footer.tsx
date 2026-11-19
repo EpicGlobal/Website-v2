@@ -33,7 +33,7 @@ export function Footer() {
               plus Walmart and international marketplaces, and pay for the ads, fees and fulfillment.
             </p>
             <p className="text-cyan-300 leaf:text-sky-200 text-sm font-medium">
-              We buy it. You profit.&trade;
+              We Buy It. You Profit.&trade;
             </p>
             <address className="not-italic mt-3 text-sm text-gray-300 leaf:text-sky-100">
               {siteConfig.streetAddress}, {siteConfig.locality}, {siteConfig.region} {siteConfig.postalCode}
