@@ -271,7 +271,7 @@ export function KnowledgeBase({ initialFilters, articles: knowledgeArticles }: K
       </section>
 
       {/* Popular Articles (only when nothing is filtered) */}
-      {!filtersActive && (
+      {!filtersActive && publishedArticles.length > 12 && (
         <section className={`py-10 ${SECTION}`}>
           <div className={INNER}>
             <h2 className={`${H2} mb-8`}>Popular Articles</h2>
