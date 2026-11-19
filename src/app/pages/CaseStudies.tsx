@@ -125,12 +125,17 @@ export function CaseStudies() {
         <section id="all" data-chapter className={CHAPTER}>
           <div className={INNER}>
             <ChapterMarker n={3} label="More case studies" />
-            <ul className="grid gap-6 md:grid-cols-2">
+            <ul className={`grid gap-6 ${rest.length > 1 ? 'md:grid-cols-2' : ''}`}>
               {rest.map((study) => {
+                const wide = rest.length === 1;
                 const lead = study.metrics[0];
                 return (
                   <li key={study.slug} id={anchorFor(study.slug)} className="scroll-mt-24">
-                    <Link href={href(study)} className={`${CARD} ${CARD_HOVER} group flex h-full flex-col p-6`}>
+                    <Link
+                      href={href(study)}
+                      className={`${CARD} ${CARD_HOVER} group flex h-full flex-col p-6 ${wide ? 'sm:p-8 md:grid md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-x-12' : ''}`}
+                    >
+                      <div className={wide ? 'md:border-r md:pr-12 md:border-current/10' : ''}>
                       <div className="flex items-center justify-between gap-3 mb-5">
                         <BrandMark study={study} />
                         <span className="flex flex-wrap justify-end gap-1.5">
@@ -141,6 +146,8 @@ export function CaseStudies() {
                       </div>
                       <p className={`text-4xl font-bold tracking-tight tabular-nums ${ACCENT}`}>{lead.value}</p>
                       <p className={`text-sm mb-5 ${MUTED}`}>{lead.label.toLowerCase()} · {lead.note}</p>
+                      </div>
+                      <div className="flex flex-col">
                       <h3 className={`text-lg font-semibold leading-snug mb-2 ${HEAD}`}>{study.title}</h3>
                       <Meta study={study} />
                       <p className={`mt-4 leading-relaxed ${BODY}`}>{study.glance.result}</p>
@@ -148,6 +155,7 @@ export function CaseStudies() {
                         Read the case study
                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                       </span>
+                      </div>
                     </Link>
                   </li>
                 );
