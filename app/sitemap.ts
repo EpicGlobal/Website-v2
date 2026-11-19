@@ -7,14 +7,15 @@ import { siteConfig } from '@/site/site-config';
 // Each page keeps its own date: change it only when that page's content really changes.
 const RELEASE = '2026-11-10';
 const NOV17 = '2026-11-17'; // wording, rating and 1P/3P updates
+const NOV19 = '2026-11-19'; // Our Model copy, negotiated price, audit fixes
 const staticRoutes = [
-  { path: '/', priority: 1, updated: NOV17 },
-  { path: '/about', priority: 0.9, updated: NOV17 },
-  { path: '/our-model', priority: 0.9, updated: NOV17 },
-  { path: '/intelligence', priority: 0.8, updated: NOV17 },
+  { path: '/', priority: 1, updated: NOV19 },
+  { path: '/about', priority: 0.9, updated: NOV19 },
+  { path: '/our-model', priority: 0.9, updated: NOV19 },
+  { path: '/intelligence', priority: 0.8, updated: NOV19 },
   { path: '/case-studies', priority: 0.8, updated: NOV17 },
   { path: '/knowledge-base', priority: 0.8, updated: RELEASE },
-  { path: '/faq', priority: 0.7, updated: NOV17 },
+  { path: '/faq', priority: 0.7, updated: NOV19 },
   { path: '/privacy', priority: 0.4, updated: RELEASE },
   { path: '/privacy-choices', priority: 0.4, updated: RELEASE },
   { path: '/terms', priority: 0.4, updated: RELEASE },
