@@ -3,7 +3,7 @@
 import image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f from '@/assets/7827c6003ae306e0f9f630e11162a9aa55ffdd3f.png';
 import Image from 'next/image';
 import { useRef } from 'react';
-import { Calendar, Flag, Globe2, Linkedin, MapPin, Star, type LucideIcon } from 'lucide-react';
+import { Box, Calendar, Flag, Globe2, Linkedin, MapPin, Megaphone, Star, Warehouse, type LucideIcon } from 'lucide-react';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, organizationRef } from '@/app/components/StructuredData';
 import { GlobalReachMap } from '@/app/components/GlobalReachMap';
@@ -58,6 +58,14 @@ const aboutBeats: StoryExtra = (gsap, _ScrollTrigger, root) => {
 export function About() {
   const rootRef = useRef<HTMLDivElement>(null);
   useScrollStory(rootRef, aboutBeats);
+
+  // The four things Epic runs, shown beside the globe in the "Why Epic" chapter.
+  const ops: { label: string; icon: LucideIcon }[] = [
+    { label: 'Inventory', icon: Box },
+    { label: 'Advertising', icon: Megaphone },
+    { label: 'Fulfillment', icon: Warehouse },
+    { label: 'Global Markets', icon: Globe2 },
+  ];
 
   const differentiators = [
     {
@@ -221,6 +229,32 @@ export function About() {
             <div>
               {/* Nov 18: the principles behind Epic, not another agency comparison (home and Our Model already make it). */}
               <h2 className={`${H2} mb-4`}>Built to Own the Work, Not Just Advise on It</h2>
+              {/* Nov 19 (Brex's mockup): a dotted globe with the four things Epic runs beside it. The globe is a static,
+                  decorative SVG (public/about-globe.svg, drawn from the same world-atlas data as the map); the four
+                  labels are real text. Phones: globe on top, labels in a 2 x 2 grid below. */}
+              <div className="mt-8 flex flex-col items-center gap-6 sm:flex-row sm:justify-center lg:justify-start sm:gap-0">
+                <img
+                  src="/about-globe.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width={440}
+                  height={470}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full max-w-[290px] sm:max-w-[320px] lg:max-w-[340px] h-auto"
+                />
+                <ul aria-label="What Epic runs" className="relative grid w-full grid-cols-2 gap-3 sm:w-auto sm:grid-cols-1 sm:-ml-8">
+                  {ops.map(({ label, icon: Icon }) => (
+                    <li
+                      key={label}
+                      className={`flex items-center gap-3 rounded-xl border border-white/15 light:border-gray-300 orange:border-[#101828]/20 bg-[#0b1422]/70 light:bg-white orange:bg-white/70 px-4 py-3 text-sm font-semibold shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] backdrop-blur ${HEAD}`}
+                    >
+                      <Icon aria-hidden="true" className={`h-5 w-5 flex-shrink-0 ${ACCENT}`} />
+                      {label}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <StepList items={differentiators} />
           </div>
