@@ -39,9 +39,9 @@ function ChapterMarker({ n }: { n: number }) {
 /** Hero panel: the kinds of tasks the systems run (an illustration, no figures). The first one is lit. */
 const SYSTEM_TASKS: { icon: LucideIcon; title: string; detail: string }[] = [
   { icon: Zap, title: 'Price checked on Amazon', detail: 'Our price kept at or above your MAP' },
-  { icon: Shield, title: 'Unauthorized seller flagged', detail: 'Violation reported' },
+  { icon: Shield, title: 'Suspected issue flagged', detail: 'Evidence reviewed' },
   { icon: TrendingUp, title: 'Demand shift spotted', detail: 'Stock planned to where it sells' },
-  { icon: LayoutGrid, title: 'Listing updated on every marketplace', detail: 'One change, every channel we sell on' },
+  { icon: LayoutGrid, title: 'Listing update approved', detail: 'Coordinated across supported marketplaces' },
 ];
 
 const gap: { icon: LucideIcon; title: string; description: string }[] = [
@@ -62,7 +62,7 @@ const SIGNALS = ['Prices and Buy Box', 'Sales and demand', 'New sellers', 'Ads a
 const ACTIONS = ['Reprice at or above MAP', 'Move stock', 'Adjust ads', 'Report sellers'];
 
 const SHIFT = [
-  { q: 'Channel management', epic: 'One system updates every marketplace', old: 'Manual updates, one platform at a time' },
+  { q: 'Channel management', epic: 'Coordinate approved listing updates across supported marketplaces', old: 'Manual updates, one platform at a time' },
   { q: 'Pricing', epic: 'Watched every day, ours kept at or above your MAP', old: 'Reviewed every quarter by a team' },
   { q: 'Brand protection', epic: 'Daily monitoring, fast reporting', old: 'Monthly audits, after the damage' },
   { q: 'Inventory', epic: 'Forecasts place stock before demand shifts', old: "Last year's data and gut feel" },
@@ -154,7 +154,7 @@ export function Intelligence() {
                 Epic Global Inc. runs brands&apos; marketplace operations, Amazon first, plus Walmart and international marketplaces, with its own software for demand forecasting, pricing, inventory placement and brand protection, so brands grow without building that system themselves.
               </p>
               <p className={`text-lg leading-relaxed ${MUTED}`}>
-                Where others add people to manage more complexity, Epic adds systems, and keeps its people on the decisions that need operator judgment.
+                Our teams use marketplace signals, analytics and operational workflows to identify and implement improvements. People review the decisions that require judgment.
               </p>
             </div>
             <figure className={`${CARD} p-5 sm:p-6`}>
@@ -212,7 +212,7 @@ export function Intelligence() {
           <ChapterMarker n={3} />
           <h2 className={`${H2} mb-4`}>Signals in, decisions out</h2>
           <p className={`text-lg leading-relaxed max-w-2xl mb-10 ${BODY}`}>
-            Epic&apos;s systems read what&apos;s happening on every marketplace, decide what to change, and do it. People make the big calls.
+            Marketplace signals come in, our teams decide what to change, and approved changes go out across the marketplaces we run.
           </p>
           <div data-story="flow" className="grid gap-4 lg:grid-cols-[minmax(0,0.8fr)_auto_minmax(0,1.6fr)_auto_minmax(0,0.8fr)] lg:items-center">
             <FlowColumn title="Marketplace signals" items={SIGNALS} icon={Activity} step="in" />
@@ -275,7 +275,7 @@ export function Intelligence() {
             <div className="max-w-2xl">
               <h2 className={`${H2} mb-4`}>You don&apos;t build the system. Epic runs it for you.</h2>
               <p className={`text-lg leading-relaxed ${BODY}`}>
-                We purchase your inventory at negotiated wholesale prices and run your marketplaces with these systems.
+                We purchase your inventory at negotiated wholesale prices and run your marketplaces with these systems. Brand partners have a shared performance dashboard from day one, monthly reporting and quarterly business reviews.
                 {siteConfig.bookACallEnabled ? " Let's map what that looks like for your brand." : null}
               </p>
             </div>

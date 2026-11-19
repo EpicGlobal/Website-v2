@@ -2,9 +2,9 @@ import { Intelligence } from '@/app/pages/Intelligence';
 import { createPageMetadata } from '@/site/site-config';
 
 export const metadata = createPageMetadata({
-  title: 'Marketplace AI for Demand and Brand Protection',
+  title: 'Amazon Marketplace Analytics & Reporting',
   description:
-    "Epic Global's intelligence layer covers predictive demand, autonomous channel optimization, and brand protection for marketplace commerce.",
+    "How Epic Global uses marketplace analytics, demand forecasting and reporting to run brands' Amazon and international marketplace sales, with shared dashboards and quarterly reviews.",
   path: '/intelligence',
   keywords: [
     'marketplace ai',
