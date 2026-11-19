@@ -27,6 +27,8 @@ import { siteConfig } from '@/site/site-config';
  */
 
 /** What Epic runs day to day (moved here from the homepage, Nov 5; Nov 19 wording): one line each. */
+const CAP_HAIR = 'border-white/10 orange:border-[#101828]/15 light:border-gray-200';
+
 const CAPABILITIES: { icon: typeof ShoppingCart; title: string; description: string; strong?: string }[] = [
   { icon: ShoppingCart, title: 'Marketplace Operations', description: 'Amazon-first selling across Walmart, eBay and approved international marketplaces.' },
   { icon: Globe2, title: 'International Marketplace Expansion', description: 'Marketplace launches, regional catalog adaptation and local execution.' },
@@ -201,7 +203,7 @@ export function WhatWeAre() {
         </div>
       </section>
 
-      {/* 03 What we run: eight one-line cards with the site-wide hover glow. */}
+      {/* 03 What we run: eight capabilities in one open grid. */}
       <section id="what-we-run" data-chapter className={CHAPTER}>
         <div className={INNER}>
           <ChapterMarker n={3} />
@@ -209,16 +211,23 @@ export function WhatWeAre() {
           <p className={`text-lg leading-relaxed max-w-3xl mb-8 ${BODY}`}>
             Epic purchases your inventory and operates your marketplace channels, so you can focus on your core business.
           </p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {CAPABILITIES.map(({ icon: Icon, title, strong, description }) => (
-              <div key={title} className={`${CARD} p-5`}>
-                <span className={`${ICON_TILE} !w-9 !h-9 !rounded-lg mb-4`}>
-                  <Icon className="w-[18px] h-[18px]" aria-hidden="true" />
-                </span>
-                <h3 className={`font-semibold mb-1 leading-snug ${HEAD}`}>{title}</h3>
-                <p className={`text-sm leading-snug ${MUTED}`}>{strong ? <><strong className={`font-semibold ${HEAD}`}>{strong}</strong>{' '}</> : null}{description}</p>
-              </div>
-            ))}
+          {/* One open spec-sheet panel (Nov 19): hairline cells, small lime icons and numbers, no boxes or glow.
+              Every cell draws a right and bottom hairline; the panel clips the outer ones. */}
+          <div className={`relative overflow-hidden rounded-2xl border ${CAP_HAIR} bg-gradient-to-br from-white/[0.035] via-transparent to-transparent`}>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 -mr-px -mb-px">
+              {CAPABILITIES.map(({ icon: Icon, title, strong, description }, i) => (
+                <li key={title} className={`p-5 sm:p-6 flex items-start gap-4 sm:block border-r border-b ${CAP_HAIR}`}>
+                  <span className="flex items-center gap-2 shrink-0 sm:mb-4">
+                    <Icon aria-hidden="true" className={`w-5 h-5 ${ACCENT}`} />
+                    <span className={`hidden sm:inline text-xs font-semibold tabular-nums tracking-[0.16em] ${MUTED}`}>{String(i + 1).padStart(2, '0')}</span>
+                  </span>
+                  <span className="block">
+                    <h3 className={`font-semibold leading-snug mb-1.5 ${HEAD}`}>{title}</h3>
+                    <p className={`text-sm leading-snug ${MUTED}`}>{strong ? <><strong className={`font-semibold ${HEAD}`}>{strong}</strong>{' '}</> : null}{description}</p>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
