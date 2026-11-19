@@ -46,4 +46,4 @@ export const QUIET_BUTTON = `inline-flex items-center justify-center gap-2 px-8 
  * chapter (ScrollTimeline). Keyboard focus shows the same. CSS only, no JavaScript.
  */
 export const CARD_HOVER =
-  'transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_0_0_2px_var(--pop),0_20px_40px_-20px_var(--pop)] focus-visible:-translate-y-1.5 focus-visible:shadow-[0_0_0_2px_var(--pop),0_20px_40px_-20px_var(--pop)] focus-visible:outline-none';
+  'transition-[transform,box-shadow] duration-300 ease-out motion-reduce:transition-none hover:-translate-y-1 hover:shadow-[0_0_0_1px_var(--pop),0_18px_40px_-22px_var(--pop)] focus-visible:-translate-y-1 focus-visible:shadow-[0_0_0_2px_var(--pop),0_18px_40px_-22px_var(--pop)] focus-within:shadow-[0_0_0_2px_var(--pop),0_18px_40px_-22px_var(--pop)] focus-visible:outline-none';

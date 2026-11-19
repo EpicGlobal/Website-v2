@@ -194,7 +194,7 @@ export function Intelligence() {
           <h2 className={`${H2} mb-8`}>Why brands can&apos;t keep up</h2>
           <div data-story="rise" className="grid sm:grid-cols-2 gap-4">
             {gap.map(({ icon: Icon, title, description }) => (
-              <div key={title} className={`${CARD} ${CARD_HOVER} p-6`}>
+              <div key={title} className={`${CARD} p-6`}>
                 <span className={`${ICON_TILE} mb-5`}>
                   <Icon aria-hidden="true" className="w-5 h-5" />
                 </span>

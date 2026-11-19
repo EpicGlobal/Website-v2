@@ -211,7 +211,7 @@ export function WhatWeAre() {
           </p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {CAPABILITIES.map(({ icon: Icon, title, strong, description }) => (
-              <div key={title} className={`${CARD} ${CARD_HOVER} p-5`}>
+              <div key={title} className={`${CARD} p-5`}>
                 <span className={`${ICON_TILE} !w-9 !h-9 !rounded-lg mb-4`}>
                   <Icon className="w-[18px] h-[18px]" aria-hidden="true" />
                 </span>
@@ -238,11 +238,11 @@ export function WhatWeAre() {
             {WE_DONT.map((item) => (
               <li
                 key={item}
-                className={`group flex items-start gap-3 leading-relaxed transition-transform duration-300 ease-out hover:translate-x-1 ${BODY}`}
+                className={`flex items-start gap-3 leading-relaxed ${BODY}`}
               >
                 <X
                   aria-hidden="true"
-                  className={`w-5 h-5 mt-0.5 flex-shrink-0 transition-[color,filter] duration-300 ${MUTED} group-hover:!text-[var(--pop)] group-hover:drop-shadow-[0_0_8px_var(--pop)]`}
+                  className={`w-5 h-5 mt-0.5 flex-shrink-0 ${MUTED}`}
                 />
                 <span>{item}</span>
               </li>

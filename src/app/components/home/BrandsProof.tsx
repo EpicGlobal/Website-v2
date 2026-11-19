@@ -142,7 +142,7 @@ function RatingRing() {
  * rows and the ring in the middle never move (Nov 17 fix: the old hover opened a description and grew the card).
  */
 const CARD_FX =
-  'relative overflow-hidden transform-gpu transition-[transform,box-shadow] duration-300 ease-out motion-reduce:transition-none hover:-translate-y-1 motion-reduce:hover:translate-y-0 hover:shadow-[0_0_0_1px_var(--pop),0_18px_40px_-24px_var(--pop)]';
+  'relative overflow-hidden';
 
 /** One card: icon on the left; number, word and line on the right. */
 function StatCard({ s, className = '' }: { s: Stat; className?: string }) {
