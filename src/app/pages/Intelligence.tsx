@@ -44,6 +44,8 @@ const SYSTEM_TASKS: { icon: LucideIcon; title: string; detail: string }[] = [
   { icon: LayoutGrid, title: 'Listing update approved', detail: 'Coordinated across supported marketplaces' },
 ];
 
+const GAP_HAIR = 'border-white/10 orange:border-[#101828]/15 light:border-gray-200';
+
 const gap: { icon: LucideIcon; title: string; description: string }[] = [
   { icon: LayoutGrid, title: 'Every marketplace works differently', description: 'Listings, ads, inventory and rules differ on each one.' },
   { icon: RefreshCw, title: 'Prices and sellers change daily', description: 'Competitors reprice and unauthorized sellers appear faster than weekly meetings can react.' },
@@ -187,22 +189,25 @@ export function Intelligence() {
         </div>
       </section>
 
-      {/* 02 The gap: four pressures as cards. */}
+      {/* 02 The gap: four pressures as editorial points. */}
       <section id="the-gap" data-chapter className={CHAPTER}>
         <div className={INNER}>
           <ChapterMarker n={2} />
           <h2 className={`${H2} mb-8`}>Why brands can&apos;t keep up</h2>
-          <div data-story="rise" className="grid sm:grid-cols-2 gap-4">
-            {gap.map(({ icon: Icon, title, description }) => (
-              <div key={title} className={`${CARD} p-6`}>
-                <span className={`${ICON_TILE} mb-5`}>
-                  <Icon aria-hidden="true" className="w-5 h-5" />
+          {/* Editorial points (Nov 19): hairline with a short lime lead-in, number + icon, heading, line. */}
+          <ol data-story="rise" className="grid sm:grid-cols-2 gap-x-12 gap-y-9">
+            {gap.map(({ icon: Icon, title, description }, i) => (
+              <li key={title} className={`relative border-t pt-5 ${GAP_HAIR}`}>
+                <span aria-hidden="true" className="absolute -top-px left-0 h-0.5 w-10 bg-[var(--pop)]" />
+                <span className="flex items-center gap-3 mb-3">
+                  <span aria-hidden="true" className={`text-xs font-semibold tabular-nums tracking-[0.16em] ${ACCENT}`}>{String(i + 1).padStart(2, '0')}</span>
+                  <Icon aria-hidden="true" className={`w-[18px] h-[18px] ${MUTED}`} />
                 </span>
                 <h3 className={`${H3} mb-2`}>{title}</h3>
                 <p className={`leading-relaxed ${BODY}`}>{description}</p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
