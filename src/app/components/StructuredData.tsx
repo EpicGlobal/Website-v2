@@ -220,7 +220,7 @@ export const websiteSchema = {
   // Google's site-name fallbacks, so results say "Epic Global" (not the bare domain or another Epic).
   alternateName: [...siteConfig.alternateName, 'epicglobalinc.com'],
   url: siteConfig.url,
-  description: 'Amazon-first wholesale trade partner and marketplace operator: buys brand inventory at negotiated wholesale prices and sells it on Amazon, Walmart, eBay, TikTok Shop, Temu, Shopify and other international marketplaces',
+  description: 'Amazon-first wholesale trade partner and marketplace operator: buys brand inventory at negotiated wholesale prices and sells it on Amazon, Walmart, eBay, TikTok Shop, Temu and other international marketplaces',
   publisher: organizationReference,
 };
 

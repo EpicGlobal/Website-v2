@@ -15,7 +15,7 @@ export const FAQS: Faq[] = [
   {
     question: 'Which marketplaces do you operate on?',
     answer:
-      'Amazon is our main marketplace: we have sold on Amazon since 2015, including Amazon US, CA, EU and other regions. We also run Walmart, Target, eBay, TikTok Shop, Temu, Shopify, Mercado Libre, Coupang, Shopee, Lazada, Rakuten and Naver, in the regions where they fit your catalog. We prioritize marketplaces based on your brand\'s category fit and regional opportunity. During assessment, we\'ll map which platforms make sense for your catalog. Coming in 2027: Macy\'s, Nordstrom, Lowe\'s and Kohl\'s.',
+      'Amazon is our main marketplace: we have sold on Amazon since 2015, including Amazon US, CA, EU and other regions. We also run Walmart, Target, eBay, TikTok Shop, Temu, Mercado Libre, Coupang, Shopee, Lazada, Rakuten and Naver, in the regions where they fit your catalog. We prioritize marketplaces based on your brand\'s category fit and regional opportunity. During assessment, we\'ll map which platforms make sense for your catalog. Coming in 2027: Macy\'s, Nordstrom, Lowe\'s and Kohl\'s.',
   },
   {
     question: 'What do you need from us to get started?',
@@ -45,7 +45,7 @@ export const FAQS: Faq[] = [
   {
     question: 'How do you handle brand protection, MAP and unauthorized sellers?',
     answer:
-      'We monitor unauthorized offers, document potential violations and pursue platform-approved enforcement where eligible. We monitor advertised prices against brand policies and manage Epic’s own pricing under the agreement. Compliance and brand protection are built into our workflows, not bolted on afterward. We design every process around marketplace policies, documentation requirements, and auditability. For brand protection, we get authorized under your Brand Registry, monitor for new unauthorized sellers, follow up on MAP violations through your reseller policy, use Amazon Transparency where you enroll, monitor the Buy Box and your catalog, and send you brand protection reports by marketplace. Every enforcement action is documented and tracked.',
+      'The goal is price integrity: a consistent authorized presence on each marketplace instead of resellers undercutting each other in a race to the bottom. We monitor unauthorized offers, document potential violations and pursue platform-approved enforcement where eligible. We monitor advertised prices against brand policies and manage Epic’s own pricing under the agreement. Compliance and brand protection are built into our workflows, not bolted on afterward. We design every process around marketplace policies, documentation requirements, and auditability. For brand protection, we get authorized under your Brand Registry, monitor for new unauthorized sellers, follow up on MAP violations through your reseller policy, use Amazon Transparency where you enroll, monitor the Buy Box and your catalog, and send you brand protection reports by marketplace. Every enforcement action is documented and tracked.',
   },
   {
     question: 'What kind of reporting and visibility do we get?',
@@ -90,7 +90,7 @@ export const FAQS: Faq[] = [
   {
     question: 'Is the agreement exclusive, and what about our current distributors?',
     answer:
-      'Epic becomes the exclusive authorized seller on the marketplaces and countries named in your contract; exclusivity is set contract by contract. During assessment we map your current distributors and resellers. Unauthorized sellers on the named marketplaces are then removed, which usually takes 8-20 weeks.',
+      'Where agreed, Epic may serve as the exclusive authorized seller on the marketplaces and countries named in the contract; exclusivity is set contract by contract. During assessment we map your current distributors and resellers. Epic monitors unauthorized sellers and coordinates evidence-based enforcement where eligible. Clearing unauthorized sellers typically takes 8–20 weeks, although individual outcomes depend on the circumstances and marketplace decisions.',
   },
   {
     question: 'How long is a typical contract?',
