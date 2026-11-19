@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -12,12 +13,26 @@ import { CtaButton } from '@/app/components/CtaButton';
 import { BODY, H1, H2, HEAD, INNER, LEAD, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
 import { MEASURE } from '@/app/components/reading/reading';
 import { siteConfig } from '@/site/site-config';
-import { FAQS } from '@/app/data/faqs';
+import { FAQS, faqSlug } from '@/app/data/faqs';
 
 const SECTION = 'px-4 sm:px-6 lg:px-8';
 
 export function FAQ() {
   const faqs = FAQS;
+  // A link like /faq#do-you-charge-retainers-hourly-rates-or-project-fees (from the Quick answers cards) opens that
+  // answer and brings it into view. Others stay as the reader leaves them.
+  const [open, setOpen] = useState<string[]>([]);
+  useEffect(() => {
+    const openFromHash = () => {
+      const slug = decodeURIComponent(window.location.hash.slice(1));
+      if (!slug || !faqs.some((f) => faqSlug(f.question) === slug)) return;
+      setOpen((cur) => (cur.includes(slug) ? cur : [...cur, slug]));
+      requestAnimationFrame(() => document.getElementById(slug)?.scrollIntoView({ block: 'start' }));
+    };
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+    return () => window.removeEventListener('hashchange', openFromHash);
+  }, [faqs]);
 
 
   return (
@@ -36,9 +51,9 @@ export function FAQ() {
       <section className={`pb-16 ${SECTION}`}>
         <div className={INNER}>
           <h2 className="sr-only">Wholesale trade partner FAQ</h2>
-          <Accordion type="multiple" className={`border-t ${RULE}`}>
+          <Accordion type="multiple" value={open} onValueChange={setOpen} className={`border-t ${RULE}`}>
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className={`border-b last:border-b ${RULE}`}>
+              <AccordionItem key={index} id={faqSlug(faq.question)} value={faqSlug(faq.question)} className={`scroll-mt-28 border-b last:border-b ${RULE}`}>
                 <AccordionTrigger
                   className={`py-6 text-lg sm:text-xl font-semibold leading-snug hover:no-underline underline-offset-4 decoration-1 focus-visible:ring-0 focus-visible:underline [&:hover>span]:underline ${HEAD} [&>svg]:size-5 [&>svg]:translate-y-1 [&>svg]:text-[var(--pop)] orange:[&>svg]:text-orange-800`}
                 >
