@@ -193,12 +193,13 @@ export function Globe({ colorOverride, darkerParticles }: { colorOverride?: { r:
     const visibility = new IntersectionObserver(([entry]) => {
       onScreen = entry.isIntersecting;
       lastFrameTime = performance.now();
+      if (onScreen && !animationId) animationId = requestAnimationFrame(animate);
     });
     visibility.observe(canvas);
 
     const animate = () => {
       if (!onScreen) {
-        animationId = requestAnimationFrame(animate);
+        animationId = 0; // paused; the observer restarts it
         return;
       }
       if (!syncCanvasSize()) {
