@@ -294,25 +294,12 @@ export function WhatWeAre() {
       <section id="questions" data-chapter className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
         <div data-story="fade-up" className={INNER}>
           <ChapterMarker n={7} />
-          {/* Nov 19: page-specific wording (shorter than /faq, same facts). */}
           <QuickAnswers
             id="our-model-answers"
-            items={[
-              {
-                question: "Will Epic buy my brand's inventory?",
-                answer:
-                  'Yes. Epic purchases inventory outright from approved brand partners at agreed wholesale prices and takes ownership of the products purchased.',
-              },
-              {
-                question: 'Do you charge retainers, hourly rates or project fees?',
-                answer:
-                  "Under Epic's standard wholesale partnership, brands do not pay an agency retainer. Epic earns its margin by purchasing inventory and reselling it through authorized marketplaces.",
-              },
-              {
-                question: 'Do we keep our Brand Registry, listings and reviews?',
-                answer:
-                  'You retain ownership of your trademarks and Brand Registry. Epic operates as an authorized reseller and can work with existing product listings, subject to marketplace policies.',
-              },
+            questions={[
+              "Will Epic buy my brand's inventory?",
+              'Do you charge retainers, hourly rates or project fees?',
+              'Do we keep our Brand Registry, listings and reviews?',
             ]}
           />
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">

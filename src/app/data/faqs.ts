@@ -60,12 +60,12 @@ export const FAQS: Faq[] = [
   {
     question: "Will Epic buy my brand's inventory?",
     answer:
-      'Yes. Epic Global is a wholesale trade partner, one of the companies that buys brand inventory outright. We buy your inventory at an agreed wholesale price and own it from then on. The opening order is usually sized to about 60-90 days of stock, followed by monthly replenishment orders. You\'re paid on the payment terms set in your contract.',
+      'Yes. Epic purchases inventory outright from approved brand partners at agreed wholesale prices and takes ownership of the products purchased.',
   },
   {
     question: 'Do you charge retainers, hourly rates or project fees?',
     answer:
-      'No. Epic doesn\'t charge retainers, hourly rates, project fees or consulting packages. We earn our margin by buying your inventory at wholesale and selling it at retail, and we pay for the advertising, marketplace fees and fulfillment ourselves.',
+      "Under Epic's standard wholesale partnership, brands do not pay an agency retainer. Epic earns its margin by purchasing inventory and reselling it through authorized marketplaces.",
   },
   {
     question: 'Who sets the retail price?',
@@ -73,9 +73,9 @@ export const FAQS: Faq[] = [
       'Epic sets the retail price on the marketplaces we operate, and we sell at or above your minimum advertised price (MAP). Amazon does not enforce MAP, so we monitor the prices of other sellers and follow up through your MAP and reseller policy to keep pricing consistent.',
   },
   {
-    question: 'Do we keep our Brand Registry, listings, reviews and rank?',
+    question: 'Do we keep our Brand Registry, listings and reviews?',
     answer:
-      'Yes. Your brand keeps its Brand Registry and authorizes Epic to sell. Epic sells from its own seller account on your existing product detail pages, so the listings, reviews and sales rank built on those pages carry over. Epic then builds or improves your listings, A+ content and Storefront at no charge.',
+      'You retain ownership of your trademarks and Brand Registry. Epic operates as an authorized reseller and can work with existing product listings, subject to marketplace policies.',
   },
   {
     question: 'What happens to our Subscribe & Save customers?',
@@ -113,6 +113,11 @@ export const FAQS: Faq[] = [
       'Across all of Epic’s Amazon stores, customers rate us 4.8 out of 5 from 265,000+ ratings (November 2026). Our main Amazon US store is "Epic Global," and on Walmart we sell as Epic Global Inc. You can see both seller pages, and our case studies show results for partner brands.',
   },
 ];
+
+/** The id each question gets on /faq, so other pages can link straight to it (/faq#<slug> opens that answer). */
+export function faqSlug(question: string): string {
+  return question.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
 
 /** The FAQ entries with these exact questions, in the order given (throws at build time if one is renamed). */
 export function pickFaqs(questions: string[]): Faq[] {
