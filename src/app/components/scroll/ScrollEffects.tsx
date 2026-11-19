@@ -122,7 +122,7 @@ export function ScrollHighlightSteps({ header, cards, footer }: { header: ReactN
           {Children.map(cards, (card, i) => (
             <div
               data-active={i === active}
-              className="rounded-2xl transition-all duration-500 ease-out data-[active=true]:-translate-y-2 data-[active=true]:shadow-[0_0_0_2px_var(--pop),0_20px_40px_-20px_var(--pop)] data-[active=false]:opacity-60"
+              className="rounded-2xl transition-all duration-500 ease-out data-[active=true]:-translate-y-2 data-[active=true]:shadow-[0_0_0_2px_var(--pop),0_20px_40px_-20px_var(--pop)] data-[active=false]:opacity-75"
             >
               {card}
             </div>
@@ -139,7 +139,7 @@ export function ScrollHighlightSteps({ header, cards, footer }: { header: ReactN
 
 /* 2. Word reveal: words go from faint to full as the heading scrolls into view. */
 function Word({ children, progress, range }: { children: string; progress: MotionValue<number>; range: [number, number] }) {
-  const opacity = useTransform(progress, range, [0.2, 1]);
+  const opacity = useTransform(progress, range, [0.45, 1]);
   return <motion.span style={{ opacity }}>{children}</motion.span>;
 }
 
@@ -284,7 +284,7 @@ export function ScrollTimeline({ steps, numClass, titleClass, bodyClass }: { ste
       {steps.map((s, i) => {
         const lit = !enabled || i < reached;
         return (
-          <li key={s.title} className={`relative pl-12 transition-opacity duration-500 ${lit ? '' : 'opacity-50'}`}>
+          <li key={s.title} className={`relative pl-12 transition-opacity duration-500 ${lit ? '' : 'opacity-70'}`}>
             <span
               className={`absolute left-0 top-0 flex h-7 w-7 items-center justify-center rounded-full border text-sm font-bold transition-colors duration-500 ${
                 enabled && lit ? 'border-transparent bg-[var(--pop)] text-[var(--on-pop)]' : `border-current bg-transparent ${numClass}`

@@ -101,7 +101,7 @@ function buildShared(gsap: Gsap, ScrollTrigger: ScrollTriggerType, root: HTMLEle
     if (strike.length) tl.from(strike, { scaleX: 0, transformOrigin: 'left center', duration: 1, ease: 'none' }).addLabel('steps', '+=0.2');
     else tl.addLabel('steps');
     if (steps.length) {
-      tl.from(steps, { opacity: 0.15, x: 32, duration: 1, stagger: 1 }, 'steps');
+      tl.from(steps, { opacity: 0.7, x: 32, duration: 1, stagger: 1 }, 'steps');
       const meter = all('[data-story="steps-meter"]', chapter);
       if (meter.length) tl.from(meter, { scaleY: 0, transformOrigin: 'top center', ease: 'none', duration: steps.length }, 'steps');
     }
@@ -117,7 +117,7 @@ function buildShared(gsap: Gsap, ScrollTrigger: ScrollTriggerType, root: HTMLEle
   all('[data-story="words"]').forEach((sentence) => {
     gsap.fromTo(
       all('[data-story="word"]', sentence),
-      { opacity: 0.18 },
+      { opacity: 0.45 },
       { opacity: 1, ease: 'none', stagger: 0.1, scrollTrigger: { trigger: sentence, start: 'top 80%', end: 'bottom 50%', scrub: 0.4 } },
     );
   });

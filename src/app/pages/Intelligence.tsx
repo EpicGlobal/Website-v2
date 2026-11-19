@@ -116,11 +116,11 @@ const intelBeats: StoryExtra = (gsap, _ScrollTrigger, root) => {
       defaults: { ease: 'power1.out' },
       scrollTrigger: pin,
     })
-    .from(q('[data-flow="in"]'), { opacity: 0.15, x: -24, duration: 1, stagger: 0.25 })
+    .from(q('[data-flow="in"]'), { opacity: 0.7, x: -24, duration: 1, stagger: 0.25 })
     .from(toCore, { opacity: 0, x: -10, duration: 0.5 })
-    .from(q('[data-flow="core"]'), { opacity: 0.2, scale: 0.95, duration: 1.4 })
+    .from(q('[data-flow="core"]'), { opacity: 0.7, scale: 0.95, duration: 1.4 })
     .from(toActions, { opacity: 0, x: -10, duration: 0.5 })
-    .from(q('[data-flow="out"]'), { opacity: 0.15, x: -24, duration: 1, stagger: 0.25 })
+    .from(q('[data-flow="out"]'), { opacity: 0.7, x: -24, duration: 1, stagger: 0.25 })
     .to({}, { duration: 0.6 }); // short hold on the finished flow before the pin releases
 };
 

@@ -7,7 +7,7 @@
 
 /* Lit steps: while the story runs, the paragraph you're reading is lit and the others rest dimmed. */
 [data-story='on'] [data-story='lit-step'] {
-  opacity: 0.32;
+  opacity: 0.7;
   transition: opacity 0.45s ease;
 }
 [data-story='on'] [data-story='lit-step'].is-lit {
