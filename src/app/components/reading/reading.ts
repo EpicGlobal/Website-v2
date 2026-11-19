@@ -5,7 +5,7 @@
 import { RULE, CARD_HOVER } from '@/app/components/story/tokens';
 
 /** A quiet surface for cards and panels: translucent on the dark theme, near-white on the light ones. */
-export const SURFACE = `rounded-xl border ${RULE} bg-white/[0.04] dark:bg-white/[0.04] soft-dark:bg-white/70 light:bg-white orange:bg-white/70 leaf:bg-white/70 water:bg-white/70`;
+export const SURFACE = `rounded-2xl border ${RULE} bg-white/[0.04] dark:bg-white/[0.04] soft-dark:bg-white/70 light:bg-white orange:bg-white/70 leaf:bg-white/70 water:bg-white/70`;
 
 /** A card that is a link: the border picks up the pop color on hover and focus. */
 export const CARD_LINK = `group block p-6 ${SURFACE} ${CARD_HOVER}`;
