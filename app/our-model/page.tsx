@@ -2,16 +2,17 @@ import { WhatWeAre } from '@/app/pages/WhatWeAre';
 import { createPageMetadata } from '@/site/site-config';
 
 export const metadata = createPageMetadata({
-  title: 'Our Wholesale Trade Partner Model',
+  // Nov 19: matches the page's "How our wholesale model works" intent; the homepage owns "wholesale trade partner".
+  title: 'How Our Amazon Wholesale Model Works',
   description:
-    "How Epic Global works as your 3P seller: we buy inventory at wholesale, move brands from Amazon 1P to 3P, sell on Walmart and global stores, and pay the ads and fees.",
+    "Learn how Epic Global's wholesale model works. We buy inventory, fund advertising and fulfillment, and manage Amazon and international marketplace sales.",
   path: '/our-model',
   keywords: [
-    'wholesale trade partner model',
-    '1P vs 3P',
-    'Amazon 3P seller',
-    'inventory purchase model',
-    'marketplace operator model',
+    'Amazon wholesale partnership model',
+    'Amazon wholesale partner',
+    'Amazon wholesale partner vs agency',
+    'marketplace operations management',
+    'Amazon for direct-selling brands',
   ],
 });
 

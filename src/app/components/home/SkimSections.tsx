@@ -68,15 +68,17 @@ export function MarkTable({ columns, rows }: { columns: string[]; rows: { q: str
  * markup stacks into one card per question with the model name beside each answer, so nothing scrolls sideways.
  * ARIA table roles keep it a table for screen readers in both layouts.
  */
-type Sig = 'yes' | 'no' | 'some' | 'text';
-type Ans = { sig: Sig; text: string };
+/** 'vary' is the yellow "varies" signal, the same on Home and Our Model (Nov 19); 'some' is the older grey one. */
+export type Sig = 'yes' | 'no' | 'some' | 'vary' | 'text';
+export type Ans = { sig: Sig; text: string };
+export type CompareRow = { q: string; a: Ans[] };
 const MODEL_COLS = [
   { name: 'Epic', sub: 'Wholesale partner' },
   { name: 'Agency', sub: 'Marketplace agency' },
   { name: 'Distributor', sub: 'Traditional distributor' },
   { name: 'Aggregator', sub: 'Brand aggregator' },
 ];
-const COMPARE: { q: string; a: [Ans, Ans, Ans, Ans] }[] = [
+const COMPARE: CompareRow[] = [
   {
     q: 'Buys your inventory',
     a: [{ sig: 'yes', text: 'Outright, at wholesale' }, { sig: 'no', text: 'Usually not' }, { sig: 'yes', text: 'For resale' }, { sig: 'some', text: 'Acquires the whole brand' }],
@@ -108,7 +110,9 @@ function Signal({ ans, epic }: { ans: Ans; epic?: boolean }) {
       ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400'
       : ans.sig === 'no'
         ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400'
-        : 'bg-white/10 text-gray-400 light:bg-gray-100 light:text-gray-500 orange:bg-[#101828]/10 orange:text-[#101828]/60';
+        : ans.sig === 'vary'
+          ? 'bg-amber-400/15 text-amber-600 dark:text-amber-300'
+          : 'bg-white/10 text-gray-400 light:bg-gray-100 light:text-gray-500 orange:bg-[#101828]/10 orange:text-[#101828]/60';
   return (
     <span className={`inline-flex items-start gap-2 text-sm sm:text-base leading-snug ${tone}`}>
       <span aria-hidden="true" className={`mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${dot}`}>
@@ -119,18 +123,22 @@ function Signal({ ans, epic }: { ans: Ans; epic?: boolean }) {
   );
 }
 
-export function CompareTable() {
+export function CompareTable({
+  columns = MODEL_COLS,
+  rows = COMPARE,
+  label = 'How Epic compares to agencies, distributors and aggregators',
+}: { columns?: { name: string; sub: string }[]; rows?: CompareRow[]; label?: string } = {}) {
   const GRID = 'lg:grid lg:grid-cols-[minmax(0,1.2fr)_repeat(4,minmax(0,1fr))]';
   const EPIC = 'bg-[var(--pop)]/[0.08]';
   return (
     <div className="relative">
       {/* Decorative: a faint cyan glow behind the panel */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 -inset-y-10 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.10),transparent_65%)] orange:hidden light:hidden" />
-      <div role="table" aria-label="How Epic compares to agencies, distributors and aggregators" className={`relative overflow-hidden rounded-2xl border ${RULE} bg-white/[0.03] light:bg-white orange:bg-white/60`}>
+      <div role="table" aria-label={label} className={`relative overflow-hidden rounded-2xl border ${RULE} bg-white/[0.03] light:bg-white orange:bg-white/60`}>
         <div role="rowgroup" className="hidden lg:block">
           <div role="row" className={`${GRID} border-b ${RULE}`}>
             <span role="columnheader" className="p-5"><span className="sr-only">Question</span></span>
-            {MODEL_COLS.map((m, i) => (
+            {columns.map((m, i) => (
               <span key={m.name} role="columnheader" className={`p-5 ${i === 0 ? EPIC : ''}`}>
                 <span className={`block text-lg font-bold ${i === 0 ? ACCENT : HEAD}`}>{m.name}</span>
                 <span className={`block text-xs font-medium uppercase tracking-[0.12em] ${MUTED}`}>{m.sub}</span>
@@ -139,17 +147,17 @@ export function CompareTable() {
           </div>
         </div>
         <div role="rowgroup">
-          {COMPARE.map((r) => (
+          {rows.map((r) => (
             <div key={r.q} role="row" className={`${GRID} border-b last:border-b-0 ${RULE}`}>
               <span role="rowheader" className={`block px-5 pt-5 pb-3 lg:p-5 font-semibold ${HEAD}`}>{r.q}</span>
               {r.a.map((ans, i) => (
                 <span
-                  key={MODEL_COLS[i].name}
+                  key={columns[i].name}
                   role="cell"
                   className={`grid grid-cols-[7rem_minmax(0,1fr)] gap-3 px-5 py-2 last:pb-5 lg:block lg:p-5 ${i === 0 ? EPIC : ''}`}
                 >
                   {/* model name beside the answer on smaller screens; the column header does this job on wide screens */}
-                  <span className={`text-sm font-semibold lg:hidden ${i === 0 ? ACCENT : MUTED}`}>{MODEL_COLS[i].name}</span>
+                  <span className={`text-sm font-semibold lg:hidden ${i === 0 ? ACCENT : MUTED}`}>{columns[i].name}</span>
                   <Signal ans={ans} epic={i === 0} />
                 </span>
               ))}

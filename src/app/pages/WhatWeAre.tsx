@@ -26,16 +26,16 @@ import { siteConfig } from '@/site/site-config';
  * The rail (wide screens) shows where you are. Phones get the same text as a calm static page.
  */
 
-/** What Epic runs day to day (moved here from the homepage, Nov 5): one line each. */
-const CAPABILITIES = [
-  { icon: ShoppingCart, title: 'Marketplace Management', description: 'Amazon first, plus Walmart, eBay and international.' },
-  { icon: Globe2, title: 'Global Expansion', description: 'Launch new marketplaces and countries.' },
-  { icon: Search, title: 'Listing Optimization', description: 'Titles, keywords and creative that convert.' },
-  { icon: BarChart3, title: 'Advertising Operations', description: 'Campaigns, bids and creative, paid by Epic.' },
-  { icon: Package, title: 'Inventory + Forecasting', description: 'Demand planning and reorders.' },
-  { icon: Shield, title: 'Brand Protection & MAP Monitoring', strong: 'We monitor unauthorized offers', description: 'and pursue platform-approved enforcement where eligible.' },
-  { icon: Database, title: 'Data + Reporting Layer', description: 'Shared dashboard and monthly reports.' },
-  { icon: Cpu, title: 'Execution Engine', description: 'Automation that keeps catalogs clean and fast.' },
+/** What Epic runs day to day (moved here from the homepage, Nov 5; Nov 19 wording): one line each. */
+const CAPABILITIES: { icon: typeof ShoppingCart; title: string; description: string; strong?: string }[] = [
+  { icon: ShoppingCart, title: 'Marketplace Operations', description: 'Amazon-first selling across Walmart, eBay and approved international marketplaces.' },
+  { icon: Globe2, title: 'International Marketplace Expansion', description: 'Marketplace launches, regional catalog adaptation and local execution.' },
+  { icon: Search, title: 'Product Listings & Brand Content', description: 'Product titles, keywords, images, A+ content and storefront optimization.' },
+  { icon: BarChart3, title: 'Marketplace Advertising', description: 'Campaign strategy, bidding, creative and performance optimization funded by Epic.' },
+  { icon: Package, title: 'Inventory & Demand Planning', description: 'Forecasting, replenishment, stock availability and fulfillment coordination.' },
+  { icon: Shield, title: 'Brand Protection', description: 'Offer monitoring, catalog protection and appropriate enforcement coordination.' },
+  { icon: Database, title: 'Marketplace Intelligence & Reporting', description: 'Performance dashboards, sales trends, advertising data and monthly brand reporting.' },
+  { icon: Cpu, title: 'Systems & Automation', description: 'People-supported workflows, monitoring and automation that improve consistency.' },
 ];
 
 const CHAPTERS = [
@@ -60,15 +60,15 @@ const MODEL_LINES: { who: 'You' | 'Epic'; lead: string; body?: string }[] = [
   { who: 'You', lead: 'You make it.', body: 'You build the product and the brand.' },
   { who: 'Epic', lead: 'buy' },
   { who: 'Epic', lead: 'sell' },
-  { who: 'You', lead: 'You keep the brand.', body: 'Brand Registry, listings and reviews stay yours, and we sell at or above your MAP.' },
+  { who: 'You', lead: 'You keep the brand.', body: 'You retain your trademarks and Brand Registry. Epic operates on authorized listings within your agreed brand and pricing strategy.' },
 ];
 
 const STEPS = [
-  { title: 'Buy: we purchase your inventory at wholesale', body: 'You sell us inventory at an agreed wholesale price. We own it, and the retail risk.' },
-  { title: 'Sell: we’re the seller on Amazon, Walmart and other approved marketplaces', body: 'We list, price and ship your products ourselves, mostly through Fulfillment by Amazon, as a third-party (3P) seller, instead of you selling them to Amazon to resell (1P). We run listings, pricing and inventory on Amazon, Walmart, eBay and international marketplaces. Selling 1P to Amazon today? We look at whether 3P would serve you better.' },
-  { title: 'Advertise: we fund the ads, fees and fulfillment', body: 'We pay the ad spend, marketplace fees and fulfillment, so we only win when you do.' },
-  { title: 'Protect: we guard your price and catalog', body: 'Brand Registry authorization, MAP monitoring, removal of unauthorized sellers, and Buy Box and catalog monitoring.' },
-  { title: 'You get visibility and control', body: 'A shared dashboard from day one, monthly reports, quarterly reviews, and your approval on major decisions.' },
+  { title: 'Buy: We Purchase Your Inventory', body: 'Epic buys inventory outright at an agreed wholesale price and takes ownership of the products purchased.' },
+  { title: 'Sell: We Operate Your Marketplace Channel', body: 'Epic sells through its authorized third-party seller accounts, managing listings, pricing, inventory and fulfillment across approved marketplaces. Most fulfillment is handled through Amazon FBA.' },
+  { title: 'Advertise: We Fund Marketplace Growth', body: 'Epic pays advertising, marketplace selling fees and fulfillment costs on the inventory it purchases.' },
+  { title: 'Protect: We Monitor and Defend Your Brand', body: 'Epic monitors unauthorized offers, catalog issues and pricing activity, coordinating evidence-based reporting and appropriate enforcement.' },
+  { title: 'Report: You Stay Informed', body: 'Brand partners have a shared dashboard from day one, receive monthly reporting and participate in quarterly business reviews.' },
 ];
 
 /**
@@ -92,11 +92,10 @@ function DsFlow({ className = '' }: { className?: string }) {
 }
 
 const WE_DONT = [
-  'No à la carte services or consulting packages',
-  'No hourly rates or project fees',
-  'No advice without doing the work',
-  'No revenue share without owning the inventory',
-  'Not for brands that want to keep day-to-day control in-house',
+  'Agency retainers or hourly consulting fees.',
+  "The brand to fund Epic's marketplace advertising on purchased inventory.",
+  'The brand to surrender its business or trademarks.',
+  'The brand to manage day-to-day marketplace execution.',
 ];
 
 /** The hero dims and lifts away as the next chapter rises over it (no pin: the page stays short). */
@@ -122,7 +121,7 @@ export function WhatWeAre() {
         data={getWebPageSchema({
           name: 'Our Model',
           url: `${siteConfig.url}/our-model`,
-          description: 'How Epic Global, an Amazon-first wholesale trade partner, buys inventory outright, runs Amazon, Walmart and international storefronts, and pays the ads, fees and fulfillment.',
+          description: "How Epic Global's wholesale model works: Epic buys inventory outright, funds advertising, selling fees and fulfillment, and manages Amazon and international marketplace sales.",
         })}
       />
       {serviceSchemas.map((s) => (
@@ -141,7 +140,7 @@ export function WhatWeAre() {
             <div>
               <h1 className={`${H1} mb-6`}>Our wholesale trade partner model</h1>
               <p className={`${LEAD} mb-8`}>
-                Epic Global Inc. is an Amazon-first wholesale trade partner: we purchase inventory at agreed wholesale prices and operate authorized third-party marketplace sales, starting with Amazon, plus Walmart and international marketplaces, and we pay the ads, fees and fulfillment.
+                Epic Global purchases inventory outright from established consumer brands and manages authorized marketplace sales across Amazon, Walmart and international markets. We fund advertising, selling fees and fulfillment for the inventory we buy. Brands retain ownership of their businesses and trademarks.
               </p>
               <a href="#how-it-works" className={`text-base font-semibold underline-offset-4 hover:underline ${HEAD}`}>
                 How it works &darr;
@@ -163,7 +162,7 @@ export function WhatWeAre() {
                         {epic ? <Image src={epicMark} alt="" className="w-4 h-4 object-contain" /> : null}
                         {line.who}
                       </span>
-                      <p className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.05] ${HEAD} ${epic ? '' : 'opacity-45'}`}>
+                      <p className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.05] ${HEAD} ${epic ? '' : 'opacity-75'}`}>
                         {epic ? (
                           <>
                             We <span className={ACCENT}>{line.lead}</span> it.
@@ -172,7 +171,7 @@ export function WhatWeAre() {
                           line.lead
                         )}
                       </p>
-                      {line.body ? <p className={`mt-1.5 leading-relaxed ${MUTED}`}>{line.body}</p> : null}
+                      {line.body ? <p className={`mt-1.5 leading-relaxed ${BODY}`}>{line.body}</p> : null}
                     </li>
                   );
                 })}
@@ -225,11 +224,11 @@ export function WhatWeAre() {
       <section id="compare" data-chapter className={CHAPTER}>
         <div className={INNER}>
           <ChapterMarker n={4} />
-          <h2 className={`${H2} mb-8`}>How Epic compares</h2>
+          <h2 className={`${H2} mb-8`}>How Epic&apos;s Wholesale Model Compares</h2>
           <div data-story="rise">
             <CompareTable />
           </div>
-          <h3 className={`${H3} mt-12 mb-5`}>What we don&apos;t do</h3>
+          <h3 className={`${H3} mt-12 mb-5`}>Epic&apos;s Standard Wholesale Partnership Does Not Require:</h3>
           {/* Plain lines, original spacing. On hover a line nudges right, its X lights up in the theme's pop color with a soft
               glow: the same hover language as the rest of the site, without the box. */}
           <ul className="grid gap-x-10 gap-y-3 md:grid-cols-2">
@@ -253,9 +252,10 @@ export function WhatWeAre() {
       <section id="who-its-for" data-chapter className={CHAPTER}>
         <div className={INNER}>
           <ChapterMarker n={5} />
-          <h2 className={`${H2} mb-4`}>Who it&apos;s for</h2>
+          <h2 className={`${H2} mb-4`}>Is Epic&apos;s Wholesale Marketplace Model Right for Your Brand?</h2>
           <p className={`text-lg leading-relaxed max-w-2xl mb-8 ${BODY}`}>
-            Brands that want to scale on marketplaces without building an internal eCommerce operations team.
+            Epic typically partners with established consumer brands seeking a wholesale buyer and an accountable operator for
+            Amazon and other marketplaces.
           </p>
           <FitColumns />
         </div>
@@ -267,8 +267,8 @@ export function WhatWeAre() {
           <ChapterMarker n={6} />
           <h2 className={`${H2} mb-4`}>Bring Structure to Amazon for Direct-Selling Brands</h2>
           <p className={`${LEAD} mb-10 max-w-3xl`}>
-            Direct-selling products often reach Amazon through distributor resale, excess inventory and arbitrage, leaving
-            prices uneven and listings competing with your distributors.
+            Direct-selling products can reach Amazon through distributor resale, excess inventory and arbitrage, creating
+            inconsistent pricing and competition with existing distributor channels.
           </p>
           <div className={`${CARD} relative overflow-hidden p-7 sm:p-10 text-center`}>
             <span aria-hidden="true" className="pointer-events-none absolute left-1/2 -top-32 h-64 w-[36rem] max-w-full -translate-x-1/2 rounded-full bg-[var(--pop)]/[0.08] blur-3xl" />
@@ -276,8 +276,8 @@ export function WhatWeAre() {
               You keep the brand. <span className={`block sm:inline ${ACCENT}`}>Epic operates the channel.</span>
             </p>
             <p className={`relative mx-auto mt-4 max-w-2xl text-lg leading-relaxed ${BODY}`}>
-              We buy your inventory and run one authorized Amazon channel, at or above your MAP, within your agreed channel
-              strategy. Your Brand Registry and distributor network stay yours.
+              Epic purchases inventory outright, funds marketplace operations and manages authorized Amazon sales under an
+              agreed channel strategy. Your business retains its trademarks, Brand Registry and distributor network.
             </p>
             <DsFlow className="relative mt-8 justify-center" />
           </div>
@@ -294,12 +294,25 @@ export function WhatWeAre() {
       <section id="questions" data-chapter className="scroll-mt-20 pt-16 pb-24 px-4 sm:px-6 lg:px-8">
         <div data-story="fade-up" className={INNER}>
           <ChapterMarker n={7} />
+          {/* Nov 19: page-specific wording (shorter than /faq, same facts). */}
           <QuickAnswers
             id="our-model-answers"
-            questions={[
-              "Will Epic buy my brand's inventory?",
-              'Do you charge retainers, hourly rates or project fees?',
-              'Do we keep our Brand Registry, listings, reviews and rank?',
+            items={[
+              {
+                question: "Will Epic buy my brand's inventory?",
+                answer:
+                  'Yes. Epic purchases inventory outright from approved brand partners at agreed wholesale prices and takes ownership of the products purchased.',
+              },
+              {
+                question: 'Do you charge retainers, hourly rates or project fees?',
+                answer:
+                  "Under Epic's standard wholesale partnership, brands do not pay an agency retainer. Epic earns its margin by purchasing inventory and reselling it through authorized marketplaces.",
+              },
+              {
+                question: 'Do we keep our Brand Registry, listings and reviews?',
+                answer:
+                  'You retain ownership of your trademarks and Brand Registry. Epic operates as an authorized reseller and can work with existing product listings, subject to marketplace policies.',
+              },
             ]}
           />
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">

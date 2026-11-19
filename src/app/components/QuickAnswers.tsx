@@ -7,8 +7,17 @@ import { ACCENT, BODY, HEAD, MUTED } from '@/app/components/story/tokens';
  * Three answers from the FAQ, shown in full in the page HTML so readers and AI answer engines get the answer on the
  * page they're on. Text comes from src/app/data/faqs.ts, so it always matches /faq.
  */
-export function QuickAnswers({ questions, id }: { questions: string[]; id: string }) {
-  const faqs = pickFaqs(questions);
+export function QuickAnswers({
+  questions = [],
+  items,
+  id,
+}: {
+  questions?: string[];
+  /** Page-specific wording (Our Model, Nov 19); otherwise the answers come from the FAQ. */
+  items?: { question: string; answer: string }[];
+  id: string;
+}) {
+  const faqs = items ?? pickFaqs(questions);
   return (
     <div aria-labelledby={id} className="mb-14">
       <div className="flex flex-wrap items-baseline justify-between gap-3 mb-5">
