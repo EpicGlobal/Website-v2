@@ -30,12 +30,12 @@ import { siteConfig } from '@/site/site-config';
 const CAPABILITIES: { icon: typeof ShoppingCart; title: string; description: string; strong?: string }[] = [
   { icon: ShoppingCart, title: 'Marketplace Operations', description: 'Amazon-first selling across Walmart, eBay and approved international marketplaces.' },
   { icon: Globe2, title: 'International Marketplace Expansion', description: 'Marketplace launches, regional catalog adaptation and local execution.' },
-  { icon: Search, title: 'Product Listings & Brand Content', description: 'Product titles, keywords, images, A+ content and storefront optimization.' },
+  { icon: Search, title: 'Product Listings & Brand Content', description: 'Keyword research, product titles, images, A+ content and storefronts, tested and improved over time.' },
   { icon: BarChart3, title: 'Marketplace Advertising', description: 'Campaign strategy, bidding, creative and performance optimization funded by Epic.' },
   { icon: Package, title: 'Inventory & Demand Planning', description: 'Forecasting, replenishment, stock availability and fulfillment coordination.' },
   { icon: Shield, title: 'Brand Protection', description: 'Offer monitoring, catalog protection and appropriate enforcement coordination.' },
-  { icon: Database, title: 'Marketplace Intelligence & Reporting', description: 'Performance dashboards, sales trends, advertising data and monthly brand reporting.' },
-  { icon: Cpu, title: 'Systems & Automation', description: 'People-supported workflows, monitoring and automation that improve consistency.' },
+  { icon: Database, title: 'Marketplace Intelligence & Reporting', description: 'Sales, advertising, inventory and demand trends that guide marketplace decisions.' },
+  { icon: Cpu, title: 'Systems & Automation', description: 'Marketplace teams supported by automation, operating workflows and ongoing performance monitoring.' },
 ];
 
 const CHAPTERS = [
@@ -205,7 +205,10 @@ export function WhatWeAre() {
       <section id="what-we-run" data-chapter className={CHAPTER}>
         <div className={INNER}>
           <ChapterMarker n={3} />
-          <h2 className={`${H2} mb-8`}>What we run day to day</h2>
+          <h2 className={`${H2} mb-4`}>The Marketplace Infrastructure Behind Your Brand</h2>
+          <p className={`text-lg leading-relaxed max-w-3xl mb-8 ${BODY}`}>
+            Epic purchases inventory, funds marketplace operations and provides the teams, systems and execution behind your marketplace sales—so you can focus on your core business.
+          </p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {CAPABILITIES.map(({ icon: Icon, title, strong, description }) => (
               <div key={title} className={`${CARD} ${CARD_HOVER} p-5`}>

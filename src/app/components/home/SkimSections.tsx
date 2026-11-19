@@ -172,7 +172,7 @@ export function CompareTable({
 export function FitColumns() {
   const fit = [
     'You are an established brand: typically $1M+ a year in sales',
-    'You want Amazon to run as a system, not a side project',
+    'You sell through retail or distributor channels and want a partner to operate your marketplaces',
     'You want Epic to purchase your inventory and take responsibility for marketplace advertising, selling fees and fulfillment',
   ];
   const notFit = [
