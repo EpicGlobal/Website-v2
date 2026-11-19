@@ -712,8 +712,12 @@ export function GlobalReachMap() {
         </div>
       </div>
 
+      {/* Nov 18: labeled as a plan so nobody reads these as active marketplaces. */}
       <p className="mt-4 text-center text-sm text-gray-400">
-        Coming in {COMING_YEAR}: {COMING_MARKETPLACES.slice(0, -1).join(', ')} and {COMING_MARKETPLACES.at(-1)}.
+        <span className="mr-2 inline-block rounded-full border border-current px-2.5 py-0.5 text-xs font-semibold uppercase tracking-[0.12em]">
+          Planned {COMING_YEAR} expansion
+        </span>
+        {COMING_MARKETPLACES.join(' · ')}
       </p>
 
       {/* The same markets as plain text in the page HTML for search/AI crawlers; folded shut so the page stays clean.
