@@ -35,17 +35,12 @@ function ChapterMarker({ n, accent }: { n: number; accent?: string }) {
   return <KitChapterMarker n={n} label={CHAPTERS[n - 1].label} accent={accent} />;
 }
 
-/** About's one-off beats: the hero dims and lifts away as the founder chapter rises over it. */
+/**
+ * About's one-off beat: the founder bio's reading meter. (Nov 19: the hero no longer dims as the founder chapter
+ * rises; with the shorter hero the founder chapter is on screen at load, so the hero started out faded.)
+ */
 const aboutBeats: StoryExtra = (gsap, _ScrollTrigger, root) => {
   const one = (sel: string) => root.querySelector<HTMLElement>(sel);
-  const hero = one('[data-chapter="hero"]');
-  const founder = one('#founder');
-  if (hero && founder) {
-    gsap.to(one('[data-story="hero-inner"]'), {
-      opacity: 0.2, y: -40, scale: 0.97, transformOrigin: 'left top', ease: 'none',
-      scrollTrigger: { trigger: founder, start: 'top bottom', end: 'top 25%', scrub: 0.6 },
-    });
-  }
   const bio = one('[data-story="bio"]');
   if (bio) {
     gsap.fromTo(one('[data-story="bio-meter"]'), { scaleX: 0 }, {
