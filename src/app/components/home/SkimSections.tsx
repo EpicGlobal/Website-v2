@@ -81,19 +81,19 @@ const MODEL_COLS = [
 const COMPARE: CompareRow[] = [
   {
     q: 'Buys your inventory',
-    a: [{ sig: 'yes', text: 'Outright, at wholesale' }, { sig: 'no', text: 'No' }, { sig: 'yes', text: 'For resale' }, { sig: 'vary', text: 'Acquires the whole brand' }],
+    a: [{ sig: 'yes', text: 'Outright, at wholesale' }, { sig: 'no', text: 'No' }, { sig: 'yes', text: 'For resale' }, { sig: 'vary', text: 'Varies' }],
   },
   {
     q: 'Funds ads, fees and fulfillment',
-    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'no', text: 'No' }, { sig: 'vary', text: 'Varies' }, { sig: 'vary', text: 'As the new owner' }],
+    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'no', text: 'No' }, { sig: 'vary', text: 'Varies' }, { sig: 'vary', text: 'Varies' }],
   },
   {
     q: 'Runs marketplace operations',
-    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'vary', text: 'For a fee' }, { sig: 'vary', text: 'Sometimes' }, { sig: 'vary', text: 'As the brand owner' }],
+    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'vary', text: 'Varies' }, { sig: 'vary', text: 'Varies' }, { sig: 'vary', text: 'Varies' }],
   },
   {
     q: 'You keep your brand',
-    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'yes', text: 'Yes' }, { sig: 'yes', text: 'Yes' }, { sig: 'no', text: 'Typically acquires it' }],
+    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'yes', text: 'Yes' }, { sig: 'yes', text: 'Yes' }, { sig: 'no', text: 'No' }],
   },
   {
     q: 'How it earns',
