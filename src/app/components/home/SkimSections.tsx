@@ -169,6 +169,9 @@ export function CompareTable({
   );
 }
 
+const FIT_HAIR = 'border-white/10 orange:border-[#101828]/15 light:border-gray-200';
+const FIT_DIVIDE = 'divide-white/10 orange:divide-[#101828]/15 light:divide-gray-200';
+
 export function FitColumns() {
   const fit = [
     'You are an established brand: typically $1M+ a year in sales',
@@ -181,30 +184,38 @@ export function FitColumns() {
     'You’re a reseller, not the brand owner',
   ];
   return (
-    <div className="grid gap-4 md:grid-cols-2">
-      <div className={`${CARD} p-6`}>
-        <h3 className={`font-semibold mb-4 ${HEAD}`}>A good fit if</h3>
-        <ul className="space-y-3">
-          {fit.map((t) => (
-            <li key={t} className={`flex gap-3 ${BODY}`}>
-              <Check className={`w-5 h-5 shrink-0 mt-0.5 ${ACCENT}`} aria-hidden="true" />
-              {t}
-            </li>
-          ))}
-        </ul>
+    <div className="relative">
+      {/* Open layout (Nov 19): two columns split by a hairline, a faint lime light behind the "good fit" side. */}
+      <div aria-hidden="true" className="pointer-events-none absolute -left-10 -top-8 h-56 w-2/3 rounded-full bg-[var(--pop)] opacity-[0.06] blur-3xl" />
+      <div className={`relative grid md:grid-cols-2 border-y ${FIT_HAIR}`}>
+        <div className={`py-7 md:pr-10 md:border-r ${FIT_HAIR}`}>
+          <h3 className={`flex items-center gap-3 text-lg font-semibold mb-5 ${HEAD}`}>
+            <span aria-hidden="true" className="h-5 w-1 rounded-full bg-[var(--pop)]" />A good fit if
+          </h3>
+          <ul className={`divide-y ${FIT_DIVIDE}`}>
+            {fit.map((t) => (
+              <li key={t} className={`flex gap-3 py-3.5 first:pt-0 ${BODY}`}>
+                <Check className={`w-5 h-5 shrink-0 mt-0.5 ${ACCENT}`} aria-hidden="true" />
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={`py-7 md:pl-10 border-t md:border-t-0 ${FIT_HAIR}`}>
+          <h3 className={`flex items-center gap-3 text-lg font-semibold mb-5 ${HEAD}`}>
+            <span aria-hidden="true" className="h-5 w-1 rounded-full bg-white/25" />Probably not a fit if
+          </h3>
+          <ul className={`divide-y ${FIT_DIVIDE}`}>
+            {notFit.map((t) => (
+              <li key={t} className={`flex gap-3 py-3.5 first:pt-0 ${BODY}`}>
+                <X className={`w-5 h-5 shrink-0 mt-0.5 ${MUTED}`} aria-hidden="true" />
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div className={`${CARD} p-6`}>
-        <h3 className={`font-semibold mb-4 ${HEAD}`}>Probably not a fit if</h3>
-        <ul className="space-y-3">
-          {notFit.map((t) => (
-            <li key={t} className={`flex gap-3 ${BODY}`}>
-              <X className={`w-5 h-5 shrink-0 mt-0.5 ${MUTED}`} aria-hidden="true" />
-              {t}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <p className={`md:col-span-2 text-sm ${MUTED}`}>
+      <p className={`mt-5 text-sm ${MUTED}`}>
         Smaller or emerging brand? We evaluate opportunities individually based on product demand, marketplace potential
         and the investment required.
       </p>
