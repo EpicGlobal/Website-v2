@@ -3,7 +3,7 @@
 import image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f from '@/assets/7827c6003ae306e0f9f630e11162a9aa55ffdd3f.png';
 import Image from 'next/image';
 import { useRef } from 'react';
-import { Calendar, Globe2, Linkedin, MapPin, Star, UserRound, type LucideIcon } from 'lucide-react';
+import { Calendar, Flag, Globe2, Linkedin, MapPin, Star, type LucideIcon } from 'lucide-react';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, organizationRef } from '@/app/components/StructuredData';
 import { GlobalReachMap } from '@/app/components/GlobalReachMap';
@@ -16,15 +16,15 @@ import { siteConfig } from '@/site/site-config';
 /*
  * About page as one scroll story in five chapters. Each chapter opens with a numbered marker whose rule draws in
  * as it arrives, and a chapter rail on the right (wide screens) shows where you are. On desktop the hero and the
- * "not an agency" chapter pin while their beats play; the founder chapter keeps the portrait in place while the
+ * "Why Epic" chapter pin while their beats play; the founder chapter keeps the portrait in place while the
  * bio scrolls past it. Phones get the same text as a calm static page.
  */
 
 const CHAPTERS = [
   { id: 'who-we-are', label: 'Who we are' },
-  { id: 'founder', label: 'Who runs Epic' },
+  { id: 'founder', label: 'Our founder' },
   { id: 'global-reach', label: 'Where we operate' },
-  { id: 'how-we-work', label: 'How we are different' },
+  { id: 'how-we-work', label: 'Why Epic' },
   { id: 'next', label: 'See the work' },
 ] as const;
 
@@ -61,27 +61,26 @@ export function About() {
 
   const differentiators = [
     {
-      title: 'Operator-first',
-      description: 'We run the work, track it, and keep it clean.',
+      title: 'Capital committed',
+      description: 'Epic purchases inventory outright and funds marketplace operations on the products it buys.',
     },
     {
-      title: 'System-driven',
-      description: 'Repeatable cycles replace ad hoc heroics.',
+      title: 'Operational accountability',
+      description: 'Our teams manage catalog, advertising, inventory and fulfillment through an ongoing operating cadence.',
     },
     {
-      title: 'Global by design',
-      description: 'Expansion is built into our data and execution model.',
+      title: 'Global execution',
+      description: 'Epic extends its wholesale operating model across approved marketplaces and international markets.',
     },
   ];
 
-  // Who Epic is, as cards from the first paint (same look as the homepage's At a glance). Brands and marketplaces stay
-  // on the homepage so the two pages don't repeat each other; the rating is the one proof worth repeating (lit, wide).
+  // Who Epic is, as four even cards from the first paint (Nov 18: founding year added so 2015 isn't read as it; Glen
+  // moves to his own chapter and the rating stays on the homepage, so the About page is about identity).
   const facts: { label: string; value: string; icon: LucideIcon; lit?: boolean }[] = [
-    { label: 'On Amazon since', value: '2015', icon: Calendar },
+    { label: 'Founded', value: '2014', icon: Flag },
+    { label: 'Selling on Amazon since', value: '2015', icon: Calendar },
     { label: 'Headquarters', value: 'Lindon, Utah', icon: MapPin },
-    { label: 'Founder & CEO', value: 'Glen Jensen', icon: UserRound },
-    { label: 'Countries', value: '42', icon: Globe2 },
-    { label: 'Amazon seller rating across our stores (265,000+ ratings)', value: '4.8/5', icon: Star, lit: true },
+    { label: 'Countries in our marketplace reach', value: '42', icon: Globe2 },
   ];
 
   const aboutPageSchema = getWebPageSchema({
@@ -105,13 +104,16 @@ export function About() {
       <section id="who-we-are" data-chapter="hero" className="scroll-mt-20 pt-28 lg:pt-36 pb-6 px-4 sm:px-6 lg:px-8">
         <div data-story="hero-inner" className="max-w-5xl mx-auto w-full">
           <ChapterMarker n={1} accent="text-[var(--pop)] orange:text-[#101828]" />
-          <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-8 leading-[1.08] max-w-4xl ${HEAD}`}>
-            We run marketplace growth like operations, not marketing.
+          <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4 leading-[1.08] max-w-4xl ${HEAD}`}>
+            About Epic Global
           </h1>
-          <p className={`text-lg sm:text-xl leading-relaxed max-w-3xl mb-12 ${BODY}`}>
-            Epic Global Inc. is an Amazon-first wholesale trade partner that also runs Walmart and international marketplaces. We purchase inventory at agreed wholesale prices and pay the ads, fees and fulfillment, for U.S. growth or selling abroad.
+          <p className={`text-xl sm:text-2xl font-semibold tracking-tight max-w-3xl mb-6 ${ACCENT}`}>
+            A founder-led wholesale trade partner for global marketplaces
           </p>
-          <dl className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+          <p className={`text-lg sm:text-xl leading-relaxed max-w-3xl mb-12 ${BODY}`}>
+            Founded in 2014, Epic Global Inc. purchases inventory from established brands and manages authorized marketplace sales across Amazon, Walmart and international markets. Epic funds advertising, marketplace fees and fulfillment for the inventory it buys, while brand owners retain ownership of their businesses.
+          </p>
+          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {facts.map(({ label, value, icon: Icon, lit }) => (
               <div
                 key={label}
@@ -169,15 +171,19 @@ export function About() {
 
             <div data-story="bio">
               <h2 className={H2}>Glen Jensen</h2>
-              <p className={`mt-1 mb-8 text-lg ${MUTED}`}>Founder &amp; CEO</p>
+              <p className={`mt-1 mb-8 text-lg ${MUTED}`}>Founder &amp; CEO, Epic Global Inc. &middot; Founded Epic in 2014</p>
+              {/* Nov 18 draft bio (from the CEO's ChatGPT review). Needs Glen's OK before it goes live. */}
               <p data-story="lit-step" className={`leading-relaxed mb-5 ${BODY}`}>
-                {"Glen Jensen is the founder and CEO of Epic Global Inc., an Amazon-first wholesale trade partner and marketplace operator. An entrepreneur who loves building businesses and challenging traditional industry models, he founded Epic on a simple principle: brands deserve a better way to succeed in ecommerce."}
+                {"Glen Jensen founded Epic Global Inc. in 2014 around a simple belief: brands deserve a better way to grow on online marketplaces."}
               </p>
               <p data-story="lit-step" className={`leading-relaxed mb-5 ${BODY}`}>
-                {"Rather than follow the agency model, Glen built a wholesale partnership that ties Epic's success to its brand partners'. Epic buys the inventory, invests its own capital, and takes on the advertising, logistics and day-to-day execution, so brands grow on Amazon, Walmart, TikTok Shop and other marketplaces without carrying that load."}
+                {"Rather than build a traditional marketplace agency, Glen developed a wholesale partnership model in which Epic purchases inventory, invests its own capital, and takes responsibility for advertising, fulfillment and day-to-day marketplace operations."}
+              </p>
+              <p data-story="lit-step" className={`leading-relaxed mb-5 ${BODY}`}>
+                {"Under Glen's leadership, Epic has expanded its marketplace reach internationally while investing in the people, systems and infrastructure needed to support established consumer brands."}
               </p>
               <p data-story="lit-step" className={`leading-relaxed ${BODY}`}>
-                {"Under Glen, Epic has grown to 42 countries. He believes strong partnerships come from sharing the opportunity, owning the results and committing for the long term, and he keeps moving Epic forward in technology, automation and new markets. His vision is simple:"}
+                {"His approach remains straightforward: build long-term partnerships, take ownership of execution and align Epic's success with the brands it serves."}
               </p>
               <blockquote className="mt-8">
                 <p className={`text-2xl sm:text-3xl font-semibold leading-snug tracking-tight ${HEAD}`}>
@@ -196,10 +202,10 @@ export function About() {
         <div className={INNER}>
           <ChapterMarker n={3} />
           <h2 className={`${H2} mb-4`}>
-            Global marketplace expansion for brands
+            Global Marketplace Operations, One Wholesale Partner
           </h2>
           <p className={`text-lg leading-relaxed max-w-3xl mb-10 ${BODY}`}>
-            Operating across multiple countries and marketplaces with integrated systems.
+            Epic supports brands across international marketplaces through coordinated catalog management, advertising, inventory planning and fulfillment.
           </p>
           <div data-story="rise">
             <GlobalReachMap />
@@ -213,16 +219,8 @@ export function About() {
           <ChapterMarker n={4} />
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
-              <h2 className={`${H2} mb-4`}>
-                A wholesale trade partner, not an{' '}
-                <span className="relative inline-block">
-                  agency
-                  <span aria-hidden="true" data-story="strike" className={`absolute left-[-4%] right-[-4%] top-[55%] h-[3px] rounded-full ${ACCENT_BG}`} />
-                </span>
-              </h2>
-              <p className={`text-lg leading-relaxed max-w-xl ${BODY}`}>
-                We&apos;re not a marketing agency. We&apos;re a wholesale trade partner: we buy the inventory and run the execution ourselves, with repeatable systems instead of one-off projects.
-              </p>
+              {/* Nov 18: the principles behind Epic, not another agency comparison (home and Our Model already make it). */}
+              <h2 className={`${H2} mb-4`}>Built to Own the Work, Not Just Advise on It</h2>
             </div>
             <StepList items={differentiators} />
           </div>
@@ -236,14 +234,14 @@ export function About() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
             <div className="max-w-2xl">
               <h2 className={`${H2} mb-4`}>
-                See how we execute
+                See Epic&apos;s Marketplace Model in Action
               </h2>
               <p className={`text-lg leading-relaxed ${BODY}`}>
-                From catalog rebuilds to multi-country expansion, explore real operations and real outcomes.
+                Explore real examples of how Epic manages marketplace operations, improves execution and supports established brands.
               </p>
             </div>
             <PopLink href="/case-studies" className="shrink-0 self-start sm:self-auto">
-              View Case Studies
+              Explore Case Studies
             </PopLink>
           </div>
         </div>
