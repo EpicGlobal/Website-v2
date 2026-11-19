@@ -22,7 +22,7 @@ This glossary defines the Amazon, Walmart, TikTok Shop and wholesale terms brand
 
 ::term[3P (Third Party)]
 
-3P means an independent seller lists products on Amazon's marketplace, sets its own prices and pays Amazon fees on each sale. Sellers manage 3P accounts through Seller Central. Epic buys a brand's inventory at wholesale and sells it at retail as a marketplace seller, paying the fees, advertising and fulfillment itself.
+3P means an independent seller lists products on Amazon's marketplace, sets its own prices and pays Amazon fees on each sale. Sellers manage 3P accounts through Seller Central. Epic buys a brand's inventory at negotiated wholesale prices and sells it at retail as a marketplace seller, paying the fees, advertising and fulfillment itself.
 
 ::term[A+ Content]
 
@@ -38,7 +38,7 @@ Affiliates and creators are publishers, influencers and video creators who promo
 
 ::term[Agency]
 
-An agency is a service firm a brand pays (through retainers, hourly fees or a percentage of sales) to run its marketplace accounts, ads or creative. The brand still owns the inventory, pays the ad spend and fees, and carries the risk if products don't sell. Epic is not an agency. It does not charge retainers or hourly fees; it earns its margin by buying inventory at wholesale and selling it at retail.
+An agency is a service firm a brand pays (through retainers, hourly fees or a percentage of sales) to run its marketplace accounts, ads or creative. The brand still owns the inventory, pays the ad spend and fees, and carries the risk if products don't sell. Epic is not an agency. It does not charge retainers or hourly fees; it earns its margin by buying inventory at negotiated wholesale prices and selling it at retail.
 
 ::term[Aggregator]
 
@@ -238,7 +238,7 @@ Wholesale is selling products in bulk to a business that resells them, at a pric
 
 ::term[Wholesale Trade Partner]
 
-A wholesale trade partner buys a brand's inventory outright at wholesale and sells it directly to consumers on online marketplaces, paying for the advertising, marketplace fees and fulfillment itself. The brand keeps its company and gets paid for its products, while the partner earns its margin only by selling them at retail. This is Epic's model: Epic buys the inventory outright and funds the ads, fees and fulfillment.
+A wholesale trade partner buys a brand's inventory outright at negotiated wholesale prices and sells it directly to consumers on online marketplaces, paying for the advertising, marketplace fees and fulfillment itself. The brand keeps its company and gets paid for its products, while the partner earns its margin only by selling them at retail. This is Epic's model: Epic buys the inventory outright and funds the ads, fees and fulfillment.
 
 ## How the four models compare
 

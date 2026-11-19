@@ -75,7 +75,7 @@ export function CaseStudies() {
           <h1 className={`${H1} mb-6`}>Case studies: results and offers from real brands</h1>
           <p className={`${LEAD} max-w-3xl`}>
             What happened when Epic took over a brand&apos;s marketplace selling: the starting problem, what we changed and the numbers
-            from the brand&apos;s own account data. Epic buys the inventory at wholesale, sells it on Amazon and other marketplaces, and pays
+            from the brand&apos;s own account data. Epic buys the inventory at negotiated wholesale prices, sells it on Amazon and other marketplaces, and pays
             the advertising, fees and fulfillment.
           </p>
         </div>

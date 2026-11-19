@@ -81,7 +81,7 @@ const MODEL_COLS = [
 const COMPARE: CompareRow[] = [
   {
     q: 'Buys your inventory',
-    a: [{ sig: 'yes', text: 'Outright, at wholesale' }, { sig: 'no', text: 'No' }, { sig: 'yes', text: 'For resale' }, { sig: 'vary', text: 'Varies' }],
+    a: [{ sig: 'yes', text: 'Outright, at a negotiated price' }, { sig: 'no', text: 'No' }, { sig: 'yes', text: 'For resale' }, { sig: 'vary', text: 'Varies' }],
   },
   {
     q: 'Funds ads, fees and fulfillment',
@@ -216,7 +216,7 @@ export function FitColumns() {
 export const HOME_FAQ = [
   {
     q: 'Will Epic buy my inventory?',
-    a: 'Yes. We buy it outright at an agreed wholesale price, pay on agreed terms, and own it from then on. The opening order is usually about 60 to 90 days of stock, then monthly replenishment.',
+    a: 'Yes. We buy it outright at a negotiated wholesale price, pay on agreed terms, and own it from then on. The opening order is usually about 60 to 90 days of stock, then monthly replenishment.',
   },
   {
     q: 'Do you charge retainers or fees?',
@@ -232,11 +232,11 @@ export const HOME_FAQ = [
   },
   {
     q: 'Do you sell 1P or 3P on Amazon?',
-    a: '3P. We purchase your inventory at agreed wholesale prices and sell it on Amazon as the third-party seller, priced at or above your MAP. In 1P, Amazon buys your stock and sets the price. If you sell 1P to Amazon today, we move you to 3P.',
+    a: '3P. We purchase your inventory at negotiated wholesale prices and sell it on Amazon as the third-party seller, priced at or above your MAP. In 1P, Amazon buys your stock and sets the price. If you sell 1P to Amazon today, we move you to 3P.',
   },
   {
     q: 'How does Epic make money?',
-    a: 'Epic earns its margin by purchasing inventory at wholesale and reselling those products through authorized marketplaces. Under our standard wholesale partnership, Epic funds its advertising, marketplace selling fees and fulfillment rather than charging the brand a recurring agency retainer.',
+    a: 'Epic earns its margin by purchasing inventory at negotiated wholesale prices and reselling those products through authorized marketplaces. Under our standard wholesale partnership, Epic funds its advertising, marketplace selling fees and fulfillment rather than charging the brand a recurring agency retainer.',
   },
   {
     q: 'How does Epic handle unauthorized sellers?',

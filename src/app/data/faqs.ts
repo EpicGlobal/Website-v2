@@ -5,7 +5,7 @@ export const FAQS: Faq[] = [
   {
     question: 'How is Epic Global different from an Amazon agency or aggregator?',
     answer:
-      'We\'re an alternative to both: a wholesale trade partner that operates, not an agency. We purchase inventory outright at wholesale pricing and run end-to-end marketplace execution ourselves. Agencies advise and usually charge fees or retainers; we take ownership of inventory, cover operating expenses (ads, fees, fulfillment), and succeed only when your brand grows. Aggregators buy the brand itself; we buy inventory at wholesale, and you keep your brand, Brand Registry and listings. Our incentives are aligned from day one.',
+      'We\'re an alternative to both: a wholesale trade partner that operates, not an agency. We purchase inventory outright at negotiated wholesale prices and run end-to-end marketplace execution ourselves. Agencies advise and usually charge fees or retainers; we take ownership of inventory, cover operating expenses (ads, fees, fulfillment), and succeed only when your brand grows. Aggregators buy the brand itself; we buy inventory at negotiated wholesale prices, and you keep your brand, Brand Registry and listings. Our incentives are aligned from day one.',
   },
   {
     question: 'Do you have a warehouse?',
@@ -30,7 +30,7 @@ export const FAQS: Faq[] = [
   {
     question: 'Does Epic sell 1P or 3P?',
     answer:
-      '3P. Epic does not sell to Amazon as a 1P vendor. We take brands that sell 1P on Amazon today and move them to 3P: we purchase the inventory at agreed wholesale prices and sell it on Amazon as the third-party seller, so pricing at or above MAP, listings, ads and stock stay with one operator.',
+      '3P. Epic does not sell to Amazon as a 1P vendor. We take brands that sell 1P on Amazon today and move them to 3P: we purchase the inventory at negotiated wholesale prices and sell it on Amazon as the third-party seller, so pricing at or above MAP, listings, ads and stock stay with one operator.',
   },
   {
     question: 'Why do brands often earn less in 1P than in 3P?',
@@ -60,7 +60,7 @@ export const FAQS: Faq[] = [
   {
     question: "Will Epic buy my brand's inventory?",
     answer:
-      'Yes. Epic purchases inventory outright from approved brand partners at agreed wholesale prices and takes ownership of the products purchased.',
+      'Yes. Epic purchases inventory outright from approved brand partners at negotiated wholesale prices and takes ownership of the products purchased.',
   },
   {
     question: 'Do you charge retainers, hourly rates or project fees?',

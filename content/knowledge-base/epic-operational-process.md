@@ -17,7 +17,7 @@ status: live-unreviewed
 
 ## How Epic Operates Marketplace Growth End to End
 
-Epic Global Inc. is a wholesale trade partner. We buy your inventory at an agreed wholesale price, run the marketplace selling, pay the advertising, marketplace fees and fulfillment for the stock we own, and protect your brand. You keep your brand and Brand Registry. Our process has four phases: Assess, Build, Execute and Scale.
+Epic Global Inc. is a wholesale trade partner. We buy your inventory at a negotiated wholesale price, run the marketplace selling, pay the advertising, marketplace fees and fulfillment for the stock we own, and protect your brand. You keep your brand and Brand Registry. Our process has four phases: Assess, Build, Execute and Scale.
 
 ::tagline[We buy it. You profit.™]
 

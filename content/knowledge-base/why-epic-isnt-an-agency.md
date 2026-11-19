@@ -14,7 +14,7 @@ order: 4
 status: live-unreviewed
 ---
 
-Agencies are usually paid a fee, such as a retainer, an hourly rate or a share of ad spend or sales, while the brand owns the inventory and pays for the ads and marketplace fees. A wholesale trade partner like Epic buys the inventory at wholesale and pays the ads, marketplace fees and fulfillment on that stock itself, so it earns its margin when that inventory sells.
+Agencies are usually paid a fee, such as a retainer, an hourly rate or a share of ad spend or sales, while the brand owns the inventory and pays for the ads and marketplace fees. A wholesale trade partner like Epic buys the inventory at negotiated wholesale prices and pays the ads, marketplace fees and fulfillment on that stock itself, so it earns its margin when that inventory sells.
 
 Most brands evaluating marketplace partners run into the same problem: after the third discovery call, every pitch sounds identical. Everyone "scales Amazon." Everyone has a "proven playbook." Everyone promises control.
 
@@ -32,7 +32,7 @@ Most partners fall into a few business models. Each one can be the right fit for
 | Distributor | Buys inventory and resells it to retailers or online | Shared: the distributor owns the stock it buys | Its resale margin |
 | Amazon 1P (Vendor Central) | Amazon buys inventory from a brand and sells to shoppers as retailer | Amazon owns purchased inventory; vendor agreements may include allowances, chargebacks and other deductions | Amazon earns its retail margin; the brand receives the negotiated vendor purchase price, subject to contract deductions |
 | Aggregator | Acquires ownership of brands and operates them as a portfolio | The aggregator bears ownership and operating exposure after acquisition | Returns depend on portfolio operating performance and investment outcomes |
-| Wholesale trade partner (Epic) | Buys inventory at wholesale and resells it on marketplaces from its own seller accounts | Epic, for the inventory it buys and the ads and fees it pays | Its margin when that inventory sells |
+| Wholesale trade partner (Epic) | Buys inventory at negotiated wholesale prices and resells it on marketplaces from its own seller accounts | Epic, for the inventory it buys and the ads and fees it pays | Its margin when that inventory sells |
 
 :::callout
 **Epic is a marketplace operator that owns the stock it sells.** That's the difference between a partner paid to work on your channel and one that buys your inventory and earns only when it sells.
@@ -104,7 +104,7 @@ Epic is a wholesale trade partner. We buy the inventory and run the marketplace 
 :::card
 ### BUY
 
-Epic purchases your inventory outright at wholesale, so stock that would sit in your warehouse becomes a wholesale sale.
+Epic purchases your inventory outright at negotiated wholesale prices, so stock that would sit in your warehouse becomes a wholesale sale.
 :::
 
 :::card

@@ -1,7 +1,7 @@
 ---
 title: "How Our Model Works: Buy, Sell, Advertise, Protect"
 seoTitle: "How Epic Global's Wholesale Marketplace Model Works"
-summary: "How Epic Global buys brand inventory at wholesale, manages Amazon and other authorized marketplace sales, funds selling costs and supports brand protection."
+summary: "How Epic Global buys brand inventory at negotiated wholesale prices, manages Amazon and other authorized marketplace sales, funds selling costs and supports brand protection."
 category: "Model and Process"
 type: "Answer Page"
 difficulty: "Intro"
@@ -16,7 +16,7 @@ status: live-unreviewed
 
 ## How Epic's Wholesale Trade Partner Model Works
 
-Epic Global Inc. is an Amazon-first wholesale trade partner. We buy a brand's inventory at an agreed wholesale price, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon first, plus Walmart and international marketplaces, pay the advertising, marketplace fees and fulfillment for the stock we own, and sell at or above your MAP.
+Epic Global Inc. is an Amazon-first wholesale trade partner. We buy a brand's inventory at a negotiated wholesale price, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon first, plus Walmart and international marketplaces, pay the advertising, marketplace fees and fulfillment for the stock we own, and sell at or above your MAP.
 
 Our model works because we own the inventory we buy, so the cost and risk of selling it at retail sit with us. The brand keeps its business, trademarks and Brand Registry, and is paid on the wholesale terms in its contract.
 
@@ -63,7 +63,7 @@ Epic operates through a unified framework: Buy – Sell – Advertise – Protec
 :::card
 ### Buy: Outright inventory purchase
 
-Epic purchases inventory outright at wholesale pricing. For the brand, this turns inventory into a wholesale sale, paid on agreed payment terms, and moves the inventory risk to Epic. Instead of tying up capital in uncertain outcomes, the brand gets predictable economics at the start of the cycle.
+Epic purchases inventory outright at negotiated wholesale prices. For the brand, this turns inventory into a wholesale sale, paid on agreed payment terms, and moves the inventory risk to Epic. Instead of tying up capital in uncertain outcomes, the brand gets predictable economics at the start of the cycle.
 :::
 
 :::card
@@ -94,7 +94,7 @@ The 1P vs 3P Financial Breakdown case study highlights why. In Amazon Vendor Cen
 
 In the Auto Parts Brand comparison, Epic offered a 3P deal with an agreed purchase price, with Epic paying the marketplace fees. Under that offer, the brand's projected net revenue per unit was higher than under Amazon 1P. This is a projection from the offer, not an actual result after switching.
 
-That distinction matters most in the U.S., where fulfillment fees, advertising costs, chargebacks, and operational penalties can quietly erode profitability. With an agreed wholesale price, brands know what they earn per unit sold to Epic, and Epic pays the retail selling costs on the stock it buys. Total revenue still depends on how much Epic buys and the contract terms.
+That distinction matters most in the U.S., where fulfillment fees, advertising costs, chargebacks, and operational penalties can quietly erode profitability. With a negotiated wholesale price, brands know what they earn per unit sold to Epic, and Epic pays the retail selling costs on the stock it buys. Total revenue still depends on how much Epic buys and the contract terms.
 
 ## What Execution Looks Like When One Operator Controls the System
 

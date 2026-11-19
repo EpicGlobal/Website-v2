@@ -2,7 +2,7 @@
 title: "What is Epic Global Inc.?"
 seoTitle: "What Is Epic Global? Amazon Wholesale Trade Partner"
 summary: "Epic Global is an Amazon-first wholesale trade partner that purchases brand inventory, operates authorized marketplace sales, and funds advertising, marketplace fees and fulfillment for the products it buys."
-seoDescription: "Learn how Epic Global buys brand inventory at wholesale and manages authorized sales on Amazon, Walmart and international marketplaces."
+seoDescription: "Learn how Epic Global buys brand inventory at negotiated wholesale prices and manages authorized sales on Amazon, Walmart and international marketplaces."
 category: "Start Here"
 type: "Answer Page"
 difficulty: "Intro"
@@ -17,7 +17,7 @@ status: live-unreviewed
 
 ## Definition
 
-Epic Global Inc. is an Amazon-first wholesale trade partner, founded in 2014 and selling on Amazon since 2015. We buy a brand's inventory at an agreed wholesale price and sell it on Amazon, Walmart and international marketplaces. We pay the advertising, marketplace fees and fulfillment for the products we buy, and the brand keeps its business, trademarks and Brand Registry.
+Epic Global Inc. is an Amazon-first wholesale trade partner, founded in 2014 and selling on Amazon since 2015. We buy a brand's inventory at a negotiated wholesale price and sell it on Amazon, Walmart and international marketplaces. We pay the advertising, marketplace fees and fulfillment for the products we buy, and the brand keeps its business, trademarks and Brand Registry.
 
 ## Why It Matters
 
@@ -30,7 +30,7 @@ That ties Epic's income to how well your products sell, and saves you from coord
 :::card
 ### 1. Buy
 
-We buy your inventory at an agreed wholesale price and own the products we buy. You're paid on the terms in our contract, and Epic earns its margin when those products sell.
+We buy your inventory at a negotiated wholesale price and own the products we buy. You're paid on the terms in our contract, and Epic earns its margin when those products sell.
 :::
 
 :::card

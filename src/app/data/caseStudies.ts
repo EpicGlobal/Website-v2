@@ -284,7 +284,7 @@ export const caseStudies: readonly CaseStudy[] = [
           },
           {
             label: 'Epic 3P',
-            text: 'Epic buys the inventory at an agreed wholesale price, sells it on its own Amazon seller account and pays the Amazon fees.',
+            text: 'Epic buys the inventory at a negotiated wholesale price, sells it on its own Amazon seller account and pays the Amazon fees.',
           },
         ],
         result:

@@ -275,7 +275,7 @@ export function Intelligence() {
             <div className="max-w-2xl">
               <h2 className={`${H2} mb-4`}>You don&apos;t build the system. Epic runs it for you.</h2>
               <p className={`text-lg leading-relaxed ${BODY}`}>
-                We purchase your inventory at agreed wholesale prices and run your marketplaces with these systems.
+                We purchase your inventory at negotiated wholesale prices and run your marketplaces with these systems.
                 {siteConfig.bookACallEnabled ? " Let's map what that looks like for your brand." : null}
               </p>
             </div>

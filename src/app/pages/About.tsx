@@ -90,7 +90,7 @@ export function About() {
     '@type': 'AboutPage',
     name: 'About Epic Global Inc.',
     url: `${siteConfig.url}/about`,
-    description: "Epic Global Inc. is an Amazon-first wholesale trade partner led by Glen Jensen: we buy brands' inventory at wholesale and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, fees and fulfillment.",
+    description: "Epic Global Inc. is an Amazon-first wholesale trade partner led by Glen Jensen: we buy brands' inventory at negotiated wholesale prices and sell it on Amazon, plus Walmart and international marketplaces, paying for the advertising, fees and fulfillment.",
     mainEntity: organizationRef,
   });
 

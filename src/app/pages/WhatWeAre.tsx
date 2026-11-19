@@ -64,7 +64,7 @@ const MODEL_LINES: { who: 'You' | 'Epic'; lead: string; body?: string }[] = [
 ];
 
 const STEPS = [
-  { title: 'Buy: We Purchase Your Inventory', body: 'Epic buys inventory outright at an agreed wholesale price and takes ownership of the products purchased.' },
+  { title: 'Buy: We Purchase Your Inventory', body: 'Epic buys inventory outright at a negotiated wholesale price and takes ownership of the products purchased.' },
   { title: 'Sell: We Operate Your Marketplace Channel', body: 'Epic sells through its authorized third-party seller accounts, managing listings, pricing, inventory and fulfillment across approved marketplaces. Most fulfillment is handled through Amazon FBA.' },
   { title: 'Advertise: We Fund Marketplace Growth', body: 'Epic pays advertising, marketplace selling fees and fulfillment costs on the inventory it purchases.' },
   { title: 'Protect: We Monitor and Defend Your Brand', body: 'Epic monitors unauthorized offers, catalog issues and pricing activity, coordinating evidence-based reporting and appropriate enforcement.' },

@@ -209,7 +209,7 @@ export function Home() {
   ];
 
   const model = [
-    { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We purchase your inventory outright at agreed wholesale prices. You receive payment on agreed terms; Epic owns the inventory.', tagline: 'Sold to us. We own the stock.' },
+    { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We purchase your inventory outright at negotiated wholesale prices. You receive payment on agreed terms; Epic owns the inventory.', tagline: 'Sold to us. We own the stock.' },
     { icon: Globe2, num: '02', title: 'Sell', desc: 'We manage listings, pricing, inventory and fulfillment across authorized marketplaces, starting with Amazon.', tagline: 'One system. Every marketplace we sell on.' },
     { icon: BarChart3, num: '03', title: 'Advertise', desc: 'We fund and manage marketplace advertising, optimizing campaigns for profitable sales, not simply higher spend.', tagline: 'We fund. We optimize.' },
     { icon: Shield, num: '04', title: 'Protect', desc: 'We sell at or above your MAP, monitor unauthorized sellers, document suspected violations and pursue appropriate enforcement.', tagline: 'Your brand. Our defense.' },
@@ -245,7 +245,7 @@ export function Home() {
                 We Buy It. You Profit.&trade;
               </h1>
               <p className={`${LEAD} max-w-3xl mb-10`}>
-                Epic Global Inc. is an Amazon-first wholesale trade partner. We purchase your inventory at agreed wholesale prices, fund advertising, cover marketplace fees and fulfillment, and manage day-to-day marketplace operations across Amazon, Walmart and international markets.
+                Epic Global Inc. is an Amazon-first wholesale trade partner. We purchase your inventory at negotiated wholesale prices, fund advertising, cover marketplace fees and fulfillment, and manage day-to-day marketplace operations across Amazon, Walmart and international markets.
                 <strong className={`block mt-3 text-xl sm:text-2xl font-semibold ${HEAD}`}>You keep the brand.</strong>
               </p>
               {/* Phones: the button at its natural width, centered, with "How it works" centered under it. */}
