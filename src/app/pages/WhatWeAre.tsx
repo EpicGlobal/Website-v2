@@ -64,7 +64,7 @@ const MODEL_LINES: { who: 'You' | 'Epic'; lead: string; body?: string }[] = [
 ];
 
 const STEPS = [
-  { title: 'Buy: We Purchase Your Inventory', body: 'Epic buys inventory outright at a negotiated wholesale price and takes ownership of the products purchased.' },
+  { title: 'Buy: We Purchase Your Inventory', body: 'Epic purchases inventory outright at a negotiated wholesale price and takes ownership of the products purchased.' },
   { title: 'Sell: We Operate Your Marketplace Channel', body: 'Epic sells through its authorized third-party seller accounts, managing listings, pricing, inventory and fulfillment across approved marketplaces. Most fulfillment is handled through Amazon FBA.' },
   { title: 'Advertise: We Fund Marketplace Growth', body: 'Epic pays advertising, marketplace selling fees and fulfillment costs on the inventory it purchases.' },
   { title: 'Protect: We Monitor and Defend Your Brand', body: 'Epic monitors unauthorized offers, catalog issues and pricing activity, coordinating evidence-based reporting and appropriate enforcement.' },
@@ -121,7 +121,7 @@ export function WhatWeAre() {
         data={getWebPageSchema({
           name: 'Our Model',
           url: `${siteConfig.url}/our-model`,
-          description: "How Epic Global's wholesale model works: Epic buys inventory outright, funds advertising, selling fees and fulfillment, and manages Amazon and international marketplace sales.",
+          description: "How Epic Global's wholesale model works: Epic purchases inventory outright, funds advertising, selling fees and fulfillment, and manages Amazon and international marketplace sales.",
         })}
       />
       {serviceSchemas.map((s) => (
@@ -207,7 +207,7 @@ export function WhatWeAre() {
           <ChapterMarker n={3} />
           <h2 className={`${H2} mb-4`}>The Marketplace Infrastructure Behind Your Brand</h2>
           <p className={`text-lg leading-relaxed max-w-3xl mb-8 ${BODY}`}>
-            Epic purchases inventory, funds marketplace operations and provides the teams, systems and execution behind your marketplace sales—so you can focus on your core business.
+            Epic purchases your inventory and operates your marketplace channels, so you can focus on your core business.
           </p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {CAPABILITIES.map(({ icon: Icon, title, strong, description }) => (

@@ -80,7 +80,7 @@ const MODEL_COLS = [
 ];
 const COMPARE: CompareRow[] = [
   {
-    q: 'Buys your inventory',
+    q: 'Purchases inventory outright',
     a: [{ sig: 'yes', text: 'Outright, at a negotiated price' }, { sig: 'no', text: 'No' }, { sig: 'yes', text: 'For resale' }, { sig: 'vary', text: 'Varies' }],
   },
   {

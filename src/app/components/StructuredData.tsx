@@ -25,7 +25,7 @@ const serviceDefinitions = [
     name: 'Inventory + Purchasing Model',
     serviceType: 'Wholesale inventory purchasing',
     description:
-      'Epic Global buys inventory at negotiated wholesale pricing, takes ownership, and operates the retail marketplace model directly.',
+      'Epic Global purchases inventory outright at negotiated wholesale pricing, takes ownership, and operates the retail marketplace model directly.',
   },
   {
     slug: 'marketplace-operations',
@@ -220,7 +220,7 @@ export const websiteSchema = {
   // Google's site-name fallbacks, so results say "Epic Global" (not the bare domain or another Epic).
   alternateName: [...siteConfig.alternateName, 'epicglobalinc.com'],
   url: siteConfig.url,
-  description: 'Amazon-first wholesale trade partner and marketplace operator: buys brand inventory at negotiated wholesale prices and sells it on Amazon, Walmart, eBay, TikTok Shop, Temu and other international marketplaces',
+  description: 'Amazon-first wholesale trade partner and marketplace operator: purchases brand inventory outright at negotiated wholesale prices and sells it on Amazon, Walmart, eBay, TikTok Shop, Temu and other international marketplaces',
   publisher: organizationReference,
 };
 
