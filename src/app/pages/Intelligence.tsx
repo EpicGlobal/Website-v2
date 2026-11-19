@@ -170,7 +170,7 @@ export function Intelligence() {
                   <li key={title} className="flex items-start gap-3 py-3 border-t border-current/10">
                     <span
                       aria-hidden="true"
-                      className={`${ICON_TILE} !w-8 !h-8 !rounded-lg shrink-0 ${i === 0 ? '!bg-[var(--pop)] !text-[var(--on-pop)]' : ''}`}
+                      className={`${ICON_TILE} !w-9 !h-9 !rounded-lg shrink-0 ${i === 0 ? '!bg-[var(--pop)] !text-[var(--on-pop)]' : ''}`}
                     >
                       <Icon className="w-4 h-4" />
                     </span>

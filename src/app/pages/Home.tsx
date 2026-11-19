@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Globe2, BarChart3, Shield, ArrowRight } from 'lucide-react';
+import { ShoppingCart, Store, Megaphone, Shield, ArrowRight } from 'lucide-react';
 import { Globe } from '@/app/components/Globe';
 import { type MarqueeBrand } from '@/app/components/TrustLogosMarquee';
 import { BrandsProof } from '@/app/components/home/BrandsProof';
@@ -210,8 +210,8 @@ export function Home() {
 
   const model = [
     { icon: ShoppingCart, num: '01', title: 'Buy', desc: 'We purchase your inventory outright at negotiated wholesale prices. You receive payment on agreed terms; Epic owns the inventory.', tagline: 'Sold to us. We own the stock.' },
-    { icon: Globe2, num: '02', title: 'Sell', desc: 'We manage listings, pricing, inventory and fulfillment across authorized marketplaces, starting with Amazon.', tagline: 'One system. Every marketplace we sell on.' },
-    { icon: BarChart3, num: '03', title: 'Advertise', desc: 'We fund and manage marketplace advertising, optimizing campaigns for profitable sales, not simply higher spend.', tagline: 'We fund. We optimize.' },
+    { icon: Store, num: '02', title: 'Sell', desc: 'We manage listings, pricing, inventory and fulfillment across authorized marketplaces, starting with Amazon.', tagline: 'One system. Every marketplace we sell on.' },
+    { icon: Megaphone, num: '03', title: 'Advertise', desc: 'We fund and manage marketplace advertising, optimizing campaigns for profitable sales, not simply higher spend.', tagline: 'We fund. We optimize.' },
     { icon: Shield, num: '04', title: 'Protect', desc: 'We sell at or above your MAP, monitor unauthorized sellers, document suspected violations and pursue appropriate enforcement.', tagline: 'Your brand. Our defense.' },
   ];
 
