@@ -12,7 +12,7 @@ export const generatedArticles: KnowledgeArticle[] = [
     "category": "Start Here",
     "type": "Answer Page",
     "difficulty": "Intro",
-    "lastUpdated": "November 17, 2026",
+    "lastUpdated": "November 19, 2026",
     "published": "2026-01-22",
     "tags": [
       "overview",

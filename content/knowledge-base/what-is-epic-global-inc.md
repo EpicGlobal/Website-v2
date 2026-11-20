@@ -6,7 +6,7 @@ seoDescription: "Learn how Epic Global buys brand inventory at negotiated wholes
 category: "Start Here"
 type: "Answer Page"
 difficulty: "Intro"
-updated: 2026-11-17
+updated: 2026-11-19
 published: 2026-01-22
 publishOn:
 tags: ["overview", "model", "introduction"]
@@ -30,7 +30,7 @@ That ties Epic's income to how well your products sell, and saves you from coord
 :::card
 ### 1. Buy
 
-We buy your inventory at a negotiated wholesale price and own the products we buy. You're paid on the terms in our contract, and Epic earns its margin when those products sell.
+We purchase your inventory outright at agreed wholesale prices, so the products we buy are ours. Epic earns its margin when those products sell.
 :::
 
 :::card
@@ -42,7 +42,7 @@ We run selling day to day on the marketplaces we operate: listings, pricing for 
 :::card
 ### 3. Advertise
 
-We fund and run the advertising, and pay the marketplace fees and fulfillment for the inventory we buy. You're paid on agreed wholesale terms; Epic carries the cost and risk of selling at retail.
+We fund and manage marketplace advertising for the inventory we purchase, and pay its marketplace fees and fulfillment.
 :::
 
 :::card
