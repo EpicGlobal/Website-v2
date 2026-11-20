@@ -20,7 +20,7 @@ import { siteConfig } from '@/site/site-config';
 /*
  * AI Intelligence page, redesigned Nov 6 (Brex) in five chapters: the claim beside a "what the system does" panel
  * (laid out like the homepage and Our Model heroes), the gap brands face (2x2 cards), how the system works (signals in,
- * Epic's three systems, actions out; the one lit moment), the old way vs Epic (the same check / X table as Home), and
+ * Epic's three systems, actions out; the one lit moment), the Epic advantage (manual management vs integrated execution), and
  * the next step, which carries the old point-of-view line. Plain claims only, no hype, no made-up numbers.
  */
 
@@ -28,7 +28,7 @@ const CHAPTERS = [
   { id: 'intelligence-layer', label: 'The Epic intelligence layer' },
   { id: 'the-gap', label: 'The gap' },
   { id: 'how-it-works', label: 'How the system works' },
-  { id: 'the-shift', label: 'The old way vs Epic' },
+  { id: 'the-shift', label: 'The Epic Advantage' },
   { id: 'next', label: 'Next step' },
 ] as const;
 
@@ -49,8 +49,8 @@ const GAP_HAIR = 'border-white/10 orange:border-[#101828]/15 light:border-gray-2
 const gap: { icon: LucideIcon; title: string; description: string }[] = [
   { icon: LayoutGrid, title: 'Every marketplace works differently', description: 'Listings, ads, inventory and rules differ on each one.' },
   { icon: RefreshCw, title: 'Prices and sellers change daily', description: 'Competitors reprice and unauthorized sellers appear faster than weekly meetings can react.' },
-  { icon: LineChart, title: 'Reporting takes real data work', description: 'One view across marketplaces and countries needs data engineering, not spreadsheets.' },
-  { icon: Users, title: 'Tools still need a team', description: 'Most software needs people to run it. Epic runs the system for you.' },
+  { icon: LineChart, title: 'Marketplace data is fragmented', description: 'One view across marketplaces and countries needs data engineering, not spreadsheets.' },
+  { icon: Users, title: "Software alone isn't enough", description: 'Most software needs people to run it. Epic runs the system for you.' },
 ];
 
 /** The three systems, one plain line each: what the software does, not how impressive it is. */
@@ -61,13 +61,14 @@ const intelligencePillars = [
 ];
 
 const SIGNALS = ['Prices and Buy Box', 'Sales and demand', 'New sellers', 'Ads and rankings'];
-const ACTIONS = ['Reprice at or above MAP', 'Move stock', 'Adjust ads', 'Report sellers'];
+const ACTIONS = ['Reprice at or above MAP', 'Move stock', 'Adjust ads', 'Review and report violations'];
 
+/** Two operating approaches, not yes/no capabilities (Nov 20): Epic gets the check, the other column is plain text. */
 const SHIFT = [
-  { q: 'Channel management', epic: 'Coordinate approved listing updates across supported marketplaces', old: 'Manual updates, one platform at a time' },
-  { q: 'Pricing', epic: 'Watched every day, ours kept at or above your MAP', old: 'Reviewed every quarter by a team' },
-  { q: 'Brand protection', epic: 'Daily monitoring, fast reporting', old: 'Monthly audits, after the damage' },
-  { q: 'Inventory', epic: 'Forecasts place stock before demand shifts', old: "Last year's data and gut feel" },
+  { q: 'Channel management', epic: 'Coordinated marketplace updates', old: 'Separate workflows by platform' },
+  { q: 'Pricing', epic: 'Ongoing price monitoring', old: 'Periodic or disconnected reviews' },
+  { q: 'Brand protection', epic: 'Continuous offer monitoring', old: 'Separate monitoring and follow-up' },
+  { q: 'Inventory', epic: 'Demand-informed planning', old: 'Historical or manual planning' },
 ];
 
 const CHIP = `${CARD} flex items-center gap-3 px-4 py-3 text-sm ${BODY}`;
@@ -151,12 +152,9 @@ export function Intelligence() {
           <ChapterMarker n={1} />
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-14 lg:items-center">
             <div>
-              <h1 className={`${H1} mb-8`}>Marketplace commerce runs on data.</h1>
-              <p className={`${LEAD} mb-5`}>
-                Epic Global Inc. runs brands&apos; marketplace operations, Amazon first, plus Walmart and international marketplaces, with its own software for demand forecasting, pricing, inventory placement and brand protection, so brands grow without building that system themselves.
-              </p>
-              <p className={`text-lg leading-relaxed ${MUTED}`}>
-                Our teams use marketplace signals, analytics and operational workflows to identify and implement improvements. People review the decisions that require judgment.
+              <h1 className={`${H1} mb-8`}>Marketplace Intelligence. Real-World Execution.</h1>
+              <p className={LEAD}>
+                Epic combines marketplace data, proprietary systems and experienced teams to optimize advertising, inventory, pricing and brand protection across Amazon and global marketplaces.
               </p>
             </div>
             <figure className={`${CARD} p-5 sm:p-6`}>
@@ -183,7 +181,7 @@ export function Intelligence() {
                   </li>
                 ))}
               </ul>
-              <figcaption className={`text-xs mt-2 ${MUTED}`}>Examples of the tasks Epic&apos;s systems run.</figcaption>
+              <figcaption className={`text-xs mt-2 ${MUTED}`}>Daily marketplace monitoring and execution.</figcaption>
             </figure>
           </div>
         </div>
@@ -217,7 +215,7 @@ export function Intelligence() {
           <ChapterMarker n={3} />
           <h2 className={`${H2} mb-4`}>Signals in, decisions out</h2>
           <p className={`text-lg leading-relaxed max-w-2xl mb-10 ${BODY}`}>
-            Marketplace signals come in, our teams decide what to change, and approved changes go out across the marketplaces we run.
+            Marketplace signals inform Epic&apos;s decisions. Approved changes become marketplace actions.
           </p>
           <div data-story="flow" className="grid gap-4 lg:grid-cols-[minmax(0,0.8fr)_auto_minmax(0,1.6fr)_auto_minmax(0,0.8fr)] lg:items-center">
             <FlowColumn title="Marketplace signals" items={SIGNALS} icon={Activity} step="in" />
@@ -244,21 +242,22 @@ export function Intelligence() {
           <p className={`mt-5 flex items-start gap-3 rounded-2xl border border-dashed border-current/20 px-5 py-4 ${BODY}`}>
             <UserRound aria-hidden="true" className={`w-5 h-5 shrink-0 mt-0.5 ${ACCENT}`} />
             <span>
-              <strong className={`font-semibold ${HEAD}`}>People make the big calls.</strong> Epic&apos;s team stays on the decisions that need operator judgment.
+              <strong className={`font-semibold ${HEAD}`}>Technology informs.</strong> Epic&apos;s team executes.
             </span>
           </p>
         </div>
       </section>
 
-      {/* 04 The old way against the Epic way, row by row. */}
+      {/* 04 Manual management against integrated execution, row by row. */}
       <section id="the-shift" data-chapter className={CHAPTER}>
         <div className={INNER}>
           <ChapterMarker n={4} />
-          <h2 className={`${H2} mb-8`}>The old way vs Epic</h2>
+          <h2 className={`${H2} mb-8`}>From Manual Management to Integrated Execution</h2>
           <div data-story="rise">
             <MarkTable
-              columns={['Epic', 'The old way']}
-              rows={SHIFT.map((r) => ({ q: r.q, cells: [{ ok: true, text: r.epic }, { ok: false, text: r.old }] }))}
+              columns={['Epic', 'Fragmented approach']}
+              rowLabel="Capability"
+              rows={SHIFT.map((r) => ({ q: r.q, cells: [{ ok: true, text: r.epic }, { ok: 'plain', text: r.old }] }))}
             />
           </div>
         </div>
@@ -270,6 +269,13 @@ export function Intelligence() {
           <ChapterMarker n={5} />
           <QuickAnswers
             id="intelligence-answers"
+            previews={{
+              'How do you handle brand protection, MAP and unauthorized sellers?':
+                'Epic monitors offers, maintains its own pricing strategy and pursues eligible marketplace enforcement.',
+              'What kind of reporting and visibility do we get?':
+                'Partners receive a shared performance dashboard, monthly reports and quarterly business reviews.',
+              'Who runs and pays for advertising?': 'Epic manages and funds marketplace advertising for the inventory it purchases.',
+            }}
             questions={[
               'How do you handle brand protection, MAP and unauthorized sellers?',
               'What kind of reporting and visibility do we get?',
@@ -280,7 +286,7 @@ export function Intelligence() {
             <div className="max-w-2xl">
               <h2 className={`${H2} mb-4`}>You don&apos;t build the system. Epic runs it for you.</h2>
               <p className={`text-lg leading-relaxed ${BODY}`}>
-                We purchase your inventory at negotiated wholesale prices and run your marketplaces with these systems. Brand partners have a shared performance dashboard from day one, monthly reporting and quarterly business reviews.
+                Epic purchases your inventory and manages marketplace operations through its people, systems and data.
                 {siteConfig.bookACallEnabled ? " Let's map what that looks like for your brand." : null}
               </p>
             </div>
