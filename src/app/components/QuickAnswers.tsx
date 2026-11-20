@@ -20,7 +20,8 @@ function preview(answer: string): string {
   return out.trim();
 }
 
-export function QuickAnswers({ questions, id }: { questions: string[]; id: string }) {
+/** `previews` (optional): an approved short answer per question, used on the card instead of the automatic opening. */
+export function QuickAnswers({ questions, id, previews }: { questions: string[]; id: string; previews?: Record<string, string> }) {
   const faqs = pickFaqs(questions);
   return (
     <div aria-labelledby={id} className="mb-14">
@@ -34,7 +35,7 @@ export function QuickAnswers({ questions, id }: { questions: string[]; id: strin
         {faqs.map((f) => (
           <div key={f.question} className={`group relative flex flex-col ${SURFACE} ${CARD_HOVER} p-5`}>
             <dt className={`font-semibold leading-snug mb-2 ${HEAD}`}>{f.question}</dt>
-            <dd className={`text-sm leading-relaxed ${BODY}`}>{preview(f.answer)}</dd>
+            <dd className={`text-sm leading-relaxed ${BODY}`}>{previews?.[f.question] ?? preview(f.answer)}</dd>
             <dd className="mt-auto pt-4">
               {/* The whole card is the click target (the link stretches over it). */}
               <Link
