@@ -68,6 +68,22 @@ const nextConfig = {
         destination: '/knowledge-base/why-epic-isnt-an-agency',
         permanent: true,
       },
+      // Placeholder KB URLs merged into existing pages (approved Nov 20 2026). 301 as requested.
+      {
+        source: '/knowledge-base/end-to-end-expense-coverage',
+        destination: '/knowledge-base/how-our-model-works',
+        statusCode: 301,
+      },
+      {
+        source: '/knowledge-base/inventory-purchase-model-explained',
+        destination: '/knowledge-base/how-our-model-works',
+        statusCode: 301,
+      },
+      {
+        source: '/knowledge-base/marketplace-ai-decisioning',
+        destination: '/intelligence',
+        statusCode: 301,
+      },
       // Old hand-made article index (it listed scheduled articles before their publish day).
       {
         source: '/knowledge-index.html',
