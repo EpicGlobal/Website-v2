@@ -27,7 +27,7 @@ Most dashboards fail by showing too much. An executive needs the few numbers tha
 3. **Advertising:** ad spend, TACoS and ACoS, and organic sales %.
 4. **Conversion:** sessions, conversion rate and Buy Box %.
 5. **Inventory:** weeks of cover, in-stock rate, inbound units and SKUs at risk of stockout.
-6. **Brand protection:** unauthorized sellers found and removed, MAP violations open.
+6. **Brand protection:** unauthorized offers found and reported, MAP issues open.
 7. **Decisions and actions:** three to five items that need an owner or approval this week.
 
 Definitions and formulas for every metric are in The Marketplace KPI Glossary.
@@ -51,7 +51,7 @@ The table below shows the shape of a one-page dashboard. All numbers are made up
 | Inventory | Weeks of cover | 7.5 | 8.1 | 5.0 | 8 to 10 | Watch |
 | Inventory | In-stock rate (SKUs) | 96% | 97% | 88% | 98% | Watch |
 | Inventory | SKUs below reorder point | 3 | 1 | n/a | 0 | Act |
-| Protection | Unauthorized sellers found / removed | 4 / 3 | 2 / 2 | n/a | All removed | Watch |
+| Protection | Unauthorized offers found / reported | 4 / 3 | 2 / 2 | n/a | All reported | Watch |
 | Protection | Open MAP violations | 1 | 0 | n/a | 0 | Act |
 
 Below the table, a short notes block explains the story in plain words. For this illustrative week: sales grew, but ad spend grew faster, so TACoS rose a point and contribution margin fell. Organic share dipped at the same time, which suggests a rank or Buy Box issue on a top SKU. Three SKUs are below their [reorder points](/knowledge-base/reorder-point-logic-explained) and need purchase orders.

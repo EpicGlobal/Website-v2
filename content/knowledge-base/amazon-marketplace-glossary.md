@@ -11,7 +11,7 @@ publishOn:
 tags: ["glossary", "amazon", "marketplace terms", "definitions"]
 related: ["kpi-glossary", "how-our-model-works", "what-is-epic-global-inc", "unauthorized-seller-monitoring-workflow"]
 order: 29
-status: live-unreviewed
+status: review
 ---
 
 This glossary defines the Amazon, Walmart, TikTok Shop and wholesale terms brand owners run into when they sell through online marketplaces, in one or two plain sentences each. Where it matters, we also say how Epic Global Inc., a wholesale trade partner that buys a brand's inventory and sells it on Amazon first, plus Walmart and other marketplaces, handles that term in practice.
@@ -50,11 +50,11 @@ An ASIN is the 10-character ID Amazon assigns to each product in its catalog. Ev
 
 ::term[Authorized Seller]
 
-An authorized seller is a reseller the brand has formally approved, usually in writing, to sell its products on a given channel or marketplace. Authorization is what lets a brand tell [unauthorized sellers](/knowledge-base/unauthorized-seller-monitoring-workflow) apart and act against them. Epic operates as an authorized seller for the brands it buys from and works to keep the marketplace limited to authorized sellers, usually as the exclusive authorized seller on the marketplaces and countries named in its agreement with the brand.
+An authorized seller is a reseller the brand has formally approved, usually in writing, to sell its products on a given channel or marketplace. Authorization is what lets a brand tell [unauthorized sellers](/knowledge-base/unauthorized-seller-monitoring-workflow) apart and respond when a seller commits a real violation, such as selling counterfeits or misusing the brand's trademark. Epic operates as an authorized seller for the brands it buys from. Where an agreement makes Epic the exclusive authorized seller, that covers only the marketplaces and countries named in the agreement.
 
 ::term[Brand Registry]
 
-Amazon Brand Registry is a free program for brand owners with a registered or pending trademark. It gives the brand more control over its listings plus access to tools such as A+ Content, Brand Stores, Sponsored Brands and the brand protection reporting tools. Check Amazon's current eligibility rules before enrolling. The brand keeps ownership of its Brand Registry and authorizes Epic in it, so Epic can manage the listings and act against unauthorized sellers.
+Amazon Brand Registry is a free program for brand owners with a registered or pending trademark. It gives the brand more control over its listings plus access to tools such as A+ Content, Brand Stores, Sponsored Brands and the brand protection reporting tools. Check Amazon's current eligibility rules before enrolling. The brand keeps ownership of its Brand Registry and authorizes Epic in it, so Epic can manage the listings and report violations on the brand's behalf.
 
 ::term[Brand Store]
 
@@ -62,7 +62,7 @@ A Brand Store is a free, multi-page storefront on Amazon with its own URL, avail
 
 ::term[Buy Box (Featured Offer)]
 
-The Buy Box is the "Add to Cart" and "Buy Now" area on an Amazon product page, and the seller who wins it gets most of that page's sales. Amazon awards it based on factors like price, fulfillment, delivery speed and seller performance. The share of time you hold it is Buy Box %; see Epic's KPI Glossary. Holding prices at or above MAP and acting on unauthorized sellers (through Brand Registry, where a violation can be shown) helps keep the Buy Box from going to off-price or gray-market offers.
+The Buy Box is the "Add to Cart" and "Buy Now" area on an Amazon product page. When a shopper uses those buttons, the purchase goes to the seller whose offer is featured, so winning it matters for sales. Amazon awards it based on factors like price, fulfillment, delivery speed and seller performance. The share of time you hold it is Buy Box %; see Epic's KPI Glossary. Where applicable, pricing your own offers at or above MAP and acting on unauthorized sellers (through Brand Registry, where a violation can be shown) helps keep the Buy Box from going to off-price or gray-market offers.
 
 ::term[Consignment]
 
@@ -106,7 +106,7 @@ Gating is Amazon's restriction on selling certain categories, brands or products
 
 ::term[Gray Market]
 
-Gray-market goods are genuine products sold through channels the brand did not authorize, often diverted from other regions, retailers or liquidation. They are not counterfeit, but they can undercut pricing, confuse customers and fall outside the brand's warranty or quality control. Epic's brand protection work monitors for unauthorized offers and works to remove them.
+Gray-market goods are genuine products sold through channels the brand did not authorize, often diverted from other regions, retailers or liquidation. They are not counterfeit, but they can undercut pricing, confuse customers and fall outside the brand's warranty or quality control. Epic's brand protection work monitors for unauthorized offers and reports those that break marketplace rules or the brand's intellectual property rights.
 
 ::term[GTIN, UPC and EAN]
 
@@ -126,7 +126,7 @@ Landed cost is the total cost of getting a product to the point of sale: the uni
 
 ::term[MAP (Minimum Advertised Price)]
 
-MAP is the lowest price a brand allows resellers to advertise for its products, set out in a written MAP policy. It protects brand value and keeps resellers from racing each other to the bottom on price. Epic sells at or above MAP and enforces it as part of its brand protection work, one of the four pillars of its Buy-Sell-Advertise-Protect model.
+MAP is the lowest price a brand allows resellers to advertise for its products, set out in a written MAP policy. It protects brand value and keeps resellers from racing each other to the bottom on price. Marketplaces such as Amazon do not enforce MAP; a brand applies its policy through its own agreements with its resellers. Where applicable, Epic prices its own offers at or above the brand's MAP and monitors advertised prices, flagging issues to the brand as part of the Protect pillar of its Buy-Sell-Advertise-Protect model.
 
 ::term[Marketplace Operator]
 
@@ -142,7 +142,7 @@ Net terms are payment terms that give a buyer a set number of days to pay an inv
 
 ::term[Parent and Child Variations]
 
-A variation family groups versions of one product, such as sizes or colors, on a single Amazon listing. The parent is a non-buyable placeholder; each child is a buyable ASIN with its own price and inventory, and children share reviews.
+A variation family groups versions of one product, such as sizes or colors, on a single Amazon listing. The parent is a non-buyable placeholder; each child is a buyable ASIN with its own price and inventory. Children often share one review pool, but Amazon's rules decide this: it can show reviews separately for variations that differ materially, and grouping products only to pool reviews breaks its variation policy.
 
 ::term[Private Label]
 

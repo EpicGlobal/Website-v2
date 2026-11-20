@@ -70,7 +70,7 @@ Manage Your Experiments (in Seller Central under Brands) supports A/B tests on s
 
 ## What does this look like in practice?
 
-In one Epic partner-brand case study, A/B tests ran across the brand's top 10 products by sales, using changes to imagery, video and content. Six of the 10 products had a successful test, and those successful tests raised conversion rate by an average of 21%. Note that four products did not produce a winner. That is normal, and it is why the loop matters more than any single test.
+In the [Sutera case study](/case-studies/sutera-amazon-fees-conversion-brand-defense) (Sutera is owned by members of Epic's leadership, not by Epic Global Inc.), A/B tests ran across the brand's top 10 products by sales, using changes to imagery, video and content. Six of the 10 products had a successful test, and those successful tests raised conversion rate by an average of 21%. Note that four products did not produce a winner. That is normal, and it is why the loop matters more than any single test.
 
 ## How Epic handles this
 

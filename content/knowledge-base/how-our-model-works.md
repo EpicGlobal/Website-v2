@@ -16,7 +16,7 @@ status: live-unreviewed
 
 ## How Epic's Wholesale Trade Partner Model Works
 
-Epic Global Inc. is an Amazon-first wholesale trade partner. We buy a brand's inventory at a negotiated wholesale price, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon first, plus Walmart and international marketplaces, pay the advertising, marketplace fees and fulfillment for the stock we own, and sell at or above your MAP.
+Epic Global Inc. is an Amazon-first wholesale trade partner. We buy a brand's inventory at a negotiated wholesale price, then run the marketplace business in four parts: Buy, Sell, Advertise, Protect. We sell on Amazon first, plus Walmart and international marketplaces, pay the advertising, marketplace fees and fulfillment for the stock we own. Where applicable, Epic prices its own offers at or above your MAP.
 
 Our model works because we own the inventory we buy, so the cost and risk of selling it at retail sit with us. The brand keeps its business, trademarks and Brand Registry, and is paid on the wholesale terms in its contract.
 
@@ -48,10 +48,10 @@ That means we apply one integrated model across the U.S. and global marketplaces
 
 :::checks
 - We assume inventory ownership through outright purchases.
-- We operate marketplace storefronts directly.
+- We sell through Epic's own seller accounts on the marketplaces we operate.
 - We fund advertising and manage it for efficiency and profitability.
 - We manage logistics and marketplace execution end-to-end.
-- We protect brand equity: we monitor offers, report violations, sell at or above your MAP and watch your catalog.
+- We protect brand equity: we monitor offers, report violations, price our own offers at or above your MAP where applicable and watch your catalog.
 :::
 
 Epic becomes the brand's marketplace operating system. That structure allows us to drive performance in the U.S. while building the foundation for controlled expansion beyond it.
@@ -69,7 +69,7 @@ Epic purchases inventory outright at negotiated wholesale prices. For the brand,
 :::card
 ### Sell: End-to-end marketplace operation
 
-Epic runs its listings and offers across marketplaces on one operating cadence: pricing at or above your MAP, listing optimization, inventory allocation and fulfillment setup, following your approvals and each marketplace's rules.
+Epic runs its listings and offers across marketplaces on one operating cadence: pricing our own offers at or above your MAP where applicable, listing optimization, inventory allocation and fulfillment setup, following your approvals and each marketplace's rules.
 :::
 
 :::card
@@ -81,7 +81,7 @@ Epic funds and manages advertising across marketplaces. That matters because it 
 :::card
 ### Protect: Brand equity is defended while growth is built
 
-Marketplace growth brings exposure: unauthorized sellers, counterfeits, catalog changes and competitors bidding on your brand name. Epic builds protection into daily operations. Through the Brand Protection Command Center™, we sell at or above your MAP, document violations and report them through your Brand Registry, and watch branded search and your catalog in every region we serve.
+Marketplace growth brings exposure: unauthorized sellers, counterfeits, catalog changes and competitors bidding on your brand name. Epic builds protection into daily operations. Epic's brand protection team documents violations and reports them through your Brand Registry with your authorization, and watches branded search and your catalog in every region we serve. Where applicable, Epic prices its own offers at or above your MAP.
 :::
 
 *This is the core difference between "growth services" and a true commerce operator. Services improve parts of the machine. Operators control the machine.*
@@ -130,7 +130,7 @@ Those outcomes were possible because the system was unified. When different team
 
 Epic's global network exists for one reason: to extend the same operating discipline beyond the U.S. without forcing brands to rebuild everything from scratch.
 
-Programs such as Korea Express™, Asia Express™, and UK & Europe Express™ provide structured pathways into international markets using Epic's existing infrastructure and operational playbooks. Expansion is executed as an extension of the same operating system that drives U.S. performance.
+Epic supports marketplace expansion across multiple international markets through its teams, systems and operating infrastructure. Expansion is executed as an extension of the same operating system that drives U.S. performance.
 
 The value isn't simply "international availability." It's the ability to scale without chaos — using one model, one cadence, and one accountability structure.
 
@@ -138,7 +138,7 @@ The value isn't simply "international availability." It's the ability to scale w
 
 Growth that destroys pricing integrity is not growth. It's a slow leak.
 
-The Brand Protection Command Center™ runs across the U.S. and international marketplaces we operate. Epic monitors offers and your catalog, documents violations and reports them through the right marketplace channels, and sells at or above your MAP. What a marketplace removes depends on the evidence and its rules.
+Epic's brand protection team works across the U.S. and international marketplaces we operate. It monitors offers and your catalog, documents violations and reports them through the right marketplace channels. Where applicable, Epic prices its own offers at or above your MAP. What a marketplace removes depends on the evidence and its rules.
 
 In most models, brand protection is reactive and fragmented. In Epic's model, it's proactive, integrated, and aligned with revenue generation.
 

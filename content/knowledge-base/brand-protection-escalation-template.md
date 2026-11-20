@@ -24,15 +24,7 @@ Use it whenever an unknown seller, a suspected counterfeit, a hijacked listing o
 
 Knowing this first saves time and protects your account. Marketplace brand programs such as Amazon Brand Registry act on intellectual property violations. They generally do not remove a seller just for selling genuine products, or for selling below your MAP.
 
-| Violation | Removable through a marketplace IP report? | Main route |
-|---|---|---|
-| Counterfeit product | Yes, with evidence | Test buy, then Brand Registry counterfeit report |
-| Trademark misuse (logo or brand name used without permission) | Yes | Brand Registry trademark report |
-| Copied images or text | Yes | Brand Registry copyright report |
-| Patent infringement | Yes, case by case | Brand Registry patent report (Amazon also offers a patent evaluation process for utility patents) |
-| Listing hijack (wrong content or images on your listing) | Usually fixable | Brand Registry listing correction / catalog support case |
-| Genuine product sold by an unauthorized reseller | Generally no | Distribution controls, seller contact, legal review (for example, a "materially different" product claim if warranty, packaging or quality differs) |
-| Price below MAP | No, marketplaces do not enforce MAP | MAP policy enforcement through the supply chain |
+The [Unauthorized Seller Monitoring Workflow](/knowledge-base/unauthorized-seller-monitoring-workflow) has the full table of what can and can't be removed, and why.
 
 **Important:** Never file a counterfeit or IP report against a seller you only know is unauthorized. False reports can lead the marketplace to restrict the brand's own reporting privileges or Brand Registry access.
 
@@ -54,7 +46,7 @@ Knowing this first saves time and protects your account. Marketplace brand progr
 | Seller name and seller ID | Fill in |
 | Storefront URL | Fill in |
 | Affected ASINs / item IDs | Fill in |
-| Violation type (see table above) | Fill in |
+| Violation type (see the removal table in the Unauthorized Seller Monitoring Workflow) | Fill in |
 | Date first seen | Fill in |
 | Case owner | Fill in |
 | Current escalation step | Fill in |
@@ -103,17 +95,9 @@ Epic is a wholesale trade partner: it buys the brand's inventory outright, so [u
 
 ## FAQ
 
-### Can Amazon remove a seller who sells my genuine product?
-
-Generally not through an IP report, because reselling genuine goods is usually lawful. Control it upstream through distribution agreements and MAP policy, and get legal advice about whether the goods are materially different.
-
 ### Why do I need a test buy before reporting a counterfeit?
 
 Marketplaces expect evidence that the specific seller's product is fake. A test buy with photos and an order number gives them that, and protects you from filing an inaccurate report.
-
-### Can I report a MAP violation to Amazon?
-
-No. A MAP policy is an agreement you set with your own resellers, so Amazon has no part in it. Enforcement happens through your supply chain agreements, not marketplace reports.
 
 ### What other marketplace programs exist besides Brand Registry?
 

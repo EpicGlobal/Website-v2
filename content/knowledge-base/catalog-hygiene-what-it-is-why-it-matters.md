@@ -67,8 +67,6 @@ The "boring stuff" drives outsized results because everything else depends on it
 | Ad efficiency | Stable listing signals help campaigns scale more predictably | Volatile performance, wasted spend, messy targeting |
 | Account health | Fewer suppressions and avoidable policy issues | Fire drills, downtime, and constant rework |
 
-*Reality check: data hygiene problems quietly drain time across organizations; one cited estimate is teams can lose up to ~32% of their time fixing data issues.*
-
 ## The Epic methodology: a simple operating loop
 
 Catalog hygiene isn't a quarterly cleanup. It's a weekly operating discipline, part of the Execute phase in [Epic's operational process](/knowledge-base/epic-operational-process).

@@ -1,5 +1,5 @@
 ---
-title: "Unauthorized Seller Monitoring Workflow: How Do You Find and Remove Unauthorized Sellers?"
+title: "Unauthorized Seller Monitoring Workflow: How Do You Find, Document and Report Unauthorized Sellers?"
 seoTitle: "Unauthorized Seller Monitoring Workflow"
 summary: "Monitor, identify, collect evidence, classify and act on unauthorized Amazon sellers, and learn what Amazon can and can't remove."
 seoDescription: "A step-by-step workflow for spotting unauthorized Amazon sellers, collecting evidence, and choosing enforcement that actually holds up."

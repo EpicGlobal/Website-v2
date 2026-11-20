@@ -81,7 +81,7 @@ A clear name lets anyone filter the account in seconds. A simple pattern is ad t
 
 - Epic Global Inc. is a wholesale trade partner: we buy the brand's inventory outright and pay for the ads ourselves.
 - So campaign structure is built to protect margin and sell through stock we own, not to grow billable spend.
-- Structure is set within about 4 weeks of kickoff and managed weekly, with a shared dashboard from day one.
+- Structure is set before launch and managed weekly, with a shared dashboard from day one.
 
 ## FAQ
 

@@ -36,7 +36,7 @@ We purchase your inventory outright at agreed wholesale prices, so the products 
 :::card
 ### 2. Sell
 
-We run selling day to day on the marketplaces we operate: listings, pricing for our offers, inventory allocation, catalog health and compliance. We always sell at or above your MAP.
+We run selling day to day on the marketplaces we operate: listings, pricing for our offers, inventory allocation, catalog health and compliance. Where applicable, Epic prices its own offers at or above the brand's MAP.
 :::
 
 :::card

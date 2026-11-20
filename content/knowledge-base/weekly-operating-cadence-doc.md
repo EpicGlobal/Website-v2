@@ -72,7 +72,7 @@ The template below is built for a small team or a single operator. Adjust the da
 
 ## How Epic handles this
 
-- Epic runs this weekly loop as the Execute stage of its process (Assess, Build, Execute, Scale).
+- The weekly loop above is a general example of how a marketplace team can organize its week. The days, steps and owners vary by brand.
 - As a wholesale trade partner, Epic buys the inventory outright and pays for the ads, fees and fulfillment, so Epic's own team does the weekly work.
 - The brand supplies product, data and approvals, and gets a shared dashboard, monthly reports and quarterly reviews.
 

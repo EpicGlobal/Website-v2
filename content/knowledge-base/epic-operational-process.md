@@ -39,7 +39,7 @@ We analyze your current state, catalog structure, and performance baseline to id
 :::
 ::::
 
-::::step{number="02" title="Build" note="Rules, Workflows, Tooling (listings optimized within about 4 weeks)"}
+::::step{number="02" title="Build" note="Rules, Workflows, Tooling"}
 Our team sets the listing standards, pricing rules for our offers, ad workflows, inventory processes, reporting and automation. People review exceptions, approvals and marketplace-policy calls.
 
 #### Key Activities

@@ -35,11 +35,6 @@ These metrics tell you how well you're "buying" attention and whether that atten
 
 :accent[Operator note:] CTR is usually driven by your main image, price, reviews, title, and query relevance. Low CTR typically means you're showing up for the wrong searches—or your shelf presentation isn't competitive.
 
-:::callout
-:small[**Common benchmark (varies by category):**\
-Sponsored Products: ~0.3–0.5%\
-Sponsored Brands: ~0.4–0.8%]
-:::
 ::::
 
 :::card
@@ -312,7 +307,7 @@ These metrics protect you from stockouts, overstock, and cash drag.
 
 :accent[What it tells you:] How long inventory will last at current velocity.
 
-:accent[Operator note:] 4–8 weeks is a common "Goldilocks" zone for many categories—but lead times change the right answer.
+:accent[Operator note:] The right weeks of cover depends on lead times, seasonality and storage limits, so set a target range for each SKU.
 :::
 
 :::card

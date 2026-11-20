@@ -80,7 +80,7 @@ The tradeoffs brands often mention:
 :::
 
 :::callout
-**Epic buys inventory and stays involved after the sale.** We sell at or above your MAP, run the listings and advertising, and you get a shared dashboard from day one, monthly reports and quarterly business reviews.
+**Epic buys inventory and stays involved after the sale.** Where applicable, Epic prices its own offers at or above your MAP. We run the listings and advertising, and you get a shared dashboard from day one, monthly reports and quarterly business reviews.
 :::
 
 ## 3) Aggregators: they buy the company, not just the inventory
