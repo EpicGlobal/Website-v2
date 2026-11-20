@@ -106,6 +106,10 @@ approved the final text.
 5. Run `npm run check:articles`. It stops with a clear message if anything is wrong.
 6. Open the pull request into `main`. CI runs the checks. Someone authorized merges it before the first date.
 
+FAQ "Learn more" links (`learnMore` in `src/app/data/faqs.ts` and `HOME_FAQ`) work differently: /faq and the
+homepage are built at deploy time, so a link to a newly published article appears only after the next deployment.
+Until then the FAQ shows its answer without the link. Article pages, the list, sitemap and llms.txt don't need one.
+
 Search engines hear about it right away: each night just after midnight (Utah time) a GitHub job tells Bing,
 through IndexNow, which articles went live or changed (`scripts/indexnow.mjs`). Nothing to do by hand.
 

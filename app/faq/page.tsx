@@ -1,4 +1,6 @@
 import { FAQ } from '@/app/pages/FAQ';
+import { FAQS } from '@/app/data/faqs';
+import { faqLearnMore } from '@/app/data/knowledgeArticles';
 import { createPageMetadata } from '@/site/site-config';
 
 export const metadata = createPageMetadata({
@@ -10,5 +12,5 @@ export const metadata = createPageMetadata({
 });
 
 export default function FAQPage() {
-  return <FAQ />;
+  return <FAQ links={faqLearnMore(FAQS.map((f) => f.learnMore))} />;
 }

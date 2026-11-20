@@ -13,11 +13,12 @@ import { CtaButton } from '@/app/components/CtaButton';
 import { BODY, H1, H2, HEAD, INNER, LEAD, PAGE_BG, POP_BUTTON, QUIET_BUTTON, RULE } from '@/app/components/story/tokens';
 import { MEASURE } from '@/app/components/reading/reading';
 import { siteConfig } from '@/site/site-config';
-import { FAQS, faqSlug } from '@/app/data/faqs';
+import { FAQS, faqSlug, type FaqLink } from '@/app/data/faqs';
 
 const SECTION = 'px-4 sm:px-6 lg:px-8';
 
-export function FAQ() {
+/** links: Learn more links worked out on the server (faqLearnMore), keyed by slug; only published articles appear. */
+export function FAQ({ links = {} }: { links?: Record<string, FaqLink> }) {
   const faqs = FAQS;
   // A link like /faq#do-you-charge-retainers-hourly-rates-or-project-fees (from the Quick answers cards) opens that
   // answer and brings it into view. Others stay as the reader leaves them.
@@ -61,6 +62,13 @@ export function FAQ() {
                 </AccordionTrigger>
                 <AccordionContent forceMount className={`${MEASURE} text-base sm:text-[1.0625rem] leading-relaxed pb-6 ${BODY}`}>
                   {faq.answer}
+                  {faq.learnMore && links[faq.learnMore] && (
+                    <span className="block mt-3">
+                      <Link href={links[faq.learnMore].href} className="font-medium underline underline-offset-4">
+                        Learn more: {links[faq.learnMore].title}
+                      </Link>
+                    </span>
+                  )}
                 </AccordionContent>
               </AccordionItem>
             ))}

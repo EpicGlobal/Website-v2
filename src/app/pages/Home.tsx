@@ -9,6 +9,7 @@ import { BrandsProof } from '@/app/components/home/BrandsProof';
 import { TrustLogosMarquee } from '@/app/components/TrustLogosMarquee';
 import { ScrollHighlightSteps, WordReveal } from '@/app/components/scroll/ScrollEffects';
 import { CompareTable, FitColumns, HomeFaq, HOME_FAQ } from '@/app/components/home/SkimSections';
+import type { FaqLink } from '@/app/data/faqs';
 import { ParticlesBackground } from '@/app/components/ParticlesBackground';
 import { StructuredData, founderSchema, getFAQPageSchema, getWebPageSchema, organizationSchema, serviceSchemas, websiteSchema } from '@/app/components/StructuredData';
 import { CtaButton } from '@/app/components/CtaButton';
@@ -119,7 +120,7 @@ const homeBeats: StoryExtra = (gsap, _ScrollTrigger, root) => {
   });
 };
 
-export function Home() {
+export function Home({ faqLinks = {} }: { faqLinks?: Record<string, FaqLink> }) {
   const { trackClick } = useAnalytics();
   const rootRef = useRef<HTMLDivElement>(null);
   useScrollStory(rootRef, homeBeats);
@@ -385,7 +386,7 @@ export function Home() {
         <div className={HOME_INNER}>
           <ChapterMarker id="faq" />
           <h2 className={`${H2} mb-8`}>Common questions</h2>
-          <HomeFaq />
+          <HomeFaq links={faqLinks} />
         </div>
       </section>
 

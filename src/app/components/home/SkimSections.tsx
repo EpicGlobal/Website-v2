@@ -3,6 +3,7 @@
  * Every word is in the server HTML. Facts come only from the live FAQ and Knowledge Base.
  */
 import Link from 'next/link';
+import type { FaqLink } from '@/app/data/faqs';
 import { Check, Minus, X } from 'lucide-react';
 import { ACCENT, BODY, HEAD, MUTED, RULE } from '@/app/components/story/tokens';
 import { CARD } from './homeStyles';
@@ -230,39 +231,50 @@ export function FitColumns() {
   );
 }
 
-/** Short answers to what a brand owner asks first; the full list lives on /faq. Answers trimmed from the FAQ page. */
-export const HOME_FAQ = [
+/**
+ * Short answers to what a brand owner asks first; the full list lives on /faq. Answers trimmed from the FAQ page.
+ * learnMore (optional): an existing Knowledge Base slug; its link shows only if that article was published when the
+ * page was built (the homepage is static, so a newly published article's link appears with the next deployment).
+ */
+export const HOME_FAQ: { q: string; a: string; learnMore?: string }[] = [
   {
     q: 'Will Epic buy my inventory?',
-    a: 'Yes. We buy it outright at a negotiated wholesale price, pay on agreed terms, and own it from then on. The opening order is usually about 60 to 90 days of stock, then monthly replenishment.',
+    a: 'Yes. We buy it outright at a negotiated wholesale price, pay on agreed terms, and own it from then on.',
+    learnMore: 'how-our-model-works',
   },
   {
     q: 'Do you charge retainers or fees?',
     a: 'No retainers, hourly rates or project fees. We earn our margin by selling your inventory at retail, and we pay for the advertising, marketplace fees and fulfillment.',
+    learnMore: 'why-epic-isnt-an-agency',
   },
   {
     q: 'Do we keep our Brand Registry, listings and reviews?',
-    a: 'Yes. You keep your Brand Registry and authorize Epic to sell. We sell on your existing product pages, so listings, reviews and rank carry over.',
+    a: 'Yes. You keep your Brand Registry and authorize Epic as a reseller. Epic generally sells on your existing product pages, so their reviews stay with those listings, subject to each marketplace\'s policies.',
+    learnMore: 'how-our-model-works',
   },
   {
     q: 'Which marketplaces do you run?',
-    a: 'Amazon is our main marketplace: we have sold on Amazon since 2015. We also run Walmart, Target, eBay and select international marketplaces in 42 countries.',
+    a: 'Amazon is our main marketplace: we have sold on Amazon since 2015. We also run Walmart, eBay and select international marketplaces in 42 countries.',
   },
   {
     q: 'Do you sell 1P or 3P on Amazon?',
-    a: '3P. We purchase your inventory at negotiated wholesale prices and sell it on Amazon as the third-party seller, priced at or above your MAP. In 1P, Amazon buys your stock and sets the price. If you sell 1P to Amazon today, we move you to 3P.',
+    a: '3P. We purchase your inventory at negotiated wholesale prices and sell it on Amazon as the third-party seller; where applicable, we price our own offers at or above your MAP. In 1P, Amazon buys your stock and sets the price. If you sell 1P to Amazon today, we move you to 3P.',
+    learnMore: 'amazon-1p-vs-3p',
   },
   {
     q: 'How does Epic make money?',
     a: 'Epic earns its margin by purchasing inventory at negotiated wholesale prices and reselling those products through authorized marketplaces. Under our standard wholesale partnership, Epic funds its advertising, marketplace selling fees and fulfillment rather than charging the brand a recurring agency retainer.',
+    learnMore: 'why-epic-isnt-an-agency',
   },
   {
     q: 'How does Epic handle unauthorized sellers?',
     a: 'Epic monitors unauthorized offers, investigates suspected violations and coordinates documentation and appropriate reporting with the brand. Our typical clearing timeframe is 8–20 weeks, although actual outcomes depend on the evidence, seller circumstances and marketplace policies.',
+    learnMore: 'unauthorized-seller-monitoring-workflow',
   },
 ];
 
-export function HomeFaq() {
+/** links: Learn more links worked out on the server (faqLearnMore), keyed by slug; only published articles appear. */
+export function HomeFaq({ links = {} }: { links?: Record<string, FaqLink> }) {
   return (
     <div>
       <div className={`divide-y rounded-2xl border ${RULE} [&>details]:border-inherit`}>
@@ -273,6 +285,13 @@ export function HomeFaq() {
               <span aria-hidden="true" className={`text-2xl leading-none transition-transform group-open:rotate-45 ${ACCENT}`}>+</span>
             </summary>
             <p className={`pb-5 -mt-1 max-w-3xl leading-relaxed ${BODY}`}>{f.a}</p>
+            {f.learnMore && links[f.learnMore] && (
+              <p className="-mt-2 pb-5">
+                <Link href={links[f.learnMore].href} className={`text-sm font-semibold ${ACCENT}`}>
+                  Learn more: {links[f.learnMore].title} →
+                </Link>
+              </p>
+            )}
           </details>
         ))}
       </div>

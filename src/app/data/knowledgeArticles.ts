@@ -90,6 +90,23 @@ export function getPublishedArticle(slug: string, today: string = utahToday()): 
 }
 
 /**
+ * Learn more links for FAQ answers, keyed by slug: only slugs whose article is published on `today` get a link, so an
+ * FAQ never links to a draft, review or scheduled article. /faq and the homepage call this at build time (they are
+ * static pages), so a link for a newly published article appears with the next deployment. A slug that isn't an
+ * article at all throws (fails the build).
+ */
+export function faqLearnMore(slugs: Array<string | undefined>, today: string = utahToday()): Record<string, { href: string; title: string }> {
+  const links: Record<string, { href: string; title: string }> = {};
+  for (const slug of slugs) {
+    if (!slug) continue;
+    if (!knowledgeArticles.some((a) => a.slug === slug)) throw new Error(`FAQ learnMore slug is not a Knowledge Base article: ${slug}`);
+    const article = getPublishedArticle(slug, today);
+    if (article) links[slug] = { href: `/knowledge-base/${slug}`, title: article.title };
+  }
+  return links;
+}
+
+/**
  * What a browser component may receive about a published article: the card and page fields only, never the
  * publishing calendar (publishOn), the review status or the related list (it can name scheduled articles; related
  * cards are worked out on the server by relatedArticles). Use for every article passed to a 'use client' component.
