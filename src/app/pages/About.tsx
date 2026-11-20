@@ -3,7 +3,8 @@
 import image_7827c6003ae306e0f9f630e11162a9aa55ffdd3f from '@/assets/7827c6003ae306e0f9f630e11162a9aa55ffdd3f.png';
 import Image from 'next/image';
 import { useRef } from 'react';
-import { Box, Calendar, Flag, Globe2, Linkedin, MapPin, Megaphone, Star, Warehouse, type LucideIcon } from 'lucide-react';
+import { Box, Flag, Globe2, Linkedin, MapPin, Megaphone, Star, Store, Warehouse, type LucideIcon } from 'lucide-react';
+import { MARKETPLACE_COUNT } from '@/app/data/markets';
 import { CARD, ICON_TILE } from '@/app/components/home/homeStyles';
 import { StructuredData, founderSchema, getWebPageSchema, organizationSchema, organizationRef } from '@/app/components/StructuredData';
 import { GlobalReachMap } from '@/app/components/GlobalReachMap';
@@ -81,7 +82,7 @@ export function About() {
   // moves to his own chapter and the rating stays on the homepage, so the About page is about identity).
   const facts: { label: string; value: string; icon: LucideIcon; lit?: boolean }[] = [
     { label: 'Founded', value: '2014', icon: Flag },
-    { label: 'Selling on Amazon since', value: '2015', icon: Calendar },
+    { label: 'Marketplaces we sell on', value: String(MARKETPLACE_COUNT), icon: Store },
     { label: 'Headquarters', value: 'Lindon, Utah', icon: MapPin },
     { label: 'Countries in our marketplace reach', value: '42', icon: Globe2 },
   ];
@@ -114,7 +115,7 @@ export function About() {
             A founder-led wholesale trade partner for global marketplaces
           </p>
           <p className={`text-lg sm:text-xl leading-relaxed max-w-3xl mb-12 ${BODY}`}>
-            Founded in 2014, Epic Global Inc. purchases inventory from established brands and manages authorized marketplace sales across Amazon, Walmart and international markets. Epic funds advertising, marketplace fees and fulfillment for the inventory it buys, while brand owners retain ownership of their businesses.
+            Founded in 2014, Epic Global Inc. purchases inventory outright from established brands and sells it on Amazon, Walmart and international marketplaces. Brand owners keep their businesses.
           </p>
           <dl className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {facts.map(({ label, value, icon: Icon, lit }) => (
