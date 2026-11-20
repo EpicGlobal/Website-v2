@@ -89,7 +89,7 @@ const COMPARE: CompareRow[] = [
   },
   {
     q: 'Runs marketplace operations',
-    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'vary', text: 'Varies' }, { sig: 'vary', text: 'Varies' }, { sig: 'vary', text: 'Varies' }],
+    a: [{ sig: 'yes', text: 'Yes' }, { sig: 'yes', text: 'For the brand' }, { sig: 'vary', text: 'Varies' }, { sig: 'vary', text: 'Varies' }],
   },
   {
     q: 'You keep your brand',
