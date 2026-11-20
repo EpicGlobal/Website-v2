@@ -5,6 +5,11 @@
 @variant orange (.orange &);
 
 :root {
+  /* Pop color (the loud 10%): buttons, the lit-up scroll card, progress ring, scrollbar. */
+  --pop: #BBD959;
+  --pop-hi: #D4EC86;
+  --pop-hover: #A6C845;
+  --on-pop: #1E2A05;
   --font-size: 16px;
   --background: #0a0f1e;
   --background-gradient-start: #0a1929;
@@ -59,6 +64,11 @@
 }
 
 .dark {
+  /* Pop color (the loud 10%): buttons, the lit-up scroll card, progress ring, scrollbar. */
+  --pop: #BBD959;
+  --pop-hi: #D4EC86;
+  --pop-hover: #A6C845;
+  --on-pop: #1E2A05;
   --background: #0a0f1e;
   --background-gradient-start: #0a1929;
   --background-gradient-end: #042f2e;
@@ -117,6 +127,11 @@
 }
 
 .leaf {
+  /* Pop color (the loud 10%): buttons, the lit-up scroll card, progress ring, scrollbar. */
+  --pop: #F68932;
+  --pop-hi: #FAB077;
+  --pop-hover: #E5761C;
+  --on-pop: #3B1A02;
   --background: #87ceeb;
   --background-gradient-start: #b3e0f5;
   --background-gradient-end: #4a90e2;
@@ -176,6 +191,11 @@
 }
 
 .water {
+  /* Pop color (the loud 10%): buttons, the lit-up scroll card, progress ring, scrollbar. */
+  --pop: #F68932;
+  --pop-hi: #FAB077;
+  --pop-hover: #E5761C;
+  --on-pop: #3B1A02;
   --background: #b8f75f;
   --background-gradient-start: #d4fc8f;
   --background-gradient-end: #8fd941;
@@ -223,6 +243,11 @@
 }
 
 .light {
+  /* Pop color (the loud 10%): buttons, the lit-up scroll card, progress ring, scrollbar. */
+  --pop: #F68932;
+  --pop-hi: #FAB077;
+  --pop-hover: #E5761C;
+  --on-pop: #3B1A02;
   --background: #ffffff;
   --background-gradient-start: #f0fdf4;
   --background-gradient-end: #ecfdf5;
@@ -262,6 +287,11 @@
 }
 
 .orange {
+  /* Pop color (the loud 10%): buttons, the lit-up scroll card, progress ring, scrollbar. */
+  --pop: #0068B4;
+  --pop-hi: #2B8AD3;
+  --pop-hover: #00559A;
+  --on-pop: #FFFFFF;
   --background: #7c2d12;
   --background-gradient-start: #7c2d12;
   --background-gradient-end: #9a3412;
@@ -542,5 +572,20 @@
 
   .hubspot-form-container .hs_error_rollup {
     margin-bottom: 1rem !important;
+  }
+}
+/* Themed scrollbar: the page scrollbar takes the theme's pop color (part of the scroll effects; undo with them). */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--pop) transparent;
+}
+html::-webkit-scrollbar { width: 10px; }
+html::-webkit-scrollbar-track { background: transparent; }
+html::-webkit-scrollbar-thumb { background: var(--pop); border-radius: 9999px; border: 2px solid transparent; background-clip: padding-box; }
+
+/* Soft fade-in for decorative visuals that load after the page (hero globe). Fades to whatever opacity the element has. */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 }

@@ -1,0 +1,32 @@
+# IndexNow: each night after midnight Utah time, tell Bing which articles went live or changed (free, no account).
+# Scheduled workflows only run from the default branch, so this does nothing until it is merged to main.
+# It reads the repository and sends page addresses to api.indexnow.org; it doesn't deploy or change anything.
+name: IndexNow
+
+on:
+  schedule:
+    - cron: '20 7 * * *' # 12:20 AM MST / 1:20 AM MDT
+  workflow_dispatch:
+    inputs:
+      all:
+        description: 'Send every address in the live sitemap (use once after launch)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Notify IndexNow
+        run: node scripts/indexnow.mjs --send ${{ inputs.all && '--all' || '' }}

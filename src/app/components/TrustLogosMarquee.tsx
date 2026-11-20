@@ -1,10 +1,54 @@
 import React from "react";
+import Image, { type StaticImageData } from "next/image";
 
-type BrandLogo = string | { src: string };
+// Static imports, so next/image knows each logo's size and serves a small WebP/AVIF copy
+// (the PNGs are 1,000+ px wide but shown at most 176 x 56 px).
+type BrandLogo = StaticImageData;
+/**
+ * All logos show in one color (white on the dark theme, near-black on the light themes) so the strip reads as one
+ * calm row. On mouse hover a logo pops (grows a little) and shows its real colors; the tone below only fixes those
+ * real colors so they still read on the theme. A logo marked badge (a solid square badge that would become a blank
+ * square in one color) goes grey instead, so its inner mark stays visible.
+ *
+ * Tone, used on hover only:
+ * - light: a white or very pale logo, shown dark on the light themes (natural on dark).
+ * - pale:  a light-colored logo, deepened on the light themes and brightened in the dark theme (keeps its colors).
+ * - dark:  a black or grey logo, shown white in the dark theme (natural on light).
+ * - deep:  a dark-colored logo, brightened in the dark theme (keeps its colors; natural on light).
+ * Logos without a tone keep their own colors everywhere.
+ */
+export type LogoTone = "light" | "pale" | "dark" | "deep";
 
 const PX_PER_SECOND = 80;
+/** Width of the soft fade at each end, as a share of the strip. The first logo starts just inside it, fully visible. */
+const FADE = 0.12;
+const FADE_MASK = `linear-gradient(to right, transparent, #000 ${FADE * 100}%, #000 ${100 - FADE * 100}%, transparent)`;
+/**
+ * Once the strip first comes on screen, the first logos hold still this long, then it eases up to full speed over
+ * RAMP_MS (no jump). On phones and short laptops the strip loads below the fold, so the hold waits until it is seen.
+ */
+const HOLD_MS = 1200;
+const RAMP_MS = 700;
 const MOMENTUM_DECAY_SECONDS = 0.22;
 const MAX_RELEASE_VELOCITY = 520;
+
+/**
+ * Every logo gets the same visual area (not the same box), so a wide thin wordmark and a square badge read at the
+ * same weight. Desktop and phone sizes go to CSS variables; caps stop very wide or tall logos from running away.
+ */
+function logoSize(logo: BrandLogo) {
+  const ar = logo.width / logo.height || 3;
+  const fit = (area: number, maxW: number, maxH: number) => {
+    let w = Math.sqrt(area * ar);
+    let h = w / ar;
+    if (w > maxW) { w = maxW; h = w / ar; }
+    if (h > maxH) { h = maxH; w = h * ar; }
+    return [Math.round(w), Math.round(h)];
+  };
+  const [dw, dh] = fit(10000, 210, 76);
+  const [mw, mh] = fit(6400, 150, 56);
+  return { "--dw": `${dw}px`, "--dh": `${dh}px`, "--mw": `${mw}px`, "--mh": `${mh}px` } as React.CSSProperties;
+}
 
 function normalizeOffset(value: number, width: number) {
   if (!width) return value;
@@ -15,7 +59,9 @@ function normalizeOffset(value: number, width: number) {
   return normalized;
 }
 
-export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: BrandLogo }[] }) {
+export type MarqueeBrand = { name: string; logo: BrandLogo; tone?: LogoTone; badge?: boolean };
+
+export function TrustLogosMarquee({ brands }: { brands: MarqueeBrand[] }) {
   const wrapRef = React.useRef<HTMLDivElement | null>(null);
   const groupRef = React.useRef<HTMLDivElement | null>(null);
   const groupWidthRef = React.useRef(0);
@@ -48,11 +94,23 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
       reducedMotionRef.current = reducedMotionQuery.matches;
     };
 
+    let placed = false;
     const measure = () => {
       const width = group.scrollWidth;
       if (!width) return;
 
       groupWidthRef.current = width;
+      // Start position, every screen size: the first logo (Nu Skin) sits just inside the left fade, fully visible, with
+      // the next logos after it (five on laptops and desktops, two on phones). The server HTML puts it in the same spot
+      // with a margin, so swapping the margin for the transform here moves nothing. The end of the list fills the fade.
+      if (!placed) {
+        const view = wrap.parentElement?.clientWidth ?? 0;
+        if (view) {
+          offsetRef.current = Math.round(view * FADE) - width;
+          wrap.style.marginLeft = "0px";
+          placed = true;
+        }
+      }
       offsetRef.current = normalizeOffset(offsetRef.current, width);
       applyOffset();
     };
@@ -77,15 +135,25 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
 
     let frameId = 0;
     let lastTime = performance.now();
+    let startAt = Infinity; // set when the strip first comes on screen
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.intersectionRatio >= 0.5)) {
+        startAt = performance.now() + HOLD_MS;
+        io.disconnect();
+      }
+    }, { threshold: 0.5 }); // half the strip on screen, not just its top edge
+    io.observe(wrap.parentElement ?? wrap);
 
     const tick = (now: number) => {
       const width = groupWidthRef.current;
       const elapsedSeconds = Math.min((now - lastTime) / 1000, 0.08);
       lastTime = now;
 
-      if (width && !isDraggingRef.current && !reducedMotionRef.current) {
+      if (width && now > startAt && !isDraggingRef.current && !reducedMotionRef.current) {
         const releaseVelocity = releaseVelocityRef.current;
-        const speed = -PX_PER_SECOND + releaseVelocity;
+        // Ease in from a standstill after the hold (smoothstep), then a steady speed for the rest of the loop.
+        const t = Math.min(1, (now - startAt) / RAMP_MS);
+        const speed = -PX_PER_SECOND * t * t * (3 - 2 * t) + releaseVelocity;
 
         offsetRef.current = normalizeOffset(offsetRef.current + speed * elapsedSeconds, width);
         releaseVelocityRef.current *= Math.exp(-elapsedSeconds / MOMENTUM_DECAY_SECONDS);
@@ -106,6 +174,7 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
     return () => {
       cancelAnimationFrame(frameId);
       ro.disconnect();
+      io.disconnect();
       pendingImgs.forEach((img) => {
         img.removeEventListener("load", measure);
         img.removeEventListener("error", measure);
@@ -182,30 +251,32 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
 
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden py-2"
       aria-label="Brand logo carousel"
+      style={{
+        // Soft fade at both ends so logos glide in and out. It never changes, so nothing flickers when the strip starts.
+        maskImage: FADE_MASK,
+        WebkitMaskImage: FADE_MASK,
+      }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
     >
-      {/* Gradient Masks - now transparent to blend with background */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-transparent via-transparent/50 to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-transparent via-transparent/50 to-transparent z-10 pointer-events-none" />
-
-      <div ref={wrapRef} className={`marquee${isDragging ? " is-dragging" : ""}`}>
+      {/* marginLeft: the first logo's start position before JavaScript runs (the effect swaps it for the transform) */}
+      <div ref={wrapRef} className={`marquee${isDragging ? " is-dragging" : ""}`} style={{ marginLeft: `${FADE * 100}%` }}>
         <div ref={groupRef} className="marquee__group">
           {brands.map((brand, index) => (
-            <div key={`g1-${index}`} className="logo">
-              <img src={typeof brand.logo === "string" ? brand.logo : brand.logo.src} alt={brand.name} className="max-h-20 max-w-full object-contain mix-blend-multiply" />
+            <div key={`g1-${index}`} className="logo" data-tone={brand.tone} data-badge={brand.badge ? "" : undefined} style={logoSize(brand.logo)}>
+              <Image src={brand.logo} alt={brand.name} title={brand.name} sizes="240px" className="object-contain" />
             </div>
           ))}
         </div>
 
         <div className="marquee__group" aria-hidden="true">
           {brands.map((brand, index) => (
-            <div key={`g2-${index}`} className="logo">
-              <img src={typeof brand.logo === "string" ? brand.logo : brand.logo.src} alt={brand.name} className="max-h-20 max-w-full object-contain mix-blend-multiply" />
+            <div key={`g2-${index}`} className="logo" data-tone={brand.tone} data-badge={brand.badge ? "" : undefined} style={logoSize(brand.logo)}>
+              <Image src={brand.logo} alt="" sizes="240px" className="object-contain" />
             </div>
           ))}
         </div>
@@ -226,30 +297,45 @@ export function TrustLogosMarquee({ brands }: { brands: { name: string; logo: Br
         .marquee__group{
           display:flex;
           align-items:center;
-          gap:3rem; /* 48px - even tighter spacing */
-          padding-right:3rem; /* Add padding to match gap, ensuring consistent spacing at the loop point */
+          gap:3.5rem;
+          padding-right:3.5rem; /* matches the gap so spacing stays even at the loop point */
         }
         .logo{
           flex:0 0 auto;
           display:flex;
           align-items:center;
           justify-content:center;
-          height:6rem;  /* 96px - smaller container */
-          width:12rem;   /* 192px - smaller container */
-          opacity:0.70;
-          transition: opacity 300ms, filter 300ms;
+          height:5.5rem;
+          transition: transform 250ms ease;
         }
-        /* Grayscale effect only on dark/moon theme */
-        .dark .logo {
-          filter: grayscale(100%) brightness(1.2);
+        /* Phones: smaller logos and gaps so the first two (Nu Skin, Young Living) fit side by side. */
+        @media (max-width: 639px){
+          .marquee__group{ gap:1.5rem; padding-right:1.5rem; }
+          .logo{ height:4rem; }
+          .marquee .logo img{ width:var(--mw); height:var(--mh); }
         }
-        .dark .logo:hover {
-          filter: grayscale(0%) brightness(1);
+        /* One color: white on the dark theme, near-black on the light themes. */
+        .logo img{ transition: filter 300ms, opacity 300ms; }
+        .dark .logo img{ filter: brightness(0) invert(1); opacity: .85; }
+        html:not(.dark) .logo img{ filter: brightness(0); opacity: .75; }
+        .dark .marquee .logo[data-badge] img{ filter: grayscale(1) brightness(1.6) contrast(1.1); }
+        :where(html:not(.dark)) .marquee .logo[data-badge] img{ filter: grayscale(1) brightness(0.5) contrast(1.4); }
+        /* Mouse hover: the logo pops out a little and shows its real colors (tone keeps them readable on the theme). */
+        @media (hover: hover){
+          .marquee:not(.is-dragging) .logo:hover{ transform: scale(1.12); }
+          .marquee:not(.is-dragging) .logo:hover img{ filter: none; opacity: 1; }
+          html:not(.dark) .marquee:not(.is-dragging) .logo[data-tone="light"]:hover img{ filter: brightness(0); }
+          html:not(.dark) .marquee:not(.is-dragging) .logo[data-tone="pale"]:hover img{ filter: brightness(0.6) saturate(1.4); }
+          .dark .marquee:not(.is-dragging) .logo[data-tone="dark"]:hover img{ filter: brightness(0) invert(1); }
+          .dark .marquee:not(.is-dragging) .logo[data-tone="pale"]:hover img,
+          .dark .marquee:not(.is-dragging) .logo[data-tone="deep"]:hover img{ filter: brightness(1.7) saturate(1.1); }
         }
-        .logo:hover{
-          opacity:1;
+        @media (prefers-reduced-motion: reduce){
+          .marquee .logo:hover{ transform: none; }
         }
         .logo img{
+          width:var(--dw);
+          height:var(--dh);
           pointer-events:none;
           user-select:none;
         }

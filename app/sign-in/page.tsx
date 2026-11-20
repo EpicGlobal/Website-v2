@@ -5,6 +5,7 @@ export const metadata = createPageMetadata({
   title: 'Sign In',
   description: 'Sign in to your Epic Global account to access gated downloads and account features.',
   path: '/sign-in',
+  noindex: true,
   keywords: ['sign in', 'account login', 'epic global'],
 });
 

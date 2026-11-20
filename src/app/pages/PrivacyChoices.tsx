@@ -8,6 +8,8 @@ import {
   writePrivacyPreference,
   type PrivacyPreference,
 } from '@/site/privacy-preferences';
+import { H1, H2, HEAD, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON, QUIET_BUTTON } from '@/app/components/story/tokens';
+import { LEGAL_BODY, MEASURE, PANEL, UTIL_TOP } from '@/app/components/utility/ui';
 
 function statusLabel(preference: PrivacyPreference, gpc: boolean) {
   if (gpc) return 'Opted out by Global Privacy Control';
@@ -31,21 +33,21 @@ export function PrivacyChoices() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-slate-950 px-4 py-20 text-white sm:px-6">
-      <div className="mx-auto max-w-3xl">
-        <p className="mb-3 text-sm font-semibold uppercase text-cyan-300">Privacy</p>
-        <h1 className="text-4xl font-bold sm:text-5xl">Your Privacy Choices</h1>
-        <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300">
+    <main className={`${PAGE_BG} ${UTIL_TOP}`}>
+      <div className={INNER}>
+        <p className={`mb-3 text-sm font-medium ${MUTED}`}>Privacy</p>
+        <h1 className={H1}>Your Privacy Choices</h1>
+        <p className={`mt-5 ${MEASURE} ${LEAD}`}>
           Choose whether Epic Global may use nonessential analytics and advertising technologies
           on this website. Essential security, authentication, and requested form functions do not
           depend on this choice.
         </p>
 
-        <section className="mt-10 border border-white/15 bg-white/5 p-6">
-          <p className="text-sm text-slate-400">Current status</p>
-          <p className="mt-2 text-xl font-semibold">{statusLabel(preference, gpc)}</p>
+        <section className={`mt-12 ${MEASURE} ${PANEL} p-6 sm:p-8`}>
+          <p className={`text-sm ${MUTED}`}>Current status</p>
+          <p className={`mt-2 text-2xl font-bold tracking-tight ${HEAD}`}>{statusLabel(preference, gpc)}</p>
           {gpc ? (
-            <p className="mt-4 text-sm leading-6 text-slate-300">
+            <p className={`mt-4 ${LEGAL_BODY}`}>
               Your browser is sending Global Privacy Control. We treat that signal as a request to
               opt out of sale, sharing, and targeted advertising, so nonessential tracking remains
               disabled in this browser.
@@ -55,14 +57,14 @@ export function PrivacyChoices() {
               <button
                 type="button"
                 onClick={() => writePrivacyPreference('denied')}
-                className="border border-white/30 px-5 py-3 font-semibold hover:bg-white/10"
+                className={QUIET_BUTTON}
               >
                 Reject nonessential
               </button>
               <button
                 type="button"
                 onClick={() => writePrivacyPreference('granted')}
-                className="bg-cyan-500 px-5 py-3 font-semibold text-slate-950 hover:bg-cyan-400"
+                className={POP_BUTTON}
               >
                 Allow analytics and ads
               </button>
@@ -70,8 +72,8 @@ export function PrivacyChoices() {
           )}
         </section>
 
-        <section className="mt-8 space-y-4 text-sm leading-6 text-slate-300">
-          <h2 className="text-2xl font-semibold text-white">What this controls</h2>
+        <section className={`mt-14 ${MEASURE} space-y-4 ${LEGAL_BODY}`}>
+          <h2 className={H2}>What this controls</h2>
           <p>
             Rejecting nonessential technologies prevents this website from loading Google
             Analytics and Ads, Meta Pixel, and LinkedIn Insight tracking. Your choice is stored in

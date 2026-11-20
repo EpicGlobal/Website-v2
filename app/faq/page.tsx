@@ -1,14 +1,16 @@
 import { FAQ } from '@/app/pages/FAQ';
+import { FAQS } from '@/app/data/faqs';
+import { faqLearnMore } from '@/app/data/knowledgeArticles';
 import { createPageMetadata } from '@/site/site-config';
 
 export const metadata = createPageMetadata({
-  title: 'FAQ',
+  title: 'Wholesale Trade Partner FAQ',
   description:
-    "Answers to common questions about Epic Global Inc.'s zero-risk commerce model, operating process, timelines, and marketplace coverage.",
+    "Answers about Epic Global's wholesale model: 1P vs 3P on Amazon, our warehouse, unauthorized sellers, timelines and the 14 marketplaces we sell on.",
   path: '/faq',
-  keywords: ['faq', 'marketplace operator faq', 'zero risk commerce faq'],
+  keywords: ['faq', 'marketplace operator faq', 'wholesale trade partner faq', 'Amazon 1P vs 3P'],
 });
 
 export default function FAQPage() {
-  return <FAQ />;
+  return <FAQ links={faqLearnMore(FAQS.map((f) => f.learnMore))} />;
 }

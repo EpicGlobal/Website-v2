@@ -1,0 +1,51 @@
+# Website checks on every pull request and every push to the preview branch. Free on GitHub Actions.
+# They only read and build the code: nothing here deploys, merges or touches AWS.
+name: Website checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - codex/website-brexton-preview-20261026
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Articles (fields, dates, links, review records, content rules)
+        run: npm run check:articles
+      - name: Article checker catches each kind of mistake
+        run: npm run test:articles
+      - name: Approval checker catches made-up, outdated and unconfirmed approvals
+        run: npm run test:reviews
+      - name: Approvals are real GitHub approvals of the final text
+        run: npm run check:reviews -- --strict
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: IndexNow picks only live, changed articles
+        run: npm run test:indexnow
+      - name: TypeScript
+        run: npx tsc --noEmit -p .
+      - name: Public content (rule examples, then every public file; no competitors, internal figures, prices or automatic reviewer)
+        run: npm run test:content
+      - name: Deploy guard (preview is noindex, production never is)
+        run: npm run test:deploy-guard
+      - name: Booking stays as configured (visibility test, unchanged behavior)
+        run: npm run test:booking-visibility
+      - name: Preview safety (noindex, no tracking, forms disabled)
+        run: npm run test:preview
+      - name: Production build
+        run: npm run build

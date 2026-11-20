@@ -1,54 +1,19 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 
-type ThemeMode = 'dark' | 'leaf' | 'water' | 'light' | 'orange';
-const THEME_STORAGE_KEY = 'epic-theme-v2';
+// Nov 16 2026 (Jake's review): the site has one theme, dark. The toggle and the other themes are gone;
+// <html className="dark"> in app/layout.tsx sets it on the server, so there is no flash and nothing to save.
+type ThemeMode = 'dark';
 
 interface ThemeContextType {
   theme: ThemeMode;
-  setTheme: (theme: ThemeMode) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-const THEMES: ThemeMode[] = ['dark', 'leaf', 'water', 'light', 'orange'];
+const ThemeContext = createContext<ThemeContextType>({ theme: 'dark' });
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<ThemeMode>('orange');
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
-    if (saved && THEMES.includes(saved as ThemeMode)) {
-      setTheme(saved as ThemeMode);
-    }
-
-    setIsHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isHydrated || typeof window === 'undefined') {
-      return;
-    }
-
-    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
-    document.documentElement.classList.remove(...THEMES);
-    document.documentElement.classList.add(theme);
-  }, [isHydrated, theme]);
-
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme: 'dark' }}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within ThemeProvider');
-  }
-  return context;
+  return useContext(ThemeContext);
 }

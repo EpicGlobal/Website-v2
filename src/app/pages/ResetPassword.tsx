@@ -7,6 +7,8 @@ import type { EmailOtpType } from '@supabase/supabase-js';
 import { ArrowLeft, CheckCircle2, Loader2, Lock } from 'lucide-react';
 import { supabase } from '@/utils/supabase/client';
 import { useAuth } from '@/app/contexts/AuthContext';
+import { ACCENT, INNER, LEAD, MUTED, PAGE_BG, POP_BUTTON } from '@/app/components/story/tokens';
+import { CAPTION, LABEL, PANEL, UTIL_H1, UTIL_TOP } from '@/app/components/utility/ui';
 
 type ResetPasswordProps = {
   code?: string;
@@ -112,34 +114,30 @@ export function ResetPassword({ code, tokenHash, type }: ResetPasswordProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 px-4 pt-32 pb-20">
-      <div className="max-w-md mx-auto">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-emerald-700 hover:opacity-80 transition-opacity mb-8"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Home
-        </Link>
-
-        <div className="bg-gradient-to-br from-white/10 to-white/[0.02] dark:from-white/10 dark:to-white/[0.02] soft-dark:from-white/80 soft-dark:to-white/70 light:from-white light:to-gray-50 orange:from-white/80 orange:to-white/70 leaf:from-white/80 leaf:to-white/70 water:from-white/80 water:to-white/70 backdrop-blur-xl rounded-3xl p-8 border border-white/20 dark:border-white/20 soft-dark:border-white/30 light:border-gray-200 orange:border-white/30 leaf:border-white/30 water:border-white/30 shadow-2xl">
-          <div className="flex justify-center mb-6">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 soft-dark:from-lime-500/20 soft-dark:to-lime-600/10 orange:from-orange-500/20 orange:to-orange-600/10 leaf:from-sky-500/20 leaf:to-sky-600/10 water:from-emerald-500/20 water:to-emerald-600/10 flex items-center justify-center">
-              <Lock className="w-8 h-8 text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-emerald-700" />
-            </div>
-          </div>
-
-          <h1 className="text-3xl font-bold text-center mb-3 bg-gradient-to-b from-white to-gray-400 dark:from-white dark:to-gray-400 soft-dark:from-gray-900 soft-dark:to-gray-700 light:from-gray-900 light:to-gray-600 orange:from-[#101828] orange:to-[#101828] leaf:from-gray-900 leaf:to-gray-700 water:from-gray-900 water:to-gray-700 bg-clip-text text-transparent">
+    <div className={`${PAGE_BG} ${UTIL_TOP}`}>
+      <div className={`${INNER} grid gap-10 lg:grid-cols-[1fr_minmax(0,28rem)] lg:items-start lg:gap-16`}>
+        <div className="lg:pt-6">
+          <Link
+            href="/"
+            className={`inline-flex items-center gap-2 text-sm font-medium hover:opacity-80 transition-opacity mb-8 ${ACCENT}`}
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
+          </Link>
+          <h1 className={UTIL_H1}>
             Reset Password
           </h1>
-          <p className="text-center text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-600 orange:text-[#101828] leaf:text-gray-700 water:text-gray-700 mb-8">
+          <p className={`mt-5 max-w-md ${LEAD}`}>
             Set a new password for your Epic Global account.
           </p>
+        </div>
+
+        <div className={`${PANEL} p-6 sm:p-8`}>
 
           {isInitializing ? (
             <div className="flex flex-col items-center gap-4 py-8">
-              <Loader2 className="w-8 h-8 animate-spin text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-emerald-700" />
-              <p className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-500 orange:text-gray-600 leaf:text-gray-600 water:text-gray-600">
+              <Loader2 className={`w-8 h-8 animate-spin ${ACCENT}`} />
+              <p className={CAPTION}>
                 Verifying your reset link...
               </p>
             </div>
@@ -161,7 +159,7 @@ export function ResetPassword({ code, tokenHash, type }: ResetPasswordProps) {
               {canReset ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className={`${LABEL} mb-2`}>
                       New Password
                     </label>
                     <div className="relative">
@@ -172,14 +170,14 @@ export function ResetPassword({ code, tokenHash, type }: ResetPasswordProps) {
                         onChange={(event) => setPassword(event.target.value)}
                         required
                         disabled={isSubmitting}
-                        className="w-full pl-10 pr-4 py-3 bg-white/50 dark:bg-white/5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 dark:focus:ring-sky-400 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50"
+                        className="w-full pl-10 pr-4 py-3 bg-white/50 dark:bg-white/5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--pop)] text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50"
                         placeholder="Create a new password"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className={`${LABEL} mb-2`}>
                       Confirm New Password
                     </label>
                     <div className="relative">
@@ -190,11 +188,11 @@ export function ResetPassword({ code, tokenHash, type }: ResetPasswordProps) {
                         onChange={(event) => setConfirmPassword(event.target.value)}
                         required
                         disabled={isSubmitting}
-                        className="w-full pl-10 pr-4 py-3 bg-white/50 dark:bg-white/5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 dark:focus:ring-sky-400 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50"
+                        className="w-full pl-10 pr-4 py-3 bg-white/50 dark:bg-white/5 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--pop)] text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50"
                         placeholder="Repeat your new password"
                       />
                     </div>
-                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                    <p className={`mt-1 text-xs ${MUTED}`}>
                       Must be at least 6 characters.
                     </p>
                   </div>
@@ -202,7 +200,7 @@ export function ResetPassword({ code, tokenHash, type }: ResetPasswordProps) {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700 soft-dark:from-lime-600 soft-dark:to-lime-700 soft-dark:hover:from-lime-700 soft-dark:hover:to-lime-800 orange:from-orange-600 orange:to-orange-700 orange:hover:from-orange-700 orange:hover:to-orange-800 leaf:from-sky-600 leaf:to-sky-700 leaf:hover:from-sky-700 leaf:hover:to-sky-800 water:from-emerald-600 water:to-emerald-700 water:hover:from-emerald-700 water:hover:to-emerald-800 text-white font-semibold rounded-lg shadow-lg transition-all hover:shadow-xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className={`${POP_BUTTON} w-full active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed`}
                   >
                     {isSubmitting ? (
                       <>
@@ -216,12 +214,12 @@ export function ResetPassword({ code, tokenHash, type }: ResetPasswordProps) {
                 </form>
               ) : (
                 <div className="space-y-4">
-                  <p className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-600 light:text-gray-500 orange:text-gray-600 leaf:text-gray-600 water:text-gray-600">
+                  <p className={CAPTION}>
                     Request a fresh password reset email from the sign-in modal and use the newest link you receive.
                   </p>
                   <Link
                     href="/sign-in"
-                    className="inline-flex items-center justify-center w-full py-3 bg-gradient-to-r from-sky-600 to-cyan-600 soft-dark:from-lime-600 soft-dark:to-lime-700 orange:from-orange-600 orange:to-orange-700 leaf:from-sky-600 leaf:to-sky-700 water:from-emerald-600 water:to-emerald-700 text-white font-semibold rounded-lg shadow-lg transition-all hover:opacity-90"
+                    className={`${POP_BUTTON} w-full`}
                   >
                     Return to Sign In
                   </Link>

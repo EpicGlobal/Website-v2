@@ -6,6 +6,7 @@ import { useAnalytics } from '@/hooks/useAnalytics';
 import { HubSpotFormEmbed } from '@/app/components/HubSpotFormEmbed';
 import { CopperlineScheduler } from '@/app/components/CopperlineScheduler';
 import { leadSubmissionAttribution } from '@/site/lead-attribution';
+import { isWebsitePreview } from '@/site/preview-mode';
 
 type LeadCaptureProvider = 'hubspot' | 'copperline' | 'shadow';
 
@@ -56,7 +57,7 @@ export function LeadCaptureForm({
   const [securityAttempt, setSecurityAttempt] = useState(0);
 
   useEffect(() => {
-    if (provider !== 'copperline') return undefined;
+    if (isWebsitePreview || provider !== 'copperline') return undefined;
     if (!turnstileSiteKey) {
       setSecurityStatus('error');
       return undefined;
@@ -133,7 +134,7 @@ export function LeadCaptureForm({
     setSecurityAttempt((current) => current + 1);
   };
 
-  if (provider !== 'copperline') {
+  if (!isWebsitePreview && provider !== 'copperline') {
     return (
       <div data-lead-capture-provider={provider}>
         <HubSpotFormEmbed
@@ -165,6 +166,10 @@ export function LeadCaptureForm({
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isWebsitePreview) {
+      setError('Development preview: no information is submitted.');
+      return;
+    }
     if (isSubmitting || isSubmitted) return;
     startTracking();
     const form = event.currentTarget;
@@ -352,10 +357,12 @@ export function LeadCaptureForm({
       <button
         className="flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-cyan-800 disabled:cursor-not-allowed disabled:opacity-70"
         type="submit"
-        disabled={isSubmitting || !turnstileToken}
+        disabled={isWebsitePreview || isSubmitting || !turnstileToken}
       >
         {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : null}
-        {isSubmitting
+        {isWebsitePreview
+          ? 'Preview only — submissions disabled'
+          : isSubmitting
           ? 'Saving your request…'
           : securityStatus === 'loading'
             ? 'Preparing secure form…'

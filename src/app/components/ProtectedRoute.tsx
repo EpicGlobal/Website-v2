@@ -12,7 +12,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-8 h-8 animate-spin text-cyan-400 soft-dark:text-lime-700 orange:text-orange-700 leaf:text-sky-700 water:text-emerald-700" />
+          <Loader2 className="w-8 h-8 animate-spin text-cyan-400 soft-dark:text-lime-700 orange:text-orange-700 leaf:text-sky-700 water:text-emerald-800" />
           <p className="text-gray-300 soft-dark:text-gray-700 orange:text-gray-700 leaf:text-gray-700 water:text-gray-700">
             Loading...
           </p>
@@ -34,9 +34,9 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
             <div className="flex justify-center mb-6">
               <div className="relative">
                 <div className="w-20 h-20 bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 soft-dark:from-lime-500/20 soft-dark:to-lime-600/10 orange:from-orange-500/20 orange:to-orange-600/10 leaf:from-sky-500/20 leaf:to-sky-600/10 water:from-emerald-500/20 water:to-emerald-600/10 rounded-2xl flex items-center justify-center">
-                  <BookOpen className="w-10 h-10 text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-emerald-700" />
+                  <BookOpen className="w-10 h-10 text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-sky-700 water:text-emerald-800" />
                 </div>
-                <div className="absolute -top-1 -right-1 w-8 h-8 bg-gradient-to-br from-cyan-500 to-cyan-600 soft-dark:from-lime-600 soft-dark:to-lime-700 orange:from-orange-600 orange:to-orange-700 leaf:from-sky-600 leaf:to-sky-700 water:from-emerald-600 water:to-emerald-700 rounded-lg flex items-center justify-center shadow-lg">
+                <div className="absolute -top-1 -right-1 w-8 h-8 bg-gradient-to-br from-cyan-500 to-cyan-600 soft-dark:from-lime-600 soft-dark:to-lime-700 orange:from-orange-700 orange:to-orange-800 leaf:from-sky-700 leaf:to-sky-800 water:from-emerald-700 water:to-emerald-800 rounded-lg flex items-center justify-center shadow-lg">
                   <Lock className="w-4 h-4 text-white" />
                 </div>
               </div>
@@ -96,7 +96,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
             <div className="flex justify-center mb-6">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700 soft-dark:from-lime-600 soft-dark:to-lime-700 soft-dark:hover:from-lime-700 soft-dark:hover:to-lime-800 orange:from-orange-600 orange:to-orange-700 orange:hover:from-orange-700 orange:hover:to-orange-800 leaf:from-sky-600 leaf:to-sky-700 leaf:hover:from-sky-700 leaf:hover:to-sky-800 water:from-emerald-600 water:to-emerald-700 water:hover:from-emerald-700 water:hover:to-emerald-800 text-white font-medium rounded-lg shadow-lg transition-all hover:shadow-xl active:scale-95"
+                className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700 soft-dark:from-lime-600 soft-dark:to-lime-700 soft-dark:hover:from-lime-700 soft-dark:hover:to-lime-800 orange:from-orange-700 orange:to-orange-800 orange:hover:from-orange-700 orange:hover:to-orange-800 leaf:from-sky-700 leaf:to-sky-800 leaf:hover:from-sky-700 leaf:hover:to-sky-800 water:from-emerald-700 water:to-emerald-800 water:hover:from-emerald-700 water:hover:to-emerald-800 text-white font-medium rounded-lg shadow-lg transition-all hover:shadow-xl active:scale-95"
               >
                 <Mail className="w-5 h-5" />
                 Sign in with Email
@@ -118,7 +118,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
           <div className="text-center mt-6">
             <a
               href="/"
-              className="text-sm text-cyan-400 hover:text-cyan-300 soft-dark:text-lime-700 soft-dark:hover:text-lime-800 light:text-cyan-600 light:hover:text-cyan-700 orange:text-orange-700 orange:hover:text-orange-600 leaf:text-sky-700 leaf:hover:text-sky-600 water:text-emerald-700 water:hover:text-emerald-600 transition-colors"
+              className="text-sm text-cyan-400 hover:text-cyan-300 soft-dark:text-lime-700 soft-dark:hover:text-lime-800 light:text-cyan-600 light:hover:text-cyan-700 orange:text-orange-700 orange:hover:text-orange-600 leaf:text-sky-700 leaf:hover:text-sky-600 water:text-emerald-800 water:hover:text-emerald-600 transition-colors"
             >
               Back to Home
             </a>

@@ -20,7 +20,10 @@ It is the closest AWS-managed fit for this codebase because the app uses Next.js
 1. In AWS Amplify, connect the GitHub repo `EpicGlobal/Website-v2`.
 2. Deploy the `main` branch.
 3. Set `NEXT_PUBLIC_SITE_URL`:
-   - Production: `https://epicglobalinc.com`
+   - Production: `https://www.epicglobalinc.com` (the bare domain only redirects to www). The code corrects the
+     bare domain to www by itself, so an existing `https://epicglobalinc.com` value still gives www canonicals.
+     Before changing this value, note that the lead-capture route also falls back to it for allowed origins when
+     `COPPERLINE_LEAD_ALLOWED_ORIGINS` is not set.
    - Preview branches: use the Amplify preview domain for that branch
 4. After the first successful deploy, connect the custom domain.
 

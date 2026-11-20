@@ -4,12 +4,12 @@ import '@/styles/index.css';
 import { SiteShell } from '@/site/SiteShell';
 import { ConsentManagedTracking } from '@/app/components/ConsentManagedTracking';
 import { siteConfig } from '@/site/site-config';
-import tabLogo from '@/assets/89c6c6b033fa0f92c4e3c1a320826a96a86b5469.png';
+import { isWebsitePreview } from '@/site/preview-mode';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Zero-Risk Global Commerce Operator`,
+    default: `${siteConfig.name} | Wholesale Trade Partner That Buys Your Inventory`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -20,28 +20,21 @@ export const metadata: Metadata = {
     'ecommerce operator',
     'marketplace expansion',
     'international ecommerce',
-    'zero risk ecommerce',
+    'wholesale trade partner',
     'brand protection',
   ],
-  alternates: {
-    canonical: siteConfig.url,
-  },
+  // Fixed addresses (not build-hashed) so Google can keep showing Epic's icon next to search results.
+  // 192px is a multiple of 48, as Google asks. Made from src/assets/89c6c6...png (the tab logo).
   icons: {
     icon: [
-      {
-        url: tabLogo.src,
-        type: 'image/png',
-      },
+      { url: '/favicon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '48x48' },
     ],
-    shortcut: [
-      {
-        url: tabLogo.src,
-        type: 'image/png',
-      },
-    ],
+    shortcut: [{ url: '/favicon.ico' }],
     apple: [
       {
-        url: tabLogo.src,
+        url: '/apple-touch-icon.png',
+        sizes: '180x180',
         type: 'image/png',
       },
     ],
@@ -49,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: siteConfig.url,
-    title: `${siteConfig.name} | Zero-Risk Global Commerce Operator`,
+    title: `${siteConfig.name} | Wholesale Trade Partner That Buys Your Inventory`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     locale: 'en_US',
@@ -64,16 +57,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${siteConfig.name} | Zero-Risk Global Commerce Operator`,
+    title: `${siteConfig.name} | Wholesale Trade Partner That Buys Your Inventory`,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
   robots: {
-    index: true,
-    follow: true,
+    index: !isWebsitePreview,
+    follow: !isWebsitePreview,
     googleBot: {
-      index: true,
-      follow: true,
+      index: !isWebsitePreview,
+      follow: !isWebsitePreview,
       'max-image-preview': 'large',
       'max-snippet': -1,
       'max-video-preview': -1,
@@ -84,7 +77,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#f97316',
+  themeColor: '#0B1020',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -92,34 +85,38 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const turnstileSiteKey = String(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '').trim();
 
   return (
-    <html lang="en" className="orange" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        {/* Short and full plain-text summaries of the site for AI assistants. */}
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt" />
+      </head>
       <body>
-        {wafIntegrationUrl ? (
+        {!isWebsitePreview && wafIntegrationUrl ? (
           <Script
             id="aws-waf-browser-challenge"
             src={`${wafIntegrationUrl}/challenge.js`}
             strategy="afterInteractive"
           />
         ) : null}
-        {turnstileSiteKey ? (
+        {!isWebsitePreview && turnstileSiteKey ? (
           <Script
             id="cloudflare-turnstile"
             src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
             strategy="afterInteractive"
           />
         ) : null}
-        <Script id="epic-theme-init" strategy="beforeInteractive">
+        <Script id="epic-privacy-init" strategy="beforeInteractive">
           {`
             (() => {
               try {
-                const allowed = ['dark', 'leaf', 'water', 'light', 'orange'];
-                const saved = window.localStorage.getItem('epic-theme-v2');
-                const theme = allowed.includes(saved) ? saved : 'orange';
-                document.documentElement.classList.remove(...allowed);
-                document.documentElement.classList.add(theme);
-              } catch (error) {
-                document.documentElement.classList.add('orange');
-              }
+                const key = 'epic.privacy.nonessential';
+                const ok = (v) => v === 'granted' || v === 'denied';
+                let set = navigator.globalPrivacyControl === true;
+                try { set = set || ok(window.localStorage.getItem(key)); } catch (e) {}
+                set = set || document.cookie.split(';').some((c) => ok(c.trim().split(key + '=')[1]));
+                if (set) document.documentElement.setAttribute('data-privacy-set', '');
+              } catch (error) {}
             })();
           `}
         </Script>

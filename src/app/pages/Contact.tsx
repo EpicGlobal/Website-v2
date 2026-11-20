@@ -13,8 +13,8 @@ export function Contact() {
       <StructuredData data={contactPageSchema} />
       <StructuredData
         data={getBreadcrumbSchema([
-          { name: 'Home', url: 'https://epicglobalinc.com/' },
-          { name: 'Contact', url: 'https://epicglobalinc.com/contact' },
+          { name: 'Home', url: `${siteConfig.url}/` },
+          { name: 'Contact', url: `${siteConfig.url}/contact` },
         ])}
       />
 
@@ -59,14 +59,14 @@ export function Contact() {
 
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800" />
                   <p className="text-sm leading-relaxed text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
                     We assess marketplace fit, inventory readiness, channel health, and international expansion potential.
                   </p>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Clock3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
+                  <Clock3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800" />
                   <p className="text-sm leading-relaxed text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
                     {showBookACall
                       ? 'After submitting, select a live Google Calendar time without leaving the page.'
@@ -75,7 +75,7 @@ export function Contact() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Globe2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-700" />
+                  <Globe2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-400 dark:text-cyan-400 soft-dark:text-lime-700 light:text-cyan-600 orange:text-orange-700 leaf:text-cyan-700 water:text-emerald-800" />
                   <p className="text-sm leading-relaxed text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-[#101828] leaf:text-gray-700 water:text-[#101828]">
                     Epic operates a buy, sell, advertise, protect model across Amazon, Walmart, eBay, and select international marketplaces.
                   </p>

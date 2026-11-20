@@ -1,5 +1,18 @@
 import type { ReactNode } from 'react';
 import { siteConfig } from '@/site/site-config';
+import { H1, INNER, MUTED, PAGE_BG } from '@/app/components/story/tokens';
+import {
+  ACCENT_BORDER,
+  BULLETS,
+  LEGAL_BODY,
+  LEGAL_H2,
+  LEGAL_H3,
+  LEGAL_SECTION,
+  MEASURE,
+  CALLOUT,
+  TEXT_LINK,
+  UTIL_TOP,
+} from '@/app/components/utility/ui';
 
 function PolicySection({
   number,
@@ -11,10 +24,10 @@ function PolicySection({
   children: ReactNode;
 }) {
   return (
-    <section aria-labelledby={`privacy-section-${number}`}>
+    <section aria-labelledby={`privacy-section-${number}`} className={LEGAL_SECTION}>
       <h2
         id={`privacy-section-${number}`}
-        className="text-2xl font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900 mb-4"
+        className={`${LEGAL_H2} mb-4`}
       >
         {number}. {title}
       </h2>
@@ -25,36 +38,35 @@ function PolicySection({
 
 function BulletList({ children }: { children: ReactNode }) {
   return (
-    <ul className="list-disc space-y-2 ml-6 marker:text-cyan-300 light:marker:text-green-700 orange:marker:text-orange-800 leaf:marker:text-sky-900 water:marker:text-lime-900">
+    <ul className={BULLETS}>
       {children}
     </ul>
   );
 }
 
-const policyLinkClassName =
-  'text-cyan-300 light:text-green-800 orange:text-orange-900 leaf:text-sky-900 water:text-lime-900 underline';
+const policyLinkClassName = TEXT_LINK;
 
 export function Privacy() {
   return (
-    <div className="min-h-screen text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-gray-900 leaf:text-gray-900 water:text-gray-900 bg-gradient-to-br dark:from-cyan-950 dark:via-slate-900 dark:to-black soft-dark:from-lime-400 soft-dark:via-lime-100 soft-dark:to-white leaf:from-[#00A8EA] leaf:via-cyan-100 leaf:to-white water:from-lime-500 water:via-lime-100 water:to-white orange:from-[#F68932] orange:via-orange-100 orange:to-white">
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-sm font-semibold uppercase tracking-wider text-cyan-300 light:text-green-800 orange:text-orange-900 leaf:text-sky-900 water:text-lime-900 mb-3">
+    <div className={PAGE_BG}>
+      <section className={UTIL_TOP}>
+        <div className={INNER}>
+          <p className={`text-sm font-medium mb-3 ${MUTED}`}>
             Legal and privacy
           </p>
-          <h1 className="text-4xl sm:text-5xl font-bold mb-5 text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">
+          <h1 className={`${H1} mb-5`}>
             Data Protection and Privacy Policy
           </h1>
-          <p className="text-sm text-gray-400 dark:text-gray-400 soft-dark:text-gray-700 light:text-gray-600 orange:text-slate-700 leaf:text-gray-800 water:text-gray-800 mb-8">
+          <p className={`text-sm mb-10 ${MUTED}`}>
             Effective and last updated: August 3, 2026
           </p>
 
-          <div className="border-l-4 border-cyan-400 light:border-green-700 orange:border-orange-800 leaf:border-sky-900 water:border-lime-900 bg-white/5 light:bg-white/70 orange:bg-white/30 leaf:bg-white/20 water:bg-white/30 px-6 py-5 mb-12 text-gray-200 dark:text-gray-200 soft-dark:text-gray-700 light:text-gray-700 orange:text-slate-700 leaf:text-gray-800 water:text-gray-800 leading-relaxed">
+          <div className={`${CALLOUT} ${MEASURE} mb-12 ${LEGAL_BODY}`}>
             Epic Global Inc. (&quot;Epic Global,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) respects privacy and is committed to protecting and handling personal information responsibly. This Policy explains how we collect, use, disclose, retain, and protect personal information when you visit our websites, use products or services that link to this Policy, communicate with us, or authorize a connection to a third-party platform or service.
           </div>
 
-          <div className="prose prose-invert max-w-none">
-            <div className="space-y-10 text-gray-300 dark:text-gray-300 soft-dark:text-gray-700 light:text-gray-700 orange:text-slate-700 leaf:text-gray-800 water:text-gray-800 leading-relaxed">
+          <div className={MEASURE}>
+            <div className={`space-y-8 ${LEGAL_BODY}`}>
               <p>
                 This Policy describes our general practices. A contract, data processing addendum, product-specific notice, or authorization screen may provide additional or more specific terms. If we process personal information solely on behalf of a business customer, that customer controls the information and its instructions govern our processing.
               </p>
@@ -74,7 +86,7 @@ export function Privacy() {
 
               <PolicySection number={2} title="Personal Information We Collect">
                 <p>The information we collect depends on how you interact with us and which services or integrations you use.</p>
-                <h3 className="text-xl font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Information you provide</h3>
+                <h3 className={`${LEGAL_H3} pt-2`}>Information you provide</h3>
                 <BulletList>
                   <li><strong>Contact and identity information:</strong> name, business email address, telephone number, job title, company, account identifiers, and authentication or profile information.</li>
                   <li><strong>Business and operational information:</strong> marketplace accounts, catalogs, SKUs, listings, inventory, pricing, advertising, forecasts, budgets, approvals, assets, software subscriptions, vendors, contracts, and other information submitted for an assessment or service.</li>
@@ -85,7 +97,7 @@ export function Privacy() {
                 </BulletList>
                 <p>Please do not provide sensitive personal information unless it is necessary for an authorized business purpose and you have the right to provide it.</p>
 
-                <h3 className="text-xl font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Information from connected platforms and APIs</h3>
+                <h3 className={`${LEGAL_H3} pt-2`}>Information from connected platforms and APIs</h3>
                 <p>When an authorized user connects a third-party account, we may receive information allowed by that platform and by the permissions selected by the user, including:</p>
                 <BulletList>
                   <li>platform account identifiers, profile information, business or shop information, and authorized-user details;</li>
@@ -97,7 +109,7 @@ export function Privacy() {
                 </BulletList>
                 <p>The exact information received is limited by the third-party permissions granted and the features enabled.</p>
 
-                <h3 className="text-xl font-semibold text-white dark:text-white soft-dark:text-gray-900 light:text-gray-900 orange:text-[#101828] leaf:text-gray-900 water:text-gray-900">Information collected automatically</h3>
+                <h3 className={`${LEGAL_H3} pt-2`}>Information collected automatically</h3>
                 <BulletList>
                   <li>IP address, browser type, device type, operating system, language, and approximate location derived from IP address;</li>
                   <li>pages, features, links, and content viewed; timestamps; referring pages; campaign parameters; and interactions with forms or calls to action;</li>
@@ -243,7 +255,7 @@ export function Privacy() {
 
               <PolicySection number={18} title="Contact Us">
                 <p>Questions, concerns, or privacy requests may be directed to:</p>
-                <address className="not-italic border-l-4 border-cyan-400 light:border-green-700 orange:border-orange-800 leaf:border-sky-900 water:border-lime-900 pl-5 text-gray-200 dark:text-gray-200 soft-dark:text-gray-700 light:text-gray-700 orange:text-slate-700 leaf:text-gray-800 water:text-gray-800">
+                <address className={`not-italic pl-5 ${ACCENT_BORDER}`}>
                   <strong>Epic Global Inc.</strong><br />
                   Attn: Privacy<br />
                   {siteConfig.streetAddress}<br />
