@@ -7,9 +7,11 @@ import { Check, Minus, X } from 'lucide-react';
 import { ACCENT, BODY, HEAD, MUTED, RULE } from '@/app/components/story/tokens';
 import { CARD } from './homeStyles';
 
-/** Each cell: good for the brand owner (yes), bad (no), plus a few words. Icon + word, so it never relies on color. */
-type Cell = { ok: boolean; text: string };
+/** Each cell: good for the brand owner (yes), bad (no), plus a few words. Icon + word, so it never relies on color.
+ * 'plain' is text only, for comparing approaches rather than yes/no capabilities (AI Intelligence, Nov 20). */
+type Cell = { ok: boolean | 'plain'; text: string };
 function Mark({ cell, strong }: { cell: Cell; strong?: boolean }) {
+  if (cell.ok === 'plain') return <span className={BODY}>{cell.text}</span>;
   const Icon = cell.ok ? Check : X;
   return (
     <span className={`inline-flex items-start gap-2 ${strong ? `font-semibold ${HEAD}` : BODY}`}>
@@ -27,10 +29,14 @@ function Mark({ cell, strong }: { cell: Cell; strong?: boolean }) {
 }
 
 /** The comparison table used on Home and Our Model. The first column is Epic and gets the soft highlight. */
-export function MarkTable({ columns, rows }: { columns: string[]; rows: { q: string; cells: Cell[] }[] }) {
+export function MarkTable({ columns, rows, rowLabel = 'Question' }: { columns: string[]; rows: { q: string; cells: Cell[] }[]; rowLabel?: string }) {
   const EPIC = 'bg-[var(--pop)]/[0.07]';
   return (
-    <div className={`overflow-x-auto rounded-2xl border ${RULE}`}>
+    <>
+    {/* Below 640px the table is wider than the screen and scrolls inside its box (the last column starts hidden), so a
+        small hint says so. The box takes keyboard focus, so arrow keys scroll it too. */}
+    <p className={`sm:hidden mb-2 text-xs font-medium ${MUTED}`} aria-hidden="true">Swipe to compare</p>
+    <div role="region" aria-label={`${columns.join(' vs ')} comparison`} tabIndex={0} className={`overflow-x-auto rounded-2xl border ${RULE} focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--pop)]`}>
       <table className={`w-full table-fixed text-left text-sm sm:text-base ${columns.length > 3 ? 'min-w-[48rem]' : 'min-w-[38rem]'}`}>
         {/* Even columns: the question column is a bit wider, every answer column gets the same width. */}
         <colgroup>
@@ -41,7 +47,7 @@ export function MarkTable({ columns, rows }: { columns: string[]; rows: { q: str
         </colgroup>
         <thead>
           <tr className={`border-b ${RULE}`}>
-            <th scope="col" className="p-4"><span className="sr-only">Question</span></th>
+            <th scope="col" className="p-4"><span className="sr-only">{rowLabel}</span></th>
             {columns.map((c, i) => (
               <th key={c} scope="col" className={`p-4 align-bottom font-semibold ${i === 0 ? `${ACCENT} ${EPIC}` : HEAD}`}>{c}</th>
             ))}
@@ -50,15 +56,16 @@ export function MarkTable({ columns, rows }: { columns: string[]; rows: { q: str
         <tbody>
           {rows.map((r) => (
             <tr key={r.q} className={`border-b last:border-b-0 ${RULE}`}>
-              <th scope="row" className={`p-4 font-medium align-top ${HEAD}`}>{r.q}</th>
+              <th scope="row" className={`px-4 py-5 font-medium align-top ${HEAD}`}>{r.q}</th>
               {r.cells.map((cell, i) => (
-                <td key={columns[i]} className={`p-4 align-top ${i === 0 ? EPIC : ''}`}><Mark cell={cell} strong={i === 0} /></td>
+                <td key={columns[i]} className={`px-4 py-5 align-top ${i === 0 ? EPIC : ''}`}><Mark cell={cell} strong={i === 0} /></td>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+    </>
   );
 }
 
